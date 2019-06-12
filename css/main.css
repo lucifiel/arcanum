@@ -1,0 +1,34 @@
+
+.main {
+	display:flex;
+	margin: 0px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 2px;
+}
+
+input[type="button"], button {
+
+	border: 1pt solid darkgray;
+	border-radius: 2px;
+	padding: 8px;
+	margin: 4px;
+
+}
+
+input[type="button"], button:active {
+	background-color: rgb( 100, 100,100);
+}
+
+.action-list {
+	margin: 12px 8px;
+}
+.stat-list {
+	margin: 0px 24px;
+}
+
+.action-btn {
+	min-width: 120px;
+}

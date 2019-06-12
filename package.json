@@ -4,7 +4,7 @@
   "description": "Template for using webpack with separate dev and config files.",
   "main": "index.js",
   "scripts": {
-	"dev": "webpack --watch --config webpack.dev.config.mjs",
+    "dev": "webpack --watch --config webpack.dev.config.mjs",
     "build": "webpack --watch --config webpack.dist.config.mjs"
   },
   "repository": {
@@ -18,7 +18,14 @@
   },
   "homepage": "https://github.com/lerpinglemur/webpack-template#readme",
   "devDependencies": {
+    "css-loader": "^3.0.0",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "objecty": "^0.1.0",
+    "vue": "^2.6.10"
   }
 }

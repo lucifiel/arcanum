@@ -1,4 +1,5 @@
 const path = require( 'path' );
+const VueLoader = require('vue-loader/lib/plugin');
 
 module.exports = {
 
@@ -6,6 +7,16 @@ module.exports = {
 	entry:{
 		name:"./src/index.js"
 	},
+	module:{
+
+			rules:[
+				{
+					test:/\.vue$/,
+					loader:'vue-loader'
+				}
+			]
+	},
+	plugins:[new VueLoader()],
 	output:{
 
 		path:path.resolve( __dirname, "dist"),
@@ -22,7 +33,8 @@ module.exports = {
 
 		alias:{
 			'config':'config_dev',
-			'data':'data'
+			'data':'data',
+			'ui':'src/ui'
 		}
 	}
 

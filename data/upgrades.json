@@ -1,0 +1,15 @@
+[
+
+	{
+
+		"id":"potato",
+		"requires":[],
+		"effects":{
+			
+		}
+
+	},
+	{
+		"id":"upgrade2"
+	}
+]
