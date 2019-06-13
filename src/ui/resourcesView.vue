@@ -3,9 +3,9 @@ import { round } from 'format';
 
 export default {
 	
-	props:['stats'],
+	props:['resources'],
 	data(){
-		console.log('this.stats: ' + this.stats );
+		console.log('this.resources: ' + this.resources );
 		return {
 		}
 	},
@@ -21,7 +21,7 @@ export default {
 <div class="stat-list">
 
 	<ul>
-		<li v-for="it in stats" :key="it.type.id">{{ it.type.id + ': ' + format( it.value ) }}</li>
+		<li v-for="it in resources" :key="it.type.id">{{ it.type.id + ': ' + format( it.value ) }}</li>
 	</ul>
 
 </div>

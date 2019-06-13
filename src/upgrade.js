@@ -15,11 +15,6 @@ export default class Upgrade {
 	set desc(v){		
 	}
 
-	get unlocks() {
-	}
-	set unlocks(v){
-	}
-
 	get locks(){
 	}
 	set locks(v){

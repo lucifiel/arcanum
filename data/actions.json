@@ -1,10 +1,26 @@
 [
 	{
 		"id":"read",
-		"name":"Read"
+		"name":"Read",
+		"effect":{
+			"arcana":1
+		}
 	},
 	{
 		"id":"meditate",
-		"name":"Meditate"
+		"name":"Meditate",
+		"effect":{
+			"mana":1	
+		}
+	},
+	{
+		"id":"buyscroll",
+		"name":"Buy scroll",
+		"cost":{
+			"gold":5
+		},
+		"effect":{
+			"scroll":1
+		}
 	}
 ]

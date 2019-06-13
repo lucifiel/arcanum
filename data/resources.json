@@ -6,12 +6,25 @@
 		"id":"mana"
 	},
 	{
-		"id":"scrolls"
+		"id":"gold",
+		"name":"Gold",
+		"desc":"Gold Piece",
+		"value":5
 	},
 	{
-		"id":"tomes"
+		"id":"scroll",
+		"name":"Arcane Scroll",
+		"desc":"Scroll of arcane lore"
 	},
 	{
-		"id":"crystal ball"
+		"id":"tome",
+		"name":"Arcane Tome",
+		"desc":"Tome of arcane lore"
+
+	},
+	{
+		"id":"ball",
+		"name":"Crystal Ball",
+		"desc":"Crystal Ball"
 	}
 ]

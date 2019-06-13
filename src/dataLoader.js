@@ -2,6 +2,9 @@ import ResourceList from '../data/resources.json';
 import UpgradeList from '../data/upgrades.json';
 import ActionList from '../data/actions.json';
 
+/**
+ * @todo replace with server call.
+ */
 export default {
 
 	resourceList:ResourceList,

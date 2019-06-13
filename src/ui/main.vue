@@ -2,20 +2,27 @@
 
 import DataLoader from '../dataLoader';
 
-import StatsView from './statsView.vue';
+import ResoucesView from './resourcesView.vue';
+import ActionsView from './actionsView.vue';
+import UpgradesView from './upgradesView';
+
 import OutView from './output.vue';
 
 export default {
 
 	props:['game'],
+	components:{
+		resources:ResoucesView,
+		actions:ActionsView,
+		upgrades:UpgradesView,
+		output:OutView
+	},
 	data(){
 
 		let data = this.game.gameData;
 		
 		return {
-
 			gameData:data
-
 		};
 
 
@@ -24,17 +31,28 @@ export default {
 
 		this.lastUpdate = Date.now();
 
-		setInterval( this.update, 200 );
+		
 
-	},
-	components:{
-		stats:StatsView
 	},
 	methods:{
 
 		load() {
 		},
 		save() {
+		},
+		pause() {
+			
+			if ( this.interval ) {
+				let int = this.interval;
+				this.interval = null;
+				clearInterval( int );
+			}
+
+		},
+		unpause() {
+
+			if ( !this.interval ) this.interval = setInterval( this.update, 200 );
+
 		},
 
 		update() {
@@ -43,8 +61,7 @@ export default {
 			let dt = ( time - this.lastUpdate )/1000;
 			this.lastUpdate = time;
 
-			console.log(dt);
-			let stats = this.gameData.stats;
+			let stats = this.gameData.resources;
 			let len = stats.length;
 			for( let i = len-1; i >= 0; i-- ) {
 				stats[i].update( dt );
@@ -52,11 +69,17 @@ export default {
 
 		},
 
+		actionClicked( id ) {
+
+			this.game.applyAction(id);
+
+		},
+
 		meditate(){
-			this.game.getStat('mana').value++;
+			this.game.getResource('amna').value++;
 		},
 		read() {
-			this.game.getStat('arcanum').value++;
+			this.game.getResource('arcanum').value++;
 		}
 
 	}
@@ -68,7 +91,9 @@ export default {
 
 	<div class="main">
 
-		<stats :stats="gameData.stats" />
+		<resources :resources="gameData.resources" />
+
+		<actions :actions="gameData.actions" @click="actionClicked" />
 
 		<div class="action-list">
 
