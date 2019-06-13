@@ -91,10 +91,10 @@ var name =
 /*!***************************!*\
   !*** ./data/actions.json ***!
   \***************************/
-/*! exports provided: 0, 1, default */
+/*! exports provided: 0, 1, 2, default */
 /***/ (function(module) {
 
-eval("module.exports = [{\"id\":\"read\",\"name\":\"Read\"},{\"id\":\"meditate\",\"name\":\"Meditate\"}];\n\n//# sourceURL=webpack://%5Bname%5D/./data/actions.json?");
+eval("module.exports = [{\"id\":\"read\",\"name\":\"Read\",\"effect\":{\"arcana\":1}},{\"id\":\"meditate\",\"name\":\"Meditate\",\"effect\":{\"mana\":1}},{\"id\":\"buyscroll\",\"name\":\"Buy scroll\",\"cost\":{\"gold\":5},\"effect\":{\"scroll\":1}}];\n\n//# sourceURL=webpack://%5Bname%5D/./data/actions.json?");
 
 /***/ }),
 
@@ -102,10 +102,10 @@ eval("module.exports = [{\"id\":\"read\",\"name\":\"Read\"},{\"id\":\"meditate\"
 /*!*****************************!*\
   !*** ./data/resources.json ***!
   \*****************************/
-/*! exports provided: 0, 1, 2, 3, 4, default */
+/*! exports provided: 0, 1, 2, 3, 4, 5, default */
 /***/ (function(module) {
 
-eval("module.exports = [{\"id\":\"arcana\"},{\"id\":\"mana\"},{\"id\":\"scrolls\"},{\"id\":\"tomes\"},{\"id\":\"crystal ball\"}];\n\n//# sourceURL=webpack://%5Bname%5D/./data/resources.json?");
+eval("module.exports = [{\"id\":\"arcana\"},{\"id\":\"mana\"},{\"id\":\"gold\",\"name\":\"Gold\",\"desc\":\"Gold Piece\",\"value\":5},{\"id\":\"scroll\",\"name\":\"Arcane Scroll\",\"desc\":\"Scroll of arcane lore\"},{\"id\":\"tome\",\"name\":\"Arcane Tome\",\"desc\":\"Tome of arcane lore\"},{\"id\":\"ball\",\"name\":\"Crystal Ball\",\"desc\":\"Crystal Ball\"}];\n\n//# sourceURL=webpack://%5Bname%5D/./data/resources.json?");
 
 /***/ }),
 
@@ -117,6 +117,17 @@ eval("module.exports = [{\"id\":\"arcana\"},{\"id\":\"mana\"},{\"id\":\"scrolls\
 /***/ (function(module) {
 
 eval("module.exports = [{\"id\":\"potato\",\"requires\":[],\"effects\":{}},{\"id\":\"upgrade2\"}];\n\n//# sourceURL=webpack://%5Bname%5D/./data/upgrades.json?");
+
+/***/ }),
+
+/***/ "./node_modules/objecty/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/objecty/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\r\n\t\r\n/**\r\n * Create a deep clone of an object. Any clone functions in source objects\r\n * or sub-objects will be called to provide their own cloned implementations.\r\n * @todo eliminate circular references.\r\n * @param {object} src - objec to clone.\r\n * @param {object} [dest={}] object to merge cloned values into.\r\n */\r\nclone( src, dest={} ) {\r\n\r\n\tvar o, f;\r\n\tfor( let p in src ) {\r\n\r\n\t\to = src[p];\r\n\t\tif ( o instanceof Array ) {\r\n\r\n\t\t\tdest[p] = clone( [], o );\r\n\r\n\t\t} else if ( o instanceof Object ) {\r\n\r\n\t\t\tf = ( o.clone );\r\n\t\t\tif ( f && typeof f === 'function' ) dest[p] = f.call( o );\r\n\t\t\telse dest[p] = clone( {}, o );\r\n\r\n\t\t} else dest[p] = o;\r\n\r\n\t}\r\n\r\n\treturn dest;\r\n\r\n},\r\n\r\n\r\n/**\r\n * Return an array of all properties defined by an Object or its ancestors.\r\n * @param {Object} obj - Object whose properties are returned.\r\n * @param {bool} ownData - whether to include private data variables.\r\n * @param {bool} getters - whether to include getter properties.\r\n * @return {string[]} Array of property names.\r\n */\r\ngetProps( obj, ownData=true, getters=true ) {\r\n\r\n\tif ( !obj ) return [];\r\n\r\n\tlet proto = ownData ? obj : Object.getPrototypeOf(obj);\r\n\r\n\tlet p, props = [];\r\n\r\n\t/// fast version for when private variables and getters don't\r\n\t/// have to be ruled out.\r\n\tif ( getters === true ) {\r\n\t\twhile ( proto !== Object.prototype ) {\r\n\r\n\t\t\tfor ( p of Object.getOwnPropertyNames(proto)) {\r\n\r\n\t\t\t\tif ( typeof obj[p] !== 'function') props.push( p );\r\n\t\t\t}\r\n\r\n\t\t\t// quick push.\r\n\t\t\t//props.push.apply( props, Object.getOwnPropertyNames(proto) );\r\n\t\t\tproto = Object.getPrototypeOf( proto );\r\n\t\r\n\t\t} // while-loop.\r\n\r\n\t} else {\r\n\r\n\t\twhile ( proto !== Object.prototype ) {\r\n\r\n\t\t\tfor ( p of Object.getOwnPropertyNames(proto)) {\r\n\r\n\t\t\t\tif ( typeof obj[p] === 'function') continue;\r\n\t\t\t\tif ( Object.getOwnPropertyDescriptor(proto, p).get === undefined ) {\r\n\t\t\t\t\tprops.push( p );\r\n\t\t\t\t\t//else console.log( 'hiding internal prop: ' + p );\r\n\t\t\t\t} else {\r\n\t\t\t\t\tif ( getters === true ) props.push(p);\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\t\t\tproto = Object.getPrototypeOf( proto );\r\n\r\n\t\t} // while-loop.\r\n\r\n\t}\r\n\r\n\treturn props;\r\n\r\n},\r\n\r\n/**\r\n * Define values for all of an Object's undefined properties with setters\r\n * up through its Object chain.\r\n * This can be useful in frameworks like Vue, where watched Objects must\r\n * have all their properties defined when the template is created.\r\n * @param {Object} obj - Object to assign properties for.\r\n * @param {*} [defaultVal=null] - Value to assign to undefined properties.\r\n */\r\ndefineVars( obj, defaultVal=null ) {\r\n\r\n\tif ( !obj ) return;\r\n\tlet proto = obj;\r\n\r\n\twhile ( proto !== Object.prototype ) {\r\n\r\n\t\tfor ( p of Object.getOwnPropertyNames(proto)) {\r\n\r\n\t\t\tif ( obj[p] !== undefined ) continue;\r\n\t\t\tif ( Object.getOwnPropertyDescriptor(proto, p).set !== undefined ) {\r\n\r\n\t\t\t\tobj[p] = defaultVal;\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\t\tproto = Object.getPrototypeOf( proto );\r\n\r\n\t} // while-loop.\r\n\r\n},\r\n\r\n/**\r\n * Searches an object's prototype chain for a property descriptor.\r\n * @param {Object} obj \r\n * @param {string} k - property key.\r\n * @returns {PropertyDescriptor|null}\r\n */\r\ngetPropDesc(obj, k) {\r\n\r\n\twhile (obj !== Object.prototype) {\r\n\r\n\t\tvar desc = Object.getOwnPropertyDescriptor(obj, k);\r\n\t\tif (desc) return desc;\r\n\t\tobj = Object.getPrototypeOf(obj);\r\n\r\n\t}\r\n\treturn null;\r\n\r\n},\r\n\r\n/**\r\n * Copies all values from a source object into a destination object.\r\n * @param {Object} dest - Destination for json data.\r\n * @param {Object} src - Object data to write into dest.\r\n * @param {string[]} [exclude=null] - Array of properties not to copy from src to dest.\r\n * @returns {Object} the destination object.\r\n */\r\nassign(dest, src, exclude = null) {\r\n\r\n\tfor (let p in src) {\r\n\r\n\t\tif (exclude && exclude.includes(p)) continue;\r\n\t\tvar desc = getPropDesc(dest, p );\r\n\t\tif ( desc === null || (desc.set === undefined && !desc.writable )) continue;\r\n\t\tdest[p] = src[p];\r\n\r\n\t} //for\r\n\r\n\treturn dest;\r\n\r\n},\r\n\r\n/**\r\n * Convert an object to a JSON object ready to be stringified.\r\n * @param {Object} obj - the objet to convert. \r\n * @param {string[]} [excludes=null] - Array of properties to exclude from encoding. \r\n * @param {string[]} [includes=null] - Array of properties to always include in encoding, if they exist. \r\n * @param {bool} [writableOnly=true] - Whether to only include writable properties.\r\n */\r\njsonify(obj, excludes=null, includes=null, writableOnly = true) {\r\n\r\n\tlet r = {}, p;\r\n\r\n\tif (includes) {\r\n\t\tlet len = includes.length;\r\n\t\tfor (let i = len - 1; i >= 0; i--) {\r\n\t\t\tp = includes[i];\r\n\t\t\tif (obj.hasOwnProperty(p)) r[p] = obj[p];\r\n\t\t}\r\n\t}\r\n\r\n\tvar proto = Object.getPrototypeOf(obj);\r\n\twhile (proto != Object.prototype) {\r\n\r\n\t\tfor (p of Object.getOwnPropertyNames(proto)) {\r\n\r\n\t\t\tif ( excludes && excludes.includes(p) ) continue;\r\n\r\n\t\t\tvar desc = Object.getOwnPropertyDescriptor(proto, p);\r\n\t\t\tif (writableOnly && desc.set === undefined && !desc.writable) continue;\r\n\r\n\t\t\tvar val = obj[p];\r\n\t\t\tif (typeof val === 'function') continue;\r\n\t\t\tr[p] = val;\r\n\r\n\t\t}\r\n\r\n\t\tproto = Object.getPrototypeOf(proto);\r\n\r\n\t} //\r\n\r\n\treturn r;\r\n\r\n},\r\n\r\n/**\r\n * Copies all values from a source object into a destination object.\r\n * @param {Object} dest - Destination for json data.\r\n * @param {Object} src - Object data to write into dest.\r\n * @param {string[]} [exclude=null] - Array of properties not to copy from src to dest.\r\n * @returns {Object} the destination object.\r\n */\r\nassign(dest, src, exclude = null) {\r\n\r\n\tfor (let p in src) {\r\n\r\n\t\tif (exclude && exclude.includes(p)) continue;\r\n\t\tvar desc = getPropDesc(dest, p );\r\n\t\tif ( desc === null || (desc.set === undefined && !desc.writable )) continue;\r\n\t\tdest[p] = src[p];\r\n\r\n\t} //for\r\n\r\n\treturn dest;\r\n\r\n},\r\n\r\n/**\r\n * Convert an object to a new JSON object that can be stingified directly.\r\n * @param {Object} obj - the objet to convert. \r\n * @param {string[]} [excludes=null] - Array of properties to exclude from encoding. \r\n * @param {string[]} [includes=null] - Array of properties to always include in encoding, if they exist. \r\n * @param {bool} [writableOnly=true] - Whether to only include writable properties.\r\n */\r\njsonify(obj, excludes=null, includes=null, writableOnly = true) {\r\n\r\n\tlet r = {}, p;\r\n\r\n\tif (includes) {\r\n\t\tlet len = includes.length;\r\n\t\tfor (let i = len - 1; i >= 0; i--) {\r\n\t\t\tp = includes[i];\r\n\t\t\tif (obj.hasOwnProperty(p)) r[p] = obj[p];\r\n\t\t}\r\n\t}\r\n\r\n\tvar proto = Object.getPrototypeOf(obj);\r\n\twhile (proto != Object.prototype) {\r\n\r\n\t\tfor (p of Object.getOwnPropertyNames(proto)) {\r\n\r\n\t\t\tif ( excludes && excludes.includes(p) ) continue;\r\n\r\n\t\t\tvar desc = Object.getOwnPropertyDescriptor(proto, p);\r\n\t\t\tif (writableOnly && desc.set === undefined && !desc.writable) continue;\r\n\r\n\t\t\tvar val = obj[p];\r\n\t\t\tif (typeof val === 'function') continue;\r\n\t\t\tr[p] = val;\r\n\r\n\t\t}\r\n\r\n\t\tproto = Object.getPrototypeOf(proto);\r\n\r\n\t} //\r\n\r\n\treturn r;\r\n\r\n}\r\n\r\n};\n\n//# sourceURL=webpack://%5Bname%5D/./node_modules/objecty/index.js?");
 
 /***/ }),
 
@@ -153,6 +164,18 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/actionsView.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/actionsView.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var format__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! format */ \"./src/format.js\");\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\t\r\n\tprops:['actions'],\r\n\tdata(){\r\n\t\tconsole.log('this.actions: ' + this.actions );\r\n\t\treturn {\r\n\t\t}\r\n\t},\r\n\tmethods:{\r\n\r\n\t\tformat:format__WEBPACK_IMPORTED_MODULE_0__[\"round\"],\r\n\t\tclick( act ){\r\n\r\n\t\t\tthis.$emit( 'click', act );\r\n\r\n\t\t}\r\n\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/actionsView.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/main.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/main.vue?vue&type=script&lang=js& ***!
@@ -161,31 +184,55 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dataLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dataLoader */ \"./src/dataLoader.js\");\n/* harmony import */ var _statsView_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./statsView.vue */ \"./src/ui/statsView.vue\");\n/* harmony import */ var _output_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./output.vue */ \"./src/ui/output.vue\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\r\n\tprops:['game'],\r\n\tdata(){\r\n\r\n\t\tlet data = this.game.gameData;\r\n\t\t\r\n\t\treturn {\r\n\r\n\t\t\tgameData:data\r\n\r\n\t\t};\r\n\r\n\r\n\t},\r\n\tcreated(){\r\n\r\n\t\tthis.lastUpdate = Date.now();\r\n\r\n\t\tsetInterval( this.update, 200 );\r\n\r\n\t},\r\n\tcomponents:{\r\n\t\tstats:_statsView_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\r\n\t},\r\n\tmethods:{\r\n\r\n\t\tload() {\r\n\t\t},\r\n\t\tsave() {\r\n\t\t},\r\n\r\n\t\tupdate() {\r\n\r\n\t\t\tlet time = Date.now();\r\n\t\t\tlet dt = ( time - this.lastUpdate )/1000;\r\n\t\t\tthis.lastUpdate = time;\r\n\r\n\t\t\tconsole.log(dt);\r\n\t\t\tlet stats = this.gameData.stats;\r\n\t\t\tlet len = stats.length;\r\n\t\t\tfor( let i = len-1; i >= 0; i-- ) {\r\n\t\t\t\tstats[i].update( dt );\r\n\t\t\t}\r\n\r\n\t\t},\r\n\r\n\t\tmeditate(){\r\n\t\t\tthis.game.getStat('mana').value++;\r\n\t\t},\r\n\t\tread() {\r\n\t\t\tthis.game.getStat('arcanum').value++;\r\n\t\t}\r\n\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/main.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dataLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dataLoader */ \"./src/dataLoader.js\");\n/* harmony import */ var _resourcesView_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./resourcesView.vue */ \"./src/ui/resourcesView.vue\");\n/* harmony import */ var _actionsView_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actionsView.vue */ \"./src/ui/actionsView.vue\");\n/* harmony import */ var _upgradesView_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./upgradesView.vue */ \"./src/ui/upgradesView.vue\");\n/* harmony import */ var _outlog_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./outlog.vue */ \"./src/ui/outlog.vue\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\r\n\t/**\r\n\t * @property {Game} game\r\n\t */\r\n\tprops:['game'],\r\n\tcomponents:{\r\n\t\tresources:_resourcesView_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\r\n\t\tactions:_actionsView_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\r\n\t\tupgrades:_upgradesView_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\r\n\t\tlog:_outlog_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"]\r\n\t},\r\n\tdata(){\r\n\r\n\t\tlet data = this.game.gameData;\r\n\t\t\r\n\t\treturn {\r\n\t\t\tgameData:data\r\n\t\t};\r\n\r\n\r\n\t},\r\n\tcreated(){\r\n\r\n\t\tthis.unpause();\r\n\r\n\t},\r\n\tmethods:{\r\n\r\n\t\tload() {\r\n\t\t},\r\n\t\tsave() {\r\n\t\t},\r\n\t\tpause() {\r\n\t\t\t\r\n\t\t\tif ( this.interval ) {\r\n\t\t\t\tlet int = this.interval;\r\n\t\t\t\tthis.interval = null;\r\n\t\t\t\tclearInterval( int );\r\n\t\t\t}\r\n\r\n\t\t},\r\n\t\tunpause() {\r\n\r\n\t\t\tif ( !this.interval ) {\r\n\t\t\t\tthis.lastUpdate = Date.now();\r\n\t\t\t\tthis.interval = setInterval( this.update, 200 );\r\n\t\t\t}\r\n\r\n\t\t},\r\n\r\n\t\tupdate() {\r\n\r\n\t\t\tlet time = Date.now();\r\n\t\t\tlet dt = ( time - this.lastUpdate )/1000;\r\n\t\t\tthis.lastUpdate = time;\r\n\r\n\t\t\tlet stats = this.gameData.resources;\r\n\t\t\tlet len = stats.length;\r\n\t\t\tfor( let i = len-1; i >= 0; i-- ) {\r\n\t\t\t\tstats[i].update( dt );\r\n\t\t\t}\r\n\r\n\t\t},\r\n\r\n\t\tonAction( action ) {\r\n\r\n\t\t\tthis.game.tryAction( action );\r\n\r\n\t\t},\r\n\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/main.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/output.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/outlog.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/output.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/outlog.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n\r\n/**\r\n * Displays output to user.\r\n */\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\r\n\tprops:['log'],\r\n\tdata() {\r\n\r\n\t\treturn {\r\n\t\t\t/**\r\n\t\t\t * @property {string[]} exclude - types to exclude.\r\n\t\t\t */\r\n\t\t\texclude:[]\r\n\t\t}\r\n\r\n\t},\r\n\r\n\tmethods:{\r\n\r\n\t\taddItem(){\r\n\r\n\t\t}\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/output.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n\r\n/**\r\n * Displays output to user.\r\n */\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\r\n\tprops:['log'],\r\n\tdata() {\r\n\r\n\t\treturn {\r\n\t\t\t/**\r\n\t\t\t * @property {string[]} exclude - types to exclude.\r\n\t\t\t */\r\n\t\t\texclude:[]\r\n\t\t}\r\n\r\n\t},\r\n\r\n\tmethods:{\r\n\r\n\t\taddItem(){\r\n\r\n\t\t}\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/outlog.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/statsView.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/statsView.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/resourcesView.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/resourcesView.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var format__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! format */ \"./src/format.js\");\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\t\r\n\tprops:['stats'],\r\n\tdata(){\r\n\t\tconsole.log('this.stats: ' + this.stats );\r\n\t\treturn {\r\n\t\t}\r\n\t},\r\n\tmethods:{\r\n\t\tformat:format__WEBPACK_IMPORTED_MODULE_0__[\"round\"]\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/statsView.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var format__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! format */ \"./src/format.js\");\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\t\r\n\tprops:['resources'],\r\n\tdata(){\r\n\t\treturn {\r\n\t\t}\r\n\t},\r\n\tmethods:{\r\n\t\tformat:format__WEBPACK_IMPORTED_MODULE_0__[\"round\"]\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/resourcesView.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./src/ui/upgradesView.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/ui/upgradesView.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var format__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! format */ \"./src/format.js\");\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\t\r\n\tprops:['upgrades'],\r\n\tdata(){\r\n\t\tconsole.log('this.upgrades: ' + this.upgrades );\r\n\t\treturn {\r\n\t\t}\r\n\t},\r\n\tmethods:{\r\n\t\tformat:format__WEBPACK_IMPORTED_MODULE_0__[\"round\"]\r\n\t}\r\n\r\n});\r\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/upgradesView.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/actionsView.vue?vue&type=template&id=5043b240&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/ui/actionsView.vue?vue&type=template&id=5043b240& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"action-list\" },\n    _vm._l(_vm.actions, function(it) {\n      return _c(\n        \"button\",\n        {\n          key: it.id,\n          staticClass: \"action-button\",\n          on: {\n            click: function($event) {\n              return _vm.click(it)\n            }\n          }\n        },\n        [_vm._v(_vm._s(it.name || it.id))]\n      )\n    }),\n    0\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/actionsView.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -197,31 +244,43 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var form
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"main\" },\n    [\n      _c(\"stats\", { attrs: { stats: _vm.gameData.stats } }),\n      _vm._v(\" \"),\n      _c(\"div\", { staticClass: \"action-list\" }, [\n        _c(\"button\", { staticClass: \"action-btn\", on: { click: _vm.read } }, [\n          _vm._v(\"Read\")\n        ]),\n        _c(\"br\"),\n        _vm._v(\" \"),\n        _c(\n          \"button\",\n          { staticClass: \"action-btn\", on: { click: _vm.meditate } },\n          [_vm._v(\"Meditate\")]\n        ),\n        _c(\"br\")\n      ]),\n      _vm._v(\" \"),\n      _c(\"output\", { attrs: { log: _vm.game.log } })\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/main.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"main\" },\n    [\n      _c(\"resources\", { attrs: { resources: _vm.gameData.resources } }),\n      _vm._v(\" \"),\n      _c(\"actions\", {\n        attrs: { actions: _vm.gameData.actions },\n        on: { click: _vm.onAction }\n      }),\n      _vm._v(\" \"),\n      _c(\"log\", { attrs: { log: _vm.game.log } })\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/main.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/output.vue?vue&type=template&id=79a2c353&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/outlog.vue?vue&type=template&id=c9d4ddf0&":
 /*!****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/ui/output.vue?vue&type=template&id=79a2c353& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/ui/outlog.vue?vue&type=template&id=c9d4ddf0& ***!
   \****************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { staticClass: \"output\" }, [\n    _c(\n      \"ul\",\n      { staticClass: \"log\" },\n      _vm._l(_vm.log.items, function(it, i) {\n        return _c(\"li\", { key: i }, [\n          _vm._v(_vm._s(it.title) + \" \" + _vm._s(it.text))\n        ])\n      }),\n      0\n    )\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/output.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { staticClass: \"output\" }, [\n    _c(\n      \"ul\",\n      { staticClass: \"log\" },\n      _vm._l(_vm.log.items, function(it, i) {\n        return _c(\"li\", { key: i }, [\n          _vm._v(_vm._s(it.title) + \" \" + _vm._s(it.text))\n        ])\n      }),\n      0\n    )\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/outlog.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/statsView.vue?vue&type=template&id=19952a02&":
-/*!*******************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/ui/statsView.vue?vue&type=template&id=19952a02& ***!
-  \*******************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/resourcesView.vue?vue&type=template&id=4e3a0a88&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/ui/resourcesView.vue?vue&type=template&id=4e3a0a88& ***!
+  \***********************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { staticClass: \"stat-list\" }, [\n    _c(\n      \"ul\",\n      _vm._l(_vm.stats, function(it) {\n        return _c(\"li\", { key: it.type.id }, [\n          _vm._v(_vm._s(it.type.id + \": \" + _vm.format(it.value)))\n        ])\n      }),\n      0\n    )\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/statsView.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { staticClass: \"resource-list\" }, [\n    _c(\n      \"ul\",\n      _vm._l(_vm.resources, function(it) {\n        return _c(\"li\", { key: it.def.id }, [\n          _vm._v(_vm._s(it.def.id + \": \" + _vm.format(it.value)))\n        ])\n      }),\n      0\n    )\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/resourcesView.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/upgradesView.vue?vue&type=template&id=73ee266e&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/ui/upgradesView.vue?vue&type=template&id=73ee266e& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { staticClass: \"upgrade-list\" }, [\n    _c(\n      \"ul\",\n      _vm._l(_vm.upgrades, function(it) {\n        return _c(\"li\", { key: it.type.id }, [\n          _vm._v(_vm._s(it.type.id + \": \" + _vm.format(it.value)))\n        ])\n      }),\n      0\n    )\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/upgradesView.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -260,6 +319,18 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
+/***/ "./src/action.js":
+/*!***********************!*\
+  !*** ./src/action.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Action; });\n/* harmony import */ var objecty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! objecty */ \"./node_modules/objecty/index.js\");\n/* harmony import */ var objecty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(objecty__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\nclass Action {\r\n\r\n\t/**\r\n\t * @property {Object} def - Object that defines the basics\r\n\t * of the stat. id, name, flavortext, etc.\r\n\t */\r\n\t//get def() { return this._def; }\r\n\t//set def(v) { this._def = v; }\r\n\r\n\tget effect() {return this._effect }\r\n\tset effect(v) { this._effect = v;}\r\n\r\n\tget id(){return this._id;}\r\n\tset id(v) { this._id=v;}\r\n\r\n\tget cost() { return this._cost; }\r\n\tset cost(v) { this._cost =v;}\r\n\r\n\t/**\r\n\t * \r\n\t * @param {?Object} [vars=null] \r\n\t */\r\n\tconstructor( vars=null ){\r\n\r\n\t\tif ( vars ) Object.assign( this, vars );\r\n\r\n\t\t//defineVars( this, null );\r\n\r\n\t}\r\n\r\n}\n\n//# sourceURL=webpack://%5Bname%5D/./src/action.js?");
+
+/***/ }),
+
 /***/ "./src/dataLoader.js":
 /*!***************************!*\
   !*** ./src/dataLoader.js ***!
@@ -292,7 +363,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dataLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dataLoader */ \"./src/dataLoader.js\");\n/* harmony import */ var resource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! resource */ \"./src/resource.js\");\n/* harmony import */ var log__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! log */ \"./src/log.js\");\n\r\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\r\n\tget gameData() { return this._gameData; },\r\n\tset gameData(v) { this._gameData =v;},\r\n\r\n\tinit() {\r\n\r\n\t\tdataLoader__WEBPACK_IMPORTED_MODULE_0__[\"default\"].init();\r\n\r\n\t\tthis.items = dataLoader__WEBPACK_IMPORTED_MODULE_0__[\"default\"].items;\r\n\r\n\t\tthis.initGameData();\r\n\r\n\t},\r\n\r\n\t/**\r\n\t * \r\n\t * @param {string} id\r\n\t * @returns {Resource} \r\n\t */\r\n\tgetStat( id ) {\r\n\t\treturn this.statsById[id];\r\n\t},\r\n\r\n\tgetItem(id) {\r\n\t\treturn this.items[id];\r\n\t},\r\n\r\n\tinitGameData() {\r\n\r\n\t\tlet data = {};\r\n\r\n\t\tlet statsById = {};\r\n\t\tlet stats = [];\r\n\t\tlet res;\r\n\r\n\t\tfor( let def of dataLoader__WEBPACK_IMPORTED_MODULE_0__[\"default\"].resourceList ) {\r\n\r\n\t\t\tres = new resource__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\r\n\t\t\tres.type = def;\r\n\t\r\n\t\t\tres.rate = 0.1;\r\n\t\r\n\t\t\tstats.push( res );\r\n\t\t\tstatsById[ def.id ] = res;\r\n\r\n\t\t\t//data[def.id] = stat;\r\n\r\n\r\n\t\t}\r\n\r\n\t\tdata.stats = stats;\r\n\r\n\t\tthis.statsById = statsById;\r\n\t\tthis._gameData = data;\r\n\t}\r\n\r\n});\n\n//# sourceURL=webpack://%5Bname%5D/./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dataLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dataLoader */ \"./src/dataLoader.js\");\n/* harmony import */ var resource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! resource */ \"./src/resource.js\");\n/* harmony import */ var upgrade__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! upgrade */ \"./src/upgrade.js\");\n/* harmony import */ var action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! action */ \"./src/action.js\");\n/* harmony import */ var log__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! log */ \"./src/log.js\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n\r\n\tget gameData() { return this._gameData; },\r\n\tset gameData(v) { this._gameData =v;},\r\n\r\n\tget items() { return this._items; },\r\n\r\n\tlog:log__WEBPACK_IMPORTED_MODULE_4__[\"default\"],\r\n\r\n\tinit() {\r\n\r\n\t\tdataLoader__WEBPACK_IMPORTED_MODULE_0__[\"default\"].init();\r\n\r\n\t\tthis.initGameData();\r\n\r\n\t},\r\n\r\n\t/**\r\n\t * \r\n\t * @param {string} id\r\n\t * @returns {Resource} \r\n\t */\r\n\tgetResource( id ) {\r\n\t\treturn this._resourcesById[id];\r\n\t},\r\n\r\n\t/**\r\n\t * \r\n\t * @param {string} id\r\n\t * @returns {Resource|Upgrade|Action} \r\n\t */\r\n\tgetItem(id) {\r\n\t\treturn this._items[id];\r\n\t},\r\n\r\n\taddCount( name, count ) {\r\n\r\n\t\tlet res = this.getItem(name);\r\n\t\tif ( res === undefined ) return;\r\n\r\n\t\tres.value += count;\r\n\t\tif ( res.effect ) {\r\n\t\t\tthis.applyEffect( res.effect );\r\n\t\t}\r\n\r\n\t},\r\n\r\n\t/**\r\n\t * Attempt to pay for an action, and if the cost is met, apply it.\r\n\t * @param {Action} act \r\n\t */\r\n\ttryAction(act) {\r\n\r\n\t\tif ( act.cost ) {\r\n\t\t\tif ( !this.canPay(act.cost) ) return false;\r\n\t\t\tthis.payCost( act.cost );\r\n\t\t}\r\n\r\n\t\tif ( act.effect ) this.applyEffect(act.effect)\r\n\r\n\t},\r\n\r\n\t/**\r\n\t * Perform the effect of an action, resource, or upgrade.\r\n\t * @param effect\r\n\t */\r\n\tapplyEffect( effect ) {\r\n\r\n\t\tif ( effect instanceof Array ) {\r\n\r\n\t\t\tfor( let e of effect ) this.applyEffect(e);\r\n\r\n\t\t} else if ( effect instanceof Object ) {\r\n\r\n\t\t\tlet it;\r\n\t\t\tfor( let p in effect ){\r\n\r\n\t\t\t\tit = this.getItem(p);\r\n\t\t\t\tif ( it !== undefined ) it.applyEffect( effect[p] );\r\n\t\t\t}\r\n\r\n\t\t} else if ( typeof effect === 'string') {\r\n\r\n\t\t\teffect = this.getItem(effect);\r\n\t\t\tif ( effect != null ) this.applyEffect( effect );\r\n\t\t}\r\n\r\n\t},\r\n\r\n\t/**\r\n\t * Attempts to pay the cost to perform an action, buy an upgrade, etc.\r\n\t * Before calling this function, ensure cost can be met with canPay()\r\n\t * \r\n\t * @param {Array|Object} cost\r\n\t */\r\n\tpayCost( cost ) {\r\n\r\n\t\tif ( cost instanceof Array ) return cost.forEach( this.payCost, this );\r\n\r\n\t\tif ( cost instanceof Object ){\r\n\r\n\t\t\tlet res;\r\n\t\t\tfor( let p in cost ) {\r\n\r\n\t\t\t\tres = this.getResource(res);\r\n\t\t\t\tif ( res ) res.value -= cost[p];\r\n\r\n\t\t\t}\r\n\r\n\t\t} else {\r\n\t\t}\r\n\r\n\t},\r\n\r\n\t/**\r\n\t * Determine if an object cost can be paid before the pay attempt\r\n\t * is actually made.\r\n\t * @param {Array|Object} cost\r\n\t * @returns {boolean} true if cost can be paid.\r\n\t */\r\n\tcanPay( cost ) {\r\n\r\n\t\tif ( cost instanceof Array ) return cost.every( this.canPay, this );\r\n\r\n\t\tif ( cost instanceof Object ){\r\n\r\n\t\t\tlet res;\r\n\t\t\tfor( let p in cost ) {\r\n\r\n\t\t\t\tres = this.getResource(res);\r\n\t\t\t\tif ( !res || res.value < cost[p] ) return false;\r\n\r\n\t\t\t}\r\n\r\n\r\n\t\t} else {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\n\t},\r\n\r\n\tinitGameData() {\r\n\r\n\t\tthis._gameData = {};\r\n\t\tthis._items = {};\r\n\r\n\t\tthis.initResources();\r\n\t\tthis.initUpgrades();\r\n\t\tthis.initActions();\r\n\r\n\t},\r\n\r\n\tinitResources(){\r\n\r\n\t\tlet resources = this._gameData.resources = [];\r\n\t\tlet resById = this._resourcesById = {};\r\n\t\tlet res;\r\n\r\n\t\tfor( let def of dataLoader__WEBPACK_IMPORTED_MODULE_0__[\"default\"].resourceList ) {\r\n\r\n\t\t\tres = new resource__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\r\n\t\t\tres.def = def;\r\n\t\r\n\t\t\tresources.push( res );\r\n\t\t\tresById[ def.id ] = this._items[ def.id ] = res;\r\n\r\n\t\t}\r\n\r\n\t},\r\n\r\n\tinitUpgrades() {\r\n\r\n\t},\r\n\r\n\tinitActions() {\r\n\r\n\t\tlet actions = this._gameData.actions = [];\r\n\r\n\t\tlet act;\r\n\t\tfor( let def of dataLoader__WEBPACK_IMPORTED_MODULE_0__[\"default\"].actionList ) {\r\n\r\n\t\t\tact = new action__WEBPACK_IMPORTED_MODULE_3__[\"default\"]( def );\r\n\t\t\tactions.push(act);\r\n\t\t\tthis._items[act.id] = act;\r\n\r\n\t\t}\r\n\r\n\t}\r\n\r\n});\n\n//# sourceURL=webpack://%5Bname%5D/./src/game.js?");
 
 /***/ }),
 
@@ -328,7 +399,43 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Resource; });\nclass Resource {\r\n\r\n\t/**\r\n\t * @property {Object} def - Object that defines the basics\r\n\t * of the stat. id, name, flavortext, etc.\r\n\t */\r\n\tget def() { return this._def; }\r\n\tset def(v) { this._def = v; }\r\n\r\n\r\n\tget max() { return this._max; }\r\n\tset max(v) { this._max = v; }\r\n\r\n\t/**\r\n\t * @property {BitInt} value\r\n\t */\r\n\tget value() {\r\n\t\treturn this._value;\r\n\t}\r\n\tset value(v) {\r\n\t\tthis._value = v;\r\n\t}\r\n\r\n\t/**\r\n\t * @property {BigInt} rate - rate of stat change in value/second.\r\n\t */\r\n\tget rate() {\r\n\t\treturn this._rate;\r\n\t}\r\n\tset rate(v){\r\n\t\tthis._rate = v;\r\n\t}\r\n\r\n\tget mods() {\r\n\t\treturn this._mods;\r\n\t}\r\n\tset mods(v){\r\n\t\tthis._mods =v;\r\n\t}\r\n\r\n\t/**\r\n\t * \r\n\t * @param {?Object} state \r\n\t */\r\n\tconstructor( state ){\r\n\r\n\t\tif ( state ) Object.assign( this, state );\r\n\t\tif ( this._mods == null ) this._mods = [];\r\n\r\n\t\tthis._value = this._value || 0;\r\n\r\n\t}\r\n\r\n\tupdate( dt ) {\r\n\t\tthis._value += this._rate * dt;\r\n\t}\r\n\r\n}\n\n//# sourceURL=webpack://%5Bname%5D/./src/resource.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Resource; });\nclass Resource {\r\n\r\n\t/**\r\n\t * @property {Object} def - Object that defines the basics\r\n\t * of the stat. id, name, flavortext, etc.\r\n\t */\r\n\tget def() { return this._def; }\r\n\tset def(v) {\r\n\t\tthis._def = v;\r\n\t\tconsole.log('def valu: ' + v.value );\r\n\t\tif ( v.value ) this.value = v;\r\n\t}\r\n\r\n\tget id() { return this._def.id; }\r\n\tget name() { return this._def.name; }\r\n\tget desc() { return this._def.desc; }\r\n\r\n\tget max() { return this._max; }\r\n\tset max(v) { this._max = v; }\r\n\r\n\t/**\r\n\t * @property {BitInt} value\r\n\t */\r\n\tget value() {\r\n\t\treturn this._value;\r\n\t}\r\n\tset value(v) {\r\n\t\tthis._value = v;\r\n\t}\r\n\r\n\t/**\r\n\t * @property {BigInt} rate - rate of stat change in value/second.\r\n\t */\r\n\tget rate() {\r\n\t\treturn this._rate;\r\n\t}\r\n\tset rate(v){\r\n\t\tthis._rate = v;\r\n\t}\r\n\r\n\tget mods() {\r\n\t\treturn this._mods;\r\n\t}\r\n\tset mods(v){\r\n\t\tthis._mods =v;\r\n\t}\r\n\r\n\t/**\r\n\t * \r\n\t * @param {?Object} state \r\n\t */\r\n\tconstructor( state ){\r\n\r\n\t\tif ( state ) Object.assign( this, state );\r\n\t\tif ( this._mods == null ) this._mods = [];\r\n\r\n\t\tthis._value = this._value || 0;\r\n\r\n\t}\r\n\r\n\tapplyEffect(e) {\r\n\t}\r\n\r\n\tupdate( dt ) {\r\n\t\tthis._value += this._rate * dt;\r\n\t}\r\n\r\n}\n\n//# sourceURL=webpack://%5Bname%5D/./src/resource.js?");
+
+/***/ }),
+
+/***/ "./src/ui/actionsView.vue":
+/*!********************************!*\
+  !*** ./src/ui/actionsView.vue ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionsView_vue_vue_type_template_id_5043b240___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionsView.vue?vue&type=template&id=5043b240& */ \"./src/ui/actionsView.vue?vue&type=template&id=5043b240&\");\n/* harmony import */ var _actionsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actionsView.vue?vue&type=script&lang=js& */ \"./src/ui/actionsView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _actionsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _actionsView_vue_vue_type_template_id_5043b240___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _actionsView_vue_vue_type_template_id_5043b240___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/ui/actionsView.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/actionsView.vue?");
+
+/***/ }),
+
+/***/ "./src/ui/actionsView.vue?vue&type=script&lang=js&":
+/*!*********************************************************!*\
+  !*** ./src/ui/actionsView.vue?vue&type=script&lang=js& ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_actionsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./actionsView.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/ui/actionsView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_actionsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/actionsView.vue?");
+
+/***/ }),
+
+/***/ "./src/ui/actionsView.vue?vue&type=template&id=5043b240&":
+/*!***************************************************************!*\
+  !*** ./src/ui/actionsView.vue?vue&type=template&id=5043b240& ***!
+  \***************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_actionsView_vue_vue_type_template_id_5043b240___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./actionsView.vue?vue&type=template&id=5043b240& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/actionsView.vue?vue&type=template&id=5043b240&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_actionsView_vue_vue_type_template_id_5043b240___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_actionsView_vue_vue_type_template_id_5043b240___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/actionsView.vue?");
 
 /***/ }),
 
@@ -368,75 +475,123 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
-/***/ "./src/ui/output.vue":
+/***/ "./src/ui/outlog.vue":
 /*!***************************!*\
-  !*** ./src/ui/output.vue ***!
+  !*** ./src/ui/outlog.vue ***!
   \***************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _output_vue_vue_type_template_id_79a2c353___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./output.vue?vue&type=template&id=79a2c353& */ \"./src/ui/output.vue?vue&type=template&id=79a2c353&\");\n/* harmony import */ var _output_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./output.vue?vue&type=script&lang=js& */ \"./src/ui/output.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _output_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _output_vue_vue_type_template_id_79a2c353___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _output_vue_vue_type_template_id_79a2c353___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/ui/output.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/output.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _outlog_vue_vue_type_template_id_c9d4ddf0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./outlog.vue?vue&type=template&id=c9d4ddf0& */ \"./src/ui/outlog.vue?vue&type=template&id=c9d4ddf0&\");\n/* harmony import */ var _outlog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./outlog.vue?vue&type=script&lang=js& */ \"./src/ui/outlog.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _outlog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _outlog_vue_vue_type_template_id_c9d4ddf0___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _outlog_vue_vue_type_template_id_c9d4ddf0___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/ui/outlog.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/outlog.vue?");
 
 /***/ }),
 
-/***/ "./src/ui/output.vue?vue&type=script&lang=js&":
+/***/ "./src/ui/outlog.vue?vue&type=script&lang=js&":
 /*!****************************************************!*\
-  !*** ./src/ui/output.vue?vue&type=script&lang=js& ***!
+  !*** ./src/ui/outlog.vue?vue&type=script&lang=js& ***!
   \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_output_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./output.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/ui/output.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_output_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/output.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_outlog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./outlog.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/ui/outlog.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_outlog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/outlog.vue?");
 
 /***/ }),
 
-/***/ "./src/ui/output.vue?vue&type=template&id=79a2c353&":
+/***/ "./src/ui/outlog.vue?vue&type=template&id=c9d4ddf0&":
 /*!**********************************************************!*\
-  !*** ./src/ui/output.vue?vue&type=template&id=79a2c353& ***!
+  !*** ./src/ui/outlog.vue?vue&type=template&id=c9d4ddf0& ***!
   \**********************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_output_vue_vue_type_template_id_79a2c353___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./output.vue?vue&type=template&id=79a2c353& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/output.vue?vue&type=template&id=79a2c353&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_output_vue_vue_type_template_id_79a2c353___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_output_vue_vue_type_template_id_79a2c353___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/output.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_outlog_vue_vue_type_template_id_c9d4ddf0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./outlog.vue?vue&type=template&id=c9d4ddf0& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/outlog.vue?vue&type=template&id=c9d4ddf0&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_outlog_vue_vue_type_template_id_c9d4ddf0___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_outlog_vue_vue_type_template_id_c9d4ddf0___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/outlog.vue?");
 
 /***/ }),
 
-/***/ "./src/ui/statsView.vue":
-/*!******************************!*\
-  !*** ./src/ui/statsView.vue ***!
-  \******************************/
+/***/ "./src/ui/resourcesView.vue":
+/*!**********************************!*\
+  !*** ./src/ui/resourcesView.vue ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _statsView_vue_vue_type_template_id_19952a02___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./statsView.vue?vue&type=template&id=19952a02& */ \"./src/ui/statsView.vue?vue&type=template&id=19952a02&\");\n/* harmony import */ var _statsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./statsView.vue?vue&type=script&lang=js& */ \"./src/ui/statsView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _statsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _statsView_vue_vue_type_template_id_19952a02___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _statsView_vue_vue_type_template_id_19952a02___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/ui/statsView.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/statsView.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _resourcesView_vue_vue_type_template_id_4e3a0a88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resourcesView.vue?vue&type=template&id=4e3a0a88& */ \"./src/ui/resourcesView.vue?vue&type=template&id=4e3a0a88&\");\n/* harmony import */ var _resourcesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./resourcesView.vue?vue&type=script&lang=js& */ \"./src/ui/resourcesView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _resourcesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _resourcesView_vue_vue_type_template_id_4e3a0a88___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _resourcesView_vue_vue_type_template_id_4e3a0a88___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/ui/resourcesView.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/resourcesView.vue?");
 
 /***/ }),
 
-/***/ "./src/ui/statsView.vue?vue&type=script&lang=js&":
-/*!*******************************************************!*\
-  !*** ./src/ui/statsView.vue?vue&type=script&lang=js& ***!
-  \*******************************************************/
+/***/ "./src/ui/resourcesView.vue?vue&type=script&lang=js&":
+/*!***********************************************************!*\
+  !*** ./src/ui/resourcesView.vue?vue&type=script&lang=js& ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_statsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./statsView.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/ui/statsView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_statsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/statsView.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_resourcesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./resourcesView.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/ui/resourcesView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_resourcesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/resourcesView.vue?");
 
 /***/ }),
 
-/***/ "./src/ui/statsView.vue?vue&type=template&id=19952a02&":
-/*!*************************************************************!*\
-  !*** ./src/ui/statsView.vue?vue&type=template&id=19952a02& ***!
-  \*************************************************************/
+/***/ "./src/ui/resourcesView.vue?vue&type=template&id=4e3a0a88&":
+/*!*****************************************************************!*\
+  !*** ./src/ui/resourcesView.vue?vue&type=template&id=4e3a0a88& ***!
+  \*****************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_statsView_vue_vue_type_template_id_19952a02___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./statsView.vue?vue&type=template&id=19952a02& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/statsView.vue?vue&type=template&id=19952a02&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_statsView_vue_vue_type_template_id_19952a02___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_statsView_vue_vue_type_template_id_19952a02___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/statsView.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_resourcesView_vue_vue_type_template_id_4e3a0a88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./resourcesView.vue?vue&type=template&id=4e3a0a88& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/resourcesView.vue?vue&type=template&id=4e3a0a88&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_resourcesView_vue_vue_type_template_id_4e3a0a88___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_resourcesView_vue_vue_type_template_id_4e3a0a88___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/resourcesView.vue?");
+
+/***/ }),
+
+/***/ "./src/ui/upgradesView.vue":
+/*!*********************************!*\
+  !*** ./src/ui/upgradesView.vue ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _upgradesView_vue_vue_type_template_id_73ee266e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./upgradesView.vue?vue&type=template&id=73ee266e& */ \"./src/ui/upgradesView.vue?vue&type=template&id=73ee266e&\");\n/* harmony import */ var _upgradesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./upgradesView.vue?vue&type=script&lang=js& */ \"./src/ui/upgradesView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _upgradesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _upgradesView_vue_vue_type_template_id_73ee266e___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _upgradesView_vue_vue_type_template_id_73ee266e___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/ui/upgradesView.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/upgradesView.vue?");
+
+/***/ }),
+
+/***/ "./src/ui/upgradesView.vue?vue&type=script&lang=js&":
+/*!**********************************************************!*\
+  !*** ./src/ui/upgradesView.vue?vue&type=script&lang=js& ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_upgradesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./upgradesView.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/ui/upgradesView.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_upgradesView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/upgradesView.vue?");
+
+/***/ }),
+
+/***/ "./src/ui/upgradesView.vue?vue&type=template&id=73ee266e&":
+/*!****************************************************************!*\
+  !*** ./src/ui/upgradesView.vue?vue&type=template&id=73ee266e& ***!
+  \****************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_upgradesView_vue_vue_type_template_id_73ee266e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./upgradesView.vue?vue&type=template&id=73ee266e& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/ui/upgradesView.vue?vue&type=template&id=73ee266e&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_upgradesView_vue_vue_type_template_id_73ee266e___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_upgradesView_vue_vue_type_template_id_73ee266e___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/upgradesView.vue?");
+
+/***/ }),
+
+/***/ "./src/upgrade.js":
+/*!************************!*\
+  !*** ./src/upgrade.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Upgrade; });\nclass Upgrade {\r\n\r\n\tget id() {return this._id; }\r\n\tset id(v) { this._id = v;}\r\n\r\n\tget name() { return this._name; }\r\n\tset name(v) {\r\n\t\tthis._name = v;\r\n\t}\r\n\r\n\tget desc() {\r\n\t\treturn this._desc;\r\n\t}\r\n\tset desc(v){\r\n\t\tthis._desc = v;\r\n\t}\r\n\r\n\tget requires() { return this._requires; }\r\n\tset requires(v){this._requires=v;}\r\n\r\n\tget locks(){ return this._locks; }\r\n\tset locks(v){\r\n\t\tthis._locks=v;\r\n\t}\r\n\r\n\tconstructor( vars=null ) {\r\n\r\n\t\tif (vars) Object.assign( this, vars );\r\n\r\n\t}\r\n\r\n}\n\n//# sourceURL=webpack://%5Bname%5D/./src/upgrade.js?");
 
 /***/ })
 

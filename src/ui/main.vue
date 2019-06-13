@@ -4,18 +4,21 @@ import DataLoader from '../dataLoader';
 
 import ResoucesView from './resourcesView.vue';
 import ActionsView from './actionsView.vue';
-import UpgradesView from './upgradesView';
+import UpgradesView from './upgradesView.vue';
 
-import OutView from './output.vue';
+import LogView from './outlog.vue';
 
 export default {
 
+	/**
+	 * @property {Game} game
+	 */
 	props:['game'],
 	components:{
 		resources:ResoucesView,
 		actions:ActionsView,
 		upgrades:UpgradesView,
-		output:OutView
+		log:LogView
 	},
 	data(){
 
@@ -29,9 +32,7 @@ export default {
 	},
 	created(){
 
-		this.lastUpdate = Date.now();
-
-		
+		this.unpause();
 
 	},
 	methods:{
@@ -51,7 +52,10 @@ export default {
 		},
 		unpause() {
 
-			if ( !this.interval ) this.interval = setInterval( this.update, 200 );
+			if ( !this.interval ) {
+				this.lastUpdate = Date.now();
+				this.interval = setInterval( this.update, 200 );
+			}
 
 		},
 
@@ -69,18 +73,11 @@ export default {
 
 		},
 
-		actionClicked( id ) {
+		onAction( action ) {
 
-			this.game.applyAction(id);
+			this.game.tryAction( action );
 
 		},
-
-		meditate(){
-			this.game.getResource('amna').value++;
-		},
-		read() {
-			this.game.getResource('arcanum').value++;
-		}
 
 	}
 
@@ -93,16 +90,9 @@ export default {
 
 		<resources :resources="gameData.resources" />
 
-		<actions :actions="gameData.actions" @click="actionClicked" />
+		<actions :actions="gameData.actions" @click="onAction" />
 
-		<div class="action-list">
-
-			<button class="action-btn" @click="read">Read</button><br>
-			<button class="action-btn" @click="meditate">Meditate</button><br>
-			
-		</div>
-
-		<output :log="game.log" />
+		<log :log="game.log" />
 
 	</div>
 </template>

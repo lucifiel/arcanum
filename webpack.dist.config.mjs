@@ -22,8 +22,8 @@ module.exports = {
 
 		alias:{
 			'config':'config',
-			"data":"data",
-			'ui':'src/ui'
+			"data":"../data",
+			'ui':'ui'
 		}
 	}
 

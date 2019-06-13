@@ -10,7 +10,14 @@ export default {
 		}
 	},
 	methods:{
-		format:round
+
+		format:round,
+		click( act ){
+
+			this.$emit( 'click', act );
+
+		}
+
 	}
 
 }
@@ -20,9 +27,7 @@ export default {
 <template>
 <div class="action-list">
 
-	<ul>
-		<li v-for="it in actions" :key="it.type.id">{{ it.type.id + ': ' + format( it.value ) }}</li>
-	</ul>
+	<button class="action-button" v-for="it in actions" :key="it.id" @click="click(it)">{{ it.name || it.id }}</button>
 
 </div>
 </template>

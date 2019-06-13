@@ -5,7 +5,6 @@ export default {
 	
 	props:['resources'],
 	data(){
-		console.log('this.resources: ' + this.resources );
 		return {
 		}
 	},
@@ -18,10 +17,10 @@ export default {
 
 
 <template>
-<div class="stat-list">
+<div class="resource-list">
 
 	<ul>
-		<li v-for="it in resources" :key="it.type.id">{{ it.type.id + ': ' + format( it.value ) }}</li>
+		<li v-for="it in resources" :key="it.def.id">{{ it.def.id + ': ' + format( it.value ) }}</li>
 	</ul>
 
 </div>

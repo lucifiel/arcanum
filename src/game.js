@@ -10,6 +10,8 @@ export default {
 	get gameData() { return this._gameData; },
 	set gameData(v) { this._gameData =v;},
 
+	get items() { return this._items; },
+
 	log:Log,
 
 	init() {
@@ -51,6 +53,21 @@ export default {
 	},
 
 	/**
+	 * Attempt to pay for an action, and if the cost is met, apply it.
+	 * @param {Action} act 
+	 */
+	tryAction(act) {
+
+		if ( act.cost ) {
+			if ( !this.canPay(act.cost) ) return false;
+			this.payCost( act.cost );
+		}
+
+		if ( act.effect ) this.applyEffect(act.effect)
+
+	},
+
+	/**
 	 * Perform the effect of an action, resource, or upgrade.
 	 * @param effect
 	 */
@@ -69,6 +86,62 @@ export default {
 				if ( it !== undefined ) it.applyEffect( effect[p] );
 			}
 
+		} else if ( typeof effect === 'string') {
+
+			effect = this.getItem(effect);
+			if ( effect != null ) this.applyEffect( effect );
+		}
+
+	},
+
+	/**
+	 * Attempts to pay the cost to perform an action, buy an upgrade, etc.
+	 * Before calling this function, ensure cost can be met with canPay()
+	 * 
+	 * @param {Array|Object} cost
+	 */
+	payCost( cost ) {
+
+		if ( cost instanceof Array ) return cost.forEach( this.payCost, this );
+
+		if ( cost instanceof Object ){
+
+			let res;
+			for( let p in cost ) {
+
+				res = this.getResource(res);
+				if ( res ) res.value -= cost[p];
+
+			}
+
+		} else {
+		}
+
+	},
+
+	/**
+	 * Determine if an object cost can be paid before the pay attempt
+	 * is actually made.
+	 * @param {Array|Object} cost
+	 * @returns {boolean} true if cost can be paid.
+	 */
+	canPay( cost ) {
+
+		if ( cost instanceof Array ) return cost.every( this.canPay, this );
+
+		if ( cost instanceof Object ){
+
+			let res;
+			for( let p in cost ) {
+
+				res = this.getResource(res);
+				if ( !res || res.value < cost[p] ) return false;
+
+			}
+
+
+		} else {
+			return true;
 		}
 
 	},
@@ -96,7 +169,7 @@ export default {
 			res.def = def;
 	
 			resources.push( res );
-			resById[ def.id ] = this.items[ def.id ] = res;
+			resById[ def.id ] = this._items[ def.id ] = res;
 
 		}
 
@@ -107,6 +180,18 @@ export default {
 	},
 
 	initActions() {
+
+		let actions = this._gameData.actions = [];
+
+		let act;
+		for( let def of DataLoader.actionList ) {
+
+			act = new Action( def );
+			actions.push(act);
+			this._items[act.id] = act;
+
+		}
+
 	}
 
 }

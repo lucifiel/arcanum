@@ -5,8 +5,15 @@ export default class Resource {
 	 * of the stat. id, name, flavortext, etc.
 	 */
 	get def() { return this._def; }
-	set def(v) { this._def = v; }
+	set def(v) {
+		this._def = v;
+		console.log('def valu: ' + v.value );
+		if ( v.value ) this.value = v;
+	}
 
+	get id() { return this._def.id; }
+	get name() { return this._def.name; }
+	get desc() { return this._def.desc; }
 
 	get max() { return this._max; }
 	set max(v) { this._max = v; }
@@ -49,6 +56,9 @@ export default class Resource {
 
 		this._value = this._value || 0;
 
+	}
+
+	applyEffect(e) {
 	}
 
 	update( dt ) {

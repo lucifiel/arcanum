@@ -1,28 +1,31 @@
 export default class Upgrade {
 
-	get name() {
-	}
-	set name(v) {
-	}
+	get id() {return this._id; }
+	set id(v) { this._id = v;}
 
-	get tag(){
-	}
-	set tag(V) {
+	get name() { return this._name; }
+	set name(v) {
+		this._name = v;
 	}
 
 	get desc() {
+		return this._desc;
 	}
-	set desc(v){		
+	set desc(v){
+		this._desc = v;
 	}
 
-	get locks(){
-	}
+	get requires() { return this._requires; }
+	set requires(v){this._requires=v;}
+
+	get locks(){ return this._locks; }
 	set locks(v){
+		this._locks=v;
 	}
 
-	constructor( vars ) {
+	constructor( vars=null ) {
 
-		Object.assign( this, vars );
+		if (vars) Object.assign( this, vars );
 
 	}
 

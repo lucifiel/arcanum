@@ -23,9 +23,10 @@ input[type="button"], button:active {
 }
 
 .action-list {
+	flex-direction: row;
 	margin: 12px 8px;
 }
-.stat-list {
+.resource-list {
 	margin: 0px 24px;
 }
 

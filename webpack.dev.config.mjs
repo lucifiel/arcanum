@@ -33,8 +33,8 @@ module.exports = {
 
 		alias:{
 			'config':'config_dev',
-			'data':'data',
-			'ui':'src/ui'
+			'data':'../data',
+			'ui':'ui'
 		}
 	}
 
