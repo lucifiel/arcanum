@@ -2,6 +2,7 @@
 	{
 		"id":"read",
 		"name":"Read",
+		"require":"state.scrolls>0",
 		"effect":{
 			"arcana":1
 		}
@@ -9,6 +10,7 @@
 	{
 		"id":"meditate",
 		"name":"Meditate",
+		"requires":"state.research>0",
 		"effect":{
 			"mana":1	
 		}
@@ -20,7 +22,7 @@
 			"gold":5
 		},
 		"effect":{
-			"scroll":1
+			"scrolls":1
 		}
 	}
 ]

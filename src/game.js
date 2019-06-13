@@ -59,6 +59,7 @@ export default {
 	tryAction(act) {
 
 		if ( act.cost ) {
+			console.log('testing act pay');
 			if ( !this.canPay(act.cost) ) return false;
 			this.payCost( act.cost );
 		}
@@ -79,11 +80,18 @@ export default {
 
 		} else if ( effect instanceof Object ) {
 
-			let it;
+			let target, e;
 			for( let p in effect ){
 
-				it = this.getItem(p);
-				if ( it !== undefined ) it.applyEffect( effect[p] );
+				target = this.getItem(p);
+				if ( target === undefined ) continue;
+
+				e = effect[p];
+
+				console.log(target.name + ": " + target.value );
+				if ( !isNaN(e) ) target.value += e;
+				else target.applyEffect(e);
+
 			}
 
 		} else if ( typeof effect === 'string') {
@@ -106,10 +114,9 @@ export default {
 
 		if ( cost instanceof Object ){
 
-			let res;
 			for( let p in cost ) {
 
-				res = this.getResource(res);
+				var res = this.getResource(p);
 				if ( res ) res.value -= cost[p];
 
 			}
@@ -131,10 +138,9 @@ export default {
 
 		if ( cost instanceof Object ){
 
-			let res;
 			for( let p in cost ) {
 
-				res = this.getResource(res);
+				var res = this.getResource(p);
 				if ( !res || res.value < cost[p] ) return false;
 
 			}
@@ -144,6 +150,7 @@ export default {
 			return true;
 		}
 
+		return true;
 	},
 
 	initGameData() {

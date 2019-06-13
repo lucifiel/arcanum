@@ -20,7 +20,7 @@ export default {
 <div class="resource-list">
 
 	<ul>
-		<li v-for="it in resources" :key="it.def.id">{{ it.def.id + ': ' + format( it.value ) }}</li>
+		<li class="item-name" v-for="it in resources" :key="it.def.id">{{ it.name + ': ' + format( it.value ) }}</li>
 	</ul>
 
 </div>

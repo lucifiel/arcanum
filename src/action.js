@@ -18,6 +18,9 @@ export default class Action {
 	get cost() { return this._cost; }
 	set cost(v) { this._cost =v;}
 
+	get locked() { return this._locked; }
+	set locked(v) { this._locked = v;}
+
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 
@@ -27,6 +30,9 @@ export default class Action {
 		if ( vars ) Object.assign( this, vars );
 
 		//defineVars( this, null );
+		
+		if ( this._requires || this._locked ) this._locked = true;
+		else this._locked = false;
 
 	}
 

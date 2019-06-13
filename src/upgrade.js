@@ -18,6 +18,9 @@ export default class Upgrade {
 	get requires() { return this._requires; }
 	set requires(v){this._requires=v;}
 
+	get locked() { return this._locked;}
+	set locked(v) { this._locked = v; }
+
 	get locks(){ return this._locks; }
 	set locks(v){
 		this._locks=v;
@@ -26,6 +29,8 @@ export default class Upgrade {
 	constructor( vars=null ) {
 
 		if (vars) Object.assign( this, vars );
+		
+		if ( !this._requires && !this._locked ) this._locked = false;
 
 	}
 

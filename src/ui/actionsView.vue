@@ -1,6 +1,8 @@
 <script>
 import { round } from 'format';
 
+import Game from '../game';
+
 export default {
 	
 	props:['actions'],
@@ -12,6 +14,13 @@ export default {
 	methods:{
 
 		format:round,
+
+		usable(act) {
+
+			if ( act.cost ) return Game.canPay( act.cost );
+
+		},
+
 		click( act ){
 
 			this.$emit( 'click', act );
@@ -27,7 +36,8 @@ export default {
 <template>
 <div class="action-list">
 
-	<button class="action-button" v-for="it in actions" :key="it.id" @click="click(it)">{{ it.name || it.id }}</button>
+	<button class="action-button" v-for="it in actions" :key="it.id"
+		:disabled="!usable(it)" @click="click(it)">{{ it.name || it.id }}</button>
 
 </div>
 </template>

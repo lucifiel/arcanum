@@ -7,12 +7,11 @@ export default class Resource {
 	get def() { return this._def; }
 	set def(v) {
 		this._def = v;
-		console.log('def valu: ' + v.value );
-		if ( v.value ) this.value = v;
+		if ( v.value ) this._value = v.value;
 	}
 
 	get id() { return this._def.id; }
-	get name() { return this._def.name; }
+	get name() { return this._def.name || this._def.id; }
 	get desc() { return this._def.desc; }
 
 	get max() { return this._max; }
@@ -45,6 +44,9 @@ export default class Resource {
 		this._mods =v;
 	}
 
+	get locked() { return this._locked; }
+	set locked(v) { this._locked = v;}
+
 	/**
 	 * 
 	 * @param {?Object} state 
@@ -55,6 +57,8 @@ export default class Resource {
 		if ( this._mods == null ) this._mods = [];
 
 		this._value = this._value || 0;
+		if ( this._requires || this._locked ) this._locked = true;
+		else this._locked = false;
 
 	}
 
@@ -62,7 +66,7 @@ export default class Resource {
 	}
 
 	update( dt ) {
-		this._value += this._rate * dt;
+		if ( this._rate ) this._value += this._rate * dt;
 	}
 
 }

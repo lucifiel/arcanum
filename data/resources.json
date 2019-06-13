@@ -1,30 +1,35 @@
 [
 	{
-		"id":"arcana"
-	},
-	{
-		"id":"mana"
-	},
-	{
 		"id":"gold",
 		"name":"Gold",
 		"desc":"Gold Piece",
 		"value":5
 	},
 	{
-		"id":"scroll",
-		"name":"Arcane Scroll",
+		"id":"research",
+		"require":"state.scrolls>1"
+	},
+	{
+		"id":"mana",
+		"require":"state.research>1"
+	},
+	{
+		"id":"arcana"
+	},
+	{
+		"id":"scrolls",
+		"name":"Arcane Scrolls",
 		"desc":"Scroll of arcane lore"
 	},
 	{
-		"id":"tome",
-		"name":"Arcane Tome",
+		"id":"tomes",
+		"name":"Arcane Tomes",
 		"desc":"Tome of arcane lore"
 
 	},
 	{
-		"id":"ball",
-		"name":"Crystal Ball",
+		"id":"balls",
+		"name":"Crystal Balls",
 		"desc":"Crystal Ball"
 	}
 ]

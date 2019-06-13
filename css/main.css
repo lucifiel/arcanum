@@ -22,9 +22,18 @@ input[type="button"], button:active {
 	background-color: rgb( 100, 100,100);
 }
 
+.locked {
+	display:none;
+}
+
+.item-name {
+	text-transform: capitalize;
+}
+
 .action-list {
 	flex-direction: row;
 	margin: 12px 8px;
+	text-transform: capitalize;
 }
 .resource-list {
 	margin: 0px 24px;
