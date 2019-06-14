@@ -21,6 +21,9 @@ export default class Action {
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v;}
 
+	get require() { return this._require; }
+	set require(v) { this._require =v;}
+
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 
@@ -30,8 +33,7 @@ export default class Action {
 		if ( vars ) Object.assign( this, vars );
 
 		//defineVars( this, null );
-		
-		if ( this._requires || this._locked ) this._locked = true;
+		if ( this._require || this._locked ) this._locked = true;
 		else this._locked = false;
 
 	}

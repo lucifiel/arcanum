@@ -14,8 +14,8 @@ export default class Item {
 	get name() { return this._name;}
 	set name(v) { this._name = v;}
 
-	get requires() { return this._requires; }
-	set requires(v) { this._requires =v;}
+	get require() { return this._require; }
+	set require(v) { this._require =v;}
 
 	get effect() { return this._effect; }
 	set effect(v) { this._effect=v;}
@@ -32,7 +32,7 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 		defineVars( this, null );
 
-		if ( this._requires || this._locked ) this._locked = true;
+		if ( this._require || this._locked ) this._locked = true;
 		else this._locked = false;
 
 	}

@@ -59,12 +59,57 @@ export default {
 	tryAction(act) {
 
 		if ( act.cost ) {
-			console.log('testing act pay');
 			if ( !this.canPay(act.cost) ) return false;
 			this.payCost( act.cost );
 		}
 
 		if ( act.effect ) this.applyEffect(act.effect)
+
+	},
+
+	tryUnlock( item ) {
+
+		console.log('try unlock: ' + item.id );
+		if ( !item.require ) {
+
+			item.locked = false;
+
+		} else if ( this.canUnlock(item.require) ) {
+
+			item.locked = false;
+
+		}
+
+		return !item.locked;
+
+	},
+
+	/**
+	 * Perform a test to unlock an item.
+	 * @param {string|function|Object|Array} test 
+	 */
+	canUnlock( test ) {
+
+		if ( test instanceof Array ) return test.every( this.canUnlock, this );
+
+		let type = typeof test;
+		if ( type === 'function') {
+
+			//console.log(test.toString());
+
+			return test( this._items );
+
+		} else if ( type === 'string') {
+
+			// test that another item is unlocked.
+			let it = this.getItem(test);
+			if ( it && !it.locked ) return true;
+
+		} else if ( type === 'object') {
+
+			//@todo
+			return true;
+		}
 
 	},
 
@@ -172,8 +217,7 @@ export default {
 
 		for( let def of DataLoader.resourceList ) {
 
-			res = new Resource();
-			res.def = def;
+			res = new Resource( def );
 	
 			resources.push( res );
 			resById[ def.id ] = this._items[ def.id ] = res;

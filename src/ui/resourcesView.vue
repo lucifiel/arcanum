@@ -1,5 +1,6 @@
 <script>
 import { round } from 'format';
+import Game from '../game';
 
 export default {
 	
@@ -9,7 +10,13 @@ export default {
 		}
 	},
 	methods:{
-		format:round
+		format:round,
+
+		locked(res) {
+			//return !res || !( res.unlocked || Game.tryUnlock(res) );
+			return !res || ( res.locked && !Game.tryUnlock(res) );
+		}
+
 	}
 
 }
@@ -20,7 +27,7 @@ export default {
 <div class="resource-list">
 
 	<ul>
-		<li class="item-name" v-for="it in resources" :key="it.def.id">{{ it.name + ': ' + format( it.value ) }}</li>
+		<li :class="{'item-name':true, locked:locked(it)}" v-for="it in resources" :key="it.id">{{ it.name + ': ' + format( it.value ) }}</li>
 	</ul>
 
 </div>

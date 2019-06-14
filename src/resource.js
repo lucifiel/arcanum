@@ -4,18 +4,30 @@ export default class Resource {
 	 * @property {Object} def - Object that defines the basics
 	 * of the stat. id, name, flavortext, etc.
 	 */
-	get def() { return this._def; }
+	/*get def() { return this._def; }
 	set def(v) {
+
 		this._def = v;
 		if ( v.value ) this._value = v.value;
-	}
 
-	get id() { return this._def.id; }
-	get name() { return this._def.name || this._def.id; }
-	get desc() { return this._def.desc; }
+	}*/
+
+	get id() { return this._id; }
+	set id(v) { this._id = v;}
+
+	get name() { return this._name || this._id; }
+	set name(v) { this._name = v;}
+
+	get desc() { return this._desc; }
+	set desc(v) { this._desc=v;}
 
 	get max() { return this._max; }
 	set max(v) { this._max = v; }
+
+	get require() {
+		return this._require || ( ()=>this.positive() );
+	}
+	set require(v) { this._require =v;}
 
 	/**
 	 * @property {BitInt} value
@@ -49,17 +61,24 @@ export default class Resource {
 
 	/**
 	 * 
-	 * @param {?Object} state 
+	 * @param {?Object} [state=null] 
 	 */
-	constructor( state ){
+	constructor( state=null ){
 
 		if ( state ) Object.assign( this, state );
 		if ( this._mods == null ) this._mods = [];
 
-		this._value = this._value || 0;
-		if ( this._requires || this._locked ) this._locked = true;
-		else this._locked = false;
+		this._locked = this._locked !== undefined ? this._locked : true;
 
+		this._value = this._value || 0;
+
+	}
+
+	/**
+	 * @returns {boolean} true if resource value is positive.
+	 */
+	positive(){
+		return this.value > 0;
 	}
 
 	applyEffect(e) {

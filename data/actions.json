@@ -2,15 +2,15 @@
 	{
 		"id":"read",
 		"name":"Read",
-		"require":"state.scrolls>0",
+		"require":"state.scrolls.value>0",
 		"effect":{
-			"arcana":1
+			"research":1
 		}
 	},
 	{
 		"id":"meditate",
 		"name":"Meditate",
-		"requires":"state.research>0",
+		"require":"state.research.value>=5",
 		"effect":{
 			"mana":1	
 		}
@@ -19,10 +19,34 @@
 		"id":"buyscroll",
 		"name":"Buy scroll",
 		"cost":{
-			"gold":5
+			"gold":10
 		},
 		"effect":{
 			"scrolls":1
+		}
+	},
+	{
+		"id":"scribescroll",
+		"name":"Scribe Scroll",
+		"require":"mana",
+		"cost":{
+			"research":5,
+			"mana":5
+		},
+		"effect":{
+			"scrolls":1,
+			"arcana":1
+		}
+	},
+	{
+		"id":"sellscroll",
+		"name":"Sell Scroll",
+		"require":"scribescroll",
+		"cost":{
+			"scrolls":1
+		},
+		"effect":{
+			"gold":5
 		}
 	}
 ]

@@ -3,15 +3,13 @@
 		"id":"gold",
 		"name":"Gold",
 		"desc":"Gold Piece",
-		"value":5
+		"value":10
 	},
 	{
-		"id":"research",
-		"require":"state.scrolls>1"
+		"id":"research"
 	},
 	{
-		"id":"mana",
-		"require":"state.research>1"
+		"id":"mana"
 	},
 	{
 		"id":"arcana"

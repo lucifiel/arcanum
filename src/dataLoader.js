@@ -39,7 +39,7 @@ export default {
 			var require = it.require;
 			if ( require ) {
 
-				if ( typeof require === 'string' && !IdTest.test(require )) it.require = this.createFunc( require );
+				if ( typeof require === 'string' && !IdTest.test(require )) it.require = this.createTest( require );
 
 			}
 
@@ -51,11 +51,11 @@ export default {
 	},
 
 	/**
-	 * Create a state function from a data string.
+	 * Create a boolean testing function from a data string.
 	 * @param {string} text - function text.
 	 */
-	createFunc( text ) {
-		return new Function( "state", text );
+	createTest( text ) {
+		return new Function( "state", 'return ' + text );
 	},
 
 	initResources() {

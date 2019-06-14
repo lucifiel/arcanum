@@ -7,7 +7,6 @@ export default {
 	
 	props:['actions'],
 	data(){
-		console.log('this.actions: ' + this.actions );
 		return {
 		}
 	},
@@ -17,8 +16,13 @@ export default {
 
 		usable(act) {
 
-			if ( act.cost ) return Game.canPay( act.cost );
+			return !act.cost || Game.canPay( act.cost );
 
+		},
+
+		locked(act) {
+
+			return (!act) || ( (act.locked === false) ? false : !Game.tryUnlock(act) );
 		},
 
 		click( act ){
@@ -36,7 +40,7 @@ export default {
 <template>
 <div class="action-list">
 
-	<button class="action-button" v-for="it in actions" :key="it.id"
+	<button :class="{'action-button':true, locked:locked(it) }" v-for="it in actions" :key="it.id"
 		:disabled="!usable(it)" @click="click(it)">{{ it.name || it.id }}</button>
 
 </div>
