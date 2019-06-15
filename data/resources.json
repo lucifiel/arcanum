@@ -36,6 +36,7 @@
 		"id":"tomes",
 		"name":"Arcane Tomes",
 		"desc":"Tome of arcane lore",
+		"max":10,
 		"mod":{
 			"research":{
 				"base":1
@@ -47,6 +48,7 @@
 		"id":"space",
 		"name":"Floor Space",
 		"desc":"Space Available"
+
 	}
 
 ]

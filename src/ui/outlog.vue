@@ -29,11 +29,14 @@ export default {
 
 <template>
 	
-	<div class="output">
+	<div class="outlog">
 
 		<ul class="log">
 
-			<li v-for="(it,i) in log.items" :key="i">{{ it.title }} {{ it.text }}</li>
+			<li v-for="(it,i) in log.items" :key="i">
+				<span class="log-title">{{ it.title }}</span>
+				<span class="log-text">{{ it.text }}</span>
+			</li>
 		</ul>
 	</div>
 

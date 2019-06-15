@@ -1,12 +1,16 @@
 import ResourceList from '../data/resources.json';
 import UpgradeList from '../data/upgrades.json';
 import ActionList from '../data/actions.json';
+import HomeList from '../data/homes.json';
+
 import VarPath, {IsVarPath} from 'varPath';
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
  */
 const IdTest = /^[A-Za-z_]+\w*$/;
+
+export {ResourceList, UpgradeList, ActionList, HomeList };
 
 /**
  * @todo replace with server call.
@@ -23,20 +27,22 @@ export default {
 
 		this.items = {};
 
-		this.initItems( ResourceList );
-		this.initItems( UpgradeList );
-		this.initItems( ActionList );
-	
+		this.initItems( ResourceList, 'resource');
+		this.initItems( UpgradeList, 'upgrade' );
+		this.initItems( ActionList, 'action' );
+		this.initItems( HomeList, 'home' );
+
 		//this.initResources();
 		//this.initUpgrades();
 		//this.initActions();
 
 	},
 
-	initItems( arr ) {
+	initItems( arr, tag=null ) {
 
 		for( let it of arr ) {
 
+			it.tag = tag;
 			var sub = it.require;
 			if ( sub ) {
 
@@ -82,6 +88,7 @@ export default {
 
 		for( let res of ResourceList ) {
 			this.items[res.id] = res;
+			res.tag = 'resource';
 		}
 
 	},

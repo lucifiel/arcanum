@@ -5,9 +5,12 @@ corner?
 
 bedroom
 
+
 hut
 
-shed
+cabin
+
+house
 
 shop
 
@@ -19,4 +22,12 @@ castle
 
 crypt
 
+mausoleum
+
+library
+
+archive
+
 pocket dimension
+
+plane

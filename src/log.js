@@ -36,6 +36,10 @@ export default class Log {
 
 	}
 
+	log( title='', text='', type='' ) {
+		this._items.push( new LogItem(title, text, type ) );
+	}
+
 	addItem(it) {
 		this._items.push( it);
 	}

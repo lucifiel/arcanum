@@ -1,6 +1,7 @@
 
 .main {
 	display:flex;
+	width: 100%;
 	margin: 0px;
 }
 
@@ -18,7 +19,7 @@ input[type="button"], button {
 
 }
 
-input[type="button"], button:active {
+input[type="button"]:enabled:active, button:enabled:active {
 	background-color: rgb( 100, 100,100);
 }
 
@@ -32,6 +33,7 @@ input[type="button"], button:active {
 
 .action-list {
 	flex-direction: row;
+	flex-basis: 50%;
 	margin: 12px 8px;
 	text-transform: capitalize;
 }
@@ -40,5 +42,19 @@ input[type="button"], button:active {
 }
 
 .action-btn {
-	min-width: 120px;
+	min-width: 16ch;
+}
+
+.outlog {
+
+	flex-direction: column;
+
+}
+
+.log-title {
+	font-weight: bold;
+}
+
+.log-text {
+	font-weight: normal;
 }

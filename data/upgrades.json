@@ -12,16 +12,40 @@
 
 		"id":"bookcase",
 		"name":"Bookcase",
-		"requires":"state.tomes>=25",
+		"requires":"state.tomes>=10",
 		"cost":{
-			"gold":25
+			"gold":25,
+			"space":2
 		},
-		"effects":{
+		"effect":{
 			"tomes":{
-				"max":100
+				"max":50
 			}
 		}
 
+	},
+	{
+		"id":"candle",
+		"desc":"A tiny glowing candle.",
+		"flavor":"You no take candle!",
+		"requires":"",
+		"cost":1,
+		"mod":{
+			"mana":{
+				"base":0.1
+			}
+		}
+	},
+	{
+		"id":"heartcandle",
+		"desc":"A warm glowing candle.",
+		"flavor":"Spare a little candle, save some light for me.",
+		"cost":10,
+		"mod":{
+			"mana":{
+				"base":0.25
+			}
+		}
 	},
 	{
 		"id":"ball",
@@ -29,7 +53,7 @@
 		"desc":"A crystal sphere increasing magical focus.",
 		"mod":{
 			"mana":{
-				"base":0.1
+				"base":0.5
 			}
 		}
 	}

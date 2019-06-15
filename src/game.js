@@ -12,13 +12,15 @@ export default {
 
 	get items() { return this._items; },
 
-	log:Log,
+	log:new Log(),
 
 	init() {
 
 		DataLoader.init();
 
 		this.initGameData();
+
+		this.log.log( 'A New Dawn', 'An idle waif with no future to speak of...');
 
 	},
 

@@ -1,4 +1,4 @@
-import { defineVars } from 'objecty';
+import { defineExcept } from 'objecty';
 
 /**
  * Base class of game items.
@@ -47,7 +47,7 @@ export default class Item {
 	
 		if ( this._locked === undefined ) this._locked = true;
 
-		defineVars( this, null );
+		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect']);
 
 	}
 

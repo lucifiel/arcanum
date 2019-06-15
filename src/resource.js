@@ -8,11 +8,9 @@ export default class Resource extends Item {
 	}
 
 	/**
-	 * @property {BitInt} value
+	 * @property {number} value
 	 */
-	get value() {
-		return this._value;
-	}
+	get value() { return this._value; }
 	set value(v) {
 		if ( this._max && v > this._max.value ) v = this._max.value;
 		this._value = v;
@@ -26,15 +24,14 @@ export default class Resource extends Item {
 	set delta(v) { this._delta = v; }
 
 	/**
-	 * @property {BigInt} rate - rate of stat change in value/second.
+	 * @property {Stat} rate - rate of stat change in value/second.
 	 */
-	get rate() {
-		return this._rate;
-	}
-	set rate(v){
-		this._rate = ( v instanceof Stat ) ? v : new Stat(v);
-	}
+	get rate() { return this._rate; }
+	set rate(v){ this._rate = ( v instanceof Stat ) ? v : new Stat(v); }
 
+	/**
+	 * @property {Stat} max - maximum resource value.
+	 */
 	get max() { return this._max; }
 	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 

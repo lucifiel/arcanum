@@ -40,7 +40,7 @@ export default {
 <template>
 <div class="action-list">
 
-	<button :class="{'action-button':true, locked:locked(it) }" v-for="it in actions" :key="it.id"
+	<button :class="{'action-btn':true, locked:locked(it) }" v-for="it in actions" :key="it.id"
 		:disabled="!usable(it)" @click="click(it)">{{ it.name || it.id }}</button>
 
 </div>

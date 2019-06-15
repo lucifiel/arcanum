@@ -1,5 +1,21 @@
 [
 	{
+		"id":"stables",
+		"name":"Clean Stables",
+		"locked":false,
+		"effect":{
+			"gold":0.1
+		}
+	},
+	{
+		"id":"chores",
+		"name":"Do Chores",
+		"require":"apprentice",
+		"effect":{
+			"gold":0.5
+		}
+	},
+	{
 		"id":"read",
 		"name":"Read",
 		"require":"state.scrolls>0",
@@ -9,11 +25,11 @@
 		}
 	},
 	{
-		"id":"meditate",
-		"name":"Meditate",
+		"id":"rest",
+		"name":"rest",
 		"require":"state.research>=5",
 		"effect":{
-			"mana":1	
+			"mana":1
 		}
 	},
 	{
