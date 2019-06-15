@@ -16,6 +16,7 @@ export default class Resource extends Item {
 	set value(v) {
 		this._value = v;
 	}
+	valueOf(){ return this._value; }
 
 	/**
 	 * @property {number} delta - last change in value.
@@ -23,10 +24,6 @@ export default class Resource extends Item {
 	get delta() { return this._delta; }
 	set delta(v) { this._delta = v; }
 
-	set locked(v){
-		if (v)this._delta=0;
-		super.locked =v;
-	}
 	/**
 	 * @property {BigInt} rate - rate of stat change in value/second.
 	 */
@@ -40,13 +37,6 @@ export default class Resource extends Item {
 	get max() { return this._max; }
 	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
-	get mods() {
-		return this._mods;
-	}
-	set mods(v){
-		this._mods =v;
-	}
-
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 
@@ -54,8 +44,6 @@ export default class Resource extends Item {
 	constructor( vars=null ){
 
 		super(vars);
-
-		if ( this._mods == null ) this._mods = [];
 
 		this._value = this._value || 0;
 		this._lastValue = this._value;
@@ -78,7 +66,17 @@ export default class Resource extends Item {
 
 			if ( m.base ) this.rate.base += m.base*amt;
 			if ( m.pct ) this.rate.pct += m.pct*amt;
-			if ( m.max ) this.max += m.amx * amt;
+			if ( m.max ) {
+
+				let vars = m.max;
+				if ( !isNaN(vars) ) this.max.base += vars * amt;
+				else if (vars instanceof Object ) {
+
+					if ( vars.base ) this.max.base += vars.base*amt;
+					if ( vars.pct ) this.max.pct += vars.pct*amt;
+				}
+
+			}
 
 		}
 
@@ -92,12 +90,20 @@ export default class Resource extends Item {
 	removeMod( m, amt ){
 
 		if ( m instanceof Object ) {
-	
-			console.log('removing mod: ' + this.id );
 
 			if ( m.base ) this.rate.base -= m.base*amt;
 			if ( m.pct ) this.rate.pct -= m.pct*amt;
-			if ( m.max ) this.max -= m.amx * amt;
+			if ( m.max ) {
+
+				let vars = m.max;
+				if ( !isNaN(vars) ) this.max.base -= vars * amt;
+				else if (vars instanceof Object ) {
+
+					if ( vars.base ) this.max.base -= vars.base*amt;
+					if ( vars.pct ) this.max.pct -= vars.pct*amt;
+				}
+
+			}
 
 		}
 
@@ -110,7 +116,7 @@ export default class Resource extends Item {
 			let v = this._value;
 
 			v += this._rate.value * dt;
-			if ( v >= this._max ) v = this._max;
+			if ( v >= this._max ) v = this._max.value;
 
 			this._delta = v - this._lastValue;
 

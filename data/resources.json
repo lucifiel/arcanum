@@ -3,24 +3,29 @@
 		"id":"gold",
 		"name":"Gold",
 		"desc":"Gold Piece",
+		"max":100,
 		"value":10
 	},
 	{
 		"id":"research",
-		"name":"Research"
+		"name":"Research",
+		"max":50
 	},
 	{
 		"id":"mana",
-		"name":"Mana"
+		"name":"Mana",
+		"max":25
 	},
 	{
 		"id":"arcana",
-		"name":"Arcana"
+		"name":"Arcana",
+		"max":10
 	},
 	{
 		"id":"scrolls",
 		"name":"Arcane Scrolls",
 		"desc":"Scroll of arcane lore",
+		"max":10,
 		"mod":{
 			"research":{
 				"base":0.1
@@ -30,17 +35,13 @@
 	{
 		"id":"tomes",
 		"name":"Arcane Tomes",
-		"desc":"Tome of arcane lore"
-
-	},
-	{
-		"id":"balls",
-		"name":"Crystal Balls",
-		"desc":"Crystal Ball",
+		"desc":"Tome of arcane lore",
 		"mod":{
-			"mana":{
-				"base":0.1
+			"research":{
+				"base":1
 			}
 		}
+
 	}
+
 ]

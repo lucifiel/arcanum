@@ -97,7 +97,6 @@ export default {
 
 	tryUnlock( item ) {
 
-		//console.log('try unlock: ' + item.id );
 		if ( !item.require ) {
 
 			item.locked = false;
@@ -147,12 +146,10 @@ export default {
 	 */
 	addMod( mod, amt ) {
 
-		console.log('adding mod: ' + mod + " : " + amt );
 		if ( mod instanceof Array ) mod.forEach( this.addMod, this );
 		else if ( mod instanceof Object ) {
 	
 			for( let p in mod ) {
-				console.log('foundmod: ' + p);
 				var target = this.getItem( p );
 				if ( !target) continue;
 				target.addMod( mod[p], amt );
@@ -186,7 +183,6 @@ export default {
 
 				e = effect[p];
 
-				console.log(target.name + ": " + target.value );
 				if ( !isNaN(e) ) target.value += e;
 				else target.applyEffect(e);
 
@@ -280,6 +276,17 @@ export default {
 	},
 
 	initUpgrades() {
+
+		let upgrades = this._gameData.upgrades = [];
+
+		let up;
+		for( let def of DataLoader.upgradeList ) {
+
+			up = new Upgrade( def );
+			upgrades.push(up);
+			this._items[up.id] = up;
+
+		}
 
 	},
 

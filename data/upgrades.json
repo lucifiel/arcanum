@@ -2,14 +2,28 @@
 
 	{
 
-		"id":"potato",
-		"requires":[],
+		"id":"bookcase",
+		"name":"Bookcase",
+		"requires":"state.tomes>=25",
+		"cost":{
+			"gold":25
+		},
 		"effects":{
-			
+			"tomes":{
+				"max":100
+			}
 		}
 
 	},
 	{
-		"id":"upgrade2"
+		"id":"ball",
+		"name":"Crystal Ball",
+		"desc":"A crystal sphere increasing magical focus.",
+		"mod":{
+			"mana":{
+				"base":0.1
+			}
+		}
 	}
+
 ]

@@ -11,6 +11,8 @@ export default class Stat {
 	get pct() { return this._pct; }
 	set pct(v) { this._pct = v; }
 
+	valueOf() { return this._base*( 1 + this._pct ); }
+
 	constructor( vars=null ) {
 
 		if ( !isNaN(vars) ) {

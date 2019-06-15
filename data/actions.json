@@ -2,15 +2,16 @@
 	{
 		"id":"read",
 		"name":"Read",
-		"require":"state.scrolls.value>0",
+		"require":"state.scrolls>0",
 		"effect":{
-			"research":1
+			"research":1,
+			"arcana":0.1
 		}
 	},
 	{
 		"id":"meditate",
 		"name":"Meditate",
-		"require":"state.research.value>=5",
+		"require":"state.research>=5",
 		"effect":{
 			"mana":1	
 		}
@@ -29,25 +30,36 @@
 	{
 		"id":"scribescroll",
 		"name":"Scribe Scroll",
-		"require":"state.research.value>=10",
+		"require":"state.research>=10",
 		"cost":{
 			"research":5,
 			"mana":5
 		},
 		"effect":{
 			"scrolls":1,
-			"arcana":1
+			"arcana":5
 		}
 	},
 	{
 		"id":"sellscroll",
 		"name":"Sell Scroll",
-		"require":"!state.scribescroll.locked&&state.scrolls.value>=5",
+		"require":"state.scribescroll&&state.scrolls>=5",
 		"cost":{
 			"scrolls":1
 		},
 		"effect":{
 			"gold":5
+		}
+	},
+	{
+		"id":"buyball",
+		"name":"Buy Crystal Ball",
+		"require":"state.gold>=50",
+		"cost":{
+			"gold":50
+		},
+		"effect":{
+			"ball":1
 		}
 	}
 ]

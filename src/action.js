@@ -7,6 +7,10 @@ export default class Action extends Item {
 	get cost() { return this._cost; }
 	set cost(v) { this._cost =v;}
 
+	valueOf(){
+		return !this._locked;
+	}
+
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 
