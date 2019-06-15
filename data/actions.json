@@ -18,6 +18,7 @@
 	{
 		"id":"buyscroll",
 		"name":"Buy scroll",
+		"locked":false,
 		"cost":{
 			"gold":10
 		},
@@ -28,7 +29,7 @@
 	{
 		"id":"scribescroll",
 		"name":"Scribe Scroll",
-		"require":"mana",
+		"require":"state.research.value>=10",
 		"cost":{
 			"research":5,
 			"mana":5
@@ -41,7 +42,7 @@
 	{
 		"id":"sellscroll",
 		"name":"Sell Scroll",
-		"require":"scribescroll",
+		"require":"!state.scribescroll.locked&&state.scrolls.value>=5",
 		"cost":{
 			"scrolls":1
 		},

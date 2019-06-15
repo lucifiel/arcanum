@@ -13,7 +13,6 @@ export default {
 		format:round,
 
 		locked(res) {
-			//return !res || !( res.unlocked || Game.tryUnlock(res) );
 			return !res || ( res.locked && !Game.tryUnlock(res) );
 		}
 

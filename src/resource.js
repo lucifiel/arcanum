@@ -1,33 +1,11 @@
-export default class Resource {
+import Stat from 'stat';
+import Item from 'item';
 
-	/**
-	 * @property {Object} def - Object that defines the basics
-	 * of the stat. id, name, flavortext, etc.
-	 */
-	/*get def() { return this._def; }
-	set def(v) {
-
-		this._def = v;
-		if ( v.value ) this._value = v.value;
-
-	}*/
-
-	get id() { return this._id; }
-	set id(v) { this._id = v;}
-
-	get name() { return this._name || this._id; }
-	set name(v) { this._name = v;}
-
-	get desc() { return this._desc; }
-	set desc(v) { this._desc=v;}
-
-	get max() { return this._max; }
-	set max(v) { this._max = v; }
+export default class Resource extends Item {
 
 	get require() {
-		return this._require || ( ()=>this.positive() );
+		return super.require || ( ()=>this.positive() );
 	}
-	set require(v) { this._require =v;}
 
 	/**
 	 * @property {BitInt} value
@@ -40,14 +18,27 @@ export default class Resource {
 	}
 
 	/**
+	 * @property {number} delta - last change in value.
+	 */
+	get delta() { return this._delta; }
+	set delta(v) { this._delta = v; }
+
+	set locked(v){
+		if (v)this._delta=0;
+		super.locked =v;
+	}
+	/**
 	 * @property {BigInt} rate - rate of stat change in value/second.
 	 */
 	get rate() {
 		return this._rate;
 	}
 	set rate(v){
-		this._rate = v;
+		this._rate = ( v instanceof Stat ) ? v : new Stat(v);
 	}
+
+	get max() { return this._max; }
+	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
 	get mods() {
 		return this._mods;
@@ -56,21 +47,76 @@ export default class Resource {
 		this._mods =v;
 	}
 
-	get locked() { return this._locked; }
-	set locked(v) { this._locked = v;}
+	/**
+	 * 
+	 * @param {?Object} [vars=null] 
+	 */
+	constructor( vars=null ){
+
+		super(vars);
+
+		if ( this._mods == null ) this._mods = [];
+
+		this._value = this._value || 0;
+		this._lastValue = this._value;
+
+		this._delta = 0;
+
+	}
+
+	applyEffect(e) {
+	}
 
 	/**
 	 * 
-	 * @param {?Object} [state=null] 
+	 * @param {Object} m - mod description. 
+	 * @param {number} amt - amount added.
 	 */
-	constructor( state=null ){
+	addMod( m, amt ) {
 
-		if ( state ) Object.assign( this, state );
-		if ( this._mods == null ) this._mods = [];
+		if ( m instanceof Object ) {
 
-		this._locked = this._locked !== undefined ? this._locked : true;
+			if ( m.base ) this.rate.base += m.base*amt;
+			if ( m.pct ) this.rate.pct += m.pct*amt;
+			if ( m.max ) this.max += m.amx * amt;
 
-		this._value = this._value || 0;
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param {Object} m - mod description. 
+	 * @param {number} amt - amount removed.
+	 */
+	removeMod( m, amt ){
+
+		if ( m instanceof Object ) {
+	
+			console.log('removing mod: ' + this.id );
+
+			if ( m.base ) this.rate.base -= m.base*amt;
+			if ( m.pct ) this.rate.pct -= m.pct*amt;
+			if ( m.max ) this.max -= m.amx * amt;
+
+		}
+
+	}
+
+	update( dt ) {
+
+		if ( this._rate ) {
+
+			let v = this._value;
+
+			v += this._rate.value * dt;
+			if ( v >= this._max ) v = this._max;
+
+			this._delta = v - this._lastValue;
+
+			this._lastValue = this._value = v;
+
+		} else this._delta = 0;
 
 	}
 
@@ -78,14 +124,7 @@ export default class Resource {
 	 * @returns {boolean} true if resource value is positive.
 	 */
 	positive(){
-		return this.value > 0;
-	}
-
-	applyEffect(e) {
-	}
-
-	update( dt ) {
-		if ( this._rate ) this._value += this._rate * dt;
+		return this._value > 0;
 	}
 
 }

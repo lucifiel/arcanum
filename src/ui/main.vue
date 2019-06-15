@@ -53,22 +53,8 @@ export default {
 		unpause() {
 
 			if ( !this.interval ) {
-				this.lastUpdate = Date.now();
-				this.interval = setInterval( this.update, 200 );
-			}
-
-		},
-
-		update() {
-
-			let time = Date.now();
-			let dt = ( time - this.lastUpdate )/1000;
-			this.lastUpdate = time;
-
-			let stats = this.gameData.resources;
-			let len = stats.length;
-			for( let i = len-1; i >= 0; i-- ) {
-				stats[i].update( dt );
+				this.game.lastUpdate = Date.now();
+				this.interval = setInterval( ()=>this.game.update(), 200 );
 			}
 
 		},

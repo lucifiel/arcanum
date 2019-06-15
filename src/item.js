@@ -8,11 +8,11 @@ export default class Item {
 	get id() { return this._id; }
 	set id(v) { this._id = v;}
 
-	get desc() { return this._desc; }
-	set desc(v) { this._desc=v;}
-
 	get name() { return this._name;}
 	set name(v) { this._name = v;}
+
+	get desc() { return this._desc; }
+	set desc(v) { this._desc=v;}
 
 	get require() { return this._require; }
 	set require(v) { this._require =v;}
@@ -24,16 +24,23 @@ export default class Item {
 	set locked(v) { this._locked = v; }
 
 	/**
+	 * @property {string|string[]} unlocks - items to force unlock.
+	 * only use for simple unlocks. require on target for complex.
+	 */
+	get unlocks() { return this._unlocks;}
+	set unlocks(v) { this._unlocks = v; }
+
+	/**
 	 * 
 	 * @param {?Object} [vars=null] 
 	 */
-	constructor( vars ){
+	constructor( vars=null ){
 
 		if ( vars ) Object.assign( this, vars );
-		defineVars( this, null );
+	
+		if ( this._locked === undefined ) this._locked = true;
 
-		if ( this._require || this._locked ) this._locked = true;
-		else this._locked = false;
+		defineVars( this, null );
 
 	}
 

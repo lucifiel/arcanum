@@ -52,6 +52,34 @@ export default {
 
 	},
 
+	update() {
+
+		let time = Date.now();
+		let dt = ( time - this.lastUpdate )/1000;
+		this.lastUpdate = time;
+
+		let stats = this._gameData.resources;
+		let len = stats.length, stat;
+		for( let i = len-1; i >= 0; i-- ) {
+
+			stat = stats[i];
+			if ( !stat.locked ) stats[i].update( dt );
+
+		}
+
+		for( let i = len-1; i>=0; i-- ) {
+
+			stat = stats[i];
+			if ( stat.delta !== 0 ) {
+
+				if ( stat.mod ) this.addMod( stat.mod, stat.delta );
+
+			}
+
+		}
+
+	},
+
 	/**
 	 * Attempt to pay for an action, and if the cost is met, apply it.
 	 * @param {Action} act 
@@ -69,7 +97,7 @@ export default {
 
 	tryUnlock( item ) {
 
-		console.log('try unlock: ' + item.id );
+		//console.log('try unlock: ' + item.id );
 		if ( !item.require ) {
 
 			item.locked = false;
@@ -114,7 +142,32 @@ export default {
 	},
 
 	/**
-	 * Perform the effect of an action, resource, or upgrade.
+	 * Apply a mod.
+	 * @param {Array|Object} mod 
+	 */
+	addMod( mod, amt ) {
+
+		console.log('adding mod: ' + mod + " : " + amt );
+		if ( mod instanceof Array ) mod.forEach( this.addMod, this );
+		else if ( mod instanceof Object ) {
+	
+			for( let p in mod ) {
+				console.log('foundmod: ' + p);
+				var target = this.getItem( p );
+				if ( !target) continue;
+				target.addMod( mod[p], amt );
+
+			}
+
+		}
+
+	},
+
+	removeMod( mod ) {
+	},
+
+	/**
+	 * Perform the one-time effect of an action, resource, or upgrade.
 	 * @param effect
 	 */
 	applyEffect( effect ) {

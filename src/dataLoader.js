@@ -1,11 +1,12 @@
 import ResourceList from '../data/resources.json';
 import UpgradeList from '../data/upgrades.json';
 import ActionList from '../data/actions.json';
+import VarPath, {IsVarPath} from 'varPath';
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
  */
-const IdTest = /^\w(?:\w|\d|_)*$/;
+const IdTest = /^[A-Za-z_]+\w*$/;
 
 /**
  * @todo replace with server call.
@@ -36,10 +37,29 @@ export default {
 
 		for( let it of arr ) {
 
-			var require = it.require;
-			if ( require ) {
+			var sub = it.require;
+			if ( sub ) {
 
-				if ( typeof require === 'string' && !IdTest.test(require )) it.require = this.createTest( require );
+				// REQUIRE
+				if ( typeof sub === 'string' && !IdTest.test(sub )) it.require = this.createTest( sub );
+
+			}
+			/*sub = it.mod;
+			if ( sub ) {
+				it.mod = this.parseMods(sub);
+			}*/
+
+		}
+
+	},
+
+	parseMods( mod ) {
+
+		if ( mod instanceof Array ) return mod.map( this.parseMods, this );
+
+		if ( mod instanceof Object ) {
+
+			for( let p in mod ) {
 
 			}
 

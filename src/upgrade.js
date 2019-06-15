@@ -1,38 +1,14 @@
-export default class Upgrade {
+import Item from 'item';
 
-	get id() {return this._id; }
-	set id(v) { this._id = v;}
+export default class Upgrade extends Item {
 
-	get name() { return this._name; }
-	set name(v) {
-		this._name = v;
-	}
-
-	get desc() {
-		return this._desc;
-	}
-	set desc(v){
-		this._desc = v;
-	}
-
-	get require() { return this._require; }
-	set require(v){this._require=v;}
-
-	get locked() { return this._locked;}
-	set locked(v) { this._locked = v; }
-
-	get locks(){ return this._locks; }
-	set locks(v){
-		this._locks=v;
-	}
+	get cost() { return this._cost; }
+	set cost(v) { this._cost=v;}
 
 	constructor( vars=null ) {
 
-		if (vars) Object.assign( this, vars );
-		
-		if ( !this._require && !this._locked ) this._locked = false;
-		else this._locked = true;
-
+		super(vars);
+	
 	}
 
 }

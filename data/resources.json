@@ -6,18 +6,26 @@
 		"value":10
 	},
 	{
-		"id":"research"
+		"id":"research",
+		"name":"Research"
 	},
 	{
-		"id":"mana"
+		"id":"mana",
+		"name":"Mana"
 	},
 	{
-		"id":"arcana"
+		"id":"arcana",
+		"name":"Arcana"
 	},
 	{
 		"id":"scrolls",
 		"name":"Arcane Scrolls",
-		"desc":"Scroll of arcane lore"
+		"desc":"Scroll of arcane lore",
+		"mod":{
+			"research":{
+				"base":0.1
+			}
+		}
 	},
 	{
 		"id":"tomes",
@@ -28,6 +36,11 @@
 	{
 		"id":"balls",
 		"name":"Crystal Balls",
-		"desc":"Crystal Ball"
+		"desc":"Crystal Ball",
+		"mod":{
+			"mana":{
+				"base":0.1
+			}
+		}
 	}
 ]

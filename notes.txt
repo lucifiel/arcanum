@@ -1,0 +1,4 @@
+effects are applied once.
+
+mods are applied per quantity, and are removed when a quantity
+of the item is removed.
