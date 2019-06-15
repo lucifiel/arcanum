@@ -14,6 +14,7 @@ export default class Resource extends Item {
 		return this._value;
 	}
 	set value(v) {
+		if ( this._max && v > this._max.value ) v = this._max.value;
 		this._value = v;
 	}
 	valueOf(){ return this._value; }
@@ -116,7 +117,7 @@ export default class Resource extends Item {
 			let v = this._value;
 
 			v += this._rate.value * dt;
-			if ( v >= this._max ) v = this._max.value;
+			if ( v > this._max.value ) v = this._max.value;
 
 			this._delta = v - this._lastValue;
 

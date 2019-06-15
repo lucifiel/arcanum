@@ -14,6 +14,13 @@ export default class Item {
 	get desc() { return this._desc; }
 	set desc(v) { this._desc=v;}
 
+	/**
+	 * @property {string} tag - tag to distinguish between
+	 * item subtypes.
+	 */
+	get tag() { return this._tag;}
+	set tag(v) { this._tag = v;}
+
 	get require() { return this._require; }
 	set require(v) { this._require =v;}
 

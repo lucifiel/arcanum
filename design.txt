@@ -1,5 +1,22 @@
-research ... arcanum
-meditate ... mana
+homes /sanctums / domiciles / base
 
+alcove?
+corner?
 
-books
+bedroom
+
+hut
+
+shed
+
+shop
+
+tower
+
+citadel
+
+castle
+
+crypt
+
+pocket dimension

@@ -1,6 +1,14 @@
 [
 
 	{
+		"id":"apprentice",
+		"name":"Apprenticeship",
+		"desc":"",
+		"cost":{
+			"gold":100
+		}
+	},
+	{
 
 		"id":"bookcase",
 		"name":"Bookcase",
