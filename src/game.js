@@ -106,7 +106,7 @@ export default {
 	 */
 	tryAction(act) {
 
-		if ( this.items.fatigue.value >= this.items.fatigue.max ) {
+		if ( this.items.fatigue.value >= this.items.fatigue.max && !act.ignoreFatigue ) {
 
 			this.log.log('Fatigued', "Too tired.", 'status');
 			return false;

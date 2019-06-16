@@ -58,6 +58,9 @@ export default class Item {
 
 	}
 
+	applyEffect(e) {
+	}
+
 	addTag( tag ) {
 		if ( !this._tags) this._tags = [];
 		this._tags.push(tag);

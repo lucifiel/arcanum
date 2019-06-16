@@ -23,6 +23,7 @@
 	},
 	{
 		"id":"mana",
+		"require":"scrolls",
 		"name":"Mana",
 		"max":25
 	},

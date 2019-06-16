@@ -16,20 +16,24 @@
 		}
 	},
 	{
+		"id":"rest",
+		"name":"rest",
+		"ignoreFatigue":true,
+		"effect":{
+			"mana":{
+				"skipLocked":true,
+				"value":0.5
+			},
+			"fatigue":-1
+		}
+	},
+	{
 		"id":"read",
 		"name":"Read",
 		"require":"state.scrolls>=1",
 		"effect":{
 			"research":1,
 			"arcana":0.1
-		}
-	},
-	{
-		"id":"rest",
-		"name":"rest",
-		"require":"state.research>=5",
-		"effect":{
-			"mana":1
 		}
 	},
 	{

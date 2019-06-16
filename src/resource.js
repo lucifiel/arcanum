@@ -4,9 +4,10 @@ import Item from 'item';
 export default class Resource extends Item {
 
 	get require() {
-		return super.require ||
+		return this._require ||
 		( this._locked === false ? null : ()=>this.positive() );
 	}
+	set require(v){this._require =v;}
 
 	/**
 	 * @property {number} value
@@ -14,6 +15,7 @@ export default class Resource extends Item {
 	get value() { return this._value; }
 	set value(v) {
 		if ( this._max && v > this._max.value ) v = this._max.value;
+		else if ( v < 0 ) v = 0;
 		this._value = v;
 	}
 	valueOf(){ return this._value; }
@@ -52,6 +54,14 @@ export default class Resource extends Item {
 	}
 
 	applyEffect(e) {
+
+		if ( e instanceof Object ){
+
+			if ( this.locked && e.skipLocked ) return;
+			if ( e.value ) this.value += e.value;
+
+		}
+
 	}
 
 	/**
@@ -116,6 +126,7 @@ export default class Resource extends Item {
 
 			v += this._rate.value * dt;
 			if ( v > this._max.value ) v = this._max.value;
+			else if ( v < 0 ) v = 0;
 
 			this._delta = v - this._lastValue;
 
