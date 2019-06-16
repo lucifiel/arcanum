@@ -115,6 +115,8 @@ export default {
 			this.payCost( up.cost );
 		}
 
+		up.value++;
+
 		if ( up.effect ) this.applyEffect(up.effect)
 
 	},
@@ -257,11 +259,18 @@ export default {
 			}
 
 		} else if ( !isNaN(cost ) ) {
+
 			res = this.getItem('gold');
 			if ( res ) res.value -= cost;
 
 		}
 
+	},
+
+	canBuy( item ){
+
+		if ( !item.repeat && item.value > 0 ) return false;
+		return !item.cost || this.canPay(item.cost);
 	},
 
 	/**

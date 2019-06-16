@@ -16,6 +16,9 @@ export default class Item {
 	get desc() { return this._desc; }
 	set desc(v) { this._desc=v;}
 
+	get value() { return this._value; }
+	set value(v) { this._value = v;}
+
 	/**
 	 * @property {string|string[]} tag - tag to distinguish between
 	 * item subtypes.

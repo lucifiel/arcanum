@@ -44,7 +44,7 @@ input[type="button"]:enabled:active, button:enabled:active {
 	flex-direction: column;
 }
 
-.resource-list {
+.resource-list, .upgrade-list {
 	margin: 0px 8px;
 	min-width:150px;
 }
@@ -54,9 +54,12 @@ input[type="button"]:enabled:active, button:enabled:active {
 }
 
 .outlog {
-
 	flex-direction: column;
+}
 
+.log-item {
+	display:flex;
+	flex-direction: column;
 }
 
 .log-title {
@@ -66,4 +69,5 @@ input[type="button"]:enabled:active, button:enabled:active {
 .log-text {
 	font-weight: normal;
 	text-align: right;
+	align-self: flex-end;
 }

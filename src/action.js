@@ -19,6 +19,8 @@ export default class Action extends Item {
 
 		super(vars);
 
+		this.repeat = true;
+
 	}
 
 }

@@ -13,7 +13,7 @@ export default {
 		round:round,
 
 		usable(it) {
-			return !it.cost || Game.canPay( it.cost );
+			return Game.canBuy( it );
 		},
 
 		locked(it) {

@@ -32,9 +32,9 @@ export default {
 	
 	<div class="outlog">
 
-		<ul class="log">
+		<ul>
 
-			<li v-for="(it,i) in items" :key="i">
+			<li class="log-item" v-for="(it,i) in items" :key="i">
 				<span class="log-title">{{ it.title }}</span><br>
 				<span class="log-text">{{ it.text }}</span>
 			</li>
