@@ -33,10 +33,17 @@ input[type="button"]:enabled:active, button:enabled:active {
 
 .action-list {
 	flex-direction: row;
-	flex-basis: 50%;
+	flex-basis: 70%;
 	margin: 12px 8px;
 	text-transform: capitalize;
 }
+
+.homes-view {
+	display:flex;
+	margin: 12px 24px 0px 8px;
+	flex-direction: column;
+}
+
 .resource-list {
 	margin: 0px 24px;
 }
@@ -57,4 +64,5 @@ input[type="button"]:enabled:active, button:enabled:active {
 
 .log-text {
 	font-weight: normal;
+	text-align: right;
 }

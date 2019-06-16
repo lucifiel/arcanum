@@ -5,6 +5,8 @@ import { defineExcept } from 'objecty';
  */
 export default class Item {
 
+	get type() { return 'item'; }
+
 	get id() { return this._id; }
 	set id(v) { this._id = v;}
 
@@ -15,11 +17,16 @@ export default class Item {
 	set desc(v) { this._desc=v;}
 
 	/**
-	 * @property {string} tag - tag to distinguish between
+	 * @property {string|string[]} tag - tag to distinguish between
 	 * item subtypes.
 	 */
-	get tag() { return this._tag;}
-	set tag(v) { this._tag = v;}
+	get tags() { return this._tags;}
+	set tags(v) {
+
+		if ( typeof v === 'string') this._tags = v.split(',');
+		else this._tags = v;
+
+	}
 
 	get require() { return this._require; }
 	set require(v) { this._require =v;}
@@ -49,6 +56,45 @@ export default class Item {
 
 		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect']);
 
+	}
+
+	addTag( tag ) {
+		if ( !this._tags) this._tags = [];
+		this._tags.push(tag);
+	}
+
+	/**
+	 * 
+	 * @param {string[]} a - array of tags to test.
+	 */
+	hasTags( a ) {
+
+		if ( !this._tags ) return false;
+		for( let i = a.length-1; i >= 0; i-- ) if ( !this._tags.includes(a[i]) ) return false;
+
+		return true;
+
+	}
+
+	/**
+	 * Test if any tag in the list is matched.
+	 * @param {string[]} a - array of tags to test.
+	 */
+	anyTag( a ) {
+
+		if ( !this._tags ) return false;
+		for( let i = a.length-1; i >= 0; i-- ) if ( !this._tags.includes(a[i]) ) return true;
+
+		return false;
+
+	}
+
+	/**
+	 * 
+	 * @param {string} t - tag to test. 
+	 */
+	hasTag( t ) {
+		return this._tags && this._tags.includes(t);
 	}
 
 }

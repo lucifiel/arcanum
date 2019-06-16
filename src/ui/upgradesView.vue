@@ -1,16 +1,36 @@
 <script>
+import Game from '../game';
 import { round } from 'format';
 
 export default {
 	
-	props:['upgrades'],
+	props:['items', 'layout'],
 	data(){
-		console.log('this.upgrades: ' + this.upgrades );
+
+		this.pLayout = this.layout || 'upgrade-list';
+		console.log('this.items: ' + this.items );
 		return {
 		}
 	},
 	methods:{
-		format:round
+		format:round,
+
+		usable(act) {
+
+			return !act.cost || Game.canPay( act.cost );
+
+		},
+
+		locked(act) {
+
+			return (!act) || ( (act.locked === false) ? false : !Game.tryUnlock(act) );
+		},
+
+		click( act ){
+
+			this.$emit( 'click', act );
+
+		}
 	}
 
 }
@@ -18,11 +38,10 @@ export default {
 
 
 <template>
-<div class="upgrade-list">
+<div :class="{[layout]:true}">
 
-	<ul>
-		<li v-for="it in upgrades" :key="it.type.id">{{ it.type.id + ': ' + format( it.value ) }}</li>
-	</ul>
+	<button :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
+		:disabled="!usable(it)" @click="click(it)">{{ it.name || it.id }}</button>
 
 </div>
 </template>

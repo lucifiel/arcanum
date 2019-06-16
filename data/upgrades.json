@@ -48,6 +48,19 @@
 		}
 	},
 	{
+		"id":"scrollchest",
+		"desc":"Chest for additional scrolls.",
+		"cost":{
+			"gold":5,
+			"space":2
+		},
+		"mod":{
+			"scroll":{
+				"base":50
+			}
+		}
+	},
+	{
 		"id":"ball",
 		"name":"Crystal Ball",
 		"desc":"A crystal sphere increasing magical focus.",

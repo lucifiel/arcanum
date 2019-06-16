@@ -2,7 +2,7 @@
 	{
 		"id":"alcove",
 		"desc":"A small corner of your master's domicile",
-		"require":"apprentice",
+		"must":"apprentice",
 		"effect":{
 			"space":5
 		}
@@ -10,7 +10,7 @@
 	{
 		"id":"bedroom",
 		"desc":"Your master has seen fit to provide you with a modest bedroom.",
-		"require":"apprentice",
+		"must":"apprentice",
 		"effect":{
 			"space":10
 		}
@@ -18,15 +18,17 @@
 	{
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
+		"require":"!state.apprentice",
 		"cost":50,
 		"effect":{
 			"space":15
 		}
 	},
 	{
-		"id":"home",
+		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":500,
+		"require":"!state.apprentice&&state.arcana>=250",
 		"effect":{
 			"space":25
 		}
@@ -35,6 +37,7 @@
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
 		"cost":700,
+		"require":"!state.apprentice&&state.arcana>=250",
 		"effect":{
 			"space":20
 		}
@@ -43,6 +46,7 @@
 		"id":"tower",
 		"desc":"A stone tower in which to conduct your arcane investigations.",
 		"cost":1500,
+		"require":"!state.apprentice&&state.arcana>=1000",
 		"effect":{
 			"space":100
 		}
@@ -51,6 +55,7 @@
 		"id":"citadel",
 		"desc":"A stronghold to protect yourself from the petty forces of the world.",
 		"cost":3000,
+		"require":"!state.apprentice&&state.arcana>=2000",
 		"effect":{
 			"space":200
 		}
@@ -59,6 +64,7 @@
 		"id":"palace",
 		"desc":"",
 		"cost":10000,
+		"require":"state.arcana>=10000",
 		"effect":{
 			"space":1000
 		}
@@ -66,6 +72,7 @@
 	{
 		"id":"castle",
 		"desc":"",
+		"require":"state.arcana>=10000",
 		"cost":10000,
 		"effect":{
 			"space":1000

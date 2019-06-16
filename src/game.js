@@ -1,4 +1,4 @@
-import DataLoader from 'dataLoader';
+import DataLoader, { ResourceList, UpgradeList, ActionList, HomeList } from 'dataLoader';
 import Resource from 'resource';
 import Upgrade from 'upgrade';
 import Action from 'action';
@@ -10,27 +10,40 @@ export default {
 	get gameData() { return this._gameData; },
 	set gameData(v) { this._gameData =v;},
 
+	/**
+	 * @property {Object.<string,Item>} items
+	 */
 	get items() { return this._items; },
+
+	get flags() { return this._flags; },
 
 	log:new Log(),
 
 	init() {
 
+		this._flags = {};
+
 		DataLoader.init();
+		this._items = DataLoader.items;
+		this._gameData = DataLoader.gameData;
 
-		this.initGameData();
-
-		this.log.log( 'A New Dawn', 'An idle waif with no future to speak of...');
+		this.log.log( 'A New Dawn', 'An idle waif with no prospects to speak of...');
 
 	},
 
 	/**
-	 * 
-	 * @param {string} id
-	 * @returns {Resource} 
+	 * Return a list of items containing these tags.
+	 * @param {string[]} tags 
 	 */
-	getResource( id ) {
-		return this._resourcesById[id];
+	filterItems( tags ) {
+
+		let a = [];
+		for( let p in this._items ) {
+			if ( this._items[p].hasTags(tags) ) a.push(this._items[p]);
+		}
+
+		return a;
+	
 	},
 
 	/**
@@ -65,7 +78,12 @@ export default {
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
-			if ( !stat.locked ) stats[i].update( dt );
+			if ( stat.locked === false ) {
+
+				if ( stat.must && !this.doTest( stat.must ) ) stat.locked = true;
+				else stats[i].update( dt );
+
+			}
 
 		}
 
@@ -99,14 +117,10 @@ export default {
 
 	tryUnlock( item ) {
 
-		if ( !item.require ) {
+		if ( item.must && !this.doTest(item.must)) return false;
 
+		else if ( !item.require || this.doTest(item.require) ) {
 			item.locked = false;
-
-		} else if ( this.canUnlock(item.require) ) {
-
-			item.locked = false;
-
 		}
 
 		return !item.locked;
@@ -114,12 +128,12 @@ export default {
 	},
 
 	/**
-	 * Perform a test to unlock an item.
+	 * Return the results of a testing object.
 	 * @param {string|function|Object|Array} test 
 	 */
-	canUnlock( test ) {
+	doTest( test ) {
 
-		if ( test instanceof Array ) return test.every( this.canUnlock, this );
+		if ( test instanceof Array ) return test.every( this.doTest, this );
 
 		let type = typeof test;
 		if ( type === 'function') {
@@ -132,7 +146,7 @@ export default {
 
 			// test that another item is unlocked.
 			let it = this.getItem(test);
-			if ( it && !it.locked ) return true;
+			return ( it && !it.locked );
 
 		} else if ( type === 'object') {
 
@@ -208,16 +222,20 @@ export default {
 
 		if ( cost instanceof Array ) return cost.forEach( this.payCost, this );
 
+		let res;
 		if ( cost instanceof Object ){
 
 			for( let p in cost ) {
 
-				var res = this.getResource(p);
+				res = this.getItem(p);
 				if ( res ) res.value -= cost[p];
 
 			}
 
-		} else {
+		} else if ( !isNaN(cost ) ) {
+			res = this.getItem(gold);
+			if ( res ) res.value -= cost[p];
+
 		}
 
 	},
@@ -232,79 +250,28 @@ export default {
 
 		if ( cost instanceof Array ) return cost.every( this.canPay, this );
 
+		let res;
+
 		if ( cost instanceof Object ){
 
 			for( let p in cost ) {
 
-				var res = this.getResource(p);
+				res = this.getItem(p);
 				if ( !res || res.value < cost[p] ) return false;
 
 			}
 
 
-		} else {
-			return true;
+		} else if (!isNaN(cost) ) {
+
+			res = this.getItem('gold');
+			if ( !res || res.value < cost[p] ) return false;
+
 		}
 
 		return true;
 	},
 
-	initGameData() {
-
-		this._gameData = {};
-		this._items = {};
-
-		this.initResources();
-		this.initUpgrades();
-		this.initActions();
-
-	},
-
-	initResources(){
-
-		let resources = this._gameData.resources = [];
-		let resById = this._resourcesById = {};
-		let res;
-
-		for( let def of DataLoader.resourceList ) {
-
-			res = new Resource( def );
 	
-			resources.push( res );
-			resById[ def.id ] = this._items[ def.id ] = res;
-
-		}
-
-	},
-
-	initUpgrades() {
-
-		let upgrades = this._gameData.upgrades = [];
-
-		let up;
-		for( let def of DataLoader.upgradeList ) {
-
-			up = new Upgrade( def );
-			upgrades.push(up);
-			this._items[up.id] = up;
-
-		}
-
-	},
-
-	initActions() {
-
-		let actions = this._gameData.actions = [];
-
-		let act;
-		for( let def of DataLoader.actionList ) {
-
-			act = new Action( def );
-			actions.push(act);
-			this._items[act.id] = act;
-
-		}
-
-	}
 
 }

@@ -34,7 +34,7 @@ export default {
 		<ul class="log">
 
 			<li v-for="(it,i) in log.items" :key="i">
-				<span class="log-title">{{ it.title }}</span>
+				<span class="log-title">{{ it.title }}</span><br>
 				<span class="log-text">{{ it.text }}</span>
 			</li>
 		</ul>

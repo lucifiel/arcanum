@@ -3,6 +3,10 @@ import UpgradeList from '../data/upgrades.json';
 import ActionList from '../data/actions.json';
 import HomeList from '../data/homes.json';
 
+import Resource from 'resource';
+import Upgrade from 'upgrade';
+import Action from 'action';
+
 import VarPath, {IsVarPath} from 'varPath';
 
 /**
@@ -10,39 +14,31 @@ import VarPath, {IsVarPath} from 'varPath';
  */
 const IdTest = /^[A-Za-z_]+\w*$/;
 
-export {ResourceList, UpgradeList, ActionList, HomeList };
+export { ResourceList, UpgradeList, ActionList, HomeList };
 
 /**
  * @todo replace with server call.
  */
 export default {
 
-	resourceList:ResourceList,
-	upgradeList:UpgradeList,
-	actionList:ActionList,
+	get items() { return this._items; },
+	get gameData() { return this._gameData; },
 
-	items:null,
+	init() {
 
-	init(){
+		this.initJSON( ResourceList );
+		this.initJSON( UpgradeList );
+		this.initJSON( ActionList );
+		this.initJSON( HomeList );
 
-		this.items = {};
-
-		this.initItems( ResourceList, 'resource');
-		this.initItems( UpgradeList, 'upgrade' );
-		this.initItems( ActionList, 'action' );
-		this.initItems( HomeList, 'home' );
-
-		//this.initResources();
-		//this.initUpgrades();
-		//this.initActions();
+		this.initGameItems();
 
 	},
 
-	initItems( arr, tag=null ) {
+	initJSON( arr, tag=null ) {
 
 		for( let it of arr ) {
 
-			it.tag = tag;
 			var sub = it.require;
 			if ( sub ) {
 
@@ -84,28 +80,73 @@ export default {
 		return new Function( "state", 'return ' + text );
 	},
 
-	initResources() {
+	/**
+	 * Game items as opposed to raw data items.
+	 */
+	initGameItems() {
 
-		for( let res of ResourceList ) {
-			this.items[res.id] = res;
-			res.tag = 'resource';
-		}
+		this._items = {};
+		var gd = this._gameData = {};
+
+		gd.resources = this.initResources();
+		gd.upgrades = this.initUpgrades( UpgradeList );
+		gd.homes = this.initUpgrades( HomeList, 'home' );
+
+		gd.actions = this.initActions();
 
 	},
 
-	initUpgrades() {
+	initResources(){
 
-		for( let up of UpgradeList ) {
-			this.items[up.id] = up;
+		let a = [];
+		let res;
+
+		for( let def of ResourceList ) {
+
+			res = new Resource( def );
+	
+			a.push( res );
+			this._items[ def.id ] = res;
+
 		}
+
+		return a;
+
+	},
+
+	initUpgrades( DataList, tag ) {
+
+		let a = [];
+
+		let up;
+		for( let def of DataList ) {
+
+			up = new Upgrade( def );
+			up.addTag( tag );
+
+			a.push(up);
+			this._items[up.id] = up;
+
+		}
+
+		return a;
 
 	},
 
 	initActions() {
 
-		for( let act of ActionList) {
-			this.items[act.id] = act;
+		let a = [];
+
+		let act;
+		for( let def of ActionList ) {
+
+			act = new Action( def );
+			a.push(act);
+			this._items[act.id] = act;
+
 		}
+
+		return a;
 
 	}
 
