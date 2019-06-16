@@ -45,7 +45,8 @@ input[type="button"]:enabled:active, button:enabled:active {
 }
 
 .resource-list {
-	margin: 0px 24px;
+	margin: 0px 8px;
+	min-width:150px;
 }
 
 .action-btn {

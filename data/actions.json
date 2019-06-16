@@ -4,6 +4,7 @@
 		"name":"Clean Stables",
 		"locked":false,
 		"effect":{
+			"fatigue":0.1,
 			"gold":0.1
 		}
 	},
@@ -12,6 +13,7 @@
 		"name":"Do Chores",
 		"require":"apprentice",
 		"effect":{
+			"fatigue":0.2,
 			"gold":0.5
 		}
 	},
@@ -32,6 +34,7 @@
 		"name":"Read",
 		"require":"state.scrolls>=1",
 		"effect":{
+			"fatigue":0.1,
 			"research":1,
 			"arcana":0.1
 		}

@@ -5,7 +5,7 @@
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
 		"cost":{
-			"gold":100
+			"gold":10
 		}
 	},
 	{
@@ -39,6 +39,7 @@
 	},
 	{
 		"id":"heartcandle",
+		"name":"Heart Candle",
 		"desc":"A warm glowing candle.",
 		"flavor":"Spare a little candle, save some light for me.",
 		"cost":10,
@@ -50,6 +51,7 @@
 	},
 	{
 		"id":"scrollchest",
+		"name":"Small Chest",
 		"desc":"Chest for additional scrolls.",
 		"cost":{
 			"gold":5,

@@ -18,7 +18,7 @@ export function price(v) {
 }
 
 export function round( v ) {
-	return (v === null || isNaN(v)) ? 0 : v.toFixed(0);
+	return (v === null || isNaN(v)) ? 0 : Math.floor(v);
 }
 
 /**

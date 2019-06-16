@@ -57,6 +57,10 @@ export default {
 
 		},
 
+		onUpgrade(upgrade) {
+			this.game.tryUpgrade(upgrade);
+		},
+	
 		onAction( action ) {
 
 			this.game.tryAction( action );
@@ -74,9 +78,12 @@ export default {
 
 		<resources :items="gameData.resources" />
 
+		<div>
 		<actions :items="gameData.actions" @click="onAction" />
+		<upgrades :items="gameData.upgrades" @click="onUpgrade" />
+		</div>
 
-		<upgrades :items="gameData.homes" :layout="'homes-view'" />
+		<upgrades :items="gameData.homes" :layout="'homes-view'" @click="onUpgrade" />
 
 		<log :log="game.log" />
 

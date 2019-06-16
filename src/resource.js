@@ -36,7 +36,13 @@ export default class Resource extends Item {
 	 * @property {Stat} max - maximum resource value.
 	 */
 	get max() { return this._max; }
-	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
+	set max(v) {
+
+		this._max = v instanceof Stat ? v : (
+			!v ? null : new Stat( v )
+		);
+
+	}
 
 	/**
 	 * 
@@ -122,10 +128,9 @@ export default class Resource extends Item {
 
 		if ( this._rate ) {
 
-			let v = this._value;
+			let v = this._value + this._rate.value*dt;
 
-			v += this._rate.value * dt;
-			if ( v > this._max.value ) v = this._max.value;
+			if ( this._max && v > this._max.value ) v = this._max.value;
 			else if ( v < 0 ) v = 0;
 
 			this._delta = v - this._lastValue;

@@ -101,12 +101,31 @@ export default {
 	},
 
 	/**
+	 * Buying an upgrade does not incur fatigue.
+	 * @param {*} up 
+	 */
+	tryUpgrade(up){
+
+		if ( up.cost ) {
+	
+			if ( !this.canPay(up.cost) ) {
+				this.log.log('', 'Cannot afford upgrade.');
+				return false;
+			}
+			this.payCost( up.cost );
+		}
+
+		if ( up.effect ) this.applyEffect(up.effect)
+
+	},
+
+	/**
 	 * Attempt to pay for an action, and if the cost is met, apply it.
 	 * @param {Action} act 
 	 */
 	tryAction(act) {
 
-		if ( this.items.fatigue.value >= this.items.fatigue.max && !act.ignoreFatigue ) {
+		if ( (this.items.fatigue.value >= this.items.fatigue.max) && !act.ignoreFatigue ) {
 
 			this.log.log('Fatigued', "Too tired.", 'status');
 			return false;
@@ -238,8 +257,8 @@ export default {
 			}
 
 		} else if ( !isNaN(cost ) ) {
-			res = this.getItem(gold);
-			if ( res ) res.value -= cost[p];
+			res = this.getItem('gold');
+			if ( res ) res.value -= cost;
 
 		}
 
@@ -270,7 +289,7 @@ export default {
 		} else if (!isNaN(cost) ) {
 
 			res = this.getItem('gold');
-			if ( !res || res.value < cost[p] ) return false;
+			if ( res.value < cost) return false;
 
 		}
 

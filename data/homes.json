@@ -11,6 +11,9 @@
 		"id":"bedroom",
 		"desc":"Your master has seen fit to provide you with a modest bedroom.",
 		"must":"apprentice",
+		"cost":{
+			"arcana":100
+		},
 		"effect":{
 			"space":10
 		}
