@@ -7,6 +7,16 @@
 		"value":10
 	},
 	{
+
+		"id":"fatigue",
+		"name":"Fatigue",
+		"max":10,
+		"locked":false,
+		"rate":{
+			"base":0.1
+		}
+	},
+	{
 		"id":"research",
 		"name":"Research",
 		"max":50

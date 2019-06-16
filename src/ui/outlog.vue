@@ -8,6 +8,7 @@ export default {
 	data() {
 
 		return {
+			items:this.log.items,
 			/**
 			 * @property {string[]} exclude - types to exclude.
 			 */
@@ -33,7 +34,7 @@ export default {
 
 		<ul class="log">
 
-			<li v-for="(it,i) in log.items" :key="i">
+			<li v-for="(it,i) in items" :key="i">
 				<span class="log-title">{{ it.title }}</span><br>
 				<span class="log-text">{{ it.text }}</span>
 			</li>

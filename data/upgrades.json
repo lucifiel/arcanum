@@ -3,7 +3,7 @@
 	{
 		"id":"apprentice",
 		"name":"Apprenticeship",
-		"desc":"",
+		"desc":"Become an apprentice.",
 		"cost":{
 			"gold":100
 		}
@@ -12,6 +12,7 @@
 
 		"id":"bookcase",
 		"name":"Bookcase",
+		"desc":"A rough but sturdy bookcase.",
 		"requires":"state.tomes>=10",
 		"cost":{
 			"gold":25,

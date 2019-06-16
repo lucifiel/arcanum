@@ -4,7 +4,8 @@ import Item from 'item';
 export default class Resource extends Item {
 
 	get require() {
-		return super.require || ( ()=>this.positive() );
+		return super.require ||
+		( this._locked === false ? null : ()=>this.positive() );
 	}
 
 	/**
@@ -128,7 +129,7 @@ export default class Resource extends Item {
 	 * @returns {boolean} true if resource value is positive.
 	 */
 	positive(){
-		return this._value > 0;
+		return (this.decimal && this._value > 0) || this._value >= 1;
 	}
 
 }

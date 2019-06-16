@@ -106,7 +106,12 @@ export default {
 	 */
 	tryAction(act) {
 
-		if ( act.cost ) {
+		if ( this.items.fatigue.value >= this.items.fatigue.max ) {
+
+			this.log.log('Fatigued', "Too tired.", 'status');
+			return false;
+
+		} else if ( act.cost ) {
 			if ( !this.canPay(act.cost) ) return false;
 			this.payCost( act.cost );
 		}

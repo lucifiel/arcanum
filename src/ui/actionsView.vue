@@ -1,36 +1,18 @@
 <script>
-import { round } from 'format';
+
+import ItemsBase from './itemsBase.js';
 
 import Game from '../game';
 
+
 export default {
-	
-	props:['actions'],
+
+	mixins:[ItemsBase],
 	data(){
 		return {
 		}
 	},
 	methods:{
-
-		format:round,
-
-		usable(act) {
-
-			return !act.cost || Game.canPay( act.cost );
-
-		},
-
-		locked(act) {
-
-			return (!act) || ( (act.locked === false) ? false : !Game.tryUnlock(act) );
-		},
-
-		click( act ){
-
-			this.$emit( 'click', act );
-
-		}
-
 	}
 
 }
@@ -40,7 +22,7 @@ export default {
 <template>
 <div class="action-list">
 
-	<button :class="{'action-btn':true, locked:locked(it) }" v-for="it in actions" :key="it.id"
+	<button :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
 		:disabled="!usable(it)" @click="click(it)">{{ it.name || it.id }}</button>
 
 </div>

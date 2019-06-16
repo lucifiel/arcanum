@@ -18,7 +18,7 @@
 	{
 		"id":"read",
 		"name":"Read",
-		"require":"state.scrolls>0",
+		"require":"state.scrolls>=1",
 		"effect":{
 			"research":1,
 			"arcana":0.1

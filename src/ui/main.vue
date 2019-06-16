@@ -1,11 +1,8 @@
 <script>
 
-import DataLoader from '../dataLoader';
-
 import ResoucesView from './resourcesView.vue';
 import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
-import ItemsView from './itemsView.vue';
 
 import LogView from './outlog.vue';
 
@@ -75,9 +72,9 @@ export default {
 
 	<div class="main">
 
-		<resources :resources="gameData.resources" />
+		<resources :items="gameData.resources" />
 
-		<actions :actions="gameData.actions" @click="onAction" />
+		<actions :items="gameData.actions" @click="onAction" />
 
 		<upgrades :items="gameData.homes" :layout="'homes-view'" />
 

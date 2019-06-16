@@ -1,21 +1,16 @@
 <script>
-import { round } from 'format';
+import ItemsBase from './itemsBase.js';
 import Game from '../game';
 
 export default {
 	
 	props:['resources'],
+	mixins:[ItemsBase],
 	data(){
 		return {
 		}
 	},
 	methods:{
-		format:round,
-
-		locked(res) {
-			return !res || ( res.locked && !Game.tryUnlock(res) );
-		}
-
 	}
 
 }
@@ -26,7 +21,7 @@ export default {
 <div class="resource-list">
 
 	<ul>
-		<li :class="{'item-name':true, locked:locked(it)}" v-for="it in resources" :key="it.id">{{ it.name + ': ' + format( it.value ) }}</li>
+		<li :class="{'item-name':true, locked:locked(it)}" v-for="it in items" :key="it.id">{{ it.name + ': ' + round( it.value ) }}</li>
 	</ul>
 
 </div>

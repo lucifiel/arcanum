@@ -24,9 +24,7 @@ export class LogItem {
 
 export default class Log {
 
-	get items() {
-		return this._items;
-	}
+	get items() { return this._items; }
 	set items(v) { this._items = v;}
 
 	constructor( vars=null ) {
