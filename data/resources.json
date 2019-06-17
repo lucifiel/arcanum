@@ -11,10 +11,7 @@
 		"id":"fatigue",
 		"name":"Fatigue",
 		"max":10,
-		"locked":false,
-		"rate":{
-			"base":0.1
-		}
+		"locked":false
 	},
 	{
 		"id":"research",
@@ -30,6 +27,7 @@
 	{
 		"id":"arcana",
 		"name":"Arcana",
+		"require":"apprentice",
 		"max":10
 	},
 	{

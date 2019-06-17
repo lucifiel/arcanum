@@ -55,7 +55,7 @@ export default {
 		return this._items[id];
 	},
 
-	addCount( name, count ) {
+	/*addCount( name, count ) {
 
 		let res = this.getItem(name);
 		if ( res === undefined ) return;
@@ -65,7 +65,7 @@ export default {
 			this.applyEffect( res.effect );
 		}
 
-	},
+	},*/
 
 	update() {
 
@@ -117,7 +117,8 @@ export default {
 
 		up.value++;
 
-		if ( up.effect ) this.applyEffect(up.effect)
+		if ( up.effect ) this.applyEffect(up.effect);
+		if ( up.mod ) this.addMod( up.mod, 1 );
 
 	},
 
@@ -172,7 +173,9 @@ export default {
 
 			// test that another item is unlocked.
 			let it = this.getItem(test);
-			return ( it && !it.locked );
+			if (!it) return false;
+			if ( it.type === 'resource' || it.type === 'action') return !it.locked;
+			return it.value >0;
 
 		} else if ( type === 'object') {
 

@@ -12,13 +12,14 @@
 
 		"id":"bookcase",
 		"name":"Bookcase",
+		"repeat":true,
 		"desc":"A rough but sturdy bookcase.",
-		"requires":"state.tomes>=10",
+		"require":"state.tomes>=10",
 		"cost":{
 			"gold":25,
 			"space":2
 		},
-		"effect":{
+		"mod":{
 			"tomes":{
 				"max":50
 			}
@@ -29,7 +30,8 @@
 		"id":"candle",
 		"desc":"A tiny glowing candle.",
 		"flavor":"You no take candle!",
-		"requires":"",
+		"repeat":true,
+		"require":"!state.mana.locked&&state.mana.max>=20",
 		"cost":1,
 		"mod":{
 			"mana":{
@@ -41,7 +43,9 @@
 		"id":"heartcandle",
 		"name":"Heart Candle",
 		"desc":"A warm glowing candle.",
+		"repeat":true,
 		"flavor":"Spare a little candle, save some light for me.",
+		"require":"state.mana.max>=50",
 		"cost":10,
 		"mod":{
 			"mana":{
@@ -53,13 +57,15 @@
 		"id":"scrollchest",
 		"name":"Small Chest",
 		"desc":"Chest for additional scrolls.",
+		"require":"scrolls",
+		"repeat":true,
 		"cost":{
 			"gold":5,
 			"space":2
 		},
 		"mod":{
-			"scroll":{
-				"base":50
+			"scrolls":{
+				"max":10
 			}
 		}
 	},
@@ -67,6 +73,12 @@
 		"id":"ball",
 		"name":"Crystal Ball",
 		"desc":"A crystal sphere increasing magical focus.",
+		"repeat":true,
+		"require":"state.mana>=100",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
 		"mod":{
 			"mana":{
 				"base":0.5

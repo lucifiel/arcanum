@@ -51,6 +51,7 @@ input[type="button"]:enabled:active, button:enabled:active {
 
 .action-btn {
 	min-width: 16ch;
+	text-transform: capitalize;
 }
 
 .outlog {
