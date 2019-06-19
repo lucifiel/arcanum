@@ -110,7 +110,7 @@ export default {
 		</template>
 	
 		<template slot="home">
-		<upgrades :items="gameData.homes" @itemover="itemover" @itemout="itemout" :layout="'homes-view'" @click="onUpgrade" />
+		<upgrades class="homes-view" :items="gameData.homes" @itemover="itemover" @itemout="itemout" :layout="'homes-view'" @click="onUpgrade" />
 		</template>
 	
 		<template slot="skills">

@@ -61,18 +61,20 @@ input[type="button"]:enabled:active, button:enabled:active {
 	text-transform: capitalize;
 }
 
+.resource-list, .upgrade-list, .homes-view, .skills-view {
+	margin: 12px 8px;
+
+}
+
 .homes-view {
 	display:flex;
-	margin: 12px 24px 0px 8px;
 	flex-direction: column;
 }
 
-.resource-list, .upgrade-list {
-	margin: 12px 8px;
+.resource-list {
 	width: fit-content;
 	min-width: 170px;
 }
-
 .action-btn {
 	min-width: 16ch;
 	text-transform: capitalize;
@@ -90,15 +92,23 @@ input[type="button"]:enabled:active, button:enabled:active {
 }
 
 .exp-bar {
+	display:inline-block;
 	background: #333;
-	padding:2px;
-	border-radius: 10px;
+	margin:4px 4px 0px 2px;
+	padding:3px;
+	min-height:18px;
+	width:200px;
+	border-radius: 9px;
 }
 .exp-bar > div {
 	background:orange;
-	border-radius: 8px;
+	border-radius: 7px;
 	height:100%;
-	width:0%;
+	min-width:0px;
+	width:0px;
+}
+.exp-bar>div:after{
+	content:"\00a0";
 }
 
 .outlog {

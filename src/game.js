@@ -77,7 +77,7 @@ export default {
 
 		}
 
-		this.doSkill();
+		this.doSkill( dt );
 
 		for( let i = len-1; i>=0; i-- ) {
 
@@ -92,13 +92,14 @@ export default {
 
 	},
 
-	doSkill() {
+	doSkill( dt ) {
 
-		if ( !this.curSkill) return;
+		let skill = this.gameData.curSkill;
+		if ( !skill ) return;
 
-		this.curSkill.exp += dt;
-			if ( this.curSkill.exp >= this.curSkill.max ) {
-				this.curSkill.levelUp();
+		skill.exp += dt;
+		if ( skill.exp >= skill.max ) {
+			skill.levelUp();
 		}
 
 	},

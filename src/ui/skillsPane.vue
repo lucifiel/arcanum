@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-	<div class="skills-pane">
+	<div class="skills-view">
 
 		<skill v-for="s in skills" :key="s.id" :game="gameData" :skill="s"></skill>
 

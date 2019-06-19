@@ -40,6 +40,8 @@ export default class Skill {
 
 	}
 
+	percent() { return 100*(this._exp / this._max ); }
+
 	levelUp() {
 
 		if ( ++this._level > MAX_LEVEL ) this._level = MAX_LEVEL;
