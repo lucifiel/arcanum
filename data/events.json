@@ -6,6 +6,18 @@
 		"text":"text",
 		"effect":{
 		}
+	},
+	{
+		"id":"apprentice",
+		"title":"Apprentice",
+		"text":"Because a wizard's apprentice",
+		"remove":["stables"]
+	},
+	{
+		"id":"leavemaster",
+		"title":"Left Master",
+		"text":"You are now an independent wizard.",
+		"remove":"apprentice"
 	}
 
 

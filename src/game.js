@@ -1,7 +1,9 @@
-import DataLoader, { ResourceList, UpgradeList, ActionList, HomeList } from 'dataLoader';
-import Resource from 'resource';
-import Upgrade from 'upgrade';
-import Action from 'action';
+import DataLoader from 'dataLoader';
+import Resource from 'items/resource';
+import Upgrade from 'items/upgrade';
+import Action from 'items/action';
+import Spellbook from 'spellbook';
+import Player from 'player';
 
 import Log from 'log';
 
@@ -24,26 +26,26 @@ export default {
 		this._flags = {};
 
 		DataLoader.init();
+
 		this._items = DataLoader.items;
 		this._gameData = DataLoader.gameData;
 
+		this._player = this._gameData.player = new Player();
+
+		this._gameData.curSkill = null;
+
+		/**
+	 	* @property {Object} events - available events.
+	 	*/
+		this.events = this._gameData.events = {};
+
+		/**
+		 * @property {Object} completed - completed events.
+		 */
+		this.completed = this._gameData.completed = {};
+
 		this.log.log( 'A New Dawn', 'An idle waif with no prospects to speak of...');
 
-	},
-
-	/**
-	 * Return a list of items containing these tags.
-	 * @param {string[]} tags 
-	 */
-	filterItems( tags ) {
-
-		let a = [];
-		for( let p in this._items ) {
-			if ( this._items[p].hasTags(tags) ) a.push(this._items[p]);
-		}
-
-		return a;
-	
 	},
 
 	/**
@@ -54,18 +56,6 @@ export default {
 	getItem(id) {
 		return this._items[id];
 	},
-
-	/*addCount( name, count ) {
-
-		let res = this.getItem(name);
-		if ( res === undefined ) return;
-
-		res.value += count;
-		if ( res.effect ) {
-			this.applyEffect( res.effect );
-		}
-
-	},*/
 
 	update() {
 
@@ -87,6 +77,8 @@ export default {
 
 		}
 
+		this.doSkill();
+
 		for( let i = len-1; i>=0; i-- ) {
 
 			stat = stats[i];
@@ -98,6 +90,58 @@ export default {
 
 		}
 
+	},
+
+	doSkill() {
+
+		if ( !this.curSkill) return;
+
+		this.curSkill.exp += dt;
+			if ( this.curSkill.exp >= this.curSkill.max ) {
+				this.curSkill.levelUp();
+		}
+
+	},
+
+	/**
+	 * 
+	 * @param {Object} evt 
+	 */
+	doEvent( evt ) {
+
+		if ( evt.remove) this.remove( evt.remove);
+
+		this._completed[evt.id] = evt;
+		this._events[evt.id] = null;
+
+	},
+
+	/**
+	 * Remove a previously unlocked/purchased item.
+	 * @param {*} what 
+	 */
+	remove( what ) {
+
+		if ( what instanceof Array ) for( let it of what ) this.remove(it);
+		else {
+
+			let it = this.getItem( what );
+			if ( it ) {
+
+				delete this._items[it.id];
+				let typeList = this.gameData[it.type];
+				let ind = typeList.indexOf( it );
+				if ( ind >= 0 ) typeList.splice(ind,1);
+	
+				// remove all stat mods.
+				if ( it.mod ) {
+					this.addMod( it, -it.value );
+				}
+				it.value = 0;
+
+			}
+
+		}
 	},
 
 	/**
@@ -205,8 +249,8 @@ export default {
 
 	},
 
-	removeMod( mod ) {
-	},
+	/*removeMod( mod ) {
+	},*/
 
 	/**
 	 * Perform the one-time effect of an action, resource, or upgrade.
@@ -308,6 +352,20 @@ export default {
 		return true;
 	},
 
+	/**
+	 * Return a list of items containing give tags.
+	 * @param {string[]} tags
+	 * @returns {Item[]}
+	 */
+	filterItems( tags ) {
+
+		let a = [];
+		for( let p in this._items ) {
+			if ( this._items[p].hasTags(tags) ) a.push(this._items[p]);
+		}
+
+		return a;
 	
+	}
 
 }

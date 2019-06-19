@@ -1,24 +1,50 @@
 homes /sanctums / domiciles / base
 
+title:
+waif
+apprentice
+novice
+adept
+magician
+
+base?
+mage
+sorcerer
+enchanter
+evoker
+conjurer
+necromancer
+alchemist
+witch
+medium
+transmuter
+
+mid tier?
+battlemage
+fire/water/earth/air mage?
+warlock
+seer
+thaumaturge
+
+high tier
+lich
+oracle
+dreadlord
+wizard
+high witch
+planeswalker
+doomsayer
+archmage
+archlich
+avatar
+archlock
+
+
+
 alcove?
 corner?
 
-bedroom
-
-
-hut
-
 cabin
-
-house
-
-shop
-
-tower
-
-citadel
-
-castle
 
 crypt
 

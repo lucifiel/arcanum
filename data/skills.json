@@ -1,0 +1,20 @@
+[
+
+	{
+		"id":"animals",
+		"name":"Animal Handling"
+	},
+	{
+		"id":"crafting",
+		"name":"Crafting"
+	},
+	{
+		"id":"lore",
+		"name":"Lore"
+	},
+	{
+		"id":"readmagic",
+		"name":"Read Magic"
+	}
+
+]

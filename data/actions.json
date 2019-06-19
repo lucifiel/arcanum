@@ -11,7 +11,7 @@
 	{
 		"id":"chores",
 		"name":"Do Chores",
-		"require":"apprentice",
+		"must":"apprentice",
 		"effect":{
 			"fatigue":0.2,
 			"gold":0.5

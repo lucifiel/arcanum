@@ -2,10 +2,12 @@ import ResourceList from '../data/resources.json';
 import UpgradeList from '../data/upgrades.json';
 import ActionList from '../data/actions.json';
 import HomeList from '../data/homes.json';
+import SkillList from '../data/skills.json';
 
-import Resource from 'resource';
-import Upgrade from 'upgrade';
-import Action from 'action';
+import Resource from 'items/resource';
+import Upgrade from 'items/upgrade';
+import Action from 'items/action';
+import Skill from 'items/skill';
 
 import VarPath, {IsVarPath} from 'varPath';
 
@@ -30,6 +32,7 @@ export default {
 		this.initJSON( UpgradeList );
 		this.initJSON( ActionList );
 		this.initJSON( HomeList );
+		this.initJSON( SkillList );
 
 		this.initGameItems();
 
@@ -91,6 +94,7 @@ export default {
 		gd.resources = this.initResources();
 		gd.upgrades = this.initUpgrades( UpgradeList );
 		gd.homes = this.initUpgrades( HomeList, 'home' );
+		gd.skills = this.initSkills( SkillList );
 
 		gd.actions = this.initActions();
 
@@ -126,6 +130,24 @@ export default {
 
 			a.push(up);
 			this._items[up.id] = up;
+
+		}
+
+		return a;
+
+	},
+	initSkills( DataList ) {
+
+		let a = [];
+
+		let s;
+		for( let def of DataList ) {
+
+			s = new Skill( def );
+			//s.addTag( tag );
+
+			a.push(s);
+			this._items[s.id] = s;
 
 		}
 

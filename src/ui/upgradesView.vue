@@ -22,7 +22,10 @@ export default {
 <div :class="{[pLayout]:true}">
 
 	<button :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
-		:disabled="!usable(it)" @click="click(it)">{{ it.name || it.id }}</button>
+		:disabled="!usable(it)"
+		@mouseover.stop="mouseover($event,it)"
+		@mouseout.stop="mouseout($event)"
+		@click.stop="click(it)">{{ it.name || it.id }}</button>
 
 </div>
 </template>

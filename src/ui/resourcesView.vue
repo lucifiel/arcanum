@@ -4,7 +4,6 @@ import Game from '../game';
 
 export default {
 	
-	props:['resources'],
 	mixins:[ItemsBase],
 	data(){
 		return {
@@ -20,13 +19,17 @@ export default {
 <template>
 <div class="resource-list">
 
-	<ul>
-		<li :class="{'item-name':true, locked:locked(it)}" v-for="it in items" :key="it.id">
-			{{ it.name + ': ' + round( it.value ) }}
-			{{ it.max && it.max.value>0 ? '/' + round(it.max.value) : ''}}
-			{{ it.delta != 0 ? '&nbsp;(' + it.delta.toFixed(2) + '/t )' : ''}}
-		</li>
-	</ul>
+	<table>
+		<tr :class="{'item-name':true, locked:locked(it)}" v-for="it in items" :key="it.id"
+			@mouseover.stop="mouseover($event,it)"
+			@mouseout.stop="mouseout($event)">
+
+			<td>{{ it.name }}</td>
+			<td>{{ round( it.value ) + ( it.max && it.max.value>0 ? '/' + round(it.max.value) : '' )}}</td>
+			<td>{{ it.delta != 0 ? '&nbsp;(' + it.delta.toFixed(2) + '/t )' : ''}}</td>
+
+		</tr>
+	</table>
 
 </div>
 </template>

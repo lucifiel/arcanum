@@ -1,6 +1,6 @@
 import { defineVars } from 'objecty';
 
-import Item from 'item';
+import Item from './item';
 
 export default class Action extends Item {
 

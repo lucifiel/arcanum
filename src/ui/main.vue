@@ -1,8 +1,11 @@
 <script>
-
+import Menu from './menu.vue';
 import ResoucesView from './resourcesView.vue';
 import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
+import SkillsPane from './skillsPane.vue';
+
+import ItemBox from './itemBox.vue';
 
 import LogView from './outlog.vue';
 
@@ -16,19 +19,24 @@ export default {
 		resources:ResoucesView,
 		actions:ActionsView,
 		upgrades:UpgradesView,
-		log:LogView
+		itembox:ItemBox,
+		log:LogView,
+		skills:SkillsPane,
+		'vue-menu':Menu
 	},
 	data(){
 
-		let data = this.game.gameData;
-		
 		return {
-			gameData:data
+			gameData:this.game.gameData,
+			overItem:null,
+			overElm:null
 		};
 
 
 	},
 	created(){
+
+		this.menuItems = ['main', 'skills', 'home'];
 
 		this.unpause();
 
@@ -57,6 +65,18 @@ export default {
 
 		},
 
+		itemover(elm, it) {
+			this.overItem = it;
+			this.overElm = elm;
+		},
+
+		itemout(elm ){
+			if ( this.overElm===elm) {
+				this.overElm = null;
+				this.overItem = null;
+			}
+		},
+
 		onUpgrade(upgrade) {
 			this.game.tryUpgrade(upgrade);
 		},
@@ -76,14 +96,28 @@ export default {
 
 	<div class="main">
 
-		<resources :items="gameData.resources" />
+		<!-- popup -->
+		<itembox :item="overItem" :elm="overElm" />
 
-		<div>
-		<actions :items="gameData.actions" @click="onAction" />
-		<upgrades :items="gameData.upgrades" @click="onUpgrade" />
-		</div>
+		<resources :items="gameData.resources" @itemover="itemover" @itemout="itemout" />
 
-		<upgrades :items="gameData.homes" :layout="'homes-view'" @click="onUpgrade" />
+		<vue-menu class="mid-view" :items="menuItems" active="main">
+
+		<template slot="main">
+		<actions :items="gameData.actions" @itemover="itemover" @itemout="itemout" @click="onAction" />
+		<upgrades :items="gameData.upgrades" @itemover="itemover" @itemout="itemout" @click="onUpgrade" />
+
+		</template>
+	
+		<template slot="home">
+		<upgrades :items="gameData.homes" @itemover="itemover" @itemout="itemout" :layout="'homes-view'" @click="onUpgrade" />
+		</template>
+	
+		<template slot="skills">
+			<skills :game-data="gameData"></skills>
+		</template>
+
+		</vue-menu>
 
 		<log :log="game.log" />
 

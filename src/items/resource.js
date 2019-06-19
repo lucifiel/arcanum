@@ -1,5 +1,5 @@
-import Stat from 'stat';
-import Item from 'item';
+import Stat from '../stat';
+import Item from './item';
 
 export default class Resource extends Item {
 

@@ -20,6 +20,14 @@ export default {
 			return (!it) || ( (it.locked === false) ? false : !Game.tryUnlock(it) );
 		},
 
+		mouseover( e, it) {
+			this.$emit( 'itemover', e.currentTarget, it );
+		},
+
+		mouseout(e) {
+			this.$emit( 'itemout', e.currentTarget)
+		},
+
 		click( it ){
 			this.$emit( 'click', it );
 		}
