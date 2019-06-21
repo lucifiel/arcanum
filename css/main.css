@@ -23,6 +23,16 @@ input[type="button"]:enabled:active, button:enabled:active {
 	background-color: rgb( 100, 100,100);
 }
 
+.action-btn {
+	margin: 4px;
+	min-width: 16ch;
+	text-transform: capitalize;
+}
+
+.wrapped-btn {
+	margin:0px;
+}
+
 .locked {
 	display:none;
 }
@@ -57,13 +67,16 @@ input[type="button"]:enabled:active, button:enabled:active {
 
 div.action-list, div.upgrade-list {
 	flex-direction: row;
-	margin: 12px 8px;
 	text-transform: capitalize;
 }
 
-.resource-list, .upgrade-list, .homes-view, .skills-view {
-	margin: 12px 8px;
+div.resource-list, div.action-list, div.upgrade-list, div.home-view, div.skills-view, div.player-view {
+	margin: 20px 4px 2px;
 
+}
+div.home-view {
+	display:flex;
+	flex-direction: row;
 }
 
 div.homes-view {
@@ -71,20 +84,38 @@ div.homes-view {
 	flex-direction: column;
 }
 
+div.furnishings {
+	display:flex;
+	flex-direction: column;
+}
+
+div.player-view .prop, div.player-view .value {
+	padding: 2px 4px;
+}
+
+div.player-view .prop {
+	text-align:right;
+}
+
+div.player-view .value {
+	text-align: left;
+}
+
 div.resource-list {
 	width: fit-content;
 	min-width: 170px;
 }
-button.action-btn {
-	min-width: 16ch;
-	text-transform: capitalize;
-}
 
-.item-popup .name {
+.item-popup .item-name {
 	font-weight: bold;
 }
 .item-popup .flavor {
 	font-style: italic;
+}
+
+div.item-desc {
+	margin: 5px 0px 10px;
+	font-size: 0.96em;
 }
 
 div.skill {
@@ -104,6 +135,13 @@ span.separate {
 	display:flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+.note-text {
+	padding:0px;
+	margin:8px 0px;
+	font-style: italic;
+	font-size: 0.85em;
 }
 
 div.exp-bar {

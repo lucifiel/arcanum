@@ -3,10 +3,12 @@ import Menu from './menu.vue';
 import ResoucesView from './resourcesView.vue';
 import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
+import HomeView from './homes.vue';
+
 import SkillsPane from './skillsPane.vue';
 import DotView from './dotView.vue';
 import ItemBox from './itemBox.vue';
-
+import PlayerView from './player.vue';
 import LogView from './outlog.vue';
 
 export default {
@@ -23,6 +25,8 @@ export default {
 		log:LogView,
 		skills:SkillsPane,
 		dots:DotView,
+		homes:HomeView,
+		'player':PlayerView,
 		'vue-menu':Menu
 	},
 	data(){
@@ -37,7 +41,7 @@ export default {
 	},
 	created(){
 
-		this.menuItems = ['main', 'skills', 'home'];
+		this.menuItems = ['main', 'skills', 'home', 'player'];
 
 		this.unpause();
 
@@ -111,8 +115,12 @@ export default {
 
 		</template>
 	
+		<template slot="player">
+			<player :player="gameData.player" />
+		</template>
+
 		<template slot="home">
-		<upgrades class="homes-view" :items="gameData.homes" @itemover="itemover" @itemout="itemout" :layout="'homes-view'" @click="onUpgrade" />
+			<homes :game-data="gameData" />
 		</template>
 	
 		<template slot="skills">

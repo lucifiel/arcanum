@@ -34,14 +34,35 @@ export default {
 	},
 	methods:{
 
-		itemName(p) {
+		effectName(p) {
 			let it = Game.getItem(p);
-			return it ? it.name : '';
+			return it ? it.name : 'Gold';
+		},
+
+		modName( p, val ){
+
+			let it = Game.getItem(p);
+			if ( !it ) return '';
+
+			if ( val instanceof Object && val.max ) return 'Max ' + it.name;
+			return it.name;
+
 		},
 
 		effectVal(v) {
 
 			if ( !isNaN(v) ) return v;
+			if ( v instanceof Object ) {
+
+				let res = '';
+				if ( v.value !== undefined ) res += v.value + '<br>';
+				if ( v.max !== undefined ) res += v.max + '<br>';
+				if ( v.base !== undefined ) res += v.base + '/s<br>';
+				if ( v.pct !== undefined ) res += v.pct + '%<br>';
+
+				return res;
+			}
+			return v.toString();
 
 		}
 
@@ -55,27 +76,39 @@ export default {
 	
 	<div :class="{ 'item-popup':true, show:item!=null }">
 		<div class='popup-content' v-if="item">
-		<span class="name">{{item.name}}</span>
-		<hr>
+		<span class="item-name">{{item.name}}</span>
+		<div class="item-desc" v-if="item.desc">{{ item.desc }}</div>
 
 		<div v-if="item.cost">
 
+			<hr>
+
 			<div v-for="(val,prop) in item.cost" :key="prop">
-				{{ itemName(prop) }}: {{ effectVal(val) }}
+				{{ effectName(prop) }}: {{ effectVal(val) }}
 			</div>
-		<hr>
 		</div>
 
+		<div v-if="item.effect||item.mod">
+			<hr>
+		<div class="note-text">effects:</div>
 		<div v-if="item.effect">
 
-			<div v-for="(val,prop) in item.cost" :key="prop">
-				{{ itemName(prop) }}: {{ effectVal(val) }}
+			<div v-for="(val,prop) in item.effect" :key="prop">
+				{{ effectName(prop) }}: <span v-html="effectVal(val)"></span>
 			</div>
 
 		</div>
 
-		<p v-if="item.desc">{{ item.desc }}</p>
-		<span class="flavor" v-if="item.flavor">{{ item.flavor}}</span>
+		<div v-if="item.mod">
+
+			<div v-for="(val,prop) in item.mod" :key="prop">
+				{{ modName(prop) }}: <span v-html="effectVal(val)"></span>
+			</div>
+
+		</div>
+		</div>
+
+		<span class="note-text" v-if="item.flavor">{{ item.flavor}}</span>
 		</div>
 	</div>
 

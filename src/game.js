@@ -39,6 +39,7 @@ export default {
 		 */
 		this._gameData.dots = [];
 
+		this.tagItems( it=>it.typeCost('space')>0, 'furniture' );
 
 		/**
 	 	* @property {Object} events - available events.
@@ -61,6 +62,18 @@ export default {
 	 */
 	getItem(id) {
 		return this._items[id];
+	},
+
+	/**
+	 * Assign all items passing the predicate test the given tag.
+	 * @param {Predicate} test 
+	 * @param {string} tag 
+	 */
+	tagItems( test, tag ) {
+		let items = this._items;
+		for( let p in items ) {
+			if ( test( items[p] ) ) items[p].addTag(tag);
+		}
 	},
 
 	update() {
@@ -423,17 +436,29 @@ export default {
 	},
 
 	/**
+	 * 
+	 * @param {(it)=>boolean} pred 
+	 */
+	filterItems( pred ) {
+		let a = [];
+		let items = this._items;
+		for( let p in items ) {
+			if ( pred( items[p] ) ) a.push( items[p] );
+		}
+		return a;
+	},
+
+	/**
 	 * Return a list of items containing give tags.
 	 * @param {string[]} tags
 	 * @returns {Item[]}
 	 */
-	filterItems( tags ) {
+	filterByTag( tags ) {
 
 		let a = [];
 		for( let p in this._items ) {
 			if ( this._items[p].hasTags(tags) ) a.push(this._items[p]);
 		}
-
 		return a;
 	
 	}

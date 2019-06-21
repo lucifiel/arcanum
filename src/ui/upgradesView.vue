@@ -21,11 +21,15 @@ export default {
 <template>
 <div :class="{[pLayout]:true}">
 
-	<button :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
+	<span :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
+		@mouseenter.capture.stop="itemover($event,it)"
+		@mouseleave.capture.stop="itemout($event)">
+
+	<button
+		class="wrapped-btn"
 		:disabled="!usable(it)"
-		@mouseover.stop="mouseover($event,it)"
-		@mouseout.stop="mouseout($event)"
 		@click.stop="click(it)">{{ it.name || it.id }}</button>
+	</span>
 
 </div>
 </template>

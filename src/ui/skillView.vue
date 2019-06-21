@@ -38,7 +38,7 @@ export default {
 		</div>
 
 		<button class="train-btn"
-			@click="train" @mouseover="mouseover" @mouseout="mouseout">Train</button>
+			@click="train" @mouseenter="itemover" @mouseleave="itemout">Train</button>
 		</div>
 
 	</div>

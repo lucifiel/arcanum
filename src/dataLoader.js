@@ -72,9 +72,6 @@ export default {
 
 	},
 
-	initRequires() {
-	},
-
 	/**
 	 * Create a boolean testing function from a data string.
 	 * @param {string} text - function text.
