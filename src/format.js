@@ -17,6 +17,10 @@ export function price(v) {
 	return (v === null || isNaN(v)) ? '$0.00' : `$${Number(v).toFixed(2)}`;
 }
 
+export function seconds(v){
+	return Math.ceil(v) + ' s';
+}
+
 export function round( v ) {
 	return (v === null || isNaN(v)) ? 0 : Math.floor(v);
 }

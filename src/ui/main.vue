@@ -4,7 +4,7 @@ import ResoucesView from './resourcesView.vue';
 import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
 import SkillsPane from './skillsPane.vue';
-
+import DotView from './dotView.vue';
 import ItemBox from './itemBox.vue';
 
 import LogView from './outlog.vue';
@@ -22,6 +22,7 @@ export default {
 		itembox:ItemBox,
 		log:LogView,
 		skills:SkillsPane,
+		dots:DotView,
 		'vue-menu':Menu
 	},
 	data(){
@@ -100,6 +101,7 @@ export default {
 		<itembox :item="overItem" :elm="overElm" />
 
 		<resources :items="gameData.resources" @itemover="itemover" @itemout="itemout" />
+		<dots :dots="gameData.dots" />
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
 

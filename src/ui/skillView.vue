@@ -27,7 +27,9 @@ export default {
 	
 	<div class="skill">
 
-		<span>{{ skill.name }}</span>&nbsp;<span>{{ 'lvl: ' + skill.level }}</span>
+		<span class="separate">
+			<span>{{ skill.name }}</span>&nbsp;<span>{{ 'lvl: ' + skill.level }}</span>
+		</span>
 
 		<div>
 		<div class="exp-bar">

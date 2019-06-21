@@ -35,6 +35,12 @@ export default {
 		this._gameData.curSkill = null;
 
 		/**
+		 * timed/ongoing effects.
+		 */
+		this._gameData.dots = [];
+
+
+		/**
 	 	* @property {Object} events - available events.
 	 	*/
 		this.events = this._gameData.events = {};
@@ -63,6 +69,17 @@ export default {
 		let dt = ( time - this.lastUpdate )/1000;
 		this.lastUpdate = time;
 
+		this.doDots(dt);
+
+		// active skill, if any.
+		this.doSkill( dt );
+
+		this.doResources(dt);
+
+	},
+
+	doResources( dt ) {
+
 		let stats = this._gameData.resources;
 		let len = stats.length, stat;
 		for( let i = len-1; i >= 0; i-- ) {
@@ -77,8 +94,7 @@ export default {
 
 		}
 
-		this.doSkill( dt );
-
+		// apply mods for stat changes.
 		for( let i = len-1; i>=0; i-- ) {
 
 			stat = stats[i];
@@ -87,6 +103,27 @@ export default {
 				if ( stat.mod ) this.addMod( stat.mod, stat.delta );
 
 			}
+
+		}
+
+	},
+
+	/**
+	 * Perform any update effects.
+	 * @param {number} dt - elapsed time.
+	 */
+	doDots( dt ) {
+
+		let updates = this._gameData.dots;
+		let efx;
+
+		for( let i = updates.length-1; i >= 0; i-- ) {
+
+			efx = updates[i];
+			efx.duration -= dt;
+			if ( efx.duration < 0 ) updates.splice( i, 1 );
+			// ignore any remainder beyond 0.
+			this.updateDot( efx, dt );
 
 		}
 
@@ -259,11 +296,11 @@ export default {
 	 */
 	applyEffect( effect ) {
 
-		if ( effect instanceof Array ) {
+		if ( effect instanceof Array ) for( let e of effect ) this.applyEffect(e);
 
-			for( let e of effect ) this.applyEffect(e);
+		else if ( effect instanceof Object ) {
 
-		} else if ( effect instanceof Object ) {
+			if ( effect.duration ) this._gameData.dots.push( Object.assign( {}, effect ) );
 
 			let target, e;
 			for( let p in effect ){
@@ -282,6 +319,38 @@ export default {
 
 			effect = this.getItem(effect);
 			if ( effect != null ) this.applyEffect( effect );
+		}
+
+	},
+
+	/**
+	 * Update a timed effect.
+	 * @param {Object|string|Effect} effect 
+	 * @param {number} dt - elapsed time. 
+	 */
+	updateDot( effect, dt ) {
+
+		if ( effect instanceof Array ) for( let e of effect ) this.updateDot(e, dt);
+
+		else if ( effect instanceof Object ) {
+
+			let target, e;
+			for( let p in effect ){
+
+				target = this.getItem(p);
+				if ( target === undefined ) continue;
+
+				e = effect[p];
+
+				if ( !isNaN(e) ) target.value += e*dt;
+				else target.updateDot(e);
+
+			}
+
+		} else if ( typeof effect === 'string') {
+
+			effect = this.getItem(effect);
+			if ( effect != null ) this.updateDot( effect, dt );
 		}
 
 	},

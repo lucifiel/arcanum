@@ -1,21 +1,48 @@
 import { defineExcept } from 'objecty';
 
 /**
+ * @typedef {Object} Effect
+ * @property {?number} duration
+ */
+
+ /**
+  * @const {string[]} Reserved - reserved prop names on effects/mods.
+  */
+export const Reserved = [
+	'skipLocked', 'duration'
+];
+
+/**
  * Base class of game items.
  */
 export default class Item {
 
+	/**
+	 * @property {string} type
+	 */
 	get type() { return 'item'; }
 
+	/**
+	 * @property {string} id
+	 */
 	get id() { return this._id; }
 	set id(v) { this._id = v;}
 
+	/**
+	 * @property {string} name
+	 */
 	get name() { return this._name || this._id;}
 	set name(v) { this._name = v;}
 
+	/**
+	 * @property {string} desc
+	 */
 	get desc() { return this._desc; }
 	set desc(v) { this._desc=v;}
 
+	/**
+	 * @property {number} value
+	 */
 	get value() { return this._value; }
 	set value(v) { this._value = v;}
 
@@ -37,6 +64,9 @@ export default class Item {
 	get effect() { return this._effect; }
 	set effect(v) { this._effect=v;}
 
+	/**
+	 * @property {boolean} locked
+	 */
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
 
@@ -62,6 +92,9 @@ export default class Item {
 	}
 
 	applyEffect(e) {
+	}
+
+	updateDot(e, dt) {
 	}
 
 	addTag( tag ) {

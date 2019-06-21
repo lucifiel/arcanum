@@ -55,7 +55,7 @@ input[type="button"]:enabled:active, button:enabled:active {
 	margin: 12px 8px;
 }
 
-.action-list {
+div.action-list, div.upgrade-list {
 	flex-direction: row;
 	margin: 12px 8px;
 	text-transform: capitalize;
@@ -66,16 +66,16 @@ input[type="button"]:enabled:active, button:enabled:active {
 
 }
 
-.homes-view {
+div.homes-view {
 	display:flex;
 	flex-direction: column;
 }
 
-.resource-list {
+div.resource-list {
 	width: fit-content;
 	min-width: 170px;
 }
-.action-btn {
+button.action-btn {
 	min-width: 16ch;
 	text-transform: capitalize;
 }
@@ -87,11 +87,26 @@ input[type="button"]:enabled:active, button:enabled:active {
 	font-style: italic;
 }
 
-.skill {
+div.skill {
 	padding:2px;
+	margin:4px 0px;
+	max-width: 33%;
 }
 
-.exp-bar {
+button.train-btn {
+	max-height:24px;
+	margin:2px;
+	padding:3px;
+	text-justify: center;
+}
+
+span.separate {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+div.exp-bar {
 	display:inline-block;
 	background: #333;
 	margin:4px 4px 0px 2px;
@@ -100,22 +115,22 @@ input[type="button"]:enabled:active, button:enabled:active {
 	width:200px;
 	border-radius: 9px;
 }
-.exp-bar > div {
+div.exp-bar > div {
 	background:orange;
 	border-radius: 7px;
 	height:100%;
 	min-width:0px;
 	width:0px;
 }
-.exp-bar>div:after{
+div.exp-bar>div:after{
 	content:"\00a0";
 }
 
-.outlog {
+div.outlog {
 	flex-direction: column;
 }
 
-.log-item {
+div.log-item {
 	display:flex;
 	flex-direction: column;
 }
@@ -130,7 +145,7 @@ input[type="button"]:enabled:active, button:enabled:active {
 	align-self: flex-end;
 }
 
-.menu {
+div.menu {
 	display:flex;
 	flex-direction: column;
 }
@@ -142,5 +157,6 @@ input[type="button"]:enabled:active, button:enabled:active {
 
 .menu-item {
 	font-size: 1em;
+	cursor: pointer;
 	margin: 2px 10px;
 }
