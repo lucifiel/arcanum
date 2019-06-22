@@ -1,29 +1,44 @@
-const path = require( 'path' );
+const path = require('path');
+const VueLoader = require('vue-loader/lib/plugin');
 
 module.exports = {
 
-	mode:"production",
-	entry:{
-		name:"./src/index.js"
+	mode: "production",
+	entry: {
+		wizrobe: "./src/index.js"
 	},
-	output:{
+	module: {
 
-		path:path.resolve( __dirname, "dist"),
-		publicPath:"dist/",
-		filename:"[name].dist.bundle.js",
-		chunkFilename:"dist/[name].bundle.js",
-		library:"[name]"
+		rules: [
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader'
+			},
+			{
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader']
+			}
+		],
 	},
-	resolve:{
-		modules:[
-			path.resolve( __dirname, "src"),
+	plugins: [new VueLoader()],
+	output: {
+
+		path: path.resolve(__dirname, "dist"),
+		publicPath: "dist/",
+		filename: "[name].dist.bundle.js",
+		chunkFilename: "dist/[name].bundle.js",
+		library: "[name]"
+	},
+	resolve: {
+		modules: [
+			path.resolve(__dirname, "src"),
 			"node_modules"
 		],
 
-		alias:{
-			'config':'config',
-			"data":"../data",
-			'ui':'ui'
+		alias: {
+			'config': 'config',
+			"data": "../data",
+			'ui': 'ui'
 		}
 	}
 

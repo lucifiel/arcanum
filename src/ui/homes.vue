@@ -15,20 +15,14 @@ export default {
 		'upgrades':UpgradeView
 	},
 	methods:{
-
-		sell(it){
-
-		},
-
-		onUpgrade(upgrade) {
-			Game.tryUpgrade(upgrade);
-		}
-
 	},
 	computed:{
 
 		furniture(){
 			return Game.filterItems( it=>it.typeCost('space')>0);
+		},
+		visible(){
+			return this.furniture.filter( it=>!it.locked );
 		}
 
 	}
@@ -36,21 +30,21 @@ export default {
 }
 </script>
 
-
 <template>
 
 	<div class="home-view">
 
 		<upgrades class="homes-view" :items="gameData.homes" layout="homes-view" />
 		
-		<div class="furnishings">
+		<div class="furniture">
 
-		<table>
-		<tr v-for="it in furniture" :key="it.id">
-			<span v-if="!it.locked&&it.value>0">
-			<td>{{ it.cost.space }}</td> <td>{{ it.name }}</td> <td>{{ it.value }}</td>
+		<table class="furniture">
+			<tr><th class="space">Space</th><th class="name">Furnishing</th><th class="count">Count</th></tr>
+		<tr v-for="it in visible" :key="it.id">
+
+			<td class="space">{{ it.cost.space }}</td> <td class="name">{{ it.name }}</td> <td class="count">{{ it.value }}</td>
 				<td><button class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
-			</span>
+
 		</tr>
 		</table>
 
@@ -59,3 +53,24 @@ export default {
 	</div>
 
 </template>
+
+<style scoped>
+
+div.furniture {
+	display:flex;
+	flex-direction: column;
+}
+
+
+table tr, table th {
+	padding: 2px 8px;
+}
+
+table .count, table .space {
+	text-align: center;
+}
+table .name {
+	padding: 2px 8px;
+	min-width:120px;
+}
+</style>

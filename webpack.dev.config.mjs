@@ -5,7 +5,7 @@ module.exports = {
 
 	mode:"development",
 	entry:{
-		name:"./src/index.js"
+		wizrobe:"./src/index.js"
 	},
 	module:{
 
@@ -13,8 +13,12 @@ module.exports = {
 				{
 					test:/\.vue$/,
 					loader:'vue-loader'
+				},
+				{
+					test:/\.css$/i,
+					use:[ 'style-loader', 'css-loader']
 				}
-			]
+			],
 	},
 	plugins:[new VueLoader()],
 	output:{

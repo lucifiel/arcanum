@@ -42,3 +42,25 @@ export default {
 	</div>
 
 </template>
+
+<style scoped>
+div.outlog {
+	flex-direction: column;
+}
+
+div.log-item {
+	display:flex;
+	flex-direction: column;
+}
+
+.log-title {
+	font-weight: bold;
+}
+
+.log-text {
+	font-weight: normal;
+	text-align: right;
+	align-self: flex-end;
+}
+
+</style>

@@ -44,11 +44,11 @@ export default {
 	},
 	created(){
 
-		this.listen('sell', onSell );
-		this.liste( 'itemover', itemOver );
-		this.listen( 'itemout', itemOut );
-		this.listen( 'upgrade', onUpgrade );
-		this.listen( 'action', onAction );
+		this.listen('sell', this.onSell );
+		this.listen( 'itemover', this.itemOver );
+		this.listen( 'itemout', this.itemOut );
+		this.listen( 'upgrade', this.onUpgrade );
+		this.listen( 'action', this.onAction );
 
 		this.menuItems = ['main', 'skills', 'home', 'player'];
 

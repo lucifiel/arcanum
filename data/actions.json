@@ -47,7 +47,7 @@
 		"name":"Buy scroll",
 		"require":"state.gold>=10",
 		"cost":{
-			"gold":10
+			"gold":3
 		},
 		"effect":{
 			"scrolls":1

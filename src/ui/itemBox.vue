@@ -113,3 +113,39 @@ export default {
 	</div>
 
 </template>
+
+<style scoped>
+
+.item-popup {
+	display:none;
+	height:auto;
+	min-height:100px;
+	min-width:200px;
+	position: absolute;
+	z-index:10000;
+	top:0;
+	background:white;
+	border: 1.5px solid rgb( 100, 100,100);
+	border-radius: 0.20rem;
+}
+.popup-content {
+	padding: 10px;
+}
+.show {
+	display: inline-block;
+}
+
+
+div.item-desc {
+	margin: 5px 0px 10px;
+	font-size: 0.96em;
+}
+
+.item-popup .item-name {
+	font-weight: bold;
+}
+.item-popup .flavor {
+	font-style: italic;
+}
+
+</style>

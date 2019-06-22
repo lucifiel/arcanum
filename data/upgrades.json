@@ -5,7 +5,7 @@
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
 		"cost":{
-			"gold":10
+			"gold":3
 		}
 	},
 	{
