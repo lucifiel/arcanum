@@ -18,18 +18,6 @@ export default {
 
 		locked(it) {
 			return (!it) || ( (it.locked === false) ? false : !Game.tryUnlock(it) );
-		},
-
-		itemover( e, it) {
-			this.$emit( 'itemover', e.currentTarget, it );
-		},
-
-		itemout(e) {
-			this.$emit( 'itemout', e.currentTarget)
-		},
-
-		click( it ){
-			this.$emit( 'click', it );
 		}
 
 	}

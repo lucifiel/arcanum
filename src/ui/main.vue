@@ -11,6 +11,9 @@ import ItemBox from './itemBox.vue';
 import PlayerView from './player.vue';
 import LogView from './outlog.vue';
 
+/**
+ * @listens [sell,itemover,itemout]
+ */
 export default {
 
 	/**
@@ -41,6 +44,12 @@ export default {
 	},
 	created(){
 
+		this.listen('sell', onSell );
+		this.liste( 'itemover', itemOver );
+		this.listen( 'itemout', itemOut );
+		this.listen( 'upgrade', onUpgrade );
+		this.listen( 'action', onAction );
+
 		this.menuItems = ['main', 'skills', 'home', 'player'];
 
 		this.unpause();
@@ -70,13 +79,16 @@ export default {
 
 		},
 
-		itemover(elm, it) {
-			this.overItem = it;
-			this.overElm = elm;
+		onSell(it) {
 		},
 
-		itemout(elm ){
-			if ( this.overElm===elm) {
+		itemOver(evt, it) {
+			this.overItem = it;
+			this.overElm = evt.currentTarget;
+		},
+
+		itemOut(evt ){
+			if ( this.overElm===evt.currentTarget) {
 				this.overElm = null;
 				this.overItem = null;
 			}
@@ -87,9 +99,7 @@ export default {
 		},
 	
 		onAction( action ) {
-
 			this.game.tryAction( action );
-
 		},
 
 	}
@@ -104,14 +114,14 @@ export default {
 		<!-- popup -->
 		<itembox :item="overItem" :elm="overElm" />
 
-		<resources :items="gameData.resources" @itemover="itemover" @itemout="itemout" />
+		<resources :items="gameData.resources"/>
 		<dots :dots="gameData.dots" />
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
 
 		<template slot="main">
-		<actions :items="gameData.actions" @itemover="itemover" @itemout="itemout" @click="onAction" />
-		<upgrades :items="gameData.upgrades" @itemover="itemover" @itemout="itemout" @click="onUpgrade" />
+		<actions :items="gameData.actions" />
+		<upgrades :items="gameData.upgrades" />
 
 		</template>
 	

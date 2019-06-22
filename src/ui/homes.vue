@@ -4,6 +4,9 @@ import Game from '../game';
 import ItemsBase from './itemsBase';
 import UpgradeView from './upgradesView.vue';
 
+/**
+ * @emits sell
+ */
 export default {
 
 	props:['gameData'],
@@ -38,16 +41,18 @@ export default {
 
 	<div class="home-view">
 
-		<upgrades class="homes-view" :items="gameData.homes"
-			@itemover="itemover" @itemout="itemout" layout="homes-view" @click="onUpgrade" />
+		<upgrades class="homes-view" :items="gameData.homes" layout="homes-view" />
 		
 		<div class="furnishings">
 
-		<div v-for="it in furniture" :key="it.id">
+		<table>
+		<tr v-for="it in furniture" :key="it.id">
 			<span v-if="!it.locked&&it.value>0">
-			{{ it.cost.space }} {{ it.name }} <button class="sell-btn" @click="sell(it)">Sell</button>
+			<td>{{ it.cost.space }}</td> <td>{{ it.name }}</td> <td>{{ it.value }}</td>
+				<td><button class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 			</span>
-		</div>
+		</tr>
+		</table>
 
 		</div>
 
