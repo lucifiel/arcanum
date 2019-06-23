@@ -102,6 +102,36 @@
 
 	},
 	{
+		"id":"mortar",
+		"name":"Mortar and Pestal",
+		"desc":"Used for grinding herbs and fine ingredients",
+		"require":"apprentice",
+		"cost":{
+			"gold":20,
+			"space":1
+		}
+	},
+	{
+
+		"id":"pedestal",
+		"desc":"A pedestal for reading magic tomes.",
+		"require":"novice",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"effect":{
+
+		}
+	},
+	{
+		"id":"breviary",
+		"require":"pedestal",
+		"cost":100,
+		"effect":{
+		}
+	},
+	{
 		"id":"pot",
 		"name":"Cooking Pot",
 		"desc":"",

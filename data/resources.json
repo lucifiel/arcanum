@@ -58,6 +58,36 @@
 		"name":"Floor Space",
 		"desc":"Space Available"
 
+	},
+	{
+		"id":"arcane",
+		"tag":"mana",
+		"desc":"Arcane Mana"
+	},
+	{
+		"id":"fire",
+		"tag":"mana",
+		"desc":"Fire Mana"
+	},
+	{
+		"id":"ice",
+		"tag":"mana",
+		"desc":"Ice Mana"
+	},
+	{
+		"id":"air",
+		"tag":"mana",
+		"desc":"Air Mana"
+	},
+	{
+		"id":"earth",
+		"tag":"mana",
+		"desc":"Earth Mana"
+	},
+	{
+		"id":"water",
+		"tag":"mana",
+		"desc":"Water Mana"
 	}
 
 ]

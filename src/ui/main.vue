@@ -7,7 +7,7 @@ import HomeView from './homes.vue';
 
 import SkillsPane from './skillsPane.vue';
 import DotView from './dotView.vue';
-import ItemBox from './itemBox.vue';
+import ItemPopup from './itemPopup.vue';
 import PlayerView from './player.vue';
 import LogView from './outlog.vue';
 
@@ -24,7 +24,7 @@ export default {
 		resources:ResoucesView,
 		actions:ActionsView,
 		upgrades:UpgradesView,
-		itembox:ItemBox,
+		itempopup:ItemPopup,
 		log:LogView,
 		skills:SkillsPane,
 		dots:DotView,
@@ -128,7 +128,7 @@ export default {
 	<div class="main">
 
 		<!-- popup -->
-		<itembox :item="overItem" :elm="overElm" />
+		<itempopup :item="overItem" :elm="overElm" />
 
 		<resources :items="gameData.resources"/>
 		<dots :dots="gameData.dots" />

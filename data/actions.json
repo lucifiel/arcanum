@@ -87,5 +87,17 @@
 		"effect":{
 			"ball":1
 		}
+	},
+	{
+		"id":"summonfamiliar",
+		"name":"Summon Familiar",
+		"require":"magician",
+		"cost":{
+
+		},
+		"effect":{
+
+		}
+
 	}
 ]

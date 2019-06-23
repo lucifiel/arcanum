@@ -167,6 +167,7 @@ export default {
 		if ( evt.remove ) this.remove( evt.remove);
 
 		evt.locked = false;
+		evt.value = 1;
 		this._completed[evt.id] = evt;
 		this._events[evt.id] = null;
 
@@ -294,7 +295,7 @@ export default {
 			// test that another item is unlocked.
 			let it = this.getItem(test);
 			if (!it) return false;
-			if ( it.type === 'resource' || it.type === 'action' || it.type === 'event') return !it.locked;
+			if ( it.type === 'resource' || it.type === 'action') return !it.locked;
 			return it.value >0;
 
 		} else if ( type === 'object') {
