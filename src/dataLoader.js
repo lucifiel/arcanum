@@ -3,7 +3,9 @@ import UpgradeList from '../data/upgrades.json';
 import ActionList from '../data/actions.json';
 import HomeList from '../data/homes.json';
 import SkillList from '../data/skills.json';
+import EventList from '../data/events.json';
 
+import Item from 'items/item';
 import Resource from 'items/resource';
 import Upgrade from 'items/upgrade';
 import Action from 'items/action';
@@ -93,8 +95,28 @@ export default {
 		gd.homes = this.initUpgrades( HomeList, 'home' );
 		gd.skills = this.initSkills( SkillList );
 
+		gd.events = this.initEvents( EventList );
+
 		gd.actions = this.initActions();
 
+	},
+
+	/**
+	 * Note: unlike the other init funcs, this returns an Object.
+	 * @param {Array} events
+	 * @returns {Object.<string,Item>}
+	 */
+	initEvents( events ) {
+
+		let a = {};
+
+		for( let def of events ){
+
+			this._items[def.id] = a[def.id] = new Item( def );
+
+		}
+
+		return a;
 	},
 
 	initResources(){

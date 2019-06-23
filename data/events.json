@@ -2,27 +2,28 @@
 
 	{
 		"id":"intro",
-		"title":"title",
-		"text":"text",
+		"name":"Prologue",
+		"desc":"An idle waif with no prospects to speak of...",
+		"locked":false,
 		"effect":{
 		}
 	},
 	{
 		"id":"apprentice",
-		"title":"Apprenticeship",
-		"text":"Become a wizard's apprentice",
+		"name":"Apprenticeship",
+		"desc":"Become a wizard's apprentice",
 		"remove":["stables"]
 	},
 	{
 		"id":"novice",
-		"title":"Noviciate",
-		"text":"Your master believes you are ready to take the next step on the path of wizardry.",
+		"name":"Noviciate",
+		"desc":"Your master believes you are ready to take the next step on the path of wizardry.",
 		"remove":["apprentice"]
 	},
 	{
 		"id":"leavemaster",
-		"title":"Left Master",
-		"text":"You are now an independent wizard.",
+		"name":"Left Master",
+		"desc":"You are now an independent wizard.",
 		"remove":["novice", "bedroom", "alcove"]
 	}
 

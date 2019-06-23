@@ -50,14 +50,12 @@ export default {
 		/**
 	 	* @property {Object} events - available events.
 	 	*/
-		this.events = this._gameData.events = {};
+		this._events = this._gameData.events;
 
 		/**
 		 * @property {Object} completed - completed events.
 		 */
-		this.completed = this._gameData.completed = {};
-
-		this.log.log( 'A New Dawn', 'An idle waif with no prospects to speak of...');
+		this._completed = this._gameData.completed = {};
 
 	},
 
@@ -166,12 +164,12 @@ export default {
 	 */
 	doEvent( evt ) {
 
-		if ( evt.remove) this.remove( evt.remove);
+		if ( evt.remove ) this.remove( evt.remove);
 
 		this._completed[evt.id] = evt;
 		this._events[evt.id] = null;
 
-		this.log.log( evt.title, evt.text, 'event' );
+		this.log.log( evt.name, evt.desc, 'event' );
 
 	},
 
@@ -188,9 +186,12 @@ export default {
 			if ( it ) {
 
 				delete this._items[it.id];
-				let typeList = this.gameData[it.type];
-				let ind = typeList.indexOf( it );
-				if ( ind >= 0 ) typeList.splice(ind,1);
+
+				// @todo - remove from relevant list? code below is wrong
+				// because type string doesn't match list name.
+				//let typeList = this.gameData[it.type];
+				//let ind = typeList.indexOf( it );
+				//if ( ind >= 0 ) typeList.splice(ind,1);
 	
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it, it.value );

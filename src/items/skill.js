@@ -5,6 +5,8 @@ const EXP_RATIO = 0.5;
 
 export default class Skill extends Item {
 
+	get type(){return 'skill';}
+
 	/**
 	 * @property {number} value
 	 */

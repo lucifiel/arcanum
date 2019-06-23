@@ -54,6 +54,8 @@ export default {
 
 		this.unpause();
 
+		this.initEvents();
+
 	},
 	methods:{
 
@@ -75,6 +77,19 @@ export default {
 			if ( !this.interval ) {
 				this.game.lastUpdate = Date.now();
 				this.interval = setInterval( ()=>this.game.update(), 200 );
+			}
+
+		},
+
+		initEvents(){
+
+			var evt;
+			var events = this.gameData.events;
+			for( let p in events ) {
+
+				evt = events[p];
+				if ( evt.locked === false ) this.game.doEvent(evt);
+
 			}
 
 		},

@@ -1,10 +1,14 @@
 <script>
 import ItemsBase from './itemsBase.js';
+import Progress from './progbar.vue';
 
 export default {
 	
 	props:['skill', 'game'],
 	mixins:[ItemsBase],
+	components:{
+		bar:Progress
+	},
 	methods: {
 
 		train() {
@@ -32,15 +36,14 @@ export default {
 		</span>
 
 		<div>
-		<div class="exp-bar">
-			<div v-if="skill.exp>0" ref="fill" :style="'width:'+width"> </div>
-			<div v-else>&nbsp;</div>
-		</div>
+
+		<bar :value="skill.exp" :max="skill.max" />
 
 		<button class="train-btn"
 			@click="train"
 				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"
 				@mouseleave.capture.stop="dispatch('itemout', $event )">Train</button>
+
 		</div>
 
 	</div>
