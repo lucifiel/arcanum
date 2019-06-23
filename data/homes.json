@@ -28,10 +28,19 @@
 		}
 	},
 	{
+		"id":"cottage",
+		"desc":"",
+		"require":"state.adept",
+		"cost":100,
+		"effect":{
+			"space":20
+		}
+	},
+	{
 		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":500,
-		"require":"!state.apprentice&&state.arcana>=250",
+		"require":"state.adept&&state.arcana>=250",
 		"effect":{
 			"space":25
 		}
@@ -43,6 +52,15 @@
 		"require":"!state.apprentice&&state.arcana>=250",
 		"effect":{
 			"space":20
+		}
+	},
+	{
+		"id":"lodge",
+		"desc":"A rugged lodge in the woods.",
+		"cost":700,
+		"require":"state.adept",
+		"mod":{
+			"space":75
 		}
 	},
 	{

@@ -9,16 +9,21 @@
 	},
 	{
 		"id":"apprentice",
-		"title":"Apprentice",
-		"text":"Because a wizard's apprentice",
+		"title":"Apprenticeship",
+		"text":"Become a wizard's apprentice",
 		"remove":["stables"]
+	},
+	{
+		"id":"novice",
+		"title":"Noviciate",
+		"text":"Your master believes you are ready to take the next step on the path of wizardry.",
+		"remove":["apprentice"]
 	},
 	{
 		"id":"leavemaster",
 		"title":"Left Master",
 		"text":"You are now an independent wizard.",
-		"remove":"apprentice"
+		"remove":["novice", "bedroom", "alcove"]
 	}
-
 
 ]

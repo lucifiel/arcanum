@@ -84,6 +84,57 @@
 				"base":0.5
 			}
 		}
+	},
+	{
+		"id":"fireplace",
+		"name":"Fireplace",
+		"desc":"A cozy place for cooking food and mixing potions.",
+		"require":"state.space>10",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"mod":{
+
+		}
+
+	},
+	{
+		"id":"pot",
+		"name":"Cooking Pot",
+		"desc":"",
+		"require":"fireplace",
+		"cost":{
+			"gold":20
+		},
+		"mod":{
+
+		}
+
+	},
+	{
+		"id":"alembic",
+		"desc":"",
+		"cost":{
+			"gold":100
+		},
+		"mod":{
+
+		}
+
+	},
+	{
+		"id":"cauldron",
+		"name":"Cauldron",
+		"desc":"",
+		"require":"",
+		"cost":{
+			"gold":50
+		},
+		"mod":{
+
+		}
+
 	}
 
 ]

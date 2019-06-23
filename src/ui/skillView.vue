@@ -46,3 +46,12 @@ export default {
 	</div>
 
 </template>
+
+<style scoped>
+button.train-btn {
+	max-height:24px;
+	margin:2px;
+	padding:3px;
+	text-justify: center;
+}
+</style>

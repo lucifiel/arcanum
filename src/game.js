@@ -7,6 +7,12 @@ import Player from 'player';
 
 import Log from 'log';
 
+/**
+ * @constant {number} SELL_RATE - percent of initial cost
+ * item sells for.
+ */
+const SELL_RATE = 0.5;
+
 export default {
 
 	get gameData() { return this._gameData; },
@@ -165,10 +171,12 @@ export default {
 		this._completed[evt.id] = evt;
 		this._events[evt.id] = null;
 
+		this.log.log( evt.title, evt.text, 'event' );
+
 	},
 
 	/**
-	 * Remove a previously unlocked/purchased item.
+	 * Completely remove a previously unlocked/purchased item.
 	 * @param {*} what 
 	 */
 	remove( what ) {
@@ -185,14 +193,29 @@ export default {
 				if ( ind >= 0 ) typeList.splice(ind,1);
 	
 				// remove all stat mods.
-				if ( it.mod ) {
-					this.addMod( it, -it.value );
-				}
+				if ( it.mod ) this.removeMod( it, it.value );
 				it.value = 0;
 
 			}
 
 		}
+	},
+
+	/**
+	 * Attempt to sell one unit of an item.
+	 * @param {Item} it
+	 * @returns {boolean}
+	 */
+	trySell(it) {
+
+		if ( it.value < 1 ) return false;
+		let cost = it.typeCost('gold') * SELL_RATE;
+
+		this.getItem('gold').value += cost;
+		if ( it.mod ) this.removeMod( it, 1 );
+
+		return true;
+
 	},
 
 	/**
@@ -282,7 +305,8 @@ export default {
 
 	/**
 	 * Apply a mod.
-	 * @param {Array|Object} mod 
+	 * @param {Array|Object} mod
+	 * @param {amt} amt - amount added.
 	 */
 	addMod( mod, amt ) {
 
@@ -300,8 +324,14 @@ export default {
 
 	},
 
-	/*removeMod( mod ) {
-	},*/
+	/**
+	 * 
+	 * @param {*} mod 
+	 * @param {*} amt 
+	 */
+	removeMod( mod, amt ) {
+		this.addMod( mod, -amt);
+	},
 
 	/**
 	 * Perform the one-time effect of an action, resource, or upgrade.

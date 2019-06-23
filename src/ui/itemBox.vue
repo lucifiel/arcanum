@@ -20,7 +20,7 @@ export default {
 				if ( left < window.innerWidth/2 ) {
 
 					
-					style['left'] = ( left + newVal.offsetWidth + 50 ) + 'px';
+					style['left'] = ( left + newVal.offsetWidth + 40 ) + 'px';
 
 				} else {
 
@@ -83,9 +83,13 @@ export default {
 
 			<hr>
 
-			<div v-for="(val,prop) in item.cost" :key="prop">
+			<div v-if="!isNaN(item.cost)">
+				Gold: {{ item.cost }}
+			</div>
+			<div v-else v-for="(val,prop) in item.cost" :key="prop">
 				{{ effectName(prop) }}: {{ effectVal(val) }}
 			</div>
+
 		</div>
 
 		<div v-if="item.effect||item.mod">

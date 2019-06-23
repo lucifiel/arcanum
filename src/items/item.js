@@ -97,7 +97,11 @@ export default class Item {
 	 * @param {string} type 
 	 */
 	typeCost( type ) {
-		return ( this.cost && this.cost.hasOwnProperty(type) ) ? this.cost[type] : 0;
+
+		if ( !this.cost ) return 0;
+
+		if ( !isNaN( this.cost) ) return type === 'gold' ? this.cost : 0;
+		return ( this.cost.hasOwnProperty(type) ) ? this.cost[type] : 0;
 	}
 
 	applyEffect(e) {

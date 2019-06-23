@@ -80,6 +80,7 @@ export default {
 		},
 
 		onSell(it) {
+			this.game.trySell( it );
 		},
 
 		itemOver(evt, it) {

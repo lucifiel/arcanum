@@ -42,8 +42,8 @@ export default {
 			<tr><th class="space">Space</th><th class="name">Furnishing</th><th class="count">Count</th></tr>
 		<tr v-for="it in visible" :key="it.id">
 
-			<td class="space">{{ it.cost.space }}</td> <td class="name">{{ it.name }}</td> <td class="count">{{ it.value }}</td>
-				<td><button class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
+			<td class="space">{{ it.cost.space }}</td> <td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
+				<td><button :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 
 		</tr>
 		</table>
@@ -60,7 +60,6 @@ div.furniture {
 	display:flex;
 	flex-direction: column;
 }
-
 
 table tr, table th {
 	padding: 2px 8px;
