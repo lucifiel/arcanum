@@ -11,7 +11,7 @@
 	{
 		"id":"apprentice",
 		"name":"Apprenticeship",
-		"desc":"Become a wizard's apprentice",
+		"desc":"You became apprenticed to a local wizard.",
 		"remove":["stables"]
 	},
 	{

@@ -38,8 +38,9 @@ export default {
 </template>
 
 <style scoped>
-input {
-	border: 0px 0px 1px 0px solid black;
+input[type=text] {
+	border: none;
+	border-bottom: 1px solid black;
 	margin: 1px;
 }
 </style>

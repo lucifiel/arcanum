@@ -166,6 +166,7 @@ export default {
 
 		if ( evt.remove ) this.remove( evt.remove);
 
+		evt.locked = false;
 		this._completed[evt.id] = evt;
 		this._events[evt.id] = null;
 
@@ -293,7 +294,7 @@ export default {
 			// test that another item is unlocked.
 			let it = this.getItem(test);
 			if (!it) return false;
-			if ( it.type === 'resource' || it.type === 'action') return !it.locked;
+			if ( it.type === 'resource' || it.type === 'action' || it.type === 'event') return !it.locked;
 			return it.value >0;
 
 		} else if ( type === 'object') {
@@ -355,6 +356,7 @@ export default {
 				e = effect[p];
 
 				if ( !isNaN(e) ) target.value += e;
+				else if ( target.type === 'event' ) this.doEvent( target );
 				else target.applyEffect(e);
 
 			}
@@ -362,7 +364,13 @@ export default {
 		} else if ( typeof effect === 'string') {
 
 			effect = this.getItem(effect);
-			if ( effect != null ) this.applyEffect( effect );
+			if ( effect != null ) {
+
+				if ( effect.type === 'event') this.doEvent( effect );
+				else this.applyEffect( effect );
+
+			}
+
 		}
 
 	},

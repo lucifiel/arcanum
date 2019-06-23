@@ -1,12 +1,14 @@
 [
 
 	{
-		"id":"apprentice",
+		"id":"startapprentice",
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
 		"cost":{
 			"gold":3
-		}
+		},
+		"effect":"apprentice"
+
 	},
 	{
 

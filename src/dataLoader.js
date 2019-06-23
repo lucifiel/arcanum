@@ -112,6 +112,7 @@ export default {
 
 		for( let def of events ){
 
+			def._type = 'event';
 			this._items[def.id] = a[def.id] = new Item( def );
 
 		}

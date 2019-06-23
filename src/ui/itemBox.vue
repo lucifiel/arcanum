@@ -62,7 +62,7 @@ export default {
 
 				return res;
 			}
-			return v.toString();
+			return '';
 
 		}
 

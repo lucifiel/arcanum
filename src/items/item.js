@@ -20,7 +20,7 @@ export default class Item {
 	/**
 	 * @property {string} type
 	 */
-	get type() { return 'item'; }
+	get type() { return this._type || 'item'; }
 
 	/**
 	 * @property {string} id
