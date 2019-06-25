@@ -221,9 +221,11 @@ export default {
 		} else if ( costObj instanceof Object ) {
 
 			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*SELL_RATE;
-			if ( costObj.space ) this.getItem('space').value -= costObj.space;
+			if ( costObj.space ) this.getItem('space').value += costObj.space;
 
 		}
+
+		it.value -= 1;
 
 		if ( it.mod ) this.removeMod( it, 1 );
 

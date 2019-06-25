@@ -36,6 +36,11 @@ export default {
 
 		effectName(p) {
 			let it = Game.getItem(p);
+			return it ? it.name : p;
+		},
+
+		costName(p) {
+			let it = Game.getItem(p);
 			return it ? it.name : 'Gold';
 		},
 
@@ -87,7 +92,7 @@ export default {
 				Gold: {{ item.cost }}
 			</div>
 			<div v-else v-for="(val,prop) in item.cost" :key="prop">
-				{{ effectName(prop) }}: {{ effectVal(val) }}
+				{{ costName(prop) }}: {{ effectVal(val) }}
 			</div>
 
 		</div>
@@ -95,12 +100,15 @@ export default {
 		<div v-if="item.effect||item.mod">
 			<hr>
 		<div class="note-text">effects:</div>
-		<div v-if="item.effect">
+		<div v-if="item.effect instanceof Object">
 
 			<div v-for="(val,prop) in item.effect" :key="prop">
 				{{ effectName(prop) }}: <span v-html="effectVal(val)"></span>
 			</div>
 
+		</div>
+		<div v-else-if="typeof item.effect === 'string'">
+			{{ effectName( item.effect ) }}
 		</div>
 
 		<div v-if="item.mod">
