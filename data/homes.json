@@ -3,8 +3,8 @@
 		"id":"alcove",
 		"desc":"A small corner of your master's domicile",
 		"must":"apprentice",
-		"effect":{
-			"space":5
+		"mod":{
+			"space.max":5
 		}
 	},
 	{
@@ -14,8 +14,8 @@
 		"cost":{
 			"arcana":100
 		},
-		"effect":{
-			"space":10
+		"mod":{
+			"space.max":10
 		}
 	},
 	{
@@ -23,8 +23,8 @@
 		"desc":"A remote hut in the woods.",
 		"require":"!state.apprentice",
 		"cost":50,
-		"effect":{
-			"space":15
+		"mod":{
+			"space.max":15
 		}
 	},
 	{
@@ -32,8 +32,8 @@
 		"desc":"",
 		"require":"state.adept",
 		"cost":100,
-		"effect":{
-			"space":20
+		"mod":{
+			"space.max":20
 		}
 	},
 	{
@@ -41,8 +41,8 @@
 		"desc":"A modest house in a small town.",
 		"cost":500,
 		"require":"state.adept&&state.arcana>=250",
-		"effect":{
-			"space":25
+		"mod":{
+			"space.max":25
 		}
 	},
 	{
@@ -50,8 +50,8 @@
 		"desc":"A small shop in a bustling city.",
 		"cost":700,
 		"require":"!state.apprentice&&state.arcana>=250",
-		"effect":{
-			"space":20
+		"mod":{
+			"space.max":20
 		}
 	},
 	{
@@ -60,7 +60,7 @@
 		"cost":700,
 		"require":"state.adept",
 		"mod":{
-			"space":75
+			"space.max":75
 		}
 	},
 	{
@@ -68,8 +68,8 @@
 		"desc":"A stone tower in which to conduct your arcane investigations.",
 		"cost":1500,
 		"require":"!state.apprentice&&state.arcana>=1000",
-		"effect":{
-			"space":100
+		"mod":{
+			"space.max":100
 		}
 	},
 	{
@@ -77,8 +77,8 @@
 		"desc":"A stronghold to protect yourself from the petty forces of the world.",
 		"cost":3000,
 		"require":"!state.apprentice&&state.arcana>=2000",
-		"effect":{
-			"space":200
+		"mod":{
+			"space.max":200
 		}
 	},
 	{
@@ -86,8 +86,8 @@
 		"desc":"",
 		"cost":10000,
 		"require":"state.arcana>=10000",
-		"effect":{
-			"space":1000
+		"mod":{
+			"space.max":1000
 		}
 	},
 	{
@@ -95,8 +95,8 @@
 		"desc":"",
 		"require":"state.arcana>=10000",
 		"cost":10000,
-		"effect":{
-			"space":1000
+		"mod":{
+			"space.max":1000
 		}
 	}
 

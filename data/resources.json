@@ -56,7 +56,8 @@
 	{
 		"id":"space",
 		"name":"Floor Space",
-		"desc":"Space Available"
+		"desc":"Space Available",
+		"reverse":true
 
 	},
 	{

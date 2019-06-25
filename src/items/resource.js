@@ -12,7 +12,7 @@ export default class Resource extends Item {
 	/**
 	 * @property {number} value
 	 */
-	get value() { return this._value; }
+	get value() { return this._value || 0; }
 	set value(v) {
 		if ( this._max && v > this._max.value ) v = this._max.value;
 		else if ( v < 0 ) v = 0;
@@ -34,13 +34,30 @@ export default class Resource extends Item {
 
 	/**
 	 * @property {Stat} max - maximum resource value.
+	 * @note reversed props start filled to max, any addition to max
+	 * adds an equal amount to value.
 	 */
 	get max() { return this._max; }
 	set max(v) {
 
-		this._max = v instanceof Stat ? v : (
-			!v ? null : new Stat( v )
-		);
+		if ( !this._max ) {
+
+			this._max = new Stat(v);
+			if ( this.reverse ) {
+				this.value += this._max.value;
+			}
+
+		} else {
+
+			var lastMax = this.reverse ? this._max.value : 0;
+			this._max.add(v);
+
+			if ( this.reverse ) {
+				this.value += ( this._max.value - lastMax );
+				console.log('assigning reverse ' + this.name + ': ' + this.value );
+			}
+
+		}
 
 	}
 
@@ -65,60 +82,6 @@ export default class Resource extends Item {
 
 			if ( this.locked && e.skipLocked ) return;
 			if ( e.value ) this.value += e.value;
-
-		}
-
-	}
-
-	/**
-	 * 
-	 * @param {Object} m - mod description. 
-	 * @param {number} amt - amount added.
-	 */
-	addMod( m, amt ) {
-
-		if ( m instanceof Object ) {
-
-			if ( m.base ) this.rate.base += m.base*amt;
-			if ( m.pct ) this.rate.pct += m.pct*amt;
-			if ( m.max ) {
-
-				let vars = m.max;
-				if ( !isNaN(vars) ) this.max.base += vars * amt;
-				else if (vars instanceof Object ) {
-
-					if ( vars.base ) this.max.base += vars.base*amt;
-					if ( vars.pct ) this.max.pct += vars.pct*amt;
-				}
-
-			}
-
-		}
-
-	}
-
-	/**
-	 * 
-	 * @param {Object} m - mod description. 
-	 * @param {number} amt - amount removed.
-	 */
-	removeMod( m, amt ){
-
-		if ( m instanceof Object ) {
-
-			if ( m.base ) this.rate.base -= m.base*amt;
-			if ( m.pct ) this.rate.pct -= m.pct*amt;
-			if ( m.max ) {
-
-				let vars = m.max;
-				if ( !isNaN(vars) ) this.max.base -= vars * amt;
-				else if (vars instanceof Object ) {
-
-					if ( vars.base ) this.max.base -= vars.base*amt;
-					if ( vars.pct ) this.max.pct -= vars.pct*amt;
-				}
-
-			}
 
 		}
 

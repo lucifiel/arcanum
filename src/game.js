@@ -212,9 +212,19 @@ export default {
 	trySell(it) {
 
 		if ( it.value < 1 ) return false;
-		let cost = it.typeCost('gold') * SELL_RATE;
 
-		this.getItem('gold').value += cost;
+		let costObj = it.cost;
+		if ( !isNaN(costObj) ) {
+
+			this.getItem('gold').value += costObj*SELL_RATE;
+
+		} else if ( costObj instanceof Object ) {
+
+			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*SELL_RATE;
+			if ( costObj.space ) this.getItem('space').value -= costObj.space;
+
+		}
+
 		if ( it.mod ) this.removeMod( it, 1 );
 
 		return true;
@@ -317,6 +327,7 @@ export default {
 		else if ( mod instanceof Object ) {
 	
 			for( let p in mod ) {
+
 				var target = this.getItem( p );
 				if ( !target) continue;
 				target.addMod( mod[p], amt );

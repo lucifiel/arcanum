@@ -5,6 +5,7 @@ import HomeList from '../data/homes.json';
 import SkillList from '../data/skills.json';
 import EventList from '../data/events.json';
 
+import Assign from './assignPath';
 import Item from 'items/item';
 import Resource from 'items/resource';
 import Upgrade from 'items/upgrade';
@@ -40,7 +41,7 @@ export default {
 
 	},
 
-	initJSON( arr, tag=null ) {
+	initJSON( arr ) {
 
 		for( let it of arr ) {
 
@@ -51,10 +52,10 @@ export default {
 				if ( typeof sub === 'string' && !IdTest.test(sub )) it.require = this.createTest( sub );
 
 			}
-			/*sub = it.mod;
+			sub = it.mod;
 			if ( sub ) {
 				it.mod = this.parseMods(sub);
-			}*/
+			}
 
 		}
 
@@ -67,10 +68,18 @@ export default {
 		if ( mod instanceof Object ) {
 
 			for( let p in mod ) {
+	
+				// convert to an assignment object.
+				if ( p.includes('.')) {
+					this.expandPropPath( mod, p );
+					//var a = new Assign( p, mod[p] );
+					//mod[ a.parts[0] ] = a;
+				}
 
 			}
 
 		}
+		return mod;
 
 	},
 
@@ -189,6 +198,33 @@ export default {
 		}
 
 		return a;
+
+	},
+
+	/**
+	 * For an object variable path key, the key is expanded
+	 * into subojects, each with a single property of the next
+	 * part of the variable path.
+	 * This is done to allow object props to represent variable paths
+	 * without changing all the code to use Maps (with VarPath keys) and not Objects.
+	 * @param {Object} obj 
+	 * @param {string} prop 
+	 */
+	expandPropPath( obj, prop ) {
+
+		let val = obj[prop];
+		delete obj[prop];
+
+		let parts = prop.split('.');
+
+		let max = parts.length-1;
+
+		// stops before length-1 since last assign goes to val.
+		for( let i = 0; i < max; i++ ) {
+			obj = obj[ parts[i] ] = {};
+		}
+
+		obj[ parts[max] ] = val;
 
 	}
 

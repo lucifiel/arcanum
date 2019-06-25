@@ -107,6 +107,67 @@ export default class Item {
 	applyEffect(e) {
 	}
 
+	/**
+	 * 
+	 * @param {Object} m - mod description. 
+	 * @param {number} amt - amount added.
+	 */
+	addMod( m, amt ) {
+
+		if ( m instanceof Object ) {
+
+			for( let p in m ) {
+
+				if ( m[p] instanceof Object ) {
+					console.log('subassign: ' + p)
+					this.subassign( this[p], m[p], amt );
+				} else if ( this.hasOwnProperty(p) ) {
+					console.log('adding: ' + p );
+					this[p] += Number(m[p])*amt;
+				}
+
+			}
+
+			if ( m.base ) this.rate.base += m.base*amt;
+			if ( m.pct ) this.rate.pct += m.pct*amt;
+			if ( m.max ) {
+
+				console.log('increasing max');
+				let vars = m.max;
+				if ( !isNaN(vars) ) this.max += vars * amt;
+				else if (vars instanceof Object ) {
+
+					if ( vars.base ) this.max.base += vars.base*amt;
+					if ( vars.pct ) this.max.pct += vars.pct*amt;
+				}
+
+			}
+
+		}
+
+	}
+
+	subassign( obj, m, amt ) {
+
+		if ( !obj instanceof Object ) {
+			console.warn( 'invalid assign: ' + obj + ' = ' + m );
+			return;
+		}
+
+		for( let p in m ) {
+		
+			console.log('assigning sub: ' + p + '=' + m[p]);
+
+			if ( m[p] instanceof Object ) {
+				subassign( obj[p], m[p], amt );
+			} else {
+				obj[p] += Number(m[p])*amt;
+			}
+
+		}
+
+	}
+
 	updateDot(e, dt) {
 	}
 
