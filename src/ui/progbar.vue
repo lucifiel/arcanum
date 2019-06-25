@@ -1,7 +1,7 @@
 <script>
 export default {
 
-	props:['value', 'max'],
+	props:['value', 'max', 'label'],
 	methods:{
 
 	},
@@ -17,10 +17,13 @@ export default {
 
 <template>
 
-	<div class="bar">
+<div style="display:inline-block">
+	<label v-if="label" :for="elmId('bar')">{{label}}</label>
+	<div class="bar" :id="elmId('bar')">
 		<div v-if="value>0" :style="'width:'+width"></div>
 		<div v-else>&nbsp;</div>
 	</div>
+</div>
 
 </template>
 

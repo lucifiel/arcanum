@@ -18,7 +18,7 @@ export default {
 	methods:{
 
 		train(skill){
-			this.gameData.curSkill = this.gameData.curSkill !== skill ? skill : null;
+			this.gameData.curAction = this.gameData.curAction !== skill ? skill : null;
 		}
 
 	}

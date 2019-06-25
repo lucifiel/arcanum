@@ -76,7 +76,7 @@ export default class Resource extends Item {
 
 	}
 
-	applyEffect(e) {
+	applyEffect( e ) {
 
 		if ( e instanceof Object ){
 

@@ -8,9 +8,10 @@
 	},
 	{
 
-		"id":"fatigue",
-		"name":"Fatigue",
+		"id":"stamina",
+		"name":"Stamina",
 		"max":10,
+		"value":10,
 		"locked":false
 	},
 	{

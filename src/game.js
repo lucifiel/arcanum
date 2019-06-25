@@ -3,6 +3,7 @@ import Resource from 'items/resource';
 import Upgrade from 'items/upgrade';
 import Action from 'items/action';
 import Spellbook from 'spellbook';
+import Skill from 'items/skill';
 import Player from 'player';
 
 import Log from 'log';
@@ -38,7 +39,10 @@ export default {
 
 		this._player = this._gameData.player = new Player();
 
-		this._gameData.curSkill = null;
+		/**
+		 * @property {Item} curAction - ongoing action.
+		 */
+		this._gameData.curAction = null;
 
 		/**
 		 * timed/ongoing effects.
@@ -68,18 +72,6 @@ export default {
 		return this._items[id];
 	},
 
-	/**
-	 * Assign all items passing the predicate test the given tag.
-	 * @param {Predicate} test 
-	 * @param {string} tag 
-	 */
-	tagItems( test, tag ) {
-		let items = this._items;
-		for( let p in items ) {
-			if ( test( items[p] ) ) items[p].addTag(tag);
-		}
-	},
-
 	update() {
 
 		let time = Date.now();
@@ -89,7 +81,7 @@ export default {
 		this.doDots(dt);
 
 		// active skill, if any.
-		this.doSkill( dt );
+		this.doAction( dt );
 
 		this.doResources(dt);
 
@@ -104,7 +96,7 @@ export default {
 			stat = stats[i];
 			if ( stat.locked === false ) {
 
-				if ( stat.must && !this.doTest( stat.must ) ) stat.locked = true;
+				if ( stat.must && !this.lockTest( stat.must ) ) stat.locked = true;
 				else stats[i].update( dt );
 
 			}
@@ -146,14 +138,58 @@ export default {
 
 	},
 
-	doSkill( dt ) {
+	/**
+	 * Performs tick update of the current action/skill.
+	 * @param {*} dt 
+	 */
+	doAction( dt ) {
 
-		let skill = this.gameData.curSkill;
-		if ( !skill ) return;
+		let action = this.gameData.curAction;
+		if ( !action ) return;
 
-		skill.exp += dt;
-		if ( skill.exp >= skill.max ) {
-			skill.levelUp();
+		if ( action.cost && !this.canPay( action, dt ) ) {
+			this.stopAction(action)
+			return;
+		}
+
+		if ( action instanceof Skill ) {
+
+			action.exp += dt;
+			if ( action.exp >= action.max ) {
+				action.levelUp();
+			}
+
+		} else {
+
+			if ( action.effect ) this.applyEffect( action.effect, dt );
+			if ( action.fill) {
+				let fill = this.getItem(action.fill);
+				if ( fill && fill.value >= fill.max.value ) this.stopAction( action );
+			}
+
+		}
+
+	},
+
+	stopAction( cur ) {
+
+		let resume = this.gameData.resumeAction;
+		if ( resume != null ) {
+
+			this.gameData.curAction =
+				resume !== cur ? resume : null;
+			this.gameData.resumeAction = null;
+
+		} else {
+
+			let rest = this.getItem('rest');
+			if ( cur !== rest ) {
+
+				this.gameData.resumeAction = cur;
+				this.gameData.curAction = rest;
+
+			} else this.gameData.curAction = null;
+
 		}
 
 	},
@@ -234,7 +270,7 @@ export default {
 	},
 
 	/**
-	 * Buying an upgrade does not incur fatigue.
+	 *
 	 * @param {*} up 
 	 */
 	tryUpgrade(up){
@@ -261,12 +297,7 @@ export default {
 	 */
 	tryAction(act) {
 
-		if ( (this.items.fatigue.value >= this.items.fatigue.max) && !act.ignoreFatigue ) {
-
-			this.log.log('Fatigued', "Too tired.", 'status');
-			return false;
-
-		} else if ( act.cost ) {
+		if ( act.cost ) {
 			if ( !this.canPay(act.cost) ) return false;
 			this.payCost( act.cost );
 		}
@@ -277,9 +308,9 @@ export default {
 
 	tryUnlock( item ) {
 
-		if ( item.must && !this.doTest(item.must)) return false;
+		if ( item.must && !this.lockTest(item.must)) return false;
 
-		else if ( !item.require || this.doTest(item.require) ) {
+		else if ( !item.require || this.lockTest(item.require) ) {
 			item.locked = false;
 		}
 
@@ -291,9 +322,9 @@ export default {
 	 * Return the results of a testing object.
 	 * @param {string|function|Object|Array} test 
 	 */
-	doTest( test ) {
+	lockTest( test ) {
 
-		if ( test instanceof Array ) return test.every( this.doTest, this );
+		if ( test instanceof Array ) return test.every( this.lockTest, this );
 
 		let type = typeof test;
 		if ( type === 'function') {
@@ -353,7 +384,7 @@ export default {
 	 * Perform the one-time effect of an action, resource, or upgrade.
 	 * @param effect
 	 */
-	applyEffect( effect ) {
+	applyEffect( effect, dt=1 ) {
 
 		if ( effect instanceof Array ) for( let e of effect ) this.applyEffect(e);
 
@@ -369,9 +400,9 @@ export default {
 
 				e = effect[p];
 
-				if ( !isNaN(e) ) target.value += e;
+				if ( !isNaN(e) ) target.value += e*dt;
 				else if ( target.type === 'event' ) this.doEvent( target );
-				else target.applyEffect(e);
+				else target.applyEffect(e,dt);
 
 			}
 
@@ -381,7 +412,7 @@ export default {
 			if ( effect != null ) {
 
 				if ( effect.type === 'event') this.doEvent( effect );
-				else this.applyEffect( effect );
+				else this.applyEffect( effect, dt );
 
 			}
 
@@ -427,9 +458,9 @@ export default {
 	 * 
 	 * @param {Array|Object} cost
 	 */
-	payCost( cost ) {
+	payCost( cost, unit=1) {
 
-		if ( cost instanceof Array ) return cost.forEach( this.payCost, this );
+		if ( cost instanceof Array ) return cost.forEach( v=>this.payCost(v,unit), this );
 
 		let res;
 		if ( cost instanceof Object ){
@@ -437,14 +468,14 @@ export default {
 			for( let p in cost ) {
 
 				res = this.getItem(p);
-				if ( res ) res.value -= cost[p];
+				if ( res ) res.value -= cost[p]*unit;
 
 			}
 
 		} else if ( !isNaN(cost ) ) {
 
 			res = this.getItem('gold');
-			if ( res ) res.value -= cost;
+			if ( res ) res.value -= cost*unit;
 
 		}
 
@@ -462,9 +493,9 @@ export default {
 	 * @param {Array|Object} cost
 	 * @returns {boolean} true if cost can be paid.
 	 */
-	canPay( cost ) {
+	canPay( cost, unit=1 ) {
 
-		if ( cost instanceof Array ) return cost.every( this.canPay, this );
+		if ( cost instanceof Array ) return cost.every( v=>this.canPay(v,unit), this );
 
 		let res;
 
@@ -473,7 +504,7 @@ export default {
 			for( let p in cost ) {
 
 				res = this.getItem(p);
-				if ( !res || res.value < cost[p] ) return false;
+				if ( !res || res.value < cost[p]*unit ) return false;
 
 			}
 
@@ -481,7 +512,7 @@ export default {
 		} else if (!isNaN(cost) ) {
 
 			res = this.getItem('gold');
-			if ( res.value < cost) return false;
+			if ( res.value < cost*unit) return false;
 
 		}
 
@@ -514,6 +545,18 @@ export default {
 		}
 		return a;
 	
+	},
+	
+	/**
+	 * Assign all items passing the predicate test the given tag.
+	 * @param {Predicate} test 
+	 * @param {string} tag 
+	 */
+	tagItems( test, tag ) {
+		let items = this._items;
+		for( let p in items ) {
+			if ( test( items[p] ) ) items[p].addTag(tag);
+		}
 	}
 
 }

@@ -12,7 +12,7 @@ export default {
 	methods: {
 
 		train() {
-			this.game.curSkill = (this.game.curSkill !== this.skill ) ? this.skill : null;
+			this.game.curAction = (this.game.curAction !== this.skill ) ? this.skill : null;
 		}
 
 	},

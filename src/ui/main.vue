@@ -5,6 +5,7 @@ import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
 import HomeView from './homes.vue';
 
+import ProgBar from './progbar.vue';
 import SkillsPane from './skillsPane.vue';
 import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
@@ -29,7 +30,8 @@ export default {
 		skills:SkillsPane,
 		dots:DotView,
 		homes:HomeView,
-		'player':PlayerView,
+		progbar:ProgBar,
+		player:PlayerView,
 		'vue-menu':Menu
 	},
 	data(){
@@ -94,6 +96,11 @@ export default {
 
 		},
 
+		doRest(){
+
+			this.gameData.curAction = this.game.getItem('rest');
+		},
+
 		onSell(it) {
 			this.game.trySell( it );
 		},
@@ -118,6 +125,11 @@ export default {
 			this.game.tryAction( action );
 		},
 
+	},
+	computed:{
+		stamina(){
+			return this.game.getItem('stamina');
+		}
 	}
 
 }
@@ -134,6 +146,12 @@ export default {
 		<dots :dots="gameData.dots" />
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
+
+		<div class="stamina-bar">
+		<progbar label="Stamina" :value="stamina.value" :max="stamina.max.value" />
+		<button class="rest-btn" @click="doRest">Rest</button>
+		Action: {{ this.gameData.curAction !== null ? this.gameData.curAction.name : 'None'}}
+		</div>
 
 		<template slot="main">
 		<actions :items="gameData.actions" />

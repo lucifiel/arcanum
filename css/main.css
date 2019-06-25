@@ -104,24 +104,16 @@ span.separate {
 	font-size: 0.85em;
 }
 
-div.exp-bar {
-	display:inline-block;
-	background: #333;
-	margin:4px 4px 0px 2px;
-	padding:3px;
-	min-height:18px;
-	width:200px;
-	border-radius: 9px;
+div.stamina-bar {
+	display:inherit;
+	margin: 0px 4px;
+	flex-grow: 3;
+	justify-content: end;
+	text-align: end;
 }
-div.exp-bar > div {
-	background:orange;
-	border-radius: 7px;
-	height:100%;
-	min-width:0px;
-	width:0px;
-}
-div.exp-bar>div:after{
-	content:"\00a0";
+
+button.rest-btn {
+	padding:3px 8px;
 }
 
 div.menu {
@@ -132,6 +124,7 @@ div.menu {
 .menu-items {
 	display:flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .menu-item {

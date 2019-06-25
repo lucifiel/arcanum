@@ -34,8 +34,11 @@ export default {
 			<span v-else :key="it"> {{ it }} </span>
 
 		</div>
+			<slot>
+		</slot>
 
 		</div>
+
 
 		<!-- NOTE: slot css-class ignored -->
 		<slot :name="cur"></slot>
