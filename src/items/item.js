@@ -58,6 +58,9 @@ export default class Item {
 
 	}
 
+	get cost() { return this._cost; }
+	set cost(v) { this._cost=v;}
+
 	get require() { return this._require; }
 	set require(v) { this._require =v;}
 

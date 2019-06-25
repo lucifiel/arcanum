@@ -147,9 +147,14 @@ export default {
 		let action = this.gameData.curAction;
 		if ( !action ) return;
 
-		if ( action.cost && !this.canPay( action, dt ) ) {
-			this.stopAction(action)
-			return;
+		if ( action.cost ) {
+
+			if ( !this.canPay( action.cost, dt ) ) {
+				this.stopAction(action)
+				return;
+			}
+			this.payCost( action.cost, dt );
+
 		}
 
 		if ( action instanceof Skill ) {
