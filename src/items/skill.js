@@ -8,17 +8,10 @@ export default class Skill extends Item {
 	get type(){return 'skill';}
 
 	/**
-	 * @property {number} value
-	 */
-	get value() { return this._level; }
-	set value(v) { this._level = v; }
-	valueOf() { return this._level; }
-
-	/**
 	 * @property {number} level
 	 */
-	get level() { return this._level; }
-	set level(v) { this._level =v; }
+	get level() { return this._value; }
+	set level(v) { this._value =v; }
 
 	/**
 	 * @property {number} exp
@@ -47,7 +40,7 @@ export default class Skill extends Item {
 		super(vars);
 
 		this._max = this._max || 100;
-		this._level = this._level || 0;
+		this._value = this._value || 0;
 		this._exp = this._exp || 0;
 		this._rate = this._rate || 1;
 
@@ -64,9 +57,9 @@ export default class Skill extends Item {
 
 	levelUp() {
 
-		if ( ++this._level > MAX_LEVEL ) this._level = MAX_LEVEL;
+		if ( ++this._value > MAX_LEVEL ) this._value = MAX_LEVEL;
 
-		this._exp = 0;
+		this._exp -= this._max;
 		this._max += this._max*EXP_RATIO;
 
 	}

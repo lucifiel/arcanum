@@ -25,13 +25,14 @@
 		"id":"rest",
 		"name":"rest",
 		"ignoreStamina":true,
-		"fill":"stamina",
+		"fill":[ "stamina", "hp" ],
 		"effect":{
 			"mana":{
 				"skipLocked":true,
 				"value":0.5
 			},
-			"stamina":1
+			"stamina":1,
+			"hp":1
 		}
 	},
 	{

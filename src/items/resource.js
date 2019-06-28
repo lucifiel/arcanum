@@ -4,10 +4,10 @@ import Item from './item';
 export default class Resource extends Item {
 
 	get require() {
-		return this._require ||
+		return super._require ||
 		( this._locked === false ? null : ()=>this.positive() );
 	}
-	set require(v){this._require =v;}
+	set require(v){super._require =v;}
 
 	/**
 	 * @property {number} value

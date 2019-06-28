@@ -53,7 +53,7 @@ div.action-list, div.upgrade-list {
 }
 
 div.resource-list, div.action-list, div.upgrade-list, div.home-view, div.skills-view, div.player-view {
-	margin: 20px 4px 2px;
+	margin: 20px 2px 2px;
 
 }
 div.home-view {
@@ -80,7 +80,7 @@ div.player-view .value {
 
 div.resource-list {
 	width: fit-content;
-	min-width: 170px;
+	min-width: 200px;
 }
 
 div.skill {
@@ -128,7 +128,7 @@ div.menu {
 }
 
 .menu-item {
-	font-size: 1em;
+	font-size: 1.1em;
 	cursor: pointer;
 	margin: 2px 10px;
 }

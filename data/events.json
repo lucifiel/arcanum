@@ -11,12 +11,14 @@
 	{
 		"id":"apprentice",
 		"name":"Apprenticeship",
+		"title":"apprentice",
 		"desc":"You became apprenticed to a local wizard.",
 		"remove":["stables"]
 	},
 	{
 		"id":"novice",
 		"name":"Noviciate",
+		"title":"novice",
 		"desc":"Your master believes you are ready to take the next step on the path of wizardry.",
 		"remove":["apprentice"]
 	},
@@ -24,7 +26,7 @@
 		"id":"leavemaster",
 		"name":"Left Master",
 		"desc":"You are now an independent wizard.",
-		"remove":["novice", "bedroom", "alcove"]
+		"remove":["novice", "bedroom", "alcove","chores"]
 	}
 
 ]

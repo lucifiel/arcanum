@@ -1,12 +1,11 @@
 import DataLoader from 'dataLoader';
-import Resource from 'items/resource';
-import Upgrade from 'items/upgrade';
 import Action from 'items/action';
 import Spellbook from 'spellbook';
 import Skill from 'items/skill';
-import Player from 'player';
+import VarPath from './varPath';
 
 import Log from 'log';
+import GameState from './gameState';
 
 /**
  * @constant {number} SELL_RATE - percent of initial cost
@@ -16,62 +15,46 @@ const SELL_RATE = 0.5;
 
 export default {
 
-	get gameData() { return this._gameData; },
-	set gameData(v) { this._gameData =v;},
+	/**
+	 * @property {GameState} gameData
+	 */
+	get state() { return this._state; },
+	set state(v) { this._state =v;},
 
 	/**
 	 * @property {Object.<string,Item>} items
 	 */
 	get items() { return this._items; },
 
-	get flags() { return this._flags; },
+	get curAction() { return this._state.curAction; },
+	set curAction(v) { this._state.curAction = v; },
 
+	/**
+	 * @property {Log} log
+	 */
 	log:new Log(),
 
 	init() {
 
-		this._flags = {};
-
 		DataLoader.init();
 
-		this._items = DataLoader.items;
-		this._gameData = DataLoader.gameData;
-
-		this._player = this._gameData.player = new Player();
-
-		/**
-		 * @property {Item} curAction - ongoing action.
-		 */
-		this._gameData.curAction = null;
-
-		/**
-		 * timed/ongoing effects.
-		 */
-		this._gameData.dots = [];
+		this._state = new GameState( DataLoader.gameData );
+		this._items = this._state.items;
 
 		this.tagItems( it=>it.typeCost('space')>0, 'furniture' );
 
-		/**
-	 	* @property {Object} events - available events.
-	 	*/
-		this._events = this._gameData.events;
+	},
 
-		/**
-		 * @property {Object} completed - completed events.
-		 */
-		this._completed = this._gameData.completed = {};
+	startRaid( dungeon) {
+
+		this._state.raid.setDungeon(dungeon);
+		this.curAction = this._state.raid;
 
 	},
 
 	/**
-	 * 
-	 * @param {string} id
-	 * @returns {Resource|Upgrade|Action} 
+	 * Frame update.
 	 */
-	getItem(id) {
-		return this._items[id];
-	},
-
 	update() {
 
 		let time = Date.now();
@@ -80,24 +63,27 @@ export default {
 
 		this.doDots(dt);
 
-		// active skill, if any.
-		this.doAction( dt );
+		if ( this._state.curAction === this._state.raid ) this._state.raid.update(dt);
+		else this.doAction( dt );
 
 		this.doResources(dt);
 
 	},
 
+	/**
+	 * Frame update of all resources.
+	 * @param {number} dt - elapsed time. 
+	 */
 	doResources( dt ) {
 
-		let stats = this._gameData.resources;
+		let stats = this._state.resources;
 		let len = stats.length, stat;
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
 			if ( stat.locked === false ) {
 
-				if ( stat.must && !this.lockTest( stat.must ) ) stat.locked = true;
-				else stats[i].update( dt );
+				stats[i].update( dt );
 
 			}
 
@@ -123,7 +109,7 @@ export default {
 	 */
 	doDots( dt ) {
 
-		let updates = this._gameData.dots;
+		let updates = this._state.dots;
 		let efx;
 
 		for( let i = updates.length-1; i >= 0; i-- ) {
@@ -140,17 +126,17 @@ export default {
 
 	/**
 	 * Performs tick update of the current action/skill.
-	 * @param {*} dt 
+	 * @param {number} dt - elapsed time 
 	 */
 	doAction( dt ) {
 
-		let action = this.gameData.curAction;
+		let action = this._state.curAction;
 		if ( !action ) return;
 
 		if ( action.cost ) {
 
 			if ( !this.canPay( action.cost, dt ) ) {
-				this.stopAction(action)
+				this.stopAction()
 				return;
 			}
 			this.payCost( action.cost, dt );
@@ -167,33 +153,49 @@ export default {
 		} else {
 
 			if ( action.effect ) this.applyEffect( action.effect, dt );
-			if ( action.fill) {
-				let fill = this.getItem(action.fill);
-				if ( fill && fill.value >= fill.max.value ) this.stopAction( action );
-			}
+			if ( action.fill && this.filled(action.fill ) ) this.stopAction();
 
 		}
 
 	},
 
-	stopAction( cur ) {
+	/**
+	 * Tests if a named resource has been filled to max.
+	 * @param {Resource|Resource[]} v 
+	 */
+	filled( v ) {
 
-		let resume = this.gameData.resumeAction;
+		if ( v instanceof Array ) return v.every( this.filled, this );
+
+		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getItem(v);
+		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
+		return fill.value >= fill.max.value;
+
+	},
+
+	/**
+	 * Stops the current action.
+	 * Attempts to resume any waiting action.
+	 */
+	stopAction() {
+
+		let cur = this._state.curAction;
+		let resume = this._state.resumeAction;
 		if ( resume != null ) {
 
-			this.gameData.curAction =
+			this._state.curAction =
 				resume !== cur ? resume : null;
-			this.gameData.resumeAction = null;
+			this._state.resumeAction = null;
 
 		} else {
 
 			let rest = this.getItem('rest');
 			if ( cur !== rest ) {
 
-				this.gameData.resumeAction = cur;
-				this.gameData.curAction = rest;
+				this._state.resumeAction = cur;
+				this._state.curAction = rest;
 
-			} else this.gameData.curAction = null;
+			} else this._state.curAction = null;
 
 		}
 
@@ -207,10 +209,12 @@ export default {
 
 		if ( evt.remove ) this.remove( evt.remove);
 
+		if ( evt.title ) this._state.player.title = evt.title;
+
 		evt.locked = false;
 		evt.value = 1;
-		this._completed[evt.id] = evt;
-		this._events[evt.id] = null;
+		this._state.completed[evt.id] = evt;
+		this._state.events[evt.id] = null;
 
 		this.log.log( evt.name, evt.desc, 'event' );
 
@@ -218,27 +222,20 @@ export default {
 
 	/**
 	 * Completely remove a previously unlocked/purchased item.
-	 * @param {*} what 
+	 * @param {string|Item|Array} it 
 	 */
-	remove( what ) {
+	remove( it ) {
 
-		if ( what instanceof Array ) for( let it of what ) this.remove(it);
+		if ( it instanceof Array ) for( let v of it ) this.remove(v);
 		else {
 
-			let it = this.getItem( what );
+			if ( typeof it === 'string' ) it = this.getItem( it );
 			if ( it ) {
 
-				delete this._items[it.id];
-
-				// @todo - remove from relevant list? code below is wrong
-				// because type string doesn't match list name.
-				//let typeList = this.gameData[it.type];
-				//let ind = typeList.indexOf( it );
-				//if ( ind >= 0 ) typeList.splice(ind,1);
+				it.removed = true;
 	
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it, it.value );
-				it.value = 0;
 
 			}
 
@@ -276,7 +273,8 @@ export default {
 
 	/**
 	 *
-	 * @param {*} up 
+	 * @param {Item} up
+	 * @returns {boolean}
 	 */
 	tryUpgrade(up){
 
@@ -294,11 +292,16 @@ export default {
 		if ( up.effect ) this.applyEffect(up.effect);
 		if ( up.mod ) this.addMod( up.mod, 1 );
 
+		if (!up.repeat ) this.remove(up);
+
+		return true;
+
 	},
 
 	/**
 	 * Attempt to pay for an action, and if the cost is met, apply it.
-	 * @param {Action} act 
+	 * @param {Action} act
+	 * @returns {boolean}
 	 */
 	tryAction(act) {
 
@@ -308,14 +311,21 @@ export default {
 		}
 
 		if ( act.effect ) this.applyEffect(act.effect)
+		return true;
 
 	},
 
+	/**
+	 * Attempt to unlock an item.
+	 * @param {Item} item
+	 * @returns {boolean} true on success. 
+	 */
 	tryUnlock( item ) {
 
-		if ( item.must && !this.lockTest(item.must)) return false;
+		if ( item.removed ) return false;
+		if ( item.must && !this.lockTest(item.must,item)) return false;
 
-		else if ( !item.require || this.lockTest(item.require) ) {
+		else if ( !item.require || this.lockTest(item.require,item) ) {
 			item.locked = false;
 		}
 
@@ -325,9 +335,10 @@ export default {
 
 	/**
 	 * Return the results of a testing object.
-	 * @param {string|function|Object|Array} test 
+	 * @param {string|function|Object|Array} test
+	 * @returns {boolean}
 	 */
-	lockTest( test ) {
+	lockTest( test, item ) {
 
 		if ( test instanceof Array ) return test.every( this.lockTest, this );
 
@@ -336,7 +347,7 @@ export default {
 
 			//console.log(test.toString());
 
-			return test( this._items );
+			return test( this._items, item );
 
 		} else if ( type === 'string') {
 
@@ -357,7 +368,7 @@ export default {
 	/**
 	 * Apply a mod.
 	 * @param {Array|Object} mod
-	 * @param {amt} amt - amount added.
+	 * @param {number} amt - amount added.
 	 */
 	addMod( mod, amt ) {
 
@@ -378,8 +389,8 @@ export default {
 
 	/**
 	 * 
-	 * @param {*} mod 
-	 * @param {*} amt 
+	 * @param {Object} mod 
+	 * @param {number} amt 
 	 */
 	removeMod( mod, amt ) {
 		this.addMod( mod, -amt);
@@ -395,7 +406,7 @@ export default {
 
 		else if ( effect instanceof Object ) {
 
-			if ( effect.duration ) this._gameData.dots.push( Object.assign( {}, effect ) );
+			if ( effect.duration ) this._state.dots.push( Object.assign( {}, effect ) );
 
 			let target, e;
 			for( let p in effect ){
@@ -538,7 +549,7 @@ export default {
 	},
 
 	/**
-	 * Return a list of items containing give tags.
+	 * Return a list of items containing given tags.
 	 * @param {string[]} tags
 	 * @returns {Item[]}
 	 */
@@ -562,6 +573,21 @@ export default {
 		for( let p in items ) {
 			if ( test( items[p] ) ) items[p].addTag(tag);
 		}
-	}
+	},
+
+	/**
+	 * Get an item on an item-id varpath.
+	 * @param {VarPath} v 
+	 */
+	getPathItem(v){
+		return v.readVar( this._items );
+	},
+
+	/**
+	 * 
+	 * @param {string} id
+	 * @returns {Item|undefined} 
+	 */
+	getItem(id) { return this._items[id]; },
 
 }

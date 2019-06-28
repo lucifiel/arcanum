@@ -4,15 +4,19 @@ import ActionList from '../data/actions.json';
 import HomeList from '../data/homes.json';
 import SkillList from '../data/skills.json';
 import EventList from '../data/events.json';
+import Dungeons from '../data/dungeons.json';
+import PlayerStats from '../data/player.json';
 
-import Assign from './assignPath';
 import Item from 'items/item';
+import Player from 'player';
+
 import Resource from 'items/resource';
 import Upgrade from 'items/upgrade';
 import Action from 'items/action';
 import Skill from 'items/skill';
 
 import VarPath, {IsVarPath} from 'varPath';
+import Dungeon from './items/dungeon.js';
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -36,6 +40,8 @@ export default {
 		this.initJSON( ActionList );
 		this.initJSON( HomeList );
 		this.initJSON( SkillList );
+		this.initJSON ( Dungeons );
+		this.initJSON( PlayerStats );
 
 		this.initGameItems();
 
@@ -52,34 +58,41 @@ export default {
 				if ( typeof sub === 'string' && !IdTest.test(sub )) it.require = this.createTest( sub );
 
 			}
-			sub = it.mod;
-			if ( sub ) {
-				it.mod = this.parseMods(sub);
-			}
+	
+			if ( it.mod ) it.mod = this.parseSub(it.mod);
+			if ( it.fill) it.fill = this.parseSub(it.fill);
 
 		}
 
 	},
 
-	parseMods( mod ) {
+	parseSub( sub ) {
 
-		if ( mod instanceof Array ) return mod.map( this.parseMods, this );
+		if ( sub instanceof Array ) {
 
-		if ( mod instanceof Object ) {
+			for( let i = sub.length-1; i >= 0; i-- ) {
+				sub[i] = this.parseSub( sub[i] );
+			}
 
-			for( let p in mod ) {
+		} else if ( sub instanceof Object ) {
+
+			for( let p in sub ) {
 	
 				// convert to an assignment object.
 				if ( p.includes('.')) {
-					this.expandPropPath( mod, p );
+					this.splitKeyPath( sub, p );
 					//var a = new Assign( p, mod[p] );
 					//mod[ a.parts[0] ] = a;
 				}
 
 			}
 
+		} else if ( typeof sub === 'string') {
+
+			if ( sub.includes('.') ) return new VarPath( sub );
 		}
-		return mod;
+
+		return sub;
 
 	},
 
@@ -96,18 +109,24 @@ export default {
 	 */
 	initGameItems() {
 
-		this._items = {};
-		var gd = this._gameData = {};
+		var gd = this._gameData = {
+			items:{}
+		};
+		
+		this._items = gd.items;
 
 		gd.resources = this.initResources();
 		gd.upgrades = this.initUpgrades( UpgradeList );
 		gd.homes = this.initUpgrades( HomeList, 'home' );
 		gd.skills = this.initSkills( SkillList );
 
+		this.initDungeons( Dungeons );
+	
 		gd.events = this.initEvents( EventList );
 
 		gd.actions = this.initActions();
 
+		gd.player = this.initPlayer( PlayerStats );
 	},
 
 	/**
@@ -201,6 +220,35 @@ export default {
 
 	},
 
+	initPlayer( stats ) {
+
+		let vars = {};
+
+		let res;
+		for( let def of stats ) {
+
+			res = vars[ def.id ] = new Resource( def );
+			this._items[def.id] = res;
+			console.log('player resource: ' + res.id );
+
+		}
+
+		return new Player( vars );
+
+	},
+
+	initDungeons( list ) {
+
+		let d;
+		for( let def of list ) {
+
+			d = new Dungeon( def );
+			this._items[d.id] = d;
+
+		}
+
+	},
+
 	/**
 	 * For an object variable path key, the key is expanded
 	 * into subojects, each with a single property of the next
@@ -210,7 +258,7 @@ export default {
 	 * @param {Object} obj 
 	 * @param {string} prop 
 	 */
-	expandPropPath( obj, prop ) {
+	splitKeyPath( obj, prop ) {
 
 		let val = obj[prop];
 		delete obj[prop];

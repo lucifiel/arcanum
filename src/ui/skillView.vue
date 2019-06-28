@@ -4,17 +4,13 @@ import Progress from './progbar.vue';
 
 export default {
 	
-	props:['skill', 'game'],
+	/**
+	 * @property {boolean} active - true if skill is the active skill.
+	 */
+	props:['skill', 'active'],
 	mixins:[ItemsBase],
 	components:{
 		bar:Progress
-	},
-	methods: {
-
-		train() {
-			this.game.curAction = (this.game.curAction !== this.skill ) ? this.skill : null;
-		}
-
 	},
 	computed:{
 
@@ -40,9 +36,9 @@ export default {
 		<bar :value="skill.exp" :max="skill.max" />
 
 		<button class="train-btn"
-			@click="train"
+			@click="$emit('train',skill)"
 				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"
-				@mouseleave.capture.stop="dispatch('itemout', $event )">Train</button>
+				@mouseleave.capture.stop="dispatch('itemout', $event )"> {{ active ? 'Stop' : 'Train' }}</button>
 
 		</div>
 

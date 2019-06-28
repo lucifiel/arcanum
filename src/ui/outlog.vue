@@ -15,13 +15,6 @@ export default {
 			exclude:[]
 		}
 
-	},
-
-	methods:{
-
-		addItem(){
-
-		}
 	}
 
 }

@@ -11,6 +11,7 @@ import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
 import PlayerView from './player.vue';
 import LogView from './outlog.vue';
+import Adventure from './adventure.vue';
 
 /**
  * @listens [sell,itemover,itemout]
@@ -32,12 +33,13 @@ export default {
 		homes:HomeView,
 		progbar:ProgBar,
 		player:PlayerView,
+		adventure:Adventure,
 		'vue-menu':Menu
 	},
 	data(){
 
 		return {
-			gameData:this.game.gameData,
+			gameState:this.game.state,
 			overItem:null,
 			overElm:null
 		};
@@ -51,8 +53,9 @@ export default {
 		this.listen( 'itemout', this.itemOut );
 		this.listen( 'upgrade', this.onUpgrade );
 		this.listen( 'action', this.onAction );
+		this.listen( 'raid', this.onRaid );
 
-		this.menuItems = ['main', 'skills', 'home', 'player'];
+		this.menuItems = ['main', 'skills', 'house', 'adventure', 'player'];
 
 		this.unpause();
 
@@ -86,7 +89,7 @@ export default {
 		initEvents(){
 
 			var evt;
-			var events = this.gameData.events;
+			var events = this.gameState.events;
 			for( let p in events ) {
 
 				evt = events[p];
@@ -98,7 +101,9 @@ export default {
 
 		doRest(){
 
-			this.gameData.curAction = this.game.getItem('rest');
+			if ( !this.resting ) this.gameState.curAction = this.game.getItem('rest');
+			else this.game.stopAction( this.game.getItem('rest') );
+
 		},
 
 		onSell(it) {
@@ -125,8 +130,16 @@ export default {
 			this.game.tryAction( action );
 		},
 
+		onRaid( dungeon ) {
+
+			this.game.startRaid( dungeon );
+
+		}
+
 	},
 	computed:{
+		resting() { return this.gameState.curAction === this.game.getItem('rest'); },
+
 		stamina(){
 			return this.game.getItem('stamina');
 		}
@@ -142,33 +155,37 @@ export default {
 		<!-- popup -->
 		<itempopup :item="overItem" :elm="overElm" />
 
-		<resources :items="gameData.resources"/>
-		<dots :dots="gameData.dots" />
+		<resources :items="gameState.resources"/>
+		<dots :dots="gameState.dots" />
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
 
 		<div class="stamina-bar">
 		<progbar label="Stamina" :value="stamina.value" :max="stamina.max.value" />
-		<button class="rest-btn" @click="doRest">Rest</button>
-		Action: {{ this.gameData.curAction !== null ? this.gameData.curAction.name : 'None'}}
+		<button class="rest-btn" @click="doRest">{{ this.resting ? 'Stop' : 'Rest' }}</button>
+		Action: {{ this.gameState.curAction !== null ? this.gameState.curAction.name : 'None'}}
 		</div>
 
 		<template slot="main">
-		<actions :items="gameData.actions" />
-		<upgrades :items="gameData.upgrades" />
+		<actions :items="gameState.actions" />
+		<upgrades :items="gameState.upgrades" />
 
 		</template>
 	
 		<template slot="player">
-			<player :player="gameData.player" />
+			<player :player="gameState.player" />
 		</template>
 
-		<template slot="home">
-			<homes :game-data="gameData" />
+		<template slot="house">
+			<homes :game-data="gameState" />
 		</template>
 	
+		<template slot="adventure">
+			<adventure :state="gameState" />
+		</template>
+
 		<template slot="skills">
-			<skills :game-data="gameData"></skills>
+			<skills :game-data="gameState"></skills>
 		</template>
 
 		</vue-menu>

@@ -2,8 +2,6 @@
 
 import ItemsBase from './itemsBase.js';
 
-import Game from '../game';
-
 /**
  * @emits [itemover, itemout]
  */

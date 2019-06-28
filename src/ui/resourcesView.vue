@@ -1,6 +1,5 @@
 <script>
 import ItemsBase from './itemsBase.js';
-import Game from '../game';
 
 export default {
 	
@@ -8,8 +7,6 @@ export default {
 	data(){
 		return {
 		}
-	},
-	methods:{
 	}
 
 }

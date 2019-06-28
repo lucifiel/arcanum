@@ -2,15 +2,16 @@
 	{
 		"id":"alcove",
 		"desc":"A small corner of your master's domicile",
-		"must":"apprentice",
+		"require":"apprentice",
 		"mod":{
 			"space.max":5
 		}
 	},
 	{
 		"id":"bedroom",
-		"desc":"Your master has seen fit to provide you with a modest bedroom.",
-		"must":"apprentice",
+		"desc":"Your master begrudgingly offers you a modest bedroom.",
+		"flavor":"Don't let it go to your head.",
+		"require":"apprentice",
 		"cost":{
 			"arcana":100
 		},
@@ -21,7 +22,7 @@
 	{
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
-		"require":"!state.apprentice",
+		"require":"adept",
 		"cost":50,
 		"mod":{
 			"space.max":15
@@ -49,7 +50,7 @@
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
 		"cost":700,
-		"require":"!state.apprentice&&state.arcana>=250",
+		"require":"state.adept&&state.arcana>=250",
 		"mod":{
 			"space.max":20
 		}
@@ -58,7 +59,7 @@
 		"id":"lodge",
 		"desc":"A rugged lodge in the woods.",
 		"cost":700,
-		"require":"state.adept",
+		"require":"adept",
 		"mod":{
 			"space.max":75
 		}
@@ -76,7 +77,7 @@
 		"id":"citadel",
 		"desc":"A stronghold to protect yourself from the petty forces of the world.",
 		"cost":3000,
-		"require":"!state.apprentice&&state.arcana>=2000",
+		"require":"state.adept&&state.arcana>=2000",
 		"mod":{
 			"space.max":200
 		}

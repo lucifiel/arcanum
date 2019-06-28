@@ -1,9 +1,11 @@
 <script>
 export default {
 
-	props:['value', 'max', 'label'],
-	methods:{
-
+	props:['value', 'max', 'label', 'color'],
+	data(){
+		return {
+			'bg':this.color||'orange'
+		};
 	},
 	computed:{
 		width(){
@@ -20,7 +22,7 @@ export default {
 <div style="display:inline-block">
 	<label v-if="label" :for="elmId('bar')">{{label}}</label>
 	<div class="bar" :id="elmId('bar')">
-		<div v-if="value>0" :style="'width:'+width"></div>
+		<div v-if="value>0" :style="'width:'+width + ';background:'+this.bg"></div>
 		<div v-else>&nbsp;</div>
 	</div>
 </div>

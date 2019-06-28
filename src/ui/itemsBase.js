@@ -13,11 +13,16 @@ export default {
 		round:round,
 
 		usable(it) {
-			return Game.canBuy( it );
+			return !it.removed && Game.canBuy( it );
+		},
+
+		visible(it) {
+			return it.locked === false && it.removed === false;
 		},
 
 		locked(it) {
-			return (!it) || ( (it.locked === false) ? false : !Game.tryUnlock(it) );
+			return it.removed === true ||
+			( ( (it.locked === false) ) ? false : !Game.tryUnlock(it) );
 		}
 
 	}

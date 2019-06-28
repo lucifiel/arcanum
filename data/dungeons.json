@@ -1,0 +1,46 @@
+[
+
+	{
+		"id":"grove",
+		"name":"Sunny Grove",
+		"level":1,
+		"length":10,
+		"fatigue":0.1,
+		"enemies":[
+
+			{
+				"name":"Large Mouse",
+				"type":"natural",
+				"hp":2,
+				"attack":2,
+				"defense":2,
+				"min":0,
+				"max":2
+			},
+			{
+				"name":"Stingy Bee",
+				"type":"natural",
+				"hp":1,
+				"attack":3,
+				"defense":1,
+				"min":0,
+				"max":3
+			},
+			{
+				"name":"Big Stone",
+				"type":"natural",
+				"hp":5,
+				"attack":0,
+				"defense":3,
+				"min":0,
+				"max":0
+			}
+
+		]
+
+	}
+
+
+
+
+]

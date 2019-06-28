@@ -31,6 +31,7 @@ export default {
 		<tr><td class="prop">title</td><th class="value"> {{ player.title}}</th></tr>
 		<tr><td class="prop">level</td><th class="value"> {{ player.level }}</th></tr>
 		<tr><td class="prop">exp</td><th class="value"> {{ player.exp}} </th></tr>
+		<tr><td class="prop">hp</td><th class="value"> {{ player.hp.value }} / {{ player.hp.max.value }}</th></tr>
 		</table>
 
 	</div>

@@ -29,7 +29,7 @@ export default {
 <template>
 	<div class="skills-view">
 
-		<skill v-for="s in skills" :key="s.id" :game="gameData" :skill="s"></skill>
+		<skill v-for="s in skills" :key="s.id" :skill="s" :active="s===gameData.curAction" @train="train"></skill>
 
 	</div>
 </template>

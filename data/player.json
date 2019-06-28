@@ -1,0 +1,10 @@
+[
+	{
+		"id":"hp",
+		"name":"hp",
+		"desc":"Wizard life-force",
+		"value":10,
+		"max":10,
+		"locked":false
+	}
+]

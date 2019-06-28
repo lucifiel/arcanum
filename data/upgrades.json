@@ -4,6 +4,7 @@
 		"id":"startapprentice",
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
+		"repeat":false,
 		"cost":{
 			"gold":3
 		},
@@ -90,7 +91,7 @@
 	{
 		"id":"fireplace",
 		"name":"Fireplace",
-		"desc":"A cozy place for cooking food and mixing potions.",
+		"desc":"A cozy place for cooking food and brewing potions.",
 		"require":"state.space>10",
 		"cost":{
 			"gold":50,
@@ -104,7 +105,7 @@
 	{
 		"id":"mortar",
 		"name":"Mortar and Pestal",
-		"desc":"Used for grinding herbs and fine ingredients",
+		"desc":"Useful for grinding herbs and fine ingredients.",
 		"require":"apprentice",
 		"cost":{
 			"gold":20,

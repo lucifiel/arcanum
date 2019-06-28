@@ -5,13 +5,6 @@ import { defineExcept } from 'objecty';
  * @property {?number} duration
  */
 
- /**
-  * @const {string[]} Reserved - reserved prop names on effects/mods.
-  */
-export const Reserved = [
-	'skipLocked', 'duration'
-];
-
 /**
  * Base class of game items.
  */
@@ -23,16 +16,22 @@ export default class Item {
 	get type() { return this._type || 'item'; }
 
 	/**
-	 * @property {string} id
+	 * @property {string} id - internal id.
 	 */
 	get id() { return this._id; }
 	set id(v) { this._id = v;}
 
 	/**
-	 * @property {string} name
+	 * @property {string} name - displayed name.
 	 */
 	get name() { return this._name || this._id;}
 	set name(v) { this._name = v;}
+
+	/**
+	 * @property {boolean} repeat
+	 */
+	get repeat() { return this._repeat; }
+	set repeat(v) { this._repeat = v || false;}
 
 	/**
 	 * @property {string} desc
@@ -45,6 +44,14 @@ export default class Item {
 	 */
 	get value() { return this._value; }
 	set value(v) { this._value = v;}
+	valueOf() { return this._value; }
+
+	/**
+	 * @property {boolean} removed - whether the item has been
+	 * removed (permalocked) by another item.
+	 */
+	get removed() { return this._removed; }
+	set removed(v) { this._removed = v;}
 
 	/**
 	 * @property {string|string[]} tag - tag to distinguish between
@@ -58,6 +65,9 @@ export default class Item {
 
 	}
 
+	/**
+	 * @property {number|Object.<string,number>} cost
+	 */
 	get cost() { return this._cost; }
 	set cost(v) { this._cost=v;}
 
@@ -90,21 +100,22 @@ export default class Item {
 	
 		if ( this._locked === undefined ) this._locked = true;
 
-		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect']);
+		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect', 'removed']);
 
 	}
 
 	/**
 	 * Get the amount of a specific item subtype
 	 * required to buy.
-	 * @param {string} type 
+	 * @param {string} type
+	 * @returns {number}
 	 */
 	typeCost( type ) {
 
-		if ( !this.cost ) return 0;
+		if ( !this._cost ) return 0;
 
-		if ( !isNaN( this.cost) ) return type === 'gold' ? this.cost : 0;
-		return ( this.cost.hasOwnProperty(type) ) ? this.cost[type] : 0;
+		if ( !isNaN( this._cost) ) return type === 'gold' ? this._cost : 0;
+		return ( this._cost.hasOwnProperty(type) ) ? this._cost[type] : 0;
 	}
 
 	applyEffect(e) {
@@ -113,7 +124,8 @@ export default class Item {
 	/**
 	 * 
 	 * @param {Object} m - mod description. 
-	 * @param {number} amt - amount added.
+	 * @param {number} amt - factor of base amount added
+	 * ( fractions of full amount due to tick time. )
 	 */
 	addMod( m, amt ) {
 
@@ -150,6 +162,12 @@ export default class Item {
 
 	}
 
+	/**
+	 * Perform a subobject assignment.
+	 * @param {Object} obj - base object being assigned to.
+	 * @param {Object} m - object with subobjects representing assignment paths.
+	 * @param {number} amt - amount multiplier for any assignments.
+	 */
 	subassign( obj, m, amt ) {
 
 		if ( !obj instanceof Object ) {
@@ -174,6 +192,10 @@ export default class Item {
 	updateDot(e, dt) {
 	}
 
+	/**
+	 * 
+	 * @param {string} tag 
+	 */
 	addTag( tag ) {
 		if ( !this._tags) this._tags = [];
 		this._tags.push(tag);
@@ -182,6 +204,7 @@ export default class Item {
 	/**
 	 * 
 	 * @param {string[]} a - array of tags to test.
+	 * @returns {boolean}
 	 */
 	hasTags( a ) {
 
@@ -195,6 +218,7 @@ export default class Item {
 	/**
 	 * Test if any tag in the list is matched.
 	 * @param {string[]} a - array of tags to test.
+	 * @returns {boolean}
 	 */
 	anyTag( a ) {
 
@@ -207,7 +231,8 @@ export default class Item {
 
 	/**
 	 * 
-	 * @param {string} t - tag to test. 
+	 * @param {string} t - tag to test.
+	 * @returns {boolean}
 	 */
 	hasTag( t ) {
 		return this._tags && this._tags.includes(t);

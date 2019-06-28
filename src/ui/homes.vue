@@ -21,7 +21,7 @@ export default {
 		furniture(){
 			return Game.filterItems( it=>it.typeCost('space')>0);
 		},
-		visible(){
+		viewable(){
 			return this.furniture.filter( it=>!it.locked );
 		}
 
@@ -40,7 +40,7 @@ export default {
 
 		<table class="furniture">
 			<tr><th class="space">Space</th><th class="name">Furnishing</th><th class="count">Count</th></tr>
-		<tr v-for="it in visible" :key="it.id">
+		<tr v-for="it in viewable" :key="it.id">
 
 			<td class="space">{{ it.cost.space }}</td> <td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
 				<td><button :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
