@@ -10,10 +10,25 @@ export default {
 	},
 	methods:{
 
-		setActive( name ) {
+		itemTitle(it) {
 
-			this.cur = name;
-			this.$emit( 'changed', name );
+			if ( it instanceof Object ) {
+				return it.name || it.desc || it.id;
+			} return it;
+
+		},
+
+		itemId(it){
+			if ( it instanceof Object ) {
+				return it.id;
+			}
+			return it;
+		},
+
+		setActive( it ) {
+
+			this.cur = it;
+			this.$emit( 'changed', it );
 
 		}
 
@@ -30,8 +45,8 @@ export default {
 
 		<div class="menu-item" v-for="(it) in items" :key="it.id">
 			
-			<span v-if="it !== cur" @click="setActive(it)" :key="it"> <u> {{ it }} </u></span>
-			<span v-else :key="it"> {{ it }} </span>
+			<span v-if="it !== cur" @click="setActive(it)" :key="it"> <u> {{ itemTitle(it) }} </u></span>
+			<span v-else :key="it"> {{ itemTitle(it) }} </span>
 
 		</div>
 			<slot>
@@ -41,7 +56,7 @@ export default {
 
 
 		<!-- NOTE: slot css-class ignored -->
-		<slot :name="cur"></slot>
+		<slot :name="itemId(cur)"></slot>
 
 	</div>
 </template>

@@ -104,20 +104,6 @@ export default class Item {
 
 	}
 
-	/**
-	 * Get the amount of a specific item subtype
-	 * required to buy.
-	 * @param {string} type
-	 * @returns {number}
-	 */
-	typeCost( type ) {
-
-		if ( !this._cost ) return 0;
-
-		if ( !isNaN( this._cost) ) return type === 'gold' ? this._cost : 0;
-		return ( this._cost.hasOwnProperty(type) ) ? this._cost[type] : 0;
-	}
-
 	applyEffect(e) {
 	}
 

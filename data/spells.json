@@ -1,0 +1,28 @@
+[
+	{
+		"id":"light",
+		"level":1,
+		"cost":{
+
+		},
+		"effect":{
+			"duration":10,
+			"stamina.max":10
+		}
+
+	},
+	{
+
+		"id":"magic missile",
+		"level":1,
+		"cost":{
+
+		},
+		"effect":{
+
+		}
+	},
+	{
+
+	}
+]

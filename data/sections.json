@@ -1,0 +1,40 @@
+[
+
+	{
+		"id":"main",
+		"name":"main",
+		"locked":false
+
+	},
+	{
+		"id":"skills",
+		"name":"skills",
+		"require":""
+
+	},
+	{
+		"id":"house",
+		"name":"house",
+		"require":"apprentice"
+
+	},
+	{
+		"id":"raid",
+		"name":"adventure",
+		"require":"apprentice"
+
+	},
+	{
+		"id":"player",
+		"name":"player",
+		"locked":false
+
+	},
+	{
+		"id":"spells",
+		"name":"spellbook",
+		"require":""
+
+	}
+
+]

@@ -126,7 +126,7 @@ export default {
 
 		gd.actions = this.initActions();
 
-		gd.player = this.initPlayer( PlayerStats );
+		gd.player = this._items.player = this.initPlayer( PlayerStats );
 	},
 
 	/**
@@ -229,7 +229,6 @@ export default {
 
 			res = vars[ def.id ] = new Resource( def );
 			this._items[def.id] = res;
-			console.log('player resource: ' + res.id );
 
 		}
 

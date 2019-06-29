@@ -1,6 +1,7 @@
 <script>
 
 import ProgBar from './progbar.vue';
+import Game from '../game';
 
 /**
  * Single dungeon view.
@@ -8,6 +9,9 @@ import ProgBar from './progbar.vue';
 export default {
 
 	props:['dungeon'],
+	created(){
+		this.game=Game;
+	},
 	components:{
 		progbar:ProgBar
 	}
@@ -20,7 +24,7 @@ export default {
 	<div class="dungeon" v-if="dungeon">
 
 		<progbar class="dungeon" :label="dungeon.name" :value="dungeon.progress" :max="dungeon.length" />
-		<button class="raid-btn" @click="dispatch( 'raid', dungeon )">Enter</button>
+		<button class="raid-btn" :disabled="!game.runnable(dungeon)" @click="dispatch( 'raid', dungeon )">Enter</button>
 
 	</div>
 </template>

@@ -8,6 +8,11 @@ import Log from 'log';
 import GameState from './gameState';
 
 /**
+ * @constant {number} TICK_TIME - time in milliseconds between updates.
+ */
+export const TICK_TIME = 200;
+
+/**
  * @constant {number} SELL_RATE - percent of initial cost
  * item sells for.
  */
@@ -41,8 +46,6 @@ export default {
 		this._state = new GameState( DataLoader.gameData );
 		this._items = this._state.items;
 
-		this.tagItems( it=>it.typeCost('space')>0, 'furniture' );
-
 	},
 
 	startRaid( dungeon) {
@@ -63,8 +66,7 @@ export default {
 
 		this.doDots(dt);
 
-		if ( this._state.curAction === this._state.raid ) this._state.raid.update(dt);
-		else this.doAction( dt );
+		this.doAction( dt );
 
 		this.doResources(dt);
 
@@ -143,7 +145,11 @@ export default {
 
 		}
 
-		if ( action instanceof Skill ) {
+		if ( action === this._state.raid ) {
+			
+			this._state.raid.update(dt);
+
+		} else if ( action instanceof Skill ) {
 
 			action.exp += dt;
 			if ( action.exp >= action.max ) {
@@ -156,20 +162,6 @@ export default {
 			if ( action.fill && this.filled(action.fill ) ) this.stopAction();
 
 		}
-
-	},
-
-	/**
-	 * Tests if a named resource has been filled to max.
-	 * @param {Resource|Resource[]} v 
-	 */
-	filled( v ) {
-
-		if ( v instanceof Array ) return v.every( this.filled, this );
-
-		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getItem(v);
-		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.value >= fill.max.value;
 
 	},
 
@@ -198,6 +190,20 @@ export default {
 			} else this._state.curAction = null;
 
 		}
+
+	},
+
+	/**
+	 * Tests if a named resource has been filled to max.
+	 * @param {Resource|Resource[]} v 
+	 */
+	filled( v ) {
+
+		if ( v instanceof Array ) return v.every( this.filled, this );
+
+		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getItem(v);
+		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
+		return fill.value >= fill.max.value;
 
 	},
 
@@ -465,6 +471,16 @@ export default {
 			effect = this.getItem(effect);
 			if ( effect != null ) this.updateDot( effect, dt );
 		}
+
+	},
+
+	/**
+	 * Determines whether an item can be run as a continuous action.
+	 * @returns {boolean}
+	 */
+	runnable( it ) {
+
+		return this.canPay( it.cost, TICK_TIME/1000 );
 
 	},
 

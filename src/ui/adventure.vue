@@ -1,19 +1,19 @@
 <script>
 import Game from '../game';
+import ItemBase from './itemsBase.js';
 
 import ProgBar from './progbar.vue';
-import DungeonView from './dungeon.vue';
 
 export default {
 	
 	props:['state'],
+	mixins:[ItemBase],
 	data(){
 		return {
 
 		};
 	},
 	components:{
-		dungeon:DungeonView,
 		progbar:ProgBar
 	},
 	methods:{
@@ -22,9 +22,10 @@ export default {
 	computed:{
 
 		dungeons(){
-			return Game.filterItems( it=>it.type==='dungeon');
+			return Game.filterItems( it=>it.type==='dungeon'&& !this.locked(it) );
 		},
-		player(){ return this.state.player; }
+		player(){ return this.state.player; },
+		game() { return Game; }
 
 	}
 
@@ -36,7 +37,15 @@ export default {
 
 <div class="adventure">
 
-	<dungeon v-for="d in dungeons" :key="d.id" :dungeon="d" />
+	<table>
+	<tr v-for="dungeon in dungeons" :key="dungeon.id">
+
+		<td>{{ dungeon.name }}</td>
+		<td><progbar class="dungeon" :value="dungeon.progress" :max="dungeon.length" /></td>
+		<td><button class="raid-btn" :disabled="!game.runnable(dungeon)" @click="dispatch( 'raid', dungeon )">Enter</button></td>
+
+	</tr>
+	</table>
 
 	<progbar :value="player.hp.value" :max="player.hp.max" label="hp" color="#ee0000" />
 

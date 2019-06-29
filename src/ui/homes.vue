@@ -19,7 +19,7 @@ export default {
 	computed:{
 
 		furniture(){
-			return Game.filterItems( it=>it.typeCost('space')>0);
+			return Game.filterItems( it=>this.gameData.typeCost(it.cost, 'space')>0);
 		},
 		viewable(){
 			return this.furniture.filter( it=>!it.locked );

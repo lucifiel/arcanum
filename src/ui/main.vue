@@ -13,6 +13,8 @@ import PlayerView from './player.vue';
 import LogView from './outlog.vue';
 import Adventure from './adventure.vue';
 
+import { TICK_TIME } from '../game';
+
 /**
  * @listens [sell,itemover,itemout]
  */
@@ -55,7 +57,7 @@ export default {
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
 
-		this.menuItems = ['main', 'skills', 'house', 'adventure', 'player'];
+		this.menuItems = this.gameState.sections;
 
 		this.unpause();
 
@@ -81,7 +83,7 @@ export default {
 
 			if ( !this.interval ) {
 				this.game.lastUpdate = Date.now();
-				this.interval = setInterval( ()=>this.game.update(), 200 );
+				this.interval = setInterval( ()=>this.game.update(), TICK_TIME );
 			}
 
 		},
@@ -180,12 +182,15 @@ export default {
 			<homes :game-data="gameState" />
 		</template>
 	
-		<template slot="adventure">
+		<template slot="raid">
 			<adventure :state="gameState" />
 		</template>
 
 		<template slot="skills">
 			<skills :game-data="gameState"></skills>
+		</template>
+
+		<template slot="spells">
 		</template>
 
 		</vue-menu>

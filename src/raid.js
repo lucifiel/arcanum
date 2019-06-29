@@ -6,6 +6,8 @@ export default class Raid {
 	get id() { return this.dungeon.id;}
 	get name() { return this.dungeon.name; }
 
+	get cost() { return this.dungeon ? this.dungeon.cost : null; }
+
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign(vars, this);
@@ -36,7 +38,7 @@ export default class Raid {
 
 		if ( this.enemy == null ) this.setEnemy( this.dungeon.getEnemy() );
 
-		this.state.items.stamina.value -= this.dungeon.fatigue*dt;
+		//this.state.items.stamina.value -= this.dungeon.fatigue*dt;
 
 		this.playerTimer -= dt;
 		if ( this.playerTimer <= 0 ) {

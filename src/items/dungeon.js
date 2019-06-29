@@ -41,14 +41,12 @@ export default class Dungeon extends Item {
 
 		super(vars);
 
-		this._level = this._level || 1;
+		this._level = this._level !== undefined ? this._level : 1;
 		this._progress = this._progress || 0;
 		this._length = this._length || 100;
 
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
-
-		this.fatigue = this.fatigue || 1;
 
 		/**
 		 * Total of all enemy weights, used to roll which
