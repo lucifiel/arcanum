@@ -13,8 +13,6 @@ import Item from './item';
 
 export default class Dungeon extends Item {
 
-	get type() { return 'dungeon';}
-
 	/**
 	 * @property {number} length - length of dungeon to completion.
 	 */
@@ -47,6 +45,8 @@ export default class Dungeon extends Item {
 
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
+
+		this._type = this._type || 'dungeon';
 
 		/**
 		 * Total of all enemy weights, used to roll which

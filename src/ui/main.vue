@@ -5,6 +5,8 @@ import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
 import HomeView from './homes.vue';
 
+import ItemsBase from './itemsBase';
+
 import ProgBar from './progbar.vue';
 import SkillsPane from './skillsPane.vue';
 import DotView from './dotView.vue';
@@ -24,6 +26,7 @@ export default {
 	 * @property {Game} game
 	 */
 	props:['game'],
+	mixins:[ItemsBase],
 	components:{
 		resources:ResoucesView,
 		actions:ActionsView,
@@ -56,8 +59,6 @@ export default {
 		this.listen( 'upgrade', this.onUpgrade );
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
-
-		this.menuItems = this.gameState.sections;
 
 		window.addEventListener('keydown',evt=>this.keyDown( evt.key ), this );
 
@@ -153,7 +154,11 @@ export default {
 
 		stamina(){
 			return this.game.getItem('stamina');
+		},
+		menuItems(){
+			return this.gameState.sections.filter( it=>!this.locked(it) );
 		}
+
 	}
 
 }

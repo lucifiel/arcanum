@@ -73,6 +73,8 @@ export default class Resource extends Item {
 		this._value = this._value || 0;
 		this._lastValue = this._value;
 
+		this._type = this._type || 'resource';
+
 		this._delta = 0;
 
 	}

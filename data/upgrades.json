@@ -4,6 +4,7 @@
 		"id":"startapprentice",
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
+		"require":"state.gold>=20",
 		"repeat":false,
 		"cost":{
 			"gold":20
@@ -24,8 +25,38 @@
 		},
 		"mod":{
 			"tomes":{
-				"max":50
+				"max":30
 			}
+		}
+
+	},
+	{
+		"id":"library",
+		"name":"Library",
+		"desc":"",
+		"require":"state.tomes>=100",
+		"cost":{
+			"gold":500,
+			"research":100,
+			"space":50
+		},
+		"mod":{
+			"tomes.max":1000
+		}
+
+	},
+	{
+		"id":"garden",
+		"desc":"",
+		"require":"witch",
+		"cost":{
+			"gold":50,
+			"research":50,
+			"space":20
+		},
+		"mod":{
+			"herbs.base":1,
+			"herbs.max":50
 		}
 
 	},

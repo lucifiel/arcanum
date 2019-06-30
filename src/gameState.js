@@ -1,4 +1,5 @@
 import Raid from './raid';
+import Item from './items/item';
 
 import Sections from 'data/sections.json';
 
@@ -17,6 +18,9 @@ export default class GameState {
 
 		this.curEnemy = this.curEnemy || null;
 
+		for( let i = Sections.length-1; i>=0; i-- ) {
+			Sections[i] = new Item( Sections[i] );
+		}
 		this.sections = Sections;
 
 		/**

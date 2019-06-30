@@ -5,8 +5,6 @@ const EXP_RATIO = 0.5;
 
 export default class Skill extends Item {
 
-	get type(){return 'skill';}
-
 	/**
 	 * @property {number} level
 	 */
@@ -39,6 +37,7 @@ export default class Skill extends Item {
 
 		super(vars);
 
+		this.type = 'skill';
 		this._max = this._max || 100;
 		this._value = this._value || 0;
 		this._exp = this._exp || 0;

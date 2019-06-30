@@ -1,19 +1,20 @@
 <script>
 
+import ItemBase from './itemsBase';
 import SkillView from './skillView.vue';
 
 export default {
 	
 	props:['gameData'],
-	data(){
-
-		return {
-			skills:this.gameData.skills
-		};
-
-	},
+	mixins:[ItemBase],
 	components:{
 		'skill':SkillView
+	},
+	computed:{
+
+		skills(){
+			return this.gameData.filterItems( it=>it.type==='skill' && !this.locked(it) );
+		}
 	},
 	methods:{
 

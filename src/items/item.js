@@ -31,8 +31,6 @@ export default class Item {
 	/**
 	 * @property {boolean} repeat
 	 */
-	get repeat() { return this._repeat; }
-	set repeat(v) { this._repeat = v || false;}
 
 	/**
 	 * @property {string} desc
