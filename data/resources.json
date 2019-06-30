@@ -3,8 +3,7 @@
 		"id":"gold",
 		"name":"Gold",
 		"desc":"Gold Piece",
-		"max":100,
-		"value":10
+		"max":10
 	},
 	{
 
@@ -17,7 +16,7 @@
 	{
 		"id":"research",
 		"name":"Research",
-		"max":50
+		"max":15
 	},
 	{
 		"id":"mana",
@@ -33,7 +32,7 @@
 	},
 	{
 		"id":"scrolls",
-		"name":"Arcane Scrolls",
+		"name":"Scrolls",
 		"desc":"Scroll of arcane lore",
 		"max":10,
 		"mod":{
@@ -53,6 +52,13 @@
 			}
 		}
 
+	},
+	{
+
+		"id":"herbs",
+		"desc":"Special plants for potions and alchemy.",
+		"max":10,
+		"require":"cauldron"
 	},
 	{
 		"id":"space",

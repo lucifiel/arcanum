@@ -24,6 +24,7 @@
 	{
 		"id":"rest",
 		"name":"rest",
+		"verb":"resting",
 		"ignoreStamina":true,
 		"fill":[ "stamina", "hp" ],
 		"effect":{

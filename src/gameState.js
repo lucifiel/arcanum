@@ -52,6 +52,15 @@ export default class GameState {
 		return ( cost.hasOwnProperty(type) ) ? cost[type] : 0;
 	}
 
+	fillItem( id ) {
+
+		let it = this.getItem(id);
+		if ( !it) return;
+
+		it.value = it.max.value;
+
+	}
+
 	/**
 	 * 
 	 * @param {(it)=>boolean} pred 

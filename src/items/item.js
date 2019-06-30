@@ -14,6 +14,7 @@ export default class Item {
 	 * @property {string} type
 	 */
 	get type() { return this._type || 'item'; }
+	set type(v) { this._type =v;}
 
 	/**
 	 * @property {string} id - internal id.
@@ -133,9 +134,8 @@ export default class Item {
 			if ( m.pct ) this.rate.pct += m.pct*amt;
 			if ( m.max ) {
 
-				console.log('increasing max');
 				let vars = m.max;
-				if ( !isNaN(vars) ) this.max += vars * amt;
+				if ( !isNaN(vars) ) this.max += ( vars * amt );
 				else if (vars instanceof Object ) {
 
 					if ( vars.base ) this.max.base += vars.base*amt;

@@ -6,13 +6,13 @@ import SkillList from '../data/skills.json';
 import EventList from '../data/events.json';
 import Dungeons from '../data/dungeons.json';
 import PlayerStats from '../data/player.json';
+import SpellList from '../data/spells.json';
 
 import Item from 'items/item';
 import Player from 'player';
 
 import Resource from 'items/resource';
 import Upgrade from 'items/upgrade';
-import Action from 'items/action';
 import Skill from 'items/skill';
 
 import VarPath, {IsVarPath} from 'varPath';
@@ -42,6 +42,7 @@ export default {
 		this.initJSON( SkillList );
 		this.initJSON ( Dungeons );
 		this.initJSON( PlayerStats );
+		this.initJSON( SpellList );
 
 		this.initGameItems();
 
@@ -115,7 +116,7 @@ export default {
 		
 		this._items = gd.items;
 
-		gd.resources = this.initResources();
+		gd.resources = this.initResources( ResourceList );
 		gd.upgrades = this.initUpgrades( UpgradeList );
 		gd.homes = this.initUpgrades( HomeList, 'home' );
 		gd.skills = this.initSkills( SkillList );
@@ -123,6 +124,8 @@ export default {
 		this.initDungeons( Dungeons );
 	
 		gd.events = this.initEvents( EventList );
+
+		this.initSpells( SpellList );
 
 		gd.actions = this.initActions();
 
@@ -148,12 +151,12 @@ export default {
 		return a;
 	},
 
-	initResources(){
+	initResources( resArr ){
 
 		let a = [];
 		let res;
 
-		for( let def of ResourceList ) {
+		for( let def of resArr ) {
 
 			res = new Resource( def );
 	
@@ -210,7 +213,30 @@ export default {
 		let act;
 		for( let def of ActionList ) {
 
-			act = new Action( def );
+			act = new Item( def );
+			act.type = 'action';
+			act.repeat = true;
+
+			a.push(act);
+			this._items[act.id] = act;
+
+		}
+
+		return a;
+
+	},
+
+	initSpells( spellArr ) {
+
+		let a = [];
+
+		let act;
+		for( let def of spellArr ) {
+
+			act = new Item( def );
+			act.type = 'spell';
+			act.repeat = true;
+
 			a.push(act);
 			this._items[act.id] = act;
 

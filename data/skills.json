@@ -32,6 +32,7 @@
 
 		"id":"cooking",
 		"name":"Cooking",
+		"requires":"pot",
 		"cost":{
 			"stamina":1
 		}
@@ -40,6 +41,7 @@
 	{
 		"id":"potions",
 		"name":"Potions",
+		"requires":"cauldron",
 		"cost":{
 			"stamina":1
 		}
@@ -47,6 +49,7 @@
 	{
 		"id":"alchemy",
 		"name":"Alchemy",
+		"requires":"alembic",
 		"cost":{
 			"stamina":1
 		}
@@ -54,6 +57,7 @@
 	{
 		"id":"scrying",
 		"name":"Scrying",
+		"requires":"ball",
 		"cost":{
 			"stamina":1
 		}

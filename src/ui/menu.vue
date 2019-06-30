@@ -45,8 +45,8 @@ export default {
 
 		<div class="menu-item" v-for="(it) in items" :key="it.id">
 			
-			<span v-if="it !== cur" @click="setActive(it)" :key="it"> <u> {{ itemTitle(it) }} </u></span>
-			<span v-else :key="it"> {{ itemTitle(it) }} </span>
+			<span v-if="it !== cur" @click="setActive(it)" :key="itemTitle(it)"> <u> {{ itemTitle(it) }} </u></span>
+			<span v-else :key="itemTitle(it)"> {{ itemTitle(it) }} </span>
 
 		</div>
 			<slot>

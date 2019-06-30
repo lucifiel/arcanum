@@ -8,9 +8,7 @@ export default {
 	computed:{
 
 		name:{
-			get(){
-				return this.player.name;
-			},
+			get(){ return this.player.name; },
 			set(v){
 				if ( v ) this.player.name = v;
 			}
@@ -33,7 +31,7 @@ export default {
 			<input type="text" v-model.lazy="name"></th></tr>
 		<tr><td class="prop">title</td><th class="value"> {{ player.title}}</th></tr>
 		<tr><td class="prop">level</td><th class="value"> {{ player.level }}</th></tr>
-		<tr><td class="prop">exp</td><th class="value"> {{ player.exp}} </th></tr>
+		<tr><td class="prop">exp</td><th class="value"> {{ round(player.exp) }} / {{ round(player.next ) }} </th></tr>
 		<tr><td class="prop">hp</td><th class="value">
 			{{ round( player.hp.value ) }} / {{ round( player.hp.max.value ) }}</th></tr>
 		</table>

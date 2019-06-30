@@ -6,7 +6,7 @@
 		"desc":"Become an apprentice.",
 		"repeat":false,
 		"cost":{
-			"gold":3
+			"gold":20
 		},
 		"effect":"apprentice"
 
@@ -40,6 +40,15 @@
 			"mana":{
 				"base":0.1
 			}
+		}
+	},
+	{
+		"id":"purse",
+		"desc":"Keep your money safe.",
+		"require":"state.gold>=10",
+		"cost":5,
+		"mod":{
+			"gold.max":10
 		}
 	},
 	{
@@ -105,7 +114,7 @@
 	{
 		"id":"mortar",
 		"name":"Mortar and Pestal",
-		"desc":"Useful for grinding herbs and fine ingredients.",
+		"desc":"Useful for grinding herbs & fine ingredients.",
 		"require":"apprentice",
 		"cost":{
 			"gold":20,

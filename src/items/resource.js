@@ -50,7 +50,8 @@ export default class Resource extends Item {
 		} else {
 
 			var lastMax = this.reverse ? this._max.value : 0;
-			this._max.add(v);
+			console.log('+max: ' + v );
+			this._max.base = v;
 
 			if ( this.reverse ) {
 				this.value += ( this._max.value - lastMax );

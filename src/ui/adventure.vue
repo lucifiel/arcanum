@@ -38,7 +38,9 @@ export default {
 <div class="adventure">
 
 	<table>
-	<tr v-for="dungeon in dungeons" :key="dungeon.id">
+	<tr v-for="dungeon in dungeons" :key="dungeon.id"
+		@mouseenter.capture.stop="dispatch('itemover', $event, dungeon )"
+		@mouseleave.capture.stop="dispatch('itemout', $event )">
 
 		<td>{{ dungeon.name }}</td>
 		<td><progbar class="dungeon" :value="dungeon.progress" :max="dungeon.length" /></td>

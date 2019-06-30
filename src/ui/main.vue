@@ -1,6 +1,6 @@
 <script>
 import Menu from './menu.vue';
-import ResoucesView from './resourcesView.vue';
+import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
 import UpgradesView from './upgradesView.vue';
 import HomeView from './homes.vue';
@@ -59,8 +59,11 @@ export default {
 
 		this.menuItems = this.gameState.sections;
 
+		window.addEventListener('keydown',evt=>this.keyDown( evt.key ), this );
+
 		this.unpause();
 
+		// game events.
 		this.initEvents();
 
 	},
@@ -99,6 +102,12 @@ export default {
 
 			}
 
+		},
+
+		keyDown( key ){
+	
+			console.log('key:' + key);
+			if ( key === 'g') this.gameState.fillItem('gold');
 		},
 
 		doRest(){

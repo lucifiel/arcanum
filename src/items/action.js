@@ -1,6 +1,6 @@
-import { defineVars } from 'objecty';
+// Type not required.
 
-import Item from './item';
+/**import Item from './item';
 
 export default class Action extends Item {
 
@@ -13,10 +13,6 @@ export default class Action extends Item {
 		return !this._locked;
 	}
 
-	/**
-	 * 
-	 * @param {?Object} [vars=null] 
-	 */
 	constructor( vars=null ){
 
 		super(vars);
@@ -25,4 +21,4 @@ export default class Action extends Item {
 
 	}
 
-}
+}*/

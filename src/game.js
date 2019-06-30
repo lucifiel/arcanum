@@ -1,5 +1,4 @@
 import DataLoader from 'dataLoader';
-import Action from 'items/action';
 import Spellbook from 'spellbook';
 import Skill from 'items/skill';
 import VarPath from './varPath';
