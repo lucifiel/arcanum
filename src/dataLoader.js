@@ -1,12 +1,13 @@
-import ResourceList from '../data/resources.json';
-import UpgradeList from '../data/upgrades.json';
-import ActionList from '../data/actions.json';
-import HomeList from '../data/homes.json';
-import SkillList from '../data/skills.json';
-import EventList from '../data/events.json';
-import Dungeons from '../data/dungeons.json';
-import PlayerStats from '../data/player.json';
-import SpellList from '../data/spells.json';
+import ResourceList from 'data/resources.json';
+import UpgradeList from 'data/upgrades.json';
+import ActionList from 'data/actions.json';
+import HomeList from 'data/homes.json';
+import SkillList from 'data/skills.json';
+import EventList from 'data/events.json';
+import Dungeons from 'data/dungeons.json';
+import PlayerStats from 'data/player.json';
+import SpellList from 'data/spells.json';
+import Furniture from 'data/furniture';
 
 import Item from 'items/item';
 import Player from 'player';
@@ -43,6 +44,7 @@ export default {
 		this.initJSON ( Dungeons );
 		this.initJSON( PlayerStats );
 		this.initJSON( SpellList );
+		this.initJSON( Furniture);
 
 		this.initGameItems();
 
@@ -119,6 +121,8 @@ export default {
 		gd.resources = this.initResources( ResourceList );
 		gd.upgrades = this.initUpgrades( UpgradeList );
 		gd.homes = this.initUpgrades( HomeList, 'home' );
+		this.initUpgrades( Furniture, 'furniture' );
+	
 		gd.skills = this.initSkills( SkillList );
 
 		this.initDungeons( Dungeons );

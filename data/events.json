@@ -13,20 +13,29 @@
 		"name":"Apprenticeship",
 		"title":"apprentice",
 		"desc":"You became apprenticed to a local wizard.",
-		"remove":["stables"]
+		"remove":["stables"],
+		"effect":{
+			"research.max":25
+		}
 	},
 	{
 		"id":"novice",
 		"name":"Noviciate",
 		"title":"novice",
 		"desc":"Your master believes you are ready to take the next step on the path of wizardry.",
-		"remove":["apprentice"]
+		"remove":["apprentice"],
+		"effect":{
+			"research.max":50
+		}
 	},
 	{
-		"id":"leavemaster",
+		"id":"adept",
 		"name":"Left Master",
-		"desc":"You are now an independent wizard.",
-		"remove":["novice", "bedroom", "alcove","chores"]
+		"desc":"You are now an independent practitioner of the arcane.",
+		"remove":["novice", "bedroom", "alcove","chores"],
+		"effect":{
+			"research.max":100
+		}
 	}
 
 ]

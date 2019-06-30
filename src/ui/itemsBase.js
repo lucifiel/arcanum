@@ -22,7 +22,7 @@ export default {
 
 		locked(it) {
 			return it.removed === true ||
-			( ( (it.locked === false) ) ? false : !Game.tryUnlock(it) );
+			( it.locked===true && !Game.tryUnlock(it) );
 		}
 
 	}

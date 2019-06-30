@@ -21,6 +21,8 @@ export default {
 	},
 	computed:{
 
+		raid() { return this.state.raid; },
+
 		dungeons(){
 			return Game.filterItems( it=>it.type==='dungeon'&& !this.locked(it) );
 		},
@@ -36,6 +38,14 @@ export default {
 <template>
 
 <div class="adventure">
+
+	<div v-if="state.curAction===raid&&raid.enemy">
+		Adventuring...<br>
+		{{ raid.enemy.name }} Encountered<br>
+		{{ raid.playerAct }}<br>
+		{{ raid.enemyAct }}
+	</div>
+	<br>
 
 	<table>
 	<tr v-for="d in dungeons" :key="d.id">

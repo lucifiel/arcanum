@@ -4,62 +4,63 @@
 		"id":"animals",
 		"name":"Animal Handling",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	},
 	{
 		"id":"crafting",
 		"name":"Crafting",
+		"require":"workbench",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	},
 	{
 		"id":"lore",
 		"name":"Lore",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	},
 	{
 		"id":"readmagic",
 		"name":"Read Magic",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	},
 	{
 
 		"id":"cooking",
 		"name":"Cooking",
-		"requires":"pot",
+		"require":"pot",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 
 	},
 	{
 		"id":"potions",
 		"name":"Potions",
-		"requires":"cauldron",
+		"require":"cauldron",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	},
 	{
 		"id":"alchemy",
 		"name":"Alchemy",
-		"requires":"alembic",
+		"require":"alembic",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	},
 	{
 		"id":"scrying",
 		"name":"Scrying",
-		"requires":"ball",
+		"require":"ball",
 		"cost":{
-			"stamina":1
+			"stamina":0.5
 		}
 	}
 

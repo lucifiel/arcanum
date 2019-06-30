@@ -1,14 +1,15 @@
 [
 	{
 		"id":"gold",
-		"desc":"Gold Piece",
+		"desc":"Gold Coins",
 		"locked":false,
 		"max":10
 	},
 	{
 		"id":"research",
 		"name":"Research",
-		"max":15
+		"desc":"Research into the Arcane",
+		"max":25
 	},
 	{
 		"id":"mana",
@@ -20,7 +21,24 @@
 	{
 		"id":"arcana",
 		"name":"Arcana",
+		"desc":"Obscure mystical knowledge",
 		"require":"apprentice",
+		"max":10
+	},
+	{
+
+		"id":"bones",
+		"desc":"Human bones.",
+		"require":"adept",
+		"max":10
+
+	},
+	{
+
+		"id":"dust",
+		"name":"Bone Dust",
+		"desc":"The dust of human bones.",
+		"require":"adept",
 		"max":10
 	},
 	{
@@ -30,7 +48,8 @@
 		"max":10,
 		"mod":{
 			"research":{
-				"base":0.1
+				"base":0.1,
+				"max":0.5
 			}
 		}
 	},
@@ -75,27 +94,44 @@
 	{
 		"id":"fire",
 		"tag":"mana",
-		"desc":"Fire Mana"
+		"desc":"Fire Mana",
+		"max":10
 	},
 	{
 		"id":"ice",
 		"tag":"mana",
-		"desc":"Ice Mana"
+		"desc":"Ice Mana",
+		"max":10
 	},
 	{
 		"id":"air",
 		"tag":"mana",
-		"desc":"Air Mana"
+		"desc":"Air Mana",
+		"max":10
 	},
 	{
 		"id":"earth",
 		"tag":"mana",
-		"desc":"Earth Mana"
+		"desc":"Earth Mana",
+		"max":10
 	},
 	{
 		"id":"water",
 		"tag":"mana",
-		"desc":"Water Mana"
+		"desc":"Water Mana",
+		"max":10
+	},
+	{
+		"id":"black",
+		"tag":"mana",
+		"desc":"Black mana",
+		"max":10
+	},
+	{
+		"id":"white",
+		"tag":"mana",
+		"desc":"White mana",
+		"max":10
 	}
 
 ]

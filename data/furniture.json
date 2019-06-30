@@ -1,0 +1,191 @@
+[
+	{
+		"id":"smallchest",
+		"name":"Small Chest",
+		"desc":"A small treasure chest.",
+		"require":"state.gold>=50",
+		"repeat":true,
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"mod":{
+			"gold":{
+				"max":100
+			}
+		}
+	},
+	{
+		"id":"ironchest",
+		"name":"Iron Chest",
+		"desc":"Treasure chest.",
+		"require":"state.gold>=150",
+		"repeat":true,
+		"cost":{
+			"gold":200,
+			"space":2
+		},
+		"mod":{
+			"gold.max":200
+		}
+	},
+	{
+
+		"id":"workbench",
+		"name":"Workbench",
+		"desc":"A small bench for crafting.",
+		"cost":{
+			"gold":10,
+			"space":1
+		}
+
+	},
+	{
+
+		"id":"pedestal",
+		"desc":"A pedestal for reading magic tomes.",
+		"require":"novice",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"mod":{
+			"study.effect.research":0.1
+		}
+
+	},
+	{
+
+		"id":"bookcase",
+		"name":"Bookcase",
+		"repeat":true,
+		"desc":"A rough but sturdy bookcase.",
+		"require":"state.tomes>=10",
+		"cost":{
+			"gold":25,
+			"space":2
+		},
+		"mod":{
+			"tomes":{
+				"max":30
+			}
+		}
+
+	},
+	{
+		"id":"window",
+		"name":"Window",
+		"desc":"Window let's in light and air.",
+		"require":"state.space>10",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"mod":{
+			"white.base":0.1,
+			"air.base":0.1
+		}
+	},
+	{
+		"id":"basin",
+		"name":"basin",
+		"desc":"Basin of water.",
+		"require":"state.space>10",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"mod":{
+			"water.base":0.1,
+			"water.max":10
+		}
+	},
+	{
+		"id":"fireplace",
+		"name":"Fireplace",
+		"desc":"A cozy place for cooking food and brewing potions.",
+		"require":"state.space>10",
+		"cost":{
+			"gold":50,
+			"space":1
+		},
+		"mod":{
+			"fire.base":0.1
+		}
+
+	},
+	{
+		"id":"fountain",
+		"name":"fountain",
+		"desc":"Water Fountain",
+		"require":"state.space>10",
+		"cost":{
+			"gold":500,
+			"space":5
+		},
+		"mod":{
+			"water.base":0.5,
+			"water.max":50
+		}
+	},
+	{
+		"id":"library",
+		"name":"Library",
+		"desc":"",
+		"require":"state.tomes>=100",
+		"cost":{
+			"gold":500,
+			"research":100,
+			"space":50
+		},
+		"mod":{
+			"tomes.max":1000
+		}
+
+	},
+	{
+		"id":"garden",
+		"desc":"",
+		"require":"witch",
+		"cost":{
+			"gold":50,
+			"research":50,
+			"space":20
+		},
+		"mod":{
+			"herbs.base":1,
+			"herbs.max":50
+		}
+
+	},
+	{
+		"id":"pond",
+		"name":"pond",
+		"desc":"Pond",
+		"require":"state.space>50",
+		"cost":{
+			"gold":500,
+			"space":25
+		},
+		"mod":{
+			"water.base":0.1,
+			"nature.base":0.1,
+			"nature.max":50,
+			"water.max":100
+		}
+	},
+	{
+
+		"id":"workshop",
+		"name":"Workshop",
+		"desc":"A space suitable for crafting items.",
+		"require":"state.space>100",
+		"cost":{
+			"space":50,
+			"gold":500,
+			"research":25
+		}
+
+	}
+
+]

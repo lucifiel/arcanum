@@ -18,6 +18,9 @@ export default class Raid {
 		this.playerTimer = this.playerTimer || 0;
 		this.enemyTimer = this.enemyTimer || 0;
 
+		this.playerAct = '';
+		this.enemyAct = '';
+
 	}
 
 	initState( gameState ) {
@@ -69,7 +72,7 @@ export default class Raid {
 
 		if ( atk >= Math.random()*this.enemy.defense ) {
 
-			console.log('monster hit');
+			this.playerAct = 'enemy hit';
 			let dmg = this.player.minDmg +
 				Math.round( Math.random()*(this.player.maxDmg-this.player.minDmg) );
 			this.enemy.hp -= dmg;
@@ -85,6 +88,8 @@ export default class Raid {
 		//console.log('monster attack: ' + atk);
 
 		if ( atk >= Math.random()*this.player.defense ) {
+
+			this.enemyAct = 'player hit';
 
 			console.log('player hit');
 			let dmg = this.enemy.min +

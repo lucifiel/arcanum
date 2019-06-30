@@ -18,18 +18,25 @@ alchemist
 witch
 medium
 transmuter
+acolyte
+summoner
+keeper
+warden
+trickster
 
-mid tier?
+Mid Tier?
 battlemage
+eradicator
 fire/water/earth/air mage?
 warlock
 seer
 thaumaturge
 
-high tier
+High Tier
 lich
 oracle
 dreadlord
+dark lord
 wizard
 high witch
 planeswalker
@@ -38,6 +45,8 @@ archmage
 archlich
 avatar
 archlock
+elemental
+high elemental
 
 
 

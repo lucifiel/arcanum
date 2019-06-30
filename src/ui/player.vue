@@ -34,6 +34,8 @@ export default {
 		<tr><td class="prop">exp</td><th class="value"> {{ round(player.exp) }} / {{ round(player.next ) }} </th></tr>
 		<tr><td class="prop">hp</td><th class="value">
 			{{ round( player.hp.value ) }} / {{ round( player.hp.max.value ) }}</th></tr>
+			<tr><td class="prop">stamina</td><th class="value">
+			{{ round( player.stamina.value ) }} / {{ round(player.stamina.max.value )}}</th></tr>
 		</table>
 
 	</div>

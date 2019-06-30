@@ -109,6 +109,10 @@ export default {
 	
 			console.log('key:' + key);
 			if ( key === 'g') this.gameState.fillItem('gold');
+			else if ( key === 'r') this.gameState.fillItem('research');
+			else if ( key === 'm') this.gameState.fillItem('mana');
+			else if ( k === 'a') this.gameState.fillItem('arcana');
+
 		},
 
 		doRest(){
@@ -152,9 +156,7 @@ export default {
 	computed:{
 		resting() { return this.gameState.curAction === this.game.getItem('rest'); },
 
-		stamina(){
-			return this.game.getItem('stamina');
-		},
+		stamina(){ return this.game.getItem('stamina'); },
 		menuItems(){
 			return this.gameState.sections.filter( it=>!this.locked(it) );
 		}

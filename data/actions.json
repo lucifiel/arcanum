@@ -4,7 +4,7 @@
 		"name":"Clean Stables",
 		"locked":false,
 		"cost":{
-			"stamina":0.1
+			"stamina":0.08
 		},
 		"effect":{
 			"gold":0.1
@@ -15,7 +15,7 @@
 		"name":"Do Chores",
 		"must":"apprentice",
 		"cost":{
-			"stamina":0.2
+			"stamina":0.17
 		},
 		"effect":{
 			"gold":0.5
@@ -37,8 +37,9 @@
 		}
 	},
 	{
-		"id":"read",
-		"name":"Read",
+		"id":"study",
+		"name":"Study",
+		"desc":"Study the arcane",
 		"require":"state.scrolls>=1",
 		"cost":{
 			"stamina":0.1
@@ -56,10 +57,19 @@
 		"name":"Buy scroll",
 		"require":"state.gold>=10",
 		"cost":{
-			"gold":3
+			"gold":10
 		},
 		"effect":{
 			"scrolls":1
+		}
+	},
+	{
+		"id":"buygem",
+		"name":"Purchase Gem",
+		"require":"state.gold>=100",
+		"cost":100,
+		"effect":{
+			"gems":1
 		}
 	},
 	{
