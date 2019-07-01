@@ -18,7 +18,7 @@
 		"id":"candle",
 		"desc":"A tiny glowing candle.",
 		"flavor":"You no take candle!",
-		"repeat":true,
+		"repeat":false,
 		"require":"!state.mana.locked&&state.mana.max>=20",
 		"cost":1,
 		"mod":{
@@ -75,11 +75,28 @@
 		"id":"prism",
 		"desc":"A small pyramid of crsytal.",
 		"require":"apprentice",
-		"cost":50,
+		"cost":{
+			"cost":20,
+			"research":20
+		},
 		"mod":{
 			"research.max":20
 		}
 
+	},
+	{
+		"id":"windchime",
+		"name":"Windchime",
+		"desc":"Focus of air magic.",
+		"require":"state.space>10",
+		"cost":{
+			"gold":50,
+			"research":25
+		},
+		"mod":{
+			"air.base":0.01,
+			"air.max":10
+		}
 	},
 	{
 		"id":"heartcandle",
@@ -91,8 +108,20 @@
 		"cost":10,
 		"mod":{
 			"mana":{
-				"base":0.25
+				"base":0.02
 			}
+		}
+	},
+	{
+		"id":"holycandle",
+		"name":"Holy Candle",
+		"desc":"White glowing candle",
+		"repeat":true,
+		"require":"state.white>=10",
+		"cost":25,
+		"mod":{
+			"white.max":5,
+			"white.base":0.1
 		}
 	},
 	{

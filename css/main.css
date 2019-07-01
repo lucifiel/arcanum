@@ -41,12 +41,6 @@ input[type="button"]:enabled:active, button:enabled:active {
 	text-transform: capitalize;
 }
 
-
-.mid-view {
-	flex-basis:64%;
-	margin: 12px 8px;
-}
-
 div.action-list, div.upgrade-list {
 	flex-direction: row;
 	text-transform: capitalize;

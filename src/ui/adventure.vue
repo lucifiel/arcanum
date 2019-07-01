@@ -26,7 +26,6 @@ export default {
 		dungeons(){
 			return Game.filterItems( it=>it.type==='dungeon'&& !this.locked(it) );
 		},
-		player(){ return this.state.player; },
 		game() { return Game; }
 
 	}
@@ -39,9 +38,9 @@ export default {
 
 <div class="adventure">
 
-	<div v-if="state.curAction===raid&&raid.enemy">
+	<div v-if="state.curAction===raid">
 		Adventuring...<br>
-		{{ raid.enemy.name }} Encountered<br>
+		{{ raid.enemy ? raid.enemy.name + ' Encountered' : 'Exploring...' }}<br>
 		{{ raid.playerAct }}<br>
 		{{ raid.enemyAct }}
 	</div>
@@ -59,8 +58,6 @@ export default {
 
 	</tr>
 	</table>
-
-	<progbar :value="player.hp.value" :max="player.hp.max" label="hp" color="#ee0000" />
 
 </div>
 	

@@ -1,5 +1,6 @@
 import Stat from "./stat";
 import Resource from "./items/resource";
+import Range from './range';
 
 /**
  * @constant {number} EXP_RATE
@@ -50,12 +51,6 @@ export default class Player {
 		this._delay = 1/v;
 	}
 
-	get minDmg() { return this._minDmg; }
-	set minDmg(v) { this._minDmg=v;}
-
-	get maxDmg() { return this._maxDmg; }
-	set maxDmg(v) { this._maxDmg=v;}
-
 	/**
 	 * @property {number} delay - time between attacks.
 	 */
@@ -76,8 +71,7 @@ export default class Player {
 		this._attack = this._attack || 2;
 		this._defense = this._defense || 1;
 
-		this._minDmg = this._minDmg || 1;
-		this._maxDmg = this._maxDmg || 2;
+		this.damage = this.damage || new Range( 1, 2 );
 
 		this._name = this._name || 'wizrobe';
 

@@ -7,7 +7,7 @@ import HomeView from './homes.vue';
 
 import ItemsBase from './itemsBase';
 
-import ProgBar from './progbar.vue';
+import Vitals from 'ui/vitals.vue';
 import SkillsPane from './skillsPane.vue';
 import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
@@ -32,11 +32,11 @@ export default {
 		actions:ActionsView,
 		upgrades:UpgradesView,
 		itempopup:ItemPopup,
+		vitals:Vitals,
 		log:LogView,
 		skills:SkillsPane,
 		dots:DotView,
 		homes:HomeView,
-		progbar:ProgBar,
 		player:PlayerView,
 		adventure:Adventure,
 		'vue-menu':Menu
@@ -59,6 +59,7 @@ export default {
 		this.listen( 'upgrade', this.onUpgrade );
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
+		this.listen( 'rest', this.onRest );
 
 		window.addEventListener('keydown',evt=>this.keyDown( evt.key ), this );
 
@@ -111,14 +112,7 @@ export default {
 			if ( key === 'g') this.gameState.fillItem('gold');
 			else if ( key === 'r') this.gameState.fillItem('research');
 			else if ( key === 'm') this.gameState.fillItem('mana');
-			else if ( k === 'a') this.gameState.fillItem('arcana');
-
-		},
-
-		doRest(){
-
-			if ( !this.resting ) this.gameState.curAction = this.game.getItem('rest');
-			else this.game.stopAction( this.game.getItem('rest') );
+			else if ( key === 'a') this.gameState.fillItem('arcana');
 
 		},
 
@@ -138,6 +132,17 @@ export default {
 			}
 		},
 
+		onRest(){
+
+			let rest = this.gameState.getItem('rest');
+			if ( this.gameState.curAction !== rest ) {
+
+				this.gameState.curAction = rest;
+	
+			} else this.game.stopAction( rest );
+
+		},
+
 		onUpgrade(upgrade) {
 			this.game.tryUpgrade(upgrade);
 		},
@@ -154,9 +159,7 @@ export default {
 
 	},
 	computed:{
-		resting() { return this.gameState.curAction === this.game.getItem('rest'); },
 
-		stamina(){ return this.game.getItem('stamina'); },
 		menuItems(){
 			return this.gameState.sections.filter( it=>!this.locked(it) );
 		}
@@ -177,12 +180,6 @@ export default {
 		<dots :dots="gameState.dots" />
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
-
-		<div class="stamina-bar">
-		<progbar label="Stamina" :value="stamina.value" :max="stamina.max.value" />
-		<button class="rest-btn" @click="doRest">{{ this.resting ? 'Stop' : 'Rest' }}</button>
-		Action: {{ this.gameState.curAction !== null ? this.gameState.curAction.name : 'None'}}
-		</div>
 
 		<template slot="main">
 		<actions :items="gameState.actions" />
@@ -207,11 +204,22 @@ export default {
 		</template>
 
 		<template slot="spells">
+			<spellbook :state="gameState" />
 		</template>
 
 		</vue-menu>
 
+		<vitals :player="gameState.player" :state="gameState" />
 		<log :log="game.log" />
 
 	</div>
 </template>
+
+<style scoped>
+
+.mid-view {
+	flex-basis:35%;
+	margin: 12px 8px;
+}
+
+</style>

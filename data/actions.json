@@ -2,6 +2,7 @@
 	{
 		"id":"stables",
 		"name":"Clean Stables",
+		"verb":"cleaning",
 		"locked":false,
 		"cost":{
 			"stamina":0.08
@@ -47,7 +48,7 @@
 		"effect":{
 			"research":1,
 			"arcana":{
-				"skipLocked":2,
+				"skipLocked":true,
 				"value":0.1
 			}
 		}
@@ -94,17 +95,6 @@
 		},
 		"effect":{
 			"gold":5
-		}
-	},
-	{
-		"id":"buyball",
-		"name":"Buy Crystal Ball",
-		"require":"state.gold>=50",
-		"cost":{
-			"gold":50
-		},
-		"effect":{
-			"ball":1
 		}
 	},
 	{

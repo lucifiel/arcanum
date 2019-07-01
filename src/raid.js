@@ -72,12 +72,15 @@ export default class Raid {
 
 		if ( atk >= Math.random()*this.enemy.defense ) {
 
-			this.playerAct = 'enemy hit';
-			let dmg = this.player.minDmg +
-				Math.round( Math.random()*(this.player.maxDmg-this.player.minDmg) );
+			let dmg = this.player.damage.value;
+
+			this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
+
 			this.enemy.hp -= dmg;
 			if ( this.enemy.hp <= 0 ) this.enemyDied();
 
+		} else {
+			this.playerAct = this.player.name + ' misses';
 		}
 
 	}
@@ -89,14 +92,16 @@ export default class Raid {
 
 		if ( atk >= Math.random()*this.player.defense ) {
 
-			this.enemyAct = 'player hit';
-
-			console.log('player hit');
 			let dmg = this.enemy.min +
 				Math.round( Math.random()*(this.enemy.max-this.enemy.min) );
+
+			this.enemyAct = this.player.name + ' hit: ' + dmg.toFixed(1);
+
 			this.player.hp -= dmg;
 			if ( this.player.hp <= 0 ) this.playerDied();
 
+		} else {
+			this.enemyAct = this.enemy.name + ' misses';
 		}
 
 	}
@@ -111,6 +116,8 @@ export default class Raid {
 		console.log('enemey died');
 		this.player.exp += this.enemy.level;
 		this.dungeon.progress++;
+
+		this.enemyAct = this.enemy.name + ' slain';
 		this.enemy = null;
 
 		if ( this.dungeon.progress === this.dungeon.length ) {

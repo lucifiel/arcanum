@@ -38,7 +38,3 @@ export function priceToNum(v) {
 	return Number(res[1] );
 
 }
-
-export default {
-	price:price
-};
