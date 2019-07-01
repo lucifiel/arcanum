@@ -9,6 +9,7 @@ import ItemsBase from './itemsBase';
 
 import Vitals from 'ui/vitals.vue';
 import SkillsPane from './skillsPane.vue';
+import Spellbook from 'ui/spellbook.vue';
 import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
 import PlayerView from './player.vue';
@@ -38,6 +39,7 @@ export default {
 		dots:DotView,
 		homes:HomeView,
 		player:PlayerView,
+		spellbook:Spellbook,
 		adventure:Adventure,
 		'vue-menu':Menu
 	},
@@ -108,7 +110,8 @@ export default {
 
 		keyDown( key ){
 	
-			console.log('key:' + key);
+			key = key.toLowerCase();
+			//console.log('key:' + key);
 			if ( key === 'g') this.gameState.fillItem('gold');
 			else if ( key === 'r') this.gameState.fillItem('research');
 			else if ( key === 'm') this.gameState.fillItem('mana');
@@ -144,11 +147,11 @@ export default {
 		},
 
 		onUpgrade(upgrade) {
-			this.game.tryUpgrade(upgrade);
+			this.game.tryItem(upgrade);
 		},
 	
 		onAction( action ) {
-			this.game.tryAction( action );
+			this.game.tryItem( action );
 		},
 
 		onRaid( dungeon ) {

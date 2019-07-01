@@ -3,11 +3,13 @@
 		"id":"light",
 		"level":1,
 		"cost":{
-
+			"mana":1
 		},
-		"effect":{
+		"dot":{
 			"duration":10,
-			"stamina.max":10
+			"mod":{
+				"stamina.max":10
+			}
 		}
 
 	},
@@ -16,13 +18,13 @@
 		"id":"magic missile",
 		"level":1,
 		"cost":{
-
+			"mana":5
 		},
 		"effect":{
-
+			"damage":"2-3"
 		}
 	},
 	{
-
+		"id":""
 	}
 ]

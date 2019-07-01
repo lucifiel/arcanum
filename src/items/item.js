@@ -109,10 +109,10 @@ export default class Item {
 	/**
 	 * 
 	 * @param {Object} m - mod description. 
-	 * @param {number} amt - factor of base amount added
+	 * @param {number} pct - factor of base amount added
 	 * ( fractions of full amount due to tick time. )
 	 */
-	addMod( m, amt ) {
+	addMod( m, pct ) {
 
 		if ( m instanceof Object ) {
 
@@ -120,25 +120,26 @@ export default class Item {
 
 				if ( m[p] instanceof Object ) {
 					console.log('subassign: ' + p)
-					this.subassign( this[p], m[p], amt );
+					this.subassign( this[p], m[p], pct );
 				} else if ( this.hasOwnProperty(p) ) {
 					console.log('adding: ' + p );
-					this[p] += Number(m[p])*amt;
+					this[p] += Number(m[p])*pct;
 				}
 
 			}
 
-			if ( m.base ) this.rate.base += m.base*amt;
-			if ( m.pct ) this.rate.pct += m.pct*amt;
+			if ( m.base ) this.rate.base += m.base*pct;
+			if ( m.pct ) this.rate.pct += m.pct*pct;
 			if ( m.max ) {
 
 				let vars = m.max;
-				if ( !isNaN(vars) ) this.max += ( vars * amt );
+				if ( !isNaN(vars) ) this.max += ( vars * pct );
 				else if (vars instanceof Object ) {
 
-					if ( vars.base ) this.max.base += vars.base*amt;
-					if ( vars.pct ) this.max.pct += vars.pct*amt;
+					if ( vars.base ) this.max.base += vars.base*pct;
+					if ( vars.pct ) this.max.pct += vars.pct*pct;
 				}
+				if ( this.value > this.max.value ) this.value = this.max.value;
 
 			}
 

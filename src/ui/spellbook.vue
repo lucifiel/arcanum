@@ -1,5 +1,5 @@
 <script>
-import ItemBase from 'itemsBase';
+import ItemBase from './itemsBase';
 import Game from '../game';
 
 import ResoucesView from './resources.vue';
@@ -39,12 +39,12 @@ export default {
 	<div>
 
 		<table>
-		<tr v-for="s in spells" :key="s.id"
-			@mouseenter.capture.stop="dispatch('itemover', $event, s )"
-			@mouseleave.capture.stop="dispatch('itemout', $event )">
+		<tr v-for="s in spells" :key="s.id">
 
 			<td>{{ s.name }}</td>
-			<td><button @click="dispatch('action', s)">Cast</button></td>
+			<td><button @click="dispatch('action', s)"
+				@mouseenter.capture.stop="dispatch('itemover', $event, s )"
+				@mouseleave.capture.stop="dispatch('itemout', $event )">Cast</button></td>
 
 		</tr>
 		</table>

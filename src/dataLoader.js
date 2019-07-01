@@ -64,6 +64,12 @@ export default {
 	
 			if ( it.mod ) it.mod = this.parseSub(it.mod);
 			if ( it.fill) it.fill = this.parseSub(it.fill);
+			if ( it.effect ) it.effect = this.parseSub(it.effect );
+
+			if ( it.dot) {
+				if ( it.dot.effect ) this.parseSub( it.dot.effect );
+				if ( it.dot.mod ) this.parseSub( it.dot.mod );
+			}
 
 		}
 

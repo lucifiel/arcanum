@@ -111,15 +111,25 @@ export default {
 	doDots( dt ) {
 
 		let updates = this._state.dots;
-		let efx;
+		let dot;
 
 		for( let i = updates.length-1; i >= 0; i-- ) {
 
-			efx = updates[i];
-			efx.duration -= dt;
-			if ( efx.duration < 0 ) updates.splice( i, 1 );
-			// ignore any remainder beyond 0.
-			this.updateDot( efx, dt );
+			dot = updates[i];
+			dot.duration -= dt;
+			if ( dot.duration <= 0 ) {
+
+				updates.splice( i, 1 );
+				if ( dot.mod ) {
+					this.addMod( dot.mod, -1 );
+				}
+
+			} else {
+
+				// ignore any remainder beyond 0.
+				if ( dot.effect ) this.applyEffect( dot.effect, dt );
+
+			}
 
 		}
 
@@ -277,46 +287,37 @@ export default {
 	},
 
 	/**
-	 *
-	 * @param {Item} up
+	 * Attempt to pay for an item, and if the cost is met, apply it.
+	 * @param {Item} it
 	 * @returns {boolean}
 	 */
-	tryUpgrade(up){
+	tryItem(it) {
 
-		if ( up.cost ) {
-	
-			if ( !this.canPay(up.cost) ) {
-				this.log.log('', 'Cannot afford upgrade.');
-				return false;
-			}
-			this.payCost( up.cost );
+		if ( it.cost ) {
+			if ( !this.canPay(it.cost) ) return false;
+			this.payCost( it.cost );
 		}
 
-		up.value++;
+		it.value++;
 
-		if ( up.effect ) this.applyEffect(up.effect);
-		if ( up.mod ) this.addMod( up.mod, 1 );
+		if ( it.effect ) this.applyEffect(it.effect);
+		if ( it.mod ) this.addMod( it.mod, 1 );
 
-		if (!up.repeat ) this.remove(up);
+		if ( it.dot ) this.beginDot( it.dot );
+
+		if ( it.repeat === false ) this.remove(it);
 
 		return true;
 
 	},
 
-	/**
-	 * Attempt to pay for an action, and if the cost is met, apply it.
-	 * @param {Action} act
-	 * @returns {boolean}
-	 */
-	tryAction(act) {
+	beginDot( dot ) {
 
-		if ( act.cost ) {
-			if ( !this.canPay(act.cost) ) return false;
-			this.payCost( act.cost );
+		this._state.dots.push( Object.assign( {}, dot ) );
+		if ( dot.mod ) {
+			console.log('adding dot mod');
+			this.addMod( dot.mod, 1 );
 		}
-
-		if ( act.effect ) this.applyEffect(act.effect)
-		return true;
 
 	},
 
@@ -411,8 +412,6 @@ export default {
 
 		else if ( effect instanceof Object ) {
 
-			if ( effect.duration ) this._state.dots.push( Object.assign( {}, effect ) );
-
 			let target, e;
 			for( let p in effect ){
 
@@ -437,38 +436,6 @@ export default {
 
 			}
 
-		}
-
-	},
-
-	/**
-	 * Update a timed effect.
-	 * @param {Object|string|Effect} effect 
-	 * @param {number} dt - elapsed time. 
-	 */
-	updateDot( effect, dt ) {
-
-		if ( effect instanceof Array ) for( let e of effect ) this.updateDot(e, dt);
-
-		else if ( effect instanceof Object ) {
-
-			let target, e;
-			for( let p in effect ){
-
-				target = this.getItem(p);
-				if ( target === undefined ) continue;
-
-				e = effect[p];
-
-				if ( !isNaN(e) ) target.value += e*dt;
-				else target.updateDot(e);
-
-			}
-
-		} else if ( typeof effect === 'string') {
-
-			effect = this.getItem(effect);
-			if ( effect != null ) this.updateDot( effect, dt );
 		}
 
 	},
