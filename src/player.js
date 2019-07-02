@@ -73,6 +73,11 @@ export default class Player {
 
 		this.damage = this.damage || new Range( 1, 2 );
 
+		/**
+		 * @property {Item} primary - primary attack.
+		 */
+		this.primary = null;
+
 		this._name = this._name || 'wizrobe';
 
 	}

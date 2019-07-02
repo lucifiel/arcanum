@@ -6,7 +6,7 @@ import { defineExcept } from 'objecty';
  */
 
 /**
- * Base class of game items.
+ * Game Items base class.
  */
 export default class Item {
 

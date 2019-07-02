@@ -1,15 +1,46 @@
 [
 	{
-		"id":"light",
+		"id":"minorstamina",
+		"name":"lesser fount",
 		"level":1,
 		"cost":{
+
+			"research":50,
+			"scrolls":1
+
+		},
+		"cast":{
 			"mana":1
 		},
 		"dot":{
-			"duration":10,
+			"duration":60,
 			"mod":{
-				"stamina.max":10
+				"stamina.max":5
 			}
+		}
+
+	},
+	{
+
+		"id":"minorregen",
+		"name":"minor regen",
+		"level":1,
+		"cost":{
+
+			"research":50,
+			"scrolls":1
+
+		},
+		"cast":{
+			"mana":1
+		},
+		"dot":{
+
+			"duration":60,
+			"effect":{
+				"hp":1
+			}
+
 		}
 
 	},
@@ -18,13 +49,17 @@
 		"id":"magic missile",
 		"level":1,
 		"cost":{
+
+			"research":100,
+			"scrolls":1
+
+		},
+		"cast":{
 			"mana":5
 		},
-		"effect":{
+		"attack":{
 			"damage":"2-3"
 		}
-	},
-	{
-		"id":""
 	}
+
 ]

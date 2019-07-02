@@ -76,7 +76,7 @@
 		"desc":"A small pyramid of crsytal.",
 		"require":"apprentice",
 		"cost":{
-			"cost":20,
+			"gold":20,
 			"research":20
 		},
 		"mod":{

@@ -286,6 +286,18 @@ export default {
 
 	},
 
+	tryLearn(it) {
+
+		if ( it.cost ) {
+			if ( !this.canPay(it.cost) ) return false;
+			this.payCost( it.cost );
+		}
+
+		it.cost = it.cast || it.use;
+		it.learned = true;
+
+	},
+
 	/**
 	 * Attempt to pay for an item, and if the cost is met, apply it.
 	 * @param {Item} it
@@ -303,20 +315,27 @@ export default {
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 
-		if ( it.dot ) this.beginDot( it.dot );
+		if ( it.dot ) this.beginDot( it, it.dot );
 
-		if ( it.repeat === false ) this.remove(it);
+		if ( it.repeat !== true ) this.remove(it);
 
 		return true;
 
 	},
 
-	beginDot( dot ) {
+	beginDot( it, dot ) {
 
-		this._state.dots.push( Object.assign( {}, dot ) );
-		if ( dot.mod ) {
-			console.log('adding dot mod');
-			this.addMod( dot.mod, 1 );
+		let id = it.id;
+
+		let cur = this._state.dots.find( d=>d.id===id);
+		if ( cur !== undefined ) cur.duration = dot.duration;
+		else {
+
+			this._state.dots.push( Object.assign( { id:id, name:it.name }, dot ) );
+			if ( dot.mod ) {
+				this.addMod( dot.mod, 1 );
+			}
+
 		}
 
 	},
@@ -481,7 +500,10 @@ export default {
 
 	canBuy( item ){
 
-		if ( !item.repeat && item.value > 0 ) return false;
+		if ( !item.repeat && item.value > 0 ) {
+			console.log('cant buy: ' + item.id );
+			return false;
+		}
 		return !item.cost || this.canPay(item.cost);
 	},
 

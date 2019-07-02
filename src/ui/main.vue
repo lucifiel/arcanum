@@ -62,6 +62,10 @@ export default {
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
 		this.listen( 'rest', this.onRest );
+		this.listen( 'learn', this.onLearn );
+
+		// primary attack.
+		this.listen( 'primary', this.onPrimary);
 
 		window.addEventListener('keydown',evt=>this.keyDown( evt.key ), this );
 
@@ -154,10 +158,23 @@ export default {
 			this.game.tryItem( action );
 		},
 
+		/**
+		 * Learn to use a spell or item.
+		 * @property {Item} item - item to learn.
+		 */
+		onLearn(item) {
+			this.game.tryLearn(item);
+		},
+
 		onRaid( dungeon ) {
 
 			this.game.startRaid( dungeon );
 
+		},
+
+		onPrimary( s) {
+			console.log('primary: ' + s.id );
+			this.gameState.player.primary = s;
 		}
 
 	},
@@ -174,13 +191,17 @@ export default {
 
 <template>
 
-	<div class="main">
+	<div class="full">
+
+		<div class="top-bar">
+			<dots :dots="gameState.dots" />
+		</div>
+		<div class="main">
 
 		<!-- popup -->
 		<itempopup :item="overItem" :elm="overElm" />
 
 		<resources :items="gameState.resources"/>
-		<dots :dots="gameState.dots" />
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
 
@@ -215,12 +236,32 @@ export default {
 		<vitals :player="gameState.player" :state="gameState" />
 		<log :log="game.log" />
 
+		</div>
+
 	</div>
 </template>
 
 <style scoped>
 
-.mid-view {
+div.full {
+	display:flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0px;
+}
+
+div.top-bar {
+	display:flex;
+	min-height: 24px;
+	width:100%;
+}
+
+div.main {
+	display:flex;
+	flex-direction: row;
+}
+
+div.mid-view {
 	flex-basis:35%;
 	margin: 12px 8px;
 }

@@ -1,3 +1,5 @@
+import Game from './game';
+
 /**
  * Represents an active dungeon raid.
  */
@@ -71,6 +73,10 @@ export default class Raid {
 		//console.log('player attack: ' + atk );
 
 		if ( atk >= Math.random()*this.enemy.defense ) {
+
+			if ( this.player.primary ) {
+
+			}
 
 			let dmg = this.player.damage.value;
 
