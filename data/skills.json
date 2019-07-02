@@ -8,6 +8,24 @@
 		}
 	},
 	{
+		"id":"readmagic",
+		"school":"arcane",
+		"name":"Read Magic",
+		"cost":{
+			"stamina":0.2
+		}
+	},
+	{
+
+		"id":"cooking",
+		"name":"Cooking",
+		"require":"pot",
+		"cost":{
+			"stamina":0.1
+		}
+
+	},
+	{
 		"id":"crafting",
 		"name":"Crafting",
 		"require":"workbench",
@@ -18,29 +36,53 @@
 	{
 		"id":"lore",
 		"name":"Lore",
-		"cost":{
-			"stamina":0.5
-		}
-	},
-	{
-		"id":"readmagic",
-		"name":"Read Magic",
+		"school":"arcane",
 		"cost":{
 			"stamina":0.5
 		}
 	},
 	{
 
-		"id":"cooking",
-		"name":"Cooking",
-		"require":"pot",
+		"id":"anatomy",
+		"require":"state.lore>=5",
+		"school":["nature","shadow","light"],
 		"cost":{
 			"stamina":0.5
 		}
 
+	},
+	{
+
+		"id":"dissection",
+		"require":"state.anatomy>=3",
+		"school":["shadow"],
+		"cost":{
+			"stamina":0.5
+		}
+
+	},
+	{
+
+		"id":"embalming",
+		"require":"state.dissection>=5",
+		"school":["shadow"],
+		"cost":{
+			"stamina":0.5
+		}
+
+	},
+	{
+		"id":"herbalism",
+		"school":["nature"],
+		"name":"herbalism",
+		"require":"mortar",
+		"cost":{
+			"stamina":0.25
+		}
 	},
 	{
 		"id":"potions",
+		"school":["nature","water"],
 		"name":"Potions",
 		"require":"cauldron",
 		"cost":{
@@ -50,7 +92,16 @@
 	{
 		"id":"alchemy",
 		"name":"Alchemy",
+		"school":["elemental"],
 		"require":"alembic",
+		"cost":{
+			"stamina":0.5
+		}
+	},
+	{
+		"id":"astrology",
+		"name":"astrology",
+		"require":"sextant",
 		"cost":{
 			"stamina":0.5
 		}

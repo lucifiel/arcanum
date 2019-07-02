@@ -17,7 +17,7 @@
 	{
 		"id":"neophytism",
 		"name":"Neophyte",
-		"desc":"Ascend to the next level of wizardry.",
+		"desc":"Ascend the next level of wizardry.",
 		"require":"state.research>=200",
 		"repeat":false,
 		"cost":{
@@ -111,10 +111,15 @@
 		"require":"apprentice",
 		"cost":{
 			"gold":20,
-			"research":20
+			"research":50
 		},
 		"mod":{
-			"research.max":20
+			"research.max":20,
+			"light":{
+				"skipLocked":true,
+				"max":1,
+				"base":0.01
+			}
 		}
 
 	},
@@ -125,7 +130,7 @@
 		"require":"state.space>10",
 		"cost":{
 			"gold":50,
-			"research":25
+			"research":50
 		},
 		"mod":{
 			"air.base":0.01,
@@ -141,8 +146,8 @@
 		"require":"state.mana.max>=50",
 		"cost":10,
 		"mod":{
-			"mana":{
-				"base":0.02
+			"fire":{
+				"base":0.01
 			}
 		}
 	},
@@ -155,7 +160,7 @@
 		"cost":25,
 		"mod":{
 			"light.max":5,
-			"light.base":0.1
+			"light.base":0.01
 		}
 	},
 	{
@@ -198,6 +203,7 @@
 		"name":"Cooking Pot",
 		"desc":"",
 		"require":"fireplace",
+		"flavor":"boil things, mash things, stick 'em in a stew.",
 		"cost":{
 			"gold":20
 		},

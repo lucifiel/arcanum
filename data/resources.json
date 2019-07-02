@@ -11,14 +11,6 @@
 		"max":25
 	},
 	{
-		"id":"mana",
-		"tag":"mana",
-		"color":"#2531b3",
-		"require":"apprentice",
-		"name":"mana",
-		"max":25
-	},
-	{
 		"id":"arcana",
 		"desc":"Obscure mystical knowledge",
 		"require":"apprentice",
@@ -95,36 +87,44 @@
 
 	},
 	{
-		"id":"fire",
+		"id":"mana",
 		"tag":"mana",
+		"color":"#2531b3",
+		"require":"apprentice",
+		"name":"mana",
+		"max":25
+	},
+	{
+		"id":"fire",
+		"tags":"mana,elemental",
 		"desc":"Fire Mana",
 		"color":"#b52309",
 		"max":10
 	},
 	{
 		"id":"ice",
-		"tag":"mana",
+		"tag":"mana,elemental",
 		"desc":"Ice Mana",
 		"color":"#97e5fc",
 		"max":10
 	},
 	{
 		"id":"air",
-		"tag":"mana",
+		"tag":"mana,elemental",
 		"desc":"Air Mana",
 		"color":"#efefef",
 		"max":10
 	},
 	{
 		"id":"earth",
-		"tag":"mana",
+		"tag":"mana,elemental",
 		"desc":"Earth Mana",
 		"color":"#c27304",
 		"max":10
 	},
 	{
 		"id":"water",
-		"tag":"mana",
+		"tag":"mana,elemental",
 		"desc":"Water Mana",
 		"color":"#0479c2",
 		"max":10
@@ -142,6 +142,21 @@
 		"tag":"mana",
 		"desc":"Light mana",
 		"color":"#f0c907",
+		"max":10
+	},
+	{
+		"id":"tempus",
+		"tag":"mana",
+		"desc":"Time incarnate",
+		"color":"#c27304",
+		"max":10
+	},
+	{
+		"id":"void",
+		"tag":"mana",
+		"desc":"nothingness",
+		"color":"#c27304",
+		"flavor":"",
 		"max":10
 	}
 

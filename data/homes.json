@@ -9,11 +9,11 @@
 	},
 	{
 		"id":"bedroom",
-		"desc":"Observing your progress, your master begrudgingly offers you a modest bedroom.",
+		"desc":"Noting your progress, your master begrudgingly offers you a modest bedroom.",
 		"flavor":"Don't let it go to your head.",
 		"require":"state.neophyte&&state.arcana>=20",
 		"cost":{
-			"arcana":100
+			"research":50
 		},
 		"mod":{
 			"space.max":10
@@ -97,16 +97,25 @@
 		"id":"academy",
 		"desc":"A place of learning",
 		"cost":10000,
-		"require":"state.arcana>=10000",
+		"require":"state.arcana>=1000",
 		"mod":{
 			"space.max":1000
+		}
+	},
+	{
+		"id":"temple",
+		"desc":"Sanctum of meditation and insight.",
+		"cost":10000,
+		"require":"state.arcana>=1000",
+		"mod":{
+			"space.max":800
 		}
 	},
 	{
 		"id":"palace",
 		"desc":"",
 		"cost":10000,
-		"require":"state.arcana>=10000",
+		"require":"state.arcana>=1000",
 		"mod":{
 			"space.max":1000
 		}
@@ -136,10 +145,25 @@
 		"require":"state.enchanter||state.druid",
 		"cost":{
 			"gold":5000,
+			"research":500,
 			"mana":500
 		},
 		"mod":{
 			"space.max":5000
+		}
+	},
+	{
+		"id":"island",
+		"name":"Shrouded Isle",
+		"desc":"A lonely isle at sea",
+		"require":"state.enchanter||state.druid",
+		"cost":{
+			"gold":5000,
+			"gems":50,
+			"mana":500
+		},
+		"mod":{
+			"space.max":10000
 		}
 	}
 

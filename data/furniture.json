@@ -30,6 +30,20 @@
 		}
 	},
 	{
+		"id":"vault",
+		"desc":"A safe space for treasure.",
+		"require":"state.space>=25",
+		"repeat":true,
+		"cost":{
+			"gold":1000,
+			"space":10
+		},
+		"mod":{
+			"gold.max":1000,
+			"gems.max":25
+		}
+	},
+	{
 
 		"id":"workbench",
 		"name":"Workbench",
@@ -103,6 +117,41 @@
 		}
 	},
 	{
+
+		"id":"silvercandelabra",
+		"name":"silver candelabra",
+		"desc":"",
+		"require":"",
+		"cost":{
+			"space":1,
+			"gold":100
+		},
+		"mod":{
+			"candle.max":4
+		}
+
+	},
+	{
+
+		"id":"bonecandelabra",
+		"name":"bone candelabra",
+		"desc":"creepy",
+		"require":"state.necromancer>0||state.witch>0",
+		"cost":{
+			"space":1,
+			"bones":10,
+			"research":50,
+			"gold":50
+		},
+		"mod":{
+			"candle.max":4,
+			"black":{
+				"base":0.04
+			}
+		}
+
+	},
+	{
 		"id":"basin",
 		"name":"basin",
 		"desc":"Basin of water.",
@@ -127,6 +176,20 @@
 		},
 		"mod":{
 			"fire.max":10
+		}
+
+	},
+	{
+		"id":"clepsydra",
+		"desc":"Crude measure of time",
+		"require":"adept",
+		"cost":{
+			"gold":50,
+			"research":50,
+			"space":1
+		},
+		"mod":{
+			"tempus.max":10
 		}
 
 	},
