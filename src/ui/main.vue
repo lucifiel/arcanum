@@ -120,6 +120,7 @@ export default {
 			else if ( key === 'r') this.gameState.fillItem('research');
 			else if ( key === 'm') this.gameState.fillItem('mana');
 			else if ( key === 'a') this.gameState.fillItem('arcana');
+			else if ( key === 's') this.gameState.fillItem('scrolls');
 
 		},
 
@@ -174,7 +175,7 @@ export default {
 
 		onPrimary( s) {
 			console.log('primary: ' + s.id );
-			this.gameState.player.primary = s;
+			this.gameState.player.setPrimary(s);
 		}
 
 	},

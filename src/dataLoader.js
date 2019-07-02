@@ -12,11 +12,12 @@ import Furniture from 'data/furniture';
 import Item from 'items/item';
 import Player from 'player';
 
+import Range from 'range';
 import Resource from 'items/resource';
 import Upgrade from 'items/upgrade';
 import Skill from 'items/skill';
 
-import VarPath, {IsVarPath} from 'varPath';
+import VarPath  from 'varPath';
 import Dungeon from './items/dungeon.js';
 
 /**
@@ -66,6 +67,8 @@ export default {
 			if ( it.fill) it.fill = this.parseSub(it.fill);
 			if ( it.effect ) it.effect = this.parseSub(it.effect );
 
+			if ( it.attack )this.parseAttack( it.attack );
+
 			if ( it.dot) {
 				if ( it.dot.effect ) this.parseSub( it.dot.effect );
 				if ( it.dot.mod ) this.parseSub( it.dot.mod );
@@ -73,6 +76,11 @@ export default {
 
 		}
 
+	},
+
+	parseAttack( atk ) {
+
+		if ( atk.damage ) atk.damage = new Range( atk.damage );
 	},
 
 	parseSub( sub ) {

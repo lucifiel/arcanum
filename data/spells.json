@@ -5,7 +5,7 @@
 		"level":1,
 		"cost":{
 
-			"research":50,
+			"research":25,
 			"scrolls":1
 
 		},
@@ -27,7 +27,7 @@
 		"level":1,
 		"cost":{
 
-			"research":50,
+			"research":25,
 			"scrolls":1
 
 		},
@@ -50,7 +50,7 @@
 		"level":1,
 		"cost":{
 
-			"research":100,
+			"research":25,
 			"scrolls":1
 
 		},
@@ -58,7 +58,8 @@
 			"mana":5
 		},
 		"attack":{
-			"damage":"2-3"
+			"damage":"2-3",
+			"tohit":1
 		}
 	}
 

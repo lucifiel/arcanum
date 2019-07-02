@@ -42,8 +42,8 @@ export default class Player {
 	get defense() { return this._defense; }
 	set defense(v) { this._defense =v; }
 
-	get attack() { return this._attack; }
-	set attack(v) { this._attack = v; }
+	get tohit() { return this._tohit; }
+	set tohit(v) { this._tohit = v; }
 
 	get speed() { return this._speed; }
 	set speed(v) {
@@ -68,7 +68,7 @@ export default class Player {
 
 		this.speed = this._speed || 1;
 
-		this._attack = this._attack || 2;
+		this._tohit = this._tohit || 2;
 		this._defense = this._defense || 1;
 
 		this.damage = this.damage || new Range( 1, 2 );
@@ -79,6 +79,25 @@ export default class Player {
 		this.primary = null;
 
 		this._name = this._name || 'wizrobe';
+
+	}
+
+	setPrimary( s ) {
+
+		if ( this.primary === s || !s.attack ) return;
+		if ( this.primary !== null ) this.removePrimary();
+
+		this.primary = s;
+		if ( this.primary.attack.tohit ) this.tohit += this.primary.attack.tohit;
+		console.log('new attack: ' + this.tohit );
+
+	}
+
+	removePrimary() {
+
+		let p = this.primary;
+		this.primary = null;
+		if ( p.attack.tohit ) this.tohit -= p.attack.tohit;
 
 	}
 

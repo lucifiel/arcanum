@@ -68,18 +68,21 @@ export default class Raid {
 
 	playerAttack() {
 
-		let atk = Math.random()*this.player.attack;
+		let roll = Math.random()*this.player.tohit;
 		
 		//console.log('player attack: ' + atk );
 
-		if ( atk >= Math.random()*this.enemy.defense ) {
+		if ( roll >= Math.random()*this.enemy.defense ) {
 
-			if ( this.player.primary ) {
+			let dmg;
+	
+			if ( this.player.primary !== null ) {
 
-			}
+				dmg = this.getPrimary(this.player.primary );
+				if ( dmg === false ) dmg = this.player.damage.value;
 
-			let dmg = this.player.damage.value;
-
+			} else dmg = this.player.damage.value;
+	
 			this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
 
 			this.enemy.hp -= dmg;
@@ -91,12 +94,27 @@ export default class Raid {
 
 	}
 
+	/**
+	 * @returns {number} returns damage from a primary spell attack.
+	 */
+	getPrimary( primary ) {
+
+		if ( Game.tryItem( primary ) ) {
+			
+			console.log('using primary attack');
+			return primary.attack.damage.value;
+		} else { console.log('cant cast primary '); }
+		return false;
+
+
+	}
+
 	enemyAttack() {
 
-		let atk = Math.random()*this.enemy.attack;
+		let roll = Math.random()*this.enemy.tohit;
 		//console.log('monster attack: ' + atk);
 
-		if ( atk >= Math.random()*this.player.defense ) {
+		if ( roll >= Math.random()*this.player.defense ) {
 
 			let dmg = this.enemy.min +
 				Math.round( Math.random()*(this.enemy.max-this.enemy.min) );

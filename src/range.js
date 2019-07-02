@@ -13,16 +13,19 @@ export default class Range {
 	 * @param {Object|number|string} min 
 	 * @param {?number} max 
 	 */
-	constructor(min=0, max=null) {
+	constructor(min=0, max=undefined) {
 
 		if ( min instanceof Object ) Object.assign( this, min );
 		else if ( !isNaN(min)) {
 
 			this.min = min;
-			this.max = max || 0;
+			this.max = max === undefined ? min : max;
 
 		} else if ( typeof min === 'string') {
 
+			let parts = min.split('-');
+			this.min = Number( parts[0] );
+			this.max = Number( parts[1] );
 		}
 
 

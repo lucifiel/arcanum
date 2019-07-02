@@ -3,6 +3,6 @@
  * 
  * @property {Range} damage
  *
- * @property {number} attack - modifier to attack
+ * @property {number} tohit - hit modifier
  *
  */
