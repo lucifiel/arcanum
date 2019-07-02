@@ -4,6 +4,7 @@
 		"name":"hp",
 		"desc":"Wizard life-force",
 		"value":10,
+		"color":"#ee0000",
 		"max":10,
 		"locked":false
 	},

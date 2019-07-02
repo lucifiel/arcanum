@@ -44,7 +44,7 @@ export default {
 			<td>{{ s.name }}</td>
 			<td>
 				
-				<button v-if="s.learned" @click="dispatch('action', s)" :disabled="!usable(s)"
+				<button v-if="s.learned" @click="dispatch('spell', s)" :disabled="!usable(s)"
 					@mouseenter.capture.stop="dispatch('itemover', $event, s )"
 					@mouseleave.capture.stop="dispatch('itemout', $event )">Cast</button>
 

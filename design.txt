@@ -1,9 +1,13 @@
+ongoing/continuous
+
 homes /sanctums / domiciles / base
+
+obscura
 
 title:
 waif
 apprentice
-novice
+neophyte
 adept
 magician
 
@@ -77,3 +81,13 @@ bright forest
 dark forest
 gloomy forest
 verdant hills
+
+
+spell/potion order:
+
+minor
+lesser
+(normal)
+greater
+major?
+superior

@@ -1,7 +1,29 @@
 [
 	{
-		"id":"minorstamina",
-		"name":"lesser fount",
+		"id":"minorstam",
+		"name":"minor fount",
+		"level":1,
+		"cost":{
+
+			"research":25,
+			"scrolls":1
+
+		},
+		"flavor":"Come thou fount",
+		"cast":{
+			"mana":1
+		},
+		"dot":{
+			"duration":30,
+			"effect":{
+				"stamina":0.01
+			}
+		}
+
+	},
+	{
+		"id":"copperskin",
+		"name":"copper skin",
 		"level":1,
 		"cost":{
 
@@ -13,9 +35,30 @@
 			"mana":1
 		},
 		"dot":{
-			"duration":60,
+			"duration":30,
 			"mod":{
-				"stamina.max":5
+				"defense":1
+			}
+		}
+
+	},
+	{
+		"id":"minormana",
+		"name":"minor mana",
+		"level":1,
+		"cost":{
+
+			"research":25,
+			"scrolls":1
+
+		},
+		"cast":{
+			"mana":1
+		},
+		"dot":{
+			"duration":30,
+			"effect":{
+				"mana":0.01
 			}
 		}
 
@@ -36,7 +79,7 @@
 		},
 		"dot":{
 
-			"duration":60,
+			"duration":30,
 			"effect":{
 				"hp":1
 			}
@@ -45,7 +88,6 @@
 
 	},
 	{
-
 		"id":"magic missile",
 		"level":1,
 		"cost":{

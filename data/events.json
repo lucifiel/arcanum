@@ -12,27 +12,29 @@
 		"id":"apprentice",
 		"name":"Apprenticeship",
 		"title":"apprentice",
-		"desc":"You became apprenticed to a local wizard.",
+		"desc":"After paying a small fee, you became apprenticed to a local wizard.",
 		"remove":["stables"],
 		"effect":{
 			"research.max":25
 		}
 	},
 	{
-		"id":"novice",
+		"id":"neophyte",
 		"name":"Noviciate",
-		"title":"novice",
-		"desc":"Your master believes you are ready to take the next step on the path of wizardry.",
+		"title":"neophyte",
+		"desc":"Your master has decided you are ready to take the next step on the path of wizardry.\nYou have been given a small allowance to continue your research.",
 		"remove":["apprentice"],
 		"effect":{
+			"gold.base":0.1,
 			"research.max":50
 		}
 	},
 	{
 		"id":"adept",
-		"name":"Left Master",
-		"desc":"You are now an independent practitioner of the arcane.",
-		"remove":["novice", "bedroom", "alcove","chores"],
+		"name":"Adept",
+		"title":"adept",
+		"desc":"Setting off on your own, you become an independent practioner of the mystic arts.",
+		"remove":["neophyte", "bedroom", "alcove","chores"],
 		"effect":{
 			"research.max":100
 		}

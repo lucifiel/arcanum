@@ -1,7 +1,7 @@
 [
 
 	{
-		"id":"startapprentice",
+		"id":"apprenticeship",
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
 		"require":"state.research>=15",
@@ -11,6 +11,36 @@
 			"gold":20
 		},
 		"effect":"apprentice"
+
+	},
+
+	{
+		"id":"neophytism",
+		"name":"Neophyte",
+		"desc":"Ascend to the next level of wizardry.",
+		"require":"state.research>=200",
+		"repeat":false,
+		"cost":{
+			"research":200,
+			"gold":100,
+			"arcana":5
+		},
+		"effect":"neophyte"
+
+	},
+
+	{
+		"id":"leavemaster",
+		"name":"Leave Master",
+		"desc":"Leave your apprenticeship behind.",
+		"require":"state.research>=500",
+		"repeat":false,
+		"cost":{
+			"research":500,
+			"gold":500,
+			"arcana":15
+		},
+		"effect":"adept"
 
 	},
 
@@ -30,10 +60,13 @@
 	{
 		"id":"pouch",
 		"desc":"Keep your money safe.",
-		"require":"state.gold>=10",
+		"require":"state.gold>=5",
+		"max":2,
+		"repeat":true,
 		"cost":5,
+		"flavor":"seems a bit pricey...",
 		"mod":{
-			"gold.max":10
+			"gold.max":5
 		}
 	},
 	{
@@ -53,10 +86,11 @@
 	{
 		"id":"purse",
 		"desc":"A mark of higher status.",
-		"require":"state.gold>=20",
-		"cost":20,
+		"require":"state.gold>=15",
+		"max":2,
+		"cost":10,
 		"mod":{
-			"gold.max":30
+			"gold.max":10
 		}
 	},
 	{
@@ -73,7 +107,7 @@
 	{
 
 		"id":"prism",
-		"desc":"A small pyramid of crsytal.",
+		"desc":"A small crystal pyramid.",
 		"require":"apprentice",
 		"cost":{
 			"gold":20,
@@ -120,8 +154,8 @@
 		"require":"state.white>=10",
 		"cost":25,
 		"mod":{
-			"white.max":5,
-			"white.base":0.1
+			"light.max":5,
+			"light.base":0.1
 		}
 	},
 	{

@@ -43,8 +43,6 @@ export default class Raid {
 
 		if ( this.enemy == null ) this.setEnemy( this.dungeon.getEnemy() );
 
-		//this.state.items.stamina.value -= this.dungeon.fatigue*dt;
-
 		this.playerTimer -= dt;
 		if ( this.playerTimer <= 0 ) {
 
@@ -66,24 +64,50 @@ export default class Raid {
 
 	}
 
+	/**
+	 * Player-casted spell or action attack.
+	 * @param {*} it 
+	 */
+	doAttack( it ) {
+
+		if ( this.dungeon == null || this.enemy === null ) {
+
+			this.playerAct = this.player.name + ' casts ' + it.name + ' at the darkness.';
+
+		} else if ( Math.random()*this.player.tohit >= Math.random()*this.enemy.defense ) {
+
+			console.log('manual spell cast');
+			let dmg = it.attack.damage.value;
+			this.playerAct =
+					this.player.name + ' casts ' + it.name + '\n' + this.enemy.name + ' hit: ' + dmg.toFixed(1);
+
+			this.damageEnemy( dmg );
+
+		} else {
+			this.playerAct = this.player.name + ' misses';
+		}
+
+	}
+
 	playerAttack() {
 
 		let roll = Math.random()*this.player.tohit;
-		
-		//console.log('player attack: ' + atk );
 
 		if ( roll >= Math.random()*this.enemy.defense ) {
 
 			let dmg;
 	
-			if ( this.player.primary !== null ) {
+			if ( this.player.primary !== null && (dmg = this.getPrimary(this.player.primary)) !== false ) {
 
-				dmg = this.getPrimary(this.player.primary );
-				if ( dmg === false ) dmg = this.player.damage.value;
+				this.playerAct =
+					this.player.name + ' casts ' + this.player.primary.name + '\n' + this.enemy.name + ' hit: ' + dmg.toFixed(1);
+ 
+			} else {
 
-			} else dmg = this.player.damage.value;
-	
-			this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
+				dmg = this.player.damage.value;
+				this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
+
+			}
 
 			this.enemy.hp -= dmg;
 			if ( this.enemy.hp <= 0 ) this.enemyDied();
@@ -101,12 +125,21 @@ export default class Raid {
 
 		if ( Game.tryItem( primary ) ) {
 			
-			console.log('using primary attack');
 			return primary.attack.damage.value;
+
 		} else { console.log('cant cast primary '); }
 		return false;
 
 
+	}
+
+	/**
+	 * Damage enemy with attack.
+	 * @param {number} dmg 
+	 */
+	damageEnemy(dmg){
+		this.enemy.hp -= dmg;
+		if ( this.enemy.hp <= 0 ) this.enemyDied();
 	}
 
 	enemyAttack() {

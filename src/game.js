@@ -248,6 +248,7 @@ export default {
 			if ( it ) {
 
 				it.removed = true;
+				console.log('removed: ' + it.id );
 	
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it, it.value );
@@ -317,7 +318,11 @@ export default {
 
 		if ( it.dot ) this.beginDot( it, it.dot );
 
-		if ( it.repeat !== true ) this.remove(it);
+		if ( it.attack && this.curAction === this._state.raid ) {
+			this._state.raid.doAttack( it );
+		}
+
+		if ( (!it.max && !it.repeat) || (it.max && it.value >= it.max) ) this.remove(it);
 
 		return true;
 

@@ -3,24 +3,23 @@
 		"id":"gold",
 		"desc":"Gold Coins",
 		"locked":false,
-		"max":10
+		"max":5
 	},
 	{
 		"id":"research",
-		"name":"Research",
 		"desc":"Research into the Arcane",
 		"max":25
 	},
 	{
 		"id":"mana",
 		"tag":"mana",
-		"require":"scrolls",
-		"name":"Arcane Mana",
+		"color":"#2531b3",
+		"require":"apprentice",
+		"name":"mana",
 		"max":25
 	},
 	{
 		"id":"arcana",
-		"name":"Arcana",
 		"desc":"Obscure mystical knowledge",
 		"require":"apprentice",
 		"max":10
@@ -48,19 +47,23 @@
 		"max":10,
 		"mod":{
 			"research":{
-				"base":0.1,
+				"base":0.01,
 				"max":0.5
 			}
 		}
 	},
 	{
-		"id":"tomes",
-		"name":"Arcane Tomes",
-		"desc":"Tome of arcane lore",
+		"id":"codices",
+		"name":"Codices",
+		"desc":"Codex of arcane lore",
 		"max":10,
 		"mod":{
 			"research":{
-				"base":1
+				"base":0.1,
+				"max":1
+			},
+			"arcana":{
+				"max":0.1
 			}
 		}
 
@@ -95,42 +98,50 @@
 		"id":"fire",
 		"tag":"mana",
 		"desc":"Fire Mana",
+		"color":"#b52309",
 		"max":10
 	},
 	{
 		"id":"ice",
 		"tag":"mana",
 		"desc":"Ice Mana",
+		"color":"#97e5fc",
 		"max":10
 	},
 	{
 		"id":"air",
 		"tag":"mana",
 		"desc":"Air Mana",
+		"color":"#efefef",
 		"max":10
 	},
 	{
 		"id":"earth",
 		"tag":"mana",
 		"desc":"Earth Mana",
+		"color":"#c27304",
 		"max":10
 	},
 	{
 		"id":"water",
 		"tag":"mana",
 		"desc":"Water Mana",
+		"color":"#0479c2",
 		"max":10
 	},
 	{
 		"id":"black",
+		"name":"shadow",
 		"tag":"mana",
-		"desc":"Black mana",
+		"desc":"Shadow mana",
+		"color":"#312f33",
 		"max":10
 	},
 	{
-		"id":"white",
+		"id":"light",
 		"tag":"mana",
-		"desc":"White mana",
+		"desc":"Light mana",
+		"color":"#f0c907",
 		"max":10
 	}
 

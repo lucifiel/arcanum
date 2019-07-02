@@ -99,6 +99,11 @@ export default class Item {
 	
 		if ( this._locked === undefined ) this._locked = true;
 
+		if ( vars.tag ) {
+			if ( !this._tags ) this._tags = [];
+			this._tags.push( vars.tag );
+		}
+
 		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect', 'removed']);
 
 	}

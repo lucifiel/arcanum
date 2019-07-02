@@ -9,7 +9,7 @@
 	{
 		"id":"skills",
 		"name":"skills",
-		"require":""
+		"require":"neophyte"
 
 	},
 	{
@@ -33,7 +33,7 @@
 	{
 		"id":"spells",
 		"name":"spellbook",
-		"require":""
+		"require":"mana"
 
 	}
 

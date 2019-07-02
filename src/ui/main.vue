@@ -62,6 +62,8 @@ export default {
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
 		this.listen( 'rest', this.onRest );
+
+		this.listen( 'spell', this.onSpell );
 		this.listen( 'learn', this.onLearn );
 
 		// primary attack.
@@ -155,8 +157,17 @@ export default {
 			this.game.tryItem(upgrade);
 		},
 	
+		onSpell( spell ) {
+			this.game.tryItem(spell);
+		},
+
 		onAction( action ) {
-			this.game.tryItem( action );
+
+			if ( action.perpetual ) {
+
+				if ( this.gameState.curAction !== action ) this.gameState.curAction = action;
+
+			} else this.game.tryItem( action );
 		},
 
 		/**

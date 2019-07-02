@@ -44,7 +44,7 @@
 
 		"id":"pedestal",
 		"desc":"A pedestal for reading magic tomes.",
-		"require":"novice",
+		"require":"neophyte",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -60,13 +60,13 @@
 		"name":"Bookcase",
 		"repeat":true,
 		"desc":"A rough but sturdy bookcase.",
-		"require":"state.tomes>=10",
+		"require":"state.codices>=10",
 		"cost":{
 			"gold":25,
 			"space":2
 		},
 		"mod":{
-			"tomes":{
+			"codices":{
 				"max":30
 			}
 		}
@@ -82,7 +82,7 @@
 			"space":1
 		},
 		"mod":{
-			"white.base":0.01,
+			"light.base":0.01,
 			"air.base":0.02
 		}
 	},
@@ -96,9 +96,9 @@
 			"space":1
 		},
 		"mod":{
-			"white.max":5,
+			"light.max":5,
 			"air.max":10,
-			"white.base":0.02,
+			"light.base":0.02,
 			"air.base":0.05
 		}
 	},
@@ -209,14 +209,14 @@
 		"id":"library",
 		"name":"Library",
 		"desc":"",
-		"require":"state.tomes>=100",
+		"require":"state.codices>=100",
 		"cost":{
 			"gold":500,
 			"research":100,
 			"space":50
 		},
 		"mod":{
-			"tomes.max":1000,
+			"codices.max":1000,
 			"arcana.max":50,
 			"research.max":100,
 			"research.base":0.1

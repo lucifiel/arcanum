@@ -2,30 +2,34 @@
 	{
 		"id":"stables",
 		"name":"Clean Stables",
+		"desc":"A dirty job...",
 		"verb":"cleaning",
 		"locked":false,
 		"cost":{
 			"stamina":0.08
 		},
 		"effect":{
-			"gold":0.1
+			"gold":0.2
 		}
 	},
 	{
 		"id":"chores",
 		"name":"Do Chores",
-		"must":"apprentice",
+		"desc":"standard apprentice work.",
+		"verb":"working",
+		"require":"apprentice",
 		"cost":{
 			"stamina":0.17
 		},
 		"effect":{
-			"gold":0.5
+			"gold":0.3
 		}
 	},
 	{
 		"id":"rest",
 		"name":"rest",
 		"verb":"resting",
+		"perpetual":true,
 		"ignoreStamina":true,
 		"fill":[ "stamina", "hp" ],
 		"effect":{
@@ -39,7 +43,8 @@
 	},
 	{
 		"id":"study",
-		"name":"Study",
+		"perpetual":true,
+		"verb":"studying",
 		"desc":"Study the arcane",
 		"require":"state.scrolls>=1",
 		"cost":{
@@ -63,6 +68,20 @@
 		"effect":{
 			"scrolls":1
 		}
+	},
+	{
+
+		"id":"bindcodex",
+		"name":"Bind Codex",
+		"require":"state.arcana>=10",
+		"cost":{
+			"scrolls":10,
+			"research":25
+		},
+		"effect":{
+			"codices":1
+		}
+
 	},
 	{
 		"id":"buygem",

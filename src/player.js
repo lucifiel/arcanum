@@ -110,6 +110,7 @@ export default class Player {
 
 	}
 
+	hasTag() { return false; }
 	hasTags() { return false; }
 
 }

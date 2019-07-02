@@ -8,6 +8,9 @@ export default class Spell extends Item {
 		super(vars);
 
 		this.learned = this.learned || false;
+		if ( this.cast && !this.cast.stamina ) {
+			this.cast.stamina = this.level;
+		}
 
 	}
 

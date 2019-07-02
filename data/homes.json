@@ -9,9 +9,9 @@
 	},
 	{
 		"id":"bedroom",
-		"desc":"Your master begrudgingly offers you a modest bedroom.",
+		"desc":"Observing your progress, your master begrudgingly offers you a modest bedroom.",
 		"flavor":"Don't let it go to your head.",
-		"require":"apprentice",
+		"require":"state.neophyte&&state.arcana>=20",
 		"cost":{
 			"arcana":100
 		},
@@ -31,7 +31,7 @@
 	{
 		"id":"cottage",
 		"desc":"",
-		"require":"state.adept",
+		"require":"adept",
 		"cost":100,
 		"mod":{
 			"space.max":20
@@ -65,6 +65,17 @@
 		}
 	},
 	{
+		"id":"pavilion",
+		"desc":"An open, elegant structure on a wide lawn.",
+		"cost":1000,
+		"require":"adept",
+		"mod":{
+			"space.max":50,
+			"light.base":0.1,
+			"mana.base":0.1
+		}
+	},
+	{
 		"id":"tower",
 		"desc":"A stone tower in which to conduct your arcane investigations.",
 		"cost":1500,
@@ -80,6 +91,15 @@
 		"require":"state.adept&&state.arcana>=2000",
 		"mod":{
 			"space.max":200
+		}
+	},
+	{
+		"id":"academy",
+		"desc":"A place of learning",
+		"cost":10000,
+		"require":"state.arcana>=10000",
+		"mod":{
+			"space.max":1000
 		}
 	},
 	{
