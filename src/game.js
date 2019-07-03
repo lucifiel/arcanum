@@ -398,7 +398,7 @@ export default {
 	 */
 	applyEffect( effect, dt=1 ) {
 
-		if ( effect instanceof Array ) for( let e of effect ) this.applyEffect(e);
+		if ( effect instanceof Array ) for( let e of effect ) this.applyEffect(e,dt);
 
 		else if ( effect instanceof Object ) {
 
