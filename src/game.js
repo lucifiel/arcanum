@@ -1,6 +1,5 @@
 import DataLoader from 'dataLoader';
 import Spellbook from 'spellbook';
-import Skill from 'items/skill';
 import VarPath from './varPath';
 
 import Log from 'log';
@@ -10,12 +9,6 @@ import GameState from './gameState';
  * @constant {number} TICK_TIME - time in milliseconds between updates.
  */
 export const TICK_TIME = 200;
-
-/**
- * @constant {number} SELL_RATE - percent of initial cost
- * item sells for.
- */
-const SELL_RATE = 0.5;
 
 export default {
 
@@ -158,11 +151,16 @@ export default {
 			
 			this._state.raid.update(dt);
 
-		} else if ( action instanceof Skill ) {
+		} else if ( action.length ) {
 
-			action.exp += dt;
-			if ( action.exp >= action.max ) {
-				action.levelUp();
+			action.progress += dt;
+			if ( action.progress >= action.length ) {
+
+				if ( action.complete ) action.complete();
+				if ( action.result ) {
+					this.applyEffect( action.result );
+				}
+
 			}
 
 		} else {
@@ -212,7 +210,7 @@ export default {
 
 		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getItem(v);
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.value >= fill.max.value;
+		return fill.locked || fill.value >= fill.max.value;
 
 	},
 
@@ -248,10 +246,9 @@ export default {
 			if ( it ) {
 
 				it.removed = true;
-				console.log('removed: ' + it.id );
 	
 				// remove all stat mods.
-				if ( it.mod ) this.removeMod( it, it.value );
+				if ( it.mod ) this.removeMod( it.mod, it.value );
 
 			}
 
@@ -270,18 +267,18 @@ export default {
 		let costObj = it.cost;
 		if ( !isNaN(costObj) ) {
 
-			this.getItem('gold').value += costObj*SELL_RATE;
+			this.getItem('gold').value += costObj*this._state.sellRate;
 
 		} else if ( costObj instanceof Object ) {
 
-			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*SELL_RATE;
+			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*this._state.sellRate;
 			if ( costObj.space ) this.getItem('space').value += costObj.space;
 
 		}
 
 		it.value -= 1;
 
-		if ( it.mod ) this.removeMod( it, 1 );
+		if ( it.mod ) this.removeMod( it.mod, 1 );
 
 		return true;
 
@@ -321,8 +318,6 @@ export default {
 		if ( it.attack && this.curAction === this._state.raid ) {
 			this._state.raid.doAttack( it );
 		}
-
-		if ( (!it.max && !it.repeat) || (it.max && it.value >= it.max) ) this.remove(it);
 
 		return true;
 
@@ -505,7 +500,7 @@ export default {
 
 	canBuy( item ){
 
-		if ( !item.repeat && item.value > 0 ) {
+		if ( item.maxed() ) {
 			console.log('cant buy: ' + item.id );
 			return false;
 		}

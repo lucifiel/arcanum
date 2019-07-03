@@ -9,7 +9,7 @@
 	{
 		"id":"skills",
 		"name":"skills",
-		"require":"neophyte"
+		"require":"apprentice"
 
 	},
 	{

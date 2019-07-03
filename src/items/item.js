@@ -19,17 +19,15 @@ export default class Item {
 	/**
 	 * @property {string} id - internal id.
 	 */
-	get id() { return this._id; }
-	set id(v) { this._id = v;}
 
 	/**
 	 * @property {string} name - displayed name.
 	 */
-	get name() { return this._name || this._id;}
+	get name() { return this._name || this.id;}
 	set name(v) { this._name = v;}
 
 	/**
-	 * @property {boolean} repeat
+	 * @property {boolean} repeat - whether the item is repeatable.
 	 */
 
 	/**
@@ -64,6 +62,16 @@ export default class Item {
 
 	}
 
+	get length() { return this._length; }
+	set length(v) {
+
+		this._length = v;
+		if (!this._rate) this._rate = 1;
+	}
+
+	get rate() { return this._rate; }
+	set rate(v) { this._rate = v; }
+
 	/**
 	 * @property {number|Object.<string,number>} cost
 	 */
@@ -73,6 +81,9 @@ export default class Item {
 	get require() { return this._require; }
 	set require(v) { this._require =v;}
 
+	/**
+	 * @property {Object|Array|string|function} effect
+	 */
 	get effect() { return this._effect; }
 	set effect(v) { this._effect=v;}
 
@@ -103,8 +114,18 @@ export default class Item {
 			if ( !this._tags ) this._tags = [];
 			this._tags.push( vars.tag );
 		}
-
+		this._value = this._value || 0;
 		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect', 'removed']);
+
+	}
+
+	/**
+	 * @returns {boolean} true if an unlocked item is at maximum value.
+	 */
+	maxed() {
+		
+		return this.max ? this._value >= this.max :
+			!this.repeat && this._value > 0;
 
 	}
 

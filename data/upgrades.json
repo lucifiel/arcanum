@@ -17,13 +17,12 @@
 	{
 		"id":"neophytism",
 		"name":"Neophyte",
-		"desc":"Ascend the next level of wizardry.",
-		"require":"state.research>=200",
+		"desc":"Ascend to the next level of wizardry. You aren't sure why your master needs a fee...",
+		"require":"state.research>=200&&state.arcana>=5",
 		"repeat":false,
 		"cost":{
 			"research":200,
-			"gold":100,
-			"arcana":5
+			"gold":150
 		},
 		"effect":"neophyte"
 
@@ -33,12 +32,11 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Leave your apprenticeship behind.",
-		"require":"state.research>=500",
+		"require":"state.research>=500&&state.arcana>=10",
 		"repeat":false,
 		"cost":{
 			"research":500,
-			"gold":500,
-			"arcana":15
+			"gold":500
 		},
 		"effect":"adept"
 
@@ -50,7 +48,7 @@
 		"flavor":"You no take candle!",
 		"repeat":false,
 		"require":"!state.mana.locked&&state.mana.max>=20",
-		"cost":1,
+		"cost":10,
 		"mod":{
 			"mana":{
 				"base":0.1
@@ -66,16 +64,17 @@
 		"cost":5,
 		"flavor":"seems a bit pricey...",
 		"mod":{
-			"gold.max":5
+			"gold.max":10
 		}
 	},
 	{
 		"id":"orb",
 		"name":"Arcane Orb",
 		"desc":"Holds magical energy.",
-		"require":"state.mana.max==50",
+		"require":"state.mana.max>=25",
+		"max":2,
 		"cost":{
-			"gold":50,
+			"gold":75,
 			"research":50
 		},
 		"mod":{
@@ -85,12 +84,12 @@
 	},
 	{
 		"id":"purse",
-		"desc":"A mark of higher status.",
-		"require":"state.gold>=15",
+		"desc":"An efficient way to carry coins.",
+		"require":"state.gold>=25",
 		"max":2,
-		"cost":10,
+		"cost":15,
 		"mod":{
-			"gold.max":10
+			"gold.max":20
 		}
 	},
 	{
@@ -99,6 +98,7 @@
 		"desc":"Satchel for carrying scrolls.",
 		"require":"state.scrolls>=10",
 		"cost":50,
+		"max":1,
 		"mod":{
 			"scrolls.max":25
 		}
@@ -107,10 +107,10 @@
 	{
 
 		"id":"prism",
-		"desc":"A small crystal pyramid.",
+		"desc":"A small crystal pyramid, for performing mystic experiments.",
 		"require":"apprentice",
 		"cost":{
-			"gold":20,
+			"gold":40,
 			"research":50
 		},
 		"mod":{
@@ -133,6 +133,7 @@
 			"research":50
 		},
 		"mod":{
+			"research.max":5,
 			"air.base":0.01,
 			"air.max":10
 		}
@@ -156,8 +157,8 @@
 		"name":"Holy Candle",
 		"desc":"White glowing candle",
 		"repeat":true,
-		"require":"state.white>=10",
-		"cost":25,
+		"require":"state.light.max>=10",
+		"cost":50,
 		"mod":{
 			"light.max":5,
 			"light.base":0.01
@@ -168,10 +169,9 @@
 		"name":"Crystal Ball",
 		"desc":"A crystal sphere revealing hidden truth.",
 		"repeat":true,
-		"require":"state.arcana>=50",
+		"require":"state.arcana>=5",
 		"cost":{
 			"gold":50,
-			"arcana":5,
 			"research":100
 		},
 		"mod":{
@@ -182,12 +182,15 @@
 	},
 	{
 		"id":"mortar",
-		"name":"Mortar and Pestal",
+		"name":"Mortar and Pestle",
 		"desc":"Useful for grinding herbs & fine ingredients.",
 		"require":"apprentice",
 		"cost":{
 			"gold":20,
 			"space":1
+		},
+		"mod":{
+			"research.max":5
 		}
 	},
 	{
@@ -205,10 +208,10 @@
 		"require":"fireplace",
 		"flavor":"boil things, mash things, stick 'em in a stew.",
 		"cost":{
-			"gold":20
+			"gold":25
 		},
 		"mod":{
-
+			"rest.effect.stamina":0.1
 		}
 
 	},

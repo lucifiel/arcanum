@@ -17,7 +17,7 @@ export default {
 <div class="resource-list">
 
 	<table>
-		<tr :class="{'item-name':true, locked:locked(it)}" v-for="it in items" :key="it.id"
+		<tr :class="{'item-name':true, locked:reslocked(it)}" v-for="it in items" :key="it.id"
 			@mouseenter.capture.stop="dispatch('itemover',$event,it)"
 			@mouseleave.capture.stop="dispatch( 'itemout', $event)">
 

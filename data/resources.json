@@ -11,12 +11,6 @@
 		"max":25
 	},
 	{
-		"id":"arcana",
-		"desc":"Obscure mystical knowledge",
-		"require":"apprentice",
-		"max":10
-	},
-	{
 
 		"id":"bones",
 		"desc":"Human bones.",
@@ -52,10 +46,10 @@
 		"mod":{
 			"research":{
 				"base":0.1,
-				"max":1
+				"max":5
 			},
 			"arcana":{
-				"max":0.1
+				"base":0.01
 			}
 		}
 
@@ -90,44 +84,44 @@
 		"id":"mana",
 		"tag":"mana",
 		"color":"#2531b3",
-		"require":"apprentice",
+		"require":"state.arcana>=1",
 		"name":"mana",
-		"max":25
+		"max":5
 	},
 	{
 		"id":"fire",
 		"tags":"mana,elemental",
 		"desc":"Fire Mana",
 		"color":"#b52309",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"ice",
 		"tag":"mana,elemental",
 		"desc":"Ice Mana",
 		"color":"#97e5fc",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"air",
 		"tag":"mana,elemental",
 		"desc":"Air Mana",
 		"color":"#efefef",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"earth",
 		"tag":"mana,elemental",
 		"desc":"Earth Mana",
 		"color":"#c27304",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"water",
 		"tag":"mana,elemental",
 		"desc":"Water Mana",
 		"color":"#0479c2",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"black",
@@ -135,21 +129,21 @@
 		"tag":"mana",
 		"desc":"Shadow mana",
 		"color":"#312f33",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"light",
 		"tag":"mana",
 		"desc":"Light mana",
 		"color":"#f0c907",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"tempus",
 		"tag":"mana",
 		"desc":"Time incarnate",
 		"color":"#c27304",
-		"max":10
+		"max":5
 	},
 	{
 		"id":"void",
@@ -157,7 +151,7 @@
 		"desc":"nothingness",
 		"color":"#c27304",
 		"flavor":"",
-		"max":10
+		"max":5
 	}
 
 ]

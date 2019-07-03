@@ -53,5 +53,8 @@ export default {
 
 <style scoped>
 
+div.vitals {
+	margin:4px 10px;
+}
 
 </style>

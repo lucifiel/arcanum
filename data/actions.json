@@ -26,12 +26,27 @@
 		}
 	},
 	{
+		"id":"run errands",
+		"name":"Run Errands",
+		"desc":"standard apprentice work.",
+		"verb":"running errands",
+		"require":"apprentice",
+		"perpetual":true,
+		"cost":{
+			"stamina":0.2
+		},
+		"effect":{
+			"gold":0.5
+		}
+
+	},
+	{
 		"id":"rest",
 		"name":"rest",
 		"verb":"resting",
 		"perpetual":true,
 		"ignoreStamina":true,
-		"fill":[ "stamina", "hp" ],
+		"fill":[ "stamina", "hp", "mana" ],
 		"effect":{
 			"mana":{
 				"skipLocked":true,
@@ -54,7 +69,7 @@
 			"research":1,
 			"arcana":{
 				"skipLocked":true,
-				"value":0.1
+				"value":0.01
 			}
 		}
 	},
@@ -73,7 +88,7 @@
 
 		"id":"bindcodex",
 		"name":"Bind Codex",
-		"require":"state.arcana>=10",
+		"require":"state.crafting>=1",
 		"cost":{
 			"scrolls":10,
 			"research":25
@@ -95,14 +110,15 @@
 	{
 		"id":"scribescroll",
 		"name":"Scribe Scroll",
-		"require":"state.research>=10&&state.crafting>=3",
+		"require":"state.research>=10&&state.crafting>=1",
+		"length":5,
 		"cost":{
-			"research":5,
-			"mana":5
+			"research":40,
+			"mana":10
 		},
-		"effect":{
+		"result":{
 			"scrolls":1,
-			"arcana":5
+			"arcana":0.1
 		}
 	},
 	{
@@ -119,7 +135,7 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"magician",
+		"require":"(state.magician>0&&state.animals>=5)||state.witch",
 		"cost":{
 			"gold":50,
 			"research":100

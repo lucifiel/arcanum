@@ -33,7 +33,7 @@ export default {
 
 		<div>
 
-		<bar :value="skill.exp" :max="skill.max" />
+		<bar :value="skill.progress" :max="skill.length" />
 
 		<button class="train-btn"
 			@click="$emit('train',skill)"

@@ -11,7 +11,7 @@
 		"id":"bedroom",
 		"desc":"Noting your progress, your master begrudgingly offers you a modest bedroom.",
 		"flavor":"Don't let it go to your head.",
-		"require":"state.neophyte&&state.arcana>=20",
+		"require":"state.neophyte",
 		"cost":{
 			"research":50
 		},
@@ -23,7 +23,7 @@
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
 		"require":"adept",
-		"cost":50,
+		"cost":75,
 		"mod":{
 			"space.max":15
 		}
@@ -32,7 +32,7 @@
 		"id":"cottage",
 		"desc":"",
 		"require":"adept",
-		"cost":100,
+		"cost":150,
 		"mod":{
 			"space.max":20
 		}
@@ -41,7 +41,7 @@
 		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":500,
-		"require":"state.adept&&state.arcana>=250",
+		"require":"state.adept&&state.arcana>=15",
 		"mod":{
 			"space.max":25
 		}
@@ -50,7 +50,7 @@
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
 		"cost":700,
-		"require":"state.adept&&state.arcana>=250",
+		"require":"state.adept&&state.arcana>=15",
 		"mod":{
 			"space.max":20
 		}
@@ -79,7 +79,7 @@
 		"id":"tower",
 		"desc":"A stone tower in which to conduct your arcane investigations.",
 		"cost":1500,
-		"require":"!state.apprentice&&state.arcana>=1000",
+		"require":"!state.apprentice&&state.arcana>=20",
 		"mod":{
 			"space.max":100
 		}
@@ -88,7 +88,7 @@
 		"id":"citadel",
 		"desc":"A stronghold to protect yourself from the petty forces of the world.",
 		"cost":3000,
-		"require":"state.adept&&state.arcana>=2000",
+		"require":"state.adept&&state.arcana>=20",
 		"mod":{
 			"space.max":200
 		}
@@ -97,7 +97,7 @@
 		"id":"academy",
 		"desc":"A place of learning",
 		"cost":10000,
-		"require":"state.arcana>=1000",
+		"require":"state.arcana>=10",
 		"mod":{
 			"space.max":1000
 		}
@@ -106,7 +106,7 @@
 		"id":"temple",
 		"desc":"Sanctum of meditation and insight.",
 		"cost":10000,
-		"require":"state.arcana>=1000",
+		"require":"state.arcana>=00",
 		"mod":{
 			"space.max":800
 		}
@@ -115,7 +115,7 @@
 		"id":"palace",
 		"desc":"",
 		"cost":10000,
-		"require":"state.arcana>=1000",
+		"require":"state.arcana>=10",
 		"mod":{
 			"space.max":1000
 		}
@@ -123,7 +123,7 @@
 	{
 		"id":"castle",
 		"desc":"",
-		"require":"state.arcana>=10000",
+		"require":"state.arcana>=10",
 		"cost":10000,
 		"mod":{
 			"space.max":1000

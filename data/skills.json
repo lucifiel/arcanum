@@ -3,31 +3,24 @@
 	{
 		"id":"animals",
 		"name":"Animal Handling",
+		"require":"birdcage",
 		"cost":{
 			"stamina":0.5
 		}
 	},
 	{
-		"id":"readmagic",
+		"id":"arcana",
 		"school":"arcane",
-		"name":"Read Magic",
+		"desc":"Obscure mystical knowledge",
+		"require":"apprentice",
+		"name":"Arcana",
+		"verb":"Reading magic",
 		"cost":{
 			"stamina":0.2
 		}
 	},
 	{
-
-		"id":"cooking",
-		"name":"Cooking",
-		"require":"pot",
-		"cost":{
-			"stamina":0.1
-		}
-
-	},
-	{
 		"id":"crafting",
-		"name":"Crafting",
 		"require":"workbench",
 		"cost":{
 			"stamina":0.5
@@ -37,6 +30,7 @@
 		"id":"lore",
 		"name":"Lore",
 		"school":"arcane",
+		"require":"state.codices>=1",
 		"cost":{
 			"stamina":0.5
 		}

@@ -1,6 +1,5 @@
 import Item from './item';
 
-const MAX_LEVEL = 100;
 const EXP_RATIO = 0.5;
 
 export default class Skill extends Item {
@@ -14,8 +13,8 @@ export default class Skill extends Item {
 	/**
 	 * @property {number} exp
 	 */
-	get exp() { return this._exp; }
-	set exp(v) { this._exp=v;}
+	get progress() { return this._exp; }
+	set progress(v) { this._exp=v;}
 
 	/**
 	 * @property {number} rate
@@ -26,8 +25,11 @@ export default class Skill extends Item {
 	/**
 	 * @property {number} max - level up experience.
 	 */
+	get length() { return this._length; }
+	set length(v) { this._length = v;}
+
 	get max() { return this._max; }
-	set max(v) { this._max = v;}
+	set max(v) { this._max = v; }
 
 	/**
 	 * 
@@ -38,28 +40,30 @@ export default class Skill extends Item {
 		super(vars);
 
 		this.type = 'skill';
-		this._max = this._max || 100;
+		this._length = this._length || 100;
 		this._value = this._value || 0;
 		this._exp = this._exp || 0;
-		this._rate = this._rate || 1;
+		this._rate = this._rate || 2;
+		this._max = this._max || 10;
 
 	}
 
 	update( dt) {
 
 		this._exp += dt*this._rate;
-		if ( this._exp >= this._max ) this.levelUp();
+		if ( this._exp >= this._length ) this.complete();
 
 	}
 
-	percent() { return 100*(this._exp / this._max ); }
+	percent() { return 100*(this._exp / this._length ); }
 
-	levelUp() {
+	complete() {
 
-		if ( ++this._value > MAX_LEVEL ) this._value = MAX_LEVEL;
+		if ( ++this._value > Math.floor(this._max) ) this._value = Math.floor(this._max);
 
-		this._exp -= this._max;
-		this._max += this._max*EXP_RATIO;
+		this._exp -= this._length;
+		this._length += this._length*EXP_RATIO;
+		this._rate += 0.1;
 
 	}
 

@@ -20,9 +20,16 @@ export default {
 			return it.locked === false && it.removed === false;
 		},
 
-		locked(it) {
+		reslocked( it ) {
 			return it.removed === true ||
 			( it.locked===true && !Game.tryUnlock(it) );
+		},
+
+		locked(it) {
+
+			return it.removed === true || it.maxed() ||
+			( it.locked===true && !Game.tryUnlock(it) );
+
 		}
 
 	}

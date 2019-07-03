@@ -2,7 +2,7 @@
 	{
 		"id":"smallchest",
 		"name":"Small Chest",
-		"desc":"A small treasure chest.",
+		"desc":"A small wooden chest.",
 		"require":"state.gold>=50",
 		"repeat":true,
 		"cost":{
@@ -23,7 +23,7 @@
 		"repeat":true,
 		"cost":{
 			"gold":200,
-			"space":2
+			"space":1
 		},
 		"mod":{
 			"gold.max":200
@@ -35,11 +35,11 @@
 		"require":"state.space>=25",
 		"repeat":true,
 		"cost":{
-			"gold":1000,
+			"gold":500,
 			"space":10
 		},
 		"mod":{
-			"gold.max":1000,
+			"gold.max":750,
 			"gems.max":25
 		}
 	},
@@ -49,8 +49,23 @@
 		"name":"Workbench",
 		"desc":"A small bench for crafting.",
 		"cost":{
-			"gold":10,
+			"gold":25,
 			"space":1
+		},
+		"mod":{
+			"research.max":5
+		}
+
+	},
+	{
+		"id":"birdcage",
+		"desc":"Perfect for robins.",
+		"cost":{
+			"gold":25,
+			"space":1
+		},
+		"mod":{
+			"resarch.max":5
 		}
 
 	},
@@ -118,10 +133,10 @@
 	},
 	{
 
-		"id":"silvercandelabra",
-		"name":"silver candelabra",
-		"desc":"",
-		"require":"",
+		"id":"brasscandelabra",
+		"name":"brass candelabra",
+		"desc":"Candle holder.",
+		"require":"state.gold.max>75",
 		"cost":{
 			"space":1,
 			"gold":100
@@ -184,12 +199,14 @@
 		"desc":"Crude measure of time",
 		"require":"adept",
 		"cost":{
-			"gold":50,
-			"research":50,
+			"gold":100,
+			"research":100,
 			"space":1
 		},
 		"mod":{
-			"tempus.max":10
+			"tempus.max":5,
+			"tempus.base":0.01,
+			"water.base":0.01
 		}
 
 	},
@@ -269,18 +286,34 @@
 		}
 	},
 	{
+		"id":"studyroom",
+		"name":"study",
+		"desc":"A place for reading and research",
+		"require":"state.codices>=100",
+		"cost":{
+			"gold":200,
+			"research":100,
+			"space":20
+		},
+		"mod":{
+			"codices.max":100,
+			"research.max":100,
+			"research.base":0.05
+		}
+
+	},
+	{
 		"id":"library",
 		"name":"Library",
 		"desc":"",
 		"require":"state.codices>=100",
 		"cost":{
 			"gold":500,
-			"research":100,
-			"space":50
+			"research":1000,
+			"space":100
 		},
 		"mod":{
 			"codices.max":1000,
-			"arcana.max":50,
 			"research.max":100,
 			"research.base":0.1
 		}

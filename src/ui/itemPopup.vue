@@ -32,6 +32,22 @@ export default {
 			}
 		}
 	},
+	computed:{
+
+		/**
+		 * Do not show skipLocked effects/mods.
+		 */
+
+		/**
+		 * @method effects
+		 */
+		effects(){
+		},
+
+		mods(){
+		}
+
+	},
 	methods:{
 
 		effectName(p) {

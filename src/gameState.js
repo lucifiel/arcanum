@@ -24,6 +24,12 @@ export default class GameState {
 		this.sections = Sections;
 
 		/**
+ 		* @property {number} sellRate - percent of initial cost
+ 		* items sell for.
+ 		*/
+		this.sellRate = this.sellRate || 0.5;
+
+		/**
 		 * @property {Object[]} dots - timed/ongoing effects.
 		 */
 		this.dots = this.dots || [];
