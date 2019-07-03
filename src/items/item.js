@@ -129,18 +129,16 @@ export default class Item {
 
 	}
 
-	applyEffect(e) {
-	}
-
 	/**
 	 * 
-	 * @param {Object} m - mod description. 
+	 * @param {Object} m - effect/mod description. 
 	 * @param {number} pct - factor of base amount added
 	 * ( fractions of full amount due to tick time. )
 	 */
-	addMod( m, pct ) {
+	applyVars( m, pct ) {
 
-		if ( m instanceof Object ) {
+		if (!isNaN(m)) this.value += m;
+		else if ( m instanceof Object ) {
 
 			for( let p in m ) {
 

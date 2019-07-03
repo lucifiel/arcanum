@@ -72,6 +72,19 @@
 		}
 	},
 	{
+		"id":"chant",
+		"verb":"chanting",
+		"perpetual":true,
+		"ignoreStamina":true,
+		"require":"good",
+		"fill":[ "light", "hp", "mana" ],
+		"effect":{
+			"mana":0.5,
+			"hp":1,
+			"light":0.05
+		}
+	},
+	{
 		"id":"study",
 		"perpetual":true,
 		"verb":"studying",

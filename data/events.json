@@ -18,7 +18,7 @@
 		"desc":"After paying a small fee, you became apprenticed to a local wizard.",
 		"remove":["stables"],
 		"effect":{
-			"research.max":25
+			"research.max":10
 		}
 	},
 	{
@@ -29,7 +29,7 @@
 		"remove":["apprentice","chores"],
 		"effect":{
 			"gold.base":0.1,
-			"research.max":50,
+			"research.max":20,
 			"arcana.max":1
 		}
 	},

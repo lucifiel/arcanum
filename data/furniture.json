@@ -312,6 +312,20 @@
 		}
 	},
 	{
+		"id":"ironcell",
+		"name":"Iron Cell",
+		"desc":"A simple, bare cell.",
+		"require":"adept",
+		"cost":{
+			"gold":25,
+			"space":5
+		},
+		"mod":{
+			"shadow.max":1
+		}
+
+	},
+	{
 		"id":"shrine",
 		"name":"Shrine",
 		"desc":"A shrine to the divine forces.",

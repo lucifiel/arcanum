@@ -23,7 +23,12 @@
 		"verb":"Reading magic",
 		"cost":{
 			"stamina":0.2
+		},
+		"result":{
+			"arcana":1,
+			"arcana.max":1
 		}
+
 	},
 	{
 
@@ -85,7 +90,7 @@
 	{
 		"id":"astrology",
 		"name":"astrology",
-		"require":"state.sextant||state.telescope",
+		"require":"state.sextant>0||state.telescope>0",
 		"cost":{
 			"stamina":0.5
 		}

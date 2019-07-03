@@ -46,6 +46,7 @@ export default {
 		this.initJSON( PlayerStats );
 		this.initJSON( SpellList );
 		this.initJSON( Furniture);
+		this.initJSON( EventList );
 
 		this.initGameItems();
 

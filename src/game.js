@@ -224,9 +224,10 @@ export default {
 
 		if ( evt.title ) this._state.player.title = evt.title;
 
+		if ( evt.effect ) this.applyEffect( evt.effect, 1 );
+
 		evt.locked = false;
 		evt.value = 1;
-		this._state.completed[evt.id] = evt;
 		this._state.events[evt.id] = null;
 
 		this.log.log( evt.name, evt.desc, 'event' );
@@ -390,38 +391,7 @@ export default {
 
 	},
 
-	/**
-	 * Apply a mod.
-	 * @param {Array|Object} mod
-	 * @param {number} amt - amount added.
-	 */
-	addMod( mod, amt ) {
-
-		if ( mod instanceof Array ) mod.forEach( this.addMod, this );
-		else if ( mod instanceof Object ) {
-	
-			for( let p in mod ) {
-
-				var target = this.getItem( p );
-				if ( !target) continue;
-				target.addMod( mod[p], amt );
-
-			}
-
-		}
-
-	},
-
-	/**
-	 * 
-	 * @param {Object} mod 
-	 * @param {number} amt 
-	 */
-	removeMod( mod, amt ) {
-		this.addMod( mod, -amt);
-	},
-
-	/**
+		/**
 	 * Perform the one-time effect of an action, resource, or upgrade.
 	 * @param {Item} effect
 	 * @param {number} dt - time elapsed.
@@ -442,22 +412,53 @@ export default {
 
 				if ( target.type === 'event' ) this.doEvent( target );
 				else if ( !isNaN(e) ) target.value += e*dt;
-				else target.applyEffect(e,dt);	
+				else target.applyVars(e,dt);	
 				
 			}
 
 		} else if ( typeof effect === 'string') {
 
-			effect = this.getItem(effect);
-			if ( effect != null ) {
+			let target = this.getItem(effect);
+			if ( target != null ) {
 
-				if ( effect.type === 'event') this.doEvent( effect );
-				else this.applyEffect( effect, dt );
+				if ( target.type === 'event') this.doEvent( target );
+				else target.applyVars( 1, dt );
 
 			}
 
 		}
 
+	},
+
+	/**
+	 * Apply a mod.
+	 * @param {Array|Object} mod
+	 * @param {number} amt - amount added.
+	 */
+	addMod( mod, amt ) {
+
+		if ( mod instanceof Array ) mod.forEach( this.addMod, this );
+		else if ( mod instanceof Object ) {
+	
+			for( let p in mod ) {
+
+				var target = this.getItem( p );
+				if ( !target) continue;
+				target.applyVars( mod[p], amt );
+
+			}
+
+		}
+
+	},
+
+	/**
+	 * 
+	 * @param {Object} mod 
+	 * @param {number} amt 
+	 */
+	removeMod( mod, amt ) {
+		this.addMod( mod, -amt);
 	},
 
 	/**
@@ -502,7 +503,6 @@ export default {
 	canBuy( item ){
 
 		if ( item.maxed() ) {
-			console.log('cant buy: ' + item.id );
 			return false;
 		}
 		return !item.cost || this.canPay(item.cost);

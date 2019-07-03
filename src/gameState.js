@@ -38,11 +38,6 @@ export default class GameState {
 
 		this.events = this.events || {};
 
-		/**
-		* @property {Object} completed - completed events.
-		*/
-		this.completed = this.completed || {};
-
 		this.raid = this.raid || new Raid();
 		this.raid.initState( this );
 

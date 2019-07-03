@@ -40,7 +40,7 @@ export default class Skill extends Item {
 		super(vars);
 
 		this.type = 'skill';
-		this._length = this._length || 100;
+		this._length = this._length || 50;
 		this._value = this._value || 0;
 		this._exp = this._exp || 0;
 		this._rate = this._rate || 2;

@@ -55,18 +55,6 @@ div.homes-view {
 	flex-direction: column;
 }
 
-div.player-view .prop, div.player-view .value {
-	padding: 2px 4px;
-}
-
-div.player-view .prop {
-	text-align:right;
-}
-
-div.player-view .value {
-	text-align: left;
-}
-
 div.resource-list {
 	width: fit-content;
 	min-width: 230px;

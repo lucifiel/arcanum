@@ -73,6 +73,8 @@ export default class Player {
 
 		this.damage = this.damage || new Range( 1, 2 );
 
+		this.alignment = this.alignment || 'neutral';
+
 		/**
 		 * @property {Item} primary - primary attack.
 		 */

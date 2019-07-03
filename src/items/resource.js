@@ -78,17 +78,6 @@ export default class Resource extends Item {
 
 	}
 
-	applyEffect( e ) {
-
-		if ( e instanceof Object ){
-
-			if ( this.locked && e.skipLocked ) return;
-			if ( e.value ) this.value += e.value;
-
-		}
-
-	}
-
 	update( dt ) {
 
 		if ( this._rate ) {

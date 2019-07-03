@@ -4,10 +4,10 @@
 		"id":"apprenticeship",
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
-		"require":"state.research>=15",
+		"require":"state.research>=10",
 		"repeat":false,
 		"cost":{
-			"research":25,
+			"research":10,
 			"gold":20
 		},
 		"effect":"apprentice"
@@ -116,7 +116,7 @@
 	{
 
 		"id":"satchel",
-		"desc":"Satchel for carrying scrolls.",
+		"desc":"Carry more scrolls.",
 		"require":"state.scrolls>=10",
 		"cost":50,
 		"max":1,
@@ -128,7 +128,7 @@
 	{
 
 		"id":"prism",
-		"desc":"A small crystal pyramid, for performing mystic experiments.",
+		"desc":"A small crystal pyramid for performing mystic experiments.",
 		"require":"apprentice",
 		"cost":{
 			"gold":40,
