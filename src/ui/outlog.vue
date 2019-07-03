@@ -25,13 +25,11 @@ export default {
 	
 	<div class="outlog">
 
-		<ul>
-
-			<li class="log-item" v-for="(it,i) in items" :key="i">
+			<div class="log-item" v-for="(it,i) in items" :key="i">
 				<span class="log-title">{{ it.title }}</span><br>
 				<span class="log-text">{{ it.text }}</span>
-			</li>
-		</ul>
+			</div>
+
 	</div>
 
 </template>
@@ -44,6 +42,7 @@ div.outlog {
 div.log-item {
 	display:flex;
 	flex-direction: column;
+	margin: 8px 0px;
 }
 
 .log-title {
@@ -52,8 +51,6 @@ div.log-item {
 
 .log-text {
 	font-weight: normal;
-	text-align: right;
-	align-self: flex-end;
 }
 
 </style>

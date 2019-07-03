@@ -9,6 +9,12 @@
 		}
 	},
 	{
+
+		"id":"firstscroll",
+		"name":"A tattered scroll",
+		"desc":"You buy a strange scroll from a travelling peddlar. If you could only decipher the ancient runes."
+	},
+	{
 		"id":"apprentice",
 		"name":"Apprenticeship",
 		"title":"apprentice",

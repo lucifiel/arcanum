@@ -81,7 +81,8 @@
 			"gold":10
 		},
 		"effect":{
-			"scrolls":1
+			"scrolls":1,
+			"firstscroll":true
 		}
 	},
 	{

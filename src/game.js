@@ -220,6 +220,7 @@ export default {
 	 */
 	doEvent( evt ) {
 
+		if ( evt.maxed() ) return;
 		if ( evt.remove ) this.remove( evt.remove);
 
 		if ( evt.title ) this._state.player.title = evt.title;
@@ -423,7 +424,8 @@ export default {
 
 	/**
 	 * Perform the one-time effect of an action, resource, or upgrade.
-	 * @param effect
+	 * @param {Item} effect
+	 * @param {number} dt - time elapsed.
 	 */
 	applyEffect( effect, dt=1 ) {
 
@@ -439,10 +441,10 @@ export default {
 
 				e = effect[p];
 
-				if ( !isNaN(e) ) target.value += e*dt;
-				else if ( target.type === 'event' ) this.doEvent( target );
-				else target.applyEffect(e,dt);
-
+				if ( target.type === 'event' ) this.doEvent( target );
+				else if ( !isNaN(e) ) target.value += e*dt;
+				else target.applyEffect(e,dt);	
+				
 			}
 
 		} else if ( typeof effect === 'string') {
