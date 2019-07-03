@@ -11,7 +11,7 @@
 		},
 		"mod":{
 			"gold":{
-				"max":100
+				"max":75
 			}
 		}
 	},
@@ -23,7 +23,7 @@
 		"repeat":true,
 		"cost":{
 			"gold":200,
-			"space":1
+			"space":2
 		},
 		"mod":{
 			"gold.max":200
@@ -56,6 +56,32 @@
 			"research.max":5
 		}
 
+	},
+	{
+		"id":"plant",
+		"name":"Potted milkweed",
+		"desc":"Brightens up the place",
+		"cost":{
+			"gold":25,
+			"space":1
+		},
+		"mod":{
+			"resarch.max":5
+		}
+
+	},
+	{
+		"id":"mortar",
+		"name":"Mortar and Pestle",
+		"desc":"Useful for grinding herbs & fine ingredients.",
+		"require":"herbalism",
+		"cost":{
+			"gold":20,
+			"space":1
+		},
+		"mod":{
+			"research.max":5
+		}
 	},
 	{
 		"id":"birdcage",

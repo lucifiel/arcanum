@@ -8,7 +8,14 @@
 	{
 		"id":"research",
 		"desc":"Research into the Arcane",
-		"max":25
+		"max":10
+	},
+	{
+		"id":"arcana",
+		"school":"arcane",
+		"desc":"Profound mystical knowledge",
+		"require":"state.lore>=1",
+		"max":5
 	},
 	{
 
@@ -62,9 +69,10 @@
 	},
 	{
 		"id":"ichor",
-		"max":10,
 		"desc":"The blood of gods.",
-		"require":"magician"
+		"require":"magician",
+		"favor":"the secret courtesy that courses like ichor",
+		"max":5
 	},
 	{
 

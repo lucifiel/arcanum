@@ -181,19 +181,6 @@
 		}
 	},
 	{
-		"id":"mortar",
-		"name":"Mortar and Pestle",
-		"desc":"Useful for grinding herbs & fine ingredients.",
-		"require":"apprentice",
-		"cost":{
-			"gold":20,
-			"space":1
-		},
-		"mod":{
-			"research.max":5
-		}
-	},
-	{
 		"id":"breviary",
 		"require":"pedestal",
 		"cost":100,

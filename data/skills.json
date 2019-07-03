@@ -8,17 +8,7 @@
 			"stamina":0.5
 		}
 	},
-	{
-		"id":"arcana",
-		"school":"arcane",
-		"desc":"Obscure mystical knowledge",
-		"require":"apprentice",
-		"name":"Arcana",
-		"verb":"Reading magic",
-		"cost":{
-			"stamina":0.2
-		}
-	},
+
 	{
 		"id":"crafting",
 		"require":"workbench",
@@ -28,11 +18,11 @@
 	},
 	{
 		"id":"lore",
-		"name":"Lore",
 		"school":"arcane",
-		"require":"state.codices>=1",
+		"require":"apprentice",
+		"verb":"Reading magic",
 		"cost":{
-			"stamina":0.5
+			"stamina":0.2
 		}
 	},
 	{
@@ -69,7 +59,7 @@
 		"id":"herbalism",
 		"school":["nature"],
 		"name":"herbalism",
-		"require":"mortar",
+		"require":"plant",
 		"cost":{
 			"stamina":0.25
 		}

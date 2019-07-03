@@ -37,6 +37,7 @@ export default {
 <style scoped>
 div.outlog {
 	flex-direction: column;
+	flex-basis: 20%;
 }
 
 div.log-item {
