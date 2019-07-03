@@ -17,11 +17,13 @@
 	{
 		"id":"neophytism",
 		"name":"Neophyte",
-		"desc":"Ascend to the next level of wizardry. You aren't sure why your master needs a fee...",
+		"desc":"Ascend to the next level of wizardry.",
 		"require":"state.research>=200&&state.arcana>=5",
 		"repeat":false,
+		"flavor":"Why does Master charge so many fees?",
 		"cost":{
-			"research":200,
+			"research":100,
+			"arcana":1,
 			"gold":150
 		},
 		"effect":"neophyte"
@@ -31,14 +33,33 @@
 	{
 		"id":"leavemaster",
 		"name":"Leave Master",
-		"desc":"Leave your apprenticeship behind.",
+		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
 		"require":"state.research>=500&&state.arcana>=10",
 		"repeat":false,
 		"cost":{
 			"research":500,
-			"gold":500
+			"arcana":10,
+			"gold":300
 		},
 		"effect":"adept"
+
+	},
+	{
+		"id":"slaymaster",
+		"name":"Slay Master",
+		"desc":"Murder your master in their sleep.",
+		"require":"state.research>=500&&state.arcana>=10",
+		"repeat":false,
+		"flavor":"Saves a lot of money",
+		"cost":{
+			"research":500,
+			"arcana":10
+		},
+		"effect":{
+			"adept":true,
+			"evil":true,
+			"bones":10
+		}
 
 	},
 

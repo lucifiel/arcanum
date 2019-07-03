@@ -110,6 +110,21 @@
 
 	},
 	{
+		"id":"sextant",
+		"desc":"Measure the stars...",
+		"require":"neophyte",
+		"cost":{
+			"gold":30,
+			"research":50,
+			"arcana":1,
+			"space":2
+		},
+		"mod":{
+			"arcana.max":1,
+			"arcana.base":0.01
+		}
+	},
+	{
 
 		"id":"bookcase",
 		"name":"Bookcase",
@@ -186,7 +201,7 @@
 		},
 		"mod":{
 			"candle.max":4,
-			"black":{
+			"shadow":{
 				"base":0.04
 			}
 		}
@@ -216,7 +231,8 @@
 			"space":1
 		},
 		"mod":{
-			"fire.max":10
+			"fire.max":5,
+			"fire.base":0.02
 		}
 
 	},
@@ -276,7 +292,7 @@
 		},
 		"mod":{
 			"bones.max":10,
-			"black.max":5
+			"shadow.max":5
 		}
 	},
 	{
@@ -287,12 +303,28 @@
 		"cost":{
 			"gold":30,
 			"bones":10,
-			"black":10,
+			"shadow":10,
 			"space":1
 		},
 		"mod":{
-			"black.base":0.1,
-			"black.max":10
+			"shadow.base":0.1,
+			"shadow.max":10
+		}
+	},
+	{
+		"id":"shrine",
+		"name":"Shrine",
+		"desc":"A shrine to the divine forces.",
+		"require":"state.space>10",
+		"cost":{
+			"gold":30,
+			"gems":5,
+			"light":10,
+			"space":1
+		},
+		"mod":{
+			"light.base":0.1,
+			"light.max":10
 		}
 	},
 	{
@@ -302,13 +334,13 @@
 		"require":"state.space>20",
 		"cost":{
 			"gold":300,
-			"black":20,
+			"shadow":20,
 			"bones":20,
 			"space":5
 		},
 		"mod":{
-			"black.base":0.5,
-			"black.max":50
+			"shadow.base":0.5,
+			"shadow.max":50
 		}
 	},
 	{

@@ -85,7 +85,7 @@
 	{
 		"id":"astrology",
 		"name":"astrology",
-		"require":"sextant",
+		"require":"state.sextant||state.telescope",
 		"cost":{
 			"stamina":0.5
 		}

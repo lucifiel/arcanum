@@ -132,7 +132,7 @@
 		"max":5
 	},
 	{
-		"id":"black",
+		"id":"shadow",
 		"name":"shadow",
 		"tag":"mana",
 		"desc":"Shadow mana",

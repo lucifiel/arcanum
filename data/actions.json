@@ -26,7 +26,7 @@
 		}
 	},
 	{
-		"id":"run errands",
+		"id":"errands",
 		"name":"Run Errands",
 		"desc":"standard apprentice work.",
 		"verb":"running errands",
@@ -37,6 +37,21 @@
 		},
 		"effect":{
 			"gold":0.5
+		}
+
+	},
+	{
+		"id":"treatailments",
+		"name":"Treat Ailments",
+		"desc":"Treat the magical ailments of locals.",
+		"verb":"running errands",
+		"require":"neophyte",
+		"perpetual":true,
+		"cost":{
+			"stamina":0.25
+		},
+		"effect":{
+			"gold":0.75
 		}
 
 	},

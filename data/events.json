@@ -4,12 +4,9 @@
 		"id":"intro",
 		"name":"Prologue",
 		"desc":"An idle waif with no prospects to speak of...",
-		"locked":false,
-		"effect":{
-		}
+		"locked":false
 	},
 	{
-
 		"id":"firstscroll",
 		"name":"A tattered scroll",
 		"desc":"You buy a strange scroll from a travelling peddlar. If you could only decipher the ancient runes."
@@ -28,11 +25,12 @@
 		"id":"neophyte",
 		"name":"Noviciate",
 		"title":"neophyte",
-		"desc":"Your master has decided you are ready to take the next step on the path of wizardry.\nYou have been given a small allowance to continue your research.",
-		"remove":["apprentice"],
+		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies.",
+		"remove":["apprentice","chores"],
 		"effect":{
 			"gold.base":0.1,
-			"research.max":50
+			"research.max":50,
+			"arcana.max":1
 		}
 	},
 	{
@@ -40,10 +38,18 @@
 		"name":"Adept",
 		"title":"adept",
 		"desc":"Setting off on your own, you become an independent practioner of the mystic arts.",
-		"remove":["neophyte", "bedroom", "alcove","chores"],
+		"remove":["neophyte", "bedroom", "alcove","errands"],
 		"effect":{
 			"research.max":100
 		}
+	},
+	{
+		"id":"evil",
+		"desc":"You have taken your first step on the path of evil. It's a good thing.",
+		"effect":{
+			"shadow.max":1
+		}
+
 	}
 
 ]

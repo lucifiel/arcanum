@@ -1,5 +1,4 @@
 import DataLoader from 'dataLoader';
-import Spellbook from 'spellbook';
 import VarPath from './varPath';
 
 import Log from 'log';
