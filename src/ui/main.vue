@@ -103,11 +103,9 @@ export default {
 
 		initEvents(){
 
-			var evt;
 			var events = this.gameState.events;
-			for( let p in events ) {
+			for( let evt of events ) {
 
-				evt = events[p];
 				if ( evt.locked === false ) this.game.doEvent(evt);
 
 			}

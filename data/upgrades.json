@@ -106,6 +106,7 @@
 	{
 		"id":"bestiary",
 		"desc":"compendium of magical creatures",
+		"locked":true,
 		"mod":{
 			"research.max":10,
 			"animals.rate":0.1

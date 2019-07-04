@@ -33,7 +33,9 @@ export { ResourceList, UpgradeList, ActionList, HomeList };
  */
 export default {
 
-	get items() { return this._items; },
+	/**
+	 * @property {} gameData - all game data.
+	 */
 	get gameData() { return this._gameData; },
 
 	init() {
@@ -130,134 +132,75 @@ export default {
 	initGameItems() {
 
 		var gd = this._gameData = {
-			items:{}
+			items:{},
+
+			/**
+			 * @property {Object.<string,Item[]>} byTag - items by tag.
+			 */
+			tagLists:{}
 		};
 		
 		this._items = gd.items;
 
-		gd.resources = this.initResources( ResourceList );
-		gd.upgrades = this.initUpgrades( UpgradeList );
-		gd.homes = this.initUpgrades( HomeList, 'home' );
-		this.initUpgrades( Furniture, 'furniture' );
+		gd.resources = this.initItems( ResourceList, Resource );
+
+		gd.upgrades = this.initItems( UpgradeList, Upgrade, null, 'upgrade' );
+		gd.homes = this.initItems( HomeList, Upgrade, 'home', 'home' );
+		this.initItems( Furniture, Upgrade, 'furniture', 'furniture' );
+		this.initItems( SkillList, Skill );
+		this.initItems( Dungeons, Dungeon );
+		this.initItems( SpellList, Spell );
 	
-		gd.skills = this.initSkills( SkillList );
+		gd.events = this.initItems( EventList, Item, null, 'event' );
 
-		this.initDungeons( Dungeons );
-	
-		gd.events = this.initEvents( EventList );
-
-		this.initSpells( SpellList );
-
-		gd.actions = this.initActions();
+		gd.actions = this.initItems( ActionList, Item, null, 'action' );
+		gd.actions.forEach( v=>v.repeat= v.repeat!==undefined ? true : v.repeat );
 
 		gd.player = this._items.player = this.initPlayer( PlayerStats );
+
+		this.makeLists( gd.tagLists, gd.items );
+
 	},
 
 	/**
-	 * Note: unlike the other init funcs, this returns an Object.
-	 * @param {Array} events
-	 * @returns {Object.<string,Item>}
+	 * Create lists of tagged items.
+	 * @param {Object.<string,Item[]>} lists 
+	 * @param {Object.<string,Item>} items 
 	 */
-	initEvents( events ) {
+	makeLists( lists, items ) {
 
-		let a = {};
 
-		for( let def of events ){
+		for( let p in items ) {
 
-			def._type = 'event';
-			this._items[def.id] = a[def.id] = new Item( def );
+			var it = items[p];
+			var tags = it.tags;
+			if ( !tags ) continue;
 
-		}
+			for( var t of tags ){
 
-		return a;
-	},
+				var list = lists[t];
+				if ( !list ) lists[t] = list = [];
+				list.push( it );
 
-	initResources( resArr ){
-
-		let a = [];
-		let res;
-
-		for( let def of resArr ) {
-
-			res = new Resource( def );
-	
-			a.push( res );
-			this._items[ def.id ] = res;
+			}
 
 		}
 
-		return a;
-
 	},
 
-	initUpgrades( DataList, tag ) {
+	initItems( DataList, UseClass=Item, tag=null, type=null ) {
 
 		let a = [];
 
-		let up;
+		let it;
 		for( let def of DataList ) {
 
-			up = new Upgrade( def );
-			up.addTag( tag );
+			it = new UseClass( def );
+			if ( tag !== null ) it.addTag( tag );
+			if ( type !== null ) it.type = type;
 
-			a.push(up);
-			this._items[up.id] = up;
-
-		}
-
-		return a;
-
-	},
-	initSkills( DataList ) {
-
-		let a = [];
-
-		let s;
-		for( let def of DataList ) {
-
-			s = new Skill( def );
-			//s.addTag( tag );
-
-			a.push(s);
-			this._items[s.id] = s;
-
-		}
-
-		return a;
-
-	},
-
-	initActions() {
-
-		let a = [];
-
-		let act;
-		for( let def of ActionList ) {
-
-			act = new Item( def );
-			act.type = 'action';
-			act.repeat = true;
-
-			a.push(act);
-			this._items[act.id] = act;
-
-		}
-
-		return a;
-
-	},
-
-	initSpells( spellArr ) {
-
-		let a = [];
-
-		let act;
-		for( let def of spellArr ) {
-
-			act = new Spell( def );
-
-			a.push(act);
-			this._items[act.id] = act;
+			a.push(it);
+			this._items[it.id] = it;
 
 		}
 
@@ -278,18 +221,6 @@ export default {
 		}
 
 		return new Player( vars );
-
-	},
-
-	initDungeons( list ) {
-
-		let d;
-		for( let def of list ) {
-
-			d = new Dungeon( def );
-			this._items[d.id] = d;
-
-		}
 
 	},
 

@@ -34,13 +34,32 @@ export default class GameState {
 		 */
 		this.dots = this.dots || [];
 
-		this.flags = this.flags || {};
+		/**
+		 * @property {Object.<string,number>} counts - counts of all items, including
+		 * counts of tagged items ( for tag requirements. )
+		 */
+		//this.counts = {};
+
+		/**
+		 * @property {Object.<string,Item[]>} tagLists - tag to array of items with tag.
+		 * makes upgrading/referencing by tag easier.
+		 */
+		this.tagLists = this.tagLists || {};
 
 		this.events = this.events || {};
 
 		this.raid = this.raid || new Raid();
 		this.raid.initState( this );
 
+	}
+
+	/**
+	 * 
+	 * @param {string} tag
+	 * @returns {Item[]|undefined}
+	 */
+	getTagList( tag ) {
+		return this.tagLists[tag];
 	}
 
 	/**

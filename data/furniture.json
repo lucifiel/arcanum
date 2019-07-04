@@ -33,6 +33,8 @@
 		"id":"cot",
 		"desc":"Slightly better than sleeping on the floor",
 		"require":"apprentice",
+		"tag":"bed",
+		"slot":"bed",
 		"max":1,
 		"cost":{
 			"gold":10,
@@ -44,8 +46,10 @@
 
 	},
 	{
-		"id":"bed",
+		"id":"woodbed",
 		"desc":"small wooden bed.",
+		"tag":"bed",
+		"slot":"bed",
 		"require":"neophyte",
 		"max":1,
 		"cost":{

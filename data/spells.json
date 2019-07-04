@@ -103,6 +103,81 @@
 			"damage":"2-3",
 			"tohit":1
 		}
-	}
+	},
 
+	{
+		"id":"stoneskin",
+		"name":"stone skin",
+		"desc":"hardens the skin of the caster.",
+		"require":{
+			"earth.max":5
+		},
+		"level":2,
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"earth":5
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"defense":2
+			}
+		}
+
+	},
+
+	{
+		"id":"unseenservant",
+		"level":2,
+		"name":"unseen servant",
+		"desc":"an invisible servant manages your affairs.",
+		"require":{
+			"air.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"air":5
+		},
+		"dot":{
+			"duration":45,
+			"effect":{
+				"gold":0.5
+			}
+		}
+	},
+	{
+		"id":"insight",
+		"name":"insight",
+		"level":2,
+		"desc":"all your studies seem to fall into place.",
+		"flavor":"I know the pieces fit",
+		"require":{
+			"light.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"light":5
+		},
+		"dot":{
+			"duration":45,
+			"effect":{
+				"lore.rate":0.5
+			}
+		}
+	}
 ]

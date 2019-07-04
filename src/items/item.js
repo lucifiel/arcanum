@@ -201,9 +201,6 @@ export default class Item {
 
 	}
 
-	updateDot(e, dt) {
-	}
-
 	/**
 	 * 
 	 * @param {string} tag 

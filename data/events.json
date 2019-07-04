@@ -37,7 +37,7 @@
 		"id":"adept",
 		"name":"Adept",
 		"title":"adept",
-		"desc":"Setting off on your own, you become an independent practioner of the mystic arts.",
+		"desc":"You are now an independent practitioner of the mystic arts. You had better find a new place to stay.",
 		"remove":["neophyte", "bedroom", "alcove","errands"],
 		"effect":{
 			"research.max":100

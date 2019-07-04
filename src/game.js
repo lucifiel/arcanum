@@ -228,7 +228,6 @@ export default {
 
 		evt.locked = false;
 		evt.value = 1;
-		this._state.events[evt.id] = null;
 
 		this.log.log( evt.name, evt.desc, 'event' );
 
@@ -285,6 +284,11 @@ export default {
 
 	},
 
+	/**
+	 * Attempt to pay the cost to learn a spell. (Possibly skills later.)
+	 * @param {Item} it 
+	 * @returns {boolean}
+	 */
 	tryLearn(it) {
 
 		if ( it.cost ) {
@@ -369,17 +373,21 @@ export default {
 		if ( test instanceof Array ) return test.every( this.lockTest, this );
 
 		let type = typeof test;
-		if ( type === 'function') {
+		if ( type === 'function') return test( this._items, item );
 
-			//console.log(test.toString());
-
-			return test( this._items, item );
-
-		} else if ( type === 'string') {
+		else if ( type === 'string') {
 
 			// test that another item is unlocked.
 			let it = this.getItem(test);
-			if (!it) return false;
+			if (!it) {
+
+				// tag test - if any item with the tag is unlocked, test passes.
+				it = this._state.getTagList(test);
+				return it ? it.some( this.lockTest, this ) : false;
+
+			}
+
+			// don't need to actually use an action or resource to mark it unlocked.
 			if ( it.type === 'resource' || it.type === 'action') return !it.locked;
 			return it.value >0;
 
@@ -406,11 +414,10 @@ export default {
 			for( let p in effect ){
 
 				target = this.getItem(p);
-				if ( target === undefined ) continue;
-
 				e = effect[p];
 
-				if ( target.type === 'event' ) this.doEvent( target );
+				if ( target === undefined ) this.applyToTag( p, e, dt );
+				else if ( target.type === 'event' ) this.doEvent( target );
 				else if ( !isNaN(e) ) target.value += e*dt;
 				else target.applyVars(e,dt);	
 				
@@ -443,12 +450,26 @@ export default {
 			for( let p in mod ) {
 
 				var target = this.getItem( p );
-				if ( !target) continue;
-				target.applyVars( mod[p], amt );
+
+				if ( target === undefined ) this.applyToTag( p, mod[p], amt );
+				else target.applyVars( mod[p], amt );
 
 			}
 
 		}
+
+	},
+	
+	/**
+	 * Apply an effect or mod to all type tags.
+	 * @param {string} tag 
+	 * @param {Object} obj 
+	 * @param {number} dt 
+	 */
+	applyToTag( tag, obj, dt ) {
+
+		let target = this._stage.getTagList(tag);
+		if ( target ) target.forEach( v=>v.applyVars( obj, dt ) );
 
 	},
 
@@ -500,12 +521,17 @@ export default {
 
 	},
 
-	canBuy( item ){
+	canBuy( it ){
 
-		if ( item.maxed() ) {
-			return false;
+		if ( it.maxed()) return false;
+		else if ( it.slot ) {
+
+			let list = this._state.getTagList(it.slot );
+			if ( list && list.some(v=>!v.locked&&!v.removed&&v.value>0)) return false;
+
 		}
-		return !item.cost || this.canPay(item.cost);
+
+		return !it.cost || this.canPay(it.cost);
 	},
 
 	/**

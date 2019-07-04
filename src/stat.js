@@ -1,7 +1,14 @@
-
-export const StatRe = /^\d*(\+\d+)?$/i;
+export const StatRe = /^([\+\-]?\d+)(?:([\+\-]\d+)\%)?$/i;
 
 export default class Stat {
+
+	toJSON(){
+		return this._base + (this._pct >= 0 ? '+' : '') + (100*this._pct) + '%';
+	}
+
+	toString(){
+		return this._base + (this._pct >= 0 ? '+' : '') + (100*this._pct) + '%';
+	}
 
 	get value() { return this._base*( 1 + this._pct ); }
 
@@ -20,6 +27,10 @@ export default class Stat {
 			this._pct = 0;
 		} else if ( vars instanceof Object ) Object.assign(this,vars);
 		else if ( typeof vars === 'string') {
+
+			let res = StatRe.exec( vars );
+			this.base = res[1];
+			this.pct = res.length > 2 ? Number(res[2])/100 : 0;
 
 		}
 

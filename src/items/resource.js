@@ -54,7 +54,6 @@ export default class Resource extends Item {
 
 			if ( this.reverse ) {
 				this.value += ( this._max.value - lastMax );
-				console.log('assigning reverse ' + this.name + ': ' + this.value );
 			}
 
 		}
