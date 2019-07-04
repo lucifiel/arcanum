@@ -51,7 +51,7 @@ input[type=text] {
 	margin: 1px;
 }
 
-td th {
+td, th {
 	padding: 2px 4px;
 }
 

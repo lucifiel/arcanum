@@ -44,7 +44,10 @@ export default {
 
 			<td class="space">{{ it.cost.space }}</td>
 			<td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
-			<td><button :disabled="!usable(it)" class="buy-btn" @click="dispatch('action',it)">Buy</button></td>
+			<td><button :disabled="!usable(it)" class="buy-btn"
+				@mouseenter.capture.stop="dispatch('itemover', $event, it )"
+				@mouseleave.capture.stop="dispatch('itemout',$event)"
+				@click="dispatch('action',it)">Buy</button></td>
 			<td><button :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 
 		</tr>
@@ -58,9 +61,15 @@ export default {
 
 <style scoped>
 
+div.home-view {
+	height:100%;
+}
+
 div.furniture {
 	display:flex;
+	overflow-y:auto;
 	flex-direction: column;
+	flex-basis: 100%;
 }
 
 table tr, table th {
@@ -71,7 +80,8 @@ table .count, table .space {
 	text-align: center;
 }
 table .name {
-	padding: 2px 8px;
+	padding: 2px 8px 2px 12px;
 	min-width:120px;
+	text-align: left;
 }
 </style>

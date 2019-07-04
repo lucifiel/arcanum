@@ -161,7 +161,7 @@ export default class Item {
 					console.log('subassign: ' + p)
 					this.subassign( this[p], m[p], pct );
 				} else if ( this[p] !== undefined ) {
-					console.log('adding: ' + p );
+					//console.log('adding: ' + p );
 					this[p] += Number(m[p])*pct;
 				}
 

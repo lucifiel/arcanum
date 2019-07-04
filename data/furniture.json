@@ -3,7 +3,7 @@
 		"id":"smallchest",
 		"name":"Small Chest",
 		"desc":"A small wooden chest.",
-		"require":"state.gold>=50",
+		"require":"state.gold.max>=50",
 		"repeat":true,
 		"cost":{
 			"gold":50,
@@ -19,7 +19,7 @@
 		"id":"ironchest",
 		"name":"Iron Chest",
 		"desc":"Treasure chest.",
-		"require":"state.gold>=150",
+		"require":"state.gold.max>=150",
 		"repeat":true,
 		"cost":{
 			"gold":200,
@@ -28,6 +28,32 @@
 		"mod":{
 			"gold.max":200
 		}
+	},
+	{
+		"id":"cot",
+		"desc":"Slightly better than sleeping on the floor",
+		"require":"apprentice",
+		"cost":{
+			"gold":10,
+			"space":1
+		},
+		"mod":{
+			"rest.effect.stamina":0.05
+		}
+
+	},
+	{
+		"id":"bed",
+		"desc":"small wooden bed.",
+		"require":"apprentice",
+		"cost":{
+			"gold":40,
+			"space":2
+		},
+		"mod":{
+			"rest.effect.stamina":0.15
+		}
+
 	},
 	{
 		"id":"vault",
@@ -41,6 +67,20 @@
 		"mod":{
 			"gold.max":750,
 			"gems.max":25
+		}
+	},
+	{
+		"id":"magiccircle",
+		"name":"magic circle",
+		"desc":"Magic circle",
+		"require":"arcana",
+		"cost":{
+			"space":1,
+			"research":40
+		},
+		"mod":{
+			"research.max":3,
+			"arcana.base":0.01
 		}
 	},
 	{

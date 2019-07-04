@@ -3,6 +3,9 @@ ongoing/continuous
 master names?
 quizlbach
 
+
+beds + stamina/rest speed
+
 homes /sanctums / domiciles / base
 
 obscura

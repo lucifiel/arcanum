@@ -7,7 +7,10 @@ import Game from '../game';
  */
 export default {
 
-	props:["item", "elm"],
+	/**
+	 * @property {boolean} sell - if the pane is a sell-view.
+	 */
+	props:["item", "elm", 'sell'],
 	data(){
 		return {};
 	},

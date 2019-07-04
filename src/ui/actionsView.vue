@@ -8,10 +8,6 @@ import ItemsBase from './itemsBase.js';
 export default {
 
 	mixins:[ItemsBase],
-	data(){
-		return {
-		}
-	},
 	methods:{
 	}
 

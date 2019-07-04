@@ -19,6 +19,7 @@ import Skill from 'items/skill';
 
 import VarPath  from 'varPath';
 import Dungeon from './items/dungeon.js';
+import Spell from './items/spell.js';
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -67,6 +68,7 @@ export default {
 			if ( it.mod ) it.mod = this.parseSub(it.mod);
 			if ( it.fill) it.fill = this.parseSub(it.fill);
 			if ( it.effect ) it.effect = this.parseSub(it.effect );
+			if ( it.result ) it.result = this.parseSub(it.result);
 
 			if ( it.attack )this.parseAttack( it.attack );
 
@@ -252,9 +254,7 @@ export default {
 		let act;
 		for( let def of spellArr ) {
 
-			act = new Item( def );
-			act.type = 'spell';
-			act.repeat = true;
+			act = new Spell( def );
 
 			a.push(act);
 			this._items[act.id] = act;

@@ -11,7 +11,7 @@
 		"id":"bedroom",
 		"desc":"Noting your progress, your master begrudgingly offers you a modest bedroom.",
 		"flavor":"Don't let it go to your head.",
-		"require":"state.neophyte",
+		"require":"neophyte",
 		"cost":{
 			"research":50
 		},
@@ -106,7 +106,7 @@
 		"id":"temple",
 		"desc":"Sanctum of meditation and insight.",
 		"cost":10000,
-		"require":"state.arcana>=00",
+		"require":"state.arcana>=100",
 		"mod":{
 			"space.max":800
 		}

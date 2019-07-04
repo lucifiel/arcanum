@@ -123,6 +123,11 @@ export default {
 			else if ( key === 'm') this.gameState.fillItem('mana');
 			else if ( key === 'a') this.gameState.fillItem('arcana');
 			else if ( key === 's') this.gameState.fillItem('scrolls');
+			else if ( key === 'p') {
+				if ( this.gameState.curAction && this.gameState.curAction.length) {
+					this.gameState.curAction.progress = this.gameState.curAction.length;
+				}
+			}
 
 		},
 
@@ -259,6 +264,7 @@ div.full {
 	display:flex;
 	flex-direction: column;
 	width: 100%;
+	height:100%;
 	margin: 0px;
 }
 
@@ -270,10 +276,12 @@ div.top-bar {
 
 div.main {
 	display:flex;
+	height:100%;
 	flex-direction: row;
 }
 
 div.mid-view {
+	height:100%;
 	flex-basis:35%;
 	margin: 12px 8px;
 }
