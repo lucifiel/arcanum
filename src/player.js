@@ -91,7 +91,6 @@ export default class Player {
 
 		this.primary = s;
 		if ( this.primary.attack.tohit ) this.tohit += this.primary.attack.tohit;
-		console.log('new attack: ' + this.tohit );
 
 	}
 
@@ -106,6 +105,9 @@ export default class Player {
 	levelUp() {
 
 		this._level++;
+
+		this.hp.max += 1;
+		this.stamina.max += 1;
 
 		this._exp -= this._next;
 		this._next = this._next * ( 1 + EXP_RATE );

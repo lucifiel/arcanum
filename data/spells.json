@@ -16,7 +16,7 @@
 		"dot":{
 			"duration":30,
 			"effect":{
-				"stamina":0.01
+				"stamina":0.02
 			}
 		}
 
@@ -81,7 +81,7 @@
 
 			"duration":30,
 			"effect":{
-				"hp":1
+				"hp":0.1
 			}
 
 		}
@@ -97,7 +97,7 @@
 
 		},
 		"cast":{
-			"mana":5
+			"mana":1
 		},
 		"attack":{
 			"damage":"2-3",

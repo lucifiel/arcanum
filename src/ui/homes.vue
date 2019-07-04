@@ -61,15 +61,10 @@ export default {
 
 <style scoped>
 
-div.home-view {
-	height:100%;
-}
-
 div.furniture {
 	display:flex;
 	overflow-y:auto;
 	flex-direction: column;
-	flex-basis: 100%;
 }
 
 table tr, table th {

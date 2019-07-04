@@ -168,7 +168,7 @@ export default {
 
 		onAction( action ) {
 
-			if ( action.perpetual ) {
+			if ( action.perpetual || action.length > 0 ) {
 
 				if ( this.gameState.curAction !== action ) this.gameState.curAction = action;
 
@@ -264,7 +264,6 @@ div.full {
 	display:flex;
 	flex-direction: column;
 	width: 100%;
-	height:100%;
 	margin: 0px;
 }
 
@@ -276,7 +275,6 @@ div.top-bar {
 
 div.main {
 	display:flex;
-	height:100%;
 	flex-direction: row;
 }
 

@@ -11,7 +11,7 @@
 	{
 
 		"id":"stamina",
-		"name":"Stamina",
+		"name":"stamina",
 		"max":10,
 		"value":10,
 		"locked":false

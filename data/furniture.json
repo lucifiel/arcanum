@@ -1,7 +1,7 @@
 [
 	{
 		"id":"smallchest",
-		"name":"Small Chest",
+		"name":"small chest",
 		"desc":"A small wooden chest.",
 		"require":"state.gold.max>=50",
 		"repeat":true,
@@ -17,7 +17,7 @@
 	},
 	{
 		"id":"ironchest",
-		"name":"Iron Chest",
+		"name":"iron chest",
 		"desc":"Treasure chest.",
 		"require":"state.gold.max>=150",
 		"repeat":true,
@@ -33,6 +33,7 @@
 		"id":"cot",
 		"desc":"Slightly better than sleeping on the floor",
 		"require":"apprentice",
+		"max":1,
 		"cost":{
 			"gold":10,
 			"space":1
@@ -45,7 +46,8 @@
 	{
 		"id":"bed",
 		"desc":"small wooden bed.",
-		"require":"apprentice",
+		"require":"neophyte",
+		"max":1,
 		"cost":{
 			"gold":40,
 			"space":2
@@ -74,20 +76,21 @@
 		"name":"magic circle",
 		"desc":"Magic circle",
 		"require":"arcana",
+		"max":1,
 		"cost":{
 			"space":1,
-			"research":40
+			"research":40,
+			"mana":5
 		},
 		"mod":{
-			"research.max":3,
+			"research.max":5,
 			"arcana.base":0.01
 		}
 	},
 	{
 
 		"id":"workbench",
-		"name":"Workbench",
-		"desc":"A small bench for crafting.",
+		"desc":"A small bench for arts and crafts.",
 		"cost":{
 			"gold":25,
 			"space":1
@@ -99,14 +102,14 @@
 	},
 	{
 		"id":"plant",
-		"name":"Potted milkweed",
+		"name":"potted milkweed",
 		"desc":"Brightens up the place",
 		"cost":{
 			"gold":25,
 			"space":1
 		},
 		"mod":{
-			"resarch.max":5
+			"research.max":5
 		}
 
 	},
@@ -126,6 +129,7 @@
 	{
 		"id":"birdcage",
 		"desc":"Perfect for robins.",
+		"require":"neophyte",
 		"cost":{
 			"gold":25,
 			"space":1
@@ -184,8 +188,8 @@
 	},
 	{
 		"id":"casement",
-		"name":"Casement Window",
-		"desc":"A simple window to let in air and light.",
+		"name":"casement window",
+		"desc":"A simple window to let in light and air.",
 		"require":"state.space>10",
 		"cost":{
 			"gold":100,
@@ -198,9 +202,9 @@
 	},
 	{
 		"id":"latticewindow",
-		"name":"Lattice Window",
+		"name":"lattice window",
 		"desc":"An elegant latticed portal.",
-		"require":"state.space>=20",
+		"require":"adept",
 		"cost":{
 			"gold":300,
 			"space":1
@@ -217,7 +221,7 @@
 		"id":"brasscandelabra",
 		"name":"brass candelabra",
 		"desc":"Candle holder.",
-		"require":"state.gold.max>75",
+		"require":"state.candle>0&&state.gold.max>75",
 		"cost":{
 			"space":1,
 			"gold":100
@@ -251,7 +255,7 @@
 		"id":"basin",
 		"name":"basin",
 		"desc":"Basin of water.",
-		"require":"state.space>10",
+		"require":"adept",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -265,7 +269,7 @@
 		"id":"brazier",
 		"name":"Brazier",
 		"desc":"Stand of burning hot coals.",
-		"require":"state.space>10",
+		"require":"adept",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -322,9 +326,9 @@
 	},
 	{
 		"id":"ossuary",
-		"name":"Ossuary",
+		"name":"ossuary",
 		"desc":"Receptacle for bones.",
-		"require":"state.space>10",
+		"require":"evil",
 		"cost":{
 			"gold":20,
 			"bones":5,
@@ -337,9 +341,9 @@
 	},
 	{
 		"id":"darkshrine",
-		"name":"Dark Shrine",
+		"name":"dark shrine",
 		"desc":"A shrine to Evil.",
-		"require":"state.space>10",
+		"require":"evil",
 		"cost":{
 			"gold":30,
 			"bones":10,
@@ -367,9 +371,9 @@
 	},
 	{
 		"id":"shrine",
-		"name":"Shrine",
+		"name":"shrine",
 		"desc":"A shrine to the divine forces.",
-		"require":"state.space>10",
+		"require":"adept",
 		"cost":{
 			"gold":30,
 			"gems":5,
@@ -385,7 +389,7 @@
 		"id":"bloodfountain",
 		"name":"Blood Fountain",
 		"desc":"Fountain of blood",
-		"require":"state.space>20",
+		"require":"evil",
 		"cost":{
 			"gold":300,
 			"shadow":20,

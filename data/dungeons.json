@@ -3,10 +3,10 @@
 	{
 		"id":"sunnyfield",
 		"name":"Sunny Field",
-		"level":1,
+		"level":0,
 		"length":10,
 		"cost":{
-			"stamina":0.5
+			"stamina":0.4
 		},
 		"enemies":[
 
@@ -44,7 +44,7 @@
 	{
 		"id":"placidgrove",
 		"name":"Placid Grove",
-		"level":2,
+		"level":1,
 		"length":12,
 		"cost":{
 			"stamina":0.5
@@ -85,7 +85,7 @@
 	{
 		"id":"hills",
 		"name":"Stony Hills",
-		"level":3,
+		"level":2,
 		"length":15,
 		"cost":{
 			"stamina":0.75

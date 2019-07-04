@@ -18,13 +18,13 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research>=200&&state.arcana>=5",
+		"require":"state.research>=100&&state.arcana>=5",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
 			"research":100,
 			"arcana":1,
-			"gold":150
+			"gold":100
 		},
 		"effect":"neophyte"
 
@@ -68,7 +68,7 @@
 		"desc":"A tiny glowing candle.",
 		"flavor":"You no take candle!",
 		"repeat":false,
-		"require":"!state.mana.locked&&state.mana.max>=20",
+		"require":"mana",
 		"cost":10,
 		"mod":{
 			"mana":{
@@ -92,21 +92,30 @@
 		"id":"orb",
 		"name":"Arcane Orb",
 		"desc":"Holds magical energy.",
-		"require":"state.mana.max>=25",
+		"require":"state.mana.max>=10",
 		"max":2,
 		"cost":{
 			"gold":75,
 			"research":50
 		},
 		"mod":{
-			"mana.max":20
+			"mana.max":5
+		}
+
+	},
+	{
+		"id":"bestiary",
+		"desc":"compendium of magical creatures",
+		"mod":{
+			"research.max":10,
+			"animals.rate":0.1
 		}
 
 	},
 	{
 		"id":"purse",
 		"desc":"An efficient way to carry coins.",
-		"require":"state.gold>=25",
+		"require":"state.gold>=20",
 		"max":2,
 		"cost":15,
 		"mod":{
@@ -129,7 +138,7 @@
 
 		"id":"prism",
 		"desc":"A small crystal pyramid for performing mystic experiments.",
-		"require":"apprentice",
+		"require":"state.research.max>=50",
 		"cost":{
 			"gold":40,
 			"research":50
@@ -179,6 +188,7 @@
 		"desc":"White glowing candle",
 		"repeat":true,
 		"require":"state.light.max>=10",
+		"flavor":"It is better to light one candle than to curse the darkness.",
 		"cost":50,
 		"mod":{
 			"light.max":5,
@@ -186,9 +196,22 @@
 		}
 	},
 	{
+		"id":"blackcandle",
+		"name":"Holy Candle",
+		"desc":"What flame casts shadows?",
+		"repeat":true,
+		"require":"state.shadow.max>=10",
+		"flavor":"darkness, darkness.",
+		"cost":50,
+		"mod":{
+			"shadow.max":5,
+			"shadow.base":0.01
+		}
+	},
+	{
 		"id":"ball",
 		"name":"Crystal Ball",
-		"desc":"A crystal sphere revealing hidden truth.",
+		"desc":"A crystal sphere revealing distant lands.",
 		"repeat":true,
 		"require":"state.arcana>=5",
 		"cost":{

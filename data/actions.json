@@ -44,7 +44,7 @@
 		"id":"treatailments",
 		"name":"Treat Ailments",
 		"desc":"Treat the magical ailments of locals.",
-		"verb":"running errands",
+		"verb":"treating locals",
 		"require":"neophyte",
 		"perpetual":true,
 		"cost":{
@@ -139,15 +139,14 @@
 	{
 		"id":"scribescroll",
 		"name":"Scribe Scroll",
-		"require":"state.research>=10&&state.crafting>=1",
-		"length":5,
+		"require":"state.research>=30&&state.crafting>=1",
 		"cost":{
-			"research":40,
-			"mana":10
+			"research":10,
+			"mana":2
 		},
-		"result":{
+		"effect":{
 			"scrolls":1,
-			"arcana":0.1
+			"player.exp":1
 		}
 	},
 	{

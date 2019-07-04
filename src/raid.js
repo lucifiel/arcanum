@@ -47,7 +47,11 @@ export default class Raid {
 		if ( this.playerTimer <= 0 ) {
 
 			this.playerTimer += this.player.delay;
-			this.playerAttack();
+
+			// attempt to use primary item attack first.
+			if ( this.player.primary == null || !Game.tryItem( this.player.primary )) {
+				this.playerAttack();
+			}
 
 		}
 
@@ -95,19 +99,8 @@ export default class Raid {
 
 		if ( roll >= Math.random()*this.enemy.defense ) {
 
-			let dmg;
-	
-			if ( this.player.primary !== null && (dmg = this.getPrimary(this.player.primary)) !== false ) {
-
-				this.playerAct =
-					this.player.name + ' casts ' + this.player.primary.name + '\n' + this.enemy.name + ' hit: ' + dmg.toFixed(1);
- 
-			} else {
-
-				dmg = this.player.damage.value;
+			let dmg = this.player.damage.value;
 				this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
-
-			}
 
 			this.enemy.hp -= dmg;
 			if ( this.enemy.hp <= 0 ) this.enemyDied();
@@ -115,21 +108,6 @@ export default class Raid {
 		} else {
 			this.playerAct = this.player.name + ' misses';
 		}
-
-	}
-
-	/**
-	 * @returns {number} returns damage from a primary spell attack.
-	 */
-	getPrimary( primary ) {
-
-		if ( Game.tryItem( primary ) ) {
-			
-			return primary.attack.damage.value;
-
-		} else { console.log('cant cast primary '); }
-		return false;
-
 
 	}
 

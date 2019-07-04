@@ -6,6 +6,12 @@
 		"require":"birdcage",
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	},
 
@@ -14,6 +20,12 @@
 		"require":"workbench",
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	},
 	{
@@ -41,6 +53,12 @@
 		"school":["nature","shadow","light"],
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 
 	},
@@ -51,6 +69,12 @@
 		"school":["shadow"],
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 
 	},
@@ -63,6 +87,8 @@
 			"stamina":0.5
 		},
 		"result":{
+			"research.max":1,
+			"research.value":5,
 			"shadow.max":1
 		}
 
@@ -74,6 +100,12 @@
 		"require":"plant",
 		"cost":{
 			"stamina":0.25
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	},
 	{
@@ -83,6 +115,12 @@
 		"require":"cauldron",
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	},
 	{
@@ -92,6 +130,12 @@
 		"require":"alembic",
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	},
 	{
@@ -100,6 +144,12 @@
 		"require":"state.sextant>0||state.telescope>0",
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	},
 	{
@@ -108,6 +158,12 @@
 		"require":"ball",
 		"cost":{
 			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
 		}
 	}
 

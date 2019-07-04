@@ -1,9 +1,11 @@
 <script>
 import { seconds } from '../format.js';
+import ItemBase from 'ui/itemsBase';
 
 export default {
 	
 	props:['dots'],
+	mixins:[ItemBase],
 	beforeCreate(){
 		this.seconds = seconds;
 	}
@@ -14,7 +16,10 @@ export default {
 	
 	<div class="dot-view">
 
-		<div class="dot" v-for="d in dots" :key="d.id">
+		<div class="dot" v-for="d in dots" :key="d.id"
+		@mouseenter.capture.stop="dispatch( 'itemover', $event,d)"
+		@mouseleave.capture.stop="dispatch( 'itemout', $event)">
+
 			{{ seconds( d.duration ) }}<br>
 			{{ d.name }}
 		</div>

@@ -1,15 +1,16 @@
 [
 	{
 		"id":"alcove",
-		"desc":"A small corner of your master's domicile",
+		"desc":"A small corner beneath the stairs of your Master's domicile.",
+		"flavor":"goodbye hayloft.",
 		"require":"apprentice",
 		"mod":{
 			"space.max":5
 		}
 	},
 	{
-		"id":"bedroom",
-		"desc":"Noting your progress, your master begrudgingly offers you a modest bedroom.",
+		"id":"atticbedroom",
+		"desc":"Noting your progress, your master begrudgingly offers you some space in the attic.",
 		"flavor":"Don't let it go to your head.",
 		"require":"neophyte",
 		"cost":{

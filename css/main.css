@@ -109,3 +109,44 @@ div.menu {
 	cursor: pointer;
 	margin: 2px 10px;
 }
+
+div.arcane {
+	background:#8011ac;
+}
+
+div.mana {
+	background: #2531b3;
+}
+
+div.fire {
+	background:#b52309;
+}
+
+div.ice {
+	background:#97e5fc;
+}
+div.water {
+	background:#0479c2;
+}
+div.air {
+	background:#efefef;
+}
+
+div.earth {
+	background:#c27304;
+}
+
+div.shadow {
+	background:#3a0e66;
+}
+
+div.light {
+	background:#f0c907;
+}
+
+div.tempus {
+	background:#c27304;
+}
+div.void {
+	background:#1f1e1d;
+}
