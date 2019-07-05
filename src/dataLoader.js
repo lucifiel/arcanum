@@ -13,9 +13,9 @@ import Item from 'items/item';
 import Player from 'player';
 
 import Range from 'range';
-import Resource from 'items/resource';
-import Upgrade from 'items/upgrade';
-import Skill from 'items/skill';
+import Resource from './items/resource';
+import Upgrade from './items/upgrade';
+import Skill from './items/skill';
 
 import VarPath  from 'varPath';
 import Dungeon from './items/dungeon.js';
@@ -150,7 +150,7 @@ export default {
 		this.initItems( SkillList, Skill );
 		this.initItems( Dungeons, Dungeon );
 		this.initItems( SpellList, Spell );
-	
+
 		gd.events = this.initItems( EventList, Item, null, 'event' );
 
 		gd.actions = this.initItems( ActionList, Item, null, 'action' );
@@ -195,9 +195,9 @@ export default {
 		let it;
 		for( let def of DataList ) {
 
-			it = new UseClass( def );
-			if ( tag !== null ) it.addTag( tag );
-			if ( type !== null ) it.type = type;
+			it = new UseClass.prototype.constructor( def );
+			if ( tag ) it.addTag( tag );
+			if ( type ) it.type = type;
 
 			a.push(it);
 			this._items[it.id] = it;

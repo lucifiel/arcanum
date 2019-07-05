@@ -95,6 +95,7 @@
 
 		"id":"workbench",
 		"desc":"A small bench for arts and crafts.",
+		"tag":"workspace",
 		"cost":{
 			"gold":25,
 			"space":1
@@ -108,6 +109,7 @@
 		"id":"plant",
 		"name":"potted milkweed",
 		"desc":"Brightens up the place",
+		"tag":"taggarden",
 		"cost":{
 			"gold":25,
 			"space":1
@@ -133,6 +135,7 @@
 	{
 		"id":"birdcage",
 		"desc":"Perfect for robins.",
+		"tag":"tagcage",
 		"require":"neophyte",
 		"cost":{
 			"gold":25,

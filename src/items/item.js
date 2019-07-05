@@ -61,6 +61,9 @@ export default class Item {
 		else this._tags = v;
 
 	}
+	set tag(v) {
+		this.addTag(v);
+	}
 
 	get length() { return this._length; }
 	set length(v) {
@@ -110,12 +113,9 @@ export default class Item {
 	
 		if ( this._locked === undefined ) this._locked = true;
 
-		if ( vars.tag ) {
-			if ( !this._tags ) this._tags = [];
-			this._tags.push( vars.tag );
-		}
 		this._value = this._value || 0;
-		defineExcept( this, null, ['require', 'must', 'buy', 'cost', 'name', 'effect', 'removed']);
+		defineExcept( this, null,
+			['require', 'need', 'buy', 'cost', 'name', 'effect', 'removed', 'slot' ]);
 
 	}
 

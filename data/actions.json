@@ -76,7 +76,7 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"ignoreStamina":true,
-		"require":"good",
+		"require":"adept",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
 			"mana":0.5,
@@ -163,7 +163,7 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"(state.magician>0&&state.animals>=5)||state.witch",
+		"require":"(state.adept>0&&state.animals>=5)||state.witch",
 		"cost":{
 			"gold":50,
 			"research":100

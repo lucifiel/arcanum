@@ -3,7 +3,7 @@
 	{
 		"id":"animals",
 		"name":"Animal Handling",
-		"require":"birdcage",
+		"need":"tagpen",
 		"cost":{
 			"stamina":0.5
 		},
@@ -14,10 +14,24 @@
 			}
 		}
 	},
-
+	{
+		"id":"herbalism",
+		"school":["nature"],
+		"name":"herbalism",
+		"need":"taggarden",
+		"cost":{
+			"stamina":0.25
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
+		}
+	},
 	{
 		"id":"crafting",
-		"require":"workbench",
+		"need":"workspace",
 		"cost":{
 			"stamina":0.5
 		},
@@ -92,21 +106,6 @@
 			"shadow.max":1
 		}
 
-	},
-	{
-		"id":"herbalism",
-		"school":["nature"],
-		"name":"herbalism",
-		"require":"plant",
-		"cost":{
-			"stamina":0.25
-		},
-		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
-		}
 	},
 	{
 		"id":"potions",

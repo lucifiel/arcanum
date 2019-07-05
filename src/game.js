@@ -1,6 +1,7 @@
 import DataLoader from 'dataLoader';
 import VarPath from './varPath';
 
+import Item from './items/item';
 import Log from 'log';
 import GameState from './gameState';
 
@@ -291,10 +292,8 @@ export default {
 	 */
 	tryLearn(it) {
 
-		if ( it.cost ) {
-			if ( !this.canPay(it.cost) ) return false;
-			this.payCost( it.cost );
-		}
+		if ( !this.canUse(it) ) return false;
+		this.payCost( it.cost );
 
 		it.cost = it.cast || it.use;
 		it.learned = true;
@@ -308,10 +307,8 @@ export default {
 	 */
 	tryItem(it) {
 
-		if ( it.cost ) {
-			if ( !this.canPay(it.cost) ) return false;
-			this.payCost( it.cost );
-		}
+		if ( !this.canUse(it) ) return false;
+		this.payCost( it.cost );
 
 		it.value++;
 
@@ -347,30 +344,30 @@ export default {
 
 	/**
 	 * Attempt to unlock an item.
-	 * @param {Item} item
+	 * @param {Item} it
 	 * @returns {boolean} true on success. 
 	 */
-	tryUnlock( item ) {
+	tryUnlock( it ) {
 
-		if ( item.removed ) return false;
-		if ( item.must && !this.lockTest(item.must,item)) return false;
+		if ( it.removed || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
-		else if ( !item.require || this.lockTest(item.require,item) ) {
-			item.locked = false;
+		else if ( !it.require || this.unlockTest(it.require,it) ) {
+			it.locked = false;
 		}
 
-		return !item.locked;
+		return !it.locked;
 
 	},
 
 	/**
 	 * Return the results of a testing object.
-	 * @param {string|function|Object|Array} test
+	 * @param {string|function|Object|Array} test - test object.
+	 * @param {?Item} [item=null] - item being used/unlocked.
 	 * @returns {boolean}
 	 */
-	lockTest( test, item ) {
+	unlockTest( test, item=null ) {
 
-		if ( test instanceof Array ) return test.every( this.lockTest, this );
+		if ( test instanceof Array ) return test.every( this.unlockTest, this );
 
 		let type = typeof test;
 		if ( type === 'function') return test( this._items, item );
@@ -379,11 +376,14 @@ export default {
 
 			// test that another item is unlocked.
 			let it = this.getItem(test);
-			if (!it) {
+			if ( it === undefined ) {
 
 				// tag test - if any item with the tag is unlocked, test passes.
 				it = this._state.getTagList(test);
-				return it ? it.some( this.lockTest, this ) : false;
+				
+				if ( !it ) console.warn('undefined: ' + test );
+
+				return it ? it.some( this.unlockTest, this ) : false;
 
 			}
 
@@ -391,11 +391,12 @@ export default {
 			if ( it.type === 'resource' || it.type === 'action') return !it.locked;
 			return it.value >0;
 
-		} else if ( type === 'object') {
+		} else if ( test instanceof Item ) {
 
-			//@todo
-			return true;
-		}
+			if ( test.type === 'resource' || test.type === 'action') return !test.locked;
+			return test.value >0;
+
+		} else console.warn( 'unknown test: ' + test );
 
 	},
 
@@ -492,6 +493,19 @@ export default {
 
 	},
 
+	canUse( it ){
+
+		if ( it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
+		else if ( it.slot ) {
+
+			let list = this._state.getTagList(it.slot );
+			if ( list && list.some(v=>!v.locked&&!v.removed&&v.value>0)) return false;
+
+		}
+
+		return !it.cost || this.canPay(it.cost);
+	},
+
 	/**
 	 * Attempts to pay the cost to perform an action, buy an upgrade, etc.
 	 * Before calling this function, ensure cost can be met with canPay()
@@ -500,6 +514,7 @@ export default {
 	 */
 	payCost( cost, unit=1) {
 
+		if ( cost === undefined || cost === null ) return;
 		if ( cost instanceof Array ) return cost.forEach( v=>this.payCost(v,unit), this );
 
 		let res;
@@ -519,19 +534,6 @@ export default {
 
 		}
 
-	},
-
-	canBuy( it ){
-
-		if ( it.maxed()) return false;
-		else if ( it.slot ) {
-
-			let list = this._state.getTagList(it.slot );
-			if ( list && list.some(v=>!v.locked&&!v.removed&&v.value>0)) return false;
-
-		}
-
-		return !it.cost || this.canPay(it.cost);
 	},
 
 	/**

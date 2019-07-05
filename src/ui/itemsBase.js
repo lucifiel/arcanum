@@ -13,7 +13,7 @@ export default {
 		round:round,
 
 		usable(it) {
-			return !it.removed && Game.canBuy( it );
+			return !it.removed && Game.canUse( it );
 		},
 
 		visible(it) {
