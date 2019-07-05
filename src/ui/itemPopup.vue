@@ -17,20 +17,23 @@ export default {
 	watch:{
 		elm( newVal, oldVal ){
 			if ( newVal != null ) {
-				let style = this.$el.style;
 
-				let left = newVal.offsetLeft;
+				let style = this.$el.style;
+				let rect = newVal.getBoundingClientRect();
+
+				let left = rect.left;
 				if ( left < window.innerWidth/2 ) {
 
-					
+				//	console.log('left: ' + left);
 					style['left'] = ( left + newVal.offsetWidth + 40 ) + 'px';
 
 				} else {
 
-					style['left'] = ( left - 300 ) + 'px';
+					//console.log('left: ' + left);
+					style['left'] = ( left-240 ) + 'px';
 				}
 
-				style['top'] = ( newVal.offsetTop + 10 ) + 'px';
+				style['top'] = ( rect.top ) + 'px';
 
 			}
 		}

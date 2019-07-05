@@ -41,7 +41,7 @@
 			"space":1
 		},
 		"mod":{
-			"rest.effect.stamina":0.05
+			"rest.effect.stamina":0.03
 		}
 
 	},
@@ -57,7 +57,7 @@
 			"space":2
 		},
 		"mod":{
-			"rest.effect.stamina":0.15
+			"rest.effect.stamina":0.07
 		}
 
 	},
@@ -110,7 +110,7 @@
 		"id":"plant",
 		"name":"potted milkweed",
 		"locked":false,
-		"desc":"Brightens up the place",
+		"desc":"Really brightens up the place",
 		"tag":"taggarden",
 		"cost":{
 			"gold":25,
