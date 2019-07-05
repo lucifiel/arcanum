@@ -34,7 +34,6 @@
 	},
 	{
 		"id":"scrolls",
-		"name":"Scrolls",
 		"desc":"Scroll of arcane lore",
 		"max":10,
 		"mod":{

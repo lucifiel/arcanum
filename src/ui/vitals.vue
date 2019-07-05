@@ -15,11 +15,10 @@ export default {
 	},
 	computed:{
 
-		manaList() { return this.state.filterItems( it=>it.hasTag('mana') && !it.locked)},
+		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
 		rest() { return this.state.getItem('rest')},
 		resting() { return this.state.curAction === this.rest; },
-		stamina(){ return this.state.getItem('stamina'); },
-		mana() { return this.state.getItem('mana'); }
+		stamina(){ return this.state.getItem('stamina'); }
 	}
 
 }

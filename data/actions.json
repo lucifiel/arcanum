@@ -145,8 +145,7 @@
 			"mana":2
 		},
 		"effect":{
-			"scrolls":1,
-			"player.exp":1
+			"scrolls":1
 		}
 	},
 	{
