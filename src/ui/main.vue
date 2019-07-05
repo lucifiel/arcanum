@@ -139,10 +139,10 @@ export default {
 		},
 
 		itemOut(evt ){
-			if ( this.overElm===evt.currentTarget) {
-				this.overElm = null;
-				this.overItem = null;
-			}
+
+			this.overElm = null;
+			this.overItem = null;
+		
 		},
 
 		onRest(){
@@ -188,7 +188,6 @@ export default {
 		},
 
 		onPrimary( s) {
-			console.log('primary: ' + s.id );
 			this.gameState.player.setPrimary(s);
 		}
 
@@ -206,7 +205,8 @@ export default {
 
 <template>
 
-	<div class="full">
+	<div class="full"
+		@mouseover.capture.stop="dispatch('itemout',$event)">
 
 		<div class="top-bar">
 			<dots :dots="gameState.dots" />

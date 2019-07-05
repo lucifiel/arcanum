@@ -22,8 +22,7 @@ export default {
 <div :class="{[pLayout]:true}">
 
 	<span :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
-		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)"
-		@mouseleave.capture.stop="dispatch( 'itemout', $event)">
+		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 
 	<button
 		class="wrapped-btn"

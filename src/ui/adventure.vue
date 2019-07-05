@@ -53,8 +53,7 @@ export default {
 		<td><progbar class="dungeon" :value="d.progress" :max="d.length" /></td>
 		<td><button class="raid-btn" :disabled="!game.runnable(d)"
 			@click="dispatch( 'raid', d )"
-			@mouseenter.capture.stop="dispatch('itemover', $event, d )"
-			@mouseleave.capture.stop="dispatch('itemout', $event )">Enter</button></td>
+			@mouseenter.capture.stop="dispatch('itemover', $event, d )">Enter</button></td>
 
 	</tr>
 	</table>

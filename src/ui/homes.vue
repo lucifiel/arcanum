@@ -46,7 +46,6 @@ export default {
 			<td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
 			<td><button :disabled="!usable(it)" class="buy-btn"
 				@mouseenter.capture.stop="dispatch('itemover', $event, it )"
-				@mouseleave.capture.stop="dispatch('itemout',$event)"
 				@click="dispatch('action',it)">Buy</button></td>
 			<td><button :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 

@@ -37,8 +37,7 @@ export default {
 
 		<button class="train-btn"
 			@click="$emit('train',skill)"
-				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"
-				@mouseleave.capture.stop="dispatch('itemout', $event )"> {{ active ? 'Stop' : 'Train' }}</button>
+				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button>
 
 		</div>
 

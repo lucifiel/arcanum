@@ -45,12 +45,10 @@ export default {
 			<td>
 				
 				<button v-if="s.learned" @click="dispatch('spell', s)" :disabled="!usable(s)"
-					@mouseenter.capture.stop="dispatch('itemover', $event, s )"
-					@mouseleave.capture.stop="dispatch('itemout', $event )">Cast</button>
+					@mouseenter.capture.stop="dispatch('itemover', $event, s )">Cast</button>
 
 				<button v-else @click="dispatch('learn', s)" :disabled="!usable(s)"
-					@mouseenter.capture.stop="dispatch('itemover', $event, s )"
-					@mouseleave.capture.stop="dispatch('itemout', $event )">Learn</button>
+					@mouseenter.capture.stop="dispatch('itemover', $event, s )">Learn</button>
 	
 			</td>
 

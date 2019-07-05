@@ -18,8 +18,7 @@ export default {
 
 	<table>
 		<tr :class="{'item-name':true, locked:reslocked(it)}" v-for="it in items" :key="it.id"
-			@mouseenter.capture.stop="dispatch('itemover',$event,it)"
-			@mouseleave.capture.stop="dispatch( 'itemout', $event)">
+			@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
 			<td>{{ it.name }}</td>
 			<td>{{ round( it.value ) + ( it.max && it.max.value>0 ? '/' + round(it.max.value) : '' )}}</td>

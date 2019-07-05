@@ -17,8 +17,7 @@ export default {
 	<div class="dot-view">
 
 		<div class="dot" v-for="d in dots" :key="d.id"
-		@mouseenter.capture.stop="dispatch( 'itemover', $event,d)"
-		@mouseleave.capture.stop="dispatch( 'itemout', $event)">
+		@mouseenter.capture.stop="dispatch( 'itemover', $event,d)">
 
 			{{ seconds( d.duration ) }}<br>
 			{{ d.name }}
