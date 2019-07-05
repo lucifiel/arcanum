@@ -163,7 +163,7 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"(state.adept>0&&state.animals>=5)||state.witch",
+		"require":"(state.adept>0&&state.animals>=5)||state.witch>0",
 		"cost":{
 			"gold":50,
 			"research":100

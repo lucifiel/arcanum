@@ -1,4 +1,5 @@
 import { defineExcept } from 'objecty';
+import Stat from '../stat';
 
 /**
  * @typedef {Object} Effect
@@ -61,19 +62,19 @@ export default class Item {
 		else this._tags = v;
 
 	}
-	set tag(v) {
-		this.addTag(v);
-	}
+	set tag(v) { this.addTag(v); }
 
 	get length() { return this._length; }
 	set length(v) {
 
 		this._length = v;
-		if (!this._rate) this._rate = 1;
 	}
 
+	/**
+	 * @property {Stat} rate - rate of stat change in value/second.
+	 */
 	get rate() { return this._rate; }
-	set rate(v) { this._rate = v; }
+	set rate(v){ this._rate = ( v instanceof Stat ) ? v : new Stat(v); }
 
 	/**
 	 * @property {number|Object.<string,number>} cost
@@ -115,7 +116,7 @@ export default class Item {
 
 		this._value = this._value || 0;
 		defineExcept( this, null,
-			['require', 'need', 'buy', 'cost', 'name', 'effect', 'removed', 'slot' ]);
+			['require', 'rate', 'need', 'buy', 'cost', 'name', 'effect', 'removed', 'slot' ]);
 
 	}
 

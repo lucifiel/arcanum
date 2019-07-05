@@ -37,8 +37,44 @@
 		"id":"adept",
 		"name":"Adept",
 		"title":"adept",
-		"desc":"You are now an independent practitioner of the mystic arts. You had better find a new place to stay.",
+		"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
 		"remove":["neophyte", "bedroom", "alcove","errands"],
+		"effect":{
+			"research.max":50
+		}
+	},
+	{
+		"id":"magician",
+		"title":"magician",
+		"desc":"A true practitioner of magic.",
+		"remove":["adept"],
+		"effect":{
+			"research.max":100
+		}
+	},
+	{
+		"id":"witch",
+		"title":"witch",
+		"desc":"Witch",
+		"remove":["adept"],
+		"effect":{
+			"research.max":50
+		}
+	},
+	{
+		"id":"enchanter",
+		"title":"enchanter",
+		"desc":"A true practitioner of magic.",
+		"remove":["adept"],
+		"effect":{
+			"research.max":100
+		}
+	},
+	{
+		"id":"mage",
+		"title":"mage",
+		"desc":"A true practitioner of magic.",
+		"remove":["adept"],
 		"effect":{
 			"research.max":100
 		}

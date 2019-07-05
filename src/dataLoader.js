@@ -154,7 +154,7 @@ export default {
 		gd.events = this.initItems( EventList, Item, null, 'event' );
 
 		gd.actions = this.initItems( ActionList, Item, null, 'action' );
-		gd.actions.forEach( v=>v.repeat= v.repeat!==undefined ? true : v.repeat );
+		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
 		gd.player = this._items.player = this.initPlayer( PlayerStats );
 

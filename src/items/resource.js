@@ -27,12 +27,6 @@ export default class Resource extends Item {
 	set delta(v) { this._delta = v; }
 
 	/**
-	 * @property {Stat} rate - rate of stat change in value/second.
-	 */
-	get rate() { return this._rate; }
-	set rate(v){ this._rate = ( v instanceof Stat ) ? v : new Stat(v); }
-
-	/**
 	 * @property {Stat} max - maximum resource value.
 	 * @note reversed props start filled to max, any addition to max
 	 * adds an equal amount to value.

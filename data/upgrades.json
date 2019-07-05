@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research>=100&&state.arcana>=5",
+		"require":"state.apprentice&&state.research>=100&&state.arcana>=5",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
@@ -34,7 +34,7 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
-		"require":"state.research>=500&&state.arcana>=10",
+		"require":"state.neophyte&&state.research>=500&&state.arcana>=10",
 		"repeat":false,
 		"cost":{
 			"research":500,
@@ -48,7 +48,7 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.research>=500&&state.arcana>=10",
+		"require":"state.neophyte&&state.research>=500&&state.arcana>=10",
 		"repeat":false,
 		"flavor":"Saves a lot of money",
 		"cost":{
@@ -99,13 +99,14 @@
 			"research":50
 		},
 		"mod":{
-			"mana.max":5
+			"manas.max":1
 		}
 
 	},
 	{
 		"id":"bestiary",
 		"desc":"compendium of magical creatures",
+		"require":"state.animals>10",
 		"locked":true,
 		"mod":{
 			"research.max":10,
@@ -115,13 +116,27 @@
 	},
 	{
 		"id":"purse",
-		"desc":"An efficient way to carry coins.",
+		"desc":"Standard way to carry coins.",
 		"require":"state.gold>=20",
 		"max":2,
 		"cost":15,
 		"mod":{
 			"gold.max":20
 		}
+	},
+	{
+
+		"id":"hiddenpockets",
+		"require":"magician",
+		"cost":{
+			
+		},
+		"repeat":false,
+		"flavor":"Nothing up my sleeve...",
+		"mod":{
+
+		}
+
 	},
 	{
 
@@ -250,7 +265,7 @@
 	{
 
 		"id":"skull",
-		"require":"state.necromancer||state.witch",
+		"require":"state.necromancer>0||state.witch>0",
 		"desc":"A human skull",
 		"cost":{
 

@@ -1,4 +1,5 @@
 import Item from './item';
+import Stat from '../stat';
 
 const EXP_RATIO = 0.5;
 
@@ -17,19 +18,13 @@ export default class Skill extends Item {
 	set progress(v) { this._exp=v;}
 
 	/**
-	 * @property {number} rate
-	 */
-	get rate() { return this._rate; }
-	set rate(v) { this._rate = v;}
-
-	/**
 	 * @property {number} max - level up experience.
 	 */
 	get length() { return this._length; }
 	set length(v) { this._length = v;}
 
 	get max() { return this._max; }
-	set max(v) { this._max = v; }
+	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
 	/**
 	 * 
@@ -40,11 +35,11 @@ export default class Skill extends Item {
 		super(vars);
 
 		this.type = 'skill';
-		this._length = this._length || 50;
-		this._value = this._value || 0;
+		this.length = this.length || 50;
+		this.value = this.value || 0;
 		this._exp = this._exp || 0;
-		this._rate = this._rate || 2;
-		this._max = this._max || 10;
+		this.rate = this.rate || 2;
+		this.max = this.max || 10;
 
 	}
 

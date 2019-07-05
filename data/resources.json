@@ -69,7 +69,7 @@
 	{
 		"id":"ichor",
 		"desc":"The blood of gods.",
-		"require":"magician",
+		"require":"adept",
 		"favor":"the secret courtesy that courses like ichor",
 		"max":5
 	},
@@ -89,7 +89,7 @@
 	},
 	{
 		"id":"mana",
-		"tag":"mana",
+		"tag":"manas",
 		"color":"#2531b3",
 		"require":"state.arcana>=1",
 		"name":"mana",
@@ -97,35 +97,35 @@
 	},
 	{
 		"id":"fire",
-		"tags":"mana,elemental",
+		"tags":"manas,elemental",
 		"desc":"Fire Mana",
 		"color":"#b52309",
 		"max":5
 	},
 	{
 		"id":"ice",
-		"tag":"mana,elemental",
+		"tag":"manas,elemental",
 		"desc":"Ice Mana",
 		"color":"#97e5fc",
 		"max":5
 	},
 	{
 		"id":"air",
-		"tag":"mana,elemental",
+		"tag":"manas,elemental",
 		"desc":"Air Mana",
 		"color":"#efefef",
 		"max":5
 	},
 	{
 		"id":"earth",
-		"tag":"mana,elemental",
+		"tag":"manas,elemental",
 		"desc":"Earth Mana",
 		"color":"#c27304",
 		"max":5
 	},
 	{
 		"id":"water",
-		"tag":"mana,elemental",
+		"tag":"manas,elemental",
 		"desc":"Water Mana",
 		"color":"#0479c2",
 		"max":5
@@ -133,28 +133,28 @@
 	{
 		"id":"shadow",
 		"name":"shadow",
-		"tag":"mana",
+		"tag":"manas",
 		"desc":"Shadow mana",
 		"color":"#312f33",
 		"max":5
 	},
 	{
 		"id":"light",
-		"tag":"mana",
+		"tag":"manas",
 		"desc":"Light mana",
 		"color":"#f0c907",
 		"max":5
 	},
 	{
 		"id":"tempus",
-		"tag":"mana",
+		"tag":"manas",
 		"desc":"Time incarnate",
 		"color":"#c27304",
 		"max":5
 	},
 	{
 		"id":"void",
-		"tag":"mana",
+		"tag":"manas",
 		"desc":"nothingness",
 		"color":"#c27304",
 		"flavor":"",

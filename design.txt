@@ -24,10 +24,9 @@ enchanter
 evoker
 conjurer
 necromancer
-alchemist
+alchemist <->transmuter?
 witch
 medium
-transmuter
 acolyte
 summoner
 keeper
