@@ -29,16 +29,13 @@ export default {
 		<table>
 		
 		<tr><td>stamina</td>
-		<td><progbar :value="stamina.value" :max="stamina.max.value" /></td></tr>
+		<td><progbar class="stamina" :value="stamina.value" :max="stamina.max.value" /></td></tr>
 		
 		<tr><td>hp</td>
-		<td><progbar :value="player.hp.value" :max="player.hp.max" :color="player.hp.color" /></td></tr>
+		<td><progbar class="hp" :value="player.hp.value" :max="player.hp.max" /></td></tr>
 
 		<tr v-for="it in manaList" :key="it.key"><td>{{it.name}}</td>
-		<td><progbar :value="it.value" :max="it.max" :color="it.color" /></td></tr>
-
-		<!--<tr v-if="!mana.locked"><td>mana</td>
-		<td><progbar :value="mana.value" :max="mana.max" :color="mana.color" /></td></tr>!-->
+		<td><progbar :value="it.value" :class="it.id" :max="it.max" /></td></tr>
 
 		<tr><td><button class="rest-btn" @click="dispatch('rest')">{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
 			<td>{{ this.state.curAction !== null ? (this.state.curAction.verb || this.state.curAction.name) : ''}}</td></tr>

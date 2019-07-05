@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.apprentice&&state.research>=100&&state.arcana>=5",
+		"require":"state.research>=100&&state.arcana>=5",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{

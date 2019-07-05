@@ -89,7 +89,6 @@
 	{
 		"id":"mana",
 		"tag":"manas",
-		"color":"#2531b3",
 		"require":"state.arcana>=1",
 		"name":"mana",
 		"max":5
@@ -98,35 +97,30 @@
 		"id":"fire",
 		"tags":"manas,elemental",
 		"desc":"Fire Mana",
-		"color":"#b52309",
 		"max":5
 	},
 	{
-		"id":"ice",
+		"id":"cold",
 		"tag":"manas,elemental",
-		"desc":"Ice Mana",
-		"color":"#97e5fc",
+		"desc":"Cold Mana",
 		"max":5
 	},
 	{
 		"id":"air",
 		"tag":"manas,elemental",
 		"desc":"Air Mana",
-		"color":"#efefef",
 		"max":5
 	},
 	{
 		"id":"earth",
 		"tag":"manas,elemental",
 		"desc":"Earth Mana",
-		"color":"#c27304",
 		"max":5
 	},
 	{
 		"id":"water",
 		"tag":"manas,elemental",
 		"desc":"Water Mana",
-		"color":"#0479c2",
 		"max":5
 	},
 	{
@@ -134,28 +128,24 @@
 		"name":"shadow",
 		"tag":"manas",
 		"desc":"Shadow mana",
-		"color":"#312f33",
 		"max":5
 	},
 	{
 		"id":"light",
 		"tag":"manas",
 		"desc":"Light mana",
-		"color":"#f0c907",
 		"max":5
 	},
 	{
 		"id":"tempus",
 		"tag":"manas",
 		"desc":"Time incarnate",
-		"color":"#c27304",
 		"max":5
 	},
 	{
 		"id":"void",
 		"tag":"manas",
 		"desc":"nothingness",
-		"color":"#c27304",
 		"flavor":"",
 		"max":5
 	}

@@ -4,7 +4,6 @@
 		"name":"hp",
 		"desc":"Wizard life-force",
 		"value":10,
-		"color":"#ee0000",
 		"max":10,
 		"locked":false
 	},
@@ -15,5 +14,61 @@
 		"max":10,
 		"value":10,
 		"locked":false
+	},
+	{
+		"id":"resistarcane",
+		"tag":"resist",
+		"name":"arcane",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistfire",
+		"tag":"resist",
+		"name":"fire",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistcold",
+		"tag":"resist",
+		"name":"cold",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistair",
+		"tag":"resist",
+		"name":"air",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistearth",
+		"tag":"resist",
+		"name":"earth",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistwater",
+		"tag":"resist",
+		"name":"resist water",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistshadow",
+		"tag":"resist",
+		"name":"resist shadow",
+		"max":1,
+		"value":0
+	},
+	{
+		"id":"resistlight",
+		"tag":"resist",
+		"name":"resist light",
+		"max":1,
+		"value":0
 	}
 ]
