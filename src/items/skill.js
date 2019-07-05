@@ -36,7 +36,7 @@ export default class Skill extends Item {
 
 		this.type = 'skill';
 		this.length = this.length || 50;
-		this.value = this.value || 0;
+		this._value = this._value || 0;
 		this._exp = this._exp || 0;
 		this.rate = this.rate || 2;
 		this.max = this.max || 10;
@@ -58,7 +58,6 @@ export default class Skill extends Item {
 
 		this._exp -= this._length;
 		this._length += this._length*EXP_RATIO;
-		this._rate += 0.1;
 
 	}
 

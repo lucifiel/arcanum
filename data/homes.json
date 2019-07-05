@@ -143,7 +143,7 @@
 		"id":"grove",
 		"name":"Enchanted Grove",
 		"desc":"Enchanted Grove",
-		"require":"state.enchanter||state.druid",
+		"require":"state.enchanter>0||state.druid>0",
 		"cost":{
 			"gold":5000,
 			"research":500,
@@ -157,7 +157,7 @@
 		"id":"island",
 		"name":"Shrouded Isle",
 		"desc":"A lonely isle at sea",
-		"require":"state.enchanter||state.druid",
+		"require":"state.enchanter>0||state.druid>0",
 		"cost":{
 			"gold":5000,
 			"gems":50,

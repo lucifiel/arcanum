@@ -63,6 +63,8 @@ export default class Resource extends Item {
 		super(vars);
 
 		this._value = this._value || 0;
+		if ( this._max === undefined ) this.max = 0;
+
 		this._lastValue = this._value;
 
 		this._type = this._type || 'resource';

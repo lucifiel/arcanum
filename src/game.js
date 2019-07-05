@@ -247,6 +247,7 @@ export default {
 			if ( it ) {
 
 				it.removed = true;
+				console.log('REMOVING: ' + it.name );
 	
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it.mod, it.value );
@@ -351,7 +352,7 @@ export default {
 
 		if ( it.removed || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
-		else if ( it.require && this.unlockTest(it.require,it) ) {
+		else if ( !it.require || this.unlockTest(it.require,it) ) {
 			it.locked = false;
 		}
 
