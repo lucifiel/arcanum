@@ -177,6 +177,8 @@ export default class Raid {
 
 	setEnemy(e) {
 
+		if ( typeof e === 'string ') e = this.state.getItem(e);
+
 		this.enemy = Object.assign( {}, e );
 		this.enemyTimer += this.enemy.delay;
 		this.playerTimer += this.player.delay;

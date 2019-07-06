@@ -1,0 +1,57 @@
+import Stat from './stat';
+import { EventEmitter } from 'events';
+
+export default class StatTable extends EventEmitter {
+
+	constructor( state ){
+
+		this.state = state;
+		this.map = {};
+
+	}
+
+	/**
+	 * Get stat by id.
+	 * @param {string} id 
+	 */
+	get( id ) {
+
+		let stat = this.map[id];
+		if ( stat === undefined ) {
+		}
+
+	}
+
+	/**
+	 * Get a non-cached stat by a stat-path.
+	 * @param {string} path
+	 * @returns {Stat}
+	 */
+	getStat( path ) {
+
+		let parts = path.split('.');
+		let obj = this.state;
+		let prev = obj;
+
+		let len = parts.length;
+		let i = 0;
+		for( i = 0; i < len; i++ ) {
+
+			obj = obj[ parts[i] ];
+			if ( !obj instanceof Object ) {
+				break;
+			}
+			prev = obj;
+
+		}
+
+		// cache the path.
+		if ( prev ) this.map[path] = prev;
+
+		if ( i < len-1 ) let remainder = path.slice(i);
+
+		return prev;
+
+	}
+
+}

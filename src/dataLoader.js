@@ -8,6 +8,7 @@ import Dungeons from 'data/dungeons.json';
 import PlayerStats from 'data/player.json';
 import SpellList from 'data/spells.json';
 import Furniture from 'data/furniture';
+import MonsterList from 'data/monsters';
 
 import Item from 'items/item';
 import Player from 'player';
@@ -50,6 +51,7 @@ export default {
 		this.initJSON( SpellList );
 		this.initJSON( Furniture);
 		this.initJSON( EventList );
+		this.initJSON( MonsterList );
 
 		this.initGameItems();
 
@@ -150,6 +152,8 @@ export default {
 		this.initItems( SkillList, Skill );
 		this.initItems( Dungeons, Dungeon );
 		this.initItems( SpellList, Spell );
+
+		this.initItems( MonsterList, undefined, 'monster', 'monster' );
 
 		gd.events = this.initItems( EventList, Item, null, 'event' );
 

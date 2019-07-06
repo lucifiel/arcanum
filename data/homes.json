@@ -80,7 +80,7 @@
 	},
 	{
 		"id":"pavilion",
-		"desc":"An open, elegant structure on a wide lawn.",
+		"desc":"An airy, elegant structure on a wide lawn.",
 		"cost":1000,
 		"require":"adept",
 		"mod":{
@@ -93,7 +93,7 @@
 		"id":"tower",
 		"desc":"A stone tower in which to conduct your arcane investigations.",
 		"cost":1500,
-		"require":"!state.apprentice&&state.arcana>=20",
+		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":100
 		}
@@ -102,7 +102,7 @@
 		"id":"citadel",
 		"desc":"A stronghold to protect yourself from the petty forces of the world.",
 		"cost":3000,
-		"require":"state.adept&&state.arcana>=20",
+		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":200
 		}
@@ -111,7 +111,7 @@
 		"id":"academy",
 		"desc":"A place of learning",
 		"cost":10000,
-		"require":"state.arcana>=10",
+		"require":"state.magician>0",
 		"mod":{
 			"space.max":1000
 		}

@@ -77,7 +77,6 @@ export default class Dungeon extends Item {
 	 * Get next enemy.
 	 */
 	getEnemy() {
-
 		return this._enemies[ Math.floor( Math.random()*this._enemies.length ) ];
 	}
 

@@ -62,6 +62,19 @@
 	},
 	{
 
+		"id":"divination",
+		"desc":"the art of foretelling",
+		"require":"spiritsource",
+		"school":"",
+		"result":{
+			"research.max":1,
+			"research.value":1,
+			"spirit.max":1
+		}
+
+	},
+	{
+
 		"id":"anatomy",
 		"require":"state.lore>=5",
 		"school":["nature","shadow","light"],

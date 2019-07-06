@@ -129,12 +129,13 @@
 		"id":"hiddenpockets",
 		"require":"magician",
 		"cost":{
-			
+			"research":100
 		},
 		"repeat":false,
-		"flavor":"Nothing up my sleeve...",
+		"flavor":"Nothing up my sleeves...",
 		"mod":{
-
+			"purse.max":5,
+			"pouch.max":5
 		}
 
 	},
@@ -180,6 +181,7 @@
 			"mana":5
 		},
 		"effect":{
+			"evt_spellbook":true,
 			"research.max":15,
 			"research.base":0.11,
 			"arcana.base":0.007
@@ -187,7 +189,8 @@
 	},
 	{
 		"id":"windchime",
-		"name":"Windchime",
+		"name":"windchime",
+		"tags":"airsource",
 		"desc":"Focus of air magic.",
 		"require":"state.space>10",
 		"cost":{
@@ -196,14 +199,33 @@
 		},
 		"mod":{
 			"air.base":0.01,
-			"air.max":5
+			"air.max":5,
+			"spirit.max":1,
+			"sprit.base":0.005
+		}
+	},
+	{
+		"id":"dreamcatcher",
+		"name":"dream catcher",
+		"desc":"you might not like what you catch.",
+		"tags":"spiritsource",
+		"require":"state.space>10",
+		"cost":{
+			"gold":50,
+			"research":50
+		},
+		"mod":{
+			"spirit":{
+				"max":5,
+				"base":0.01
+			}
 		}
 	},
 	{
 		"id":"heartcandle",
 		"name":"Heart Candle",
 		"desc":"A warm glowing candle.",
-		"repeat":true,
+		"max":2,
 		"flavor":"Spare a little candle, save some light for me.",
 		"require":"state.mana.max>=50",
 		"cost":10,
@@ -217,13 +239,15 @@
 		"id":"holycandle",
 		"name":"Holy Candle",
 		"desc":"White glowing candle",
-		"repeat":true,
+		"max":2,
 		"require":"state.light.max>=10",
 		"flavor":"It is better to light one candle than to curse the darkness.",
 		"cost":50,
 		"mod":{
-			"light.max":5,
-			"light.base":0.01
+			"light":{
+				"max":1,
+				"base":0.01
+			}
 		}
 	},
 	{
@@ -235,13 +259,16 @@
 		"flavor":"darkness, darkness.",
 		"cost":50,
 		"mod":{
-			"shadow.max":5,
-			"shadow.base":0.01
+			"shadow":{
+				"max":5,
+				"base":0.01
+			}
 		}
 	},
 	{
 		"id":"ball",
 		"name":"Crystal Ball",
+		"tags":"spiritsource",
 		"desc":"A crystal sphere revealing distant lands.",
 		"require":"state.arcana>=5",
 		"cost":{
@@ -251,7 +278,8 @@
 		"mod":{
 			"arcana":{
 				"base":0.005
-			}
+			},
+			"spirit.base":0.01
 		}
 	},
 	{
@@ -282,10 +310,16 @@
 		"require":"state.necromancer>0||state.witch>0",
 		"desc":"A human skull",
 		"cost":{
-
+			"bones":1,
+			"gold":10,
+			"research":25
 		},
 		"mod":{
 
+			"shadow.max":1,
+			"spirit":{
+				"max":1
+			}
 		}
 
 	},
@@ -310,7 +344,7 @@
 			"gold":50
 		},
 		"mod":{
-
+			"spirit.base":0.01
 		}
 
 	}

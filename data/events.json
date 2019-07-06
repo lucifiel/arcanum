@@ -1,13 +1,13 @@
 [
 
 	{
-		"id":"intro",
+		"id":"evt_intro",
 		"name":"Prologue",
 		"desc":"An idle waif with no prospects to speak of...",
 		"locked":0
 	},
 	{
-		"id":"firstscroll",
+		"id":"evt_scroll",
 		"name":"A tattered scroll",
 		"desc":"You buy a strange scroll from a travelling peddlar. If you could only decipher the ancient runes."
 	},
@@ -25,8 +25,7 @@
 
 		"id":"evt_spellbook",
 		"name":"Book of Spells",
-		"desc":"Under the supervision of your master, you craft your first spellbook.",
-		"disable":[]
+		"desc":"Under the supervision of your master, you craft your first spellbook."
 
 	},
 	{
@@ -99,7 +98,10 @@
 		"id":"evil",
 		"desc":"You have taken your first step on the path of evil. It's a good thing.",
 		"effect":{
-			"shadow.max":1
+			"shadow":{
+				"max":1,
+				"value":1
+			}
 		}
 
 	}

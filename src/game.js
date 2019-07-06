@@ -310,6 +310,7 @@ export default {
 
 		it.value -= amt;
 		if ( it.mod ) this.removeMod( it.mod, amt );
+		if ( it.lock ) this.unlock( it.lock );
 
 	},
 
@@ -370,7 +371,7 @@ export default {
 
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
-
+		if ( it.lock ) this.lock( it.lock );
 		if ( it.dot ) this.beginDot( it, it.dot );
 
 		if ( it.attack && this.curAction === this._state.raid ) {

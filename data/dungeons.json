@@ -8,36 +8,14 @@
 		"cost":{
 			"stamina":0.4
 		},
+		"result":{
+			"gold":"5-10"
+		},
 		"enemies":[
 
-			{
-				"name":"Large Mouse",
-				"type":"natural",
-				"hp":2,
-				"tohit":2,
-				"defense":2,
-				"min":0,
-				"max":2
-			},
-			{
-				"name":"Stingy Bee",
-				"type":"natural",
-				"hp":1,
-				"tohit":3,
-				"defense":1,
-				"min":0,
-				"max":3
-			},
-			{
-				"name":"Big Stone",
-				"type":"natural",
-				"hp":5,
-				"tohit":0,
-				"defense":3,
-				"min":0,
-				"max":0
-			}
-
+			"lgmouse",
+			"stingybee",
+			"bigstone"
 		]
 
 	},
@@ -49,35 +27,14 @@
 		"cost":{
 			"stamina":0.5
 		},
+		"result":{
+			"gold":"7-14"
+		},
 		"enemies":[
 
-			{
-				"name":"Large Rat",
-				"type":"natural",
-				"hp":2,
-				"tohit":2,
-				"defense":2,
-				"min":1,
-				"max":2
-			},
-			{
-				"name":"Angry Bird",
-				"type":"natural",
-				"hp":2,
-				"tohit":4,
-				"defense":1,
-				"min":0,
-				"max":2
-			},
-			{
-				"name":"Small snake",
-				"type":"natural",
-				"hp":5,
-				"tohit":4,
-				"defense":2,
-				"min":1,
-				"max":3
-			}
+			"lgrat",
+			"angrybird",
+			"smsnake"
 
 		]
 
@@ -90,41 +47,17 @@
 		"cost":{
 			"stamina":0.75
 		},
+		"result":{
+			"gold":"10-15"
+		},
 		"enemies":[
 
-			{
-				"name":"Coyotee",
-				"type":"natural",
-				"hp":4,
-				"tohit":2,
-				"defense":2,
-				"min":2,
-				"max":3
-			},
-			{
-				"name":"Hawk",
-				"type":"natural",
-				"hp":3,
-				"tohit":5,
-				"defense":2,
-				"min":2,
-				"max":4
-			},
-			{
-				"name":"Warthog",
-				"type":"natural",
-				"hp":7,
-				"tohit":2,
-				"defense":4,
-				"min":1,
-				"max":4
-			}
+			"coyote",
+			"warthog",
+			"hawk"
 
 		]
 
 	}
-
-
-
 
 ]

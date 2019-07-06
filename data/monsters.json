@@ -1,0 +1,110 @@
+[
+
+	{
+		"id":"lgmouse",
+		"name":"Large Mouse",
+		"type":"natural",
+		"level":1,
+		"hp":2,
+		"tohit":2,
+		"defense":2,
+		"min":0,
+		"max":2
+	},
+	{
+		"id":"stingybee",
+		"name":"Stingy Bee",
+		"type":"natural",
+		"level":1,
+		"hp":1,
+		"tohit":3,
+		"defense":1,
+		"min":0,
+		"max":3
+	},
+	{
+		"id":"bigstone",
+		"name":"Big Stone",
+		"type":"natural",
+		"level":1,
+		"hp":5,
+		"tohit":0,
+		"defense":3,
+		"min":0,
+		"max":0
+	},
+	{
+		"id":"lgrat",
+		"name":"Large Rat",
+		"type":"natural",
+		"level":2,
+		"hp":2,
+		"tohit":2,
+		"defense":2,
+		"min":1,
+		"max":2
+	},
+	{
+		"id":"angrybird",
+		"name":"Angry Bird",
+		"type":"natural",
+		"level":2,
+		"hp":2,
+		"tohit":4,
+		"defense":1,
+		"min":0,
+		"max":2,
+		"result":{
+			"feather":"0-4"
+		}
+	},
+	{
+		"id":"smsnake",
+		"name":"Small snake",
+		"type":"natural",
+		"level":2,
+		"hp":5,
+		"tohit":4,
+		"defense":2,
+		"min":1,
+		"max":3
+	},
+	{
+		"id":"coyotee",
+		"name":"Coyotee",
+		"type":"natural",
+		"level":3,
+		"hp":4,
+		"tohit":2,
+		"defense":2,
+		"min":2,
+		"max":3
+	},
+	{
+		"id":"hawk",
+		"name":"Hawk",
+		"type":"natural",
+		"level":3,
+		"hp":3,
+		"tohit":5,
+		"defense":2,
+		"min":2,
+		"max":4,
+		"result":{
+			"feather":"1-5"
+		}
+	},
+	{
+		"id":"warthog",
+		"name":"Warthog",
+		"type":"natural",
+		"level":3,
+		"hp":7,
+		"tohit":2,
+		"defense":4,
+		"min":1,
+		"max":4
+	}
+
+
+]

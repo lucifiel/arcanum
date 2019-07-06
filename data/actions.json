@@ -41,6 +41,37 @@
 
 	},
 	{
+
+		"id":"service",
+		"name":"Offer Services",
+		"desc":"Offer various magical services to the nearby townsfolk.",
+		"verb":"servicing",
+		"require":["adept"],
+		"perpetual":true,
+		"cost":{
+			"stamina":0.25
+		},
+		"effect":{
+			"gold":0.8
+		}
+
+	},
+	{
+
+		"id":"seance",
+		"name":"Hold Seance",
+		"verb":"communing",
+		"require":["divination","spiritsource","adept"],
+		"perpetual":true,
+		"cost":{
+			"stamina":0.3
+		},
+		"effect":{
+			"gold":0.9
+		}
+
+	},
+	{
 		"id":"treatailments",
 		"name":"Treat Ailments",
 		"desc":"Treat the magical ailments of locals.",
@@ -110,7 +141,7 @@
 		},
 		"effect":{
 			"scrolls":1,
-			"firstscroll":true
+			"evt_scroll":true
 		}
 	},
 	{
@@ -146,6 +177,42 @@
 		"cost":100,
 		"effect":{
 			"gems":1
+		}
+	},
+	{
+		"id":"imbuefiregem",
+		"name":"Imbue Gem (Fire)",
+		"require":"fire.max>10",
+		"cost":{
+			"gem":1,
+			"fire":10
+		},
+		"effect":{
+			"firegem":1
+		}
+	},
+	{
+		"id":"imbuecoldgem",
+		"name":"Imbue Gem (Cold)",
+		"require":"cold.max>10",
+		"cost":{
+			"gem":1,
+			"cold":10
+		},
+		"effect":{
+			"coldgem":1
+		}
+	},
+	{
+		"id":"imbuewatergem",
+		"name":"Imbue Gem (Water)",
+		"require":"water.max>10",
+		"cost":{
+			"gem":1,
+			"water":10
+		},
+		"effect":{
+			"watergem":1
 		}
 	},
 	{
