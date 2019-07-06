@@ -47,7 +47,8 @@
 		"mod":{
 			"space.max":30,
 			"research.base":-0.1
-		}
+		},
+		"lock":[]
 
 	},
 	{

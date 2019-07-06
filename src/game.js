@@ -296,12 +296,12 @@ export default {
 	 */
 	remove( id, amt=1 ){
 
-		let it = this.getItem(id);
+		let it = id instanceof Item ? id : this.getItem(id);
 		if ( !it ) {
 
 			it = this._state.getTagList(id);
 			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
-			console.log('move list: ' + it );
+			console.log('remove list: ' + it );
 			if ( !it ) return;
 
 		}
@@ -310,6 +310,34 @@ export default {
 
 		it.value -= amt;
 		if ( it.mod ) this.removeMod( it.mod, amt );
+
+	},
+
+	/**
+	 * Remove all quantity of an item.
+	 * @param {string|string[]|Item|Item[]} it
+	 */
+	removeAll( it ){
+
+		if ( it instanceof Object ) {
+
+			this.remove( it, it.value );
+
+		} else if ( it instanceof Array ) {
+			it.forEach( this.removeAll, this );
+
+		} else {
+
+			let item = this.getItem( it );
+			if ( item ) this.remove( it, it.value );
+			else {
+
+				item = this.getTagList( it );
+				if ( item ) item.forEach( this.removeAll, this );
+
+			}
+
+		}
 
 	},
 
@@ -594,6 +622,44 @@ export default {
 		}
 
 		return true;
+	},
+
+	/**
+	 * Decrement lock count on an Item or array of items, etc.
+	 * @param {string|string[]|Item|Item[]} id 
+	 */
+	unlock( id ) {
+		this.lock(id, -1);
+	},
+
+	/**
+	 * Increment lock counter on item or items.
+	 * @param {string|string[]|Item|Item[]} id 
+	 */
+	lock(id, amt=1) {
+
+		if ( id instanceof Array ) return 
+		id.forEach( this.unlock, this );
+		if ( id instanceof Object ) {
+
+			id.locked += amt;
+
+		} else {
+
+			let it = this.getItem(id);
+			if ( it ) {
+
+				it.locked += amt;
+
+			} else {
+
+				it = this._state.getTagList(id);
+				if ( it ) it.forEach(v=>this.lock(v,amt), this );
+
+			}
+
+		}
+
 	},
 
 	/**
