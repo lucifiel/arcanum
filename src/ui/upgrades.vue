@@ -13,7 +13,6 @@ export default {
 
 		console.log('event: ' + this.pickEvent );
 
-		this.pLayout = this.layout || 'upgrade-list';
 		this.pEvent = this.pickEvent || 'upgrade';
 		/*return {
 			pEvent:this.pickEvent || 'upgrade',
@@ -29,7 +28,7 @@ export default {
 
 
 <template>
-<div :class="{[pLayout]:true}">
+<div :class="upgrade-list">
 
 	<span :class="{'action-btn':true, locked:locked(it) }" v-for="it in items" :key="it.id"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">

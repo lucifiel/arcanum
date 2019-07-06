@@ -5,7 +5,7 @@ export default class Resource extends Item {
 
 	get require() {
 		return super.require ||
-		( this._locked === false ? null : ()=>this.positive() );
+		( this._locked === 0 ? null : ()=>this.positive() );
 	}
 	set require(v){super.require = v;}
 

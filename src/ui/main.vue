@@ -165,7 +165,6 @@ export default {
 
 			if ( this.game.canUse(it) ) {
 
-				console.log('onhome');
 				this.game.remove('home');
 				this.game.tryItem(it);
 

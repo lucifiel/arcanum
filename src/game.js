@@ -75,7 +75,7 @@ export default {
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
-			if ( stat.locked === false ) {
+			if ( stat.locked === 0 ) {
 
 				stats[i].update( dt );
 
@@ -136,6 +136,11 @@ export default {
 
 		let action = this._state.curAction;
 		if ( !action ) return;
+
+		if ( action.maxed() ) {
+			this.stopAction();
+			return;
+		}
 
 		if ( action.cost ) {
 
@@ -227,7 +232,7 @@ export default {
 
 		if ( evt.effect ) this.applyEffect( evt.effect, 1 );
 
-		evt.locked = false;
+		evt.locked = 0;
 		evt.value = 1;
 
 		this.log.log( evt.name, evt.desc, 'event' );
@@ -375,7 +380,7 @@ export default {
 		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
 		else if ( !it.require || this.unlockTest(it.require,it) ) {
-			it.locked = false;
+			it.locked--;
 		}
 
 		return !it.locked;

@@ -107,7 +107,7 @@
 		"id":"bestiary",
 		"desc":"compendium of magical creatures",
 		"require":"state.animals>10",
-		"locked":true,
+		"locked":1,
 		"mod":{
 			"research.max":10,
 			"animals.rate":0.1
@@ -162,12 +162,28 @@
 		"mod":{
 			"research.max":20,
 			"light":{
-				"skipLocked":true,
 				"max":1,
 				"base":0.01
 			}
 		}
 
+	},
+	{
+		"id":"spellbook",
+		"name":"Spellbook",
+		"require":"state.lore>=2&&state.crafting>=2",
+		"desc":"The portal to true magic.",
+		"cost":{
+			"research":20,
+			"codices":1,
+			"arcana":1,
+			"mana":5
+		},
+		"effect":{
+			"research.max":15,
+			"research.base":0.11,
+			"arcana.base":0.007
+		}
 	},
 	{
 		"id":"windchime",

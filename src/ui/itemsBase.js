@@ -7,7 +7,7 @@ import Game from '../game';
 
 export default {
 	
-	props:['items', 'layout'],
+	props:['items'],
 	methods:{
 
 		round:round,
@@ -17,18 +17,18 @@ export default {
 		},
 
 		visible(it) {
-			return it.locked === false && it.disabled === false;
+			return !it.locked && it.disabled === false;
 		},
 
 		reslocked( it ) {
 			return it.disabled === true ||
-			( it.locked===true && !Game.tryUnlock(it) );
+			( it.locked && !Game.tryUnlock(it) );
 		},
 
 		locked(it) {
 
 			return it.disabled === true || it.maxed() ||
-			( it.locked===true && !Game.tryUnlock(it) );
+			( it.locked&& !Game.tryUnlock(it) );
 
 		}
 

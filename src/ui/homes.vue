@@ -34,7 +34,7 @@ export default {
 
 	<div class="home-view">
 
-		<upgrades class="homes-view" :items="gameData.homes" pick-event="home" layout="homes-view" />
+		<upgrades class="homes-view" :items="gameData.homes" pick-event="home" />
 		
 		<div class="furniture">
 

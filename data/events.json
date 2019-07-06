@@ -4,7 +4,7 @@
 		"id":"intro",
 		"name":"Prologue",
 		"desc":"An idle waif with no prospects to speak of...",
-		"locked":false
+		"locked":0
 	},
 	{
 		"id":"firstscroll",
@@ -20,6 +20,14 @@
 		"effect":{
 			"research.max":10
 		}
+	},
+	{
+
+		"id":"evt_spellbook",
+		"name":"Book of Spells",
+		"desc":"Under the supervision of your master, you craft your first spellbook.",
+		"disable":[]
+
 	},
 	{
 		"id":"neophyte",

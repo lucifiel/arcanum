@@ -3,7 +3,7 @@
 	{
 		"id":"main",
 		"name":"main",
-		"locked":false
+		"locked":0
 
 	},
 	{
@@ -27,13 +27,13 @@
 	{
 		"id":"player",
 		"name":"player",
-		"locked":false
+		"locked":0
 
 	},
 	{
 		"id":"spells",
 		"name":"spellbook",
-		"require":"mana"
+		"require":"spellbook"
 
 	}
 

@@ -40,6 +40,17 @@
 		}
 	},
 	{
+		"id":"cave",
+		"desc":"A primitive dwelling well-suited to particular areas of study. Some less so.",
+		"require":"adept",
+		"cost":50,
+		"mod":{
+			"space.max":30,
+			"research.base":-0.1
+		}
+
+	},
+	{
 		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":500,
