@@ -2,7 +2,7 @@
 import Menu from './menu.vue';
 import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
-import UpgradesView from './upgradesView.vue';
+import upgrades from './upgrades.vue';
 import HomeView from './homes.vue';
 
 import ItemsBase from './itemsBase';
@@ -31,7 +31,7 @@ export default {
 	components:{
 		resources:ResoucesView,
 		actions:ActionsView,
-		upgrades:UpgradesView,
+		upgrades:upgrades,
 		itempopup:ItemPopup,
 		vitals:Vitals,
 		log:LogView,
@@ -62,6 +62,8 @@ export default {
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
 		this.listen( 'rest', this.onRest );
+
+		this.listen('home', this.onHome );
 
 		this.listen( 'spell', this.onSpell );
 		this.listen( 'learn', this.onLearn );
@@ -138,7 +140,7 @@ export default {
 			this.overElm = evt.currentTarget;
 		},
 
-		itemOut(evt ){
+		itemOut(){
 
 			this.overElm = null;
 			this.overItem = null;
@@ -153,6 +155,21 @@ export default {
 				this.gameState.curAction = rest;
 	
 			} else this.game.stopAction( rest );
+
+		},
+
+		/**
+		 * New home purchased.
+		 */
+		onHome(it) {
+
+			if ( this.game.canUse(it) ) {
+
+				console.log('onhome');
+				this.game.remove('home');
+				this.game.tryItem(it);
+
+			}
 
 		},
 
@@ -206,7 +223,7 @@ export default {
 <template>
 
 	<div class="full"
-		@mouseover.capture.stop="dispatch('itemout',$event)">
+		@mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">
 			<dots :dots="gameState.dots" />

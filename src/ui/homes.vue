@@ -2,7 +2,7 @@
 import Game from '../game';
 
 import ItemsBase from './itemsBase';
-import UpgradeView from './upgradesView.vue';
+import UpgradeView from './upgrades.vue';
 
 /**
  * @emits sell
@@ -34,7 +34,7 @@ export default {
 
 	<div class="home-view">
 
-		<upgrades class="homes-view" :items="gameData.homes" layout="homes-view" />
+		<upgrades class="homes-view" :items="gameData.homes" pick-event="home" layout="homes-view" />
 		
 		<div class="furniture">
 
@@ -47,6 +47,7 @@ export default {
 			<td><button :disabled="!usable(it)" class="buy-btn"
 				@mouseenter.capture.stop="dispatch('itemover', $event, it )"
 				@click="dispatch('action',it)">Buy</button></td>
+
 			<td><button :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 
 		</tr>

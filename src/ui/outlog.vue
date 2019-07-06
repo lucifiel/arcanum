@@ -38,6 +38,7 @@ export default {
 div.outlog {
 	flex-direction: column;
 	flex-basis: 20%;
+	overflow:auto;
 }
 
 div.log-item {

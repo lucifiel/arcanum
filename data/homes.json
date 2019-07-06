@@ -10,6 +10,7 @@
 	},
 	{
 		"id":"atticbedroom",
+		"name":"Attic Bedroom",
 		"desc":"Noting your progress, your master begrudgingly offers you some space in the attic.",
 		"flavor":"Don't let it go to your head.",
 		"require":"neophyte",

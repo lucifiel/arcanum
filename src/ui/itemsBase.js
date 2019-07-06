@@ -13,21 +13,21 @@ export default {
 		round:round,
 
 		usable(it) {
-			return !it.removed && Game.canUse( it );
+			return Game.canUse( it );
 		},
 
 		visible(it) {
-			return it.locked === false && it.removed === false;
+			return it.locked === false && it.disabled === false;
 		},
 
 		reslocked( it ) {
-			return it.removed === true ||
+			return it.disabled === true ||
 			( it.locked===true && !Game.tryUnlock(it) );
 		},
 
 		locked(it) {
 
-			return it.removed === true || it.maxed() ||
+			return it.disabled === true || it.maxed() ||
 			( it.locked===true && !Game.tryUnlock(it) );
 
 		}

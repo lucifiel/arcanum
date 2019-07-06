@@ -20,6 +20,7 @@ export default class Item {
 	/**
 	 * @property {string} id - internal id.
 	 */
+	toString(){return this.id;}
 
 	/**
 	 * @property {string} name - displayed name.
@@ -45,11 +46,11 @@ export default class Item {
 	valueOf() { return this._value; }
 
 	/**
-	 * @property {boolean} removed - whether the item has been
-	 * removed (permalocked) by another item.
+	 * @property {boolean} disabled - whether the item has been
+	 * disabled / is no longer available.
 	 */
-	get removed() { return this._removed; }
-	set removed(v) { this._removed = v;}
+	get disabled() { return this._disabled; }
+	set disabled(v) { this._disabled = v;}
 
 	/**
 	 * @property {string|string[]} tag - tag to distinguish between
@@ -116,7 +117,7 @@ export default class Item {
 
 		this._value = this._value || 0;
 		defineExcept( this, null,
-			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'effect', 'removed', 'slot' ]);
+			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'effect', 'disabled', 'slot' ]);
 
 	}
 

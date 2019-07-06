@@ -15,7 +15,7 @@
 		}
 	},
 	{
-		"id":"herbalism",
+		"id":"herbs",
 		"school":["nature"],
 		"name":"herbalism",
 		"need":"taggarden",

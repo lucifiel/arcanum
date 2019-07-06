@@ -14,9 +14,7 @@ export default {
 	},
 	computed:{
 
-		width(){
-			return this.skill.percent() + '%;'
-		}
+		width(){ return this.skill.percent() + '%;' }
 
 	}
 
@@ -36,7 +34,7 @@ export default {
 		<bar :value="skill.progress" :max="skill.length" />
 
 		<button class="train-btn"
-			@click="$emit('train',skill)"
+			@click="$emit('train',skill)" :disabled="!this.usable(skill)"
 				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button>
 
 		</div>

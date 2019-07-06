@@ -4,7 +4,7 @@
 		"id":"apprenticeship",
 		"name":"Apprenticeship",
 		"desc":"Become an apprentice.",
-		"require":"state.research>=10",
+		"require":"state.research.max>=10",
 		"repeat":false,
 		"cost":{
 			"research":10,
@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research>=100&&state.arcana>=5",
+		"require":"state.research.max>=100&&state.arcana.max>=5",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
@@ -34,7 +34,7 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
-		"require":"state.neophyte&&state.research>=500&&state.arcana>=10",
+		"require":"state.neophyte>0&&state.research.max>=500&&state.arcana.max>=10",
 		"repeat":false,
 		"cost":{
 			"research":500,
@@ -48,7 +48,7 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.neophyte&&state.research>=500&&state.arcana>=10",
+		"require":"state.neophyte>0&&state.research.max>=500&&state.arcana.max>=10",
 		"repeat":false,
 		"flavor":"Saves a lot of money",
 		"cost":{
@@ -179,9 +179,8 @@
 			"research":50
 		},
 		"mod":{
-			"research.max":5,
 			"air.base":0.01,
-			"air.max":10
+			"air.max":5
 		}
 	},
 	{
@@ -228,7 +227,6 @@
 		"id":"ball",
 		"name":"Crystal Ball",
 		"desc":"A crystal sphere revealing distant lands.",
-		"repeat":true,
 		"require":"state.arcana>=5",
 		"cost":{
 			"gold":50,
@@ -236,7 +234,7 @@
 		},
 		"mod":{
 			"arcana":{
-				"base":0.01
+				"base":0.005
 			}
 		}
 	},
@@ -245,7 +243,7 @@
 		"require":"pedestal",
 		"cost":100,
 		"mod":{
-			"study.effect.arcana":0.01
+			"study.effect.arcana":0.005
 		}
 	},
 	{

@@ -58,7 +58,7 @@ export default {
 
 		this.doDots(dt);
 
-		this.doAction( dt );
+		this.doCurrent( dt );
 
 		this.doResources(dt);
 
@@ -132,7 +132,7 @@ export default {
 	 * Performs tick update of the current action/skill.
 	 * @param {number} dt - elapsed time 
 	 */
-	doAction( dt ) {
+	doCurrent( dt ) {
 
 		let action = this._state.curAction;
 		if ( !action ) return;
@@ -221,7 +221,7 @@ export default {
 	doEvent( evt ) {
 
 		if ( evt.maxed() ) return;
-		if ( evt.remove ) this.remove( evt.remove);
+		if ( evt.disable ) this.disable( evt.disable);
 
 		if ( evt.title ) this._state.player.title = evt.title;
 
@@ -235,19 +235,19 @@ export default {
 	},
 
 	/**
-	 * Completely remove a previously unlocked/purchased item.
+	 * Completely disable an item - cannot be purchased/used/etc.
 	 * @param {string|Item|Array} it 
 	 */
-	remove( it ) {
+	disable( it ) {
 
-		if ( it instanceof Array ) for( let v of it ) this.remove(v);
+		if ( it instanceof Array ) for( let v of it ) this.disable(v);
 		else {
 
 			if ( typeof it === 'string' ) it = this.getItem( it );
 			if ( it ) {
 
-				it.removed = true;
-				console.log('REMOVING: ' + it.name );
+				it.disabled = true;
+				console.log('disable: ' + it.name );
 	
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it.mod, it.value );
@@ -279,10 +279,32 @@ export default {
 		}
 
 		it.value -= 1;
-
 		if ( it.mod ) this.removeMod( it.mod, 1 );
 
 		return true;
+
+	},
+
+	/**
+	 * Remove some amount of an item.
+	 * @property {string} id - item id or tag.
+	 */
+	remove( id, amt=1 ){
+
+		let it = this.getItem(id);
+		if ( !it ) {
+
+			it = this._state.getTagList(id);
+			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
+			console.log('move list: ' + it );
+			if ( !it ) return;
+
+		}
+
+		if ( it.cost && it.cost.space ) this.getItem('space').value += amt*it.cost.space;
+
+		it.value -= amt;
+		if ( it.mod ) this.removeMod( it.mod, amt );
 
 	},
 
@@ -350,7 +372,7 @@ export default {
 	 */
 	tryUnlock( it ) {
 
-		if ( it.removed || (it.need && !this.unlockTest(it.need,it)) ) return false;
+		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
 		else if ( !it.require || this.unlockTest(it.require,it) ) {
 			it.locked = false;
@@ -397,11 +419,11 @@ export default {
 			if ( test.type === 'resource' || test.type === 'action') return !test.locked;
 			return test.value >0;
 
-		} else console.warn( 'unknown test: ' + test );
+		} else console.warn( 'unknown test: ' + test.id );
 
 	},
 
-		/**
+	/**
 	 * Perform the one-time effect of an action, resource, or upgrade.
 	 * @param {Item} effect
 	 * @param {number} dt - time elapsed.
@@ -470,7 +492,7 @@ export default {
 	 */
 	applyToTag( tag, obj, dt ) {
 
-		let target = this._stage.getTagList(tag);
+		let target = this._state.getTagList(tag);
 		if ( target ) target.forEach( v=>v.applyVars( obj, dt ) );
 
 	},
@@ -496,11 +518,11 @@ export default {
 
 	canUse( it ){
 
-		if ( it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
+		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
 		else if ( it.slot ) {
 
 			let list = this._state.getTagList(it.slot );
-			if ( list && list.some(v=>!v.locked&&!v.removed&&v.value>0)) return false;
+			if ( list && list.some(v=>!v.locked&&!v.disabled&&v.value>0)) return false;
 
 		}
 

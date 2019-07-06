@@ -39,6 +39,16 @@ export default class Stat {
 
 	}
 
+	/**
+	 * Get the result of changing the base and percents by the given amounts.
+	 * @param {number} delBase - delta base.
+	 * @param {number} delPct - delta percent.
+	 * @returns {number}
+	 */
+	newValue( delBase, delPct ) {
+		return (this._base + delBase )*( 1 + this._pct + delPct );
+	}
+
 	add( v ) {
 
 		if ( !isNaN(v)) this._base += v;

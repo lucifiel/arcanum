@@ -88,7 +88,7 @@
 		},
 		"mod":{
 			"research.max":5,
-			"arcana.base":0.01
+			"arcana.base":0.005
 		}
 	},
 	{
@@ -125,13 +125,17 @@
 		"id":"mortar",
 		"name":"Mortar and Pestle",
 		"desc":"Useful for grinding herbs & fine ingredients.",
-		"require":"herbalism",
+		"require":"herbs",
 		"cost":{
 			"gold":20,
 			"space":1
 		},
 		"mod":{
-			"research.max":5
+			"research.max":5,
+			"herbs":{
+				"base":0.1,
+				"max":2
+			}
 		}
 	},
 	{
@@ -144,14 +148,14 @@
 			"space":1
 		},
 		"mod":{
-			"resarch.max":5
+			"research.max":5
 		}
 
 	},
 	{
 
 		"id":"pedestal",
-		"desc":"A pedestal for reading magic tomes.",
+		"desc":"A pedestal for reading magic tomes. Improves study habits.",
 		"require":"neophyte",
 		"cost":{
 			"gold":50,
@@ -198,6 +202,7 @@
 	{
 		"id":"casement",
 		"name":"casement window",
+		"tags":"lightsource",
 		"desc":"A simple window to let in light and air.",
 		"require":"state.space>10",
 		"cost":{
@@ -230,7 +235,7 @@
 		"id":"brasscandelabra",
 		"name":"brass candelabra",
 		"desc":"Candle holder.",
-		"require":"state.candle>0&&state.gold.max>75",
+		"require":"state.candle>0&&state.gold.max>=200",
 		"cost":{
 			"space":1,
 			"gold":100
@@ -263,6 +268,7 @@
 	{
 		"id":"basin",
 		"name":"basin",
+		"tags":"watersource",
 		"desc":"Basin of water.",
 		"require":"adept",
 		"cost":{
@@ -270,22 +276,27 @@
 			"space":1
 		},
 		"mod":{
-			"water.base":0.01,
-			"water.max":10
+			"water":{
+				"base":0.01,
+				"max":5
+			}
 		}
 	},
 	{
 		"id":"brazier",
 		"name":"Brazier",
 		"desc":"Stand of burning hot coals.",
+		"tags":"firesource",
 		"require":"adept",
 		"cost":{
 			"gold":50,
 			"space":1
 		},
 		"mod":{
-			"fire.max":5,
-			"fire.base":0.02
+			"fire":{
+				"max":5,
+				"base":0.01
+			}
 		}
 
 	},
@@ -293,6 +304,7 @@
 		"id":"clepsydra",
 		"desc":"Crude measure of time",
 		"require":"adept",
+		"tags":"timesource",
 		"cost":{
 			"gold":100,
 			"research":100,
@@ -315,7 +327,7 @@
 			"space":1
 		},
 		"mod":{
-			"fire.base":0.1
+			"fire.base":0.01
 		}
 
 	},
@@ -323,6 +335,7 @@
 		"id":"fountain",
 		"name":"fountain",
 		"desc":"Water Fountain",
+		"tags":"watersource",
 		"require":"state.space>20",
 		"cost":{
 			"gold":500,
@@ -330,13 +343,14 @@
 		},
 		"mod":{
 			"water.base":0.5,
-			"water.max":50
+			"water.max":10
 		}
 	},
 	{
 		"id":"ossuary",
 		"name":"ossuary",
 		"desc":"Receptacle for bones.",
+		"tags":"shadowsource",
 		"require":"evil",
 		"cost":{
 			"gold":20,
@@ -352,6 +366,7 @@
 		"id":"darkshrine",
 		"name":"dark shrine",
 		"desc":"A shrine to Evil.",
+		"tags":"shadowsource",
 		"require":"evil",
 		"cost":{
 			"gold":30,
@@ -368,6 +383,7 @@
 		"id":"ironcell",
 		"name":"Iron Cell",
 		"desc":"A simple, bare cell.",
+		"tags":"prison",
 		"require":"adept",
 		"cost":{
 			"gold":25,
@@ -383,6 +399,7 @@
 		"name":"shrine",
 		"desc":"A shrine to the divine forces.",
 		"require":"adept",
+		"tags":"lightsource",
 		"cost":{
 			"gold":30,
 			"gems":5,
@@ -391,13 +408,14 @@
 		},
 		"mod":{
 			"light.base":0.1,
-			"light.max":10
+			"light.max":5
 		}
 	},
 	{
 		"id":"bloodfountain",
 		"name":"Blood Fountain",
 		"desc":"Fountain of blood",
+		"tags":"shadowsource",
 		"require":"evil",
 		"cost":{
 			"gold":300,
@@ -407,7 +425,7 @@
 		},
 		"mod":{
 			"shadow.base":0.5,
-			"shadow.max":50
+			"shadow.max":10
 		}
 	},
 	{
@@ -434,11 +452,11 @@
 		"require":"state.codices>=100",
 		"cost":{
 			"gold":500,
-			"research":1000,
+			"research":500,
 			"space":100
 		},
 		"mod":{
-			"codices.max":1000,
+			"codices.max":500,
 			"research.max":100,
 			"research.base":0.1
 		}
@@ -455,8 +473,8 @@
 		},
 		"mod":{
 			"herbs.base":1,
-			"herbs.max":50,
-			"nature.max":50,
+			"herbs.max":3,
+			"nature.max":5,
 			"nature.base":0.05
 		}
 
@@ -465,6 +483,7 @@
 		"id":"pond",
 		"name":"pond",
 		"desc":"Pond",
+		"tags":"watersource",
 		"require":"state.space>50",
 		"cost":{
 			"gold":500,
@@ -473,23 +492,24 @@
 		"mod":{
 			"water.base":0.1,
 			"nature.base":0.1,
-			"nature.max":50,
-			"water.max":100
+			"nature.max":5,
+			"water.max":10
 		}
 	},
 	{
 
 		"id":"workshop",
-		"name":"Workshop",
+		"tags":"workspace",
 		"desc":"A space suitable for crafting items.",
-		"require":"state.space>100",
+		"require":"state.space>=50",
 		"cost":{
 			"space":50,
 			"gold":500,
 			"research":25
 		},
 		"mod":{
-			"research.max":10
+			"crafting.max":2,
+			"crafting.base":0.1
 		}
 
 	}

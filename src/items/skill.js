@@ -39,7 +39,7 @@ export default class Skill extends Item {
 		this._value = this._value || 0;
 		this._exp = this._exp || 0;
 		this.rate = this.rate || 2;
-		this.max = this.max || 10;
+		this.max = this.max || 5;
 
 	}
 

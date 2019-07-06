@@ -1,7 +1,7 @@
 <script>
 
 import ItemBase from './itemsBase';
-import SkillView from './skillView.vue';
+import SkillView from './skill.vue';
 
 export default {
 	
@@ -13,7 +13,7 @@ export default {
 	computed:{
 
 		skills(){
-			return this.gameData.filterItems( it=>it.type==='skill' && !this.locked(it) );
+			return this.gameData.filterItems( it=>it.type==='skill' && !this.reslocked(it) );
 		}
 	},
 	methods:{

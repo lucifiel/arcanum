@@ -54,7 +54,7 @@
 				"max":10
 			},
 			"arcana":{
-				"base":0.01
+				"base":0.005
 			}
 		}
 
@@ -101,25 +101,25 @@
 	},
 	{
 		"id":"cold",
-		"tag":"manas,elemental",
+		"tags":"manas,elemental",
 		"desc":"Cold Mana",
 		"max":5
 	},
 	{
 		"id":"air",
-		"tag":"manas,elemental",
+		"tags":"manas,elemental",
 		"desc":"Air Mana",
 		"max":5
 	},
 	{
 		"id":"earth",
-		"tag":"manas,elemental",
+		"tags":"manas,elemental",
 		"desc":"Earth Mana",
 		"max":5
 	},
 	{
 		"id":"water",
-		"tag":"manas,elemental",
+		"tags":"manas,elemental",
 		"desc":"Water Mana",
 		"max":5
 	},
@@ -134,20 +134,20 @@
 		"id":"light",
 		"tag":"manas",
 		"desc":"Light mana",
-		"max":5
+		"max":1
 	},
 	{
 		"id":"tempus",
 		"tag":"manas",
 		"desc":"Time incarnate",
-		"max":5
+		"max":0
 	},
 	{
 		"id":"void",
 		"tag":"manas",
 		"desc":"nothingness",
 		"flavor":"",
-		"max":5
+		"max":0
 	}
 
 ]

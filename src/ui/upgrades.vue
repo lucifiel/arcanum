@@ -4,12 +4,22 @@ import Game from '../game';
 
 export default {
 
+	/**
+	 * @property {string} event - name of event to fire when an item is selected.
+	 */
+	props:['pickEvent'],
 	mixins:[ItemsBase],
-	data(){
+	created(){
+
+		console.log('event: ' + this.pickEvent );
 
 		this.pLayout = this.layout || 'upgrade-list';
-		return {
-		}
+		this.pEvent = this.pickEvent || 'upgrade';
+		/*return {
+			pEvent:this.pickEvent || 'upgrade',
+			pLayout:this.layout||'upgrade-list'
+		};*/
+
 	},
 	methods:{
 	}
@@ -27,7 +37,7 @@ export default {
 	<button
 		class="wrapped-btn"
 		:disabled="!usable(it)"
-		@click.stop="dispatch( 'upgrade', it)">{{ it.name || it.id }}</button>
+		@click.capture.stop="dispatch( pEvent, it)">{{ it.name || it.id }}</button>
 	</span>
 
 </div>

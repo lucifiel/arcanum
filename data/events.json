@@ -16,7 +16,7 @@
 		"name":"Apprenticeship",
 		"title":"apprentice",
 		"desc":"After paying a small fee, you became apprenticed to a local wizard.",
-		"remove":["stables"],
+		"disable":["stables"],
 		"effect":{
 			"research.max":10
 		}
@@ -26,7 +26,7 @@
 		"name":"Neophyte",
 		"title":"neophyte",
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies.",
-		"remove":["apprentice","chores"],
+		"disable":["apprentice","chores"],
 		"effect":{
 			"gold.base":0.1,
 			"research.max":20,
@@ -34,11 +34,19 @@
 		}
 	},
 	{
+
+		"id":"clearcellar",
+		"name":"Pest Control",
+		"desc":"",
+		"effect":{}
+
+	},
+	{
 		"id":"adept",
 		"name":"Adept",
 		"title":"adept",
 		"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-		"remove":["neophyte", "bedroom", "alcove","errands"],
+		"disable":["neophyte", "bedroom", "alcove","errands"],
 		"effect":{
 			"research.max":50
 		}
@@ -47,7 +55,7 @@
 		"id":"magician",
 		"title":"magician",
 		"desc":"A true practitioner of magic.",
-		"remove":["adept"],
+		"disable":["adept"],
 		"effect":{
 			"research.max":100
 		}
@@ -56,7 +64,7 @@
 		"id":"witch",
 		"title":"witch",
 		"desc":"Witch",
-		"remove":["adept"],
+		"disable":["adept"],
 		"effect":{
 			"research.max":50
 		}
@@ -65,7 +73,7 @@
 		"id":"enchanter",
 		"title":"enchanter",
 		"desc":"A true practitioner of magic.",
-		"remove":["adept"],
+		"disable":["adept"],
 		"effect":{
 			"research.max":100
 		}
@@ -74,7 +82,7 @@
 		"id":"mage",
 		"title":"mage",
 		"desc":"A true practitioner of magic.",
-		"remove":["adept"],
+		"disable":["adept"],
 		"effect":{
 			"research.max":100
 		}
