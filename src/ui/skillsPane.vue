@@ -1,5 +1,5 @@
 <script>
-
+import Game from '../game';
 import ItemBase from './itemsBase';
 import SkillView from './skill.vue';
 
@@ -19,7 +19,7 @@ export default {
 	methods:{
 
 		train(skill){
-			this.gameData.curAction = this.gameData.curAction !== skill ? skill : null;
+			Game.toggleAction( skill );
 		}
 
 	}

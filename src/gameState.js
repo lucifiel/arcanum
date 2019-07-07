@@ -14,6 +14,16 @@ export default class GameState {
 		 */
 		this.curAction = this.curAction || null;
 
+		/**
+		 * @property {string} restId - id of action to use for resting.
+		 */
+		this.restId = this.restId || 'rest';
+
+		/**
+		 * @property {string} restAction - default resting action.
+		 */
+		this.restAction = this.getItem( this.restId );
+
 		this.dungeon = this.dungeon || null;
 
 		this.curEnemy = this.curEnemy || null;

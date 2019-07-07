@@ -145,7 +145,8 @@ export default class Raid {
 
 	playerDied() {
 		console.log('player died');
-		this.state.curAction = this.state.getItem('rest');
+		Game.setAction( this.state.restAction );
+
 	}
 
 	enemyDied() {
@@ -167,7 +168,7 @@ export default class Raid {
 
 		this.player.exp += 5*this.dungeon.progress;
 		this.dungeon = null;
-		this.state.curAction = null;
+		Game.setAction( this.state.restAction );
 
 	}
 
@@ -180,11 +181,11 @@ export default class Raid {
 	setEnemy(e) {
 
 		if ( typeof e === 'string') {
-			console.log('getting enemy: ' + e );
 			e = this.state.getItem(e);
 		}
 
-		this.enemy = Object.assign( {}, e );
+		// Note: name and id are properties of Item, so are not assigned by default.
+		this.enemy = Object.assign( { id:e.id, name:e.name }, e );
 		this.enemyTimer += this.enemy.delay;
 		this.playerTimer += this.player.delay;
 

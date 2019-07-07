@@ -148,14 +148,7 @@ export default {
 		},
 
 		onRest(){
-
-			let rest = this.gameState.getItem('rest');
-			if ( this.gameState.curAction !== rest ) {
-
-				this.gameState.curAction = rest;
-	
-			} else this.game.stopAction( rest );
-
+			Game.toggleAction( this.gameState.restAction );
 		},
 
 		/**
@@ -184,7 +177,7 @@ export default {
 
 			if ( action.perpetual || action.length > 0 ) {
 
-				if ( this.gameState.curAction !== action ) this.gameState.curAction = action;
+			Game.setAction(action);
 
 			} else this.game.tryItem( action );
 		},

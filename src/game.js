@@ -23,9 +23,6 @@ export default {
 	 */
 	get items() { return this._items; },
 
-	get curAction() { return this._state.curAction; },
-	set curAction(v) { this._state.curAction = v; },
-
 	/**
 	 * @property {Log} log
 	 */
@@ -138,14 +135,14 @@ export default {
 		if ( !action ) return;
 
 		if ( action.maxed() ) {
-			this.stopAction();
+			this.haltAction();
 			return;
 		}
 
 		if ( action.cost ) {
 
 			if ( !this.canPay( action.cost, dt ) ) {
-				this.stopAction()
+				this.haltAction()
 				return;
 			}
 			this.payCost( action.cost, dt );
@@ -171,35 +168,48 @@ export default {
 		} else {
 
 			if ( action.effect ) this.applyEffect( action.effect, dt );
-			if ( action.fill && this.filled(action.fill ) ) this.stopAction();
+			if ( action.fill && this.filled(action.fill ) ) this.haltAction();
 
 		}
 
 	},
 
 	/**
-	 * Stops the current action.
-	 * Attempts to resume any waiting action.
+	 * Toggles an action on or off.
+	 * @param {Item} act
+	 * @returns {boolean} - true if action is now current, false otherwise. 
 	 */
-	stopAction() {
+	toggleAction(act) {
+
+		this._state.curAction = this._state.curAction === act ? null : act;
+		this._state.resumeAction = null;
+		return this._state.curAction !== null;
+
+	},
+
+	setAction( act ) {
+		this._state.resumeAction = null;
+		this._state.curAction = act;
+	},
+
+	/**
+	 * Halts an action when requirements are no longer met.
+	 * If the action was a rest action, any previous action is resumed.
+	 */
+	haltAction() {
 
 		let cur = this._state.curAction;
-		let resume = this._state.resumeAction;
-		if ( resume != null ) {
 
-			this._state.curAction =
-				resume !== cur ? resume : null;
+		// was resting.
+		if ( cur.id === this._state.restId ) {
+
+			this._state.curAction = this._state.resumeAction || null;
 			this._state.resumeAction = null;
 
 		} else {
 
-			let rest = this.getItem('rest');
-			if ( cur !== rest ) {
-
-				this._state.resumeAction = cur;
-				this._state.curAction = rest;
-
-			} else this._state.curAction = null;
+			this._state.resumeAction = cur;
+			this._state.curAction = this._state.restAction;
 
 		}
 
@@ -373,7 +383,7 @@ export default {
 		if ( it.lock ) this.lock( it.lock );
 		if ( it.dot ) this.beginDot( it, it.dot );
 
-		if ( it.attack && this.curAction === this._state.raid ) {
+		if ( it.attack && this._state.curAction === this._state.raid ) {
 			this._state.raid.doAttack( it );
 		}
 

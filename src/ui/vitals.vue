@@ -16,8 +16,7 @@ export default {
 	computed:{
 
 		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
-		rest() { return this.state.getItem('rest')},
-		resting() { return this.state.curAction === this.rest; },
+		resting() { return this.state.curAction === this.state.restAction; },
 		stamina(){ return this.state.getItem('stamina'); }
 	}
 
@@ -41,7 +40,7 @@ export default {
 			@mouseenter.native.capture.stop="dispatch('itemover',$event,it)"/></td></tr>
 
 		<tr><td><button class="rest-btn" @click="dispatch('rest')"
-			@mouseenter.capture.stop="dispatch('itemover',$event,rest)">
+			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
 			<td>{{ this.state.curAction !== null ? (this.state.curAction.verb || this.state.curAction.name) : ''}}</td></tr>
 
