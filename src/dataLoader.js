@@ -13,10 +13,11 @@ import MonsterList from 'data/monsters';
 import Item from 'items/item';
 import Player from 'player';
 
-import Range from 'range';
+import Range, {RangeTest} from 'range';
 import Resource from './items/resource';
 import Upgrade from './items/upgrade';
 import Skill from './items/skill';
+import Monster from './items/monster';
 
 import VarPath  from 'varPath';
 import Dungeon from './items/dungeon.js';
@@ -66,6 +67,7 @@ export default {
 
 				// REQUIRE
 				if ( typeof sub === 'string' && !IdTest.test(sub )) it.require = this.createTest( sub );
+				else it.require = this.parseSub( sub );
 
 			}
 	
@@ -102,6 +104,9 @@ export default {
 
 			for( let p in sub ) {
 	
+				var obj = sub[p];
+				if ( typeof obj === 'string' && RangeTest.test(obj) ) sub[p] = new Range(obj);
+
 				// convert to an assignment object.
 				if ( p.includes('.')) {
 					this.splitKeyPath( sub, p );
@@ -114,6 +119,7 @@ export default {
 		} else if ( typeof sub === 'string') {
 
 			if ( sub.includes('.') ) return new VarPath( sub );
+			else if ( RangeTest.test(sub) ) return new Range(sub);
 		}
 
 		return sub;
@@ -153,7 +159,7 @@ export default {
 		this.initItems( Dungeons, Dungeon );
 		this.initItems( SpellList, Spell );
 
-		this.initItems( MonsterList, undefined, 'monster', 'monster' );
+		this.initItems( MonsterList, Monster, 'monster', 'monster' );
 
 		gd.events = this.initItems( EventList, Item, null, 'event' );
 

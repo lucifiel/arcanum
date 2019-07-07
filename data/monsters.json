@@ -104,6 +104,58 @@
 		"defense":4,
 		"min":1,
 		"max":4
+	},
+	{
+		"id":"mutantrat",
+		"name":"Mutant Rat",
+		"type":"natural",
+		"level":3,
+		"hp":4,
+		"tohit":3,
+		"defense":3,
+		"min":2,
+		"max":4
+	},
+	{
+		"id":"badexperiment",
+		"name":"Tortured Experiment",
+		"desc":"It appears to be some sort of long lost arcane experiment, with a mind of its own. It doesn't look friendly.",
+		"type":"arcane",
+		"level":3,
+		"hp":5,
+		"tohit":2,
+		"defense":5,
+		"min":1,
+		"max":2
+
+	},
+	{
+		"id":"ratskeleton",
+		"name":"Skeletal Rat",
+		"desc":"Even the dead rats are a problem...",
+		"type":"shadow",
+		"level":3,
+		"hp":5,
+		"tohit":4,
+		"defense":3,
+		"min":1,
+		"max":2,
+		"result":{
+			"bones":1
+		}
+
+	},
+	{
+		"id":"ratking",
+		"name":"Rat King",
+		"type":"natural",
+		"level":4,
+		"hp":7,
+		"tohit":3,
+		"defense":4,
+		"min":3,
+		"max":5
+
 	}
 
 

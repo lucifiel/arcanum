@@ -51,13 +51,27 @@
 		"tag":"bed",
 		"slot":"bed",
 		"require":"neophyte",
-		"max":1,
 		"cost":{
 			"gold":40,
 			"space":2
 		},
 		"mod":{
 			"rest.effect.stamina":0.07
+		}
+
+	},
+	{
+		"id":"fourposter",
+		"desc":"four post bed",
+		"tag":"bed",
+		"slot":"bed",
+		"require":"adept",
+		"cost":{
+			"gold":100,
+			"space":4
+		},
+		"mod":{
+			"rest.effect.stamina":0.1
 		}
 
 	},
@@ -103,6 +117,22 @@
 		},
 		"mod":{
 			"research.max":5
+		}
+
+	},
+	{
+
+		"id":"writingdesk",
+		"desc":"A desk for working and scribing.",
+		"require":"neophyte",
+		"tag":"workspace",
+		"cost":{
+			"gold":25,
+			"space":2
+		},
+		"mod":{
+			"research.max":5,
+			"scrolls.max":5
 		}
 
 	},

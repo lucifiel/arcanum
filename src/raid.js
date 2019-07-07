@@ -25,6 +25,8 @@ export default class Raid {
 
 	}
 
+	maxed() { return false; }
+
 	initState( gameState ) {
 
 		this.state = gameState;
@@ -177,7 +179,10 @@ export default class Raid {
 
 	setEnemy(e) {
 
-		if ( typeof e === 'string ') e = this.state.getItem(e);
+		if ( typeof e === 'string') {
+			console.log('getting enemy: ' + e );
+			e = this.state.getItem(e);
+		}
 
 		this.enemy = Object.assign( {}, e );
 		this.enemyTimer += this.enemy.delay;

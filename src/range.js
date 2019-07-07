@@ -1,3 +1,5 @@
+export const RangeTest = /^d+\-d+$/i;
+
 export default class Range {
 
 	/**

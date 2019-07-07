@@ -1,4 +1,5 @@
 import Item from './item';
+import Monster from './monster';
 
 /**
  * @type {Object} Enemy
@@ -59,15 +60,10 @@ export default class Dungeon extends Item {
 
 	initEnemies( enemies ) {
 
-		for( let e of enemies ) {
+		for( let i = enemies.length-1; i>= 0; i-- ) {
 
-			if ( !e.speed) e.speed = 1;
-			e.delay = 1/e.speed;
-
-			if ( !e.level ) e.level = 1;
-			if ( !e.hp ) e.hp = 1;
-			if ( e.attack === undefined ) e.attack = 1;
-			if ( e.defense === undefined ) e.defense = 1;
+			var e = enemies[i];
+			if ( e instanceof Object ) enemies[i] = new Monster(e);
 
 		}
 
@@ -87,12 +83,12 @@ export default class Dungeon extends Item {
 	/**
 	 * 
 	 */
-	totalWeights() {
+	/*totalWeights() {
 
 		let tot = 0;
 		for( let a of this._enemies ) tot += a.weight || 1;
 		return tot;
 
-	}
+	}*/
 
 }

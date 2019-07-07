@@ -301,7 +301,6 @@ export default {
 
 			it = this._state.getTagList(id);
 			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
-			console.log('remove list: ' + it );
 			if ( !it ) return;
 
 		}
@@ -453,7 +452,7 @@ export default {
 			if ( test.type === 'resource' || test.type === 'action') return !test.locked;
 			return test.value >0;
 
-		} else console.warn( 'unknown test: ' + test.id );
+		} else console.warn( 'unknown test: ' + test.id || test );
 
 	},
 

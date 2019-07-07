@@ -182,7 +182,7 @@
 	{
 		"id":"imbuefiregem",
 		"name":"Imbue Gem (Fire)",
-		"require":"fire.max>10",
+		"require":"state.fire.max>10",
 		"cost":{
 			"gem":1,
 			"fire":10
@@ -194,7 +194,7 @@
 	{
 		"id":"imbuecoldgem",
 		"name":"Imbue Gem (Cold)",
-		"require":"cold.max>10",
+		"require":"state.cold.max>10",
 		"cost":{
 			"gem":1,
 			"cold":10
@@ -206,7 +206,7 @@
 	{
 		"id":"imbuewatergem",
 		"name":"Imbue Gem (Water)",
-		"require":"water.max>10",
+		"require":"state.water.max>10",
 		"cost":{
 			"gem":1,
 			"water":10

@@ -127,7 +127,7 @@
 	},
 	{
 		"id":"palace",
-		"desc":"",
+		"desc":"A luxurious, spawling estate to continue your studies in maximum comfort.",
 		"cost":10000,
 		"require":"state.arcana>=10",
 		"mod":{
@@ -136,7 +136,7 @@
 	},
 	{
 		"id":"castle",
-		"desc":"",
+		"desc":"A vast and practical fortress, for the magic user with enemies.",
 		"require":"state.arcana>=10",
 		"cost":10000,
 		"mod":{

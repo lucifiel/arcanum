@@ -54,10 +54,29 @@
 
 			"coyote",
 			"warthog",
+			"bigstone",
 			"hawk"
 
 		]
 
+	},
+	{
+		"id":"pestcontrol",
+		"name":"Leaky Cellar",
+		"level":3,
+		"length":25,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"15-20"
+		},
+		"boss":"ratking",
+		"enemies":[
+			"lgrat",
+			"badexperiment",
+			"ratskeleton"
+		]
 	}
 
 ]

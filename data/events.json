@@ -25,7 +25,7 @@
 
 		"id":"evt_spellbook",
 		"name":"Book of Spells",
-		"desc":"Under the supervision of your master, you craft your first spellbook."
+		"desc":"Under your master's supervision, you manager to compile your very own book of spells."
 
 	},
 	{
@@ -42,7 +42,7 @@
 	},
 	{
 
-		"id":"clearcellar",
+		"id":"evt_pestcontrol",
 		"name":"Pest Control",
 		"desc":"",
 		"effect":{}
