@@ -44,7 +44,7 @@
 
 		"id":"service",
 		"name":"Offer Services",
-		"desc":"Offer various magical services to the nearby townsfolk.",
+		"desc":"Offer your magical services to the nearby townsfolk.",
 		"verb":"servicing",
 		"require":["adept"],
 		"perpetual":true,
@@ -79,10 +79,10 @@
 		"require":"neophyte",
 		"perpetual":true,
 		"cost":{
-			"stamina":0.25
+			"stamina":0.2
 		},
 		"effect":{
-			"gold":0.75
+			"gold":0.4
 		}
 
 	},

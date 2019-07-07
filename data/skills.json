@@ -167,7 +167,7 @@
 	{
 		"id":"scrying",
 		"name":"Scrying",
-		"require":"ball",
+		"require":"state.divination>5&&state.ball>0",
 		"cost":{
 			"stamina":0.5
 		},

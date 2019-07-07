@@ -107,6 +107,23 @@
 	},
 	{
 
+		"id":"terrarium",
+		"desc":"a glass enclosure of crumbling dirt, insects, and small animals.",
+		"tags":"earthsource,tagpen",
+		"cost":{
+			"space":1,
+			"research":40,
+			"gold":40
+		},
+		"mod":{
+			"research.max":5,
+			"earth.max":1,
+			"earth.base":0.01
+		}
+
+	},
+	{
+
 		"id":"workbench",
 		"desc":"A small bench for arts and crafts.",
 		"tag":"workspace",
@@ -123,6 +140,7 @@
 	{
 
 		"id":"writingdesk",
+		"name":"writing desk",
 		"desc":"A desk for working and scribing.",
 		"require":"neophyte",
 		"tag":"workspace",

@@ -152,17 +152,10 @@ export default {
 		},
 
 		/**
-		 * New home purchased.
+		 * Attempt to buy new house.
 		 */
 		onHome(it) {
-
-			if ( this.game.canUse(it) ) {
-
-				this.game.remove('home');
-				this.game.tryItem(it);
-
-			}
-
+			this.game.setHome(it);
 		},
 
 		onUpgrade(upgrade) {
@@ -177,7 +170,7 @@ export default {
 
 			if ( action.perpetual || action.length > 0 ) {
 
-			Game.setAction(action);
+			this.game.setAction(action);
 
 			} else this.game.tryItem( action );
 		},

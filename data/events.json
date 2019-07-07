@@ -37,7 +37,7 @@
 		"effect":{
 			"gold.base":0.1,
 			"research.max":20,
-			"arcana.max":1
+			"lore.max":5
 		}
 	},
 	{

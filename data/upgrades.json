@@ -34,12 +34,12 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
-		"require":"state.neophyte>0&&state.research.max>=500&&state.arcana.max>=10",
+		"require":"state.neophyte>0&&state.research.max>=250&&state.arcana.max>=10",
 		"repeat":false,
 		"cost":{
 			"research":500,
 			"arcana":10,
-			"gold":300
+			"gold":200
 		},
 		"effect":"adept"
 
@@ -48,11 +48,11 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.neophyte>0&&state.research.max>=500&&state.arcana.max>=10",
+		"require":"state.neophyte>0&&state.research.max>=250&&state.arcana.max>=10",
 		"repeat":false,
 		"flavor":"Saves a lot of money",
 		"cost":{
-			"research":500,
+			"research":250,
 			"arcana":10
 		},
 		"effect":{
@@ -90,8 +90,8 @@
 	},
 	{
 		"id":"orb",
-		"name":"Arcane Orb",
-		"desc":"Holds magical energy.",
+		"name":"arcane orb",
+		"desc":"Stores magical energy.",
 		"require":"state.mana.max>=10",
 		"max":2,
 		"cost":{
@@ -100,6 +100,19 @@
 		},
 		"mod":{
 			"manas.max":1
+		}
+
+	},
+	{
+		"id":"unseenscribe",
+		"name":"unseen scribe",
+		"desc":"",
+		"need":"writingdesk",
+		"cost":{
+			"arcana":1
+		},
+		"mod":{
+			"scrolls.rate":0.01
 		}
 
 	},
@@ -154,7 +167,7 @@
 	{
 
 		"id":"prism",
-		"desc":"A small crystal pyramid for performing mystic experiments.",
+		"desc":"A small crystal pyramid for performing optical experiments.",
 		"require":"state.research.max>=50",
 		"cost":{
 			"gold":40,
@@ -166,6 +179,19 @@
 				"max":1,
 				"base":0.01
 			}
+		}
+
+	},
+	{
+		"id":"speakbirds",
+		"name":"Speak to Birds",
+		"desc":"Learn the secret language of birds.",
+		"require":"state.animals>2&&state.birdcage>1",
+		"cost":{
+
+		},
+		"mod":{
+			"research.max":10
 		}
 
 	},

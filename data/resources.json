@@ -53,8 +53,8 @@
 				"base":0.1,
 				"max":10
 			},
-			"arcana":{
-				"base":0.005
+			"lore":{
+				"base":0.01
 			}
 		}
 

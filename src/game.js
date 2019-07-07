@@ -135,7 +135,7 @@ export default {
 		if ( !action ) return;
 
 		if ( action.maxed() ) {
-			this.haltAction();
+			this.setAction(null);
 			return;
 		}
 
@@ -363,6 +363,27 @@ export default {
 
 		it.cost = it.cast || it.use;
 		it.learned = true;
+
+	},
+
+	/**
+	 * Attempt to set a new home.
+	 * @param {*} it 
+	 */
+	setHome( it ) {
+
+		if ( this.tryItem(it) ) {
+
+			let prev = this._state.curHome;
+			/**
+			 * curHome must be removed AFTER to prevent all space being restored.
+			 * @todo: fix this.
+			 */
+
+			 this._state.curHome = it;
+			if ( prev ) this.remove( prev );
+
+		}
 
 	},
 

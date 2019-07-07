@@ -15,6 +15,11 @@ export default class GameState {
 		this.curAction = this.curAction || null;
 
 		/**
+		 * @property {Item} curHome
+		 */
+		this.curHome = this.curHome || null;
+
+		/**
 		 * @property {string} restId - id of action to use for resting.
 		 */
 		this.restId = this.restId || 'rest';
