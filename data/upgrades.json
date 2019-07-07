@@ -83,7 +83,7 @@
 		"max":2,
 		"repeat":true,
 		"cost":5,
-		"flavor":"seems a bit pricey...",
+		"flavor":"seems a bit pricey for a bag.",
 		"mod":{
 			"gold.max":10
 		}

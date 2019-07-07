@@ -107,6 +107,23 @@
 	},
 	{
 
+		"id":"smcage",
+		"name":"rusty cage",
+		"desc":"A cramped cage for keeping tiny test subjects.",
+		"tags":"",
+		"cost":{
+			"gold":"20",
+			"space":1,
+			"research":20
+		},
+		"flavor":"it doesn't seem very nice.",
+		"mod":{
+
+		}
+
+	},
+	{
+
 		"id":"terrarium",
 		"desc":"a glass enclosure of crumbling dirt, insects, and small animals.",
 		"tags":"earthsource,tagpen",

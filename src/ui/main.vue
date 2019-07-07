@@ -148,7 +148,7 @@ export default {
 		},
 
 		onRest(){
-			Game.toggleAction( this.gameState.restAction );
+			this.game.toggleAction( this.gameState.restAction );
 		},
 
 		/**

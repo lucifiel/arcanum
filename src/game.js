@@ -35,6 +35,19 @@ export default {
 		this._state = new GameState( DataLoader.gameData );
 		this._items = this._state.items;
 
+		this.initEvents();
+
+	},
+
+	initEvents() {
+
+		let evts = this._state.events;
+		for( let i = evts.length-1; i>= 0; i-- ) {
+
+			if ( !evts[i].locked ) this.doEvent(evts[i]);
+
+		}
+
 	},
 
 	startRaid( dungeon) {
@@ -669,9 +682,9 @@ export default {
 	 */
 	lock(id, amt=1) {
 
-		if ( id instanceof Array ) return 
-		id.forEach( this.unlock, this );
-		if ( id instanceof Object ) {
+		if ( id instanceof Array ) {
+			id.forEach( this.unlock, this );
+		} else if ( id instanceof Object ) {
 
 			id.locked += amt;
 
