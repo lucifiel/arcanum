@@ -77,7 +77,6 @@
 		"desc":"Treat the magical ailments of locals.",
 		"verb":"treating locals",
 		"require":"neophyte",
-		"perpetual":true,
 		"cost":{
 			"stamina":0.2
 		},
@@ -109,7 +108,7 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"ignoreStamina":true,
-		"require":"adept",
+		"need":"state.adept>0&&state.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
 			"mana":0.5,
@@ -170,6 +169,20 @@
 		"effect":{
 			"codices":1
 		}
+
+	},
+	{
+		"id":"makebestiary",
+		"name":"compile bestiary",
+		"require":"state.gold>1",
+		"length":10,
+		"cost":{
+			"stamina":0.5
+		},
+		"effect":{
+			"animals.exp":1
+		},
+		"result":"bestiary"
 
 	},
 	{

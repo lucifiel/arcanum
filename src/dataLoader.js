@@ -70,6 +70,14 @@ export default {
 				else it.require = this.parseSub( sub );
 
 			}
+			sub = it.need;
+			if ( sub ) {
+
+				// REQUIRE
+				if ( typeof sub === 'string' && !IdTest.test(sub )) it.need = this.createTest( sub );
+				else it.need = this.parseSub( sub );
+
+			}
 	
 			if ( it.mod ) it.mod = this.parseSub(it.mod);
 			if ( it.fill) it.fill = this.parseSub(it.fill);

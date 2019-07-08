@@ -1,7 +1,7 @@
 import Item from './item';
 import Stat from '../stat';
 
-const EXP_RATIO = 0.5;
+const EXP_RATIO = 0.4;
 
 export default class Skill extends Item {
 
@@ -12,10 +12,17 @@ export default class Skill extends Item {
 	set level(v) { this._value =v; }
 
 	/**
-	 * @property {number} exp
+	 * @property {number} progress
 	 */
 	get progress() { return this._exp; }
 	set progress(v) { this._exp=v;}
+
+	/**
+	 * @property {number} exp - alias for progress for clarity
+	 * in data files.
+	 */
+	get exp() { return this._exp}
+	set exp(v){this._exp =v;}
 
 	/**
 	 * @property {number} max - level up experience.
@@ -58,6 +65,7 @@ export default class Skill extends Item {
 
 		this._exp -= this._length;
 		this._length += this._length*EXP_RATIO;
+		console.log('new Skill max: ' + this._length )
 
 	}
 

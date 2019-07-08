@@ -49,11 +49,16 @@
 
 	},
 	{
+		"id":"evt_slay",
+		"name":"Master Slain",
+		"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and freed you to pursue your own interests."
+	},
+	{
 		"id":"adept",
 		"name":"Adept",
 		"title":"adept",
 		"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-		"disable":["neophyte", "bedroom", "alcove","errands"],
+		"disable":["neophyte", "bedroom", "alcove","errands","leavemaster","slaymaster"],
 		"effect":{
 			"research.max":50
 		}
@@ -95,8 +100,20 @@
 		}
 	},
 	{
+
+		"id":"good",
+		"disable":"shadow",
+		"desc":"",
+		"effect":{
+			"light.max":1,
+			"light.value":1
+		}
+
+	},
+	{
 		"id":"evil",
 		"desc":"You have taken your first step on the path of evil. It's a good thing.",
+		"disable":"light",
 		"effect":{
 			"shadow":{
 				"max":1,

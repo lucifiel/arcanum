@@ -65,11 +65,11 @@ export default class Item {
 	}
 	set tag(v) { this.addTag(v); }
 
-	get length() { return this._length; }
-	set length(v) {
+	get progress() { return this._exp || 0; }
+	set progress(v){this._exp = v;}
 
-		this._length = v;
-	}
+	get length() { return this._length; }
+	set length(v) { this._length = v;}
 
 	/**
 	 * @property {Stat} rate - rate of stat change in value/second.

@@ -68,14 +68,14 @@ div.furniture {
 }
 
 table tr, table th {
-	padding: 2px 8px;
+	padding: 1px 8px;
 }
 
 table .count, table .space {
 	text-align: center;
 }
 table .name {
-	padding: 2px 8px 2px 12px;
+	padding: 0px 8px 0px 12px;
 	min-width:120px;
 	text-align: left;
 }

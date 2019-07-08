@@ -20,15 +20,20 @@ export default {
 			return !it.locked && it.disabled === false;
 		},
 
+		/**
+		 * Note: Multi-lock means a tryUnlock() test should be done only
+		 * when a single lock remains.
+		 * @param {*} it 
+		 */
 		reslocked( it ) {
 			return it.disabled === true ||
-			( it.locked && !Game.tryUnlock(it) );
+			( it.locked > 1 || !Game.tryUnlock(it) );
 		},
 
 		locked(it) {
 
 			return it.disabled === true || it.maxed() ||
-			( it.locked&& !Game.tryUnlock(it) );
+			( it.locked >= 1 || !Game.tryUnlock(it) );
 
 		}
 

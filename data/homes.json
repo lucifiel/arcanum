@@ -14,7 +14,7 @@
 		"desc":"Noting your progress, your master begrudgingly offers you some space in the attic.",
 		"flavor":"Don't let it go to your head.",
 		"require":"neophyte",
-		"lock":"alcove",
+		"disable":["alcove"],
 		"cost":{
 			"research":50
 		},
@@ -26,16 +26,16 @@
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
 		"require":"adept",
-		"cost":75,
+		"cost":100,
 		"mod":{
 			"space.max":15
 		}
 	},
 	{
 		"id":"cottage",
-		"desc":"",
+		"desc":"Cozy and quaint.",
 		"require":"adept",
-		"cost":150,
+		"cost":175,
 		"mod":{
 			"space.max":20
 		}
@@ -44,7 +44,7 @@
 		"id":"cave",
 		"desc":"A primitive dwelling well-suited to particular areas of study. Some less so.",
 		"require":"adept",
-		"cost":50,
+		"cost":75,
 		"mod":{
 			"space.max":30,
 			"research.base":-0.1
@@ -83,7 +83,7 @@
 		"id":"pavilion",
 		"desc":"An airy, elegant structure on a wide lawn.",
 		"cost":1000,
-		"require":"adept",
+		"require":"magician",
 		"mod":{
 			"space.max":50,
 			"light.base":0.1,

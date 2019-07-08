@@ -19,14 +19,14 @@
 		"id":"ironchest",
 		"name":"iron chest",
 		"desc":"Treasure chest.",
-		"require":"state.gold.max>=150",
+		"require":"state.gold.max>=125",
 		"repeat":true,
 		"cost":{
-			"gold":200,
+			"gold":125,
 			"space":2
 		},
 		"mod":{
-			"gold.max":200
+			"gold.max":175
 		}
 	},
 	{

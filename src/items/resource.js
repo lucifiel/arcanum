@@ -95,7 +95,7 @@ export default class Resource extends Item {
 	 * @returns {boolean} true if resource value is positive.
 	 */
 	positive(){
-		return (this._value > 0 );
+		return (this._value > 0 || (this._rate.value>0&&this._value===0) );
 	}
 
 }

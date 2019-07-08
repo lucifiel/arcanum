@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research.max>=100&&state.arcana.max>=5",
+		"require":"state.research.max>=75&&state.arcana.max>=2",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
@@ -34,11 +34,11 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
-		"require":"state.neophyte>0&&state.research.max>=250&&state.arcana.max>=10",
+		"require":"state.neophyte>0&&state.research.max>=200",
 		"repeat":false,
 		"cost":{
-			"research":500,
-			"arcana":10,
+			"research":225,
+			"arcana":5,
 			"gold":200
 		},
 		"effect":"adept"
@@ -48,18 +48,17 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.neophyte>0&&state.research.max>=250&&state.arcana.max>=10",
+		"require":"state.neophyte>0&&state.research.max>=200",
 		"repeat":false,
 		"flavor":"Saves a lot of money",
 		"cost":{
-			"research":250,
-			"arcana":10
+			"research":225,
+			"arcana":5
 		},
-		"effect":{
-			"adept":true,
-			"evil":true,
+		"effect":["evt_slay","adept","evil",
+		{
 			"bones":10
-		}
+		}]
 
 	},
 
@@ -109,8 +108,11 @@
 		"desc":"",
 		"need":"writingdesk",
 		"cost":{
-			"arcana":1
+			"arcana":1,
+			"spirit":2,
+			"research":10
 		},
+		"flavor":"the magic will do our magic for us now",
 		"mod":{
 			"scrolls.rate":0.01
 		}
@@ -119,8 +121,22 @@
 	{
 		"id":"bestiary",
 		"desc":"compendium of magical creatures",
-		"require":"state.animals>10",
+		"require":"state.animals>7",
 		"locked":1,
+		"mod":{
+			"research.max":10,
+			"animals.rate":0.1
+		}
+
+	},
+	{
+		"id":"speakbirds",
+		"name":"Speak to Birds",
+		"desc":"Learn the secret languages of birds.",
+		"require":"state.animals>2&&state.birdcage>1",
+		"cost":{
+			"research":20
+		},
 		"mod":{
 			"research.max":10,
 			"animals.rate":0.1
@@ -179,19 +195,6 @@
 				"max":1,
 				"base":0.01
 			}
-		}
-
-	},
-	{
-		"id":"speakbirds",
-		"name":"Speak to Birds",
-		"desc":"Learn the secret language of birds.",
-		"require":"state.animals>2&&state.birdcage>1",
-		"cost":{
-
-		},
-		"mod":{
-			"research.max":10
 		}
 
 	},

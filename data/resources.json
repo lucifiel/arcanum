@@ -54,7 +54,7 @@
 				"max":10
 			},
 			"lore":{
-				"base":0.01
+				"base":0.05
 			}
 		}
 
@@ -124,38 +124,44 @@
 		"id":"fire",
 		"tags":"manas,elemental",
 		"desc":"Fire Mana",
-		"max":5
+		"max":1
 	},
 	{
 		"id":"cold",
 		"tags":"manas,elemental",
 		"desc":"Cold Mana",
-		"max":5
+		"max":1
 	},
 	{
 		"id":"air",
 		"tags":"manas,elemental",
 		"desc":"Air Mana",
-		"max":5
+		"max":1
 	},
 	{
 		"id":"earth",
 		"tags":"manas,elemental",
 		"desc":"Earth Mana",
-		"max":5
+		"max":1
 	},
 	{
 		"id":"water",
 		"tags":"manas,elemental",
 		"desc":"Water Mana",
-		"max":5
+		"max":1
+	},
+	{
+		"id":"nature",
+		"tags":"manas",
+		"desc":"Nature Mana",
+		"max":1
 	},
 	{
 		"id":"shadow",
 		"name":"shadow",
 		"tag":"manas",
 		"desc":"Shadow mana",
-		"max":5
+		"max":1
 	},
 	{
 		"id":"light",
