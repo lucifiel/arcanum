@@ -144,9 +144,13 @@ div.shadow .fill {
 	background:#3a0e66;
 }
 
-div.spirit fill {
+div.nature .fill {
+	background:#045a04;
+}
 
-	background:rgb(175, 165, 165);
+div.spirit .fill {
+
+	background:#afa5a5;
 }
 
 div.light .fill {

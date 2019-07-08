@@ -66,10 +66,15 @@ export default class Item {
 	set tag(v) { this.addTag(v); }
 
 	get progress() { return this._exp || 0; }
-	set progress(v){this._exp = v;}
+	set progress(v){
+		this._exp = v;
+		if ( v>= this._length) this.value++;
+	}
 
 	get length() { return this._length; }
-	set length(v) { this._length = v;}
+	set length(v) {
+		this._length = v;
+	}
 
 	/**
 	 * @property {Stat} rate - rate of stat change in value/second.
@@ -115,9 +120,11 @@ export default class Item {
 	
 		if ( this._locked === undefined ) this._locked = 1;
 
+		if ( this._length !== undefined ) this._exp = this._exp || 0;
+
 		this._value = this._value || 0;
 		defineExcept( this, null,
-			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'effect', 'disabled', 'slot' ]);
+			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'effect', 'disabled', 'slot', 'length' ]);
 
 	}
 

@@ -13,6 +13,19 @@ export default {
 	components:{
 		progbar:ProgBar
 	},
+	methods: {
+
+		actionStr(){
+			let act = this.state.curAction;
+			if ( act === null) return '';
+
+			return (act.verb || act.name) +
+				( ( act.length !== undefined ) ? ' ' + this.percent(act) + '%': '' );
+		},
+
+		percent(act) { return (100*(act.progress/act.length)).toFixed(0); }
+
+	},
 	computed:{
 
 		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
@@ -42,7 +55,7 @@ export default {
 		<tr><td><button class="rest-btn" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
-			<td>{{ this.state.curAction !== null ? (this.state.curAction.verb || this.state.curAction.name) : ''}}</td></tr>
+			<td>{{ actionStr() }}</td></tr>
 
 		</table>
 

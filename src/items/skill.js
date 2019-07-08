@@ -15,7 +15,10 @@ export default class Skill extends Item {
 	 * @property {number} progress
 	 */
 	get progress() { return this._exp; }
-	set progress(v) { this._exp=v;}
+	set progress(v) {
+		this._exp=v;
+		if ( v >= this._length ) this.complete();
+	}
 
 	/**
 	 * @property {number} exp - alias for progress for clarity
@@ -65,7 +68,7 @@ export default class Skill extends Item {
 
 		this._exp -= this._length;
 		this._length += this._length*EXP_RATIO;
-		console.log('new Skill max: ' + this._length )
+		console.log('Skill maxExp: ' + this._length );
 
 	}
 
