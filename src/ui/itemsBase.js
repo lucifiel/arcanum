@@ -26,14 +26,14 @@ export default {
 		 * @param {*} it 
 		 */
 		reslocked( it ) {
-			return it.disabled === true ||
-			( it.locked > 1 || !Game.tryUnlock(it) );
+			return it.disabled === true || it.locked > 1 ||
+			( it.locked === 1 && !Game.tryUnlock(it) );
 		},
 
 		locked(it) {
 
-			return it.disabled === true || it.maxed() ||
-			( it.locked >= 1 || !Game.tryUnlock(it) );
+			return it.disabled === true || it.maxed() || it.locked>1 ||
+			( it.locked === 1 && !Game.tryUnlock(it) );
 
 		}
 

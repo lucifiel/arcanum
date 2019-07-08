@@ -176,6 +176,7 @@
 		"name":"compile bestiary",
 		"require":"state.gold>1",
 		"length":10,
+		"repeat":false,
 		"cost":{
 			"stamina":0.5
 		},
