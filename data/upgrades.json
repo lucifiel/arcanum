@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research.max>=75&&state.arcana.max>=2",
+		"require":"state.research.max>=75&&state.spellbook>0",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
@@ -121,7 +121,7 @@
 	{
 		"id":"bestiary",
 		"desc":"compendium of magical creatures",
-		"require":"state.animals>7",
+		"require":"state.animals>=5",
 		"locked":1,
 		"mod":{
 			"research.max":10,

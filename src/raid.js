@@ -10,6 +10,9 @@ export default class Raid {
 
 	get cost() { return this.dungeon ? this.dungeon.cost : null; }
 
+	get progress(){ return this.dungeon.progress; }
+	get length() { return this.dungeon.length; }
+
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign(vars, this);

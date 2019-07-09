@@ -4,6 +4,7 @@ import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
 import upgrades from './upgrades.vue';
 import HomeView from './homes.vue';
+import EquipView from './equip.vue';
 
 import ItemsBase from './itemsBase';
 
@@ -55,7 +56,7 @@ export default {
 	},
 	created(){
 
-		this.listen('sell', this.onSell );
+		this.listen( 'sell', this.onSell );
 		this.listen( 'itemover', this.itemOver );
 		this.listen( 'itemout', this.itemOut );
 		this.listen( 'upgrade', this.onUpgrade );
@@ -129,6 +130,15 @@ export default {
 				}
 			}
 
+		},
+
+		equip( it ) {
+		},
+
+		unequip(it){
+		},
+
+		drop(it) {
 		},
 
 		onSell(it) {

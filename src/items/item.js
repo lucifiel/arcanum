@@ -1,5 +1,6 @@
 import { defineExcept } from 'objecty';
 import Stat from '../stat';
+import Game from '../game';
 
 /**
  * @typedef {Object} Effect
@@ -68,7 +69,13 @@ export default class Item {
 	get progress() { return this._exp || 0; }
 	set progress(v){
 		this._exp = v;
-		if ( v>= this._length) this.value++;
+		if ( v >= this._length) {
+
+			this.value++;
+			if ( this.result ) Game.applyEffect( this.result );
+
+		}
+
 	}
 
 	get length() { return this._length; }
@@ -98,17 +105,17 @@ export default class Item {
 	set effect(v) { this._effect=v;}
 
 	/**
+	 * @property {number} locks - number of locks preventing item from
+	 * being used or unlocked.
+	 */
+	get locks() { return this._locks||0;}
+	set locks(v) { this._locks = v;}
+
+	/**
 	 * @property {boolean} locked
 	 */
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
-
-	/**
-	 * @property {string|string[]} unlocks - items to force unlock.
-	 * only use for simple unlocks. require on target for complex.
-	 */
-	get unlocks() { return this._unlocks;}
-	set unlocks(v) { this._unlocks = v; }
 
 	/**
 	 * 

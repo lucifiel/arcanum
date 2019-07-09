@@ -1,24 +1,47 @@
-const MaxSlots = {
-	"neck":3,
-	"fingers":4
-};
+import Slot from './slot';
 
 export default class Equip {
 
-	constructor() {
+	constructor( vars=null ) {
+
+		if ( vars ) Object.assign(this, vars);
 
 		this.slots = {
-			"head":null,
-			"hands":null,
-			"back":null,
-			"waist":null,
-			"neck":null,
-			"fingers":null,
-			"chest":null,
-			"shins":null,
-			"feet":null,
-			"left":null,
-			"right":null
+			"head":new Slot({
+				id:'head'
+			}),
+			"hands":new Slot({
+				id:'hands'
+			}),
+			"back":new Slot({
+				id:'back'
+			}),
+			"waist":new Slot({
+				id:'waist'
+			}),
+			"neck":new Slot({
+				id:'neck',
+				max:3
+			}),
+			"fingers":new Slot({
+				id:'fingers',
+				max:4
+			}),
+			"chest":new Slot({
+				id:'chest'
+			}),
+			"shins":new Slot({
+				id:'shins'
+			}),
+			"feet":new Slot({
+				id:'feet'
+			}),
+			"left":new Slot({
+				id:'left'
+			}),
+			"right":new Slot({
+				id:'right'
+			})
 		};
 
 	}
@@ -54,55 +77,27 @@ export default class Equip {
 		if ( it.type === 'weapon') return this.removeWeap(it);
 
 		let cur = this.slots[it.slot];
-
-		if ( cur instanceof Array ) {
-
-			for( let i = cur.length-1; i >= 0; i-- ) {
-
-				if ( cur[i] == it ) {
-					cur.splice( i, 1);
-					return true;
-				}
-
-			}
-
-		} else {
-
-			if ( cur == it ) {
-				this.slots[it.slot] = null;
-				return true;
-			}
-
-		}
+		if ( cur ) return this.slots.remove(it);
 
 		return false;
 
 	}
 
+	/**
+	 * Remove and return the item in the specified slot.
+	 * @param {string} slot 
+	 */
 	removeSlot( slot ) {
 
-		if( !slot ) return;
+		if ( typeof slot === 'string' ) slot = this.slots[slot];
+		if( !slot ) return undefined;
 
-		let it = this.slots[slot];
-		if ( !it) return;
-
-		if ( it instanceof Array ) {
-			it = it.shift();
-		} else {
-			this.slots[slot] = null;
-		}
-
-		return it;
+		return slot.remove();
 
 	}
 
 	removeWeap( it ) {
-
-		if ( this.slots.right == it ) this.slots.right = null;
-		else if ( this.slots.left == it ) this.slots.left = null;
-
-		return it;
-
+		return this.slots.right.remove(it) || this.slots.left.remove(it);
 	}
 
 	equipWeap( it ) {
@@ -257,6 +252,9 @@ export default class Equip {
 
 	}
 
+	/**
+	 * Iterate slot names.
+	 */
 	* slotNames() {
 		for( let k in this.slots ) yield k;
 	}

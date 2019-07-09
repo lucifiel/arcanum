@@ -175,7 +175,7 @@
 		"id":"makebestiary",
 		"name":"compile bestiary",
 		"verb":"compiliong bestiary",
-		"require":"state.gold>1",
+		"require":"state.animals>=3",
 		"length":10,
 		"repeat":false,
 		"cost":{

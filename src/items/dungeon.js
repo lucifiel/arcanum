@@ -14,12 +14,6 @@ import Monster from './monster';
 
 export default class Dungeon extends Item {
 
-	/**
-	 * @property {number} length - length of dungeon to completion.
-	 */
-	get length() { return this._length; }
-	set length(v) { this._length = v; }
-
 	get level() {return this._level;}
 	set level(v) { this._level =v;}
 
@@ -28,9 +22,6 @@ export default class Dungeon extends Item {
 		this._enemies = v;
 		this.initEnemies(v);
 	}
-
-	get progress() { return this._progress; }
-	set progress(v) { this._progress = v;}
 
 	/**
 	 * 
@@ -43,6 +34,8 @@ export default class Dungeon extends Item {
 		this._level = this._level !== undefined ? this._level : 1;
 		this._progress = this._progress || 0;
 		this._length = this._length || 100;
+
+		this.repeat = ( this.repeat === undefined||this.repeat===null ) ? true : this.repeat;
 
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;

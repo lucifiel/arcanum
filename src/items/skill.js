@@ -1,6 +1,8 @@
 import Item from './item';
 import Stat from '../stat';
 
+import Game from '../game';
+
 const EXP_RATIO = 0.4;
 
 export default class Skill extends Item {
@@ -25,7 +27,10 @@ export default class Skill extends Item {
 	 * in data files.
 	 */
 	get exp() { return this._exp}
-	set exp(v){this._exp =v;}
+	set exp(v){
+		this._exp =v;
+		if ( v >= this._length ) this.complete();
+	}
 
 	/**
 	 * @property {number} max - level up experience.
@@ -68,7 +73,7 @@ export default class Skill extends Item {
 
 		this._exp -= this._length;
 		this._length += this._length*EXP_RATIO;
-		console.log('Skill maxExp: ' + this._length );
+		if ( this.result ) Game.applyEffect( this.result, 1 );
 
 	}
 

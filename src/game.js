@@ -53,7 +53,7 @@ export default {
 	startRaid( dungeon) {
 
 		this._state.raid.setDungeon(dungeon);
-		this.curAction = this._state.raid;
+		this.setAction( this._state.raid );
 
 	},
 
@@ -163,7 +163,6 @@ export default {
 		}
 
 		if ( action === this._state.raid ) {
-			
 			this._state.raid.update(dt);
 
 		} else if ( action.length ) {
@@ -171,12 +170,6 @@ export default {
 			action.progress += dt;
 			/// any action effect functions as a dot.
 			if ( action.effect) this.applyEffect( action.effect, dt );
-			if ( action.progress >= action.length ) {
-
-				if ( action.result ) {
-					this.applyEffect( action.result );
-				}
-			}
 
 		} else {
 
@@ -668,6 +661,30 @@ export default {
 		return true;
 	},
 
+	equip(it) {
+
+		this._state.equip.equip(it);
+	},
+
+	unequip(it){
+		
+		this._state.equip.unequip(it);
+	},
+
+	/**
+	 * Attempt to an item to inventory.
+	 * @param {*} it 
+	 */
+	getItem(it) {
+	},
+
+	/**
+	 * Remove an item from inventory.
+	 * @param {*} it 
+	 */
+	drop(it) {
+	},
+
 	/**
 	 * Decrement lock count on an Item or array of items, etc.
 	 * @param {string|string[]|Item|Item[]} id 
@@ -686,14 +703,14 @@ export default {
 			id.forEach( this.unlock, this );
 		} else if ( id instanceof Object ) {
 
-			id.locked += amt;
+			id.locks += amt;
 
 		} else {
 
 			let it = this.getItem(id);
 			if ( it ) {
 
-				it.locked += amt;
+				it.locks += amt;
 
 			} else {
 

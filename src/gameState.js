@@ -1,5 +1,7 @@
+import Inventory from './inventory';
 import Raid from './raid';
 import Item from './items/item';
+import Equip from './equip';
 
 import Sections from 'data/sections.json';
 
@@ -37,6 +39,9 @@ export default class GameState {
 			Sections[i] = new Item( Sections[i] );
 		}
 		this.sections = Sections;
+
+		this.inventory = this.inventory || new Inventory();
+		this.equip = this.equip || new Equip();
 
 		/**
  		* @property {number} sellRate - percent of initial cost
