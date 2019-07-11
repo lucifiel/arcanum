@@ -36,7 +36,7 @@
 		"disable":["apprentice","chores"],
 		"effect":{
 			"gold.base":0.1,
-			"research.max":20,
+			"research.max":10,
 			"lore.max":5
 		}
 	},
@@ -60,7 +60,7 @@
 		"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
 		"disable":["neophyte", "bedroom", "alcove","errands","leavemaster","slaymaster"],
 		"effect":{
-			"research.max":50
+			"research.max":10
 		}
 	},
 	{
@@ -69,7 +69,9 @@
 		"desc":"A true practitioner of magic.",
 		"disable":["adept"],
 		"effect":{
-			"research.max":100
+			"research.max":20,
+			"arcana.max":5,
+			"mana.max":5
 		}
 	},
 	{
@@ -78,7 +80,24 @@
 		"desc":"Witch",
 		"disable":["adept"],
 		"effect":{
-			"research.max":50
+			"research.max":10,
+			"naturelore.max":5,
+			"animals.max":3,
+			"potions.max":5,
+			"nature.max":1,
+			"spirit.max":2
+		}
+	},
+	{
+		"id":"alchemist",
+		"title":"alchemist",
+		"desc":"alchemist",
+		"disable":["adept"],
+		"effect":{
+			"research.max":20,
+			"potions.max":5,
+			"alchemy.max":5,
+			"arcana.max":2
 		}
 	},
 	{
@@ -87,7 +106,13 @@
 		"desc":"A true practitioner of magic.",
 		"disable":["adept"],
 		"effect":{
-			"research.max":100
+			"research.max":15,
+			"arcana.max":2,
+			"nature.max":5,
+			"mana.max":3,
+			"air.max":5,
+			"water.max":5,
+			"naturelore.max":2
 		}
 	},
 	{
@@ -96,8 +121,22 @@
 		"desc":"A true practitioner of magic.",
 		"disable":["adept"],
 		"effect":{
-			"research.max":100
+			"research.max":40,
+			"arcana.max":2,
+			"mana.max":5
 		}
+	},
+	{
+
+		"id":"battlemage",
+		"title":"Battlemage",
+		"desc":"",
+		"disable":["adept","magician","witch","enchanter"],
+		"effect":{
+			"research.max":-10,
+			"mana.max":3
+		}
+
 	},
 	{
 
@@ -106,7 +145,8 @@
 		"desc":"",
 		"effect":{
 			"light.max":1,
-			"light.value":1
+			"light.value":1,
+			"light.base":0.1
 		}
 
 	},
@@ -117,7 +157,8 @@
 		"effect":{
 			"shadow":{
 				"max":1,
-				"value":1
+				"value":1,
+				"rate":0.1
 			}
 		}
 

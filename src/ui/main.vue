@@ -132,10 +132,12 @@ export default {
 
 		},
 
-		equip( it ) {
+		equip( slot, it ) {
+			this.game.equip( slot, it );
 		},
 
-		unequip(it){
+		unequip(slot, it){
+			this.game.unequip(slot, it)
 		},
 
 		drop(it) {

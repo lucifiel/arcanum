@@ -27,7 +27,7 @@ export default class Log {
 
 	}
 
-	log( title='', text='', type='' ) {
+	log( title='', text='', type='story' ) {
 		this.items.push( new LogItem(title, text, type ) );
 	}
 

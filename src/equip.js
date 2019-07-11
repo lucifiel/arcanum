@@ -53,19 +53,17 @@ export default class Equip {
 
 	}
 
-	getWeapons() {
+	getHolding() {
 
-		let right = this.slots.right;
-		let left = this.slots.left;
+		let right = this.slots.right.item;
+		let left = this.slots.left.item;
+	
+		let a = [];
 
-		if ( right === null ) return left ? ( left.type === 'weapon' ? left : null ) : null;
-		else if ( left === null ) return right.type === 'weapon' ? right : null;
+		if ( right ) a.push(right);
+		if ( left ) a.push(left);
 
-		if ( right.type !== 'weapon') return left.type === 'weapon' ? left : null;
-		if ( left.type !== 'weapon') return right.type === 'weapon' ? right : null;
-
-		return [left,right];
-
+		return a;
 	}
 
 	/**

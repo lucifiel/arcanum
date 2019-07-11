@@ -102,7 +102,7 @@
 		},
 		"mod":{
 			"research.max":5,
-			"arcana.base":0.005
+			"arcana.base":0.001
 		}
 	},
 	{
@@ -243,7 +243,7 @@
 		},
 		"mod":{
 			"arcana.max":1,
-			"arcana.base":0.01
+			"arcana.base":0.001
 		}
 	},
 	{
@@ -259,6 +259,7 @@
 		},
 		"mod":{
 			"codices":{
+				"research.max":5,
 				"max":30
 			}
 		}
@@ -343,7 +344,7 @@
 		"mod":{
 			"water":{
 				"base":0.01,
-				"max":5
+				"max":1
 			}
 		}
 	},
@@ -359,7 +360,7 @@
 		},
 		"mod":{
 			"fire":{
-				"max":5,
+				"max":2,
 				"base":0.01
 			}
 		}
@@ -408,7 +409,7 @@
 		},
 		"mod":{
 			"water.base":0.5,
-			"water.max":10
+			"water.max":5
 		}
 	},
 	{
@@ -455,7 +456,8 @@
 			"space":5
 		},
 		"mod":{
-			"shadow.max":1
+			"shadow.max":1,
+			"dissection.base":0.1
 		}
 
 	},
@@ -505,6 +507,7 @@
 		},
 		"mod":{
 			"codices.max":100,
+			"lore.base":0.1,
 			"research.max":100,
 			"research.base":0.05
 		}

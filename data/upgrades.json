@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research.max>=75&&state.spellbook>0",
+		"require":"state.research.max>=70&&state.spellbook>0",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
@@ -34,7 +34,7 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
-		"require":"state.neophyte>0&&state.research.max>=200",
+		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=3",
 		"repeat":false,
 		"cost":{
 			"research":225,
@@ -50,7 +50,7 @@
 		"desc":"Murder your master in their sleep.",
 		"require":"state.neophyte>0&&state.research.max>=200",
 		"repeat":false,
-		"flavor":"Saves a lot of money",
+		"flavor":"Saves loads of money",
 		"cost":{
 			"research":225,
 			"arcana":5
@@ -213,7 +213,7 @@
 			"evt_spellbook":true,
 			"research.max":15,
 			"research.base":0.11,
-			"arcana.base":0.007
+			"arcana.base":0.001
 		}
 	},
 	{
@@ -306,7 +306,7 @@
 		},
 		"mod":{
 			"arcana":{
-				"base":0.005
+				"base":0.001
 			},
 			"spirit.base":0.01
 		}
@@ -316,7 +316,8 @@
 		"require":"pedestal",
 		"cost":100,
 		"mod":{
-			"study.effect.arcana":0.005
+			"study.effect.research":0.01,
+			"study.effect.arcana":0.001
 		}
 	},
 	{
@@ -334,6 +335,18 @@
 
 	},
 	{
+		"id":"up_witchcraft",
+		"name":"witchcraft",
+		"desc":"",
+		"require":"state.adept>0&&state.animals>=2&&state.herbs>=3&&state.potions>=3",
+		"flavor":"double, double, toil and trouble",
+		"cost":{
+			"research":100,
+			"arcana":1
+		},
+		"mod":"witchcraft"
+	},
+	{
 
 		"id":"skull",
 		"require":"state.necromancer>0||state.witch>0",
@@ -346,6 +359,7 @@
 		"mod":{
 
 			"shadow.max":1,
+			"shadow.base":0.01,
 			"spirit":{
 				"max":1
 			}

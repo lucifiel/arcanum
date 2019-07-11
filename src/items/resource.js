@@ -43,12 +43,13 @@ export default class Resource extends Item {
 
 		} else {
 
-			var lastMax = this.reverse ? this._max.value : 0;
-			this._max.base = v;
-
 			if ( this.reverse ) {
+
+				var lastMax = this._max.value;
+				this._max.base = v;
 				this.value += ( this._max.value - lastMax );
-			}
+
+			} else this._max.base = v;
 
 		}
 

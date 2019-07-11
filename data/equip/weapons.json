@@ -1,0 +1,13 @@
+[
+    { "id":"short sword", "kind":"slash", "dmg":"1-6", "cost":30 },
+    { "id":"club", "kind":"blunt", "dmg":"1-5", "cost":10 },
+    { "id":"staff", "kind":"blunt", "dmg":"1-6", "cost":20 },
+    { "id":"dagger", "kind":"pierce", "dmg":"1-4", "cost":20 },
+    { "id":"longsword", "kind":"slash", "dmg":"1-8", "cost":50, "hands":2 },
+    { "id":"axe", "kind":"slash", "dmg":"1-5", "cost":40 },
+    { "id":"battleaxe", "kind":"slash", "dmg":"1-8", "cost":50, "hands":2 },
+    { "id":"mace", "kind":"blunt", "dmg":"1-6", "cost":30, "hands":1 },
+    { "id":"warhammer", "kind":"blunt", "dmg":"1-8", "cost":50, "hands":2 },
+    { "id":"spear", "kind":"pierce", "dmg":"1-8", "cost":30, "hands":2 }
+
+]

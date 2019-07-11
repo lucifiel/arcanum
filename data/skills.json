@@ -30,6 +30,21 @@
 		}
 	},
 	{
+		"id":"naturelore",
+		"name":"Nature Lore",
+		"require":"state.herbs>=3&&state.animals>=3",
+		"cost":{
+			"stamina":0.3
+		},
+		"result":{
+			"nature":{
+				"max":1,
+				"base":0.1
+			}
+		}
+
+	},
+	{
 		"id":"crafting",
 		"need":"workspace",
 		"cost":{
@@ -64,12 +79,13 @@
 
 		"id":"divination",
 		"desc":"the art of foretelling",
-		"require":"spiritsource",
+		"require":["state.lore>=6", "spiritsource"],
 		"school":"",
 		"result":{
 			"research.max":1,
 			"research.value":1,
-			"spirit.max":1
+			"spirit.max":1,
+			"spirit.base":0.01
 		}
 
 	},
@@ -116,7 +132,8 @@
 		"result":{
 			"research.max":1,
 			"research.value":5,
-			"shadow.max":1
+			"shadow.max":1,
+			"shadow.base":0.01
 		}
 
 	},
@@ -124,7 +141,7 @@
 		"id":"potions",
 		"school":["nature","water"],
 		"name":"Potions",
-		"require":"cauldron",
+		"require":["cauldron","state.crafting>=5"],
 		"cost":{
 			"stamina":0.5
 		},
@@ -172,10 +189,8 @@
 			"stamina":0.5
 		},
 		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
+			"lore.rate":0.1,
+			"arcana.max":0.5
 		}
 	}
 

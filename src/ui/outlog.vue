@@ -1,4 +1,7 @@
 <script>
+
+const LogTypes = ['story','unlock','combat'];
+
 /**
  * Displays output to user.
  */
@@ -8,6 +11,7 @@ export default {
 	data() {
 
 		return {
+			filter:LogTypes.concat(),
 			items:this.log.items,
 			/**
 			 * @property {string[]} exclude - types to exclude.

@@ -131,7 +131,7 @@ export default class Item {
 
 		this._value = this._value || 0;
 		defineExcept( this, null,
-			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'effect', 'disabled', 'slot', 'length' ]);
+			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'effect', 'slot', 'length' ]);
 
 	}
 

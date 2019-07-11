@@ -14,7 +14,7 @@
 		"desc":"Noting your progress, your master begrudgingly offers you some space in the attic.",
 		"flavor":"Don't let it go to your head.",
 		"require":"neophyte",
-		"disable":["alcove"],
+		"lock":["alcove"],
 		"cost":{
 			"research":50
 		},
@@ -47,9 +47,9 @@
 		"cost":75,
 		"mod":{
 			"space.max":30,
-			"research.base":-0.1
+			"research.base":-0.2
 		},
-		"lock":[]
+		"lock":["latticewindow"]
 
 	},
 	{

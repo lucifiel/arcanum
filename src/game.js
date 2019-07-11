@@ -2,7 +2,7 @@ import DataLoader from 'dataLoader';
 import VarPath from './varPath';
 
 import Item from './items/item';
-import Log from 'log';
+import Log from 'log.js';
 import GameState from './gameState';
 
 /**
@@ -85,7 +85,7 @@ export default {
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
-			if ( stat.locked === 0 ) {
+			if ( stat.locked === false ) {
 
 				stats[i].update( dt );
 
@@ -248,7 +248,7 @@ export default {
 
 		if ( evt.effect ) this.applyEffect( evt.effect, 1 );
 
-		evt.locked = 0;
+		evt.locked = false;
 		evt.value = 1;
 
 		this.log.log( evt.name, evt.desc, 'event' );
@@ -409,6 +409,8 @@ export default {
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );
 		if ( it.dot ) this.beginDot( it, it.dot );
+		if ( it.disable ) this.disable( it.disable );
+
 
 		if ( it.attack && this._state.curAction === this._state.raid ) {
 			this._state.raid.doAttack( it );
@@ -445,7 +447,10 @@ export default {
 		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
 		else if ( !it.require || this.unlockTest(it.require,it) ) {
-			it.locked--;
+
+			this.log.log( 'Unlocked: ' + it.name, it.name + ' has been unlocked.', 'unlock' );
+			it.locked = false;
+
 		}
 
 		return !it.locked;
@@ -661,14 +666,14 @@ export default {
 		return true;
 	},
 
-	equip(it) {
+	equip( slot, it) {
 
-		this._state.equip.equip(it);
+		this._state.equip.equip( slot, it);
 	},
 
-	unequip(it){
+	unequip( slot, it){
 		
-		this._state.equip.unequip(it);
+		this._state.equip.unequip( slot, it);
 	},
 
 	/**
@@ -700,7 +705,7 @@ export default {
 	lock(id, amt=1) {
 
 		if ( id instanceof Array ) {
-			id.forEach( this.unlock, this );
+			id.forEach( v=>this.lock(v,amt), this );
 		} else if ( id instanceof Object ) {
 
 			id.locks += amt;
@@ -711,6 +716,7 @@ export default {
 			if ( it ) {
 
 				it.locks += amt;
+				console.log( it.id + ' adding locks: ' + it.locks );
 
 			} else {
 

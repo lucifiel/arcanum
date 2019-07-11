@@ -129,7 +129,7 @@
 			"research":1,
 			"arcana":{
 				"skipLocked":true,
-				"value":0.01
+				"value":0.001
 			}
 		}
 	},

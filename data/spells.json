@@ -25,6 +25,7 @@
 		"id":"copperskin",
 		"name":"copper skin",
 		"level":1,
+		"require":"earth",
 		"cost":{
 
 			"research":25,
@@ -32,7 +33,7 @@
 
 		},
 		"cast":{
-			"mana":1
+			"earth":1
 		},
 		"dot":{
 			"duration":30,
