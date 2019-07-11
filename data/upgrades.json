@@ -34,7 +34,8 @@
 		"id":"leavemaster",
 		"name":"Leave Master",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
-		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=3",
+		"warn":true,
+		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=5",
 		"repeat":false,
 		"cost":{
 			"research":225,
@@ -48,9 +49,10 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.neophyte>0&&state.research.max>=200",
+		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=5",
+		"warn":true,
 		"repeat":false,
-		"flavor":"Saves loads of money",
+		"flavor":"Saves heaps of money",
 		"cost":{
 			"research":225,
 			"arcana":5
@@ -63,7 +65,39 @@
 	},
 
 	{
-		"id":"candle",
+		"id":"up_magician",
+		"name":"The Prestige",
+		"desc":"Pursue the path of pure magic.",
+		"warn":true,
+		"require":"state.adept>0&&state.research.max>=300&&state.lore>=10",
+		"repeat":false,
+		"cost":{
+			"research":300,
+			"arcana":5,
+			"gold":200
+		},
+		"effect":"magician"
+
+	},
+	{
+		"id":"up_battle",
+		"name":"Battle Mage",
+		"desc":"Pursue the path of battle.",
+		"warn":true,
+		"require":"state.player.level>5&&state.research.max>=250&&state.lore>=8",
+		"repeat":false,
+		"cost":{
+			"research":250,
+			"arcana":3,
+			"gold":300
+		},
+		"effect":"battlemage"
+
+	},
+
+	{
+		"id":"waxcandle",
+		"tags":"candle",
 		"desc":"A tiny glowing candle.",
 		"flavor":"You no take candle!",
 		"repeat":false,
@@ -106,13 +140,14 @@
 		"id":"unseenscribe",
 		"name":"unseen scribe",
 		"desc":"",
-		"need":"writingdesk",
+		"need":["writingdesk","air","spirit"],
 		"cost":{
 			"arcana":1,
-			"spirit":2,
+			"spirit":1,
+			"air":1,
 			"research":10
 		},
-		"flavor":"the magic will do our magic for us now",
+		"flavor":"magic will do our magic for us now",
 		"mod":{
 			"scrolls.rate":0.01
 		}
@@ -124,8 +159,26 @@
 		"require":"state.animals>=5",
 		"locked":1,
 		"mod":{
-			"research.max":10,
+			"research.max":5,
 			"animals.rate":0.1
+		}
+
+	},
+	{
+
+		"id":"grimoire",
+		"desc":"A handbook for witches",
+		"require":"witch",
+		"cost":{
+			"gold":50,
+			"spirit":2,
+			"research":50
+		},
+		"mod":{
+			"research.max":5,
+			"potions.max":5,
+			"potions.rate":0.1,
+			"spirit.rate":0.1
 		}
 
 	},
@@ -133,13 +186,14 @@
 		"id":"speakbirds",
 		"name":"Speak to Birds",
 		"desc":"Learn the secret languages of birds.",
-		"require":"state.animals>2&&state.birdcage>1",
+		"require":"state.animals>2&&state.birdcage>1&&state.nature.max>0",
 		"cost":{
-			"research":20
+			"research":20,
+			"nature":1
 		},
 		"mod":{
-			"research.max":10,
-			"animals.rate":0.1
+			"research.max":5,
+			"animals.rate":0.2
 		}
 
 	},
@@ -245,7 +299,7 @@
 		},
 		"mod":{
 			"spirit":{
-				"max":5,
+				"max":1,
 				"base":0.01
 			}
 		}
@@ -253,6 +307,7 @@
 	{
 		"id":"heartcandle",
 		"name":"Heart Candle",
+		"tags":"candle",
 		"desc":"A warm glowing candle.",
 		"max":2,
 		"flavor":"Spare a little candle, save some light for me.",
@@ -267,6 +322,7 @@
 	{
 		"id":"holycandle",
 		"name":"Holy Candle",
+		"tags":"candle",
 		"desc":"White glowing candle",
 		"max":2,
 		"require":"state.light.max>=10",
@@ -299,7 +355,7 @@
 		"name":"Crystal Ball",
 		"tags":"spiritsource",
 		"desc":"A crystal sphere revealing distant lands.",
-		"require":"state.arcana>=5",
+		"require":"adept",
 		"cost":{
 			"gold":50,
 			"research":100
@@ -316,6 +372,8 @@
 		"require":"pedestal",
 		"cost":100,
 		"mod":{
+			"lore.effect.research":0.01,
+			"lore.rate":0.05,
 			"study.effect.research":0.01,
 			"study.effect.arcana":0.001
 		}
@@ -337,14 +395,15 @@
 	{
 		"id":"up_witchcraft",
 		"name":"witchcraft",
-		"desc":"",
+		"warn":true,
+		"desc":"Enter into the practice of witchcraft.",
 		"require":"state.adept>0&&state.animals>=2&&state.herbs>=3&&state.potions>=3",
 		"flavor":"double, double, toil and trouble",
 		"cost":{
 			"research":100,
 			"arcana":1
 		},
-		"mod":"witchcraft"
+		"mod":["witchcraft","witch"]
 	},
 	{
 
@@ -359,10 +418,29 @@
 		"mod":{
 
 			"shadow.max":1,
-			"shadow.base":0.01,
+			"shadow.rate":0.01,
 			"spirit":{
 				"max":1
 			}
+		}
+
+	},
+	{
+
+		"id":"up_pitcher",
+		"name":"bottomless pitcher",
+		"desc":"",
+		"flavor":"",
+		"require":"state.water.max>=3",
+		"cost":{
+			"research":100,
+			"gold":75,
+			"water":2,
+			"arcana":1
+		},
+		"mod":{
+			"water.max":2,
+			"water.rate":0.1
 		}
 
 	},
@@ -386,6 +464,7 @@
 		"cost":{
 			"gold":50
 		},
+		"flavor":"...fire burn and cauldron bubble",
 		"mod":{
 			"spirit.base":0.01
 		}

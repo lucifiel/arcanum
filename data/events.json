@@ -36,8 +36,8 @@
 		"disable":["apprentice","chores"],
 		"effect":{
 			"gold.base":0.1,
-			"research.max":10,
-			"lore.max":5
+			"research.max":5,
+			"lore.max":2
 		}
 	},
 	{
@@ -58,16 +58,16 @@
 		"name":"Adept",
 		"title":"adept",
 		"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-		"disable":["neophyte", "bedroom", "alcove","errands","leavemaster","slaymaster"],
+		"disable":["neophyte", "study", "bedroom", "alcove","errands","leavemaster","slaymaster"],
 		"effect":{
-			"research.max":10
+			"research.max":5
 		}
 	},
 	{
 		"id":"magician",
 		"title":"magician",
 		"desc":"A true practitioner of magic.",
-		"disable":["adept"],
+		"disable":["adept","witch","druid"],
 		"effect":{
 			"research.max":20,
 			"arcana.max":5,
@@ -89,6 +89,33 @@
 		}
 	},
 	{
+		"id":"bonemonger",
+		"title":"bone monger",
+		"desc":"A collector of re-animator of bones.",
+		"require":"state.adept>0&&state.evil>0",
+		"disable":["adept","witch","magician"],
+		"effect":{
+			"research.max":10,
+			"potions.max":5,
+			"shadow.max":5,
+			"spirit.max":5
+		}
+	},
+	{
+		"id":"druid",
+		"title":"druid",
+		"desc":"druid",
+		"disable":["adept"],
+		"effect":{
+			"research.max":5,
+			"naturelore.max":10,
+			"animals.max":5,
+			"potions.max":1,
+			"nature.max":5,
+			"nature.rate":0.1
+		}
+	},
+	{
 		"id":"alchemist",
 		"title":"alchemist",
 		"desc":"alchemist",
@@ -103,7 +130,7 @@
 	{
 		"id":"enchanter",
 		"title":"enchanter",
-		"desc":"A true practitioner of magic.",
+		"desc":"A master of charms and enchantments.",
 		"disable":["adept"],
 		"effect":{
 			"research.max":15,
@@ -113,6 +140,49 @@
 			"air.max":5,
 			"water.max":5,
 			"naturelore.max":2
+		}
+	},
+	{
+		"id":"evoker",
+		"title":"evoker",
+		"desc":"A wielder of raw magical power.",
+		"disable":["adept"],
+		"effect":{
+			"research.max":5,
+			"arcana.max":1,
+			"mana.max":3,
+			"earth.max":3,
+			"earth.rate":0.1,
+			"cold.max":3,
+			"cold.rate":0.1,
+			"fire.max":3,
+			"fire.rate":0.1
+		}
+	},
+	{
+		"id":"elementalist",
+		"title":"elementalist",
+		"desc":"Master of basic elements.",
+		"disable":["adept"],
+		"effect":{
+			"research.max":5,
+			"elemental.max":5,
+			"elemental.rate":0.2
+		}
+	},
+	{
+		"id":"oracle",
+		"title":"oracle",
+		"desc":"A diviner.",
+		"disable":["adept"],
+		"effect":{
+			"research.max":15,
+			"arcana.max":2,
+			"nature.max":2,
+			"mana.max":3,
+			"air.max":1,
+			"spirit.max":5,
+			"spirit.rate":0.1
 		}
 	},
 	{
@@ -134,7 +204,8 @@
 		"disable":["adept","magician","witch","enchanter"],
 		"effect":{
 			"research.max":-10,
-			"mana.max":3
+			"mana.max":3,
+			"mana.rate":0.1
 		}
 
 	},

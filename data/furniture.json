@@ -67,7 +67,7 @@
 		"slot":"bed",
 		"require":"adept",
 		"cost":{
-			"gold":100,
+			"gold":150,
 			"space":4
 		},
 		"mod":{
@@ -85,8 +85,22 @@
 			"space":10
 		},
 		"mod":{
-			"gold.max":750,
+			"gold.max":500,
 			"gems.max":25
+		}
+	},
+	{
+		"id":"treasureroom",
+		"desc":"A large room for accumulated treasures.",
+		"require":"state.space>=50",
+		"repeat":true,
+		"cost":{
+			"gold":750,
+			"space":20
+		},
+		"mod":{
+			"gold.max":1500,
+			"gems.max":75
 		}
 	},
 	{
@@ -316,7 +330,7 @@
 		"id":"bonecandelabra",
 		"name":"bone candelabra",
 		"desc":"creepy",
-		"require":"state.necromancer>0||state.witch>0",
+		"require":"state.necromancer>0||state.witch>0||state.bonemonger>0",
 		"cost":{
 			"space":1,
 			"bones":10,
@@ -343,7 +357,7 @@
 		},
 		"mod":{
 			"water":{
-				"base":0.01,
+				"base":0.1,
 				"max":1
 			}
 		}
@@ -360,8 +374,24 @@
 		},
 		"mod":{
 			"fire":{
-				"max":2,
-				"base":0.01
+				"max":1,
+				"base":0.1
+			}
+		}
+
+	},
+	{
+		"id":"campfire",
+		"desc":"Campfire.",
+		"tags":"firesource",
+		"require":"state.camp>0||state.wagon>0",
+		"cost":{
+			"space":1
+		},
+		"mod":{
+			"fire":{
+				"max":1,
+				"base":0.1
 			}
 		}
 
@@ -409,12 +439,11 @@
 		},
 		"mod":{
 			"water.base":0.5,
-			"water.max":5
+			"water.max":3
 		}
 	},
 	{
 		"id":"ossuary",
-		"name":"ossuary",
 		"desc":"Receptacle for bones.",
 		"tags":"shadowsource",
 		"require":"evil",
@@ -425,7 +454,21 @@
 		},
 		"mod":{
 			"bones.max":10,
-			"shadow.max":5
+			"shadow.max":2
+		}
+	},
+	{
+		"id":"reliquary",
+		"desc":"Saferoom for ancient sources of magic.",
+		"tags":"spiritsource",
+		"require":"state.spirit.max>=5",
+		"cost":{
+			"gold":100,
+			"space":5
+		},
+		"mod":{
+			"spirit.max":5,
+			"spirit.rate":0.1
 		}
 	},
 	{
@@ -442,7 +485,7 @@
 		},
 		"mod":{
 			"shadow.base":0.1,
-			"shadow.max":10
+			"shadow.max":5
 		}
 	},
 	{
@@ -452,12 +495,28 @@
 		"tags":"prison",
 		"require":"adept",
 		"cost":{
-			"gold":25,
+			"gold":50,
 			"space":5
 		},
 		"mod":{
 			"shadow.max":1,
 			"dissection.base":0.1
+		}
+
+	},
+	{
+		"id":"armory",
+		"name":"Armory",
+		"desc":"A simple, bare cell.",
+		"tags":"prison",
+		"require":"adept",
+		"cost":{
+			"gold":200,
+			"space":10
+		},
+		"mod":{
+			"player.defense":1,
+			"player.tohit":1
 		}
 
 	},
@@ -537,13 +596,13 @@
 		"cost":{
 			"gold":100,
 			"research":50,
-			"space":20
+			"space":10
 		},
 		"mod":{
-			"herbs.base":1,
+			"herbs.rate":1,
 			"herbs.max":3,
-			"nature.max":5,
-			"nature.base":0.05
+			"nature.max":1,
+			"nature.rate":0.05
 		}
 
 	},
@@ -563,6 +622,66 @@
 			"nature.max":5,
 			"water.max":10
 		}
+	},
+	{
+
+		"id":"sandgarden",
+		"name":"sand garden",
+		"desc":"",
+		"require":"state.earth.max>=5&&state.space>=50",
+		"cost":{
+			"space":20,
+			"gold":100,
+			"research":100
+		},
+		"mod":{
+			"earth.max":5,
+			"earth.rate":0.1
+		}
+
+	},
+	{
+
+		"id":"bottomlesspit",
+		"name":"bottomless pit",
+		"desc":"An endless hole in the ground.",
+		"require":"state.planeslore>=5&&state.space>=20",
+		"cost":{
+			"space":5,
+			"gems":10,
+			"research":300,
+			"arcana":1
+		},
+		"mod":{
+			"air.max":1,
+			"air.rate":0.1,
+			"earth.max":1,
+			"earth.rate":0.1,
+			"void.max":3,
+			"void.rate":0.2,
+			"shadow.max":1,
+			"shadow.rate":0.1
+		}
+
+	},
+	{
+
+		"id":"torturechamber",
+		"name":"torture chamber",
+		"desc":"A room for inquisitions and research.",
+		"require":"state.evil>0&&state.space>=100",
+		"cost":{
+			"space":50,
+			"gold":200,
+			"research":100
+		},
+		"mod":{
+			"dissection.max":3,
+			"dissection.rate":0.1,
+			"shadow.max":5,
+			"shadow.rate":0.1
+		}
+
 	},
 	{
 

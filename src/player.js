@@ -47,8 +47,13 @@ export default class Player {
 
 	get speed() { return this._speed; }
 	set speed(v) {
-		this._speed = v;
-		this._delay = 1/v;
+
+		if ( this._speed ) this._speed.value = v;
+		else if ( v instanceof Resource ) this._speed = v;
+		else this._speed = new Resource( {value:v} );
+
+		this._delay = 10/this._speed.value;
+
 	}
 
 	/**

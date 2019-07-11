@@ -30,21 +30,6 @@
 		}
 	},
 	{
-		"id":"naturelore",
-		"name":"Nature Lore",
-		"require":"state.herbs>=3&&state.animals>=3",
-		"cost":{
-			"stamina":0.3
-		},
-		"result":{
-			"nature":{
-				"max":1,
-				"base":0.1
-			}
-		}
-
-	},
-	{
 		"id":"crafting",
 		"need":"workspace",
 		"cost":{
@@ -64,6 +49,9 @@
 		"verb":"Reading magic",
 		"cost":{
 			"stamina":0.2
+		},
+		"effect":{
+			"research":0.01
 		},
 		"result":{
 
@@ -123,6 +111,19 @@
 	},
 	{
 
+		"id":"demonology",
+		"require":"state.witch>0||state.magician>0",
+		"cost":{
+			"stamina":0.4,
+			"hp":0.1
+		},
+		"result":{
+			"arcana.max":1
+		}
+
+	},
+	{
+
 		"id":"embalming",
 		"require":"state.dissection>=5",
 		"school":["shadow"],
@@ -130,8 +131,23 @@
 			"stamina":0.5
 		},
 		"result":{
-			"research.max":1,
-			"research.value":5,
+			"research.value":1,
+			"shadow.max":1,
+			"shadow.base":0.01
+		}
+
+	},
+	{
+
+		"id":"reanimation",
+		"require":"state.evil>0&&state.embalming>=3",
+		"school":["shadow"],
+		"cost":{
+			"stamina":0.5,
+			"shadow":0.1
+		},
+		"result":{
+			"research.value":1,
 			"shadow.max":1,
 			"shadow.base":0.01
 		}
@@ -168,8 +184,8 @@
 		}
 	},
 	{
-		"id":"astrology",
-		"name":"astrology",
+		"id":"astronomy",
+		"name":"astronomy",
 		"require":"state.sextant>0||state.telescope>0",
 		"cost":{
 			"stamina":0.5
@@ -180,6 +196,35 @@
 				"value":5
 			}
 		}
+	},
+	{
+
+		"id":"planeslore",
+		"name":"Planes Lore",
+		"require":"state.astronomy>=5",
+		"cost":{
+			"stamina":0.7,
+			"mana":0.1
+		},
+		"mod":{
+			"arcana.max":1
+		}
+
+	},
+	{
+		"id":"naturelore",
+		"name":"Nature Lore",
+		"require":"state.herbs>=3&&state.animals>=3",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"nature":{
+				"max":1,
+				"base":0.1
+			}
+		}
+
 	},
 	{
 		"id":"scrying",

@@ -1,7 +1,6 @@
 [
 	{
 		"id":"hp",
-		"name":"hp",
 		"desc":"Wizard life-force",
 		"value":10,
 		"max":10,
@@ -10,9 +9,21 @@
 	{
 
 		"id":"stamina",
-		"name":"stamina",
 		"max":10,
 		"value":10,
+		"locked":0
+	},
+	{
+		"id":"dodge",
+		"value":5,
+		"max":5,
+		"locked":0
+	},
+	{
+		"id":"speed",
+		"desc":"Movement speed",
+		"value":5,
+		"max":5,
 		"locked":0
 	},
 	{

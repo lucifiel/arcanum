@@ -32,6 +32,37 @@
 		}
 	},
 	{
+
+		"id":"camp",
+		"desc":"A wild camp and its environs.",
+		"require":"adept",
+		"tags":"outdoors",
+		"cost":50,
+		"mod":{
+			"space.max":12,
+			"nature.max":1,
+			"nature.rate":0.1,
+			"animals.max":1,
+			"animals.rate":0.1
+		}
+
+	},
+	{
+		"id":"wagon",
+		"name":"tinker's wagon",
+		"desc":"wheeled carriage for a nomadic life.",
+		"tags":"outdoors",
+		"cost":125,
+		"mod":{
+			"space.max":10,
+			"nature.max":2,
+			"nature.rate":0.15,
+			"animals.max":1,
+			"animals.rate":0.15
+		}
+
+	},
+	{
 		"id":"cottage",
 		"desc":"Cozy and quaint.",
 		"require":"adept",
@@ -39,18 +70,6 @@
 		"mod":{
 			"space.max":20
 		}
-	},
-	{
-		"id":"cave",
-		"desc":"A primitive dwelling well-suited to particular areas of study. Some less so.",
-		"require":"adept",
-		"cost":75,
-		"mod":{
-			"space.max":30,
-			"research.base":-0.2
-		},
-		"lock":["latticewindow"]
-
 	},
 	{
 		"id":"house",
@@ -80,10 +99,22 @@
 		}
 	},
 	{
+		"id":"cave",
+		"desc":"A primitive dwelling well-suited to particular areas of study. Some less so.",
+		"require":"adept",
+		"cost":75,
+		"mod":{
+			"space.max":30,
+			"research.base":-0.2
+		},
+		"lock":["latticewindow"]
+
+	},
+	{
 		"id":"pavilion",
 		"desc":"An airy, elegant structure on a wide lawn.",
 		"cost":1000,
-		"require":"magician",
+		"require":"oracle",
 		"mod":{
 			"space.max":50,
 			"light.base":0.1,
@@ -114,7 +145,7 @@
 		"cost":10000,
 		"require":"state.magician>0",
 		"mod":{
-			"space.max":1000
+			"space.max":300
 		}
 	},
 	{
@@ -123,7 +154,7 @@
 		"cost":10000,
 		"require":"state.arcana>=100",
 		"mod":{
-			"space.max":800
+			"space.max":200
 		}
 	},
 	{
@@ -132,7 +163,7 @@
 		"cost":10000,
 		"require":"state.arcana>=10",
 		"mod":{
-			"space.max":1000
+			"space.max":400
 		}
 	},
 	{
@@ -141,22 +172,24 @@
 		"require":"state.arcana>=10",
 		"cost":10000,
 		"mod":{
-			"space.max":1000
+			"space.max":400
 		}
 	},
 	{
 		"id":"cove",
+		"tags":"outdoors",
 		"desc":"Hidden Cove",
 		"require":"enchanter",
 		"cost":3000,
 		"mod":{
-			"space.max":750
+			"space.max":350
 		}
 	},
 	{
 		"id":"grove",
 		"name":"Enchanted Grove",
 		"desc":"Enchanted Grove",
+		"tags":"outdoors",
 		"require":"state.enchanter>0||state.druid>0",
 		"cost":{
 			"gold":5000,
@@ -164,12 +197,13 @@
 			"mana":500
 		},
 		"mod":{
-			"space.max":5000
+			"space.max":500
 		}
 	},
 	{
 		"id":"island",
 		"name":"Shrouded Isle",
+		"tags":"outdoors",
 		"desc":"A lonely isle at sea",
 		"require":"state.enchanter>0||state.druid>0",
 		"cost":{
@@ -178,7 +212,11 @@
 			"mana":500
 		},
 		"mod":{
-			"space.max":10000
+			"space.max":500,
+			"water.max":5,
+			"water.rate":0.1,
+			"air.max":2,
+			"air.rate":0.05
 		}
 	}
 

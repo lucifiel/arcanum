@@ -117,6 +117,22 @@
 		}
 	},
 	{
+		"id":"travel",
+		"perpetual":true,
+		"verb":"travelling",
+		"desc":"Travel the wide world.",
+		"require":"state.wagon>0",
+		"cost":{
+			"stamina":0.4
+		},
+		"effect":{
+			"nature.mana":0.5,
+			"naturelore.exp":1,
+			"animals.exp":1,
+			"herbs.exp":1
+		}
+	},
+	{
 		"id":"study",
 		"perpetual":true,
 		"verb":"studying",
@@ -191,7 +207,7 @@
 		"id":"buygem",
 		"name":"Purchase Gem",
 		"require":"state.gold>=100",
-		"cost":100,
+		"cost":75,
 		"effect":{
 			"gems":1
 		}

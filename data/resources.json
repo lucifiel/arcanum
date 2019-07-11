@@ -183,6 +183,12 @@
 		"max":0
 	},
 	{
+		"id":"chaos",
+		"tag":"manas",
+		"desc":"Chaos incarnate",
+		"max":0
+	},
+	{
 		"id":"void",
 		"tag":"manas",
 		"desc":"nothingness",
