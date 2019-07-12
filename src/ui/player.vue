@@ -38,6 +38,8 @@ export default {
 			<tr><td>stamina</td><th>
 			{{ round( player.stamina.value ) }} / {{ round(player.stamina.max.value )}}</th></tr>
 		
+		<tr><td>speed</td><th>{{ player.speed.value }}</th></tr>
+
 		</table>
 
 	</div>

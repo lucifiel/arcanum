@@ -51,6 +51,7 @@
 		"id":"wagon",
 		"name":"tinker's wagon",
 		"desc":"wheeled carriage for a nomadic life.",
+		"require":"adept",
 		"tags":"outdoors",
 		"cost":125,
 		"mod":{
@@ -128,6 +129,19 @@
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":100
+		}
+	},
+	{
+		"id":"lighthouse",
+		"desc":"A lighted tower on the shore of the ocean.",
+		"cost":1500,
+		"require":"state.magician>0&&state.arcana>=20",
+		"mod":{
+			"space.max":80,
+			"water.max":5,
+			"water.rate":0.1,
+			"light.max":3,
+			"light.rate":0.1
 		}
 	},
 	{

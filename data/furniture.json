@@ -76,6 +76,20 @@
 
 	},
 	{
+		"id":"cache",
+		"name":"Buried cache",
+		"desc":"A secret cache of treasure, buried in the ground.",
+		"need":"state.outdoors",
+		"max":3,
+		"cost":{
+			"space":1
+		},
+		"mod":{
+			"gold.max":200,
+			"gems.max":10
+		}
+	},
+	{
 		"id":"vault",
 		"desc":"A safe space for treasure.",
 		"require":"state.space>=25",
@@ -91,6 +105,7 @@
 	},
 	{
 		"id":"treasureroom",
+		"name":"treasure room",
 		"desc":"A large room for accumulated treasures.",
 		"require":"state.space>=50",
 		"repeat":true,
@@ -126,7 +141,7 @@
 		"desc":"A cramped cage for keeping tiny test subjects.",
 		"tags":"",
 		"cost":{
-			"gold":"20",
+			"gold":20,
 			"space":1,
 			"research":20
 		},
@@ -158,9 +173,9 @@
 		"id":"workbench",
 		"desc":"A small bench for arts and crafts.",
 		"tag":"workspace",
-		"locked":0,
+		""locked":false,
 		"cost":{
-			"gold":25,
+			"gold":15,
 			"space":1
 		},
 		"mod":{
@@ -188,7 +203,7 @@
 	{
 		"id":"plant",
 		"name":"potted milkweed",
-		"locked":0,
+		""locked":false,
 		"desc":"Really brightens up the place",
 		"tag":"taggarden",
 		"cost":{
@@ -199,23 +214,6 @@
 			"research.max":5
 		}
 
-	},
-	{
-		"id":"mortar",
-		"name":"Mortar and Pestle",
-		"desc":"Useful for grinding herbs & fine ingredients.",
-		"require":"herbs",
-		"cost":{
-			"gold":20,
-			"space":1
-		},
-		"mod":{
-			"research.max":5,
-			"herbs":{
-				"base":0.1,
-				"max":2
-			}
-		}
 	},
 	{
 		"id":"birdcage",

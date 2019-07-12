@@ -4,27 +4,27 @@
 		"desc":"Wizard life-force",
 		"value":10,
 		"max":10,
-		"locked":0
+		""locked":false
 	},
 	{
 
 		"id":"stamina",
 		"max":10,
 		"value":10,
-		"locked":0
+		""locked":false
 	},
 	{
 		"id":"dodge",
 		"value":5,
 		"max":5,
-		"locked":0
+		""locked":false
 	},
 	{
 		"id":"speed",
 		"desc":"Movement speed",
 		"value":5,
 		"max":5,
-		"locked":0
+		""locked":false
 	},
 	{
 		"id":"resistarcane",

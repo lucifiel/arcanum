@@ -22,9 +22,12 @@ export default class Stat {
 
 	constructor( vars=null ) {
 
+
 		if ( !isNaN(vars) ) {
-			this._base = vars;
+
+			this._base = Number(vars);
 			this._pct = 0;
+
 		} else if ( vars instanceof Object ) Object.assign(this,vars);
 		else if ( typeof vars === 'string') {
 

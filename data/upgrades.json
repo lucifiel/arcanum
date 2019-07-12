@@ -97,6 +97,7 @@
 
 	{
 		"id":"waxcandle",
+		"name":"wax candle",
 		"tags":"candle",
 		"desc":"A tiny glowing candle.",
 		"flavor":"You no take candle!",
@@ -106,6 +107,23 @@
 		"mod":{
 			"mana":{
 				"base":0.1
+			}
+		}
+	},
+	{
+		"id":"mortar",
+		"name":"Mortar and Pestle",
+		"desc":"Useful for grinding herbs & fine ingredients.",
+		"require":"state.herbs>=2",
+		"cost":{
+			"gold":40,
+			"research":10
+		},
+		"mod":{
+			"research.max":5,
+			"herbs":{
+				"base":0.1,
+				"max":2
 			}
 		}
 	},
@@ -160,6 +178,7 @@
 		"locked":1,
 		"mod":{
 			"research.max":5,
+			"animals.max":1,
 			"animals.rate":0.1
 		}
 
@@ -240,7 +259,7 @@
 		"desc":"A small crystal pyramid for performing optical experiments.",
 		"require":"state.research.max>=50",
 		"cost":{
-			"gold":40,
+			"gold":50,
 			"research":50
 		},
 		"mod":{
@@ -330,7 +349,7 @@
 		"cost":50,
 		"mod":{
 			"light":{
-				"max":1,
+				"max":0.2,
 				"base":0.01
 			}
 		}
@@ -345,7 +364,7 @@
 		"cost":50,
 		"mod":{
 			"shadow":{
-				"max":5,
+				"max":0.2,
 				"base":0.01
 			}
 		}

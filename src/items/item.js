@@ -87,7 +87,14 @@ export default class Item {
 	 * @property {Stat} rate - rate of stat change in value/second.
 	 */
 	get rate() { return this._rate; }
-	set rate(v){ this._rate = ( v instanceof Stat ) ? v : new Stat(v); }
+	set rate(v){
+		if ( this._rate != null ){
+			//console.log('rate change: ' + v );
+			this._rate.base = v;
+			console.log('new base: ' + v );
+		}
+		else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
+	}
 
 	/**
 	 * @property {number|Object.<string,number>} cost

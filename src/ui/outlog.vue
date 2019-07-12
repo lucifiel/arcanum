@@ -41,8 +41,9 @@ export default {
 <style scoped>
 div.outlog {
 	flex-direction: column;
+	height:95vh;
 	flex-basis: 20%;
-	overflow:auto;
+	overflow-y: auto;
 }
 
 div.log-item {

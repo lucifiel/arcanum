@@ -2,7 +2,7 @@
 	{
 		"id":"gold",
 		"desc":"Gold Coins",
-		"locked":0,
+		""locked":false,
 		"max":5
 	},
 	{
@@ -83,6 +83,41 @@
 		"tags":"reagent",
 		"name":"water gem",
 		"desc":"Gem imbued with the essence of water.",
+		"max":5
+	},
+	{
+		"id":"naturegem",
+		"tags":"reagent",
+		"name":"life gem",
+		"desc":"Gem imbued with the essence of nature.",
+		"max":5
+	},
+	{
+		"id":"earthgem",
+		"tags":"reagent",
+		"name":"earth gem",
+		"desc":"Gem imbued with the essence of earth.",
+		"max":5
+	},
+	{
+		"id":"airgem",
+		"tags":"reagent",
+		"name":"air gem",
+		"desc":"Gem imbued with the essence of air.",
+		"max":5
+	},
+	{
+		"id":"shadowgem",
+		"tags":"reagent",
+		"name":"shadow gem",
+		"desc":"Gem imbued with the essence of shadow.",
+		"max":5
+	},
+	{
+		"id":"lightgem",
+		"tags":"reagent",
+		"name":"light gem",
+		"desc":"Gem imbued with the essence of light.",
 		"max":5
 	},
 	{

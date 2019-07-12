@@ -275,6 +275,7 @@ export default {
 div.full {
 	display:flex;
 	flex-direction: column;
+	flex-grow: 0;
 	width: 100%;
 	margin: 0px;
 }
@@ -291,7 +292,6 @@ div.main {
 }
 
 div.mid-view {
-	height:100%;
 	flex-basis:35%;
 	margin: 12px 8px;
 }

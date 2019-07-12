@@ -4,7 +4,7 @@
 		"id":"evt_intro",
 		"name":"Prologue",
 		"desc":"An idle waif with no prospects to speak of...",
-		"locked":0
+		"locked":false
 	},
 	{
 		"id":"evt_scroll",
@@ -30,12 +30,11 @@
 	},
 	{
 		"id":"neophyte",
-		"name":"Neophyte",
 		"title":"neophyte",
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies.",
 		"disable":["apprentice","chores"],
 		"effect":{
-			"gold.base":0.1,
+			"gold.rate":0.1,
 			"research.max":5,
 			"lore.max":2
 		}
@@ -71,7 +70,24 @@
 		"effect":{
 			"research.max":20,
 			"arcana.max":5,
-			"mana.max":5
+			"arcana.rate":0.001,
+			"mana.max":5,
+			"mana.rate":0.2
+		}
+	},
+	{
+		"id":"darkmagician",
+		"title":"dark magician",
+		"desc":"A devotee of black magic.",
+		"require":"evil",
+		"disable":["adept","witch","druid","magician"],
+		"effect":{
+			"research.max":20,
+			"arcana.max":5,
+			"mana.max":1,
+			"mana.rate":0.1,
+			"shadow.max":5,
+			"shadow.rate":0.1
 		}
 	},
 	{
@@ -213,7 +229,7 @@
 
 		"id":"good",
 		"disable":"shadow",
-		"desc":"",
+		"desc":"the forces of justice.",
 		"effect":{
 			"light.max":1,
 			"light.value":1,

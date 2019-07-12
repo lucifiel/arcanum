@@ -4,7 +4,7 @@
 		"name":"Clean Stables",
 		"desc":"A dirty job...",
 		"verb":"cleaning",
-		"locked":0,
+		""locked":false,
 		"cost":{
 			"stamina":0.08
 		},
@@ -215,10 +215,10 @@
 	{
 		"id":"imbuefiregem",
 		"name":"Imbue Gem (Fire)",
-		"require":"state.fire.max>10",
+		"require":"state.fire.max>=5&&state.enchanting>2",
 		"cost":{
 			"gem":1,
-			"fire":10
+			"fire":5
 		},
 		"effect":{
 			"firegem":1
@@ -226,26 +226,74 @@
 	},
 	{
 		"id":"imbuecoldgem",
-		"name":"Imbue Gem (Cold)",
-		"require":"state.cold.max>10",
+		"name":"imbue gem (cold)",
+		"require":"state.cold.max>=5&&state.enchanting>2",
 		"cost":{
 			"gem":1,
-			"cold":10
+			"cold":5
 		},
 		"effect":{
 			"coldgem":1
 		}
 	},
 	{
-		"id":"imbuewatergem",
-		"name":"Imbue Gem (Water)",
-		"require":"state.water.max>10",
+		"id":"imbueairgem",
+		"name":"imbue gem (air)",
+		"require":"state.air.max>=5&&state.enchanting>2",
 		"cost":{
 			"gem":1,
-			"water":10
+			"air":5
+		},
+		"effect":{
+			"airgem":1
+		}
+	},
+	{
+		"id":"imbueearthgem",
+		"name":"imbue stone (earth)",
+		"require":"state.earth.max>=5&&state.enchanting>2",
+		"cost":{
+			"gem":1,
+			"earth":5
+		},
+		"effect":{
+			"earthgem":1
+		}
+	},
+	{
+		"id":"imbuewatergem",
+		"name":"Imbue Gem (Water)",
+		"require":"state.water.max>=5&&state.enchanting>2",
+		"cost":{
+			"gem":1,
+			"water":5
 		},
 		"effect":{
 			"watergem":1
+		}
+	},
+	{
+		"id":"imbuelightgem",
+		"name":"imbue gem (light)",
+		"require":"state.light.max>=5&&state.enchanting>2",
+		"cost":{
+			"gem":1,
+			"light":5
+		},
+		"effect":{
+			"lightgem":1
+		}
+	},
+	{
+		"id":"imbueshadowgem",
+		"name":"Imbue gem (shadow)",
+		"require":"state.shadow.max>=5&&state.enchanting>2",
+		"cost":{
+			"gem":1,
+			"shadow":5
+		},
+		"effect":{
+			"shadowgem":1
 		}
 	},
 	{

@@ -3,6 +3,7 @@
 	{
 		"id":"animals",
 		"name":"Animal Handling",
+		"require":"state.lore>0",
 		"need":"tagpen",
 		"cost":{
 			"stamina":0.5
@@ -18,6 +19,7 @@
 		"id":"herbs",
 		"school":["nature"],
 		"name":"herbalism",
+		"require":"state.lore>0",
 		"need":"taggarden",
 		"cost":{
 			"stamina":0.25
@@ -31,6 +33,7 @@
 	},
 	{
 		"id":"crafting",
+		"require":"state.lore>0",
 		"need":"workspace",
 		"cost":{
 			"stamina":0.5
@@ -158,6 +161,20 @@
 		"school":["nature","water"],
 		"name":"Potions",
 		"require":["cauldron","state.crafting>=5"],
+		"cost":{
+			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
+		}
+	},
+	{
+		"id":"enchanting",
+		"require":"state.adept>0&&state.lore>=7",
+		"desc":"imbue mundane objects with magic properties.",
 		"cost":{
 			"stamina":0.5
 		},

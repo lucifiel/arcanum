@@ -246,7 +246,10 @@ export default {
 
 		if ( evt.title ) this._state.player.title = evt.title;
 
-		if ( evt.effect ) this.applyEffect( evt.effect, 1 );
+		if ( evt.effect ){
+			console.log('event effect: ' + evt.id );
+			this.applyEffect( evt.effect, 1 );
+		}
 
 		evt.locked = false;
 		evt.value = 1;
