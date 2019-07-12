@@ -173,7 +173,7 @@
 		"id":"workbench",
 		"desc":"A small bench for arts and crafts.",
 		"tag":"workspace",
-		""locked":false,
+		"locked":false,
 		"cost":{
 			"gold":15,
 			"space":1
@@ -203,7 +203,7 @@
 	{
 		"id":"plant",
 		"name":"potted milkweed",
-		""locked":false,
+		"locked":false,
 		"desc":"Really brightens up the place",
 		"tag":"taggarden",
 		"cost":{

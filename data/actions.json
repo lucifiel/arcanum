@@ -4,7 +4,7 @@
 		"name":"Clean Stables",
 		"desc":"A dirty job...",
 		"verb":"cleaning",
-		""locked":false,
+		"locked":false,
 		"cost":{
 			"stamina":0.08
 		},

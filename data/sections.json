@@ -3,7 +3,7 @@
 	{
 		"id":"main",
 		"name":"main",
-		""locked":false
+		"locked":false
 
 	},
 	{
@@ -27,7 +27,7 @@
 	{
 		"id":"player",
 		"name":"player",
-		""locked":false
+		"locked":false
 
 	},
 	{
