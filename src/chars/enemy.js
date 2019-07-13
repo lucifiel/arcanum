@@ -6,16 +6,15 @@ import Dot from './dot';
  */
 export default class Enemy {
 
-	constructor( vars=null ){
+	constructor( vars=null, raid ){
 
 		if ( vars ) Object.assign(this.vars);
 
 		this.dots = this.dots || [];
 
-		this.raid = null;
-		this.state = Game.state;
-		this.player = this.state.player;
+		this.raid = raid;
 		this.log = Game.log;
+		console.log('thislog: ' + this.log );
 
 		this.alive = this.alive || false;
 
@@ -23,7 +22,7 @@ export default class Enemy {
 
 	setEnemy( item ) {
 
-		if ( typeof item === 'string' ) item = this.state.getItem(item);
+		if ( typeof item === 'string' ) item = Game.getItem(item);
 
 		/**
 		 * Note: id and name are properties of Item, not item insance,
@@ -35,6 +34,8 @@ export default class Enemy {
 
 		/// timer to next attack.
 		this.timer = item.delay;
+
+		this.alive = true;
 
 
 	}
@@ -84,11 +85,11 @@ export default class Enemy {
 
 		this.hp -= dmg;
 
-		this.log( '',
+		this.log.log( '',
 			this.name + ' hit by ' + this.name + ': ' + dmg.toFixed(1),
 			'combat' );
 
-		if ( this.hp <= 0 ) this.alive = false;
+		if ( this.hp <= 0 ) this.clear();
 
 	}
 
@@ -96,7 +97,8 @@ export default class Enemy {
 	 * Clear the current enemy.
 	 */
 	clear() {
-		this.dots.splice(0,this.dots.length);
+		this.alive = false;
+		this.dots = [];
 	}
 
 }

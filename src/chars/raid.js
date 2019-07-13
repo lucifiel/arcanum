@@ -1,4 +1,6 @@
 import Game from '../game';
+import Enemy from './enemy';
+import Range from '../range';
 
 /**
  * Represents an active dungeon raid.
@@ -16,7 +18,7 @@ export default class Raid {
 	get enemy() { return this._enemy;}
 	set enemy(v) {
 
-		if (!this.enemy ) this._enemy = new Enemy(v);
+		if (!this.enemy ) this._enemy = new Enemy(v, this);
 		else this._enemy.setEnemy(v);
 
 	}
@@ -67,13 +69,13 @@ export default class Raid {
 
 				// attempt to use primary item attack first.
 				if ( !this.player.primary || !Game.tryItem( this.player.primary )) {
-					this.playerAttack();
+					this.playerAttack( this.player );
 				}
 
 			}
 
 			this.enemy.update(dt);
-			if ( this.enemy.alive === false ) this.enemySlain();
+			if ( this.enemy.alive === false ) this.enemyDied();
 
 		}
 
@@ -100,7 +102,7 @@ export default class Raid {
 	 */
 	playerAttack( it ) {
 
-		if ( this.tryHit() ) {
+		if ( this.tryHit(it) ) {
 
 			if ( it.damage != null ) {
 
@@ -176,6 +178,7 @@ export default class Raid {
 		this.dungeon.progress++;
 
 		this.enemyAct = this.enemy.name + ' slain';
+		Game.log.log( '', this.enemyAct, 'combat');
 
 		if ( this.dungeon.progress >= this.dungeon.length ) {
 			this.raidDone( this.dungeon );
@@ -193,6 +196,7 @@ export default class Raid {
 
 	setDungeon( d ) {
 		this.dungeon = d;
+		this.player.timer = 0;
 		if ( d.progress >= d.length ) d.progress = 0;
 		this.active = true;
 	}

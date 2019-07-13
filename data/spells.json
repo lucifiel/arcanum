@@ -25,7 +25,7 @@
 		"id":"copperskin",
 		"name":"copper skin",
 		"level":1,
-		"require":"earth.max>=1",
+		"require":"earth",
 		"cost":{
 
 			"research":25,
@@ -44,10 +44,10 @@
 
 	},
 	{
-		"id":"minorvenom",
-		"name":"minor venom",
+		"id":"poisonnettle",
+		"name":"poison nettle",
 		"level":1,
-		"require":"nature.max>=1",
+		"require":"nature",
 		"cost":{
 
 			"research":25,

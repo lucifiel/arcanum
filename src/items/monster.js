@@ -9,7 +9,7 @@ export default class Monster extends Item {
 		this.speed = this.speed || this.level;
 		this.level = this.level || 1;
 
-		this.delay = 1 / this.speed;
+		this.delay = 10 / this.speed;
 
 	}
 

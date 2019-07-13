@@ -11,9 +11,9 @@ import Furniture from 'data/furniture';
 import MonsterList from 'data/monsters';
 
 import Item from 'items/item';
-import Player from 'player';
+import Player from './chars/player';
 
-import Range, {RangeTest} from 'range';
+import Range, {RangeTest} from './range';
 import Resource from './items/resource';
 import Upgrade from './items/upgrade';
 import Skill from './items/skill';
@@ -62,22 +62,8 @@ export default {
 
 		for( let it of arr ) {
 
-			var sub = it.require;
-			if ( sub ) {
-
-				// REQUIRE
-				if ( typeof sub === 'string' && !IdTest.test(sub )) it.require = this.createTest( sub );
-				else it.require = this.parseSub( sub );
-
-			}
-			sub = it.need;
-			if ( sub ) {
-
-				// REQUIRE
-				if ( typeof sub === 'string' && !IdTest.test(sub )) it.need = this.createTest( sub );
-				else it.need = this.parseSub( sub );
-
-			}
+			if ( it.require ) this.parseRequire( it, 'require');
+			if ( it.need ) this.parseRequire( it, 'need');
 	
 			if ( it.mod ) it.mod = this.parseSub(it.mod);
 			if ( it.fill) it.fill = this.parseSub(it.fill);
@@ -110,6 +96,20 @@ export default {
 			}
 			
 		}
+
+	},
+
+	/**
+	 * Parse a requirement-type object.
+	 * currently: 'require' or 'need'
+	 */
+	parseRequire( obj, p='require' ){
+
+		let sub = obj[p];
+
+		// REQUIRE
+		if ( typeof sub === 'string' && !IdTest.test(sub )) obj[p] = this.makeTestFunc( sub );
+		else obj[p] = this.parseSub( sub );
 
 	},
 

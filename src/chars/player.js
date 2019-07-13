@@ -48,7 +48,7 @@ export default class Player {
 	get speed() { return this._speed; }
 	set speed(v) {
 
-		if ( this._speed ) this._speed.value = v;
+		if ( this._speed ) this._speed.value = Number(v);
 		else if ( v instanceof Resource ) this._speed = v;
 		else this._speed = new Resource( {value:v} );
 
@@ -76,10 +76,8 @@ export default class Player {
 		this._tohit = this._tohit || 2;
 		this._defense = this._defense || 1;
 
-		this.timer = this.timer || 0;
-
 		/**
-		 * 
+		 * @property {number} timer
 		 */
 		this.timer = this.timer || 0;
 

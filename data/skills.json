@@ -50,6 +50,7 @@
 		"school":"arcane",
 		"require":"state.lore>=7",
 		"verb":"reading lore",
+		"locked":false,
 		"cost":{
 			"stamina":0.2
 		},
