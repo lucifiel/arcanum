@@ -14,7 +14,6 @@ export default class Enemy {
 
 		this.raid = raid;
 		this.log = Game.log;
-		console.log('thislog: ' + this.log );
 
 		this.alive = this.alive || false;
 
@@ -69,9 +68,10 @@ export default class Enemy {
 			if ( dotTime ) {
 
 				if ( dot.damage ) {
-					this.doDamage( this.raid.getDamage( dot.damage ) );
+					this.doDamage( this.raid.getDamage( dot.damage ), dot );
 				}
 				if ( dot.duration <= 0 ) {
+					console.log('removing dot: ' + dot.name );
 					this.dots.splice( i, 1);
 				}
 	
@@ -81,12 +81,14 @@ export default class Enemy {
 
 	}
 
-	doDamage( dmg ) {
+	doDamage( dmg, src ) {
 
 		this.hp -= dmg;
 
 		this.log.log( '',
-			this.name + ' hit by ' + this.name + ': ' + dmg.toFixed(1),
+			this.name + ' hit by '
+				+ src.name
+				+ ': ' + dmg.toFixed(1),
 			'combat' );
 
 		if ( this.hp <= 0 ) this.clear();

@@ -33,8 +33,7 @@
 	},
 	{
 		"id":"crafting",
-		"require":"state.lore>0",
-		"need":"workspace",
+		"require":"workspace",
 		"cost":{
 			"stamina":0.5
 		},
@@ -262,7 +261,7 @@
 		"id":"naturelore",
 		"name":"Nature Lore",
 		"verb":"observing nature",
-		"require":"state.herbs>=3&&state.animals>=3",
+		"require":"state.herbs>=3&&state.animals>=2",
 		"cost":{
 			"stamina":0.4
 		},

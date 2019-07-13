@@ -69,7 +69,7 @@ export default class Raid {
 
 				// attempt to use primary item attack first.
 				if ( !this.player.primary || !Game.tryItem( this.player.primary )) {
-					this.playerAttack( this.player );
+					this.playerAttack( this.player, this.player );
 				}
 
 			}
@@ -87,12 +87,13 @@ export default class Raid {
 	 */
 	spellAttack( it ) {
 
-		if ( this.dungeon == null || this.enemy === null ) {
+		console.log('spell attack');
+		if ( this.dungeon == null || !this.enemy.alive ) {
 
 			this.playerAct = this.player.name + ' casts ' + it.name + ' at the darkness.';
 			Game.log.log( '', this.playerAct, 'combat');
 
-		} else this.playerAttack(it);
+		} else this.playerAttack( it.attack, it );
 
 	}
 
@@ -100,9 +101,9 @@ export default class Raid {
 	 * 
 	 * @param {Object} it - attack object. 
 	 */
-	playerAttack( it ) {
+	playerAttack( it, src ) {
 
-		if ( this.tryHit(it) ) {
+		if ( this.tryHit(this.player) ) {
 
 			if ( it.damage != null ) {
 
@@ -111,10 +112,10 @@ export default class Raid {
 			//this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
 			//Game.log.log( '', this.playerAct, 'combat');
 
-				this.enemy.doDamage( dmg );
+				this.enemy.doDamage( dmg, it );
 
 			}
-			if ( it.dot ) this.enemy.addDot( it.dot );
+			if ( it.dot ) this.enemy.addDot( it.dot, src.name );
 
 		} else {
 

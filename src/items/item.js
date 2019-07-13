@@ -132,7 +132,7 @@ export default class Item {
 
 		if ( vars ) Object.assign( this, vars );
 	
-		if ( this._locked === undefined ) this._locked = 1;
+		if ( this._locked === undefined ) this._locked = true;
 
 		if ( this._length !== undefined ) this._exp = this._exp || 0;
 

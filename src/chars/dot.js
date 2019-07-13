@@ -1,9 +1,10 @@
 export default class Dot {
 
-	constructor( vars ){
+	constructor( vars, name=null ){
 
 		Object.assign( this, vars );
 
+		if ( name ) this.name = name;
 		this.acc = 0;
 
 	}

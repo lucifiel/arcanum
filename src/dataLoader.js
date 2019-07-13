@@ -70,31 +70,13 @@ export default {
 			if ( it.effect ) it.effect = this.parseSub(it.effect );
 			if ( it.result ) it.result = this.parseSub(it.result);
 
-			if ( it.attack )this.parseAttack( it.attack );
+			if ( it.attack ) this.parseSub( it.attack );
 
 			if ( it.dot) {
 				if ( it.dot.effect ) this.parseSub( it.dot.effect );
 				if ( it.dot.mod ) this.parseSub( it.dot.mod );
 			}
 
-		}
-
-	},
-
-	parseAttack( atk ) {
-
-		if ( atk.damage ) {
-
-			let dmg = atk.damage;
-			if ( !isNaN(dmg) ) {
-
-			} else if ( typeof dmg === 'string') {
-
-				if ( RangeTest.test(dmg)) atk.damage = new Range( dmg );
-				else atk.damage = this.makeDmgFunc( dmg );
-
-			}
-			
 		}
 
 	},
@@ -126,7 +108,15 @@ export default {
 			for( let p in sub ) {
 	
 				var obj = sub[p];
-				if ( typeof obj === 'string' && RangeTest.test(obj) ) sub[p] = new Range(obj);
+				var type = typeof obj;
+				if ( type === 'string' ){
+
+					//console.log('parse string: ' + p + ' --> ' + obj );
+					if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
+					else if (!isNaN(obj)) sub[p] = Number(obj);
+					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);
+
+				} else if ( type === 'object' ) this.parseSub(obj);
 
 				// convert to an assignment object.
 				if ( p.includes('.')) {
