@@ -195,9 +195,18 @@ export default {
 			this.game.tryLearn(item);
 		},
 
-		onRaid( dungeon ) {
+		/**
+		 * @param {Dungeon} dungeon
+		 * @param {boolean} enter
+		 */
+		onRaid( dungeon, enter ) {
 
-			this.game.startRaid( dungeon );
+			if ( enter ) this.game.startRaid( dungeon );
+			else {
+				this.gameState.raid.dungeon = null;
+				this.game.setAction(null);
+
+			}
 
 		},
 

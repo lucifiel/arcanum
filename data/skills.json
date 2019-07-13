@@ -67,9 +67,9 @@
 
 	},
 	{
-		"id":"linguistics",
+		"id":"languages",
 		"school":"lore",
-		"require":"apprentice",
+		"require":"neophyte",
 		"verb":"linguisticizing",
 		"cost":{
 			"stamina":0.2

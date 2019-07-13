@@ -199,7 +199,7 @@ export default {
 	},
 
 	/**
-	 * Halts an action when requirements are no longer met.
+	 * Halts action when requirements are no longer met.
 	 * If the action was a rest action, any previous action is resumed.
 	 */
 	haltAction() {

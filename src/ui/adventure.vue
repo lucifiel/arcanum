@@ -10,7 +10,7 @@ export default {
 	mixins:[ItemBase],
 	data(){
 		return {
-
+			game:Game
 		};
 	},
 	components:{
@@ -23,10 +23,11 @@ export default {
 
 		raid() { return this.state.raid; },
 
+		raiding() { return this.state.curAction===this.raid; },
+
 		dungeons(){
-			return Game.filterItems( it=>it.type==='dungeon'&& !this.locked(it) );
-		},
-		game() { return Game; }
+			return this.game.filterItems( it=>it.type==='dungeon'&& !this.locked(it) );
+		}
 
 	}
 
@@ -38,7 +39,7 @@ export default {
 
 <div class="adventure">
 
-	<div v-if="state.curAction===raid">
+	<div v-if="raiding">
 		Adventuring...<br>
 		{{ raid.enemy ? raid.enemy.name + ' Encountered' : 'Exploring...' }}<br>
 		{{ raid.playerAct }}<br>
@@ -52,8 +53,9 @@ export default {
 		<td>{{ d.name }}</td>
 		<td><progbar class="dungeon" :value="d.progress" :max="d.length" /></td>
 		<td><button class="raid-btn" :disabled="!game.runnable(d)"
-			@click="dispatch( 'raid', d )"
-			@mouseenter.capture.stop="dispatch('itemover', $event, d )">Enter</button></td>
+			@click="dispatch( 'raid', d, raid.dungeon !== d )"
+			@mouseenter.capture.stop="dispatch('itemover', $event, d )">
+			{{ raiding && raid.dungeon === d ? 'Stop' : 'Enter' }}</button></td>
 
 	</tr>
 	</table>
