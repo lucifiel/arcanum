@@ -174,12 +174,13 @@ export default class Raid {
 
 	enemyDied() {
 
-		console.log('enemey died');
 		this.player.exp += this.enemy.level;
 		this.dungeon.progress++;
 
 		this.enemyAct = this.enemy.name + ' slain';
 		Game.log.log( '', this.enemyAct, 'combat');
+
+		this.enemy.clear();
 
 		if ( this.dungeon.progress >= this.dungeon.length ) {
 			this.raidDone( this.dungeon );

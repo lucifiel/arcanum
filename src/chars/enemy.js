@@ -67,12 +67,12 @@ export default class Enemy {
 
 			if ( dotTime ) {
 
+				if ( dot.duration <= 0 ) {
+					this.dots.splice( i, 1);
+				}
 				if ( dot.damage ) {
 					this.doDamage( this.raid.getDamage( dot.damage ), dot );
-				}
-				if ( dot.duration <= 0 ) {
-					console.log('removing dot: ' + dot.name );
-					this.dots.splice( i, 1);
+					if ( !this.alive ) break;
 				}
 	
 			}
@@ -91,7 +91,7 @@ export default class Enemy {
 				+ ': ' + dmg.toFixed(1),
 			'combat' );
 
-		if ( this.hp <= 0 ) this.clear();
+		if ( this.hp <= 0 ) this.alive=false;
 
 	}
 
@@ -99,7 +99,7 @@ export default class Enemy {
 	 * Clear the current enemy.
 	 */
 	clear() {
-		this.alive = false;
+		this.id = this.name = '';
 		this.dots = [];
 	}
 
