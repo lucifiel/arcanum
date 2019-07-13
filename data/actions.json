@@ -90,6 +90,7 @@
 		"tag":"tagrest",
 		"name":"rest",
 		"verb":"resting",
+		"locked":false,
 		"perpetual":true,
 		"ignoreStamina":true,
 		"fill":[ "stamina", "hp", "mana" ],

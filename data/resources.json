@@ -201,6 +201,7 @@
 	{
 		"id":"light",
 		"tag":"manas",
+		"require":"state.lumenology>=3",
 		"desc":"Light mana",
 		"max":1
 	},

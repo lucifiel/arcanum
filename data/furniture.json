@@ -348,7 +348,7 @@
 		"name":"basin",
 		"tags":"watersource",
 		"desc":"Basin of water.",
-		"require":"adept",
+		"require":"atticbedroom",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -397,7 +397,7 @@
 	{
 		"id":"clepsydra",
 		"desc":"Crude measure of time",
-		"require":"adept",
+		"require":"magician",
 		"tags":"timesource",
 		"cost":{
 			"gold":100,
@@ -405,10 +405,11 @@
 			"space":1
 		},
 		"mod":{
-			"tempus.max":5,
+			"tempus.max":1,
 			"tempus.base":0.01,
 			"water.base":0.01
-		}
+		},
+		"flavor":"what is gone is gone"
 
 	},
 	{

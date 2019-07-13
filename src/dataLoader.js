@@ -97,7 +97,20 @@ export default {
 
 	parseAttack( atk ) {
 
-		if ( atk.damage ) atk.damage = new Range( atk.damage );
+		if ( atk.damage ) {
+
+			let dmg = atk.damage;
+			if ( !isNaN(dmg) ) {
+
+			} else if ( typeof dmg === 'string') {
+
+				if ( RangeTest.test(dmg)) atk.damage = new Range( dmg );
+				else atk.damage = this.makeDmgFunc( dmg );
+
+			}
+			
+		}
+
 	},
 
 	parseSub( sub ) {
@@ -138,8 +151,26 @@ export default {
 	 * Create a boolean testing function from a data string.
 	 * @param {string} text - function text.
 	 */
-	createTest( text ) {
+	makeTestFunc( text ) {
 		return new Function( "state", 'return ' + text );
+	},
+
+	/**
+	 * Create a function which performs an arbitrary effect.
+	 * player and target params are given for simplicity.
+	 * target is the current enemy, if any.
+	 * @param {*} text 
+	 */
+	makeEffectFunc( text ) {
+		return new Function( 'state', 'player', 'target', text );
+	},
+
+	/**
+	 * Create a damage-value function for an attack.
+	 * @param {*} text 
+	 */
+	makeDmgFunc(text){
+		return new Function( 'state', 'player', 'target', 'return ' + text );
 	},
 
 	/**

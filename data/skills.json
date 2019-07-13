@@ -48,8 +48,8 @@
 	{
 		"id":"lore",
 		"school":"arcane",
-		"require":"apprentice",
-		"verb":"Reading magic",
+		"require":"state.lore>=7",
+		"verb":"reading lore",
 		"cost":{
 			"stamina":0.2
 		},
@@ -63,6 +63,22 @@
 				"value":1,
 				"max":1
 			}
+		}
+
+	},
+	{
+		"id":"linguistics",
+		"school":"lore",
+		"require":"apprentice",
+		"verb":"linguisticizing",
+		"cost":{
+			"stamina":0.2
+		},
+		"effect":{
+			"research":0.01
+		},
+		"result":{
+			"research.max":5
 		}
 
 	},
@@ -83,7 +99,7 @@
 	{
 
 		"id":"anatomy",
-		"require":"state.lore>=5",
+		"require":"state.neophyte>=0&&state.lore>=5",
 		"school":["nature","shadow","light"],
 		"cost":{
 			"stamina":0.5
@@ -172,6 +188,19 @@
 		}
 	},
 	{
+		"id":"lumenology",
+		"desc":"study of light",
+		"require":"prism",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"light.max":1,
+			"light.rate":0.1
+		}
+
+	},
+	{
 		"id":"enchanting",
 		"require":"state.adept>0&&state.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
@@ -231,6 +260,7 @@
 	{
 		"id":"naturelore",
 		"name":"Nature Lore",
+		"verb":"observing nature",
 		"require":"state.herbs>=3&&state.animals>=3",
 		"cost":{
 			"stamina":0.4

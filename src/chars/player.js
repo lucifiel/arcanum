@@ -1,6 +1,6 @@
-import Stat from "./stat";
-import Resource from "./items/resource";
-import Range from './range';
+import Stat from "../stat";
+import Resource from "../items/resource";
+import Range from '../range';
 
 /**
  * @constant {number} EXP_RATE
@@ -75,6 +75,13 @@ export default class Player {
 
 		this._tohit = this._tohit || 2;
 		this._defense = this._defense || 1;
+
+		this.timer = this.timer || 0;
+
+		/**
+		 * 
+		 */
+		this.timer = this.timer || 0;
 
 		this.damage = this.damage || new Range( 1, 2 );
 

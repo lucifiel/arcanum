@@ -1,7 +1,7 @@
 import Inventory from './inventory';
-import Raid from './raid';
+import Raid from './chars/raid';
 import Item from './items/item';
-import Equip from './equip';
+import Equip from './chars/equip';
 
 import Sections from 'data/sections.json';
 
@@ -30,10 +30,6 @@ export default class GameState {
 		 * @property {string} restAction - default resting action.
 		 */
 		this.restAction = this.getItem( this.restId );
-
-		this.dungeon = this.dungeon || null;
-
-		this.curEnemy = this.curEnemy || null;
 
 		for( let i = Sections.length-1; i>=0; i-- ) {
 			Sections[i] = new Item( Sections[i] );

@@ -25,7 +25,7 @@
 		"id":"copperskin",
 		"name":"copper skin",
 		"level":1,
-		"require":"earth",
+		"require":"earth.max>=1",
 		"cost":{
 
 			"research":25,
@@ -39,6 +39,51 @@
 			"duration":30,
 			"mod":{
 				"defense":1
+			}
+		}
+
+	},
+	{
+		"id":"minorvenom",
+		"name":"minor venom",
+		"level":1,
+		"require":"nature.max>=1",
+		"cost":{
+
+			"research":25,
+			"scrolls":1
+
+		},
+		"cast":{
+			"earth":1
+		},
+		"attack":{
+			"dot":{
+				"kind":"nature",
+				"duration":10,
+				"damage":"0.75-1.25"
+			}
+		}
+
+	},
+	{
+		"id":"minorwhirl",
+		"name":"minor whirling step",
+		"level":1,
+		"require":"air",
+		"cost":{
+
+			"research":25,
+			"scrolls":1
+
+		},
+		"cast":{
+			"air":1
+		},
+		"dot":{
+			"duration":30,
+			"mod":{
+				"dodge":1
 			}
 		}
 
@@ -102,6 +147,7 @@
 		},
 		"attack":{
 			"damage":"2-3",
+			"kind":"arcane",
 			"tohit":1
 		}
 	},
@@ -130,6 +176,52 @@
 			}
 		}
 
+	},
+
+	{
+		"id":"fire bolt",
+		"desc":"a small bolt of flame.",
+		"require":{
+			"fire.max":5
+		},
+		"level":2,
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"fire":5
+		},
+		"attack":{
+			"damage":"4-5",
+			"tohit":1,
+			"kind":"fire"
+		}
+
+	},
+
+	{
+		"id":"sealwounds",
+		"level":2,
+		"name":"seal wounds",
+		"desc":"a seam of light closes your wounds.",
+		"require":{
+			"light.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"light":5
+		},
+		"effect":{
+			"hp":8
+		}
 	},
 
 	{

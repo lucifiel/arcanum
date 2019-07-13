@@ -8,8 +8,10 @@ mods are applied at start of dot, and removed at the end.
 
 'result' is applied once at the end of a continuous/ongoing event, or dot.
 
+-- skipLocked could cause problems on mods. the lock status of skipped stat could change
+after the initial mod is applied. TODO: this is a long-term problem.
 
 
 slot: item takes a unique slot. can't buy multiple types of same slot.
 
-need: usability requirement.
+need: need represents a combination of an unlock and a usability requirement.

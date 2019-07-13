@@ -247,7 +247,6 @@ export default {
 		if ( evt.title ) this._state.player.title = evt.title;
 
 		if ( evt.effect ){
-			console.log('event effect: ' + evt.id );
 			this.applyEffect( evt.effect, 1 );
 		}
 
@@ -416,7 +415,7 @@ export default {
 
 
 		if ( it.attack && this._state.curAction === this._state.raid ) {
-			this._state.raid.doAttack( it );
+			this._state.raid.spellAttack( it );
 		}
 
 		return true;
@@ -449,7 +448,7 @@ export default {
 
 		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
-		else if ( !it.require || this.unlockTest(it.require,it) ) {
+		else if ( it.require && this.unlockTest(it.require,it) ) {
 
 			this.log.log( 'Unlocked: ' + it.name, it.name + ' has been unlocked.', 'unlock' );
 			it.locked = false;

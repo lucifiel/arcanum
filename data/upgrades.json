@@ -22,7 +22,7 @@
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
-			"research":100,
+			"research":90,
 			"arcana":1,
 			"gold":100
 		},
@@ -174,8 +174,7 @@
 	{
 		"id":"bestiary",
 		"desc":"compendium of magical creatures",
-		"require":"state.animals>=5",
-		"locked":1,
+		"locked":true,
 		"mod":{
 			"research.max":5,
 			"animals.max":1,
@@ -184,10 +183,25 @@
 
 	},
 	{
+		"id":"metronome",
+		"desc":"focus of temporal synchronicity",
+		"require":"state.craft>=10&&state.tempus.max>=1",
+		"cost":{
+			"gold":50,
+			"gems":10
+		},
+		"mod":{
+			"tempus.max":1,
+			"tempus.rate":0.1
+		}
+
+	},
+	{
 
 		"id":"grimoire",
 		"desc":"A handbook for witches",
 		"require":"witch",
+		"locked":true,
 		"cost":{
 			"gold":50,
 			"spirit":2,
@@ -263,7 +277,7 @@
 			"research":50
 		},
 		"mod":{
-			"research.max":20,
+			"research.max":10,
 			"light":{
 				"max":1,
 				"base":0.01
