@@ -5,6 +5,11 @@ import Equip from './chars/equip';
 
 import Sections from 'data/sections.json';
 
+/**
+ * @const {number} MAX_QUICK_SLOTS - maximum number of quickslots.
+ */
+const MAX_QUICK_SLOTS = 10;
+
 export default class GameState {
 
 	constructor(vars=null ){
@@ -25,6 +30,8 @@ export default class GameState {
 		 * @property {string} restId - id of action to use for resting.
 		 */
 		this.restId = this.restId || 'rest';
+
+		this.quickslots = this.quickslots || [];
 
 		/**
 		 * @property {string} restAction - default resting action.
@@ -48,7 +55,7 @@ export default class GameState {
 		/**
 		 * @property {Object[]} dots - timed/ongoing effects.
 		 */
-		this.dots = this.dots || [];
+		this.dots = this.player.dots;
 
 		/**
 		 * @property {Object.<string,number>} counts - counts of all items, including
@@ -66,6 +73,24 @@ export default class GameState {
 
 		this.raid = this.raid || new Raid();
 		this.raid.initState( this );
+
+	}
+
+	/**
+	 * 
+	 * @param {Item} it 
+	 * @param {number} ind 
+	 */
+	setQuickSlot( it, ind=-1 ) {
+
+		// NOTE: using splice for Vue reactivity.
+		if ( ind >= 0 && ind <=10 ) this.quickslots.splice(ind,1, it );
+		else {
+
+			if ( this.quickslots.length <= MAX_QUICK_SLOTS ) this.quickslots.push(it);
+			else this.quickslots.splice( MAX_QUICK_SLOTS-1, 1, it );
+
+		}
 
 	}
 

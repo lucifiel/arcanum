@@ -4,6 +4,7 @@ import VarPath from './varPath';
 import Item from './items/item';
 import Log from 'log.js';
 import GameState from './gameState';
+import Range from './range';
 
 /**
  * @constant {number} TICK_TIME - time in milliseconds between updates.
@@ -520,6 +521,7 @@ export default {
 				if ( target === undefined ) this.applyToTag( p, e, dt );
 				else if ( target.type === 'event' ) this.doEvent( target );
 				else if ( !isNaN(e) ) target.value += e*dt;
+				else if ( e.type instanceof Range ) target.value += e.value;
 				else target.applyVars(e,dt);	
 				
 			}

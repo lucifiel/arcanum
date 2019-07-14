@@ -86,6 +86,11 @@ export default class Player {
 		this.alignment = this.alignment || 'neutral';
 
 		/**
+		 * @property {Object[]} dots - timed/ongoing effects.
+		 */
+		this.dots = this.dots || [];
+
+		/**
 		 * @property {Item} primary - primary attack.
 		 */
 		this.primary = this.primary || null;

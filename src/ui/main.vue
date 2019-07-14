@@ -5,6 +5,7 @@ import ActionsView from './actionsView.vue';
 import upgrades from './upgrades.vue';
 import HomeView from './homes.vue';
 import EquipView from './equip.vue';
+import Quickbar from './quickbar.vue';
 
 import ItemsBase from './itemsBase';
 
@@ -40,6 +41,7 @@ export default {
 		dots:DotView,
 		equip:EquipView,
 		homes:HomeView,
+		quickbar:Quickbar,
 		player:PlayerView,
 		spellbook:Spellbook,
 		adventure:Adventure,
@@ -73,7 +75,8 @@ export default {
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
 
-		window.addEventListener('keydown',evt=>this.keyDown( evt.key ), this );
+		window.addEventListener('keydown',evt=>{
+			this.keyDown( evt.key )} );
 
 		this.unpause();
 
@@ -118,8 +121,16 @@ export default {
 
 		keyDown( key ){
 	
-			//console.log('key:' + key);
-			if ( key === 'g') this.state.fillItem('gold');
+			if ( !isNaN(key) ) {
+
+				if ( this.overItem ) this.state.setQuickSlot( this.overItem, Number(key) );
+				else {
+					let it = this.state.quickslots[Number(key)];
+					if ( it) this.game.tryItem( it );
+				}
+
+			}
+			else if ( key === 'g') this.state.fillItem('gold');
 			else if ( key === 'G' ) this.state.addMax('gold');
 
 			else if ( key === 'r') this.state.fillItem('research');
@@ -290,6 +301,8 @@ export default {
 		<log :log="game.log" />
 
 		</div>
+
+		<div class="bot-bar"><quickbar :state="state" /></div>
 
 	</div>
 </template>
