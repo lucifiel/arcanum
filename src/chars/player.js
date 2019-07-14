@@ -88,7 +88,7 @@ export default class Player {
 		/**
 		 * @property {Item} primary - primary attack.
 		 */
-		this.primary = null;
+		this.primary = this.primary || null;
 
 		this._name = this._name || 'wizrobe';
 

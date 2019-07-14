@@ -5,7 +5,7 @@ import SkillView from './skill.vue';
 
 export default {
 	
-	props:['gameData'],
+	props:['state'],
 	mixins:[ItemBase],
 	components:{
 		'skill':SkillView
@@ -13,7 +13,7 @@ export default {
 	computed:{
 
 		skills(){
-			return this.gameData.filterItems( it=>it.type==='skill' && !this.reslocked(it) );
+			return this.state.filterItems( it=>it.type==='skill' && !this.reslocked(it) );
 		}
 	},
 	methods:{
@@ -30,7 +30,7 @@ export default {
 <template>
 	<div class="skills-view">
 
-		<skill v-for="s in skills" :key="s.id" :skill="s" :active="s===gameData.curAction" @train="train"></skill>
+		<skill v-for="s in skills" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
 
 	</div>
 </template>

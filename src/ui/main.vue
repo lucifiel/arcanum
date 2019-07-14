@@ -38,6 +38,7 @@ export default {
 		log:LogView,
 		skills:SkillsPane,
 		dots:DotView,
+		equip:EquipView,
 		homes:HomeView,
 		player:PlayerView,
 		spellbook:Spellbook,
@@ -47,7 +48,7 @@ export default {
 	data(){
 
 		return {
-			gameState:this.game.state,
+			state:this.game.state,
 			overItem:null,
 			overElm:null
 		};
@@ -106,7 +107,7 @@ export default {
 
 		initEvents(){
 
-			var events = this.gameState.events;
+			var events = this.state.events;
 			for( let evt of events ) {
 
 				if ( evt.locked === false ) this.game.doEvent(evt);
@@ -117,16 +118,25 @@ export default {
 
 		keyDown( key ){
 	
-			key = key.toLowerCase();
 			//console.log('key:' + key);
-			if ( key === 'g') this.gameState.fillItem('gold');
-			else if ( key === 'r') this.gameState.fillItem('research');
-			else if ( key === 'm') this.gameState.fillItem('mana');
-			else if ( key === 'a') this.gameState.fillItem('arcana');
-			else if ( key === 's') this.gameState.fillItem('scrolls');
+			if ( key === 'g') this.state.fillItem('gold');
+			else if ( key === 'G' ) this.state.addMax('gold');
+
+			else if ( key === 'r') this.state.fillItem('research');
+			else if ( key === 'R' ) this.state.addMax('research');
+
+			else if ( key === 'm') this.state.fillItem('mana');
+			else if ( key === 'M' ) this.state.addMax('mana');
+
+			else if ( key === 'a') this.state.fillItem('arcana');
+			else if ( key === 'A' ) this.state.addMax('arcana');
+
+			else if ( key === 's') this.state.fillItem('scrolls');
+			else if ( key === 'S' ) this.state.addMax('scrolls');
+
 			else if ( key === 'p') {
-				if ( this.gameState.curAction && this.gameState.curAction.length) {
-					this.gameState.curAction.progress = this.gameState.curAction.length;
+				if ( this.state.curAction && this.state.curAction.length) {
+					this.state.curAction.progress = this.state.curAction.length;
 				}
 			}
 
@@ -160,7 +170,7 @@ export default {
 		},
 
 		onRest(){
-			this.game.toggleAction( this.gameState.restAction );
+			this.game.toggleAction( this.state.restAction );
 		},
 
 		/**
@@ -203,7 +213,7 @@ export default {
 
 			if ( enter ) this.game.startRaid( dungeon );
 			else {
-				this.gameState.raid.dungeon = null;
+				this.state.raid.dungeon = null;
 				this.game.setAction(null);
 
 			}
@@ -211,14 +221,15 @@ export default {
 		},
 
 		onPrimary( s) {
-			this.gameState.player.setPrimary(s);
+			if ( this.state.player.primary === s) this.state.player.setPrimary(null);
+			else this.state.player.setPrimary(s);
 		}
 
 	},
 	computed:{
 
 		menuItems(){
-			return this.gameState.sections.filter( it=>!this.locked(it) );
+			return this.state.sections.filter( it=>!this.locked(it) );
 		}
 
 	}
@@ -232,46 +243,50 @@ export default {
 		@mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">
-			<dots :dots="gameState.dots" />
+			<dots :dots="state.dots" />
 		</div>
 		<div class="main">
 
 		<!-- popup -->
 		<itempopup :item="overItem" :elm="overElm" />
 
-		<resources :items="gameState.resources"/>
+		<resources :items="state.resources"/>
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
 
 		<template slot="main">
-		<actions :items="gameState.actions" />
-		<upgrades :items="gameState.upgrades" />
+		<actions :items="state.actions" />
+		<upgrades :items="state.upgrades" />
 
 		</template>
 	
 		<template slot="player">
-			<player :player="gameState.player" />
+			<player :player="state.player" />
 		</template>
 
 		<template slot="house">
-			<homes :game-data="gameState" />
+			<homes :state="state" />
 		</template>
 	
 		<template slot="raid">
-			<adventure :state="gameState" />
+			<adventure :state="state" />
 		</template>
 
 		<template slot="skills">
-			<skills :game-data="gameState"></skills>
+			<skills :state="state"></skills>
 		</template>
 
 		<template slot="spells">
-			<spellbook :state="gameState" />
+			<spellbook :state="state" />
+		</template>
+
+		<template slot="equip">
+			<equip :equip="state.equip" />
 		</template>
 
 		</vue-menu>
 
-		<vitals :player="gameState.player" :state="gameState" />
+		<vitals :player="state.player" :state="state" />
 		<log :log="game.log" />
 
 		</div>

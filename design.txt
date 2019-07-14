@@ -1,3 +1,19 @@
+Spell Types per Level Used:
+1:
+arcane
+nature,
+earth,
+air,
+water
+2:
+arcane,
+earth,
+fire,
+light,
+air
+3:
+4:
+5:
 
 Types/Associations:
 

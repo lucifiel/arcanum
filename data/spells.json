@@ -3,7 +3,7 @@
 		"id":"minorstam",
 		"name":"minor fount",
 		"level":1,
-		"locked":false,
+		"require":"water",
 		"cost":{
 
 			"research":25,
@@ -12,7 +12,7 @@
 		},
 		"flavor":"Come thou fount",
 		"cast":{
-			"mana":1
+			"water":1
 		},
 		"dot":{
 			"duration":30,
@@ -106,7 +106,7 @@
 		"dot":{
 			"duration":30,
 			"effect":{
-				"mana":0.01
+				"mana":0.1
 			}
 		}
 
@@ -250,6 +250,28 @@
 				"gold":0.5
 			}
 		}
+	},
+	{
+		"id":"lessermana",
+		"name":"lesser mana",
+		"locked":false,
+		"level":2,
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"mana":2
+		},
+		"dot":{
+			"duration":45,
+			"effect":{
+				"mana":0.2
+			}
+		}
+
 	},
 	{
 		"id":"insight",

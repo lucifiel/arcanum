@@ -9,7 +9,7 @@ import UpgradeView from './upgrades.vue';
  */
 export default {
 
-	props:['gameData'],
+	props:['state'],
 	mixins:[ItemsBase],
 	components:{
 		'upgrades':UpgradeView
@@ -19,7 +19,7 @@ export default {
 	computed:{
 
 		furniture(){
-			return Game.filterItems( it=>this.gameData.typeCost(it.cost, 'space')>0);
+			return Game.filterItems( it=>this.state.typeCost(it.cost, 'space')>0);
 		},
 		viewable(){
 			return this.furniture.filter( it=>!this.reslocked(it));
@@ -34,7 +34,7 @@ export default {
 
 	<div class="home-view">
 
-		<upgrades class="homes-view" :items="gameData.homes" pick-event="home" />
+		<upgrades class="homes-view" :items="state.homes" pick-event="home" />
 		
 		<div class="furniture">
 

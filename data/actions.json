@@ -2,7 +2,7 @@
 	{
 		"id":"stables",
 		"name":"Clean Stables",
-		"desc":"A dirty job...",
+		"desc":"working from home.",
 		"verb":"cleaning",
 		"locked":false,
 		"cost":{
@@ -74,7 +74,7 @@
 	{
 		"id":"treatailments",
 		"name":"Treat Ailments",
-		"desc":"Treat the magical ailments of locals.",
+		"desc":"Cure customers of magical ailments.",
 		"verb":"treating locals",
 		"require":"neophyte",
 		"cost":{

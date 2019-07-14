@@ -105,6 +105,21 @@
 		}
 	},
 	{
+		"id":"trickster",
+		"name":"arcane trickster",
+		"title":"arcane trickster",
+		"desc":"Use magic for deceit and trickery.",
+		"disable":["adept"],
+		"effect":{
+			"gold.max":10,
+			"research.max":2,
+			"mana.max":2,
+			"chaos.max":3,
+			"potions.max":1,
+			"spirit.max":1
+		}
+	},
+	{
 		"id":"bonemonger",
 		"title":"bone monger",
 		"desc":"A collector of re-animator of bones.",

@@ -92,6 +92,20 @@ export default class GameState {
 		return ( cost.hasOwnProperty(type) ) ? cost[type] : 0;
 	}
 
+	/**
+	 * Add to maximum value of resource.
+	 * Used for implementing testing cheats.
+	 * @param {string} id 
+	 * @param {number} amt 
+	 */
+	addMax( id, amt=10) {
+
+		let it = this.getItem(id);
+		if ( !it) return;
+
+		it.max += amt;
+	}
+
 	fillItem( id ) {
 
 		let it = this.getItem(id);

@@ -257,6 +257,36 @@
 	},
 	{
 
+		"id":"coinmagic",
+		"name":"coin tricks",
+		"require":"state.magician+state.trickster>0",
+		"desc":"Manipulate coins to produce more coins.",
+		"cost":{
+			"research":100
+		},
+		"repeat":false,
+		"flavor":"you didn't even palm it.",
+		"mod":{
+			"gold.rate":0.15
+		}
+
+	},
+	{
+		"id":"wishingwells",
+		"name":"Wishing wells",
+		"require":"state.fountain>0&&state.water.max>=10",
+		"cost":{
+			"gold":100,
+			"water":10
+		},
+		"mod":{
+			"fountain.mod.gold.max":50,
+			"fountain.mod.gold.rate":0.1
+		}
+
+	},
+	{
+
 		"id":"satchel",
 		"desc":"Carry more scrolls.",
 		"require":"state.scrolls>=10",

@@ -40,7 +40,9 @@ export default {
 		<table>
 		<tr v-for="s in spells" :key="s.id">
 
-			<td><button v-if="s.learned&&s.attack" @click="dispatch('primary',s)">Primary</button></td>
+			<td><button v-if="s.learned&&s.attack" @click="dispatch('primary',s)">
+				{{ state.player.primary===s ? 'Unequip' : 'Primary' }}
+				</button></td>
 			<td>{{ s.name }}</td>
 			<td>
 				

@@ -505,11 +505,11 @@
 	{
 		"id":"armory",
 		"name":"Armory",
-		"desc":"A simple, bare cell.",
-		"tags":"prison",
+		"desc":"A storeroom of arms.",
+		"tags":"armssource",
 		"require":"adept",
 		"cost":{
-			"gold":200,
+			"gold":300,
 			"space":10
 		},
 		"mod":{

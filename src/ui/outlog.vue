@@ -17,7 +17,6 @@ export default {
 			/**
 			 * @property {string[]} exclude - types to exclude.
 			 */
-			exclude:[]
 		}
 
 	},
@@ -37,9 +36,9 @@ export default {
 	
 	<div class="outlog">
 
-			<span v-for="p in LogTypes" :key="p">
-			<label :for="elmId(p)">{{p}}</label>
+			<span class="check-span" v-for="p in LogTypes" :key="p">
 				<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
+				<label :for="elmId(p)">{{ p }}</label>
 			</span>
 
 			<div class="log-item" v-for="(it,i) in visItems" :key="i">
@@ -56,6 +55,10 @@ export default {
 </template>
 
 <style scoped>
+span.check-span {
+	margin: 2px 4px;
+}
+
 div.outlog {
 	flex-direction: column;
 	height:95vh;
