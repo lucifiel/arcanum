@@ -1,3 +1,14 @@
+
+Types/Associations:
+
+Earth: Stamina/Hp
+Water: Dodge
+Air: Speed/Dodge?
+Fire: damage
+Ice:
+Tempus: Speed
+
+
 ongoing/continuous
 
 master names?

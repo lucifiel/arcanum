@@ -27,6 +27,14 @@
 		"locked":false
 	},
 	{
+		"id":"DR",
+		"name":"Damanage reduction",
+		"desc":"Amount of damage subtracted from total.",
+		"value":5,
+		"max":5,
+		"locked":false
+	},
+	{
 		"id":"resistarcane",
 		"tag":"resist",
 		"name":"arcane",
@@ -80,6 +88,11 @@
 		"tag":"resist",
 		"name":"resist light",
 		"max":1,
+		"value":0
+	},
+	{
+		"id":"evilamt",
+		"tag":"Tendency to evil",
 		"value":0
 	}
 ]

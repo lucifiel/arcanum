@@ -112,7 +112,7 @@ export default class Raid {
 			//this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
 			//Game.log.log( '', this.playerAct, 'combat');
 
-				this.enemy.doDamage( dmg, it );
+				this.enemy.doDamage( dmg, src );
 
 			}
 			if ( it.dot ) this.enemy.addDot( it.dot, src.name );

@@ -40,6 +40,11 @@ export default {
 	<div class="vitals">
 		<table>
 		
+		<tr><td><button class="rest-btn" @click="dispatch('rest')"
+			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
+			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
+			<td>{{ actionStr() }}</td></tr>
+
 		<tr><td>stamina</td>
 		<td><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,stamina)"/></td></tr>
@@ -51,11 +56,6 @@ export default {
 		<tr v-for="it in manaList" :key="it.key"><td>{{it.name}}</td>
 		<td><progbar :value="it.value" :class="it.id" :max="it.max"
 			@mouseenter.native.capture.stop="dispatch('itemover',$event,it)"/></td></tr>
-
-		<tr><td><button class="rest-btn" @click="dispatch('rest')"
-			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
-			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
-			<td>{{ actionStr() }}</td></tr>
 
 		</table>
 

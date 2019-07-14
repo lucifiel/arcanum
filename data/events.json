@@ -159,6 +159,34 @@
 		}
 	},
 	{
+		"id":"geomancer",
+		"title":"geomancer",
+		"desc":"lord of rocks.",
+		"disable":["adept"],
+		"effect":{
+			"research.max":15,
+			"earth.max":4,
+			"earth.rate":0.1,
+			"stamina.max.pct":0.1,
+			"mana.max":2
+		},
+		"flavor":"your empire of dirt"
+	},
+	{
+		"id":"hydromancer",
+		"title":"hydromancer",
+		"desc":"lord of rocks.",
+		"disable":["adept"],
+		"effect":{
+			"research.max":15,
+			"water.max":4,
+			"water.rate":0.1,
+			"dodge.max.pct":0.1,
+			"mana.max":2
+		},
+		"flavor":"your empire of dirt"
+	},
+	{
 		"id":"evoker",
 		"title":"evoker",
 		"desc":"A wielder of raw magical power.",

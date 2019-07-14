@@ -139,7 +139,7 @@
 		"id":"smcage",
 		"name":"rusty cage",
 		"desc":"A cramped cage for keeping tiny test subjects.",
-		"tags":"",
+		"tags":"cage",
 		"cost":{
 			"gold":20,
 			"space":1,
@@ -147,14 +147,14 @@
 		},
 		"flavor":"it doesn't seem very nice.",
 		"mod":{
-
+			"evilamt":1
 		}
 
 	},
 	{
 
 		"id":"terrarium",
-		"desc":"a glass enclosure of crumbling dirt, insects, and small animals.",
+		"desc":"a glass enclosure of dirt, insects, and wormy things.",
 		"tags":"earthsource,tagpen",
 		"cost":{
 			"space":1,
@@ -245,12 +245,11 @@
 	},
 	{
 		"id":"sextant",
-		"desc":"Measure the stars...",
+		"desc":"Measure the stars.",
 		"require":"neophyte",
 		"cost":{
-			"gold":30,
+			"gold":75,
 			"research":50,
-			"arcana":1,
 			"space":2
 		},
 		"mod":{

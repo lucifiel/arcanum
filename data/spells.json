@@ -199,7 +199,7 @@
 		},
 		"attack":{
 			"damage":"4-5",
-			"tohit":1,
+			"tohit":2,
 			"kind":"fire"
 		}
 

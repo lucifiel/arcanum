@@ -219,7 +219,7 @@
 		"id":"speakbirds",
 		"name":"Speak to Birds",
 		"desc":"Learn the secret languages of birds.",
-		"require":"state.animals>2&&state.birdcage>1&&state.nature.max>0",
+		"require":"state.languages>0&&state.animals>2&&state.birdcage>1&&state.nature.max>0",
 		"cost":{
 			"research":20,
 			"nature":1
@@ -437,6 +437,32 @@
 			"arcana":1
 		},
 		"mod":["witchcraft","witch"]
+	},
+	{
+		"id":"up_geomancer",
+		"name":"geomancy",
+		"warn":true,
+		"desc":"Become a geomancer.",
+		"require":"state.adept>0&&state.minerology>=5",
+		"flavor":"",
+		"cost":{
+			"research":100,
+			"arcana":1
+		},
+		"mod":["geomancer"]
+	},
+	{
+		"id":"up_hydromancer",
+		"name":"hydromancy",
+		"warn":true,
+		"desc":"Become a hydromancer.",
+		"require":"state.adept>0&&state.minerology>=5",
+		"flavor":"",
+		"cost":{
+			"research":100,
+			"arcana":1
+		},
+		"mod":["hydromancer"]
 	},
 	{
 

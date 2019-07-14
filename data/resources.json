@@ -176,6 +176,7 @@
 	{
 		"id":"earth",
 		"tags":"manas,elemental",
+		"require":"minerology",
 		"desc":"Earth Mana",
 		"max":1
 	},

@@ -129,6 +129,16 @@
 
 	},
 	{
+		"id":"minerology",
+		"require":"earthsource",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"earth.max":1
+		}
+	},
+	{
 
 		"id":"demonology",
 		"require":"state.witch>0||state.magician>0",
