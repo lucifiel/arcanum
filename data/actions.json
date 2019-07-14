@@ -157,6 +157,7 @@
 		"cost":{
 			"gold":10
 		},
+		"fill":"scrolls",
 		"effect":{
 			"scrolls":1,
 			"evt_scroll":true
@@ -170,6 +171,7 @@
 			"research":10,
 			"mana":2
 		},
+		"fill":"scrolls",
 		"effect":{
 			"scrolls":1
 		}

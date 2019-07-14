@@ -602,6 +602,12 @@ export default {
 			if ( list && list.some(v=>!v.locked&&!v.disabled&&v.value>0)) return false;
 
 		}
+		if ( it.fill ) {
+
+			let t = this.getItem(it.fill);
+			if ( t && t.maxed() ) return false;
+
+		}
 
 		return !it.cost || this.canPay(it.cost);
 	},
