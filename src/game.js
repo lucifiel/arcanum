@@ -73,6 +73,26 @@ export default {
 
 		this.doResources(dt);
 
+		/**
+		 * @todo - inefficient.
+		 */
+		this.testEvents();
+
+	},
+
+	testEvents(){
+
+		for( let evt of this.state.events ) {
+	
+			if ( !evt.locked || evt.disabled ) continue;
+			if ( this.tryUnlock(evt) ) {
+
+				this.doEvent(evt);
+
+			}
+
+		}
+	
 	},
 
 	/**
@@ -468,7 +488,7 @@ export default {
 	 */
 	unlockTest( test, item=null ) {
 
-		if ( test instanceof Array ) return test.every( this.unlockTest, this );
+		if ( test instanceof Array ) return test.every( v=>this.unlockTest(v,item), this );
 
 		let type = typeof test;
 		if ( type === 'function') return test( this._items, item );

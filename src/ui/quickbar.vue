@@ -13,7 +13,6 @@ export default {
 
 		remove(it){
 
-			console.log('REMOVING');
 			let ind = this.slots.indexOf(it);
 			if ( ind >= 0) this.$set( this.slots, ind, undefined );
 
@@ -32,7 +31,7 @@ export default {
 
 		<div class="quickslot" v-for="(it,i) in slots" :key="i">
 
-			<div v-if="it" @click="dispatch('upgrade', it)"
+			<div v-if="it" @click="dispatch('action', it)"
 			@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 			{{ it.name.slice(0,1) }}
 			<div class="remove" @click="remove(it)">&nbsp;</div>
@@ -64,14 +63,17 @@ div.quickslot {
 	padding:2px;
 	position:relative;
 	font-size:xx-large;
-	border: 1px solid rgb(24, 24, 24);
+	border: 1px solid #181818;
 }
 
 div.remove {
 	position:absolute;
-	top:-8px;
-	right:1px;
-	font-size: smaller;
+	border: 1px solid #181818;
+	top:0px;
+	right:0px;
+	margin: 0px;
+	padding: 0px;
+	font-size: 0.8rem;
 }
 
 div.remove::after {

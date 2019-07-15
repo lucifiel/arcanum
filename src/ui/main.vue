@@ -20,6 +20,15 @@ import Adventure from './adventure.vue';
 
 import { TICK_TIME } from '../game';
 
+const cheatKeys = {
+	g:'gold',
+	s:'scrolls',
+	t:'stamina',
+	m:'mana',
+	c:'codices',
+	a:'arcana',
+	r:'research'
+}
 /**
  * @listens [sell,itemover,itemout]
  */
@@ -75,13 +84,11 @@ export default {
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
 
+		//document.onkeydown = evt=>{this.keyDown(evt); evt.stopPropagation();}
 		window.addEventListener('keydown',evt=>{
-			this.keyDown( evt.key )} );
+			this.keyDown( evt ); evt.stopPropagation(); }, false );
 
 		this.unpause();
-
-		// game events.
-		this.initEvents();
 
 	},
 	methods:{
@@ -108,19 +115,9 @@ export default {
 
 		},
 
-		initEvents(){
-
-			var events = this.state.events;
-			for( let evt of events ) {
-
-				if ( evt.locked === false ) this.game.doEvent(evt);
-
-			}
-
-		},
-
-		keyDown( key ){
+		keyDown( e ){
 	
+			let key = e.key.toLowerCase();
 			if ( !isNaN(key) ) {
 
 				if ( this.overItem ) this.state.setQuickSlot( this.overItem, Number(key) );
@@ -129,25 +126,19 @@ export default {
 					if ( it) this.game.tryItem( it );
 				}
 
-			}
-			else if ( key === 'g') this.state.fillItem('gold');
-			else if ( key === 'G' ) this.state.addMax('gold');
+			} else {
 
-			else if ( key === 'r') this.state.fillItem('research');
-			else if ( key === 'R' ) this.state.addMax('research');
-
-			else if ( key === 'm') this.state.fillItem('mana');
-			else if ( key === 'M' ) this.state.addMax('mana');
-
-			else if ( key === 'a') this.state.fillItem('arcana');
-			else if ( key === 'A' ) this.state.addMax('arcana');
-
-			else if ( key === 's') this.state.fillItem('scrolls');
-			else if ( key === 'S' ) this.state.addMax('scrolls');
-
-			else if ( key === 'p') {
-				if ( this.state.curAction && this.state.curAction.length) {
-					this.state.curAction.progress = this.state.curAction.length;
+				for( let p in cheatKeys ) {
+					if ( key === p ) {
+						if ( e.shiftKey ) this.state.addMax( cheatKeys[p] );
+						else this.state.fillItem( cheatKeys[p]);
+						break;
+					}
+				}
+				if ( key === 'p') {
+					if ( this.state.curAction && this.state.curAction.length) {
+						this.state.curAction.progress = this.state.curAction.length;
+					}
 				}
 			}
 
@@ -161,7 +152,12 @@ export default {
 			this.game.unequip(slot, it)
 		},
 
+		/**
+		 * Drop item from inventory.
+		 * @param {Item} it - item to drop
+		 */
 		drop(it) {
+			this.state.inventory.remove(it);
 		},
 
 		onSell(it) {
@@ -238,6 +234,24 @@ export default {
 
 	},
 	computed:{
+
+		completed() {
+
+			let a = [];
+			for( let evt of this.state.events ) {
+	
+				if ( !evt.locked || a.disabled ) a.push(evt);
+				else if ( this.game.tryUnlock(evt) ) {
+
+					this.game.doEvent(evt);
+					a.push(evt);
+
+				}
+
+			}
+			return a;
+
+		},
 
 		menuItems(){
 			return this.state.sections.filter( it=>!this.locked(it) );

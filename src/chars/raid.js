@@ -13,6 +13,12 @@ export default class Raid {
 	get cost() { return this.dungeon ? this.dungeon.cost : null; }
 
 	get progress(){ return this.dungeon.progress; }
+	/**
+	 * For cheating only.
+	 */
+	set progress(v){
+		this.dungeon.progress=v;
+	}
 	get length() { return this.dungeon.length; }
 
 	get enemy() { return this._enemy;}

@@ -63,6 +63,7 @@
 	{
 		"id":"pestcontrol",
 		"name":"Leaky Cellar",
+		"require":"evt_pestcontrol",
 		"level":3,
 		"length":25,
 		"cost":{

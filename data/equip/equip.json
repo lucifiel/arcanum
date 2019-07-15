@@ -19,6 +19,11 @@
 
 	},
 	{
+		"id":"belt1",
+		"mod":{
+			"pouch.max":2,
+			"purse.max":1
+		}
 
 	},
 	{

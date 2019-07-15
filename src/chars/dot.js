@@ -5,6 +5,14 @@ export default class Dot {
 		Object.assign( this, vars );
 
 		if ( name ) this.name = name;
+
+		/**
+		 * @property {boolean} stack - ability of dot to stack.
+		 */
+
+		/**
+		 * @private {number} acc - integer accumulator
+		 */
 		this.acc = 0;
 
 	}
