@@ -113,7 +113,7 @@ export default class Raid {
 	 */
 	playerAttack( it, src ) {
 
-		if ( this.tryHit(this.player) ) {
+		if ( this.tryHit(this.player, this.enemy ) ) {
 
 			if ( it.damage != null ) {
 
@@ -136,13 +136,32 @@ export default class Raid {
 
 	}
 
+	enemyAttack( enemy ) {
+
+		//console.log('monster attack: ' + atk);
+
+		if ( this.tryHit( enemy, this.player ) ) {
+
+			let dmg = this.getDamage( enemy.damage );
+
+			this.enemyAct = this.player.name + ' hit: ' + dmg.toFixed(1);
+
+			this.player.hp -= dmg;
+			if ( this.player.hp <= 0 ) this.playerDied();
+
+		} else {
+			this.enemyAct = enemy.name + ' misses';
+		}
+
+	}
+
 	/**
 	 * Rolls a player attack roll against the current enemy.
-	 * @param {Object} it - attack object
+	 * @param {Object} attacker - attack object
 	 * @returns {boolean} true if enemy hit.
 	 */
-	tryHit( it ){
-		return Math.random()*it.tohit >= Math.random()*this.enemy.defense;
+	tryHit( attacker, defender ){
+		return Math.random()*attacker.tohit >= Math.random()*defender.defense;
 	}
 
 	/**
@@ -154,26 +173,6 @@ export default class Raid {
 		if ( dmg instanceof Range) return dmg.value;
 		else if ( !isNaN(dmg) ) return dmg;
 		else return dmg( this.state, this.player, this.enemy );
-
-	}
-
-	enemyAttack( enemy ) {
-
-		//console.log('monster attack: ' + atk);
-
-		if (  Math.random()*enemy.tohit >= Math.random()*this.player.defense ) {
-
-			let dmg = enemy.min +
-				Math.round( Math.random()*( enemy.max-enemy.min) );
-
-			this.enemyAct = this.player.name + ' hit: ' + dmg.toFixed(1);
-
-			this.player.hp -= dmg;
-			if ( this.player.hp <= 0 ) this.playerDied();
-
-		} else {
-			this.enemyAct = enemy.name + ' misses';
-		}
 
 	}
 
@@ -203,7 +202,7 @@ export default class Raid {
 		// can go over by cheat codes, or possibly unknown future skip-buffs.
 		this.dungeon.progress = this.dungeon.length;
 
-		this.player.exp +=  (this.dungeon.level)*( 5 + this.dungeon.length );
+		this.player.exp +=  (this.dungeon.level)*( 10 + this.dungeon.length );
 		this.dungeon = null;
 		Game.doRest();
 

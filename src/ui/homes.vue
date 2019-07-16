@@ -14,7 +14,20 @@ export default {
 	components:{
 		'upgrades':UpgradeView
 	},
+	data(){
+
+		return {
+			/**
+			 * @property {boolean} switching - true when switching homes.
+			 */
+			switching:false
+		}
+
+	},
 	methods:{
+		toggleSwitch(){
+			this.switching = !this.switching;
+		}
 	},
 	computed:{
 
@@ -34,8 +47,13 @@ export default {
 
 	<div class="home-view">
 
-		<upgrades class="homes-view" :items="state.homes" pick-event="home" />
-		
+		<div>
+
+			<button @click="toggleSwitch">{{ switching ? 'Done' : 'Switch' }}</button>
+			<upgrades class="homes-view" :items="state.homes" pick-event="home" />
+
+		</div>
+
 		<div class="furniture">
 
 		<table class="furniture">
@@ -61,11 +79,15 @@ export default {
 
 <style scoped>
 
+div.home-view {
+	height:100%;
+}
+
 div.furniture {
 	display:flex;
 	overflow-y:auto;
 	flex-direction: column;
-	height:0.95vh;
+	height:95vh;
 }
 
 table tr, table th {

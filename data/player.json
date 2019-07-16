@@ -19,6 +19,11 @@
 		"locked":false
 	},
 	{
+		"id":"exp",
+		"value":0,
+		"locked":false
+	},
+	{
 		"id":"dodge",
 		"value":5,
 		"max":5,

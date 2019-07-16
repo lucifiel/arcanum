@@ -81,7 +81,8 @@ export default {
 
 		for( let it of arr ) {
 
-			if ( it.require ) this.parseRequire( it, 'require');
+			this.parseSub(it);
+			/*if ( it.require ) this.parseRequire( it, 'require');
 			if ( it.need ) this.parseRequire( it, 'need');
 	
 			if ( it.mod ) it.mod = this.parseSub(it.mod);
@@ -94,7 +95,7 @@ export default {
 			if ( it.dot) {
 				if ( it.dot.effect ) this.parseSub( it.dot.effect );
 				if ( it.dot.mod ) this.parseSub( it.dot.mod );
-			}
+			}*/
 
 		}
 
@@ -104,13 +105,11 @@ export default {
 	 * Parse a requirement-type object.
 	 * currently: 'require' or 'need'
 	 */
-	parseRequire( obj, p='require' ){
-
-		let sub = obj[p];
+	parseRequire( sub ){
 
 		// REQUIRE
-		if ( typeof sub === 'string' && !IdTest.test(sub )) obj[p] = this.makeTestFunc( sub );
-		else obj[p] = this.parseSub( sub );
+		if ( typeof sub === 'string' && !IdTest.test(sub )) return this.makeTestFunc( sub );
+		else return this.parseSub( sub );
 
 	},
 
@@ -131,8 +130,9 @@ export default {
 				if ( type === 'string' ){
 
 					//console.log('parse string: ' + p + ' --> ' + obj );
-					if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
+					if ( p === 'require' || p === 'need') sub[p] = this.parseRequire( obj );
 					else if (!isNaN(obj)) sub[p] = Number(obj);
+					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);
 
 				} else if ( type === 'object' ) this.parseSub(obj);
@@ -168,10 +168,11 @@ export default {
 	 * Create a function which performs an arbitrary effect.
 	 * player and target params are given for simplicity.
 	 * target is the current enemy, if any.
+	 * dt is the elapsed time.
 	 * @param {*} text 
 	 */
 	makeEffectFunc( text ) {
-		return new Function( 'state', 'player', 'target', text );
+		return new Function( 'state', 'target', 'dt', text );
 	},
 
 	/**

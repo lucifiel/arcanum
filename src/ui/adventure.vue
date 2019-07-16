@@ -53,9 +53,9 @@ export default {
 		<td>{{ d.name }}</td>
 		<td><progbar class="dungeon" :value="d.progress" :max="d.length" /></td>
 		<td><button class="raid-btn" :disabled="!game.runnable(d)"
-			@click="dispatch( 'raid', d, raid.dungeon !== d )"
+			@click="dispatch( 'raid', d, !raiding || (raid.dungeon !== d) )"
 			@mouseenter.capture.stop="dispatch('itemover', $event, d )">
-			{{ raiding && raid.dungeon === d ? 'Stop' : 'Enter' }}</button></td>
+			{{ raiding && (raid.dungeon === d) ? 'Stop' : 'Enter' }}</button></td>
 
 	</tr>
 	</table>

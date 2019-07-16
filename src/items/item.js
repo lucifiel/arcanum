@@ -79,9 +79,7 @@ export default class Item {
 	}
 
 	get length() { return this._length; }
-	set length(v) {
-		this._length = v;
-	}
+	set length(v) { this._length = v; }
 
 	/**
 	 * @property {Stat} rate - rate of stat change in value/second.

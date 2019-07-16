@@ -37,7 +37,7 @@ export default class Dungeon extends Item {
 		 * @property {number} progress
 		 */
 		this.progress = this.progress || 0;
-		this._length = this._length || 100;
+		this.length = this.length || 100;
 
 		this.repeat = ( this.repeat === undefined||this.repeat===null ) ? true : this.repeat;
 
@@ -74,11 +74,13 @@ export default class Dungeon extends Item {
 
 		if ( this.boss ) {
 
-			if ( this.progress === this.length-1 && typeof this.boss === 'string' ) {
-				return this.boss;
+			if ( typeof this.boss === 'string') {
+
+				if ( this.progress === this.length-1) return this.boss;
+
 			} else {
 
-				if ( this.boss[this.progress+1]) return this.boss[this.progress+1];
+				if ( this.boss.hasOwnProperty( (this.progress+1) ) ) return this.boss[this.progress+1];
 			}
 
 		}
