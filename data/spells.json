@@ -129,7 +129,7 @@
 
 			"duration":30,
 			"effect":{
-				"hp":0.1
+				"hp":0.2
 			}
 
 		}
@@ -294,7 +294,8 @@
 		"dot":{
 			"duration":45,
 			"effect":{
-				"lore.rate":0.5
+				"lore.rate":0.5,
+				"naturelore.rate":0.2
 			}
 		}
 	}

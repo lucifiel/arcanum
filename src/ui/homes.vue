@@ -31,6 +31,10 @@ export default {
 	},
 	computed:{
 
+		homesAvail() {
+			return this.state.homes.filter( v=>!this.locked(v) );
+		},
+
 		furniture(){
 			return Game.filterItems( it=>this.state.typeCost(it.cost, 'space')>0);
 		},
@@ -49,8 +53,10 @@ export default {
 
 		<div>
 
+			<div v-if="homesAvail.length>0">
 			<button @click="toggleSwitch">{{ switching ? 'Done' : 'Switch' }}</button>
-			<upgrades class="homes-view" :items="state.homes" pick-event="home" />
+			<upgrades v-if="switching" class="homes-view" :items="homesAvail" pick-event="home" />
+			</div>
 
 		</div>
 
@@ -87,7 +93,8 @@ div.furniture {
 	display:flex;
 	overflow-y:auto;
 	flex-direction: column;
-	height:95vh;
+	width:100%;
+	height:93vh;
 }
 
 table tr, table th {

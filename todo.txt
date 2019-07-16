@@ -16,3 +16,5 @@ prevent stacking on monster dots
 optional stacking
 
 item generator
+
+convert all data damage to dps

@@ -147,7 +147,7 @@
 		},
 		"result":{
 			"arcana.max":1,
-			"lore.rate":0.1
+			"lore.rate":0.2
 		}
 
 	},
@@ -291,7 +291,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"lore.rate":0.1,
+			"lore.rate":0.15,
 			"arcana.max":0.5
 		}
 	}

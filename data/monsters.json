@@ -77,9 +77,12 @@
 		"tohit":4,
 		"defense":2,
 		"attack":{
-			"name":"venom",
-			"kind":"poison",
-			"damage":"1~3"
+			"dot":{
+				"name":"venom",
+				"duration":5,
+				"kind":"poison",
+				"damage":"1~3"
+			}
 		}
 	},
 	{
@@ -162,6 +165,33 @@
 		"defense":4,
 		"damage":"3~5"
 
+	},
+	{
+		"id":"goblin",
+		"type":"humanoid",
+		"level":4,
+		"hp":5,
+		"tohit":4,
+		"defense":5,
+		"damage":"4~5"
+	},
+	{
+		"id":"skeleton",
+		"type":"undead",
+		"level":4,
+		"hp":6,
+		"tohit":5,
+		"defense":5,
+		"damage":"3~4"
+	},
+	{
+		"id":"giantspider",
+		"type":"natural",
+		"level":5,
+		"hp":10,
+		"tohit":5,
+		"defense":5,
+		"damage":"4~7"
 	}
 
 

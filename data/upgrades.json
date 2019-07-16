@@ -22,9 +22,9 @@
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{
-			"research":90,
-			"arcana":1,
-			"gold":100
+			"gold":100,
+			"research":100,
+			"arcana":1
 		},
 		"effect":"neophyte"
 

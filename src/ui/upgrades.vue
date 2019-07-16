@@ -32,7 +32,7 @@ export default {
 	<button
 		class="wrapped-btn"
 		:disabled="!usable(it)"
-		@click.capture.stop="dispatch( pEvent, it)">{{ it.name || it.id }}</button>
+		@click="dispatch( pEvent, it)">{{ it.name || it.id }}</button>
 	</span>
 
 </div>
