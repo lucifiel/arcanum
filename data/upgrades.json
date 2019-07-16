@@ -18,7 +18,7 @@
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research.max>=70&&state.spellbook>0",
+		"require":"state.research.max>=70&&state.spellbook>0&&state.languages>1",
 		"repeat":false,
 		"flavor":"Why does Master charge so many fees?",
 		"cost":{

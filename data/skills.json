@@ -3,7 +3,6 @@
 	{
 		"id":"animals",
 		"name":"Animal Handling",
-		"require":"state.lore>0",
 		"need":"tagpen",
 		"cost":{
 			"stamina":0.5
@@ -19,7 +18,7 @@
 		"id":"herbs",
 		"school":["nature"],
 		"name":"herbalism",
-		"require":"state.lore>0",
+		"require":"lore",
 		"need":"taggarden",
 		"cost":{
 			"stamina":0.25
@@ -47,7 +46,6 @@
 	{
 		"id":"lore",
 		"school":"arcane",
-		"require":"state.lore>=7",
 		"verb":"reading lore",
 		"locked":false,
 		"cost":{
@@ -69,7 +67,7 @@
 	{
 		"id":"languages",
 		"school":"lore",
-		"require":"neophyte",
+		"require":"lore",
 		"verb":"linguisticizing",
 		"cost":{
 			"stamina":0.2
@@ -78,7 +76,8 @@
 			"research":0.01
 		},
 		"result":{
-			"research.max":5
+			"research.max":5,
+			"lore.rate":0.1
 		}
 
 	},
@@ -99,7 +98,7 @@
 	{
 
 		"id":"anatomy",
-		"require":"state.neophyte>=0&&state.lore>=5",
+		"require":"state.neophyte>=0&&state.lore>=6",
 		"school":["nature","shadow","light"],
 		"cost":{
 			"stamina":0.5
@@ -147,7 +146,8 @@
 			"hp":0.1
 		},
 		"result":{
-			"arcana.max":1
+			"arcana.max":1,
+			"lore.rate":0.1
 		}
 
 	},

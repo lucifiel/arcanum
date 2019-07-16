@@ -16,7 +16,7 @@
 	"name":"Adept",
 	"title":"adept",
 	"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-	"disable":["neophyte", "study", "bedroom", "alcove","errands","leavemaster","slaymaster"],
+	"disable":["neophyte", "study", "atticbedroom", "alcove","errands","leavemaster","slaymaster", "pestcontrol"],
 	"effect":{
 		"research.max":5,
 		"player.exp":10

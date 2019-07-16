@@ -1,19 +1,29 @@
 import ResourceList from 'data/resources.json';
 import UpgradeList from 'data/upgrades.json';
 import ActionList from 'data/actions.json';
+
 import HomeList from 'data/homes.json';
+import Furniture from 'data/furniture';
 import SkillList from 'data/skills.json';
-import EventList from 'data/events.json';
-import Dungeons from 'data/dungeons.json';
+
 import PlayerStats from 'data/player.json';
 import SpellList from 'data/spells.json';
-import Furniture from 'data/furniture';
+
 import MonsterList from 'data/monsters';
+import Dungeons from 'data/dungeons.json';
+
+import EventList from 'data/events.json';
 import ClassList from 'data/classes';
+
+// WEARABLES
+import Armors from 'data/equip/armors';
+import Weapons from 'data/equip/weapons';
+//import Equips from 'data/equip/equip';
 
 import Item from 'items/item';
 import Player from './chars/player';
 
+import Wearable from './items/wearable';
 import Range, {RangeTest} from './range';
 import Resource from './items/resource';
 import Upgrade from './items/upgrade';
@@ -46,12 +56,17 @@ export default {
 		this.initJSON( ResourceList );
 		this.initJSON( UpgradeList );
 		this.initJSON( ActionList );
+
 		this.initJSON( HomeList );
+		this.initJSON( Furniture);
+
 		this.initJSON( SkillList );
-		this.initJSON ( Dungeons );
+		this.initJSON( Dungeons );
 		this.initJSON( PlayerStats );
 		this.initJSON( SpellList );
-		this.initJSON( Furniture);
+
+		this.initJSON( Armors );
+		this.initJSON( Weapons );
 
 		this.initJSON( EventList );
 		this.initJSON( ClassList);
@@ -193,6 +208,9 @@ export default {
 		this.initItems( SpellList, Spell );
 
 		this.initItems( MonsterList, Monster, 'monster', 'monster' );
+
+		gd.armors = this.initItems( Armors, Wearable, 'armor' );
+		gd.weapons = this.initItems( Weapons, Wearable, 'weapon' );
 
 		gd.events = this.initItems( EventList, Item, null, 'event' );
 		gd.events = gd.events.concat( this.initItems( ClassList, Item, null, 'event') );

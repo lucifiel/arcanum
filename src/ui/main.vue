@@ -6,6 +6,7 @@ import upgrades from './upgrades.vue';
 import HomeView from './homes.vue';
 import EquipView from './equip.vue';
 import Quickbar from './quickbar.vue';
+import Inventory from './inventory.vue';
 
 import ItemsBase from './itemsBase';
 
@@ -49,6 +50,7 @@ export default {
 		skills:SkillsPane,
 		dots:DotView,
 		equip:EquipView,
+		inventory:Inventory,
 		homes:HomeView,
 		quickbar:Quickbar,
 		player:PlayerView,
@@ -306,7 +308,12 @@ export default {
 		</template>
 
 		<template slot="equip">
+
+			<div class="inv-equip">
 			<equip :equip="state.equip" />
+			<inventory :inv="state.inventory" />
+			</div>
+
 		</template>
 
 		</vue-menu>
@@ -323,14 +330,6 @@ export default {
 
 <style scoped>
 
-div.full {
-	display:flex;
-	flex-direction: column;
-	flex-grow: 0;
-	width: 100%;
-	margin: 0px;
-}
-
 div.top-bar {
 	display:flex;
 	min-height: 24px;
@@ -340,11 +339,27 @@ div.top-bar {
 div.main {
 	display:flex;
 	flex-direction: row;
+	flex-grow: 1;
+	justify-content: space-between;
 }
 
 div.mid-view {
 	flex-basis:35%;
 	margin: 12px 8px;
 }
+
+div.inv-equip {
+	display:flex;
+	flex-direction: row;
+}
+
+div.full {
+	display:flex;
+	flex-direction: column;
+	min-width:500px;
+	width: 98vw;
+	margin: 0px;
+}
+
 
 </style>

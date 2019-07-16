@@ -415,7 +415,7 @@
 		"id":"fireplace",
 		"name":"Fireplace",
 		"desc":"A cozy place for cooking food and brewing potions.",
-		"require":"state.space>=20",
+		"require":"state.space>=15",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -488,7 +488,7 @@
 	},
 	{
 		"id":"ironcell",
-		"name":"Iron Cell",
+		"name":"iron cell",
 		"desc":"A simple, bare cell.",
 		"tags":"prison",
 		"require":"adept",
@@ -504,7 +504,7 @@
 	},
 	{
 		"id":"armory",
-		"name":"Armory",
+		"name":"armory",
 		"desc":"A storeroom of arms.",
 		"tags":"armssource",
 		"require":"adept",
@@ -527,7 +527,7 @@
 		"cost":{
 			"gold":30,
 			"gems":5,
-			"light":10,
+			"light":2,
 			"space":1
 		},
 		"mod":{

@@ -16,10 +16,10 @@ export default {
 <template>
 	<div class="equip">
 
-		<div v-for="(slot,p) in equip.slots" :key="p">
-			{{ slot.name + ':' }}
-			<div v-if="slot.empty()">None</div>
-			<div v-else>
+		<div class="equip-slot" v-for="(slot,p) in equip.slots" :key="p">
+			<span class="slot-name">{{ slot.name + ':' }}</span>
+			<span class="slot-item" v-if="slot.empty()">None</span>
+			<span class="slot-item" v-else>
 
 				<div v-if="slot.multi()">
 
@@ -32,7 +32,7 @@ export default {
 					{{ slot.item.name }}<button @click="dispatch('unequip', slot, it )">Unequip</button>
 				</div>
 
-			</div>
+			</span>
 		</div>
 
 	</div>
@@ -40,5 +40,24 @@ export default {
 </template>
 
 <style scoped>
+
+div.equip {
+	display:flex;
+	flex-direction: column;
+}
+
+div.equip-slot {
+	display:inline;
+	margin: 2px 0px;
+}
+
+span.slot-name {
+	display:inline-block;
+	font-weight: bold;
+}
+
+span.slot-item {
+	display: inline-block;
+}
 
 </style>

@@ -1,4 +1,4 @@
-different log items.
+-- different log items.
 
 assign custom rest action.
 
@@ -11,3 +11,8 @@ saving:
 
 popup appears too low on screen.
 popup doesn't appear after screen scroll.
+
+prevent stacking on monster dots
+optional stacking
+
+item generator

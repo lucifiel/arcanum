@@ -43,7 +43,7 @@
 	{
 		"id":"evt_slay",
 		"name":"Master Slain",
-		"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and freed you to pursue your grand designs.",
+		"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and freed you to pursue your own grander designs.",
 		"effect":{
 			"player.exp":10
 		}

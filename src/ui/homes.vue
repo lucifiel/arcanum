@@ -65,6 +65,7 @@ div.furniture {
 	display:flex;
 	overflow-y:auto;
 	flex-direction: column;
+	height:0.95vh;
 }
 
 table tr, table th {

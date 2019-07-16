@@ -35,6 +35,11 @@
 		"name":"spellbook",
 		"require":"spellbook"
 
+	},
+	{
+		"id":"equip",
+		"name":"equip",
+		"require":"apprentice"
 	}
 
 ]
