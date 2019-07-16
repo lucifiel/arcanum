@@ -1,4 +1,4 @@
-export const RangeTest = /^\d+\.?\d*\-\d+\.?\d*$/i;
+export const RangeTest = /^\d+\.?\d*\~\d+\.?\d*$/i;
 
 export default class Range {
 
@@ -21,14 +21,14 @@ export default class Range {
 		if ( type === 'object' ) Object.assign( this, min );
 		else if ( type === 'string') {
 
-			let parts = min.split('-');
+			let parts = min.split('~');
 			this.min = Number( parts[0] );
 			this.max = Number( parts[1] );
 
 		} else {
 
-			this.min = min;
-			this.max = max === undefined ? min : max;
+			this.min = Number( min );
+			this.max = Number( max === undefined ? min : max );
 
 		}
 

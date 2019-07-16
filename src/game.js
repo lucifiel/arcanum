@@ -42,10 +42,17 @@ export default {
 
 	initEvents() {
 
+		/// events to watch for unlocking.
+		this.watchEvents = [];
+
 		let evts = this._state.events;
 		for( let i = evts.length-1; i>= 0; i-- ) {
 
-			if ( !evts[i].locked ) this.doEvent(evts[i]);
+			var e = evts[i];
+			if ( !e.locked ) this.doEvent(e);
+			else if ( !e.disabled && (e.require||e.need) ) {
+				this.watchEvents.push(e);
+			}
 
 		}
 
@@ -76,20 +83,26 @@ export default {
 		/**
 		 * @todo - inefficient.
 		 */
-		this.testEvents();
+		this.checkEvents();
 
 	},
 
-	testEvents(){
+	checkEvents(){
 
-		for( let evt of this.state.events ) {
-	
-			if ( !evt.locked || evt.disabled ) continue;
-			if ( this.tryUnlock(evt) ) {
+		let a = this.watchEvents;
+		for( let i = a.length-1; i>=0; i-- ) {
 
-				this.doEvent(evt);
+			var e = a[i];
+			if ( e.locked && !e.disabled ) {
+
+				if ( this.tryUnlock(e) ) {
+					this.doEvent(e);			
+				} else continue;
 
 			}
+			a[i] = a[a.length-1];
+			a.pop();
+
 
 		}
 	
@@ -211,6 +224,13 @@ export default {
 		this._state.curAction = this._state.curAction === act ? null : act;
 		this._state.resumeAction = null;
 		return this._state.curAction !== null;
+
+	},
+
+	doRest( resume=false ) {
+
+		this._state.resumeAction = resume===true ? this._state.curAction : null;
+		this._state.curAction = this._state.restAction;
 
 	},
 

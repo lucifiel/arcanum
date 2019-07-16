@@ -55,7 +55,7 @@
 		"min":0,
 		"max":2,
 		"result":{
-			"feather":"0-4"
+			"feather":"0~4"
 		}
 	},
 	{
@@ -91,7 +91,7 @@
 		"min":2,
 		"max":4,
 		"result":{
-			"feather":"1-5"
+			"feather":"1~5"
 		}
 	},
 	{

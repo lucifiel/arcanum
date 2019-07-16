@@ -35,6 +35,11 @@ export default {
 		<tr><td>exp</td><th> {{ round(player.exp) }} / {{ round(player.next ) }} </th></tr>
 		<tr><td>hp</td><th>
 			{{ round( player.hp.value ) }} / {{ round( player.hp.max.value ) }}</th></tr>
+
+		<tr><td>defense</td><th>{{ player.defense }}</th></tr>
+		<tr><td>hit bonus</td><th>{{ player.tohit }}</th></tr>
+
+
 			<tr><td>stamina</td><th>
 			{{ round( player.stamina.value ) }} / {{ round(player.stamina.max.value )}}</th></tr>
 		

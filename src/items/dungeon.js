@@ -3,7 +3,7 @@ import Monster from './monster';
 
 /**
  * @type {Object} Enemy
- * @property {number} weight - weighted chance of attack occuring
+ * @property {number} weight - weighted chance of attack occuring. Not Implemented.
  * @property {number} min - min damage
  * @property {number} max - max damage
  * @property {string} type - attack type
@@ -31,8 +31,12 @@ export default class Dungeon extends Item {
 
 		super(vars);
 
-		this._level = this._level !== undefined ? this._level : 1;
-		this._progress = this._progress || 0;
+		this.level = this._level !== undefined && this._level !== null ? this._level : 1;
+
+		/**
+		 * @property {number} progress
+		 */
+		this.progress = this.progress || 0;
 		this._length = this._length || 100;
 
 		this.repeat = ( this.repeat === undefined||this.repeat===null ) ? true : this.repeat;
@@ -64,13 +68,27 @@ export default class Dungeon extends Item {
 
 	/**
 	 * Get next enemy.
+	 * @returns {string|Monster|Object}
 	 */
 	getEnemy() {
+
+		if ( this.boss ) {
+
+			if ( this.progress === this.length-1 && typeof this.boss === 'string' ) {
+				return this.boss;
+			} else {
+
+				if ( this.boss[this.progress+1]) return this.boss[this.progress+1];
+			}
+
+		}
+
 		return this._enemies[ Math.floor( Math.random()*this._enemies.length ) ];
+
 	}
 
 	levelTest(state, self) {
-		return state.player.level >= self.level;
+		return state.player.level >= self.level-1;
 	}
 
 	/**

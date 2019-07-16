@@ -3,13 +3,13 @@
 	{
 		"id":"sunnyfield",
 		"name":"Sunny Field",
-		"level":0,
+		"level":1,
 		"length":10,
 		"cost":{
 			"stamina":0.4
 		},
 		"result":{
-			"gold":"5-10"
+			"gold":"5~10"
 		},
 		"enemies":[
 
@@ -22,13 +22,13 @@
 	{
 		"id":"placidgrove",
 		"name":"Placid Grove",
-		"level":1,
+		"level":2,
 		"length":12,
 		"cost":{
 			"stamina":0.5
 		},
 		"result":{
-			"gold":"7-14"
+			"gold":"7~14"
 		},
 		"enemies":[
 
@@ -42,13 +42,13 @@
 	{
 		"id":"hills",
 		"name":"Stony Hills",
-		"level":2,
+		"level":3,
 		"length":15,
 		"cost":{
 			"stamina":0.75
 		},
 		"result":{
-			"gold":"10-15"
+			"gold":"10~15"
 		},
 		"enemies":[
 
@@ -64,13 +64,13 @@
 		"id":"pestcontrol",
 		"name":"Leaky Cellar",
 		"require":"evt_pestcontrol",
-		"level":3,
+		"level":4,
 		"length":25,
 		"cost":{
 			"stamina":1
 		},
 		"result":{
-			"gold":"15-20"
+			"gold":"15~20"
 		},
 		"boss":"ratking",
 		"enemies":[

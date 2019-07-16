@@ -18,253 +18,43 @@
 		"desc":"After paying a small fee, you became apprenticed to a local wizard.",
 		"disable":["stables"],
 		"effect":{
-			"research.max":10
+			"research.max":10,
+			"player.exp":5
 		}
 	},
 	{
 
 		"id":"evt_spellbook",
 		"name":"Book of Spells",
-		"desc":"Under your master's supervision, you manager to compile your very own book of spells."
-
-	},
-	{
-		"id":"neophyte",
-		"title":"neophyte",
-		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies.",
-		"disable":["apprentice","chores"],
+		"desc":"Under your master's supervision, you manager to compile your very own book of spells.",
 		"effect":{
-			"gold.rate":0.1,
-			"research.max":5,
-			"lore.max":2
+			"player.exp":5
 		}
+
 	},
 	{
 
 		"id":"evt_pestcontrol",
 		"name":"Pest Control",
 		"desc":"After your daily castigation, your master mentions the rats in the basement have become a problem. Something about stolen shortswords and building barricades. You had better go down and deal with it.",
-		"require":"state.player.level>0"
+		"require":"state.player.level>0&&(state.apprentice+state.neophyte>0)"
 
 	},
 	{
 		"id":"evt_slay",
 		"name":"Master Slain",
-		"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and freed you to pursue your own interests."
-	},
-	{
-		"id":"adept",
-		"name":"Adept",
-		"title":"adept",
-		"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-		"disable":["neophyte", "study", "bedroom", "alcove","errands","leavemaster","slaymaster"],
+		"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and freed you to pursue your grand designs.",
 		"effect":{
-			"research.max":5
+			"player.exp":10
 		}
-	},
-	{
-		"id":"magician",
-		"title":"magician",
-		"desc":"A true practitioner of magic.",
-		"disable":["adept","witch","druid"],
-		"effect":{
-			"research.max":20,
-			"arcana.max":5,
-			"arcana.rate":0.001,
-			"mana.max":5,
-			"mana.rate":0.2
-		}
-	},
-	{
-		"id":"darkmagician",
-		"title":"dark magician",
-		"desc":"A devotee of black magic.",
-		"require":"evil",
-		"disable":["adept","witch","druid","magician"],
-		"effect":{
-			"research.max":20,
-			"arcana.max":5,
-			"mana.max":1,
-			"mana.rate":0.1,
-			"shadow.max":5,
-			"shadow.rate":0.1
-		}
-	},
-	{
-		"id":"witch",
-		"title":"witch",
-		"desc":"Witch",
-		"disable":["adept"],
-		"effect":{
-			"research.max":10,
-			"naturelore.max":5,
-			"animals.max":3,
-			"potions.max":5,
-			"nature.max":1,
-			"spirit.max":2
-		}
-	},
-	{
-		"id":"trickster",
-		"name":"arcane trickster",
-		"title":"arcane trickster",
-		"desc":"Use magic for deceit and trickery.",
-		"disable":["adept"],
-		"effect":{
-			"gold.max":10,
-			"research.max":2,
-			"mana.max":2,
-			"chaos.max":3,
-			"potions.max":1,
-			"spirit.max":1
-		}
-	},
-	{
-		"id":"bonemonger",
-		"title":"bone monger",
-		"desc":"A collector of re-animator of bones.",
-		"require":"state.adept>0&&state.evil>0",
-		"disable":["adept","witch","magician"],
-		"effect":{
-			"research.max":10,
-			"potions.max":5,
-			"shadow.max":5,
-			"spirit.max":5
-		}
-	},
-	{
-		"id":"druid",
-		"title":"druid",
-		"desc":"druid",
-		"disable":["adept"],
-		"effect":{
-			"research.max":5,
-			"naturelore.max":10,
-			"animals.max":5,
-			"potions.max":1,
-			"nature.max":5,
-			"nature.rate":0.1
-		}
-	},
-	{
-		"id":"alchemist",
-		"title":"alchemist",
-		"desc":"alchemist",
-		"disable":["adept"],
-		"effect":{
-			"research.max":20,
-			"potions.max":5,
-			"alchemy.max":5,
-			"arcana.max":2
-		}
-	},
-	{
-		"id":"enchanter",
-		"title":"enchanter",
-		"desc":"A master of charms and enchantments.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":15,
-			"arcana.max":2,
-			"nature.max":5,
-			"mana.max":3,
-			"air.max":5,
-			"water.max":5,
-			"naturelore.max":2
-		}
-	},
-	{
-		"id":"geomancer",
-		"title":"geomancer",
-		"desc":"lord of rocks.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":15,
-			"earth.max":4,
-			"earth.rate":0.1,
-			"stamina.max.pct":0.1,
-			"mana.max":2
-		},
-		"flavor":"your empire of dirt"
-	},
-	{
-		"id":"hydromancer",
-		"title":"hydromancer",
-		"desc":"lord of rocks.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":15,
-			"water.max":4,
-			"water.rate":0.1,
-			"dodge.max.pct":0.1,
-			"mana.max":2
-		},
-		"flavor":"your empire of dirt"
-	},
-	{
-		"id":"evoker",
-		"title":"evoker",
-		"desc":"A wielder of raw magical power.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":5,
-			"arcana.max":1,
-			"mana.max":3,
-			"earth.max":3,
-			"earth.rate":0.1,
-			"cold.max":3,
-			"cold.rate":0.1,
-			"fire.max":3,
-			"fire.rate":0.1
-		}
-	},
-	{
-		"id":"elementalist",
-		"title":"elementalist",
-		"desc":"Master of basic elements.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":5,
-			"elemental.max":5,
-			"elemental.rate":0.2
-		}
-	},
-	{
-		"id":"oracle",
-		"title":"oracle",
-		"desc":"A diviner.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":15,
-			"arcana.max":2,
-			"nature.max":2,
-			"mana.max":3,
-			"air.max":1,
-			"spirit.max":5,
-			"spirit.rate":0.1
-		}
-	},
-	{
-		"id":"mage",
-		"title":"mage",
-		"desc":"A true practitioner of magic.",
-		"disable":["adept"],
-		"effect":{
-			"research.max":40,
-			"arcana.max":2,
-			"mana.max":5
-		}
-	},
-	{
 
-		"id":"battlemage",
-		"title":"Battlemage",
-		"desc":"",
-		"disable":["adept","magician","witch","enchanter"],
+	},
+	{
+		"id":"evt_pestdone",
+		"name":"Pests Cleared",
+		"desc":"With the basement cleared, your master will have more room to stash all the gold you've been earning.",
 		"effect":{
-			"research.max":-10,
-			"mana.max":3,
-			"mana.rate":0.1
+			"player.exp":10
 		}
 
 	},
@@ -276,7 +66,7 @@
 		"effect":{
 			"light.max":1,
 			"light.value":1,
-			"light.base":0.1
+			"light.rate":0.1
 		}
 
 	},

@@ -1,13 +1,14 @@
 import Stat from "../stat";
 import Resource from "../items/resource";
 import Range from '../range';
+import Item from "../items/item";
 
 /**
  * @constant {number} EXP_RATE
  */
 const EXP_RATE = 0.05;
 
-export default class Player {
+export default class Player extends Item {
 
 	get name() { return this._name; }
 	set name(v) { this._name = v;}
@@ -63,7 +64,8 @@ export default class Player {
 
 	constructor( vars=null ){
 
-		if ( vars ) Object.assign( this, vars );
+		super(vars);
+		//if ( vars ) Object.assign( this, vars );
 
 		this._level = this._level || 0;
 		this._title = this._title || 'waif';
@@ -120,6 +122,8 @@ export default class Player {
 	levelUp() {
 
 		this._level++;
+
+		if ( this._level % 2 === 1) this.tohit++;
 
 		this.hp.max += 1;
 		this.stamina.max += 1;

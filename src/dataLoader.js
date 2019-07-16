@@ -9,6 +9,7 @@ import PlayerStats from 'data/player.json';
 import SpellList from 'data/spells.json';
 import Furniture from 'data/furniture';
 import MonsterList from 'data/monsters';
+import ClassList from 'data/classes';
 
 import Item from 'items/item';
 import Player from './chars/player';
@@ -51,7 +52,10 @@ export default {
 		this.initJSON( PlayerStats );
 		this.initJSON( SpellList );
 		this.initJSON( Furniture);
+
 		this.initJSON( EventList );
+		this.initJSON( ClassList);
+
 		this.initJSON( MonsterList );
 
 		this.initGameItems();
@@ -191,6 +195,7 @@ export default {
 		this.initItems( MonsterList, Monster, 'monster', 'monster' );
 
 		gd.events = this.initItems( EventList, Item, null, 'event' );
+		gd.events = gd.events.concat( this.initItems( ClassList, Item, null, 'event') );
 
 		gd.actions = this.initItems( ActionList, Item, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );

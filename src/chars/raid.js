@@ -34,6 +34,10 @@ export default class Raid {
 		if ( vars ) Object.assign(vars, this);
 
 		this.active = this.active || false;
+
+		/**
+		 * @property {Dungeon} dungeon - current dungeon.
+		 */
 		this.dungeon = this.dungeon || null;
 
 		this.enemy = this._enemy || null;
@@ -196,9 +200,12 @@ export default class Raid {
 
 	raidDone() {
 
-		this.player.exp += 5*this.dungeon.length;
+		// can go over by cheat codes, or possibly unknown future skip-buffs.
+		this.dungeon.progress = this.dungeon.length;
+
+		this.player.exp +=  (this.dungeon.level)*( 5 + this.dungeon.length );
 		this.dungeon = null;
-		Game.setAction( this.state.restAction );
+		Game.doRest();
 
 	}
 
