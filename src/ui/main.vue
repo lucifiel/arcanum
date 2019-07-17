@@ -124,11 +124,11 @@ export default {
 		},
 		clear() {
 
-
 			// clear all save data.
 			let store = window.localStorage;
 			store.clear();
-			this.game.reset();
+
+			this.game.reset().then( this.gameLoaded );
 
 		},
 

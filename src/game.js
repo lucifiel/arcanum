@@ -42,6 +42,10 @@ export default {
 	 */
 	reset() {
 
+		this.loaded = false;
+		this.state = null;
+		this._items = null;
+
 		return this.load();
 
 	},
