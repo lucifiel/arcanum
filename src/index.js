@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Main from 'ui/main.vue';
-
-import Game from './game';
+import Confirm from 'ui/confirm.vue';
 
 /**
  * Global dispatch.
@@ -12,6 +11,7 @@ Vue.mixin({
 
 	dispatch:dispatch,
 	components:{
+		confirm:Confirm
 	},
 	methods: {
 
@@ -30,14 +30,11 @@ Vue.mixin({
 
 });
 
-
-Game.init();
-
 var vm = new Vue({
 	el: '#vueRoot',
 	components:{ Main },
 	render( createElm ) {
-		return createElm(Main, { props:{ game:Game } } );
+		return createElm(Main, { props:{} } );
 	}
 
 });

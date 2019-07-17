@@ -1,4 +1,4 @@
-import ResourceList from 'data/resources.json';
+/*import ResourceList from 'data/resources.json';
 import UpgradeList from 'data/upgrades.json';
 import ActionList from 'data/actions.json';
 
@@ -18,7 +18,7 @@ import ClassList from 'data/classes';
 // WEARABLES
 import Armors from 'data/equip/armors';
 import Weapons from 'data/equip/weapons';
-//import Equips from 'data/equip/equip';
+//import Equips from 'data/equip/equip';*/
 
 import Item from 'items/item';
 import Player from './chars/player';
@@ -34,69 +34,106 @@ import VarPath  from 'varPath';
 import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 
+const DataDir = './data/';
+const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
+	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons' ];
+
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
  */
 const IdTest = /^[A-Za-z_]+\w*$/;
-
-export { ResourceList, UpgradeList, ActionList, HomeList };
 
 /**
  * @todo replace with server call.
  */
 export default {
 
-	/**
-	 * @property {} gameData - all game data.
-	 */
-	get gameData() { return this._gameData; },
 
-	init() {
+	loadData() {
 
-		this.initJSON( ResourceList );
-		this.initJSON( UpgradeList );
-		this.initJSON( ActionList );
+		let headers = new Headers();
+		headers.append( 'Content-Type', 'text/json');
+		return Promise.all(
 
-		this.initJSON( HomeList );
-		this.initJSON( Furniture);
+			DataFiles.map(
+				v=>window.fetch( DataDir + v + '.json', {
 
-		this.initJSON( SkillList );
-		this.initJSON( Dungeons );
-		this.initJSON( PlayerStats );
-		this.initJSON( SpellList );
+					method:'GET',
+					headers:headers,
+					mode:'cors',
+					credentials:'same-origin'
+				}).then( r=>{
 
-		this.initJSON( Armors );
-		this.initJSON( Weapons );
+					if ( r.status !== 200 ) return null;
+					return r.json();
+				})
 
-		this.initJSON( EventList );
-		this.initJSON( ClassList);
+			)
 
-		this.initJSON( MonsterList );
+		).then( datas=>{
 
-		this.initGameItems();
+			let raw = {};
+
+			for( let i = datas.length-1; i >= 0; i-- ) {
+
+				this.initJSON( datas[i]);
+				raw[DataFiles[i]] = datas[i];
+
+			}
+
+			return this.initGameData( raw );
+
+		}, err=>{
+			console.error(err);	
+		});
+
+	},
+
+	initGameData( rawData ){
+
+		var gd = {
+			items:{},
+
+			/**
+			 * @property {Object.<string,Item[]>} byTag - items by tag.
+			 */
+			tagLists:{}
+		};
+		
+		this.items = gd.items;
+
+		gd.resources = this.initItems( rawData['resources'], Resource );
+
+		gd.upgrades = this.initItems( rawData['upgrades'], Upgrade, null, 'upgrade' );
+		gd.homes = this.initItems( rawData['homes'], Upgrade, 'home', 'home' );
+		this.initItems( rawData['furniture'], Upgrade, 'furniture', 'furniture' );
+		this.initItems( rawData['skills'], Skill );
+		this.initItems( rawData['dungeons'], Dungeon );
+		this.initItems( rawData['spells'], Spell );
+
+		this.initItems( rawData['monsters'], Monster, 'monster', 'monster' );
+
+		gd.armors = this.initItems( rawData['armors'], Wearable, 'armor' );
+		gd.weapons = this.initItems( rawData['weapons'], Wearable, 'weapon' );
+
+		gd.events = this.initItems( rawData['events'], Item, null, 'event' );
+		gd.events = gd.events.concat( this.initItems( rawData['classes'], Item, null, 'event') );
+
+		gd.actions = this.initItems( rawData['actions'], Item, null, 'action' );
+		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
+
+		gd.player = this.items.player = this.initPlayer( rawData['player'] );
+
+		this.makeLists( gd.tagLists, gd.items );
+
+		return gd;
 
 	},
 
 	initJSON( arr ) {
 
 		for( let it of arr ) {
-
 			this.parseSub(it);
-			/*if ( it.require ) this.parseRequire( it, 'require');
-			if ( it.need ) this.parseRequire( it, 'need');
-	
-			if ( it.mod ) it.mod = this.parseSub(it.mod);
-			if ( it.fill) it.fill = this.parseSub(it.fill);
-			if ( it.effect ) it.effect = this.parseSub(it.effect );
-			if ( it.result ) it.result = this.parseSub(it.result);
-
-			if ( it.attack ) this.parseSub( it.attack );
-
-			if ( it.dot) {
-				if ( it.dot.effect ) this.parseSub( it.dot.effect );
-				if ( it.dot.mod ) this.parseSub( it.dot.mod );
-			}*/
-
 		}
 
 	},
@@ -184,48 +221,6 @@ export default {
 	},
 
 	/**
-	 * Game items as opposed to raw data items.
-	 */
-	initGameItems() {
-
-		var gd = this._gameData = {
-			items:{},
-
-			/**
-			 * @property {Object.<string,Item[]>} byTag - items by tag.
-			 */
-			tagLists:{}
-		};
-		
-		this._items = gd.items;
-
-		gd.resources = this.initItems( ResourceList, Resource );
-
-		gd.upgrades = this.initItems( UpgradeList, Upgrade, null, 'upgrade' );
-		gd.homes = this.initItems( HomeList, Upgrade, 'home', 'home' );
-		this.initItems( Furniture, Upgrade, 'furniture', 'furniture' );
-		this.initItems( SkillList, Skill );
-		this.initItems( Dungeons, Dungeon );
-		this.initItems( SpellList, Spell );
-
-		this.initItems( MonsterList, Monster, 'monster', 'monster' );
-
-		gd.armors = this.initItems( Armors, Wearable, 'armor' );
-		gd.weapons = this.initItems( Weapons, Wearable, 'weapon' );
-
-		gd.events = this.initItems( EventList, Item, null, 'event' );
-		gd.events = gd.events.concat( this.initItems( ClassList, Item, null, 'event') );
-
-		gd.actions = this.initItems( ActionList, Item, null, 'action' );
-		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
-
-		gd.player = this._items.player = this.initPlayer( PlayerStats );
-
-		this.makeLists( gd.tagLists, gd.items );
-
-	},
-
-	/**
 	 * Create lists of tagged items.
 	 * @param {Object.<string,Item[]>} lists 
 	 * @param {Object.<string,Item>} items 
@@ -263,7 +258,7 @@ export default {
 			if ( type ) it.type = type;
 
 			a.push(it);
-			this._items[it.id] = it;
+			this.items[it.id] = it;
 
 		}
 
@@ -279,7 +274,7 @@ export default {
 		for( let def of stats ) {
 
 			res = vars[ def.id ] = new Resource( def );
-			this._items[def.id] = res;
+			this.items[def.id] = res;
 
 		}
 

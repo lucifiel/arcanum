@@ -53,6 +53,7 @@ export default {
 
 		<div>
 
+			<span>home: {{ state.curHome ? state.curHome.name : 'None'}}</span>
 			<div v-if="homesAvail.length>0">
 			<button @click="toggleSwitch">{{ switching ? 'Done' : 'Switch' }}</button>
 			<upgrades v-if="switching" class="homes-view" :items="homesAvail" pick-event="home" />

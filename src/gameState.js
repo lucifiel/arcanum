@@ -12,6 +12,10 @@ const MAX_QUICK_SLOTS = 10;
 
 export default class GameState {
 
+	toJSON(){
+		return JSON.stringify( this );
+	}
+
 	constructor(vars=null ){
 
 		if ( vars ) Object.assign( this, vars );

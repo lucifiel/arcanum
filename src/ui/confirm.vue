@@ -1,6 +1,10 @@
 <script>
 export default {
-	
+
+	/**
+	 * @property {string} confirm - confirm display text.
+	 * @property {string} cancel - cancel display text.
+	 */
 	props:['confirm','cancel'],
 	data(){
 		return {

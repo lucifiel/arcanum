@@ -1,4 +1,4 @@
-import DataLoader from 'dataLoader';
+import DataLoader from './dataLoader';
 import VarPath from './varPath';
 
 import Item from './items/item';
@@ -13,11 +13,14 @@ export const TICK_TIME = 200;
 
 export default {
 
+	toJSON() {
+		return JSON.stringify( this.state );
+	},
+
 	/**
 	 * @property {GameState} gameData
 	 */
-	get state() { return this._state; },
-	set state(v) { this._state =v;},
+	state:null,
 
 	/**
 	 * @property {Object.<string,Item>} items
@@ -25,19 +28,39 @@ export default {
 	get items() { return this._items; },
 
 	/**
+	 * @property {boolean} loaded - true when data is ready and game ready to play.
+	 */
+	loaded:false,
+
+	/**
 	 * @property {Log} log
 	 */
 	log:new Log(),
 
-	init() {
+	/**
+	 * Clear game data.
+	 */
+	reset() {
 
-		DataLoader.init();
+		return this.load();
 
-		this._state = new GameState( DataLoader.gameData );
-		this._items = this._state.items;
+	},
 
-		this.initEvents();
+	load() {
 
+		return this.loader = DataLoader.loadData().then( allData=>{
+
+			this.state = new GameState( allData );
+			this._items = this.state.items;
+			this.initEvents();
+
+			this.loaded = true;
+
+		}, err=>{ console.warn('game err: ' + err )});
+
+	},
+
+	save() {
 	},
 
 	initEvents() {
@@ -45,7 +68,7 @@ export default {
 		/// events to watch for unlocking.
 		this.watchEvents = [];
 
-		let evts = this._state.events;
+		let evts = this.state.events;
 		for( let i = evts.length-1; i>= 0; i-- ) {
 
 			var e = evts[i];
@@ -60,8 +83,8 @@ export default {
 
 	startRaid( dungeon) {
 
-		this._state.raid.setDungeon(dungeon);
-		this.setAction( this._state.raid );
+		this.state.raid.setDungeon(dungeon);
+		this.setAction( this.state.raid );
 
 	},
 
@@ -114,7 +137,7 @@ export default {
 	 */
 	doResources( dt ) {
 
-		let stats = this._state.resources;
+		let stats = this.state.resources;
 		let len = stats.length, stat;
 		for( let i = len-1; i >= 0; i-- ) {
 
@@ -147,7 +170,7 @@ export default {
 	 */
 	doDots( dt ) {
 
-		let updates = this._state.dots;
+		let updates = this.state.dots;
 		let dot;
 
 		for( let i = updates.length-1; i >= 0; i-- ) {
@@ -178,7 +201,7 @@ export default {
 	 */
 	doCurrent( dt ) {
 
-		let action = this._state.curAction;
+		let action = this.state.curAction;
 		if ( !action ) return;
 
 		if ( action.maxed() ) {
@@ -196,8 +219,8 @@ export default {
 
 		}
 
-		if ( action === this._state.raid ) {
-			this._state.raid.update(dt);
+		if ( action === this.state.raid ) {
+			this.state.raid.update(dt);
 
 		} else if ( action.length ) {
 
@@ -221,22 +244,22 @@ export default {
 	 */
 	toggleAction(act) {
 
-		this._state.curAction = this._state.curAction === act ? null : act;
-		this._state.resumeAction = null;
-		return this._state.curAction !== null;
+		this.state.curAction = this.state.curAction === act ? null : act;
+		this.state.resumeAction = null;
+		return this.state.curAction !== null;
 
 	},
 
 	doRest( resume=false ) {
 
-		this._state.resumeAction = resume===true ? this._state.curAction : null;
-		this._state.curAction = this._state.restAction;
+		this.state.resumeAction = resume===true ? this.state.curAction : null;
+		this.state.curAction = this.state.restAction;
 
 	},
 
 	setAction( act ) {
-		this._state.resumeAction = null;
-		this._state.curAction = act;
+		this.state.resumeAction = null;
+		this.state.curAction = act;
 	},
 
 	/**
@@ -245,18 +268,18 @@ export default {
 	 */
 	haltAction() {
 
-		let cur = this._state.curAction;
+		let cur = this.state.curAction;
 
 		// was resting.
-		if ( cur.id === this._state.restId ) {
+		if ( cur.id === this.state.restId ) {
 
-			this._state.curAction = this._state.resumeAction || null;
-			this._state.resumeAction = null;
+			this.state.curAction = this.state.resumeAction || null;
+			this.state.resumeAction = null;
 
 		} else {
 
-			this._state.resumeAction = cur;
-			this._state.curAction = this._state.restAction;
+			this.state.resumeAction = cur;
+			this.state.curAction = this.state.restAction;
 
 		}
 
@@ -285,7 +308,7 @@ export default {
 		if ( evt.maxed() ) return;
 		if ( evt.disable ) this.disable( evt.disable);
 
-		if ( evt.title ) this._state.player.title = evt.title;
+		if ( evt.title ) this.state.player.title = evt.title;
 
 		if ( evt.effect ){
 			this.applyEffect( evt.effect, 1 );
@@ -333,11 +356,11 @@ export default {
 		let costObj = it.cost;
 		if ( !isNaN(costObj) ) {
 
-			this.getItem('gold').value += costObj*this._state.sellRate;
+			this.getItem('gold').value += costObj*this.state.sellRate;
 
 		} else if ( costObj instanceof Object ) {
 
-			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*this._state.sellRate;
+			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*this.state.sellRate;
 			if ( costObj.space ) this.getItem('space').value += costObj.space;
 
 		}
@@ -358,7 +381,7 @@ export default {
 		let it = id instanceof Item ? id : this.getItem(id);
 		if ( !it ) {
 
-			it = this._state.getTagList(id);
+			it = this.state.getTagList(id);
 			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
 			if ( !it ) return;
 
@@ -423,13 +446,13 @@ export default {
 
 		if ( this.tryItem(it) ) {
 
-			let prev = this._state.curHome;
+			let prev = this.state.curHome;
 			/**
 			 * curHome must be removed AFTER to prevent all space being restored.
 			 * @todo: fix this.
 			 */
 
-			 this._state.curHome = it;
+			 this.state.curHome = it;
 			if ( prev ) this.remove( prev );
 
 		}
@@ -455,8 +478,8 @@ export default {
 		if ( it.disable ) this.disable( it.disable );
 
 
-		if ( it.attack && this._state.curAction === this._state.raid ) {
-			this._state.raid.spellAttack( it );
+		if ( it.attack && this.state.curAction === this.state.raid ) {
+			this.state.raid.spellAttack( it );
 		}
 
 		return true;
@@ -467,11 +490,11 @@ export default {
 
 		let id = it.id;
 
-		let cur = this._state.dots.find( d=>d.id===id);
+		let cur = this.state.dots.find( d=>d.id===id);
 		if ( cur !== undefined ) cur.duration = dot.duration;
 		else {
 
-			this._state.dots.push( Object.assign( { id:id, name:it.name }, dot ) );
+			this.state.dots.push( Object.assign( { id:id, name:it.name }, dot ) );
 			if ( dot.mod ) {
 				this.addMod( dot.mod, 1 );
 			}
@@ -520,7 +543,7 @@ export default {
 			if ( it === undefined ) {
 
 				// tag test - if any item with the tag is unlocked, test passes.
-				it = this._state.getTagList(test);
+				it = this.state.getTagList(test);
 				
 				if ( !it ) console.warn('undefined: ' + test );
 
@@ -611,7 +634,7 @@ export default {
 	 */
 	applyToTag( tag, obj, dt ) {
 
-		let target = this._state.getTagList(tag);
+		let target = this.state.getTagList(tag);
 		if ( target ) target.forEach( v=>v.applyVars( obj, dt ) );
 
 	},
@@ -640,7 +663,7 @@ export default {
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
 		else if ( it.slot ) {
 
-			let list = this._state.getTagList(it.slot );
+			let list = this.state.getTagList(it.slot );
 			if ( list && list.some(v=>!v.locked&&!v.disabled&&v.value>0)) return false;
 
 		}
@@ -718,12 +741,12 @@ export default {
 
 	equip( slot, it) {
 
-		this._state.equip.equip( slot, it);
+		this.state.equip.equip( slot, it);
 	},
 
 	unequip( slot, it){
 		
-		this._state.equip.unequip( slot, it);
+		this.state.equip.unequip( slot, it);
 	},
 
 	/**
@@ -770,7 +793,7 @@ export default {
 
 			} else {
 
-				it = this._state.getTagList(id);
+				it = this.state.getTagList(id);
 				if ( it ) it.forEach(v=>this.lock(v,amt), this );
 
 			}

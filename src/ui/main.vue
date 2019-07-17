@@ -1,4 +1,5 @@
 <script>
+import Game from '../game';
 import Menu from './menu.vue';
 import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
@@ -24,6 +25,7 @@ import { TICK_TIME } from '../game';
 const cheatKeys = {
 	g:'gold',
 	s:'scrolls',
+	e:'exp',
 	t:'stamina',
 	m:'mana',
 	c:'codices',
@@ -38,7 +40,6 @@ export default {
 	/**
 	 * @property {Game} game
 	 */
-	props:['game'],
 	mixins:[ItemsBase],
 	components:{
 		resources:ResoucesView,
@@ -61,7 +62,7 @@ export default {
 	data(){
 
 		return {
-			state:this.game.state,
+			state:null,
 			overItem:null,
 			overElm:null
 		};
@@ -69,6 +70,8 @@ export default {
 
 	},
 	created(){
+
+		this.game = Game;
 
 		this.listen( 'sell', this.onSell );
 		this.listen( 'itemover', this.itemOver );
@@ -86,43 +89,75 @@ export default {
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
 
-		//document.onkeydown = evt=>{this.keyDown(evt); evt.stopPropagation();}
-		window.addEventListener('keydown',evt=>{
-			this.keyDown( evt ); evt.stopPropagation(); }, false );
+		console.log('calling Game.load()');
+		Game.load().then( this.gameLoaded );
 
-		this.unpause();
 
 	},
 	methods:{
 
+		gameLoaded() {
+
+			console.log('gameLoaded()');
+			this.state = Game.state;
+
+			window.addEventListener('keydown',evt=>{
+				this.keyDown( evt ); evt.stopPropagation(); }, false );
+
+			this.unpause();
+
+		},
+
 		load() {
+
+			let str = window.localStorage.getItem( 'gameData');
+			let obj = JSON.parse( str );
+
+
 		},
 		save() {
+
+			console.log('saving...');
+			let store = window.localStorage;
+			store.setItem( 'gameData', JSON.stringify(this.game) );
+
 		},
+		clear() {
+
+
+			// clear all save data.
+			let store = window.localStorage;
+			store.clear();
+			this.game.reset();
+
+		},
+
 		pause() {
 			
-			if ( this.interval ) {
-				let int = this.interval;
-				this.interval = null;
+			if ( this.runner ) {
+				let int = this.runner;
+				this.runner = null;
 				clearInterval( int );
 			}
 
 		},
 		unpause() {
 
-			if ( !this.interval ) {
+			if ( this.game.loaded && !this.runner ) {
 				this.game.lastUpdate = Date.now();
-				this.interval = setInterval( ()=>this.game.update(), TICK_TIME );
+				this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
 			}
 
 		},
 
 		keyDown( e ){
-	
+
+			if ( !this.runner ) return;
+
 			let key = e.key.toLowerCase();
 			if ( !isNaN(key) ) {
 
-				if ( this.overItem ) this.state.setQuickSlot( this.overItem, Number(key) );
+				if ( e.shiftKey && this.overItem ) this.state.setQuickSlot( this.overItem, Number(key) );
 				else {
 					let it = this.state.quickslots[Number(key)];
 					if ( it) this.game.tryItem( it );
@@ -270,9 +305,11 @@ export default {
 		@mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">
-			<dots :dots="state.dots" />
+			<dots v-if="state" :dots="state.dots" />
+			<button @click="save">save</button>
+			<confirm @confirm="clear">clear</confirm>
 		</div>
-		<div class="main">
+		<div v-if="state" class="main">
 
 		<!-- popup -->
 		<itempopup :item="overItem" :elm="overElm" />
@@ -323,7 +360,7 @@ export default {
 
 		</div>
 
-		<div class="bot-bar"><quickbar :state="state" /></div>
+		<div v-if="state" class="bot-bar"><quickbar :state="state" /></div>
 
 	</div>
 </template>
