@@ -1,3 +1,6 @@
+/**
+ * CURRENTLY UNUSED.
+ */
 export default class Home {
 
 	/**

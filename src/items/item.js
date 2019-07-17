@@ -7,6 +7,9 @@ import Game from '../game';
  * @property {?number} duration
  */
 
+ const JSONEncode = ["id","locked","locks","value","max","rate","cost",
+ "slot","progress","disabled", "effect"];
+
 /**
  * Game Items base class.
  */
@@ -121,6 +124,17 @@ export default class Item {
 	 */
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
+
+	toJSON(){
+
+		let data = {};
+
+		for( let p of JSONEncode ) {
+			data[p] = JSON.stringify( this[p]);
+		}
+		return data;
+
+	}
 
 	/**
 	 * 

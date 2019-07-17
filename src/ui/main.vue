@@ -124,7 +124,10 @@ export default {
 
 			console.log('saving...');
 			let store = window.localStorage;
-			store.setItem( 'gameData', JSON.stringify(this.game) );
+
+			let json = JSON.stringify( this.state );
+			console.log( json )
+			store.setItem( 'gameData', json );
 
 		},
 		reset() {

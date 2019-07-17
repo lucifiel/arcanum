@@ -3,6 +3,15 @@
  */
 export default class Slot {
 
+	toJSON(){
+		return {
+			id:this.id,
+			item:JSON.stringify(this.item),
+			multi:this.multi,
+			max:JSON.stringify(this.max)
+		}
+	}
+
 	constructor(vars=null){
 
 		if ( vars ) Object.assign( this, vars);

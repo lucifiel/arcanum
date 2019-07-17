@@ -23,6 +23,16 @@ export default class Dungeon extends Item {
 		this.initEnemies(v);
 	}
 
+	toJSON(){
+
+		let data = super.toJSON();
+		data.enemies = JSON.stringify( this.enemies );
+		data.level = JSON.stringify( this.level );
+
+		return data;
+
+	}
+
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 

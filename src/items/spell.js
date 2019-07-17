@@ -2,6 +2,15 @@ import Item from './item';
 
 export default class Spell extends Item {
 
+	toJSON(){
+
+		let data = super.toJSON();
+		data.learned = this.learned;
+		data.cast = JSON.stringify(this.cast);
+
+		return data;
+	}
+
 	constructor(vars=null) {
 
 		super(vars);

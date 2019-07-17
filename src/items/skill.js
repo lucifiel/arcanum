@@ -41,6 +41,15 @@ export default class Skill extends Item {
 	get max() { return this._max; }
 	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
+	toJSON(){
+	
+		let data = super.toJSON();
+		data.level = this.level;
+
+		return data;
+
+	}
+
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 

@@ -5,6 +5,12 @@ export default class Inventory {
 	 */
 	get length() { return this._items.length; }
 
+	toJSON(){
+		return {
+			items:JSON.stringify(this.items),
+			max:JSON.stringify(this.max)
+		}
+	}
 
 	constructor(vars=null){
 

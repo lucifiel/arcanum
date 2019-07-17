@@ -26,7 +26,6 @@ import Player from './chars/player';
 import Wearable from './items/wearable';
 import Range, {RangeTest} from './range';
 import Resource from './items/resource';
-import Upgrade from './items/upgrade';
 import Skill from './items/skill';
 import Monster from './items/monster';
 
@@ -99,9 +98,9 @@ export default {
 
 		gd.resources = this.initItems( rawData['resources'], Resource );
 
-		gd.upgrades = this.initItems( rawData['upgrades'], Upgrade, null, 'upgrade' );
-		gd.homes = this.initItems( rawData['homes'], Upgrade, 'home', 'home' );
-		this.initItems( rawData['furniture'], Upgrade, 'furniture', 'furniture' );
+		gd.upgrades = this.initItems( rawData['upgrades'], undefined, null, 'upgrade' );
+		gd.homes = this.initItems( rawData['homes'], undefined, 'home', 'home' );
+		this.initItems( rawData['furniture'], undefined, 'furniture', 'furniture' );
 		this.initItems( rawData['skills'], Skill );
 		this.initItems( rawData['dungeons'], Dungeon );
 		this.initItems( rawData['spells'], Spell );
@@ -111,10 +110,10 @@ export default {
 		gd.armors = this.initItems( rawData['armors'], Wearable, 'armor' );
 		gd.weapons = this.initItems( rawData['weapons'], Wearable, 'weapon' );
 
-		gd.events = this.initItems( rawData['events'], Item, null, 'event' );
-		gd.events = gd.events.concat( this.initItems( rawData['classes'], Item, null, 'event') );
+		gd.events = this.initItems( rawData['events'], undefined, null, 'event' );
+		gd.events = gd.events.concat( this.initItems( rawData['classes'], undefined, null, 'event') );
 
-		gd.actions = this.initItems( rawData['actions'], Item, null, 'action' );
+		gd.actions = this.initItems( rawData['actions'], undefined, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
 		gd.sections = this.initItems( rawData['sections']);

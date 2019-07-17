@@ -7,12 +7,19 @@ import Dot from './dot';
 export default class Enemy {
 
 	toJSON(){
-		return JSON.stringify( this, (k,v)=>{
 
-			if ( k === 'raid' || k === 'log' ) return undefined;
-			return v;
+		let data = {
+		}
 
-		});
+		for( let k in this ) {
+
+			if ( k[0] === '_' || k === 'raid' || k === 'log') continue;
+			data[k] = JSON.stringify( this[k] );
+
+		}
+
+		return data;
+
 	}
 
 	constructor( vars=null, raid ){

@@ -12,17 +12,21 @@ export default class GameState {
 
 	toJSON(){
 
-		return JSON.stringify( this, (k,v)=>{
+		let data = {
 
-			if ( k === 'items' || !v ) return v;
+			items:JSON.stringify( this.items ),
+			quickslots:this.quickslots.map(v=> v ? v.id : null ),
+			curAction: this.curAction ? this.curAction.id : undefined,
+			curHome: this.curHome ? this.curHome.id : undefined,
+			equip:JSON.stringify( this.equip ),
+			inventory:JSON.stringify( this.inventory ),
+			raid:JSON.stringify( this.raid ),
+			sellRate:this.sellRate,
+			restAction:this.restAction.id
 
-			if ( k === 'tagLists' ) return undefined;
-			if ( k === 'quickslots') return v.map( v => v ? v.id : null );
-			if ( v instanceof Item) return v.id;
+		};
 
-			return v;
-
-		});
+		return data;
 
 	}
 
