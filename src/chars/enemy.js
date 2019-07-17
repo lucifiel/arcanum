@@ -6,6 +6,15 @@ import Dot from './dot';
  */
 export default class Enemy {
 
+	toJSON(){
+		return JSON.stringify( this, (k,v)=>{
+
+			if ( k === 'raid' || k === 'log' ) return undefined;
+			return v;
+
+		});
+	}
+
 	constructor( vars=null, raid ){
 
 		if ( vars ) Object.assign(this.vars);

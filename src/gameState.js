@@ -11,7 +11,19 @@ const MAX_QUICK_SLOTS = 10;
 export default class GameState {
 
 	toJSON(){
-		return JSON.stringify( this );
+
+		return JSON.stringify( this, (k,v)=>{
+
+			if ( k === 'items' || !v ) return v;
+
+			if ( k === 'tagLists' ) return undefined;
+			if ( k === 'quickslots') return v.map( v => v ? v.id : null );
+			if ( v instanceof Item) return v.id;
+
+			return v;
+
+		});
+
 	}
 
 	constructor(vars=null ){
@@ -28,17 +40,12 @@ export default class GameState {
 		 */
 		this.curHome = this.curHome || null;
 
-		/**
-		 * @property {string} restId - id of action to use for resting.
-		 */
-		this.restId = this.restId || 'rest';
-
 		this.quickslots = this.quickslots || [];
 
 		/**
 		 * @property {string} restAction - default resting action.
 		 */
-		this.restAction = this.getItem( this.restId );
+		this.restAction = this.getItem( 'rest' );
 
 		this.inventory = this.inventory || new Inventory();
 		this.equip = this.equip || new Equip();
@@ -50,26 +57,42 @@ export default class GameState {
 		this.sellRate = this.sellRate || 0.5;
 
 		/**
-		 * @property {Object[]} dots - timed/ongoing effects.
-		 */
-		this.dots = this.player.dots;
-
-		/**
-		 * @property {Object.<string,number>} counts - counts of all items, including
-		 * counts of tagged items ( for tag requirements. )
-		 */
-		//this.counts = {};
-
-		/**
 		 * @property {Object.<string,Item[]>} tagLists - tag to array of items with tag.
 		 * makes upgrading/referencing by tag easier.
 		 */
-		this.tagLists = this.tagLists || {};
-
-		this.events = this.events || {};
+		this.tagLists = this.makeLists( this.items );
 
 		this.raid = this.raid || new Raid();
 		this.raid.initState( this );
+
+	}
+
+	/**
+	 * Create lists of tagged items.
+	 * @param {Object.<string,Item>} items
+	 * @returns {Object.<string,Item[]>} lists 
+	 */
+	makeLists( items ) {
+
+		var lists = {};
+
+		for( let p in items ) {
+
+			var it = items[p];
+			var tags = it.tags;
+			if ( !tags ) continue;
+
+			for( var t of tags ){
+
+				var list = lists[t];
+				if ( !list ) lists[t] = list = [];
+				list.push( it );
+
+			}
+
+		}
+
+		return lists;
 
 	}
 

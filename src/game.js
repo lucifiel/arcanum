@@ -50,11 +50,13 @@ export default {
 
 	},
 
-	load() {
+	load( saveData=null ) {
 
 		return this.loader = DataLoader.loadData().then( allData=>{
 
 			this.state = new GameState( allData );
+			if ( saveData ) Object.assign( this.state, saveData );
+
 			this._items = this.state.items;
 			this.initEvents();
 
@@ -174,7 +176,7 @@ export default {
 	 */
 	doDots( dt ) {
 
-		let updates = this.state.dots;
+		let updates = this.state.player.dots;
 		let dot;
 
 		for( let i = updates.length-1; i >= 0; i-- ) {
@@ -275,7 +277,7 @@ export default {
 		let cur = this.state.curAction;
 
 		// was resting.
-		if ( cur.id === this.state.restId ) {
+		if ( cur === this.state.restAction ) {
 
 			this.state.curAction = this.state.resumeAction || null;
 			this.state.resumeAction = null;
@@ -494,11 +496,11 @@ export default {
 
 		let id = it.id;
 
-		let cur = this.state.dots.find( d=>d.id===id);
+		let cur = this.state.player.dots.find( d=>d.id===id);
 		if ( cur !== undefined ) cur.duration = dot.duration;
 		else {
 
-			this.state.dots.push( Object.assign( { id:id, name:it.name }, dot ) );
+			this.state.player.dots.push( Object.assign( { id:id, name:it.name }, dot ) );
 			if ( dot.mod ) {
 				this.addMod( dot.mod, 1 );
 			}
@@ -819,21 +821,6 @@ export default {
 		return a;
 	},
 
-	/**
-	 * Return a list of items containing given tags.
-	 * @param {string[]} tags
-	 * @returns {Item[]}
-	 */
-	filterByTag( tags ) {
-
-		let a = [];
-		for( let p in this._items ) {
-			if ( this._items[p].hasTags(tags) ) a.push(this._items[p]);
-		}
-		return a;
-	
-	},
-	
 	/**
 	 * Assign all items passing the predicate test the given tag.
 	 * @param {Predicate} test 

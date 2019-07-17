@@ -7,6 +7,17 @@ import Range from '../range';
  */
 export default class Raid {
 
+	toJSON() {
+
+		return {
+			dungeon:this.dungeon.id,
+			enemy:JSON.stringify( this.enemy ),
+			playerAct,
+			enemyAct
+		}
+
+	}
+
 	get id() { return this.dungeon.id;}
 	get name() { return this.dungeon.name; }
 
@@ -33,8 +44,6 @@ export default class Raid {
 
 		if ( vars ) Object.assign(vars, this);
 
-		this.active = this.active || false;
-
 		/**
 		 * @property {Dungeon} dungeon - current dungeon.
 		 */
@@ -59,11 +68,7 @@ export default class Raid {
 
 	update(dt) {
 
-		if ( this.active === false ) return;
-		if ( this.dungeon == null ) {
-			this.active = false;
-			return;
-		}
+		if ( this.dungeon == null ) return;
 
 		if ( this.enemy.alive===false ) {
 
@@ -212,7 +217,6 @@ export default class Raid {
 		this.dungeon = d;
 		this.player.timer = 0;
 		if ( d.progress >= d.length ) d.progress = 0;
-		this.active = true;
 	}
 
 }

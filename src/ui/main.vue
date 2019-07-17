@@ -89,8 +89,7 @@ export default {
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
 
-		console.log('calling Game.load()');
-		Game.load().then( this.gameLoaded );
+		this.load();
 
 
 	},
@@ -110,8 +109,14 @@ export default {
 
 		load() {
 
+			this.pause();
+
 			let str = window.localStorage.getItem( 'gameData');
-			let obj = JSON.parse( str );
+			if ( !str ) console.log('no data saved.');
+			let obj = str ? JSON.parse( str ) : null;
+
+			this.game.load( obj ).then( this.gameLoaded );
+
 
 
 		},
@@ -122,7 +127,9 @@ export default {
 			store.setItem( 'gameData', JSON.stringify(this.game) );
 
 		},
-		clear() {
+		reset() {
+
+			this.pause();
 
 			// clear all save data.
 			let store = window.localStorage;
@@ -291,7 +298,6 @@ export default {
 		},
 
 		menuItems(){
-			console.log('getting menu sections');
 			return this.state.sections.filter( it=>!this.locked(it) );
 		}
 
@@ -306,9 +312,10 @@ export default {
 		@mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">
-			<dots v-if="state" :dots="state.dots" />
+			<dots v-if="state" :dots="state.player.dots" />
 			<button @click="save">save</button>
-			<confirm @confirm="clear">clear</confirm>
+			<button @click="load">load</button>
+			<confirm @confirm="reset">reset</confirm>
 		</div>
 		<div v-if="state" class="main">
 

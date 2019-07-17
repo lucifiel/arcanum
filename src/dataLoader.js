@@ -93,11 +93,6 @@ export default {
 
 		var gd = {
 			items:{},
-
-			/**
-			 * @property {Object.<string,Item[]>} byTag - items by tag.
-			 */
-			tagLists:{}
 		};
 		
 		this.items = gd.items;
@@ -125,8 +120,6 @@ export default {
 		gd.sections = this.initItems( rawData['sections']);
 		
 		gd.player = this.items.player = this.initPlayer( rawData['player'] );
-
-		this.makeLists( gd.tagLists, gd.items );
 
 		return gd;
 
@@ -220,32 +213,6 @@ export default {
 	 */
 	makeDmgFunc(text){
 		return new Function( 'state', 'player', 'target', 'return ' + text );
-	},
-
-	/**
-	 * Create lists of tagged items.
-	 * @param {Object.<string,Item[]>} lists 
-	 * @param {Object.<string,Item>} items 
-	 */
-	makeLists( lists, items ) {
-
-
-		for( let p in items ) {
-
-			var it = items[p];
-			var tags = it.tags;
-			if ( !tags ) continue;
-
-			for( var t of tags ){
-
-				var list = lists[t];
-				if ( !list ) lists[t] = list = [];
-				list.push( it );
-
-			}
-
-		}
-
 	},
 
 	initItems( DataList, UseClass=Item, tag=null, type=null ) {
