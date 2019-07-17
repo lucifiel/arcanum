@@ -291,6 +291,7 @@ export default {
 		},
 
 		menuItems(){
+			console.log('getting menu sections');
 			return this.state.sections.filter( it=>!this.locked(it) );
 		}
 

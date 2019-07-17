@@ -36,7 +36,7 @@ import Spell from './items/spell.js';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
-	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons' ];
+	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons','sections' ];
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -122,6 +122,8 @@ export default {
 		gd.actions = this.initItems( rawData['actions'], Item, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
+		gd.sections = this.initItems( rawData['sections']);
+		
 		gd.player = this.items.player = this.initPlayer( rawData['player'] );
 
 		this.makeLists( gd.tagLists, gd.items );
