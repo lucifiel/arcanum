@@ -83,8 +83,12 @@ export default class Item {
 	get rate() { return this._rate; }
 	set rate(v){
 
-		if ( this._rate != null && !isNaN(v) ) this._rate.base = v;
-		else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
+		if ( this._rate ) {
+
+			if ( typeof v === 'object' ) Object.assign( this._rate, v);
+			else this._rate.base = v;
+
+		} else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
 
 	}
 
@@ -119,9 +123,15 @@ export default class Item {
 	toJSON(){
 
 		let data = {};
+		let obj;
 
 		for( let p of JSONEncode ) {
-			data[p] = ( this[p]);
+
+			obj = this[p];
+			if ( obj === null || obj === undefined ) continue;
+
+			data[p] = obj;
+
 		}
 		return data;
 
@@ -148,7 +158,7 @@ export default class Item {
 	doProgress( amt ) {
 
 		this._exp += amt;
-		if ( _exp >= this._length) {
+		if ( this._exp >= this._length) {
 
 			this.value++;
 			if ( this.result ) Game.applyEffect( this.result );

@@ -1,43 +1,43 @@
 [
 
 	{
-		"id":"main",
+		"id":"sect_main",
 		"name":"main",
 		"locked":false
 
 	},
 	{
-		"id":"skills",
+		"id":"sect_skills",
 		"name":"skills",
 		"require":"apprentice"
 
 	},
 	{
-		"id":"house",
+		"id":"sect_house",
 		"name":"home",
 		"require":"apprentice"
 
 	},
 	{
-		"id":"raid",
+		"id":"sect_raid",
 		"name":"adventure",
 		"require":"apprentice"
 
 	},
 	{
-		"id":"player",
+		"id":"sect_player",
 		"name":"player",
 		"locked":false
 
 	},
 	{
-		"id":"spells",
+		"id":"sect_spells",
 		"name":"spellbook",
 		"require":"spellbook"
 
 	},
 	{
-		"id":"equip",
+		"id":"sect_equip",
 		"name":"equip",
 		"require":"apprentice"
 	}

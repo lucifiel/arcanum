@@ -34,7 +34,7 @@ export default class Resource extends Item {
 	get max() { return this._max; }
 	set max(v) {
 
-		if ( !this._max ) {
+		if ( this._max == null ) {
 
 			this._max = new Stat(v);
 			if ( this.reverse ) {
@@ -64,8 +64,8 @@ export default class Resource extends Item {
 		super(vars);
 
 		this._value = this._value || 0;
-		if ( this._max === undefined ) this.max = 0;
-		if ( this._rate == null ) this._rate = new Stat(0);
+		if ( this._max === undefined ) this.max = new Stat(0);
+		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
 
 		this._lastValue = this._value;
 

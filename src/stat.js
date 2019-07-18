@@ -22,19 +22,20 @@ export default class Stat {
 
 	constructor( vars=null ) {
 
-		if ( !isNaN(vars) ) {
-
-			this._base = Number(vars);
-			this._pct = 0;
-
-		} else if ( vars instanceof Object ) Object.assign(this,vars);
-		else if ( typeof vars === 'string') {
+		let type = typeof vars;
+		if ( type === 'object') Object.assign(this,vars);
+		else if ( type === 'string') {
 
 			let res = StatRe.exec( vars );
 			this.base = res[1];
 			this.pct = res.length > 2 ? Number(res[2])/100 : 0;
 
-		}
+		} else if ( !isNaN(vars) ) {
+
+			this._base = Number(vars);
+			this._pct = 0;
+
+		} 
 
 		this._pct = this._pct||0;
 		this._base = this._base||0;

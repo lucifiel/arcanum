@@ -331,33 +331,33 @@ export default {
 
 		<vue-menu class="mid-view" :items="menuItems" active="main">
 
-		<template slot="main">
+		<template slot="sect_main">
 		<actions :items="state.actions" />
 		<upgrades :items="state.upgrades" />
 
 		</template>
 	
-		<template slot="player">
+		<template slot="sect_player">
 			<player :player="state.player" />
 		</template>
 
-		<template slot="house">
+		<template slot="sect_house">
 			<homes :state="state" />
 		</template>
 	
-		<template slot="raid">
+		<template slot="sect_raid">
 			<adventure :state="state" />
 		</template>
 
-		<template slot="skills">
+		<template slot="sect_skills">
 			<skills :state="state"></skills>
 		</template>
 
-		<template slot="spells">
+		<template slot="sect_spells">
 			<spellbook :state="state" />
 		</template>
 
-		<template slot="equip">
+		<template slot="sect_equip">
 
 			<div class="inv-equip">
 			<equip :equip="state.equip" />
