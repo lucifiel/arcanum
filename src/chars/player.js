@@ -69,18 +69,21 @@ export default class Player extends Item {
 
 		let data = super.toJSON();
 
-		data.defense = JSON.stringify( this.defense );
-		data.tohit = JSON.stringify( this.tohit );
-		data.level = JSON.stringify( this.level );
-		data.title = JSON.stringify( this.title );
-		data.name = JSON.stringify( this.name );
+		data.defense = ( this.defense );
+		data.tohit = ( this.tohit );
+		data.level = ( this.level );
+		data.title = ( this.title );
+		data.name = ( this.name );
 
-		data.next = JSON.stringify( this.next );
+		// progress is synonym of 'exp' which is a Resource.
+		data.progress = undefined;
+
+		data.next = ( this.next );
 		// attack timer.
-		data.timer = JSON.stringify( this.timer );
-		data.alignment = JSON.stringify( this.alignment );
-		data.damage = JSON.stringify( this.damage );
-		data.dots = JSON.stringify( this.dots );
+		data.timer = ( this.timer );
+		data.alignment = ( this.alignment );
+		data.damage = ( this.damage );
+		data.dots = ( this.dots );
 
 		//data.speed = JSON.stringify( this.speed );
 		//data.exp = JSON.stringify( this.exp );

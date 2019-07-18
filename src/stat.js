@@ -27,8 +27,10 @@ export default class Stat {
 		else if ( type === 'string') {
 
 			let res = StatRe.exec( vars );
-			this.base = res[1];
-			this.pct = res.length > 2 ? Number(res[2])/100 : 0;
+			if ( res ) {
+				this.base = res[1];
+				this.pct = res.length > 2 ? Number(res[2])/100 : 0;
+			} else console.warn( "Invalid Stat RegEx: " + vars );
 
 		} else if ( !isNaN(vars) ) {
 

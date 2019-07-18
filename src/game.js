@@ -739,6 +739,7 @@ export default {
 		} else if (!isNaN(cost) ) {
 
 			res = this.getItem('gold');
+			if ( !res) console.error('Error: Gold is missing');
 			if ( res.value < cost*unit) return false;
 
 		}
