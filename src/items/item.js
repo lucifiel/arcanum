@@ -8,7 +8,7 @@ import Game from '../game';
  */
 
  const JSONEncode = ["id","locked","locks","value","max","rate","cost",
- "slot","progress","disabled", "effect", "mod", "result"];
+ "slot","exp","disabled", "effect", "mod", "result"];
 
 /**
  * Game Items base class.
@@ -72,7 +72,19 @@ export default class Item {
 	get progress() { return this._exp || 0; }
 	set progress(v){
 		this._exp = v;
+		if ( v >= this._length ) {
+			this.value++;
+			this._exp -= this._length;
+			if ( this.result ) Game.applyEffect( this.result );
+		}
 	}
+
+	/**
+	 * gets/sets experience without checking for level up.
+	 * This is because assigning progress on init could trigger level up.
+	 */
+	get exp(){ return this._exp;}
+	set exp(v) { this._exp = v;}
 
 	get length() { return this._length; }
 	set length(v) { this._length = v; }
@@ -152,18 +164,6 @@ export default class Item {
 		this._value = this._value || 0;
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'warn', 'effect', 'slot', 'length' ]);
-
-	}
-
-	doProgress( amt ) {
-
-		this._exp += amt;
-		if ( this._exp >= this._length) {
-
-			this.value++;
-			if ( this.result ) Game.applyEffect( this.result );
-
-		}
 
 	}
 

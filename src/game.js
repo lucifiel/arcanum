@@ -231,7 +231,7 @@ export default {
 
 		} else if ( action.length ) {
 
-			action.doProgress(dt);
+			action.progress += dt;
 			/// any action effect functions as a dot.
 			if ( action.effect) this.applyEffect( action.effect, dt );
 

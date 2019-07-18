@@ -189,7 +189,7 @@ export default class Raid {
 	enemyDied() {
 
 		this.player.exp += this.enemy.level;
-		this.dungeon.doProgress(1);
+		this.dungeon.progress += 1;
 
 		this.enemyAct = this.enemy.name + ' slain';
 		Game.log.log( '', this.enemyAct, 'combat');

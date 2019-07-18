@@ -22,7 +22,7 @@ export default class Player extends Item {
 	get exp(){ return this._exp; }
 	set exp(v) {
 		this._exp = v;
-		if ( v >= this._next ) this.levelUp();
+		if ( this._next >0 && v >= this._next ) this.levelUp();
 	}
 
 	/**
