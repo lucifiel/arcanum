@@ -316,11 +316,12 @@ export default {
 	<div class="full"
 		@mouseover.capture.stop="dispatch('itemout')">
 
-		<div class="top-bar">
-			<dots v-if="state" :dots="state.player.dots" />
+		<div class="top-bar">	
 			<button @click="save">save</button>
 			<button @click="load">load</button>
 			<confirm @confirm="reset">reset</confirm>
+			<dots v-if="state" :dots="state.player.dots" />
+			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
 		<div v-if="state" class="main">
 
@@ -329,7 +330,7 @@ export default {
 
 		<resources :items="state.resources"/>
 
-		<vue-menu class="mid-view" :items="menuItems" active="main">
+		<vue-menu class="mid-view" :items="menuItems" active="sect_main">
 
 		<template slot="sect_main">
 		<actions :items="state.actions" />
@@ -379,6 +380,10 @@ export default {
 </template>
 
 <style scoped>
+
+span.load-message {
+	padding: 8px 8px 2px;
+}
 
 div.top-bar {
 	display:flex;
