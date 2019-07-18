@@ -37,9 +37,6 @@ export default class Resource extends Item {
 		if ( this._max == null ) {
 
 			this._max = new Stat(v);
-			if ( this.reverse ) {
-				this.value += this._max.value;
-			}
 
 		} else {
 
