@@ -37,9 +37,6 @@ const cheatKeys = {
  */
 export default {
 
-	/**
-	 * @property {Game} game
-	 */
 	mixins:[ItemsBase],
 	components:{
 		resources:ResoucesView,
@@ -71,6 +68,9 @@ export default {
 	},
 	created(){
 
+		/**
+	 	* @property {Game} game
+	 	*/
 		this.game = Game;
 
 		this.listen( 'sell', this.onSell );
@@ -114,6 +114,8 @@ export default {
 			let str = window.localStorage.getItem( 'gameData');
 			if ( !str ) console.log('no data saved.');
 			let obj = str ? JSON.parse( str ) : null;
+
+			console.log('Revived Save: ' + obj );
 
 			this.game.load( obj ).then( this.gameLoaded );
 

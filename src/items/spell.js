@@ -6,7 +6,7 @@ export default class Spell extends Item {
 
 		let data = super.toJSON();
 		data.learned = this.learned;
-		data.cast = JSON.stringify(this.cast);
+		data.cast = (this.cast);
 
 		return data;
 	}

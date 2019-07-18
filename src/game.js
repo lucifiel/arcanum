@@ -52,17 +52,18 @@ export default {
 
 	load( saveData=null ) {
 
-		return this.loader = DataLoader.loadData().then( allData=>{
+		this.loaded = false;
 
-			this.state = new GameState( allData );
-			if ( saveData ) Object.assign( this.state, saveData );
+		return this.loader = DataLoader.loadData( saveData ).then( allData=>{
+
+			this.state = new GameState( allData, saveData );
 
 			this._items = this.state.items;
 			this.initEvents();
 
 			this.loaded = true;
 
-		}, err=>{ console.warn('game err: ' + err )});
+		}, err=>{ console.error('game err: ' + err )});
 
 	},
 
@@ -230,7 +231,7 @@ export default {
 
 		} else if ( action.length ) {
 
-			action.progress += dt;
+			action.doProgress(dt);
 			/// any action effect functions as a dot.
 			if ( action.effect) this.applyEffect( action.effect, dt );
 

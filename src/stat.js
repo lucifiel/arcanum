@@ -22,7 +22,6 @@ export default class Stat {
 
 	constructor( vars=null ) {
 
-
 		if ( !isNaN(vars) ) {
 
 			this._base = Number(vars);

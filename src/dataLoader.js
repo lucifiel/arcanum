@@ -47,8 +47,7 @@ const IdTest = /^[A-Za-z_]+\w*$/;
  */
 export default {
 
-
-	loadData() {
+	loadData( saveData=null ) {
 
 		let headers = new Headers();
 		headers.append( 'Content-Type', 'text/json');
@@ -69,30 +68,53 @@ export default {
 
 			)
 
-		).then( datas=>{
-
-			let raw = {};
-
-			for( let i = datas.length-1; i >= 0; i-- ) {
-
-				this.initJSON( datas[i]);
-				raw[DataFiles[i]] = datas[i];
-
-			}
-
-			return this.initGameData( raw );
-
-		}, err=>{
-			console.error(err);	
-		});
+		).then( datas=>this.dataLoaded(datas, saveData),
+			err=>{ console.error(err); });
 
 	},
 
-	initGameData( rawData ){
+	/**
+	 * 
+	 * @param {Object[][]} datas - array of Object lists of each type. 
+	 * @param {?Object} [gameData=null] - previous save data, if any.
+	 */
+	dataLoaded( datas, gameData=null ) {
+
+		let raw = {};
+
+		let saveItems = gameData ? gameData.items : null;
+
+		if ( gameData ) {
+
+			// parse subs into full objects.
+			for( let p in gameData ) {
+
+				if ( p === 'items') continue;
+				var dataItem = gameData[p];
+				gameData[p] = this.parseSub(dataItem);
+
+			}
+
+		}
+
+		for( let i = datas.length-1; i >= 0; i-- ) {
+
+			this.initJSON( datas[i], saveItems );
+
+			raw[ DataFiles[i] ] = datas[i];
+
+		}
+
+		return this.initGameData( raw, gameData );
+
+	},
+
+	initGameData( rawData, saveState=null ){
 
 		var gd = {
 			items:{},
 		};
+		if ( saveState ) Object.assign( gd, saveState );
 		
 		this.items = gd.items;
 
@@ -118,13 +140,25 @@ export default {
 
 		gd.sections = this.initItems( rawData['sections']);
 		
-		gd.player = this.items.player = this.initPlayer( rawData['player'] );
+		gd.player = this.items.player = this.initPlayer( rawData['player'], saveState ? saveState.player : null );
 
 		return gd;
 
 	},
 
-	initJSON( arr ) {
+	initJSON( arr, saveItems=null ) {
+
+		if ( saveItems ) {
+
+			for( let it of arr ) {
+
+				var saveObj = saveItems[it.id];
+				console.log('MERGING: ' + it.id );
+				if ( saveObj ) this.merge( it, saveObj );
+
+			}
+
+		}
 
 		for( let it of arr ) {
 			this.parseSub(it);
@@ -188,6 +222,48 @@ export default {
 	},
 
 	/**
+	 * Merge two objects with overwrites from src.
+	 * @param {Object} dest 
+	 * @param {Object} src 
+	 */
+	merge( dest, src ) {
+
+		for( let p in src ) {
+
+			var destObj = dest[p];
+			var srcObj = src[p];
+
+			var srcType = typeof srcObj;
+			if ( !destObj || srcType === 'string' || !isNaN(srcObj) ) {
+				dest[p] = srcObj;
+				continue;
+			}
+
+			var destType = typeof( destObj );
+			if ( destType === 'object') this.merge( destObj, srcObj );
+			else if ( destType === 'array' ) {
+
+				if ( srcType === 'array') dest[p] = this.mergeArrays( destObj, srcObj );
+				else if ( !destObj.includes(srcObj) ) destObj.push(srcObj);
+
+			}
+
+
+		}
+
+	},
+
+	/**
+	 * Merge unique elements of two arrays.
+	 * @param {Array} a1 
+	 * @param {Array} a2
+	 * @returns {Array} 
+	 */
+	mergeArrays( a1, a2) {
+		return a1.concat( a2.filter(v=>!a1.includes(v) ) );
+	},
+
+	/**
 	 * Create a boolean testing function from a data string.
 	 * @param {string} text - function text.
 	 */
@@ -234,9 +310,9 @@ export default {
 
 	},
 
-	initPlayer( stats ) {
+	initPlayer( stats, savePlayer=null ) {
 
-		let vars = {};
+		let vars = savePlayer || {};
 
 		let res;
 		for( let def of stats ) {

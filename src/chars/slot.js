@@ -6,9 +6,9 @@ export default class Slot {
 	toJSON(){
 		return {
 			id:this.id,
-			item:JSON.stringify(this.item),
+			item:this.item,
 			multi:this.multi,
-			max:JSON.stringify(this.max)
+			max:this.max
 		}
 	}
 

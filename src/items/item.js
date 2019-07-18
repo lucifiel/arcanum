@@ -72,13 +72,6 @@ export default class Item {
 	get progress() { return this._exp || 0; }
 	set progress(v){
 		this._exp = v;
-		if ( v >= this._length) {
-
-			this.value++;
-			if ( this.result ) Game.applyEffect( this.result );
-
-		}
-
 	}
 
 	get length() { return this._length; }
@@ -89,12 +82,10 @@ export default class Item {
 	 */
 	get rate() { return this._rate; }
 	set rate(v){
-		if ( this._rate != null ){
-			//console.log('rate change: ' + v );
-			this._rate.base = v;
-			console.log('new base: ' + v );
-		}
+
+		if ( this._rate != null && !isNaN(v) ) this._rate.base = v;
 		else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
+
 	}
 
 	/**
@@ -130,7 +121,7 @@ export default class Item {
 		let data = {};
 
 		for( let p of JSONEncode ) {
-			data[p] = JSON.stringify( this[p]);
+			data[p] = ( this[p]);
 		}
 		return data;
 
@@ -151,6 +142,18 @@ export default class Item {
 		this._value = this._value || 0;
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'warn', 'effect', 'slot', 'length' ]);
+
+	}
+
+	doProgress( amt ) {
+
+		this._exp += amt;
+		if ( _exp >= this._length) {
+
+			this.value++;
+			if ( this.result ) Game.applyEffect( this.result );
+
+		}
 
 	}
 

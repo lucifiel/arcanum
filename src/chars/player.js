@@ -62,6 +62,57 @@ export default class Player extends Item {
 	 */
 	get delay() { return this._delay; }
 
+	/**
+	 * NOTE: Elements that are items in themselves are not encoded.
+	 */
+	toJSON() {
+
+		let data = super.toJSON();
+
+		data.defense = JSON.stringify( this.defense );
+		data.tohit = JSON.stringify( this.tohit );
+		data.level = JSON.stringify( this.level );
+		data.title = JSON.stringify( this.title );
+		data.name = JSON.stringify( this.name );
+
+		data.next = JSON.stringify( this.next );
+		// attack timer.
+		data.timer = JSON.stringify( this.timer );
+		data.alignment = JSON.stringify( this.alignment );
+		data.damage = JSON.stringify( this.damage );
+		data.dots = JSON.stringify( this.dots );
+
+		//data.speed = JSON.stringify( this.speed );
+		//data.exp = JSON.stringify( this.exp );
+
+		if ( this.primary ) data.primary = this.primary.id;
+
+		return data;
+
+	}
+
+	/**
+	 * 
+	 * @param {Item[]} items - Game items. 
+	 * @param {Object} data - saved player data.
+	 */
+	reviver( items, data ) {
+
+		if ( data.primary ) this.primary = items[data.primary];
+		if ( data.exp ) this._exp = data.exp;
+
+		this.level = data.level;
+		this.title = data.title;
+		this.tohit = data.tohit;
+		this.defense = data.defense;
+		this.next = data.next;
+		this.timer = data.timer;
+		this.alignment = data.alignment;
+		if ( data.damage ) this.damage = new Range( data.damage );
+		this.dots = data.dots;
+
+	}
+
 	constructor( vars=null ){
 
 		super(vars);
@@ -77,6 +128,8 @@ export default class Player extends Item {
 
 		this._tohit = this._tohit || 2;
 		this._defense = this._defense || 1;
+
+		this.type = "player";
 
 		/**
 		 * @property {number} timer
@@ -101,6 +154,10 @@ export default class Player extends Item {
 
 	}
 
+	/**
+	 * Set player's primary attack.
+	 * @param {Item} s 
+	 */
 	setPrimary( s ) {
 
 		if ( this.primary === s || !s.attack ) return;
@@ -111,6 +168,9 @@ export default class Player extends Item {
 
 	}
 
+	/**
+	 * Clear player's primary attack.
+	 */
 	removePrimary() {
 
 		let p = this.primary;
@@ -132,8 +192,5 @@ export default class Player extends Item {
 		this._next = this._next * ( 1 + EXP_RATE );
 
 	}
-
-	hasTag() { return false; }
-	hasTags() { return false; }
 
 }

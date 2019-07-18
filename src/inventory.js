@@ -7,8 +7,8 @@ export default class Inventory {
 
 	toJSON(){
 		return {
-			items:JSON.stringify(this.items),
-			max:JSON.stringify(this.max)
+			items:(this.items),
+			max:(this.max)
 		}
 	}
 

@@ -16,9 +16,8 @@ export default class Raid {
 	/**
 	 * For cheating only.
 	 */
-	set progress(v){
-		this.dungeon.progress=v;
-	}
+	set progress(v){ this.dungeon.progress=v; }
+
 	get length() { return this.dungeon.length; }
 
 	get enemy() { return this._enemy;}
@@ -33,7 +32,7 @@ export default class Raid {
 
 		return {
 			dungeon:this.dungeon ? this.dungeon.id : undefined,
-			enemy:JSON.stringify( this.enemy ),
+			enemy:this.enemy,
 			playerAct:this.playerAct,
 			enemyAct:this.enemyAct
 		}
@@ -48,6 +47,7 @@ export default class Raid {
 		 * @property {Dungeon} dungeon - current dungeon.
 		 */
 		this.dungeon = this.dungeon || null;
+		if ( typeof this.dungeon === 'string') this.dungeon = Game.getItem(this.dungeon);
 
 		this.enemy = this._enemy || null;
 
@@ -189,7 +189,7 @@ export default class Raid {
 	enemyDied() {
 
 		this.player.exp += this.enemy.level;
-		this.dungeon.progress++;
+		this.dungeon.doProgress(1);
 
 		this.enemyAct = this.enemy.name + ' slain';
 		Game.log.log( '', this.enemyAct, 'combat');

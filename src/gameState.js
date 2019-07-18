@@ -14,13 +14,13 @@ export default class GameState {
 
 		let data = {
 
-			items:JSON.stringify( this.items ),
+			items:( this.items ),
 			quickslots:this.quickslots.map(v=> v ? v.id : null ),
 			curAction: this.curAction ? this.curAction.id : undefined,
 			curHome: this.curHome ? this.curHome.id : undefined,
-			equip:JSON.stringify( this.equip ),
-			inventory:JSON.stringify( this.inventory ),
-			raid:JSON.stringify( this.raid ),
+			equip:( this.equip ),
+			inventory:( this.inventory ),
+			raid:( this.raid ),
 			sellRate:this.sellRate,
 			restAction:this.restAction.id
 
@@ -30,9 +30,13 @@ export default class GameState {
 
 	}
 
-	constructor(vars=null ){
+	/**
+	 * 
+	 * @param {Object} baseData - base game data.
+	 */
+	constructor( baseData, restore=false ){
 
-		if ( vars ) Object.assign( this, vars );
+		Object.assign( this, baseData );
 
 		/**
 		 * @property {Item} curAction - ongoing action.
@@ -44,15 +48,15 @@ export default class GameState {
 		 */
 		this.curHome = this.curHome || null;
 
-		this.quickslots = this.quickslots || [];
-
 		/**
 		 * @property {string} restAction - default resting action.
 		 */
-		this.restAction = this.getItem( 'rest' );
+		this.restAction = this.rectAction || this.getItem( 'rest' );
 
-		this.inventory = this.inventory || new Inventory();
-		this.equip = this.equip || new Equip();
+		this.quickslots = this.quickslots || [];
+
+		this.inventory = new Inventory( baseData.inventory );
+		this.equip = new Equip( baseData.equip );
 
 		/**
  		* @property {number} sellRate - percent of initial cost
@@ -66,8 +70,41 @@ export default class GameState {
 		 */
 		this.tagLists = this.makeLists( this.items );
 
-		this.raid = this.raid || new Raid();
+		this.raid = new Raid( baseData.raid );
 		this.raid.initState( this );
+
+		if ( restore ) this.revive();
+
+	}
+
+	revive() {
+
+		if ( this.curHome ) this.curHome = this.getItem(this.curHome );
+		if ( this.curAction ) this.curAction = this.getItem( this.curAction );
+
+		if ( this.quickslots ) {
+			this.quickslots = this.quickslots.map( v=>this.getItem(v) );
+		}
+
+
+	}
+
+	mergeItems( dest, src ) {
+
+		let it;
+		for( let p in src ) {
+
+			it = dest[p];
+			if ( !it ) {
+				console.warn(`Attempt to revive undefined object: ${p}` );
+				dest[p] = src[p]
+			} else if ( it.hasOwnProperty('reviver' ) ) {
+
+				it.reviver( dest, src[p] );
+
+			} else Object.assign( dest[p], src[p] );
+
+		}
 
 	}
 

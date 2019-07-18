@@ -26,8 +26,8 @@ export default class Dungeon extends Item {
 	toJSON(){
 
 		let data = super.toJSON();
-		data.enemies = JSON.stringify( this.enemies );
-		data.level = JSON.stringify( this.level );
+		//data.enemies = ( this.enemies );
+		data.level = ( this.level );
 
 		return data;
 

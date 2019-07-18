@@ -1,6 +1,10 @@
 export const RangeTest = /^\d+\.?\d*\~\d+\.?\d*$/i;
 
+const SPLIT_CHAR = '~';
+
 export default class Range {
+
+	toJSON() { return this.min + SPLIT_CHAR + this.max; }
 
 	/**
 	 * @property {number} value - getting a range value
@@ -21,7 +25,7 @@ export default class Range {
 		if ( type === 'object' ) Object.assign( this, min );
 		else if ( type === 'string') {
 
-			let parts = min.split('~');
+			let parts = min.split( SPLIT_CHAR );
 			this.min = Number( parts[0] );
 			this.max = Number( parts[1] );
 

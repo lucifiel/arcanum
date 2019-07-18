@@ -14,7 +14,7 @@ export default class Enemy {
 		for( let k in this ) {
 
 			if ( k[0] === '_' || k === 'raid' || k === 'log') continue;
-			data[k] = JSON.stringify( this[k] );
+			data[k] = ( this[k] );
 
 		}
 

@@ -3,7 +3,7 @@ import Slot from './slot';
 export default class Equip {
 
 	toJSON(){
-		return { slots:JSON.stringify( this.slots ) };
+		return { slots:( this.slots ) };
 	}
 
 	constructor( vars=null ) {
