@@ -1,4 +1,4 @@
-export const StatRe = /^([\+\-]?\d+)(?:([\+\-]\d+)\%)?$/i;
+export const StatRe = /^([\+\-]?\d+\.?\d*)(?:([\+\-]\d+\.?\d*)\%)?$/i;
 
 export default class Stat {
 
@@ -28,7 +28,7 @@ export default class Stat {
 
 			let res = StatRe.exec( vars );
 			if ( res ) {
-				this.base = res[1];
+				this.base = Number( res[1] );
 				this.pct = res.length > 2 ? Number(res[2])/100 : 0;
 			} else console.warn( "Invalid Stat RegEx: " + vars );
 

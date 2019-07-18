@@ -8,7 +8,7 @@ import Game from '../game';
  */
 
  const JSONEncode = ["id","locked","locks","value","max","rate","cost",
- "slot","progress","disabled", "effect"];
+ "slot","progress","disabled", "effect", "mod", "result"];
 
 /**
  * Game Items base class.
