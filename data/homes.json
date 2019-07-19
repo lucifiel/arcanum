@@ -106,7 +106,7 @@
 		"cost":75,
 		"mod":{
 			"space.max":30,
-			"research.base":-0.2
+			"research.rate":-0.2
 		},
 		"lock":["latticewindow"]
 
@@ -118,8 +118,8 @@
 		"require":"oracle",
 		"mod":{
 			"space.max":50,
-			"light.base":0.1,
-			"mana.base":0.1
+			"light.rate":0.1,
+			"mana.rate":0.1
 		}
 	},
 	{

@@ -91,7 +91,7 @@
 			"research.max":1,
 			"research.value":1,
 			"spirit.max":1,
-			"spirit.base":0.01
+			"spirit.rate":0.01
 		}
 
 	},
@@ -162,7 +162,7 @@
 		"result":{
 			"research.value":1,
 			"shadow.max":1,
-			"shadow.base":0.01
+			"shadow.rate":0.01
 		}
 
 	},
@@ -178,7 +178,7 @@
 		"result":{
 			"research.value":1,
 			"shadow.max":1,
-			"shadow.base":0.01
+			"shadow.rate":0.01
 		}
 
 	},
@@ -207,7 +207,8 @@
 		"result":{
 			"light.max":1,
 			"light.rate":0.1
-		}
+		},
+		"flavor":"the light fantastic"
 
 	},
 	{
@@ -278,7 +279,7 @@
 		"result":{
 			"nature":{
 				"max":1,
-				"base":0.1
+				"rate":0.1
 			}
 		}
 

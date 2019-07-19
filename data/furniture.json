@@ -131,7 +131,7 @@
 		},
 		"mod":{
 			"research.max":5,
-			"arcana.base":0.001
+			"arcana.rate":0.001
 		}
 	},
 	{
@@ -164,7 +164,7 @@
 		"mod":{
 			"research.max":5,
 			"earth.max":1,
-			"earth.base":0.01
+			"earth.rate":0.01
 		}
 
 	},
@@ -254,7 +254,7 @@
 		},
 		"mod":{
 			"arcana.max":1,
-			"arcana.base":0.001
+			"arcana.rate":0.001
 		}
 	},
 	{
@@ -287,8 +287,8 @@
 			"space":1
 		},
 		"mod":{
-			"light.base":0.01,
-			"air.base":0.02
+			"light.rate":0.01,
+			"air.rate":0.02
 		}
 	},
 	{
@@ -303,8 +303,8 @@
 		"mod":{
 			"light.max":5,
 			"air.max":10,
-			"light.base":0.02,
-			"air.base":0.05
+			"light.rate":0.02,
+			"air.rate":0.05
 		}
 	},
 	{
@@ -337,7 +337,7 @@
 		"mod":{
 			"candle.max":4,
 			"shadow":{
-				"base":0.04
+				"rate":0.04
 			}
 		}
 
@@ -354,7 +354,7 @@
 		},
 		"mod":{
 			"water":{
-				"base":0.1,
+				"rate":0.1,
 				"max":1
 			}
 		}
@@ -372,7 +372,7 @@
 		"mod":{
 			"fire":{
 				"max":1,
-				"base":0.1
+				"rate":0.1
 			}
 		}
 
@@ -388,7 +388,7 @@
 		"mod":{
 			"fire":{
 				"max":1,
-				"base":0.1
+				"rate":0.1
 			}
 		}
 
@@ -405,8 +405,8 @@
 		},
 		"mod":{
 			"tempus.max":1,
-			"tempus.base":0.01,
-			"water.base":0.01
+			"tempus.rate":0.01,
+			"water.rate":0.01
 		},
 		"flavor":"what is gone is gone"
 
@@ -421,7 +421,7 @@
 			"space":1
 		},
 		"mod":{
-			"fire.base":0.01
+			"fire.rate":0.01
 		}
 
 	},
@@ -436,7 +436,7 @@
 			"space":5
 		},
 		"mod":{
-			"water.base":0.5,
+			"water.rate":0.5,
 			"water.max":3
 		}
 	},
@@ -482,7 +482,7 @@
 			"space":1
 		},
 		"mod":{
-			"shadow.base":0.1,
+			"shadow.rate":0.1,
 			"shadow.max":5
 		}
 	},
@@ -498,7 +498,7 @@
 		},
 		"mod":{
 			"shadow.max":1,
-			"dissection.base":0.1
+			"dissection.rate":0.1
 		}
 
 	},
@@ -531,7 +531,7 @@
 			"space":1
 		},
 		"mod":{
-			"light.base":0.1,
+			"light.rate":0.1,
 			"light.max":5
 		}
 	},
@@ -548,7 +548,7 @@
 			"space":5
 		},
 		"mod":{
-			"shadow.base":0.5,
+			"shadow.rate":0.5,
 			"shadow.max":10
 		}
 	},
@@ -564,9 +564,9 @@
 		},
 		"mod":{
 			"codices.max":100,
-			"lore.base":0.1,
+			"lore.rate":0.1,
 			"research.max":100,
-			"research.base":0.05
+			"research.rate":0.05
 		}
 
 	},
@@ -583,7 +583,7 @@
 		"mod":{
 			"codices.max":500,
 			"research.max":100,
-			"research.base":0.1
+			"research.rate":0.1
 		}
 
 	},
@@ -615,8 +615,8 @@
 			"space":25
 		},
 		"mod":{
-			"water.base":0.1,
-			"nature.base":0.1,
+			"water.rate":0.1,
+			"nature.rate":0.1,
 			"nature.max":5,
 			"water.max":10
 		}
@@ -694,7 +694,7 @@
 		},
 		"mod":{
 			"crafting.max":2,
-			"crafting.base":0.1
+			"crafting.rate":0.1
 		}
 
 	}

@@ -76,7 +76,8 @@ export default class Player extends Item {
 		data.name = ( this.name );
 
 		// progress is synonym of 'exp' which is a Resource.
-		data.progress = undefined;
+		data.progress = data.exp = undefined;
+
 
 		data.next = ( this.next );
 		// attack timer.

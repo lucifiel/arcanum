@@ -1,6 +1,7 @@
 <script>
 
 import Game from '../game';
+import VarPath from '../varPath';
 
 /**
  * Box for displaying item information.
@@ -56,23 +57,69 @@ export default {
 	},
 	methods:{
 
-		effectName(p) {
-			let it = Game.getItem(p);
-			return it ? it.name : p;
-		},
-
 		costName(p) {
 			let it = Game.getItem(p);
-			return it ? it.name : 'Gold';
+			return it ? it.name : 'gold';
 		},
 
-		modName( p, val ){
+		effectItems(obj) {
 
-			let it = Game.getItem(p);
-			if ( !it ) return '';
+			let type = typeof obj;
+			let results = {};
 
-			if ( val instanceof Object && val.max ) return 'Max ' + it.name;
-			return it.name;
+			if ( type === 'string') {
+
+				let it = Game.getItem(obj);
+				results[ it ? it.name : obj ] = true;
+
+			} else if ( type === 'object') {
+
+				this.effectList( obj, results );
+
+			} else if ( type === 'array') obj.forEach(v=>this.effectList(v,results));
+
+			return results;
+
+		},
+
+		/**
+		 * @param {Object} results - object to collect results.
+		 * @param {string} propPath - prop path from base.
+		 */
+		effectList( obj, results={}, propPath='' ) {
+
+			for( let p in obj ) {
+
+				var subPath = p;
+				var sub = obj[p];
+
+				if ( p === 'max' ) {
+
+					subPath = 'max ' + propPath;
+
+				} else if (p==='base') subPath = propPath;
+				else if ( p === 'rate') {
+
+					subPath = propPath;
+					if ( typeof sub !== 'object' ) sub = sub + '/s';
+
+				} else {
+
+					// check if sub-prop refers to an item.
+					var refItem = Game.getItem(p);
+					if ( refItem ) subPath = refItem.name;
+
+					subPath = propPath ? propPath + ' ' + subPath : subPath;
+
+				}
+
+				if ( typeof sub !== 'object' ) {
+					results[subPath] = sub;
+				} else {
+					this.effectList( sub, results, subPath )
+				}
+
+			}
 
 		},
 
@@ -85,6 +132,7 @@ export default {
 				if ( v.value !== undefined ) res += v.value + '<br>';
 				if ( v.max !== undefined ) res += v.max + '<br>';
 				if ( v.base !== undefined ) res += v.base + '/s<br>';
+				if ( v.rate !== undefined ) res += v.rate + '/s<br>';
 				if ( v.pct !== undefined ) res += v.pct + '%<br>';
 
 				return res;
@@ -109,37 +157,33 @@ export default {
 		<div v-if="item.cost">
 
 			<hr>
-
+			<!--<span class="note-text">cost:</span>-->
 			<div v-if="!isNaN(item.cost)">
 				Gold: {{ item.cost }}
 			</div>
 			<div v-else v-for="(val,prop) in item.cost" :key="prop">
 				{{ costName(prop) }}: {{ effectVal(val) }}
 			</div>
+			
 
 		</div>
 
-		<div v-if="item.effect||item.mod">
+		<div v-if="item.effect||item.mod||item.result">
+
 			<hr>
-		<div class="note-text">effects:</div>
-		<div v-if="item.effect instanceof Object">
+			<div class="note-text">effects:</div>
 
-			<div v-for="(val,prop) in item.effect" :key="prop">
-				{{ effectName(prop) }}: <span v-html="effectVal(val)"></span>
+			<div v-for="(obj,key) in [item.effect,item.mod,item.result]" :key="key">
+
+				<div v-for="(v,k) in effectItems(obj)" :key="k">
+
+					<span v-if="typeof v === 'boolean'">{{ k }}</span>
+					<span v-else>{{ `${k}: ${v}` }}</span>
+
+				</div>
+
 			</div>
 
-		</div>
-		<div v-else-if="typeof item.effect === 'string'">
-			{{ effectName( item.effect ) }}
-		</div>
-
-		<div v-if="item.mod">
-
-			<div v-for="(val,prop) in item.mod" :key="prop">
-				{{ modName(prop) }}: <span v-html="effectVal(val)"></span>
-			</div>
-
-		</div>
 		</div>
 
 		<span class="note-text" v-if="item.flavor">{{ item.flavor}}</span>

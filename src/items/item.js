@@ -180,10 +180,10 @@ export default class Item {
 	/**
 	 * 
 	 * @param {Object} m - effect/mod description. 
-	 * @param {number} pct - factor of base amount added
+	 * @param {number} amt - factor of base amount added
 	 * ( fractions of full amount due to tick time. )
 	 */
-	applyVars( m, pct=1 ) {
+	applyVars( m, amt=1 ) {
 
 		if (!isNaN(m)) this.value += m;
 		else if ( m instanceof Object ) {
@@ -191,11 +191,11 @@ export default class Item {
 			if ( m.max ) {
 
 				let vars = m.max;
-				if ( !isNaN(vars) ) this.max += ( vars * pct );
+				if ( !isNaN(vars) ) this.max += ( vars * amt );
 				else if (vars instanceof Object ) {
 
-					if ( vars.base ) this.max.base += vars.base*pct;
-					if ( vars.pct ) this.max.pct += vars.pct*pct;
+					if ( vars.base ) this.max.base += vars.base*amt;
+					if ( vars.pct ) this.max.pct += vars.pct*amt;
 				}
 				if ( this.value > this.max.value ) this.value = this.max.value;
 
@@ -203,20 +203,20 @@ export default class Item {
 
 			for( let p in m ) {
 
-				if ( p === 'base' || p === 'pct' || p === 'max') continue;
+				if ( p === 'rate' || p === 'pct' || p === 'max') continue;
 
 				if ( m[p] instanceof Object ) {
 					console.log('subassign: ' + p)
-					this.subassign( this[p], m[p], pct );
+					this.subassign( this[p], m[p], amt );
 				} else if ( this[p] !== undefined ) {
 					//console.log('adding: ' + p );
-					this[p] += Number(m[p])*pct;
+					this[p] += Number(m[p])*amt;
 				}
 
 			}
 
-			if ( m.base ) this.rate.base += m.base*pct;
-			if ( m.pct ) this.rate.pct += m.pct*pct;
+			if ( m.rate ) this.rate.base += m.rate*amt;
+			if ( m.pct ) this.rate.pct += m.pct*amt;
 
 		}
 
