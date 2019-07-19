@@ -21,8 +21,14 @@ export default class Player extends Item {
 
 	get exp(){ return this._exp; }
 	set exp(v) {
-		this._exp = v;
-		if ( this._next >0 && v >= this._next ) this.levelUp();
+
+		if ( this._exp === undefined ) this._exp = v;
+		else {
+
+			this._exp.value = v;
+			if ( this._next > 0 && this._exp.value >= this._next ) this.levelUp();
+
+		}
 	}
 
 	/**
@@ -75,10 +81,6 @@ export default class Player extends Item {
 		data.title = ( this.title );
 		data.name = ( this.name );
 
-		// progress is synonym of 'exp' which is a Resource.
-		data.progress = data.exp = undefined;
-
-
 		data.next = ( this.next );
 		// attack timer.
 		data.timer = ( this.timer );
@@ -95,37 +97,13 @@ export default class Player extends Item {
 
 	}
 
-	/**
-	 * 
-	 * @param {Item[]} items - Game items. 
-	 * @param {Object} data - saved player data.
-	 */
-	reviver( items, data ) {
-
-		if ( data.primary ) this.primary = items[data.primary];
-		if ( data.exp ) this._exp = data.exp;
-
-		this.level = data.level;
-		this.title = data.title;
-		this.tohit = data.tohit;
-		this.defense = data.defense;
-		this.next = data.next;
-		this.timer = data.timer;
-		this.alignment = data.alignment;
-		if ( data.damage ) this.damage = new Range( data.damage );
-		this.dots = data.dots;
-
-	}
-
 	constructor( vars=null ){
 
 		super(vars);
 		//if ( vars ) Object.assign( this, vars );
-
 		this._level = this._level || 0;
 		this._title = this._title || 'waif';
 
-		this._exp = this._exp || 0;
 		this._next = this._next || 100;
 
 		this.speed = this._speed || 1;
@@ -192,7 +170,7 @@ export default class Player extends Item {
 		this.hp.max += 1;
 		this.stamina.max += 1;
 
-		this._exp -= this._next;
+		this._exp.value -= this._next;
 		this._next = this._next * ( 1 + EXP_RATE );
 
 	}

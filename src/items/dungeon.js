@@ -14,6 +14,13 @@ import Monster from './monster';
 
 export default class Dungeon extends Item {
 
+	/**
+	 * gets/sets experience without checking for level up.
+	 * This is because assigning progress on init could trigger level up.
+	 */
+	get exp(){ return this._exp;}
+	set exp(v) { this._exp = v;}
+
 	get level() {return this._level;}
 	set level(v) { this._level =v;}
 
@@ -28,6 +35,7 @@ export default class Dungeon extends Item {
 		let data = super.toJSON();
 		//data.enemies = ( this.enemies );
 		data.level = ( this.level );
+		data.exp = this.exp;
 
 		return data;
 

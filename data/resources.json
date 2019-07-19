@@ -143,9 +143,10 @@
 	},
 	{
 		"id":"space",
-		"name":"Floor Space",
+		"name":"floor space",
 		"desc":"Space Available",
-		"reverse":true
+		"reverse":true,
+		"max":0
 
 	},
 	{

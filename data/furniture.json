@@ -219,7 +219,7 @@
 		"id":"birdcage",
 		"desc":"Perfect for robins.",
 		"tag":"tagpen",
-		"require":"neophyte",
+		"require":"apprentice",
 		"cost":{
 			"gold":25,
 			"space":1

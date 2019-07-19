@@ -32,7 +32,7 @@ export default {
 		<tr><td>title</td><th> {{ player.title}}</th></tr>
 		<tr><td>alignment</td><th>{{player.alignment}}</th></tr>
 		<tr><td>level</td><th> {{ player.level }}</th></tr>
-		<tr><td>exp</td><th> {{ round(player.exp) }} / {{ round(player.next ) }} </th></tr>
+		<tr><td>exp</td><th> {{ round(player.exp.value) }} / {{ round(player.next ) }} </th></tr>
 		<tr><td>hp</td><th>
 			{{ round( player.hp.value ) }} / {{ round( player.hp.max.value ) }}</th></tr>
 

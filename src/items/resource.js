@@ -61,7 +61,7 @@ export default class Resource extends Item {
 		super(vars);
 
 		this._value = this._value || 0;
-		if ( this._max === undefined ) this.max = new Stat(0);
+		//if ( this._max === undefined ) this.max = new Stat(0);
 		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
 
 		this._lastValue = this._value;

@@ -4,6 +4,7 @@
 		"id":"animals",
 		"name":"Animal Handling",
 		"need":"tagpen",
+		"locked":false,
 		"cost":{
 			"stamina":0.5
 		},

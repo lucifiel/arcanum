@@ -29,7 +29,6 @@ export default class Skill extends Item {
 	get exp() { return this._exp}
 	set exp(v){
 		this._exp =v;
-		if ( v >= this._length ) this.complete();
 	}
 
 	/**
@@ -45,6 +44,7 @@ export default class Skill extends Item {
 	
 		let data = super.toJSON();
 		data.level = this.level;
+		data.exp = this.exp;
 
 		return data;
 

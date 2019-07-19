@@ -1,25 +1,3 @@
-/*import ResourceList from 'data/resources.json';
-import UpgradeList from 'data/upgrades.json';
-import ActionList from 'data/actions.json';
-
-import HomeList from 'data/homes.json';
-import Furniture from 'data/furniture';
-import SkillList from 'data/skills.json';
-
-import PlayerStats from 'data/player.json';
-import SpellList from 'data/spells.json';
-
-import MonsterList from 'data/monsters';
-import Dungeons from 'data/dungeons.json';
-
-import EventList from 'data/events.json';
-import ClassList from 'data/classes';
-
-// WEARABLES
-import Armors from 'data/equip/armors';
-import Weapons from 'data/equip/weapons';
-//import Equips from 'data/equip/equip';*/
-
 import Item from 'items/item';
 import Player from './chars/player';
 
@@ -153,7 +131,7 @@ export default {
 			for( let it of arr ) {
 
 				var saveObj = saveItems[it.id];
-				console.log('MERGING: ' + it.id );
+				//console.log('MERGING: ' + it.id );
 				if ( saveObj ) this.merge( it, saveObj );
 
 			}

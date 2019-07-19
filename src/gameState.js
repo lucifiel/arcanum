@@ -64,16 +64,16 @@ export default class GameState {
  		*/
 		this.sellRate = this.sellRate || 0.5;
 
-		/**
-		 * @property {Object.<string,Item[]>} tagLists - tag to array of items with tag.
-		 * makes upgrading/referencing by tag easier.
-		 */
-		this.tagLists = this.makeLists( this.items );
-
 		this.raid = new Raid( baseData.raid );
 		this.raid.initState( this );
 
 		if ( restore ) this.revive();
+
+		/**
+		 * @property {Object.<string,Item[]>} tagLists - tag to array of items with tag.
+		 * makes upgrading/referencing by tag easier.
+		*/
+		this.tagLists = this.makeLists( this.items );
 
 	}
 

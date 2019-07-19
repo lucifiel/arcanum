@@ -8,7 +8,7 @@ import Game from '../game';
  */
 
  const JSONEncode = ["id","locked","locks","value","max","rate","cost",
- "slot","exp","disabled", "effect", "mod", "result"];
+ "slot","disabled", "effect", "mod", "result"];
 
 /**
  * Game Items base class.
@@ -67,7 +67,15 @@ export default class Item {
 		else this._tags = v;
 
 	}
-	set tag(v) { this.addTag(v); }
+
+	/**
+	 * Convenience setter only for json data.
+	 */
+	set tag(v) { if ( v ) this.addTag(v); }
+	get tag() { return this._tags; }
+
+	get length() { return this._length; }
+	set length(v) { this._length = v; }
 
 	get progress() { return this._exp || 0; }
 	set progress(v){
@@ -78,16 +86,6 @@ export default class Item {
 			if ( this.result ) Game.applyEffect( this.result );
 		}
 	}
-
-	/**
-	 * gets/sets experience without checking for level up.
-	 * This is because assigning progress on init could trigger level up.
-	 */
-	get exp(){ return this._exp;}
-	set exp(v) { this._exp = v;}
-
-	get length() { return this._length; }
-	set length(v) { this._length = v; }
 
 	/**
 	 * @property {Stat} rate - rate of stat change in value/second.
@@ -156,9 +154,8 @@ export default class Item {
 	constructor( vars=null ){
 
 		if ( vars ) Object.assign( this, vars );
-	
-		if ( this._locked === undefined ) this._locked = true;
 
+		if ( this._locked === undefined ) this._locked = true;
 		if ( this._length !== undefined ) this._exp = this._exp || 0;
 
 		this._value = this._value || 0;
@@ -254,7 +251,7 @@ export default class Item {
 	 * @param {string} tag 
 	 */
 	addTag( tag ) {
-		if ( !this._tags) this._tags = [];
+		if ( this._tags === null || this._tags === undefined) this._tags = [];
 		this._tags.push(tag);
 	}
 
