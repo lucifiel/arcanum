@@ -226,8 +226,8 @@ export default {
 
 		}
 
-		if ( action === this.state.raid ) {
-			this.state.raid.update(dt);
+		if ( action.update ) {
+			action.update(dt);
 
 		} else if ( action.length ) {
 

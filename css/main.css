@@ -36,6 +36,15 @@ input[type="button"]:enabled:active, button:enabled:active {
 	text-transform: capitalize;
 }
 
+.running {
+	border: 2px dashed #202020;
+	padding: 1px;
+}
+
+.runnable button {
+	background: #fdc679;
+}
+
 div.action-list, div.upgrade-list {
 	flex-direction: row;
 	text-transform: capitalize;

@@ -1,5 +1,5 @@
-import Item from './item';
 import Monster from './monster';
+import Action from './action';
 
 /**
  * @type {Object} Enemy
@@ -12,17 +12,7 @@ import Monster from './monster';
  * @property {number} hp
  */
 
-export default class Dungeon extends Item {
-
-	/**
-	 * gets/sets experience without checking for level up.
-	 * This is because assigning progress on init could trigger level up.
-	 */
-	get exp(){ return this._exp;}
-	set exp(v) { this._exp = v;}
-
-	get level() {return this._level;}
-	set level(v) { this._level =v;}
+export default class Dungeon extends Action {
 
 	get enemies() { return this._enemies; }
 	set enemies(v) {
@@ -33,8 +23,8 @@ export default class Dungeon extends Item {
 	toJSON(){
 
 		let data = super.toJSON();
+
 		//data.enemies = ( this.enemies );
-		data.level = ( this.level );
 		data.exp = this.exp;
 
 		return data;
@@ -49,12 +39,12 @@ export default class Dungeon extends Item {
 
 		super(vars);
 
-		this.level = this._level !== undefined && this._level !== null ? this._level : 1;
+		this.level = this.level !== undefined ? this.level : 1;
 
 		/**
 		 * @property {number} progress
 		 */
-		this.progress = this.progress || 0;
+		this.exp = this.exp || 0;
 		this.length = this.length || 100;
 
 		this.repeat = ( this.repeat === undefined||this.repeat===null ) ? true : this.repeat;
@@ -62,7 +52,7 @@ export default class Dungeon extends Item {
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
 
-		this._type = this._type || 'dungeon';
+		this._type = 'dungeon';
 
 		/**
 		 * Total of all enemy weights, used to roll which

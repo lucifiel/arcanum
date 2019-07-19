@@ -20,10 +20,8 @@ export default {
 			if ( act === null) return '';
 
 			return (act.verb || act.name) +
-				( ( act.length !== undefined ) ? ' ' + this.percent(act) + '%': '' );
-		},
-
-		percent(act) { return (100*(act.progress/act.length)).toFixed(0); }
+				( ( act.length ) ? ' ' + act.percent().toFixed(0) + '%': '' );
+		}
 
 	},
 	computed:{

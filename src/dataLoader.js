@@ -10,6 +10,7 @@ import Monster from './items/monster';
 import VarPath  from 'varPath';
 import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
+import Action from './items/action';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -113,7 +114,7 @@ export default {
 		gd.events = this.initItems( rawData['events'], undefined, null, 'event' );
 		gd.events = gd.events.concat( this.initItems( rawData['classes'], undefined, null, 'event') );
 
-		gd.actions = this.initItems( rawData['actions'], undefined, null, 'action' );
+		gd.actions = this.initItems( rawData['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
 		gd.sections = this.initItems( rawData['sections']);

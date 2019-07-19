@@ -74,18 +74,8 @@ export default class Item {
 	set tag(v) { if ( v ) this.addTag(v); }
 	get tag() { return this._tags; }
 
-	get length() { return this._length; }
-	set length(v) { this._length = v; }
-
-	get progress() { return this._exp || 0; }
-	set progress(v){
-		this._exp = v;
-		if ( v >= this._length ) {
-			this.value++;
-			this._exp -= this._length;
-			if ( this.result ) Game.applyEffect( this.result );
-		}
-	}
+	get max() { return this._max; }
+	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
 	/**
 	 * @property {Stat} rate - rate of stat change in value/second.
@@ -156,11 +146,10 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 
 		if ( this._locked === undefined ) this._locked = true;
-		if ( this._length !== undefined ) this._exp = this._exp || 0;
 
 		this._value = this._value || 0;
 		defineExcept( this, null,
-			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'warn', 'effect', 'slot', 'length' ]);
+			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'warn', 'effect', 'slot' ]);
 
 	}
 

@@ -56,6 +56,7 @@ export default class Raid {
 
 	}
 
+	percent() { return this.dungeon.percent(); }
 	maxed() { return false; }
 
 	initState( gameState ) {
@@ -207,7 +208,7 @@ export default class Raid {
 		// can go over by cheat codes, or possibly unknown future skip-buffs.
 		this.dungeon.progress = this.dungeon.length;
 
-		this.player.exp +=  (this.dungeon.level)*( 10 + this.dungeon.length );
+		this.player.exp += (this.dungeon.level)*( 10 + this.dungeon.length );
 		this.dungeon = null;
 		Game.doRest();
 
