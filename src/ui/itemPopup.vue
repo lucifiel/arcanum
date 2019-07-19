@@ -93,11 +93,12 @@ export default {
 				var subPath = p;
 				var sub = obj[p];
 
-				if ( p === 'max' ) {
+				if ( p === 'skipLocked') continue;
+				else if ( p === 'max' ) {
 
 					subPath = 'max ' + propPath;
 
-				} else if (p==='base') subPath = propPath;
+				} else if ( p==='base' || p === 'value') subPath = propPath;
 				else if ( p === 'rate') {
 
 					subPath = propPath;
@@ -106,17 +107,22 @@ export default {
 				} else {
 
 					// check if sub-prop refers to an item.
-					var refItem = Game.getItem(p);
+					let refItem = Game.getItem(p);
 					if ( refItem ) subPath = refItem.name;
 
 					subPath = propPath ? propPath + ' ' + subPath : subPath;
 
 				}
 
-				if ( typeof sub !== 'object' ) {
-					results[subPath] = sub;
-				} else {
-					this.effectList( sub, results, subPath )
+				if ( typeof sub !== 'object' ) results[subPath] = sub;
+				else {
+
+					if ( sub.skipLocked ) {
+						let refItem = Game.getItem(p);
+						if ( refItem && refItem.locked || refItem.disabled ) continue;
+					}
+					this.effectList( sub, results, subPath );
+
 				}
 
 			}
