@@ -4,7 +4,7 @@ import Game from '../game';
 export default class Action extends Item {
 
 	valueOf(){
-		return !this._locked;
+		return this.locked ? 0 : this._value;
 	}
 	
 	get level() {return this._value;}
