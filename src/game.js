@@ -341,7 +341,10 @@ export default {
 			if ( it ) {
 
 				it.disabled = true;
-				console.log('disable: ' + it.name );
+
+				if ( it == this.state.curHome ) this.state.curHome = null;
+				if ( it == this.state.curAction ) this.state.curAction = null;
+				if ( it == this.state.raid.dungeon ) this.state.raid.setDungeon(null);
 	
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it.mod, it.value );
@@ -457,9 +460,9 @@ export default {
 			/**
 			 * curHome must be removed AFTER to prevent all space being restored.
 			 * @todo: fix this.
-			 */
+			*/
 
-			 this.state.curHome = it;
+			this.state.curHome = it;
 			if ( prev ) this.remove( prev );
 
 		}

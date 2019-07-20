@@ -42,6 +42,23 @@
 	},
 	{
 
+		"id":"prestidigitation",
+		"desc":"Why study when you can perform paltry magic for money?",
+		"verb":"performing",
+		"require":"spellbook",
+		"perpetual":true,
+		"cost":{
+			"stamina":0.1,
+			"mana":0.1,
+			"research":0.2
+		},
+		"effect":{
+			"gold":0.8
+		}
+
+	},
+	{
+
 		"id":"service",
 		"name":"Offer Services",
 		"desc":"Offer your magical services to the nearby townsfolk.",
@@ -49,10 +66,11 @@
 		"require":["adept"],
 		"perpetual":true,
 		"cost":{
-			"stamina":0.25
+			"stamina":0.25,
+			"mana":0.1
 		},
 		"effect":{
-			"gold":0.8
+			"gold":1
 		}
 
 	},
@@ -64,7 +82,8 @@
 		"require":["divination","spiritsource","adept"],
 		"perpetual":true,
 		"cost":{
-			"stamina":0.3
+			"stamina":0.3,
+			"spirit":0.1
 		},
 		"effect":{
 			"gold":0.9
@@ -213,6 +232,30 @@
 		"cost":75,
 		"effect":{
 			"gems":1
+		}
+	},
+	{
+		"id":"craftgem",
+		"name":"Craft Gem",
+		"desc":"Craft a gem stone from raw minerals.",
+		"require":"state.crafting>=4&&state.alchemy>=4",
+		"cost":{
+			"stamina":1,
+			"mana":2
+		},
+		"effect":{
+			"gems":1
+		}
+	},
+	{
+		"id":"sellgem",
+		"name":"Sell Gem",
+		"require":"gems",
+		"cost":{
+			"gems":1
+		},
+		"effect":{
+			"gold":35
 		}
 	},
 	{

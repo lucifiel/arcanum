@@ -217,7 +217,10 @@ export default class Raid {
 	setDungeon( d ) {
 		this.dungeon = d;
 		this.player.timer = 0;
-		if ( d.progress >= d.length ) d.progress = 0;
+		if ( d != null ) {
+			if ( d.progress >= d.length ) d.progress = 0;
+		}
+
 	}
 
 }

@@ -299,6 +299,12 @@
 	},
 	{
 
+		"id":"alkahest",
+		"name":"alkahest",
+		"desc":"Universal Solvent"
+	},
+	{
+
 		"id":"prism",
 		"desc":"A small crystal pyramid for performing optical experiments.",
 		"require":"state.research.max>=50",
@@ -456,45 +462,6 @@
 
 	},
 	{
-		"id":"up_witchcraft",
-		"name":"witchcraft",
-		"warn":true,
-		"desc":"Enter into the practice of witchcraft.",
-		"require":"state.adept>0&&state.animals>=2&&state.herbs>=3&&state.potions>=3",
-		"flavor":"double, double, toil and trouble",
-		"cost":{
-			"research":100,
-			"arcana":1
-		},
-		"mod":["witchcraft","witch"]
-	},
-	{
-		"id":"up_geomancer",
-		"name":"geomancy",
-		"warn":true,
-		"desc":"Become a geomancer.",
-		"require":"state.adept>0&&state.minerology>=5",
-		"flavor":"",
-		"cost":{
-			"research":100,
-			"arcana":1
-		},
-		"mod":["geomancer"]
-	},
-	{
-		"id":"up_hydromancer",
-		"name":"hydromancy",
-		"warn":true,
-		"desc":"Become a hydromancer.",
-		"require":"state.adept>0&&state.minerology>=5",
-		"flavor":"",
-		"cost":{
-			"research":100,
-			"arcana":1
-		},
-		"mod":["hydromancer"]
-	},
-	{
 
 		"id":"skull",
 		"require":"state.necromancer>0||state.witch>0",
@@ -558,6 +525,58 @@
 			"spirit.rate":0.01
 		}
 
+	},
+	{
+		"id":"up_witchcraft",
+		"name":"witchcraft",
+		"warn":true,
+		"desc":"Enter into the practice of witchcraft.",
+		"require":"state.adept>0&&state.animals>=2&&state.herbs>=3&&state.potions>=3",
+		"flavor":"double, double, toil and trouble",
+		"cost":{
+			"research":100,
+			"arcana":1
+		},
+		"mod":["witchcraft","witch"]
+	},
+	{
+
+		"id":"up_trickster",
+		"name":"Path of Trickery",
+		"desc":"",
+		"require":"state.prestidigitation>=50",
+		"cost":{
+
+		},
+		"mod":[
+			"trickster"
+		]
+	},
+	{
+		"id":"up_geomancer",
+		"name":"geomancy",
+		"warn":true,
+		"desc":"Become a geomancer.",
+		"require":"state.adept>0&&state.minerology>=5",
+		"flavor":"",
+		"cost":{
+			"research":100,
+			"arcana":1
+		},
+		"mod":["geomancer"]
+	},
+	{
+		"id":"up_hydromancer",
+		"name":"hydromancy",
+		"warn":true,
+		"desc":"Become a hydromancer.",
+		"require":"state.adept>0&&state.minerology>=5",
+		"flavor":"",
+		"cost":{
+			"research":100,
+			"arcana":1
+		},
+		"mod":["hydromancer"]
 	}
 
 ]

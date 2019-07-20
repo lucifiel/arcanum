@@ -23,6 +23,14 @@
 		}
 	},
 	{
+		"id":"evt_alcove",
+		"name":"Moving In",
+		"title":"Movine In",
+		"desc":"After taking your savings, your new master grants you a small book under the stairs.",
+		"require":"alcove"
+
+	},
+	{
 
 		"id":"evt_spellbook",
 		"name":"Book of Spells",
