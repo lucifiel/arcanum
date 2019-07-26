@@ -3,6 +3,8 @@ import Player from './chars/player';
 
 import Wearable from './items/wearable';
 import Range, {RangeTest} from './range';
+import Percent, {PercentTest} from './percent';
+
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Monster from './items/monster';
@@ -108,8 +110,11 @@ export default {
 
 		this.initItems( rawData['monsters'], Monster, 'monster', 'monster' );
 
-		gd.armors = this.initItems( rawData['armors'], Wearable, 'armor' );
-		gd.weapons = this.initItems( rawData['weapons'], Wearable, 'weapon' );
+		gd.armors = this.initItems( rawData['armors'], Wearable );
+		gd.armors.forEach( v=>v.kind = 'armor' );
+	
+		gd.weapons = this.initItems( rawData['weapons'], Wearable );
+		gd.weapons.forEach(v=>v.kind='weapon');
 
 		gd.events = this.initItems( rawData['events'], undefined, null, 'event' );
 		gd.events = gd.events.concat( this.initItems( rawData['classes'], undefined, null, 'event') );
@@ -175,6 +180,7 @@ export default {
 
 					//console.log('parse string: ' + p + ' --> ' + obj );
 					if ( p === 'require' || p === 'need') sub[p] = this.parseRequire( obj );
+					else if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if (!isNaN(obj)) sub[p] = Number(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);
@@ -192,8 +198,10 @@ export default {
 
 		} else if ( typeof sub === 'string') {
 
-			if ( sub.includes('.') ) return new VarPath( sub );
-			else if ( RangeTest.test(sub) ) return new Range(sub);
+			if ( RangeTest.test(sub) ) return new Range(sub);
+			else if ( PercentTest.test(sub)) return new Percent(sub);
+			else if ( sub.includes('.') ) return new VarPath( sub );
+			
 		}
 
 		return sub;

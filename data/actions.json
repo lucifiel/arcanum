@@ -49,11 +49,11 @@
 		"perpetual":true,
 		"cost":{
 			"stamina":0.1,
-			"mana":0.1,
-			"research":0.2
+			"mana":0.2
 		},
 		"effect":{
-			"gold":0.8
+			"research":-0.4,
+			"gold":0.7
 		}
 
 	},

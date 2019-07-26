@@ -25,8 +25,10 @@ export default class Action extends Item {
 		this._exp = v;
 		if ( this.length && v >= this._length ) {
 			this.value++;
+			this._exp -= this._length;
 			if ( this.complete ) this.complete();
 			if ( this.result ) Game.applyEffect( this.result );
+			if ( this.loot ) Game.getLoot( this.loot ); 
 		}
 	}
 

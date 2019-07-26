@@ -15,6 +15,7 @@ export default {
 
 <template>
 <div class="inv">
+	<div>Max: {{ inv.max }}<br></div>
 	<div v-for="it in inv.items" :key="it.id">
 		<span>{{it.name}}</span>
 		<button @click="dispatch('equip',it)">Equip</button>
@@ -28,8 +29,10 @@ export default {
 
 div.inv {
 	display:flex;
+	margin-left: 48px;
 	flex-direction: column;
+	width:auto;
 	overflow-y:auto;
-	height:0.95vh;
+	height:93vh;
 }
 </style>

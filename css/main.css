@@ -50,11 +50,13 @@ div.action-list, div.upgrade-list {
 	text-transform: capitalize;
 }
 
-div.resource-list, div.action-list, div.upgrade-list, div.home-view, div.skills-view, div.player-view {
+div.resource-list, div.center-view,
+div.upgrade-list {
 	margin: 20px 2px 2px;
 
 }
-div.home-view {
+
+div.center-view, div.home-view {
 	display:flex;
 	flex-direction: row;
 }
@@ -116,7 +118,7 @@ div.menu {
 .menu-item {
 	font-size: 1.1em;
 	cursor: pointer;
-	margin: 2px 10px;
+	margin: 20px 10px;
 }
 
 div.hp .fill {

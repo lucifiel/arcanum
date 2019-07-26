@@ -20,6 +20,11 @@ export default class Dungeon extends Action {
 		this.initEnemies(v);
 	}
 
+	get progress(){return this._exp;}
+	set progress(v){
+		this._exp =v;
+	}
+
 	toJSON(){
 
 		let data = super.toJSON();

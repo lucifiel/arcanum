@@ -16,7 +16,15 @@ export default class Raid {
 	/**
 	 * For cheating only.
 	 */
-	set progress(v){ this.dungeon.progress=v; }
+	set progress(v){
+
+		this.dungeon.progress=v;
+		
+		if ( this.dungeon.progress >= this.dungeon.length ) {
+			this.raidDone( this.dungeon );
+		}
+
+	}
 
 	get length() { return this.dungeon.length; }
 
@@ -172,7 +180,7 @@ export default class Raid {
 
 	/**
 	 * Convert damage object to raw damage value.
-	 * @param {number|function|Range} dmg 
+	 * @param {number|function|Range} dmg /
 	 */
 	getDamage(dmg) {
 
@@ -190,16 +198,16 @@ export default class Raid {
 	enemyDied() {
 
 		this.player.exp += this.enemy.level;
-		this.dungeon.progress += 1;
-
+		
 		this.enemyAct = this.enemy.name + ' slain';
 		Game.log.log( '', this.enemyAct, 'combat');
 
+		if ( this.enemy.result ) Game.applyEffect( this.enemy.result );
+		if ( this.enemy.loot ) Game.getLoot( this.enemy.loot );
+
 		this.enemy.clear();
 
-		if ( this.dungeon.progress >= this.dungeon.length ) {
-			this.raidDone( this.dungeon );
-		}
+		this.progress += 1;
 
 	}
 
@@ -208,8 +216,11 @@ export default class Raid {
 		// can go over by cheat codes, or possibly unknown future skip-buffs.
 		this.dungeon.progress = this.dungeon.length;
 
+		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot );
+
 		this.player.exp += (this.dungeon.level)*( 10 + this.dungeon.length );
 		this.dungeon = null;
+
 		Game.doRest();
 
 	}

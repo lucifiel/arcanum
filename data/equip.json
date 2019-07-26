@@ -23,7 +23,8 @@
 		"mod":{
 			"pouch.max":2,
 			"purse.max":1
-		}
+		},
+		"slot":"waist"
 
 	},
 	{

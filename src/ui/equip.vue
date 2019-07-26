@@ -1,11 +1,9 @@
 <script>
+
 export default {
 	
 	props:['equip'],
 	methods:{
-
-	},
-	computed:{
 
 	}
 

@@ -1,10 +1,11 @@
 import DataLoader from './dataLoader';
 import VarPath from './varPath';
-
+import Percent from './percent';
 import Item from './items/item';
 import Log from 'log.js';
 import GameState from './gameState';
 import Range from './range';
+import ItemGen from './itemgen';
 
 /**
  * @constant {number} TICK_TIME - time in milliseconds between updates.
@@ -57,6 +58,8 @@ export default {
 		return this.loader = DataLoader.loadData( saveData ).then( allData=>{
 
 			this.state = new GameState( allData, saveData );
+
+			this.itemGen = new ItemGen( this.state );
 
 			this._items = this.state.items;
 			this.initEvents();
@@ -479,14 +482,23 @@ export default {
 		if ( !this.canUse(it) ) return false;
 		this.payCost( it.cost );
 
-		it.value++;
+		return this.doItem(it);
+	},
+
+	/**
+	 * Get a game item without paying any cost.
+	 * @param {*} it 
+	 * @param {*} count 
+	 */
+	doItem(it, count=1) {
+
+		it.value += count;
 
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );
 		if ( it.dot ) this.beginDot( it, it.dot );
 		if ( it.disable ) this.disable( it.disable );
-
 
 		if ( it.attack && this.state.curAction === this.state.raid ) {
 			this.state.raid.spellAttack( it );
@@ -761,10 +773,16 @@ export default {
 	},
 
 	/**
-	 * Attempt to an item to inventory.
-	 * @param {*} it 
+	 * Get loot from an action, monster, or dungeon.
+	 * @param {string|Wearable|Object|Array} it 
 	 */
-	getItem(it) {
+	getLoot(it) {
+
+		let res = this.itemGen.getLoot(it);
+		console.log('LOOT: ' + res );
+
+		if ( res ) this.state.inventory.add( res );
+
 	},
 
 	/**

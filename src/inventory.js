@@ -23,7 +23,11 @@ export default class Inventory {
 
 	add(it){
 
-		this.items.push(it);
+		if ( it instanceof Array ) {
+
+			for( let i = it.length-1; i>=0; i-- ) this.items.push( it[i] );
+
+		} else this.items.push(it);
 
 	}
 
