@@ -19,7 +19,7 @@ export default {
 			<span class="slot-item" v-if="slot.empty()">None</span>
 			<span class="slot-item" v-else>
 
-				<div v-if="slot.multi()">
+				<div v-if="slot.multi">
 
 					<div v-for="it in slot.item" :key="it.id">
 						{{ it.name }}<button @click="dispatch('unequip', slot, it)">Unequip</button>

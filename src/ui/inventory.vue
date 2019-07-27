@@ -17,7 +17,7 @@ export default {
 <div class="inv">
 	<div>Max: {{ inv.max }}<br></div>
 	<div v-for="it in inv.items" :key="it.id">
-		<span>{{it.name}}</span>
+		<span>{{ it.name }}</span>
 		<button @click="dispatch('equip',it)">Equip</button>
 		<button @click="dispatch('drop',it)">Drop</button>
 	</div>

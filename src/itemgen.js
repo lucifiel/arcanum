@@ -8,6 +8,12 @@ import Percent from './percent';
 }*/
 
 /**
+ * @constant {number} ITEM_ID - number to append to item ids
+ * to give every cloned item a unique id.
+ */
+var ITEM_ID = 0;
+
+/**
  * Generates random Equipment Items and Weapons from basic item data.
  */
 export default class ItemGen {
@@ -38,8 +44,14 @@ export default class ItemGen {
 	 * @param {Wearable} data 
 	 */
 	fromData( data ) {
+
 		if ( data === null || data === undefined ) return null;
-		return clone(data);
+
+		data = clone(data);
+		data.id = data.id + ITEM_ID++;
+
+		return new Wearable( data );
+
 	}
 
 	/**
@@ -62,7 +74,7 @@ export default class ItemGen {
 
 			var it = this.state.getItem(p);
 			if ( !it ) {
-				console.log('ITEM UNDEFINED: ' + p );
+				console.log('LOOT UNDEFINED: ' + p );
 				return;
 			}			
 			var itVal = info[p];
@@ -73,7 +85,7 @@ export default class ItemGen {
 
 			} else if ( itVal.value ) itVal = itVal.value;
 
-			if ( it.type === 'wearable') this.getLoot(it);
+			if ( it.type === 'wearable') return this.fromData(it);
 			else Game.doItem(it, itVal );
 
 
@@ -96,7 +108,12 @@ export default class ItemGen {
 		if ( list ) {
 
 			list = list[level];
-			if ( list ) return clone( list[ Math.floor( Math.random()*list.length ) ] );
+			if ( list ) {
+				let it = list[ Math.floor( Math.random()*list.length ) ];
+				console.log( 'cloning ' + it );
+				return clone(it);
+			}
+
 
 		}
 

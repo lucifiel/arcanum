@@ -762,14 +762,32 @@ export default {
 		return true;
 	},
 
-	equip( slot, it) {
+	equip( it, slot=null ) {
 
-		this.state.equip.equip( slot, it);
+		console.log('equip: ' + it.id );
+		let res = this.state.equip.equip( it, slot );
+		if ( res ) {
+
+			this.state.inventory.remove( it );
+			if ( typeof res === 'object') {
+				this.state.inventory.add(res);
+			}
+
+		}
+
 	},
 
 	unequip( slot, it){
-		
-		this.state.equip.unequip( slot, it);
+
+		let res = this.state.equip.remove( it, slot );
+		if ( res ) {
+
+			if ( typeof res === 'object') {
+				this.state.inventory.add(res);
+			}
+
+		}
+
 	},
 
 	/**
@@ -779,8 +797,6 @@ export default {
 	getLoot(it) {
 
 		let res = this.itemGen.getLoot(it);
-		console.log('LOOT: ' + res );
-
 		if ( res ) this.state.inventory.add( res );
 
 	},

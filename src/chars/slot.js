@@ -29,12 +29,18 @@ export default class Slot {
 
 	/**
 	 * 
-	 * @param {*} it
-	 * @returns {boolean} true on success.
+	 * @param {Item} it
+	 * @returns {Item|boolean} true on success.
 	 */
 	equip( it ){
 
 		if ( this.multi === true ) {
+
+			this.item.push(it);
+			if ( this.item.length > this.max ){
+				return this.item.shift();
+			}
+			return true;
 
 		} else if ( !this.item ) {
 	
@@ -43,7 +49,10 @@ export default class Slot {
 
 		}
 
-		return false;
+		let tmp = this.item;
+		this.item = it;
+
+		return tmp;
 
 	}
 

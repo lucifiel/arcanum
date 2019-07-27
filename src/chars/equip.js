@@ -51,50 +51,22 @@ export default class Equip {
 	}
  
 	get( slot ) {
-
-		if ( !this.slots.hasOwnProperty(slot)) return null;
 		return this.slots[slot];
-
-	}
-
-	getHolding() {
-
-		let right = this.slots.right.item;
-		let left = this.slots.left.item;
-	
-		let a = [];
-
-		if ( right ) a.push(right);
-		if ( left ) a.push(left);
-
-		return a;
 	}
 
 	/**
 	 * 
 	 * @param {Item} it 
 	 */
-	remove( it ) {
+	remove( it, slot=null ) {
 
 		if ( it.type === 'weapon') return this.removeWeap(it);
 
+		slot = slot || it.slot;
 		let cur = this.slots[it.slot];
 		if ( cur ) return this.slots.remove(it);
 
 		return false;
-
-	}
-
-	/**
-	 * Remove and return the item in the specified slot.
-	 * @param {string} slot 
-	 */
-	removeSlot( slot ) {
-
-		if ( typeof slot === 'string' ) slot = this.slots[slot];
-		if( !slot ) return undefined;
-
-		return slot.remove();
 
 	}
 
@@ -160,98 +132,19 @@ export default class Equip {
 
 	/**
 	 * 
-	 * @param {string} slot 
 	 * @param {Armor|Weapon} it 
-	 * @returns error string if slot does not exist, null if equip
-	 * successful, old item if item replaces previous.
+	 * @param {string} slot 
+	 * @returns {boolean|Wearable}
 	 */
-	equip( it ) {
+	equip( it, slot=null ) {
 
 		if ( it.type === 'weapon' ) return this.equipWeap(it);
 
-		let slot = it.slot;
-		if( slot === null || !this.slots.hasOwnProperty(slot)) return it.name + ' cannot be equipped.';
-
+		slot = slot || it.slot;
+		if( slot === null || !this.slots.hasOwnProperty(slot)) return false;
+		
 		let cur = this.slots[slot];
-		if ( cur instanceof Array ) {
-
-			cur.push( it );
-			if ( cur.length > MaxSlots[slot] ) cur = cur.shift();
-			else cur = null;
-
-		} else {
-
-			if ( !cur ) {
-				this.slots[slot] = it;
-			} else {
-
-				if ( MaxSlots[slot] == null || MaxSlots[slot] === 1 ) {
-					this.slots[slot] = it;
-				} else {
-					this.slots[slot] = [ cur, it ];
-					cur = null;	// cur not replaced.
-				}
-
-			}
-
-		}
-
-		return cur;
-
-	}
-
-	/**
-	 * 
-	 * @param {(it)=>boolean} p - test predicate
-	 */
-	removeWhere( p ) {
-
-		let v;
-		let removed = [];
-
-		for( let k in this.slots ) {
-
-			v = this.slots[k];
-			if ( v === null || v === undefined ) continue;
-
-			if ( v instanceof Array ) {
-
-				for( let i = v.length-1; i >= 0; i-- ) {
-
-					if ( p( v[i]) ) {
-						removed.push( v.splice(i,1)[0] );
-					}
-
-				}
-
-			} else if ( p(v) ) {
-
-				this.slots[k] = null;
-				removed.push(v);
-
-			}
-
-		}
-
-		return removed;
-
-	}
-
-	forEach( func ) {
-
-		let v;
-
-		for( let k in this.slots ) {
-
-			v = this.slots[k];
-			if ( v instanceof Array ) {
-
-				for( let i = v.length-1; i >= 0; i-- ) func( v[i] );
-
-			} else func( v );
-
-		}
-
+		return cur.equip(it);
 	}
 
 	/**

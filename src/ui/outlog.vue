@@ -1,9 +1,9 @@
 <script>
 
-const LogTypes = ['event','unlock','combat'];
+const LogTypes = ['event','unlock','combat', 'inventory'];
 
 /**
- * Displays output to user.
+ * Displays event output to user.
  */
 export default {
 
@@ -34,20 +34,20 @@ export default {
 
 <template>
 	
-	<div class="outlog">
+	<div class="log-view">
 
 			<span class="check-span" v-for="p in LogTypes" :key="p">
 				<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
 				<label :for="elmId(p)">{{ p }}</label>
 			</span>
 
+			<div class="outlog">
 			<div class="log-item" v-for="(it,i) in visItems" :key="i">
 
 				<span v-if="it.title" class="log-title">{{ it.title }}</span><br>
 				<span class="log-text">{{ it.text }}</span>
 
-
-
+			</div>
 			</div>
 
 	</div>
@@ -56,14 +56,21 @@ export default {
 
 <style scoped>
 span.check-span {
-	margin: 2px 4px;
+	margin: 2px 0px 5px;
+	padding-bottom: 2px;
+	border-bottom: 1px solid rgb(88, 87, 87);
 }
 
-div.outlog {
+div.log-view {
 	flex-direction: column;
 	height:95vh;
 	flex-basis: 20%;
 	overflow-y: auto;
+}
+
+div.outlog {
+	display:flex;
+	flex-direction: column-reverse;
 }
 
 div.log-item {

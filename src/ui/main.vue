@@ -81,6 +81,9 @@ export default {
 		this.listen( 'raid', this.onRaid );
 		this.listen( 'rest', this.onRest );
 
+		this.listen('equip', this.onEquip );
+		this.listen('unequip', this.onUnequip );
+
 		this.listen('home', this.onHome );
 
 		this.listen( 'spell', this.onSpell );
@@ -193,11 +196,11 @@ export default {
 
 		},
 
-		equip( slot, it ) {
-			this.game.equip( slot, it );
+		onEquip( it ) {
+			this.game.equip( it );
 		},
 
-		unequip(slot, it){
+		onUnequip(slot, it){
 			this.game.unequip(slot, it)
 		},
 
