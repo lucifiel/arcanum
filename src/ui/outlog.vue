@@ -64,7 +64,7 @@ span.check-span {
 div.log-view {
 	flex-direction: column;
 	height:95vh;
-	flex-basis: 20%;
+	flex-basis: 22%;
 	overflow-y: auto;
 }
 

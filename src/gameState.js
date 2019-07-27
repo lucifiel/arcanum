@@ -196,7 +196,7 @@ export default class GameState {
 	fillItem( id ) {
 
 		let it = this.getItem(id);
-		if ( !it) return;
+		if ( !it || !it.max ) return;
 
 		it.value = it.max.value;
 

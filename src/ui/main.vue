@@ -83,6 +83,7 @@ export default {
 
 		this.listen('equip', this.onEquip );
 		this.listen('unequip', this.onUnequip );
+		this.listen('drop', this.onDrop );
 
 		this.listen('home', this.onHome );
 
@@ -208,8 +209,8 @@ export default {
 		 * Drop item from inventory.
 		 * @param {Item} it - item to drop
 		 */
-		drop(it) {
-			this.state.inventory.remove(it);
+		onDrop(it) {
+			this.game.drop(it);
 		},
 
 		onSell(it) {
@@ -410,7 +411,6 @@ div.inv-equip {
 	display:flex;
 	flex-direction: row;
 	width:100%;
-	height:100%;
 }
 
 div.full {

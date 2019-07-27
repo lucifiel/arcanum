@@ -63,7 +63,7 @@ export default {
 
 		<div class="furniture">
 
-		<table class="furniture">
+		<table class="furniture item-table">
 			<tr><th class="space">Space</th><th class="name">Furnishing</th><th class="count">Count</th></tr>
 		<tr v-for="it in viewable" :key="it.id">
 
@@ -90,16 +90,12 @@ div.home-view {
 	height:100%;
 }
 
-div.furniture {
+.furniture {
 	display:flex;
 	overflow-y:auto;
 	flex-direction: column;
 	width:100%;
 	height:93vh;
-}
-
-table tr, table th {
-	padding: 1px 8px;
 }
 
 table .count, table .space {

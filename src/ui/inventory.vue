@@ -14,25 +14,24 @@ export default {
 
 
 <template>
-<div class="inv">
-	<div>Max: {{ inv.max }}<br></div>
-	<div v-for="it in inv.items" :key="it.id">
-		<span>{{ it.name }}</span>
-		<button @click="dispatch('equip',it)">Equip</button>
-		<button @click="dispatch('drop',it)">Drop</button>
-	</div>
-</div>	
+<table class="inv item-table">
+	<tr v-for="it in inv.items" :key="it.id">
+		<td>{{ it.name }}</td>
+		<td><button @click="dispatch('equip',it)">Equip</button></td>
+		<td><button @click="dispatch('drop',it)">Drop</button></td>
+	</tr>
+</table>	
 </template>
 
 
 <style scoped>
 
-div.inv {
-	display:flex;
+.inv {
 	margin-left: 48px;
-	flex-direction: column;
 	width:auto;
 	overflow-y:auto;
-	height:93vh;
+	max-height:93vh;
 }
+
+
 </style>
