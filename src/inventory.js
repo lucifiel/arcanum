@@ -31,19 +31,15 @@ export default class Inventory {
 
 	}
 
+	removeAt(ind) {
+		this.items.splice(ind,1);
+	}
+
 	remove( it ){
 
-		if ( !isNaN(it)) {
-
-			this.items.splice(it,1);
-
-		} else {
-
-			let ind = this.items.indexOf()
-			if ( ind < 0 ) return undefined;
-			this.items.splice( ind, 1 );
-
-		}
+		let ind = this.items.indexOf( it );
+		if ( ind < 0 ) return undefined;
+		this.items.splice( ind, 1 );
 
 	}
 

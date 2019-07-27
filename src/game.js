@@ -784,7 +784,7 @@ export default {
 
 			if ( typeof res === 'object') {
 				this.state.inventory.add(res);
-			}
+			} else this.state.inventory.add( it );
 
 		}
 

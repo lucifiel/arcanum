@@ -64,7 +64,7 @@ export default class Equip {
 
 		slot = slot || it.slot;
 		let cur = this.slots[it.slot];
-		if ( cur ) return this.slots.remove(it);
+		if ( cur ) return cur.remove(it);
 
 		return false;
 

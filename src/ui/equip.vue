@@ -27,7 +27,7 @@ export default {
 
 				</div>
 				<div v-else>
-					{{ slot.item.name }}<button @click="dispatch('unequip', slot, it )">Unequip</button>
+					{{ slot.item.name }}<button @click="dispatch('unequip', slot, slot.item )">Unequip</button>
 				</div>
 
 			</span>

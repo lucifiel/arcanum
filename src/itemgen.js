@@ -39,6 +39,12 @@ export default class ItemGen {
 		this.initList( 'equip', state.equip );
 	}
 
+	_itemClone(data) {
+		data = clone(data);
+		data.id = data.id + ITEM_ID++;
+		return new Wearable(data);
+	}
+
 	/**
 	 * Generate an item from base item.
 	 * @param {Wearable} data 
@@ -46,11 +52,7 @@ export default class ItemGen {
 	fromData( data ) {
 
 		if ( data === null || data === undefined ) return null;
-
-		data = clone(data);
-		data.id = data.id + ITEM_ID++;
-
-		return new Wearable( data );
+		return this._itemClone(data);
 
 	}
 
@@ -111,7 +113,7 @@ export default class ItemGen {
 			if ( list ) {
 				let it = list[ Math.floor( Math.random()*list.length ) ];
 				console.log( 'cloning ' + it );
-				return clone(it);
+				return this._itemClone( it );
 			}
 
 
