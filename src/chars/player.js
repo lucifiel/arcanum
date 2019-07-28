@@ -129,11 +129,15 @@ export default class Player extends Item {
 		this.timer = this.timer || 0;
 
 		this.baseAttack = this.baseAttack || {
+
 			id:'baseAttack',
 			name:'fists',
-			kind:'blunt',
-			tohit:1,
-			damage:new Range(1,1)
+			attack:{
+				tohit:1,
+				kind:'blunt',
+				damage:new Range(1,1)
+			}
+
 		};
 
 		this.damage = this.damage || 1;

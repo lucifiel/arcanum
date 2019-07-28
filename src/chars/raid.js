@@ -158,6 +158,8 @@ export default class Raid {
 
 		let atk = src.attack;
 
+		console.log('tohit: ' + atk.tohit);
+
 		if ( this.rollHit( this.player, atk, this.enemy ) ) {
 
 			if ( atk.damage != null ) {
