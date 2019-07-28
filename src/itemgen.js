@@ -1,6 +1,6 @@
 import Game from './game';
 import Wearable from "./items/wearable";
-import {clone} from 'objecty';
+import {cloneClass} from 'objecty';
 import Percent from './percent';
 
 /*function isPercent(str) {
@@ -40,9 +40,9 @@ export default class ItemGen {
 	}
 
 	_itemClone(data) {
-		data = clone(data);
+		data = cloneClass(data);
 		data.id = data.id + ITEM_ID++;
-		return new Wearable(data);
+		return data;
 	}
 
 	/**
@@ -72,22 +72,21 @@ export default class ItemGen {
 		if ( info.level ) return this.fromLevel( info.level, info.kind );
 		else if ( info.max ) return this.rand( info.max, info.kind );
 
+		let items = [];
 		for( let p in info ) {
 
 			var it = this.state.getItem(p);
 			if ( !it ) {
 				console.log('LOOT UNDEFINED: ' + p );
-				return;
+				continue;
 			}			
 			var itVal = info[p];
 
 			if ( itVal instanceof Percent ) {
-				console.log('TESTING PERCENT');
-				if ( !itVal) return null;
-
+				if ( !itVal.value ) continue;
 			} else if ( itVal.value ) itVal = itVal.value;
 
-			if ( it.type === 'wearable') return this.fromData(it);
+			if ( it.type === 'wearable') items.push( this.fromData(it) );
 
 			// loot is resource/skill/status effect etc.
 			else Game.doItem(it, itVal );
@@ -95,7 +94,7 @@ export default class ItemGen {
 
 		}
 
-		return null;
+		return items;
 
 	}
 
