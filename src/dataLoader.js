@@ -181,8 +181,8 @@ export default {
 					//console.log('parse string: ' + p + ' --> ' + obj );
 					if ( p === 'require' || p === 'need') sub[p] = this.parseRequire( obj );
 					else if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
-					else if (!isNaN(obj)) sub[p] = Number(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
+					else if (!isNaN(obj)) sub[p] = Number(obj);
 					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);
 
 				} else if ( type === 'object' ) this.parseSub(obj);
