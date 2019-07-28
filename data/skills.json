@@ -2,7 +2,7 @@
 
 	{
 		"id":"animals",
-		"name":"Animal Handling",
+		"name":"animal handling",
 		"need":"tagpen",
 		"require":"tagpen",
 		"cost":{
@@ -213,6 +213,21 @@
 
 	},
 	{
+		"id":"pyromancy",
+		"desc":"the investigation of fire",
+		"require":"firesource",
+		"cost":{
+			"stamina":0.4,
+			"hp":0.2
+		},
+		"result":{
+			"fire.max":1,
+			"fire.rate":0.1
+		},
+		"flavor":""
+
+	},
+	{
 		"id":"enchanting",
 		"require":"state.adept>0&&state.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
@@ -228,7 +243,6 @@
 	},
 	{
 		"id":"alchemy",
-		"name":"Alchemy",
 		"school":["elemental"],
 		"require":"alembic",
 		"cost":{
@@ -243,7 +257,6 @@
 	},
 	{
 		"id":"astronomy",
-		"name":"astronomy",
 		"require":"state.sextant>0||state.telescope>0",
 		"cost":{
 			"stamina":0.5
@@ -258,7 +271,7 @@
 	{
 
 		"id":"planeslore",
-		"name":"Planes Lore",
+		"name":"planes lore",
 		"require":"state.astronomy>=5",
 		"cost":{
 			"stamina":0.7,
@@ -271,7 +284,7 @@
 	},
 	{
 		"id":"naturelore",
-		"name":"Nature Lore",
+		"name":"nature lore",
 		"verb":"observing nature",
 		"require":"state.herbs>=3&&state.animals>=2",
 		"cost":{
@@ -287,7 +300,6 @@
 	},
 	{
 		"id":"scrying",
-		"name":"Scrying",
 		"require":"state.divination>5&&state.ball>0",
 		"cost":{
 			"stamina":0.5

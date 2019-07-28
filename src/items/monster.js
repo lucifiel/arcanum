@@ -1,4 +1,5 @@
 import Item from "./item";
+import { getDelay } from '../chars/player';
 
 export default class Monster extends Item {
 
@@ -6,10 +7,10 @@ export default class Monster extends Item {
 
 		super(vars);
 
-		this.speed = this.speed || this.level;
 		this.level = this.level || 1;
+		this.speed = this.speed || this.level;
 
-		this.delay = 10 / this.speed;
+		this.delay = getDelay( this.speed );
 
 	}
 

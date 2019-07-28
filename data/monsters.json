@@ -21,6 +21,7 @@
 		"hp":1,
 		"tohit":4,
 		"defense":1,
+		"speed":2,
 		"attack":{
 			"name":"sting",
 			"kind":"poison",
@@ -40,8 +41,9 @@
 		"tohit":0,
 		"defense":3,
 		"damage":0,
+		"speed":-10,
 		"loot":{
-			"pct":75,
+			"pct":15,
 			"max":1
 		}
 	},
@@ -50,11 +52,11 @@
 		"name":"Large Snail",
 		"type":"natural",
 		"level":2,
-		"hp":7,
-		"tohit":0,
+		"hp":8,
+		"tohit":1,
 		"defense":4,
-		"damage":"2~4",
-		"speed":2,
+		"damage":"2~5",
+		"speed":-1,
 		"loot":{
 			"club":1
 		}
@@ -64,10 +66,10 @@
 		"name":"Large Rat",
 		"type":"natural",
 		"level":2,
-		"hp":2,
+		"hp":5,
 		"tohit":2,
 		"defense":2,
-		"damage":"1~2"
+		"damage":"1~3"
 	},
 	{
 		"id":"angrybird",
@@ -77,6 +79,7 @@
 		"hp":2,
 		"tohit":4,
 		"defense":1,
+		"speed":3,
 		"damage":"0~2",
 		"loot":{
 			"feather":"0~4",
@@ -204,6 +207,45 @@
 			"dagger":1,
 			"cap":1,
 			"boots":1
+		}
+	},
+	{
+		"id":"gobwarrior",
+		"type":"humanoid",
+		"level":5,
+		"hp":10,
+		"tohit":5,
+		"defense":7,
+		"damage":"5~7",
+		"loot":{
+			"dagger":1,
+			"cap":1,
+			"boots":1
+		}
+	},
+	{
+		"id":"gobpriest",
+		"type":"humanoid",
+		"level":5,
+		"hp":8,
+		"tohit":5,
+		"defense":5,
+		"damage":"5~7",
+		"loot":{
+			"dagger":1,
+			"cap":1,
+			"boots":1
+		}
+	},
+	{
+		"id":"warg",
+		"type":"humanoid",
+		"level":6,
+		"hp":15,
+		"tohit":7,
+		"defense":4,
+		"damage":"8~10",
+		"loot":{
 		}
 	},
 	{

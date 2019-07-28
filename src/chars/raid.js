@@ -253,7 +253,7 @@ export default class Raid {
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot );
 
-		this.player.exp += (this.dungeon.level)*( 10 + this.dungeon.length );
+		this.player.exp += (this.dungeon.level)*( 15 + this.dungeon.length );
 		this.dungeon = null;
 
 		Game.doRest();

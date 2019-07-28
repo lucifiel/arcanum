@@ -86,6 +86,7 @@ export default class GameState {
 			this.quickslots = this.quickslots.map( v=>this.getItem(v) );
 		}
 
+		this.player.revive(this);
 
 	}
 

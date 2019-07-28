@@ -17,7 +17,7 @@
 		"dot":{
 			"duration":30,
 			"effect":{
-				"stamina":0.02
+				"stamina":0.2
 			}
 		}
 
@@ -106,7 +106,7 @@
 		"dot":{
 			"duration":30,
 			"effect":{
-				"mana":0.1
+				"mana":0.12
 			}
 		}
 
@@ -129,7 +129,7 @@
 
 			"duration":30,
 			"effect":{
-				"hp":0.2
+				"hp":0.22
 			}
 
 		}
@@ -268,7 +268,7 @@
 		"dot":{
 			"duration":45,
 			"effect":{
-				"mana":0.2
+				"mana":0.22
 			}
 		}
 
@@ -293,7 +293,7 @@
 		},
 		"dot":{
 			"duration":45,
-			"effect":{
+			"mod":{
 				"lore.rate":0.5,
 				"naturelore.rate":0.2
 			}

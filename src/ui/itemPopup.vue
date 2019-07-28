@@ -72,11 +72,12 @@ export default {
 				let it = Game.getItem(obj);
 				results[ it ? it.name : obj ] = true;
 
-			} else if ( type === 'object') {
+			} else if ( obj instanceof Array ) obj.forEach(v=>this.effectList(v,results));
+			else if ( type === 'object') {
 
 				this.effectList( obj, results );
 
-			} else if ( type === 'array') obj.forEach(v=>this.effectList(v,results));
+			}
 
 			return results;
 

@@ -52,7 +52,7 @@
 			"mana":0.2
 		},
 		"effect":{
-			"research":-0.4,
+			"research":-0.75,
 			"gold":0.7
 		}
 

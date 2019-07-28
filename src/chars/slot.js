@@ -57,6 +57,17 @@ export default class Slot {
 	}
 
 	/**
+	 * Find item in slot by id.
+	 * @param {string} id 
+	 * @returns {Item|null}
+	 */
+	find(id ) {
+		return this.multi ?
+			this.item.find(v=>v.id===id) :
+			(this.item.id === id) ? this.item : null
+	}
+
+	/**
 	 * 
 	 * @param {*} it 
 	 */

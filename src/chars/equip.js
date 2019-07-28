@@ -49,7 +49,22 @@ export default class Equip {
 		};
 
 	}
- 
+
+	/**
+	 * Find equipment item by id.
+	 * @param {string} id 
+	 * @returns {Item|null}
+	 */
+	find( id ) {
+
+		for( let p in this.slots ) {
+			var it = this.slots[p].find(id);
+			if ( it ) return it;
+		}
+		return null;
+
+	}
+
 	get( slot ) {
 		return this.slots[slot];
 	}

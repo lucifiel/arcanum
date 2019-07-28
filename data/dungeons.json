@@ -78,6 +78,57 @@
 			"badexperiment",
 			"ratskeleton"
 		]
+	},
+	{
+		"id":"goblincamp",
+		"name":"goblin camp",
+		"desc":"the pesky creatures ",
+		"require":"",
+		"level":4,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"20-30"
+		},
+		"enemies":[
+			"skeleton"
+		]
+
+	},
+	{
+		"id":"aragheights",
+		"name":"arag heights",
+		"desc":"barren mountains over arazor",
+		"require":"",
+		"level":4,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"20-30"
+		},
+		"enemies":[
+			"lgbird"
+		]
+
+	},
+	{
+		"id":"veldranswreck",
+		"name":"veldran's wreck",
+		"desc":"Off the stormy cliffs of the Ragal highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
+		"require":"water.max>=10",
+		"level":5,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"50-75"
+		},
+		"enemies":[
+			"lgbird"
+		]
+
 	}
 
 ]

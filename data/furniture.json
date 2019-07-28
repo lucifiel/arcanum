@@ -260,7 +260,7 @@
 	{
 
 		"id":"bookcase",
-		"name":"Bookcase",
+		"name":"bookcase",
 		"repeat":true,
 		"desc":"A rough but sturdy bookcase.",
 		"require":"state.codices>=10",
@@ -361,7 +361,6 @@
 	},
 	{
 		"id":"brazier",
-		"name":"Brazier",
 		"desc":"Stand of burning hot coals.",
 		"tags":"firesource",
 		"require":"adept",
@@ -379,7 +378,6 @@
 	},
 	{
 		"id":"campfire",
-		"desc":"Campfire.",
 		"tags":"firesource",
 		"require":"state.camp>0||state.wagon>0",
 		"cost":{
@@ -413,7 +411,6 @@
 	},
 	{
 		"id":"fireplace",
-		"name":"Fireplace",
 		"desc":"A cozy place for cooking food and brewing potions.",
 		"require":"state.space>=15",
 		"cost":{
@@ -427,7 +424,6 @@
 	},
 	{
 		"id":"fountain",
-		"name":"fountain",
 		"desc":"Water Fountain",
 		"tags":"watersource",
 		"require":"state.space>20",
@@ -504,7 +500,6 @@
 	},
 	{
 		"id":"armory",
-		"name":"armory",
 		"desc":"A storeroom of arms.",
 		"tags":"armssource",
 		"require":"adept",
@@ -520,7 +515,6 @@
 	},
 	{
 		"id":"shrine",
-		"name":"shrine",
 		"desc":"A shrine to the divine forces.",
 		"require":"adept",
 		"tags":"lightsource",
@@ -537,7 +531,7 @@
 	},
 	{
 		"id":"bloodfountain",
-		"name":"Blood Fountain",
+		"name":"blood fountain",
 		"desc":"Fountain of blood",
 		"tags":"shadowsource",
 		"require":"evil",
@@ -572,7 +566,6 @@
 	},
 	{
 		"id":"library",
-		"name":"Library",
 		"desc":"",
 		"require":"state.codices>=100",
 		"cost":{
@@ -606,7 +599,6 @@
 	},
 	{
 		"id":"pond",
-		"name":"pond",
 		"desc":"Pond",
 		"tags":"watersource",
 		"require":"state.space>50",

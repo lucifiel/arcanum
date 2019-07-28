@@ -19,7 +19,7 @@
 	{
 
 		"id":"bones",
-		"desc":"Human bones.",
+		"desc":"human bones.",
 		"require":"adept",
 		"max":10
 
@@ -27,7 +27,7 @@
 	{
 
 		"id":"dust",
-		"name":"Bone Dust",
+		"name":"bone dust",
 		"desc":"The dust of human bones.",
 		"require":"adept",
 		"max":10

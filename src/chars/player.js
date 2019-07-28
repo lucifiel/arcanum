@@ -8,6 +8,14 @@ import Item from "../items/item";
  */
 const EXP_RATE = 0.05;
 
+/**
+ * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
+ */
+export const DELAY_RATE = 3;
+export function getDelay(s) {
+	return DELAY_RATE*Math.exp(-s/4);
+}
+
 export default class Player extends Item {
 
 	get name() { return this._name; }
@@ -61,6 +69,10 @@ export default class Player extends Item {
 	get tohit() { return this._tohit; }
 	set tohit(v) { this._tohit = v; }
 
+	/**
+	 * @property {Resource} speed
+	 * speed normalized to an average of level=speed.
+	 */
 	get speed() { return this._speed; }
 	set speed(v) {
 
@@ -68,7 +80,7 @@ export default class Player extends Item {
 		else if ( v instanceof Resource ) this._speed = v;
 		else this._speed = new Resource( {value:v} );
 
-		this._delay = 10/this._speed.value;
+		this._delay = getDelay( this._speed.value );
 
 	}
 
@@ -114,7 +126,7 @@ export default class Player extends Item {
 		this._level = this._level || 0;
 		this._title = this._title || 'waif';
 
-		this._next = this._next || 100;
+		this._next = this._next || 50;
 
 		this.speed = this._speed || 1;
 
@@ -170,6 +182,11 @@ export default class Player extends Item {
 
 		this.primary = s;
 
+	}
+
+	revive( state ) {
+		if ( this.weapon ) this.weapon = state.equip.find( this.weapon );
+		this.primary = this.primary ? state.getItem( this.primary ) : null;
 	}
 
 	/**
