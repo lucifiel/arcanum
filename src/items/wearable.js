@@ -36,6 +36,26 @@ export default class Wearable extends Item {
 
 		this.level = this.level || 1;
 		this.kind = this.kind || 'equip';
+		if ( this.attack ) {
+
+			this.attack.damage = this.attack.dmg;
+			if ( !this.attack.tohit ) this.attack.tohit = 1;
+
+		}
+
+	}
+
+	equip( player ) {
+
+		if ( this.armor ) player.defense += this.armor;
+		if ( this.kind === 'weapon' ) player.weapon = this;
+
+	}
+
+	unequip( player ) {
+
+		if ( this.armor ) player.defense -= this.armor;
+		if ( player.weapon == this ) player.weapon = null;
 
 	}
 

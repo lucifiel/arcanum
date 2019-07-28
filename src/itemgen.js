@@ -88,6 +88,8 @@ export default class ItemGen {
 			} else if ( itVal.value ) itVal = itVal.value;
 
 			if ( it.type === 'wearable') return this.fromData(it);
+
+			// loot is resource/skill/status effect etc.
 			else Game.doItem(it, itVal );
 
 

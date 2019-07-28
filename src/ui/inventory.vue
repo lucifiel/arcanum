@@ -29,8 +29,7 @@ export default {
 .inv {
 	margin-left: 48px;
 	width:auto;
-	overflow-y:auto;
-	max-height:93vh;
+	height:auto;
 }
 
 

@@ -93,7 +93,10 @@ export default class Raid {
 
 				// attempt to use primary item attack first.
 				if ( !this.player.primary || !Game.tryItem( this.player.primary )) {
-					this.playerAttack( this.player, this.player );
+
+					if ( this.player.weapon ) this.playerAttack( this.player.weapon );
+					else this.baseAttack( this.player );
+
 				}
 
 			}
@@ -117,21 +120,49 @@ export default class Raid {
 			this.playerAct = this.player.name + ' casts ' + it.name + ' at the darkness.';
 			Game.log.log( '', this.playerAct, 'combat');
 
-		} else this.playerAttack( it.attack, it );
+		} else this.playerAttack( it );
+
+	}
+
+	/**
+	 * Attack without weapon.
+	 * @todo replace with something more logical.
+	 * @param {Player} player 
+	 */
+	baseAttack( player ) {
+
+		if ( this.tryHit( player, this.enemy ) ) {
+
+			if ( player.damage != null ) {
+
+				let dmg = this.getDamage( player.damage );
+
+				this.enemy.doDamage( dmg, player );
+
+			}
+
+		} else {
+
+			this.playerAct = player.name + ' misses';
+			Game.log.log( '', this.playerAct, 'combat');
+
+		}
 
 	}
 
 	/**
 	 * 
-	 * @param {Object} it - attack object. 
+	 * @param {Object} src - attack source. (spell,weapon,etc.)
 	 */
-	playerAttack( it, src ) {
+	playerAttack( src ) {
 
-		if ( this.tryHit(this.player, this.enemy ) ) {
+		let atk = src.attack;
 
-			if ( it.damage != null ) {
+		if ( this.rollHit( this.player, atk, this.enemy ) ) {
 
-				let dmg = this.getDamage( it.damage );
+			if ( atk.damage != null ) {
+
+				let dmg = this.getDamage( atk.damage ) + this.player.damage;
 
 			//this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
 			//Game.log.log( '', this.playerAct, 'combat');
@@ -139,7 +170,7 @@ export default class Raid {
 				this.enemy.doDamage( dmg, src );
 
 			}
-			if ( it.dot ) this.enemy.addDot( it.dot, src.name );
+			if ( atk.dot ) this.enemy.addDot( atk.dot, src.name );
 
 		} else {
 
@@ -169,6 +200,10 @@ export default class Raid {
 
 	}
 
+	rollHit( attacker, weapon, defender ) {
+		return Math.random()*( attacker.tohit + weapon.tohit ) >= Math.random()*defender.defense;
+	}
+
 	/**
 	 * Rolls a player attack roll against the current enemy.
 	 * @param {Object} attacker - attack object
@@ -182,7 +217,7 @@ export default class Raid {
 	 * Convert damage object to raw damage value.
 	 * @param {number|function|Range} dmg /
 	 */
-	getDamage(dmg) {
+	getDamage( dmg ) {
 
 		if ( dmg instanceof Range) return dmg.value;
 		else if ( !isNaN(dmg) ) return dmg;

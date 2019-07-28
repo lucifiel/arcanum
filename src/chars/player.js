@@ -46,6 +46,15 @@ export default class Player extends Item {
 
 	}
 
+	/**
+	 * @property {Wearable} weapon - primary weapon.
+	 */
+	get weapon() { return this._weapon; }
+	set weapon(v) {
+		this._weapon = v;
+		if ( !v ) this._weapon = this.baseAttack;
+	}
+
 	get defense() { return this._defense; }
 	set defense(v) { this._defense =v; }
 
@@ -92,6 +101,7 @@ export default class Player extends Item {
 		//data.exp = JSON.stringify( this.exp );
 
 		if ( this.primary ) data.primary = this.primary.id;
+		if ( this.weapon ) data.weapon = this.weapon.id;
 
 		return data;
 
@@ -108,7 +118,7 @@ export default class Player extends Item {
 
 		this.speed = this._speed || 1;
 
-		this._tohit = this._tohit || 2;
+		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 1;
 
 		this.type = "player";
@@ -118,7 +128,15 @@ export default class Player extends Item {
 		 */
 		this.timer = this.timer || 0;
 
-		this.damage = this.damage || new Range( 1, 2 );
+		this.baseAttack = this.baseAttack || {
+			id:'baseAttack',
+			name:'fists',
+			kind:'blunt',
+			tohit:1,
+			damage:new Range(1,1)
+		};
+
+		this.damage = this.damage || 1;
 
 		this.alignment = this.alignment || 'neutral';
 
@@ -131,6 +149,7 @@ export default class Player extends Item {
 		 * @property {Item} primary - primary attack.
 		 */
 		this.primary = this.primary || null;
+		this.weapon = this.weapon || this.baseAttack;
 
 		this._name = this._name || 'wizrobe';
 
@@ -146,18 +165,16 @@ export default class Player extends Item {
 		if ( this.primary !== null ) this.removePrimary();
 
 		this.primary = s;
-		if ( this.primary.attack.tohit ) this.tohit += this.primary.attack.tohit;
 
 	}
 
 	/**
-	 * Clear player's primary attack.
+	 * Clear player's primary spell attack.
 	 */
 	removePrimary() {
 
-		let p = this.primary;
+		//let p = this.primary;
 		this.primary = null;
-		if ( p.attack.tohit ) this.tohit -= p.attack.tohit;
 
 	}
 

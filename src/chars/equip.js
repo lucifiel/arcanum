@@ -11,6 +11,12 @@ export default class Equip {
 		if ( vars ) Object.assign(this, vars);
 
 		this.slots = {
+			"left":new Slot({
+				id:'left'
+			}),
+			"right":new Slot({
+				id:'right'
+			}),
 			"head":new Slot({
 				id:'head'
 			}),
@@ -39,12 +45,6 @@ export default class Equip {
 			}),
 			"feet":new Slot({
 				id:'feet'
-			}),
-			"left":new Slot({
-				id:'left'
-			}),
-			"right":new Slot({
-				id:'right'
 			})
 		};
 
@@ -74,6 +74,11 @@ export default class Equip {
 		return this.slots.right.remove(it) || this.slots.left.remove(it);
 	}
 
+	/**
+	 * 
+	 * @param {*} it
+	 * @returns {Item|Item[]|true} 
+	 */
 	equipWeap( it ) {
 
 		console.log('equipping weapon...');
@@ -84,47 +89,35 @@ export default class Equip {
 		if ( it.hands === 2 ) {
 
 			console.log( 'Setting two handed weapon.');
-			this.slots.right = it;
-			this.slots.left = null;
+			let rightItem = right.equip( it );
+			let leftItem = left.remove();
 
-			if ( right === null ) return left;
-			if ( left === null ) return right;
-			return [ left, right ];
+			return rightItem || leftItem || [ rightItem, leftItem ];
 
 		} else {
 
-			if ( right === null ) {
+			if ( right.empty() ) {
 
 				console.log('setting right hand.');
 
-				this.slots.right = it;
-				if ( left !== null && left.hands === 2 ) {
-					this.slots.left = null;
-					return left;
-				}
+				right.equip( it );
+				return ( left.hands() > 1 ) ? left.remove() : true;
 
-			} else if ( left === null ) {
+			} else if ( left.empty() ) {
 
 				console.log('setting left hand.');
 
-				this.slots.left = it;
-				if ( right !== null && right.hands === 2 ) {
-					this.slots.right = null;
-					return right;
-				}
+				left.equip( it );
+				return ( right.hands() > 1 ) ? right.remove() : true;
 
 			} else {
 
-				console.log('passing off hands.');
+				console.log('neither empty. passing off hands.');
 
-				// can't both be two-handed.
-				this.slots.right = it;
-				this.slots.left = right;
-
-				return left;
+				let res = right.equip( left.equip(it) );
+				return res;
 
 			}
-			return null;
 
 		}
 
@@ -134,11 +127,11 @@ export default class Equip {
 	 * 
 	 * @param {Armor|Weapon} it 
 	 * @param {string} slot 
-	 * @returns {boolean|Wearable}
+	 * @returns {boolean|Wearable|Wearable[]}
 	 */
 	equip( it, slot=null ) {
 
-		if ( it.type === 'weapon' ) return this.equipWeap(it);
+		if ( it.kind === 'weapon' ) return this.equipWeap(it);
 
 		slot = slot || it.slot;
 		if( slot === null || !this.slots.hasOwnProperty(slot)) return false;

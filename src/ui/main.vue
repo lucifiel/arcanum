@@ -410,6 +410,8 @@ div.mid-view {
 div.inv-equip {
 	display:flex;
 	flex-direction: row;
+	overflow-y: auto;
+	height: 80vh;
 	width:100%;
 }
 

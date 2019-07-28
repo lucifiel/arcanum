@@ -8,12 +8,16 @@ export default class Spell extends Item {
 		data.learned = this.learned;
 		data.cast = (this.cast);
 
+		if ( this.timer > 0 ) data.timer = this.timer;
+
 		return data;
 	}
 
 	constructor(vars=null) {
 
 		super(vars);
+
+		this.timer = this.timer || 0;
 
 		this.repeat = true;
 		this.type = 'spell';

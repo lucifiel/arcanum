@@ -1,13 +1,13 @@
 [
-    { "id":"shortsword", "attack":{ "kind":"slash", "dmg":"1~6" }, "cost":30 },
-    { "id":"club", "attack":{ "kind":"blunt", "dmg":"1~5" }, "cost":15 },
-    { "id":"staff", "attack":{ "kind":"blunt", "dmg":"1~6"}, "cost":25 },
-    { "id":"dagger", "attack":{ "kind":"pierce", "dmg":"1~4"}, "cost":20 },
-    { "id":"longsword", "attack":{ "kind":"slash", "dmg":"1~8"}, "cost":50, "hands":2 },
-    { "id":"axe", "attack":{ "kind":"slash", "dmg":"1~5"}, "cost":40 },
-    { "id":"battleaxe", "attack":{ "kind":"slash", "dmg":"1~8"}, "cost":50, "hands":2 },
-    { "id":"mace", "attack":{ "kind":"blunt", "dmg":"1~6"}, "cost":30, "hands":1 },
-    { "id":"warhammer", "attack":{ "kind":"blunt", "dmg":"1~8"}, "cost":50, "hands":2 },
-    { "id":"spear", "attack":{ "kind":"pierce", "dmg":"1~8"}, "cost":30, "hands":2 }
+    { "id":"shortsword", "attack":{ "kind":"slash", "dmg":"1~2" }, "cost":30 },
+    { "id":"club", "attack":{ "kind":"blunt", "dmg":1 }, "cost":15 },
+    { "id":"staff", "attack":{ "kind":"blunt", "dmg":1 }, "cost":25 },
+    { "id":"dagger", "attack":{ "kind":"pierce", "dmg":1}, "cost":20 },
+    { "id":"longsword", "attack":{ "kind":"slash", "dmg":"1~4"}, "cost":50, "hands":2 },
+    { "id":"axe", "attack":{ "kind":"slash", "dmg":"1~2"}, "cost":40 },
+    { "id":"battleaxe", "attack":{ "kind":"slash", "dmg":"1~3"}, "cost":50, "hands":2 },
+    { "id":"mace", "attack":{ "kind":"blunt", "dmg":"1~2"}, "cost":30, "hands":1 },
+    { "id":"warhammer", "attack":{ "kind":"blunt", "dmg":"1~4"}, "cost":50, "hands":2 },
+    { "id":"spear", "attack":{ "kind":"pierce", "dmg":"1~3"}, "cost":30, "hands":2 }
 
 ]

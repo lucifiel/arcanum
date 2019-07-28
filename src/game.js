@@ -386,29 +386,6 @@ export default {
 	},
 
 	/**
-	 * Remove some amount of an item.
-	 * @property {string} id - item id or tag.
-	 */
-	remove( id, amt=1 ){
-
-		let it = id instanceof Item ? id : this.getItem(id);
-		if ( !it ) {
-
-			it = this.state.getTagList(id);
-			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
-			if ( !it ) return;
-
-		}
-
-		if ( it.cost && it.cost.space ) this.getItem('space').value += amt*it.cost.space;
-
-		it.value -= amt;
-		if ( it.mod ) this.removeMod( it.mod, amt );
-		if ( it.lock ) this.unlock( it.lock );
-
-	},
-
-	/**
 	 * Remove all quantity of an item.
 	 * @param {string|string[]|Item|Item[]} it
 	 */
@@ -486,9 +463,9 @@ export default {
 	},
 
 	/**
-	 * Get a game item without paying any cost.
-	 * @param {*} it 
-	 * @param {*} count 
+	 * Get a game item without paying cost.
+	 * @param {Item} it 
+	 * @param {number} count 
 	 */
 	doItem(it, count=1) {
 
@@ -500,11 +477,35 @@ export default {
 		if ( it.dot ) this.beginDot( it, it.dot );
 		if ( it.disable ) this.disable( it.disable );
 
-		if ( it.attack && this.state.curAction === this.state.raid ) {
-			this.state.raid.spellAttack( it );
+		if ( it.attack ) {
+			if ( it.type !== 'wearable' && this.state.curAction === this.state.raid )
+				this.state.raid.spellAttack( it );
 		}
 
 		return true;
+
+	},
+
+	/**
+	 * Remove some amount of an item.
+	 * @property {string} id - item id or tag.
+	 */
+	remove( id, amt=1 ){
+
+		let it = id instanceof Item ? id : this.getItem(id);
+		if ( !it ) {
+
+			it = this.state.getTagList(id);
+			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
+			if ( !it ) return;
+
+		}
+
+		if ( it.cost && it.cost.space ) this.getItem('space').value += amt*it.cost.space;
+
+		it.value -= amt;
+		if ( it.mod ) this.removeMod( it.mod, amt );
+		if ( it.lock ) this.unlock( it.lock );
 
 	},
 
@@ -769,9 +770,23 @@ export default {
 		if ( res ) {
 
 			this.state.inventory.remove( it );
-			if ( typeof res === 'object') {
+			if ( res instanceof Array ) res.forEach(v=>{
+
+				if ( typeof v === 'boolean') return;
+				v.unequip(this.state.player);
+				this.remove(v);
 				this.state.inventory.add(res);
+
+			})
+			else if ( typeof res === 'object') {
+
+				res.unequip( this.state.player );
+				this.remove( res );
+				this.state.inventory.add(res);
+
 			}
+			this.doItem(it);
+			it.equip( this.state.player );
 
 		}
 
@@ -783,11 +798,23 @@ export default {
 		if ( res ) {
 
 			if ( typeof res === 'object') {
+
+				console.log('to inv-> ' + res.id );
 				this.state.inventory.add(res);
+
 			} else this.state.inventory.add( it );
+			this.remove( it );
 
 		}
 
+	},
+
+	/**
+	 * Remove an item from inventory.
+	 * @param {*} it 
+	 */
+	drop(it) {
+		this.state.inventory.remove(it);
 	},
 
 	/**
@@ -799,13 +826,6 @@ export default {
 		let res = this.itemGen.getLoot(it);
 		if ( res ) this.state.inventory.add( res );
 
-	},
-
-	/**
-	 * Remove an item from inventory.
-	 * @param {*} it 
-	 */
-	drop(it) {
 	},
 
 	/**

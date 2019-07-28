@@ -30,7 +30,7 @@ export default class Slot {
 	/**
 	 * 
 	 * @param {Item} it
-	 * @returns {Item|boolean} true on success.
+	 * @returns {Item|boolean} Item previously held, or true.
 	 */
 	equip( it ){
 
@@ -72,7 +72,7 @@ export default class Slot {
 	 */
 	remove( it=undefined) {
 
-		if (!it) {
+		if ( it == null ) {
 
 			it = this.item;
 			this.item = null;
@@ -83,7 +83,7 @@ export default class Slot {
 
 			let ind = this.item.indexOf(it);
 			if ( ind < 0 ) return false;
-			this.item.splice(ind,1);
+			return this.item.splice(ind,1)[0];
 
 		} else if ( this.item === it ) {
 
@@ -94,6 +94,13 @@ export default class Slot {
 
 		return false;
 
+	}
+
+	/**
+	 * Return the hands used by a weapon held in this slot.
+	 */
+	hands() {
+		return this.item != null ? this.item.hands || 0 : 0;
 	}
 
 	empty(){
