@@ -1,5 +1,7 @@
-import { defineExcept } from 'objecty';
+import { defineExcept, propPaths } from 'objecty';
 import Stat from '../stat';
+import StatMode from '../unused/statMod';
+
 import Game from '../game';
 
 /**
@@ -74,6 +76,9 @@ export default class Item {
 	set tag(v) { if ( v ) this.addTag(v); }
 	get tag() { return this._tags; }
 
+	/**
+	 * @property {Stat} max
+	 */
 	get max() { return this._max; }
 	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
@@ -98,6 +103,9 @@ export default class Item {
 	get cost() { return this._cost; }
 	set cost(v) { this._cost=v;}
 
+	/**
+	 * @property {string|Object}
+	 */
 	get require() { return this._require; }
 	set require(v) { this._require =v;}
 
@@ -152,6 +160,11 @@ export default class Item {
 		if ( this._locked === undefined ) this._locked = true;
 
 		this._value = this._value || 0;
+
+		if ( vars.mod ) {
+			this.buildMods( vars.mod );
+		}
+
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'warn', 'effect', 'slot' ]);
 
@@ -176,13 +189,13 @@ export default class Item {
 	applyVars( m, amt=1 ) {
 
 		if (!isNaN(m)) this.value += m;
-		else if ( m instanceof Object ) {
+		else if ( typeof m === 'object' ) {
 
 			if ( m.max ) {
 
 				let vars = m.max;
 				if ( !isNaN(vars) ) this.max += ( vars * amt );
-				else if (vars instanceof Object ) {
+				else if ( typeof vars === 'object' ) {
 
 					if ( vars.base ) this.max.base += vars.base*amt;
 					if ( vars.pct ) this.max.pct += vars.pct*amt;
@@ -190,6 +203,7 @@ export default class Item {
 				if ( this.value > this.max.value ) this.value = this.max.value;
 
 			}
+			if ( m.mod ) this.changeMod( m.mod, amt );
 
 			for( let p in m ) {
 
@@ -201,12 +215,36 @@ export default class Item {
 				} else if ( this[p] !== undefined ) {
 					//console.log('adding: ' + p );
 					this[p] += Number(m[p])*amt;
+				} else {
+					console.log('NEW SUB: ' + p );
 				}
 
 			}
 
 			if ( m.rate ) this.rate.base += m.rate*amt;
 			if ( m.pct ) this.rate.pct += m.pct*amt;
+
+		}
+
+	}
+
+	/**
+	 * Change a modifier controlled by this Item.
+	 * @param {Object} mod
+	 * @param {number} amt - percent of change applied to modifier.
+	 */
+	changeMod( mod, amt ) {
+
+		// retroactively apply the new modifier for this item's current value.
+		let val = amt*this.value;
+		Game.addMod( mod, val );
+
+	}
+
+	buildMods( mods ) {
+
+		let paths = propPaths( mods );
+		for( let p of paths ) {
 
 		}
 
@@ -220,7 +258,7 @@ export default class Item {
 	 */
 	subassign( obj, m, amt ) {
 
-		if ( !obj instanceof Object ) {
+		if ( !typeof obj === 'object' ) {
 			console.warn( 'invalid assign: ' + obj + ' = ' + m );
 			return;
 		}
@@ -229,8 +267,8 @@ export default class Item {
 		
 			console.log('assigning sub: ' + p + '=' + m[p]);
 
-			if ( m[p] instanceof Object ) {
-				subassign( obj[p], m[p], amt );
+			if ( typeof m[p] === 'object' ) {
+				this.subassign( obj[p], m[p], amt );
 			} else {
 				obj[p] += Number(m[p])*amt;
 			}

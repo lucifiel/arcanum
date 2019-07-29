@@ -7,15 +7,19 @@ import Range from '../range';
  */
 export default class Raid {
 
+	/**
+	 * @property {string} id - id of dungeon in progress.
+	 */
 	get id() { return this.dungeon.id;}
+
+	/**
+	 * @property {string} name - name of dungeon in progress.
+	 */
 	get name() { return this.dungeon.name; }
 
 	get cost() { return this.dungeon ? this.dungeon.cost : null; }
 
 	get progress(){ return this.dungeon.progress; }
-	/**
-	 * For cheating only.
-	 */
 	set progress(v){
 
 		this.dungeon.progress=v;
@@ -26,8 +30,14 @@ export default class Raid {
 
 	}
 
+	/**
+	 * @property {number} length - length of dungeon in progress.
+	 */
 	get length() { return this.dungeon.length; }
 
+	/**
+	 * @property {Enemy} enemy - current enemy.
+	 */
 	get enemy() { return this._enemy;}
 	set enemy(v) {
 
@@ -47,6 +57,10 @@ export default class Raid {
 
 	}
 
+	/**
+	 * 
+	 * @param {?Object} [vars=null] 
+	 */
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign(vars, this);
@@ -65,7 +79,7 @@ export default class Raid {
 	}
 
 	percent() { return this.dungeon.percent(); }
-	maxed() { return false; }
+	maxed() { return this.dungeon.maxed(); }
 
 	initState( gameState ) {
 
@@ -233,6 +247,7 @@ export default class Raid {
 	enemyDied() {
 
 		this.player.exp += this.enemy.level;
+		this.player.timer = this.player.delay;
 		
 		this.enemyAct = this.enemy.name + ' slain';
 		Game.log.log( '', this.enemyAct, 'combat');
@@ -262,7 +277,7 @@ export default class Raid {
 
 	setDungeon( d ) {
 		this.dungeon = d;
-		this.player.timer = 0;
+		this.player.timer = this.player.delay;
 		if ( d != null ) {
 			if ( d.progress >= d.length ) d.progress = 0;
 		}

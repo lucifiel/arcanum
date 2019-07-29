@@ -6,7 +6,7 @@ import Item from "../items/item";
 /**
  * @constant {number} EXP_RATE
  */
-const EXP_RATE = 0.05;
+const EXP_RATE = 0.125;
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -147,7 +147,7 @@ export default class Player extends Item {
 			attack:{
 				tohit:1,
 				kind:'blunt',
-				damage:new Range(1,1)
+				damage:new Range(0,1)
 			}
 
 		};
@@ -209,7 +209,7 @@ export default class Player extends Item {
 		this.stamina.max += 1;
 
 		this._exp.value -= this._next;
-		this._next = this._next * ( 1 + EXP_RATE );
+		this._next = Math.floor( this._next * ( 1 + EXP_RATE ) );
 
 	}
 

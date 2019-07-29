@@ -23,6 +23,19 @@
 		}
 	},
 	{
+
+		"id":"innroom",
+		"name":"Lodging at Inn",
+		"desc":"Rented room of a local Inn",
+		"require":"adepth",
+		"lock":["alcove","atticbedroom"],
+		"mod":{
+			"space.max":10,
+			"gold.rate":-0.4
+		}
+
+	},
+	{
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
 		"require":"adept",

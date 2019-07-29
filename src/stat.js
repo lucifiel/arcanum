@@ -10,6 +10,11 @@ export default class Stat {
 		return this._base + (this._pct >= 0 ? '+' : '') + (100*this._pct) + '%';
 	}
 
+	/**
+	 * @property {number} lastValue - value previous frame.
+	 */
+	get lastValue() { return this._last; }
+
 	get value() { return this._base*( 1 + this._pct ); }
 
 	get base() { return this._base; }

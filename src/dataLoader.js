@@ -14,6 +14,8 @@ import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 import Action from './items/action';
 
+import { merge } from 'objecty';
+
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
 	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons','sections' ];
@@ -138,7 +140,7 @@ export default {
 
 				var saveObj = saveItems[it.id];
 				//console.log('MERGING: ' + it.id );
-				if ( saveObj ) this.merge( it, saveObj );
+				if ( saveObj ) merge( it, saveObj );
 
 			}
 
@@ -150,25 +152,11 @@ export default {
 
 	},
 
-	/**
-	 * Parse a requirement-type object.
-	 * currently: 'require' or 'need'
-	 */
-	parseRequire( sub ){
-
-		// REQUIRE
-		if ( typeof sub === 'string' && !IdTest.test(sub )) return this.makeTestFunc( sub );
-		else return this.parseSub( sub );
-
-	},
-
 	parseSub( sub ) {
 
 		if ( sub instanceof Array ) {
 
-			for( let i = sub.length-1; i >= 0; i-- ) {
-				sub[i] = this.parseSub( sub[i] );
-			}
+			for( let i = sub.length-1; i >= 0; i-- ) sub[i] = this.parseSub( sub[i] );
 
 		} else if ( sub instanceof Object ) {
 
@@ -182,7 +170,11 @@ export default {
 					if ( p === 'require' || p === 'need') sub[p] = this.parseRequire( obj );
 					else if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
-					else if (!isNaN(obj)) sub[p] = Number(obj);
+					else if ( !isNaN(obj) ) {
+						console.warn('string used as Number: ' + p + ' -> ' + obj );
+						console.warn('store numeric data as number.');
+						//sub[p] = Number(obj);
+					}
 					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);
 
 				} else if ( type === 'object' ) this.parseSub(obj);
@@ -209,45 +201,15 @@ export default {
 	},
 
 	/**
-	 * Merge two objects with overwrites from src.
-	 * @param {Object} dest 
-	 * @param {Object} src 
+	 * Parse a requirement-type object.
+	 * currently: 'require' or 'need'
 	 */
-	merge( dest, src ) {
+	parseRequire( sub ){
 
-		for( let p in src ) {
+		// REQUIRE
+		if ( typeof sub === 'string' && !IdTest.test(sub )) return this.makeTestFunc( sub );
+		else return this.parseSub( sub );
 
-			var destObj = dest[p];
-			var srcObj = src[p];
-
-			var srcType = typeof srcObj;
-			if ( !destObj || srcType === 'string' || !isNaN(srcObj) ) {
-				dest[p] = srcObj;
-				continue;
-			}
-
-			var destType = typeof( destObj );
-			if ( destType === 'object') this.merge( destObj, srcObj );
-			else if ( destType === 'array' ) {
-
-				if ( srcType === 'array') dest[p] = this.mergeArrays( destObj, srcObj );
-				else if ( !destObj.includes(srcObj) ) destObj.push(srcObj);
-
-			}
-
-
-		}
-
-	},
-
-	/**
-	 * Merge unique elements of two arrays.
-	 * @param {Array} a1 
-	 * @param {Array} a2
-	 * @returns {Array} 
-	 */
-	mergeArrays( a1, a2) {
-		return a1.concat( a2.filter(v=>!a1.includes(v) ) );
 	},
 
 	/**

@@ -96,6 +96,15 @@
 	},
 
 	{
+		"id":"deeppockets",
+		"name":"Deep Pockets",
+		"desc":"Lots of money.",
+		"mod":{
+			"pouch.mod.gold.max":10
+		}
+	},
+
+	{
 		"id":"waxcandle",
 		"name":"wax candle",
 		"tags":"candle",

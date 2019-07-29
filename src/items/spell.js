@@ -25,13 +25,18 @@ export default class Spell extends Item {
 		if ( !this.cost ) this.cost = {};
 		if ( !this.cost.arcana ) this.cost.arcana = this.level;
 
-		if ( !this.require && !this.need && this.locked ) this.require = this.defaultRequire;
+		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;
 
 		this.learned = this.learned || false;
 
 	}
 
-	defaultRequire( state, self ) {
+	/**
+	 * Default require function for spells.
+	 * @param {GameState} state 
+	 * @param {Spell} self 
+	 */
+	spellRequire( state, self ) {
 		return state.player.level >= self.level;
 	}
 

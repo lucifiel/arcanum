@@ -6,7 +6,13 @@ export default class StatTable extends EventEmitter {
 	constructor( state ){
 
 		this.state = state;
-		this.map = {};
+		this.map = new Map();
+
+	}
+
+	addStat( path, stat ) {
+
+		this.map.set( path, stat );
 
 	}
 
@@ -15,11 +21,7 @@ export default class StatTable extends EventEmitter {
 	 * @param {string} id 
 	 */
 	get( id ) {
-
-		let stat = this.map[id];
-		if ( stat === undefined ) {
-		}
-
+		return this.map.get(id);
 	}
 
 	/**

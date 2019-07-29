@@ -1,5 +1,6 @@
 import Game from '../game';
 import Dot from './dot';
+import { getDelay } from './player';
 
 /**
  * Represents the current enemy being fought.
@@ -30,6 +31,7 @@ export default class Enemy {
 
 		this.raid = raid;
 		this.log = Game.log;
+		this.delay = getDelay( this.speed );
 
 		this.alive = this.alive || false;
 
@@ -46,6 +48,9 @@ export default class Enemy {
 		this.id = item.id;
 		this.name = item.name;
 		Object.assign( this, item );
+
+		this.delay = item.delay;
+		this.speed = item.speed;
 
 		/// timer to next attack.
 		this.timer = item.delay;
@@ -72,7 +77,7 @@ export default class Enemy {
 		if ( this.timer <= 0 ) {
 
 			this.timer += this.delay;
-			this.raid.enemyAttack(this);
+			if ( this.damage ) this.raid.enemyAttack(this);
 
 		}
 

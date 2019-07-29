@@ -67,7 +67,7 @@ export default class ItemGen {
 		else if ( info.type === 'wearable') return this.fromData( info );
 		else if ( info instanceof Array ) return info.map( this.getLoot, this );
 
-		if ( info.pct && 100*Math.random() > info.pct ) return null;
+		if ( info.pct && (100*Math.random() > info.pct) ) return null;
 
 		if ( info.level ) return this.fromLevel( info.level, info.kind );
 		else if ( info.max ) return this.rand( info.max, info.kind );

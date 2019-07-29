@@ -23,6 +23,15 @@ export default class StatEntry {
 		this.stat = stat;
 		this.subpath = subpath;
 
+		/**
+		 * @property {Number} prev - combined value from previous frame.
+		 */
+		this.prev = stat.value;
+	
+		this.nextPct = stat.pct;
+		this.nextBase = stat.base;
+
+
 		this.owner = this.owner || null;
 
 	}

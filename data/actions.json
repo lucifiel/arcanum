@@ -212,7 +212,7 @@
 	{
 		"id":"makebestiary",
 		"name":"compile bestiary",
-		"verb":"compiliong bestiary",
+		"verb":"compiling bestiary",
 		"require":"state.animals>=3",
 		"length":10,
 		"repeat":false,

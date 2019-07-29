@@ -434,9 +434,10 @@ export default {
 	 */
 	setHome( it ) {
 
+		let prev = this.state.curHome;
+
 		if ( this.tryItem(it) ) {
 
-			let prev = this.state.curHome;
 			/**
 			 * curHome must be removed AFTER to prevent all space being restored.
 			 * @todo: fix this.
@@ -547,6 +548,19 @@ export default {
 	},
 
 	/**
+	 * Called when an item's modifier to other items changes.
+	 * The item must be subtracted and re-added to ensure mods are correct.
+	 * @param {Item} item 
+	 */
+	modChanged( it ) {
+
+		let val = it.value;
+		if ( it.mod ) this.removeMod( it.mod, val );
+		if ( it.lock ) this.unlock( it.lock );
+
+	},
+
+	/**
 	 * Return the results of a testing object.
 	 * @param {string|function|Object|Array} test - test object.
 	 * @param {?Item} [item=null] - item being used/unlocked.
@@ -606,9 +620,10 @@ export default {
 
 				if ( target === undefined ) this.applyToTag( p, e, dt );
 				else if ( target.type === 'event' ) this.doEvent( target );
-				else if ( !isNaN(e) ) target.value += e*dt;
+				else if ( typeof e === 'number' ) target.value += e*dt;
 				else if ( e instanceof Range ) target.value += e.value;
-				else target.applyVars(e,dt);	
+				else if ( typeof e === 'boolean') this.doItem( target );
+				else target.applyVars(e,dt);
 				
 			}
 

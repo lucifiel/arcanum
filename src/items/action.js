@@ -51,7 +51,7 @@ export default class Action extends Item {
 
 		super(vars);
 
-		this.repeat = true;
+		this.repeat = this.repeat === false ? false : true;
 		this.type = 'action';
 
 	}

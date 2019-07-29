@@ -69,7 +69,8 @@ export default class Slot {
 
 	/**
 	 * 
-	 * @param {*} it 
+	 * @param {*} it
+	 * @returns {boolean}
 	 */
 	has(it) {
 		return (this.multi === false ) ? this.item === it : this.item.includes(it);

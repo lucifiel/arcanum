@@ -17,6 +17,9 @@ export default class Wearable extends Item {
 
 	}
 
+	/**
+	 * @property {} armor
+	 */
 	get armor(){ return this._armor; }
 	set armor(v) { this._armor = v; }
 
