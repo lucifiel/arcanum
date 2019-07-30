@@ -21,7 +21,7 @@ export default class Percent {
 			let res = PercentTest.exec( val );
 			if ( res ) {
 
-				this.pct = res[1]
+				this.pct = res[1];
 
 			} else this.pct = Number(val);
 

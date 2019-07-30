@@ -103,8 +103,7 @@
 		}
 	},
 	{
-		"id":"smsnake",
-		"name":"Small snake",
+		"id":"snake",
 		"type":"natural",
 		"level":2,
 		"hp":5,
@@ -119,6 +118,21 @@
 			}
 		}
 	},
+	{
+        "id":"wombat",
+        "level":2,
+        "kind":"beast",
+        "evil":-2,
+        "desc":"Just wombatting around.",
+        "hp":"7~10",
+        "defense":3,
+        "attack":{
+            "name":"wombatting",
+            "type":"blunt",
+            "dmg":"1~4"
+        }
+
+    },
 	{
 		"id":"coyote",
 		"name":"Coyote",
@@ -216,7 +230,6 @@
 		"type":"humanoid",
 		"level":4,
 		"hp":5,
-		"tohit":4,
 		"defense":5,
 		"damage":"4~5",
 		"loot":{
@@ -229,7 +242,7 @@
 		"id":"gobwarrior",
 		"type":"humanoid",
 		"level":5,
-		"hp":10,
+		"hp":7,
 		"tohit":5,
 		"defense":7,
 		"damage":"5~7",
@@ -290,21 +303,6 @@
 		}
 	},
     {
-        "id":"wombat",
-        "level":1,
-        "kind":"beast",
-        "evil":-2,
-        "desc":"Just wombatting around.",
-        "hp":"7~10",
-        "defense":3,
-        "attack":{
-            "name":"wombatting",
-            "type":"blunt",
-            "dmg":"1~4"
-        }
-
-    },
-    {
         "id":"gremlin",
         "level":4,
         "kind":"goblinoid",
@@ -358,7 +356,7 @@
         "attack":{
             "name":"magic missile",
             "type":"arcane",
-            "dmg":"2-4"
+            "dmg":"2~4"
         },"biome":["town","plains","hills"],
         "loot":{ "potion of cure light wounds":5, "potion of cure minor wounds":5 }
 
@@ -376,23 +374,6 @@
             "type":"pierce",
             "dmg":"1~6"
         }, "loot":{"potion of cure light wounds":3}
-
-    },
-    {
-        "id":"cutpurse",
-        "level":5,
-        "kind":"humanoid",
-        "evil":7,
-        "desc":"Wants to steal your stuff.",
-        "hp":"5~11",
-        "defense":7,
-		"tohit":4,
-		"speed":8,
-        "attack":{
-            "name":"dagger",
-            "type":"pierce",
-            "dmg":"1~5"
-        },"biome":"town", "loot":{"potion of cure light wounds":3}
 
     },
     {
@@ -456,6 +437,23 @@
             "dmg":"2~5"
         },"biome":"plains"
 
+	},
+	{
+        "id":"cutpurse",
+        "level":4,
+        "kind":"humanoid",
+        "evil":7,
+        "desc":"Wants to steal your stuff.",
+        "hp":"6~11",
+        "defense":7,
+		"tohit":4,
+		"speed":8,
+        "attack":{
+            "name":"dagger",
+            "type":"pierce",
+            "dmg":"2~5"
+        },"biome":"town", "loot":{"potion of cure light wounds":3}
+
     },
     {
         "id":"elf",
@@ -482,8 +480,8 @@
         "evil":-1,
         "flavor":"How much damage could he do with just a sling?",
         "hp":8,
-        "tohit":3,
-        "defense":7,
+        "tohit":7,
+        "defense":5,
         "attack":{
             "name":"sling",
             "type":"blunt",
@@ -529,7 +527,7 @@
         "kind":"beast",
         "biome":"swamp",
         "desc":"So wriggly.",
-        "hp":5,
+        "hp":3,
         "tohit":3,
         "defense":12,
         "attack":{
@@ -541,12 +539,13 @@
     },
     {
         "id":"piranha",
-        "level":4,
+        "level":3,
         "kind":"beast",
         "biome":"swamp",
         "desc":"It's bitey.",
         "hp":4,
-        "tohit":5,
+		"tohit":5,
+		"speed":7,
         "defense":15,
         "attack":{
             "name":"bite",
@@ -574,21 +573,20 @@
         "id":"thrall",
         "level":4,
         "kind":"undead",
-        "evil":8,
         "desc":"One isn't too bad. 100 can be a problem.",
         "hp":30,
-        "tohit":-1,
+        "tohit":2,
         "defense":5,
         "attack":{
             "name":"axe",
             "type":"slash",
-            "dmg":"5~12"
+            "dmg":"5~9"
         }
 
     },
     {
         "id":"bandit",
-        "level":4,
+        "level":5,
         "kind":"humanoid",
         "evil":7,
         "desc":"Wants to steal your stuff.",
@@ -598,7 +596,7 @@
         "attack":{
             "name":"short sword",
             "type":"slash",
-            "dmg":"2~7"
+            "dmg":"4~7"
         }
 
     },
@@ -669,7 +667,7 @@
         "attack":{
             "name":"squelch",
             "type":"acid",
-            "dmg":"2~5"
+            "dmg":"4~8"
         }
 
 	},
@@ -738,7 +736,7 @@
 	{
 		"id":"mechswordsman",
         "name":"mechanical swordsman",
-        "level":6,
+        "level":5,
         "kind":"construct",
         "evil":0,
         "desc":"Durable, but not very good at its job.",
@@ -771,7 +769,7 @@
     {
 		"id":"drunkenboxer",
 		"name":"drunken boxer",
-        "level":3,
+        "level":5,
         "kind":"humanoid",
         "evil":-2,
         "desc":"This monk has had a bit too much to drink...",
@@ -787,7 +785,7 @@
     },
     {
         "id":"imp",
-        "level":3,
+        "level":4,
         "kind":"demon",
         "evil":5,
         "desc":"little demonic bastards",
@@ -796,8 +794,9 @@
         "attack":{
             "name":"claws",
             "type":"slash",
-        "dmg":"4~8"
-        },"loot":{"sulfur":5, "potion of cure light wounds":10, "potion of cure moderate wounds":10}
+        	"dmg":"4~8"
+		},
+		"loot":{"sulfur":5, "potion of cure light wounds":10, "potion of cure moderate wounds":10}
 
     },
     {
@@ -819,7 +818,7 @@
     {
 		"id":"vampirebat",
         "name":"vampire bat",
-        "level":3,
+        "level":4,
         "kind":"magic beast",
         "evil":5,
         "desc":"It vants to zuck your blood.",
@@ -835,7 +834,7 @@
     },
     {
         "id":"wight",
-        "level":3,
+        "level":6,
         "desc":"",
         "kind":"undead",
         "evil":12,
@@ -869,7 +868,7 @@
     },
     {
         "id":"ghast",
-        "level":5,
+        "level":7,
         "kind":"undead",
         "evil":14,
         "desc":"",
@@ -1028,19 +1027,19 @@
         "level":8,
         "kind":"construct",
         "desc":"I made you out of clay...",
-        "hp":"8d8+25",
+        "hp":65,
         "tohit":-1,
         "defense":33,
         "attack":{
             "name":"smash",
             "type":"blunt",
-            "dmg":"1~6+1"
+            "dmg":"2~7"
         }
 
     },
     {
 		"id":"direcrocodile",
-        "inamed":"dire crocodile",
+        "name":"dire crocodile",
         "kind":"magic beast",
         "biome":"swamp",
         "level":8,
@@ -1051,7 +1050,7 @@
         "attack":{
             "name":"bite",
             "type":"pierce",
-            "dmg":"2d5+5"
+            "dmg":"7~15"
         },"loot":{"crocodile tooth":10, "crocodile tears":5}
 
     },
@@ -1183,7 +1182,8 @@
 
     },
     {
-        "name":"wood golem",
+		"id":"woodgolem",
+        "name":"wooden golem",
         "level":7,
         "kind":"construct",
         "desc":"A golem crafted on a budget.",
@@ -1426,24 +1426,8 @@
 
     },
     {
-        "id":"succubus",
-        "level":8,
-        "kind":"demon",
-        "evil":27,
-        "desc":"Oh my!",
-        "hp":69,
-        "tohit":20,
-        "defense":35,
-        "attack":{
-            "name":"seduction",
-            "type":"sexy",
-            "dmg":"9~17"
-        }, "loot":{"sulfur dust":15, "potion of serious agony":10}
-
-    },
-    {
         "id":"naga",
-        "level":7,
+        "level":8,
         "evil":12,
         "desc":"From the waist up, it doesn't look that bad.",
         "hp":50,
@@ -1452,17 +1436,17 @@
         "attack":{
             "name":"scimitars",
             "type":"slash",
-            "dmg":"7~14"
+            "dmg":"9~14"
         }, "loot":{"potion of cure light wounds":20}
 
     },
     {
         "id":"poltergeist",
-        "level":7,
+        "level":8,
         "kind":"undead",
         "evil":14,
         "desc":"Only the objects flying at your head alert you to its presence.",
-        "tohit":7,
+        "tohit":9,
         "hp":60,
         "defense":40,
         "attack":{
@@ -1550,7 +1534,7 @@
         "attack":{
             "name":"claws",
             "type":"slash",
-            "dmg":"23~30"
+            "dmg":"17~27"
         }, "biome":["hills","forest"],
         "loot":["bear claw"]
 
@@ -1574,7 +1558,7 @@
 	},
 	{
         "id":"dullahan",
-        "level":10,
+        "level":8,
         "evil":20,
         "desc":"It doesn't have a head. But you do.",
         "hp":70,
@@ -1585,6 +1569,22 @@
             "type":"slash",
             "dmg":"13~21"
         }, "biome":["town","forest","plains"]
+
+	},
+	{
+        "id":"succubus",
+        "level":9,
+        "kind":"demon",
+        "evil":27,
+        "desc":"Oh my!",
+        "hp":69,
+        "tohit":20,
+        "defense":35,
+        "attack":{
+            "name":"seduction",
+            "type":"sexy",
+            "dmg":"9~17"
+        }, "loot":{"sulfur dust":15, "potion of serious agony":10}
 
     },
     {
@@ -1647,7 +1647,7 @@
         "defense":45,
         "attack":{"name":"club",
             "type":"blunt",
-            "dmg":"10~24"
+            "dmg":"15~24"
         }, "loot":{"potion of cure serious wounds":15}
 
     },

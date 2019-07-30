@@ -1,7 +1,7 @@
 import Game from '../game';
 import Dot from './dot';
 import { getDelay } from './player';
-
+import Range from '../range';
 /**
  * Represents the current enemy being fought.
  */
@@ -23,9 +23,11 @@ export default class Enemy {
 
 	}
 
-	constructor( vars=null, raid ){
+	constructor( vars=null, raid=null ){
 
 		if ( vars ) Object.assign(this.vars);
+
+		if ( this.hp instanceof Range ) this.hp = this.range.value;
 
 		this.dots = this.dots || [];
 
@@ -48,6 +50,8 @@ export default class Enemy {
 		this.id = item.id;
 		this.name = item.name;
 		Object.assign( this, item );
+
+		if ( this.hp instanceof Range ) this.hp = this.range.value;
 
 		this.delay = item.delay;
 		this.speed = item.speed;
@@ -77,7 +81,7 @@ export default class Enemy {
 		if ( this.timer <= 0 ) {
 
 			this.timer += this.delay;
-			if ( this.damage ) this.raid.enemyAttack(this);
+			if ( this.damage || this.attack ) this.raid.enemyAttack(this);
 
 		}
 

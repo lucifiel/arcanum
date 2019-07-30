@@ -34,7 +34,7 @@ export default class Player extends Item {
 		else {
 
 			this._exp.value = v;
-			if ( this._next > 0 && this._exp.value >= this._next ) this.levelUp();
+			while ( this._next > 0 && this._exp.value >= this._next ) this.levelUp();
 
 		}
 	}
@@ -185,8 +185,8 @@ export default class Player extends Item {
 	}
 
 	revive( state ) {
-		if ( this.weapon ) this.weapon = state.equip.find( this.weapon );
-		this.primary = this.primary ? state.getItem( this.primary ) : null;
+		if ( this.weapon && typeof this.weapon === 'string' ) this.weapon = state.equip.find( this.weapon );
+		this.primary = this.primary && typeof this.primary === 'string' ? state.getItem( this.primary ) : this.primary;
 	}
 
 	/**

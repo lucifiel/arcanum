@@ -90,7 +90,7 @@
 			"stamina":1
 		},
 		"result":{
-			"gold":"20-30"
+			"gold":"20~30"
 		},
 		"enemies":[
 			"skeleton"
@@ -107,7 +107,7 @@
 			"stamina":1
 		},
 		"result":{
-			"gold":"20-30"
+			"gold":"20~30"
 		},
 		"enemies":[
 			"lgbird"
@@ -124,7 +124,7 @@
 			"stamina":1
 		},
 		"result":{
-			"gold":"50-75"
+			"gold":"50~75"
 		},
 		"enemies":[
 			"lgbird"

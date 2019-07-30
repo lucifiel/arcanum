@@ -57,7 +57,7 @@ export default class Dungeon extends Action {
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
 
-		this._type = 'dungeon';
+		this.type = 'dungeon';
 
 		/**
 		 * Total of all enemy weights, used to roll which

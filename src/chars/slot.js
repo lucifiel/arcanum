@@ -23,7 +23,7 @@ export default class Slot {
 		 */
 		this.multi = this.item instanceof Array;
 
-		if ( !this.name ) this.name = this.id;
+		this.name = this.name || this.id;
 
 	}
 

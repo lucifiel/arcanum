@@ -147,6 +147,7 @@ export default {
 		}
 
 		for( let it of arr ) {
+			//console.log('parsing sub: ' + it.id );
 			this.parseSub(it);
 		}
 

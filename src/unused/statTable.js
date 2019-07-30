@@ -1,4 +1,4 @@
-import Stat from './stat';
+import Stat from '../stat';
 import { EventEmitter } from 'events';
 
 export default class StatTable extends EventEmitter {
