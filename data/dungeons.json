@@ -83,17 +83,45 @@
 	{
 		"id":"goblincamp",
 		"name":"goblin camp",
-		"desc":"the pesky creatures ",
+		"desc":"the pesky creatures are everywhere.",
 		"require":"",
-		"level":4,
+		"level":5,
 		"cost":{
 			"stamina":1
 		},
 		"result":{
 			"gold":"20~30"
 		},
+		"boss":"gobchief",
 		"enemies":[
-			"skeleton"
+			"goblin",
+			"gobwarrior",
+			"gobwarrior",
+			"goblin",
+			"goblin",
+			"gobpriest"
+		]
+
+	},
+	{
+		"id":"underden",
+		"name":"under den",
+		"desc":"proverbial den of thieves",
+		"require":"",
+		"level":5,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"25~40"
+		},
+		"boss":"banditlord",
+		"enemies":[
+			"cutpurse",
+			"bandit",
+			"cutpurse",
+			"bandit",
+			"cutpurse"
 		]
 
 	},
@@ -102,32 +130,86 @@
 		"name":"arag heights",
 		"desc":"barren mountains over arazor",
 		"require":"",
-		"level":4,
+		"level":6,
 		"cost":{
 			"stamina":1
 		},
+		"boss":"roc",
 		"result":{
 			"gold":"20~30"
 		},
 		"enemies":[
-			"lgbird"
+			"lgbird",
+			"ogre",
+			"bandit",
+			"wolf",
+			"hawk",
+			"ogre",
+			"coyote"
+		]
+
+	},
+	{
+		"id":"hauntedmanor",
+		"name":"haunted manor",
+		"desc":"",
+		"require":"state.spirit.max>=15",
+		"level":6,
+		"cost":{
+			"stamina":1
+		},
+		"length":20,
+		"result":{
+			"gold":"20~30"
+		},
+		"boss":"poltergeist",
+		"enemies":[
+			"ghost",
+			"ghost",
+			"zombie",
+			"skeleton",
+			"skeleton",
+			"direrat"
 		]
 
 	},
 	{
 		"id":"veldranswreck",
 		"name":"veldran's wreck",
-		"desc":"Off the stormy cliffs of the Ragal highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
+		"desc":"Off the stormy cliffs of the arag highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
 		"require":"state.water.max>=10",
 		"level":5,
+		"length":20,
 		"cost":{
 			"stamina":1
 		},
 		"result":{
-			"gold":"50~75"
+			"gold":"50~75",
+			"gems":10
 		},
 		"enemies":[
-			"lgbird"
+			"eel",
+			"ghost",
+			"barracuda",
+			"piranha"
+		]
+
+	},
+	{
+		"id":"holyhouse",
+		"name":"house of the holy",
+		"desc":"",
+		"require":"state.planes.max>=30",
+		"level":14,
+		"length":50,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"150~275"
+		},
+		"enemies":[
+			"angel"
 		]
 
 	}

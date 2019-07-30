@@ -17,6 +17,20 @@
 
 	},
 	{
+        "id":"bat",
+        "level":1,
+        "kind":"beast",
+        "hp":"1~2",
+        "tohit":3,
+        "defense":2,
+        "attack":{
+            "name":"bite",
+            "type":"pierce",
+            "dmg":"2~3"
+        }, "loot":"batwing"
+
+    },
+	{
 		"id":"lgmouse",
 		"name":"Large Mouse",
 		"type":"natural",
@@ -206,8 +220,7 @@
 		"defense":3,
 		"damage":"1~2",
 		"loot":{
-			"bones":1,
-			"dagger":1
+			"bones":1
 		}
 
 	},
@@ -226,12 +239,26 @@
 
 	},
 	{
+		"id":"skeleton",
+		"type":"undead",
+		"level":4,
+		"desc":"It appears to be missing all its fleshy bits.",
+		"hp":4,
+		"tohit":5,
+		"defense":5,
+		"damage":"3~5",
+		"loot":{
+			"bones":"2~5",
+			"shortsword":1
+		}
+	},
+	{
 		"id":"goblin",
 		"type":"humanoid",
-		"level":4,
+		"level":3,
 		"hp":5,
 		"defense":5,
-		"damage":"4~5",
+		"damage":"3~4",
 		"loot":{
 			"dagger":1,
 			"cap":1,
@@ -241,15 +268,15 @@
 	{
 		"id":"gobwarrior",
 		"type":"humanoid",
-		"level":5,
-		"hp":7,
+		"level":4,
+		"hp":9,
 		"tohit":5,
 		"defense":7,
-		"damage":"5~7",
+		"damage":"4~6",
 		"loot":{
-			"dagger":1,
-			"cap":1,
-			"boots":1
+			"shortsword":"20%",
+			"cap":"20%",
+			"boots":"20%"
 		}
 	},
 	{
@@ -259,11 +286,50 @@
 		"hp":8,
 		"tohit":5,
 		"defense":5,
+		"damage":"2~4",
+		"loot":{
+			"club":"10%",
+			"mace":"15%",
+			"boots":"10%"
+		}
+	},
+	{
+		"id":"gobchief",
+		"type":"humanoid",
+		"level":5,
+		"hp":11,
+		"tohit":6,
+		"defense":13,
 		"damage":"5~7",
 		"loot":{
-			"dagger":1,
-			"cap":1,
-			"boots":1
+			"cap":"20%",
+			"boots":"10%"
+		}
+	},
+	{
+		"id":"gobchamp",
+		"type":"humanoid",
+		"level":6,
+		"hp":16,
+		"tohit":7,
+		"defense":16,
+		"damage":"6~8",
+		"loot":{
+			"cap":"20%",
+			"boots":"10%"
+		}
+	},
+	{
+		"id":"gobking",
+		"type":"humanoid",
+		"level":7,
+		"hp":20,
+		"tohit":8,
+		"defense":23,
+		"damage":"7~9",
+		"loot":{
+			"cap":"20%",
+			"boots":"10%"
 		}
 	},
 	{
@@ -275,19 +341,6 @@
 		"defense":4,
 		"damage":"8~10",
 		"loot":{
-		}
-	},
-	{
-		"id":"skeleton",
-		"type":"undead",
-		"level":4,
-		"hp":6,
-		"tohit":5,
-		"defense":5,
-		"damage":"3~4",
-		"loot":{
-			"bones":"2~5",
-			"shortsword":1
 		}
 	},
 	{
@@ -315,20 +368,6 @@
             "type":"slash",
             "dmg":"1~2"
         }, "loot":{"potion of cure minor wounds":5}
-
-    },
-    {
-        "id":"bat",
-        "level":1,
-        "kind":"beast",
-        "hp":"1~2",
-        "tohit":3,
-        "defense":2,
-        "attack":{
-            "name":"bite",
-            "type":"pierce",
-            "dmg":"2~3"
-        }, "loot":"batwing"
 
     },
     {
@@ -401,26 +440,10 @@
         "tohit":1,
         "defense":5,
         "attack":{
-            "name":"bite",
+            "name":"nasty bite",
             "type":"pierce",
             "dmg":"2~5"
         }
-
-    },
-    {
-        "id":"skeleton",
-        "level":1.5,
-        "kind":"undead",
-        "evil":7,
-        "desc":"It appears to be missing all its fleshy bits.",
-        "hp":7,
-        "tohit":3,
-        "defense":10,
-        "attack":{
-            "name":"cursed blade",
-            "type":"slash",
-            "dmg":"2~5"
-        }, "loot":{"bone":10, "potion of light agony":5}
 
     },
     {
@@ -592,11 +615,28 @@
         "desc":"Wants to steal your stuff.",
         "hp":20,
         "defense":15,
-        "tohit":1,
+        "tohit":6,
         "attack":{
             "name":"short sword",
             "type":"slash",
             "dmg":"4~7"
+        }
+
+	},
+	{
+		"id":"banditlord",
+		"name":"bandit lord",
+        "level":6,
+        "kind":"humanoid",
+        "evil":7,
+        "desc":"Wants to steal your stuff.",
+        "hp":25,
+        "defense":17,
+        "tohit":8,
+        "attack":{
+            "name":"short sword",
+            "type":"slash",
+            "dmg":"5~9"
         }
 
     },
@@ -628,6 +668,23 @@
             "type":"pierce",
             "dmg":"4~7"
         }, "loot":{"potion of cure light wounds":10}
+
+	},
+	{
+        "id":"barracuda",
+        "level":5,
+        "kind":"beast",
+        "biome":"sea",
+        "desc":"It's bitey.",
+        "hp":14,
+		"tohit":7,
+		"speed":9,
+        "defense":18,
+        "attack":{
+            "name":"bite",
+            "type":"pierce",
+            "dmg":"3~6"
+        }
 
     },
     {
@@ -752,7 +809,7 @@
     },
     {
         "id":"harpy",
-        "level":3,
+        "level":5,
         "kind":"humanoid",
         "evil":13,
         "desc":"She doesn't look harpy to see you.",
@@ -769,7 +826,7 @@
     {
 		"id":"drunkenboxer",
 		"name":"drunken boxer",
-        "level":5,
+        "level":6,
         "kind":"humanoid",
         "evil":-2,
         "desc":"This monk has had a bit too much to drink...",
@@ -831,25 +888,8 @@
             "dmg":"5~8"
         },"loot":"bat wing"
 
-    },
-    {
-        "id":"wight",
-        "level":6,
-        "desc":"",
-        "kind":"undead",
-        "evil":12,
-        "hp":18,
-        "tohit":1,
-        "defense":22,
-        "attack":{
-            "name":"claws",
-            "type":"slash",
-            "dmg":"3~9"
-        },
-        "loot":{"wight pus":40}
-
-    },
-    {
+	},
+	{
 		"id":"direwolf",
 		"name":"dire wolf",
         "level":5,
@@ -865,24 +905,56 @@
             "dmg":"5~10"
         }
 
-    },
-    {
-        "id":"ghast",
-        "level":7,
-        "kind":"undead",
-        "evil":14,
-        "desc":"",
-        "hp":42,
-        "tohit":3,
-        "defense":26,
+	},
+	{
+        "id":"bear",
+        "level":5,
+        "biome":["forest","hills","mountains"],
+        "kind":"beast",
+        "desc":"He's angry now!!!",
+        "hp":55,
+        "tohit":6,
+        "defense":30,
         "attack":{
             "name":"claws",
             "type":"slash",
-            "dmg":"7~13"
-        }
+            "dmg":"5~14"
+        }, "loot":["bear claw"]
 
     },
     {
+        "id":"wight",
+        "level":6,
+        "desc":"",
+        "kind":"undead",
+        "evil":12,
+        "hp":18,
+        "tohit":5,
+        "defense":22,
+        "attack":{
+            "name":"claws",
+            "type":"slash",
+            "dmg":"3~9"
+        },
+        "loot":{"wight pus":40}
+
+    },
+	{
+        "id":"doppelganger",
+        "level":6,
+        "evil":22,
+        "desc":"Such a good-looking fellow!",
+        "hp":37,
+        "tohit":4,
+        "defense":32,
+        "attack":{
+            "name":"slam",
+            "type":"blunt",
+            "dmg":"3~8"
+        }
+
+	},
+	{
         "id":"ghost",
         "level":6,
         "kind":"undead",
@@ -912,6 +984,69 @@
             "dmg":"3~9"
         }
 
+	},
+	{
+        "id":"bugbear",
+        "level":6,
+        "desc":"",
+        "evil":10,
+        "hp":43,
+        "defense":25,
+        "tohit":2,
+        "attack":{
+            "name":"mace",
+            "type":"blunt",
+            "dmg":"5~12"
+        }
+
+    },
+	{
+		"id":"evilpriest",
+		"name":"evil priest",
+        "level":6,
+        "kind":"humanoid",
+        "desc":"He worships evil.",
+        "hp":32,
+        "defense":32,
+        "tohit":5,
+        "attack":{
+            "name":"harm",
+            "type":"evil",
+            "dmg":"2~6"
+        },"loot":{ "potion of cure moderate wounds":20, "potion of cure serious wounds":10}
+
+    },
+    {
+		"id":"magicblade",
+        "name":"magic blade",
+        "level":6,
+        "kind":"construct",
+        "desc":"It just floats there...",
+        "hp":45,
+        "tohit":8,
+        "defense":35,
+        "attack":{
+            "name":"magic sword",
+            "type":"slash",
+            "dmg":"4~9"
+        }
+
+    },
+    {
+        "id":"ghast",
+        "level":7,
+        "kind":"undead",
+        "evil":14,
+        "desc":"",
+        "hp":42,
+        "tohit":3,
+        "defense":26,
+        "attack":{
+            "name":"claws",
+            "type":"slash",
+            "dmg":"7~13"
+        }
+
     },
     {
         "id":"beserker",
@@ -929,21 +1064,6 @@
 
     },
     {
-        "id":"bugbear",
-        "level":8,
-        "desc":"",
-        "evil":10,
-        "hp":43,
-        "defense":25,
-        "tohit":2,
-        "attack":{
-            "name":"mace",
-            "type":"blunt",
-            "dmg":"3~13"
-        }
-
-    },
-    {
 		"id":"giantsnake",
 		"name":"giant snake",
         "level":7,
@@ -955,24 +1075,8 @@
         "attack":{
             "name":"constrict",
             "type":"blunt",
-            "dmg":"4~20"
+            "dmg":"8~17"
         }
-
-    },
-    {
-		"id":"evilpriest",
-		"name":"evil priest",
-        "level":6,
-        "kind":"humanoid",
-        "desc":"He worships evil.",
-        "hp":32,
-        "defense":32,
-        "tohit":5,
-        "attack":{
-            "name":"harm",
-            "type":"evil",
-            "dmg":"2~6"
-        },"loot":{ "potion of cure moderate wounds":20, "potion of cure serious wounds":10}
 
     },
     {
@@ -992,7 +1096,8 @@
 
     },
     {
-        "id":"greater zombie",
+		"id":"greaterzombie",
+		"name":"greater zombie",
         "level":7,
         "kind":"undead",
         "evil":13,
@@ -1119,69 +1224,6 @@
 
     },
     {
-        "name":"master swordsman",
-        "level":7,
-        "kind":"humanoid",
-        "evil":-11,
-        "desc":"He's looking for a six-fingered man.",
-        "hp":35,
-        "tohit":10,
-        "defense":35,
-        "attack":{
-            "name":"longsword",
-            "type":"slash",
-            "dmg":"7~13"
-        }
-
-    },
-    {
-        "id":"doppelganger",
-        "level":6,
-        "evil":22,
-        "desc":"What a handsome fellow!",
-        "hp":51,
-        "tohit":4,
-        "defense":32,
-        "attack":{
-            "name":"slam",
-            "type":"blunt",
-            "dmg":"5~8"
-        }
-
-    },
-    {
-		"id":"magicblade",
-        "name":"magic blade",
-        "level":5,
-        "kind":"construct",
-        "desc":"It just floats there...",
-        "hp":45,
-        "tohit":8,
-        "defense":35,
-        "attack":{
-            "name":"magic sword",
-            "type":"slash",
-            "dmg":"4~9"
-        }
-
-    },
-    {
-        "id":"bear",
-        "level":5,
-        "biome":["forest","hills","mountains"],
-        "kind":"beast",
-        "desc":"He's angry now!!!",
-        "hp":55,
-        "tohit":6,
-        "defense":30,
-        "attack":{
-            "name":"claws",
-            "type":"slash",
-            "dmg":"5~14"
-        }, "loot":["bear claw"]
-
-    },
-    {
 		"id":"woodgolem",
         "name":"wooden golem",
         "level":7,
@@ -1196,6 +1238,23 @@
             "dmg":"2~11"
         }, "loot":{"raw wood":5}
 
+	},
+	{
+		"id":"masterswordsman",
+        "name":"master swordsman",
+        "level":8,
+        "kind":"humanoid",
+        "evil":-11,
+        "desc":"He's looking for a six-fingered man.",
+        "hp":35,
+        "tohit":10,
+        "defense":35,
+        "attack":{
+            "name":"longsword",
+            "type":"slash",
+            "dmg":"7~13"
+        }
+
     },
     {
         "id":"pegasus",
@@ -1209,7 +1268,7 @@
         "attack":{
             "name":"trample",
             "type":"blunt",
-            "dmg":"9~20"
+            "dmg":"9~15"
         }
 
     },
@@ -1219,7 +1278,7 @@
         "level":8,
         "kind":"elemental",
         "desc":"How do you fight dirt?",
-        "tohit":2,
+        "tohit":5,
         "hp":58,
         "defense":30,
         "attack":{
@@ -1249,16 +1308,16 @@
     {
 		"id":"stonegolem",
         "name":"stone golem",
-        "level":8,
+        "level":9,
         "kind":"construct",
         "desc":"The head stone's connected to the... spine stone.",
         "hp":88,
-        "tohit":-1,
+        "tohit":7,
         "defense":40,
         "attack":{
             "name":"smash",
             "type":"blunt",
-            "dmg":"9~17"
+            "dmg":"9~13"
 		},
 		"loot":{
 
@@ -1329,36 +1388,22 @@
             "dmg":"5~8"
         },"loot":{"spectral essence":5}
 
-    },
-    {
-        "id":"roc",
-        "level":8,
-        "desc":"It's the biggest bird you've ever seen!",
-        "tohit":3,
-        "kind":"magic beast",
-        "hp":41,
-        "defense":32,
-        "attack":{
-            "name":"beak",
-            "type":"pierce",
-            "dmg":"11~17"
-        },"biome":"mountains"
-
-    },
-    {
-        "id":"incubus",
+	},
+	{
+		"id":"magicmirror",
+		"name":"magic mirror",
+		"desc":"It's more fire than bird.",
         "level":7,
-        "evil":17,
-        "kind":"demon",
-        "desc":"You could bounce a coin off those abs.",
-        "tohit":3,
-        "hp":33,
-        "defense":33,
+        "tohit":7,
+        "kind":"construct",
+        "hp":47,
+		"defense":40,
+		"reflect":true,
         "attack":{
-            "name":"seduction",
-            "type":"sexy",
-            "dmg":"5~12"
-        }, "loot":{"sulfur dust":10, "potion of moderate agony":10}
+            "name":"light",
+            "type":"light",
+            "dmg":"11~20"
+        }
 
     },
     {
@@ -1377,37 +1422,51 @@
         }, "loot":{"phoenix feather":5, "phoenix ashes":1, "potion of cure critical wounds":5}
 
     },
-    {
-		"id":"cavetroll",
-        "name":"cave troll",
-        "level":9,
-        "evil":15,
-        "biome":["hills","mountains"],
-        "desc":"They have a cave troll...",
-        "hp":90,
-        "tohit":4,
+	{
+		"id":"iceelemental",
+        "name":"ice elemental",
+        "level":7,
+        "kind":"elemental",
+        "desc":"What's so scary about a bunch of icicles?",
+        "tohit":9,
+        "hp":72,
         "defense":35,
         "attack":{
-            "name":"club",
-            "type":"blunt",
-            "dmg":"14~22"
-        }
+            "name":"ice shard",
+            "type":"cold",
+            "dmg":"8~15"
+        },"loot":{"ice essence":10}
+
+	},
+	{
+        "id":"roc",
+        "level":8,
+        "desc":"An avian of mythic repute.",
+        "tohit":7,
+        "kind":"magic beast",
+        "hp":41,
+        "defense":32,
+        "attack":{
+            "name":"beak",
+            "type":"pierce",
+            "dmg":"11~17"
+        },"biome":"mountains"
 
     },
     {
-		"id":"irongolem",
-        "name":"iron golem",
-        "level":9,
-        "kind":"construct",
-        "desc":"It moves with heavy clonking steps.",
-        "hp":120,
-        "tohit":1,
-        "defense":45,
+        "id":"incubus",
+        "level":8,
+        "evil":17,
+        "kind":"demon",
+        "desc":"You could bounce a coin off those abs.",
+        "tohit":3,
+        "hp":33,
+        "defense":33,
         "attack":{
-            "name":"smash",
-            "type":"blunt",
-            "dmg":"9~14"
-        },"loot":{"raw iron":10}
+            "name":"seduction",
+            "type":"sexy",
+            "dmg":"5~12"
+        }, "loot":{"sulfur dust":10, "potion of moderate agony":10}
 
     },
     {
@@ -1424,100 +1483,20 @@
             "dmg":"20~32"
         },"loot":{"medusa head":5, "potion of light agony":5, "potion of cure light wounds":5}
 
-    },
-    {
-        "id":"naga",
-        "level":8,
-        "evil":12,
-        "desc":"From the waist up, it doesn't look that bad.",
-        "hp":50,
-        "tohit":8,
-        "defense":48,
-        "attack":{
-            "name":"scimitars",
-            "type":"slash",
-            "dmg":"9~14"
-        }, "loot":{"potion of cure light wounds":20}
-
-    },
-    {
-        "id":"poltergeist",
-        "level":8,
-        "kind":"undead",
-        "evil":14,
-        "desc":"Only the objects flying at your head alert you to its presence.",
-        "tohit":9,
-        "hp":60,
-        "defense":40,
-        "attack":{
-            "name":"chill touch",
-            "type":"drain",
-            "dmg":"8~15"
-        }, "loot":{"spectral essence":10}
-
-    },
-    {
-		"id":"iceelemental",
-        "name":"ice elemental",
-        "level":7,
-        "kind":"elemental",
-        "desc":"What's so scary about a bunch of icicles?",
-        "tohit":9,
-        "hp":72,
-        "defense":35,
-        "attack":{
-            "name":"ice shard",
-            "type":"cold",
-            "dmg":"8~15"
-        },"loot":{"Ice Essence":10}
-
-    },
-    {
-		"id":"fireelemental",
-        "name":"fire elemental",
-        "level":8,
-        "kind":"elemental",
-        "desc":"Too hot to get close to.",
-        "tohit":10,
-        "hp":40,
-        "defense":55,
-        "attack":{
-            "name":"flame",
-            "type":"fire",
-            "dmg":"14~20"
-        },"loot":{"Fire Essence":10}
-
-    },
-    {
-		"id":"drunkenmaster",
-        "name":"drunken master",
-        "level":8,
-        "evil":-10,
-        "kind":"humanoid",
-        "desc":"Master Wong Fei-Hung.",
-        "hp":53,
-        "tohit":10,
-        "defense":44,
-        "attack":{
-            "name":"fists",
-            "type":"blunt",
-            "dmg":"7~17"
-        }, "loot":{"whiskey":20}
-
-    },
-    {
+	},
+	{
 		"id":"orcchampion",
         "name":"orc champion",
         "level":8,
         "kind":"humanoid",
         "desc":"The strongest orc in the whole tribe!",
         "hp":73,
-        "tohit":4,
+        "tohit":9,
         "defense":40,
         "attack":{
             "name":"broadsword",
             "type":"slash",
-            "dmg":"10~20"
+            "dmg":"12~17"
         }, "loot":{ "potion of cure major wounds":15}
 
 	},
@@ -1571,6 +1550,86 @@
         }, "biome":["town","forest","plains"]
 
 	},
+    {
+        "id":"naga",
+        "level":8,
+        "evil":12,
+        "desc":"From the waist up, it doesn't look that bad.",
+        "hp":50,
+        "tohit":8,
+        "defense":48,
+        "attack":{
+            "name":"scimitars",
+            "type":"slash",
+            "dmg":"9~14"
+        }, "loot":{"potion of cure light wounds":20}
+
+    },
+    {
+        "id":"poltergeist",
+        "level":8,
+        "kind":"undead",
+        "evil":14,
+        "desc":"Only the objects flying at your head alert you to its presence.",
+        "tohit":9,
+        "hp":60,
+        "defense":40,
+        "attack":{
+            "name":"chill touch",
+            "type":"drain",
+            "dmg":"8~15"
+        }, "loot":{"spectral essence":10}
+
+    },
+    {
+		"id":"fireelemental",
+        "name":"fire elemental",
+        "level":8,
+        "kind":"elemental",
+        "desc":"Too hot to get close to.",
+        "tohit":10,
+        "hp":40,
+        "defense":55,
+        "attack":{
+            "name":"flame",
+            "type":"fire",
+            "dmg":"14~20"
+        },"loot":{"Fire Essence":10}
+
+	},
+	{
+		"id":"cavetroll",
+        "name":"cave troll",
+        "level":9,
+        "evil":15,
+        "biome":["hills","mountains"],
+        "desc":"They have a cave troll...",
+        "hp":90,
+        "tohit":4,
+        "defense":35,
+        "attack":{
+            "name":"club",
+            "type":"blunt",
+            "dmg":"14~22"
+        }
+
+    },
+    {
+		"id":"irongolem",
+        "name":"iron golem",
+        "level":9,
+        "kind":"construct",
+        "desc":"It moves with heavy clonking steps.",
+        "hp":120,
+        "tohit":1,
+        "defense":45,
+        "attack":{
+            "name":"smash",
+            "type":"blunt",
+            "dmg":"9~14"
+        },"loot":{"raw iron":10}
+
+	},
 	{
         "id":"succubus",
         "level":9,
@@ -1585,6 +1644,23 @@
             "type":"sexy",
             "dmg":"9~17"
         }, "loot":{"sulfur dust":15, "potion of serious agony":10}
+
+    },
+    {
+		"id":"drunkenmaster",
+        "name":"drunken master",
+        "level":10,
+        "evil":-10,
+        "kind":"humanoid",
+        "desc":"Master Wong Fei-Hung.",
+        "hp":53,
+        "tohit":10,
+        "defense":44,
+        "attack":{
+            "name":"fists",
+            "type":"blunt",
+            "dmg":"7~17"
+        }, "loot":{"whiskey":20}
 
     },
     {
@@ -1683,22 +1759,21 @@
         }, "loot":{"vampire fang":10, "potion of major agony":10}
 
     },
-    {
-		"id":"bogwitch",
-        "name":"bog witch",
+	{
+        "id":"grimstalk",
         "level":11,
-        "evil":29,
-        "kind":"humanoid",
-        "biome":"swamp",
-        "desc":"Nasty witch that lives in the waters of a bog. Have you ever seen legend?",
-        "hp":110,
-        "tohit":5,
-        "defense":48,
+        "biome":"forest",
+        "desc":"Slashy wood demon.",
+        "kind":"demon",
+        "evil":19,
+        "hp":63,
+        "tohit":15,
+        "defense":43,
         "attack":{
             "name":"claws",
             "type":"slash",
-            "dmg":"18~25"
-        }, "loot":{ "potion of major agony":15}
+            "dmg":"12~28"
+        }, "loot":{"raw wood":5}
 
     },
     {
@@ -1717,6 +1792,24 @@
 
 	},
 	{
+		"id":"bogwitch",
+        "name":"bog witch",
+        "level":12,
+        "evil":29,
+        "kind":"humanoid",
+        "biome":"swamp",
+        "desc":"Vicious witch in the waters of the Great Bog",
+        "hp":110,
+        "tohit":5,
+        "defense":48,
+        "attack":{
+            "name":"claws",
+            "type":"slash",
+            "dmg":"18~25"
+        }, "loot":{ "potion of major agony":15}
+
+	},
+	{
         "id":"gryffon",
         "level":12,
         "kind":"magic beast",
@@ -1730,23 +1823,6 @@
             "type":"pierce",
             "dmg":"21~27"
         }
-
-    },
-    {
-        "id":"grimstalk",
-        "level":12,
-        "biome":"forest",
-        "desc":"Slashy wood demon.",
-        "kind":"demon",
-        "evil":19,
-        "hp":63,
-        "tohit":15,
-        "defense":43,
-        "attack":{
-            "name":"claws",
-            "type":"slash",
-            "dmg":"12~28"
-        }, "loot":{"raw wood":5}
 
     },
     {
@@ -1968,28 +2044,12 @@
 
     },
     {
-		"id":"magmaelemental",
-        "name":"magma elemental",
-        "kind":"elemental",
-        "biome":"mountains",
-        "level":13,
-        "desc":"It looks like a small mountain of magma.",
-        "hp":150,
-        "tohit":10,
-        "defense":65,
-        "attack":{
-            "name":"lava slam",
-            "type":"fire",
-            "dmg":"25~50"
-        }, "loot":{"raw iron":15, "raw stone":10, "fire essence":10}
-    },
-    {
 		"id":"vampirelord",
         "name":"vampire lord",
         "level":15,
         "kind":"undead",
         "evil":40,
-        "desc":"This one uses Vampire Masters as lackeys.",
+        "desc":"Master Vampires are its lackeys.",
         "hp":120,
         "tohit":15,
         "defense":70,
@@ -1999,11 +2059,44 @@
             "dmg":"12~45"
         }, "loot":{"vampire fang":15, "potion of critical agony":20}
 
+	},
+	{
+		"id":"magmaelemental",
+        "name":"magma elemental",
+        "kind":"elemental",
+        "biome":"mountains",
+        "level":16,
+        "desc":"A small mountain of magma.",
+        "hp":150,
+        "tohit":10,
+        "defense":65,
+        "attack":{
+            "name":"lava slam",
+            "type":"fire",
+            "dmg":"25~50"
+        }, "loot":{"raw iron":15, "raw stone":10, "fire essence":10}
+    },
+	{
+		"id":"lichlord",
+		"name":"lich lord",
+        "level":16,
+        "kind":"undead",
+        "evil":30,
+        "desc":"It was a wizard, once.",
+        "hp":150,
+        "tohit":20,
+        "defense":71,
+        "attack":{
+            "name":"death touch",
+            "type":"drain",
+            "dmg":"30~40"
+        }, "loot":{ "potion of critical agony":15}
+
     },
     {
 		"id":"mithrilgolem",
         "name":"mithril golem",
-        "level":16,
+        "level":17,
         "kind":"construct",
         "desc":"Would be worth a fortune if you could actually make a dent in it.",
         "hp":200,
@@ -2031,6 +2124,21 @@
             "dmg":"20~50"
         }, "loot":{"vampire fang":25, "potion of critical agony":30}
 
+	},
+	{
+        "id":"leviathan",
+        "level":18,
+        "kind":"beast",
+        "desc":"",
+        "hp":400,
+        "tohit":14,
+        "defense":75,
+        "attack":{
+            "name":"crush",
+            "type":"blunt",
+            "dmg":"20~42"
+        }
+
     },
     {
         "id":"balrog",
@@ -2046,6 +2154,22 @@
             "type":"fire",
             "dmg":"45~75"
         }, "loot":{"fire essence":10}
+
+	},
+	{
+        "id":"archon",
+        "level":19,
+        "kind":"celestial",
+        "evil":-30,
+        "desc":"It has wings and a halo of light.",
+        "hp":270,
+        "tohit":23,
+        "defense":90,
+        "attack":{
+            "name":"light sword",
+            "type":"holy",
+            "dmg":"30~55"
+        }, "loot":{"angel wing":10, "halo":5, "potion of cure critical wounds":20 }
 
     },
     {
@@ -2078,6 +2202,37 @@
             "type":"fire",
             "dmg":"50~100"
         }
+	},
+	{
+		"id":"avatar",
+        "level":23,
+        "kind":"celestial",
+        "desc":"incarnation of a god",
+        "hp":500,
+        "tohit":30,
+        "defense":100,
+        "attack":{
+            "name":"holy sword",
+            "type":"holy",
+            "dmg":"75~100"
+        }
+	},
+	{
+		"id":"ancientlich",
+		"name":"ancient lich",
+        "level":25,
+        "kind":"undead",
+        "evil":30,
+        "desc":"Not one lich in a hundred live to reach such heights.",
+        "hp":400,
+        "tohit":27,
+        "defense":95,
+        "attack":{
+            "name":"death touch",
+            "type":"drain",
+            "dmg":"80~120"
+        }, "loot":{ "potion of critical agony":15}
+
     },
     {
         "id":"cthulhu",
@@ -2093,6 +2248,35 @@
             "type":"psychic",
             "dmg":"100~300"
         }
+	},
+	{
+		"id":"ouroboros",
+		"level":34,
+		"kind":"diety",
+		"desc":"The serpent that grips the earth in its scales",
+		"hp":1300,
+		"tohit":30,
+		"defense":200,
+		"attack":{
+			"name":"crush",
+			"type":"blunt",
+			"dmg":"200~350"
+		}
+	},
+	{
+		"id":"primummobile",
+		"name":"primum mobile",
+		"level":100,
+		"kind":"diety",
+		"desc":"The force that moves the sun and stars",
+		"hp":10000,
+		"tohit":100,
+		"defense":1000,
+		"attack":{
+			"name":"deus ex",
+			"type":"holy",
+			"dmg":750
+		}
 	}
 
 ]
