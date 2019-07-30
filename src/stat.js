@@ -13,7 +13,7 @@ export default class Stat {
 	/**
 	 * @property {number} lastValue - value previous frame.
 	 */
-	get lastValue() { return this._last; }
+	//get lastValue() { return this._last; }
 
 	get value() { return this._base*( 1 + this._pct ); }
 

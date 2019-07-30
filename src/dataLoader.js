@@ -172,7 +172,7 @@ export default {
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( !isNaN(obj) ) {
 						console.warn('string used as Number: ' + p + ' -> ' + obj );
-						console.warn('store numeric data as number.');
+						//console.warn('store numeric data as number.');
 						//sub[p] = Number(obj);
 					}
 					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);

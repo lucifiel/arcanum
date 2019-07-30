@@ -1,6 +1,5 @@
 import { defineExcept, propPaths } from 'objecty';
 import Stat from '../stat';
-import StatMode from '../unused/statMod';
 
 import Game from '../game';
 
@@ -161,10 +160,6 @@ export default class Item {
 
 		this._value = this._value || 0;
 
-		if ( vars.mod ) {
-			this.buildMods( vars.mod );
-		}
-
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'buy', 'max', 'cost', 'name', 'warn', 'effect', 'slot' ]);
 
@@ -235,18 +230,8 @@ export default class Item {
 	 */
 	changeMod( mod, amt ) {
 
-		// retroactively apply the new modifier for this item's current value.
-		let val = amt*this.value;
-		Game.addMod( mod, val );
-
-	}
-
-	buildMods( mods ) {
-
-		let paths = propPaths( mods );
-		for( let p of paths ) {
-
-		}
+		// apply change to modifier for existing item amount.
+		Game.addMod( mod, amt*this.value );
 
 	}
 
