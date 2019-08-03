@@ -649,7 +649,7 @@ export default {
 	addMod( mod, amt ) {
 
 		if ( mod instanceof Array ) mod.forEach( this.addMod, this );
-		else if ( mod instanceof Object ) {
+		else if ( typeof mod === 'object' ) {
 	
 			for( let p in mod ) {
 
@@ -839,7 +839,7 @@ export default {
 	getLoot(it) {
 
 		let res = this.itemGen.getLoot(it);
-		if ( res ) this.state.inventory.add( res );
+		if ( res !== null && res !== undefined ) this.state.inventory.add( res );
 
 	},
 

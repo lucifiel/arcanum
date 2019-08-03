@@ -18,7 +18,8 @@ import { merge } from 'objecty';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
-	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons','sections' ];
+	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons',
+	'materials', 'sections' ];
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -117,6 +118,8 @@ export default {
 	
 		gd.weapons = this.initItems( rawData['weapons'], Wearable );
 		gd.weapons.forEach(v=>v.kind='weapon');
+
+		gd.materials = rawData['materials'];
 
 		gd.events = this.initItems( rawData['events'], undefined, null, 'event' );
 		gd.events = gd.events.concat( this.initItems( rawData['classes'], undefined, null, 'event') );
@@ -243,11 +246,12 @@ export default {
 	initItems( DataList, UseClass=Item, tag=null, type=null ) {
 
 		let a = [];
+		let cnstr = UseClass ? UseClass.prototype.constructor : null;
 
 		let it;
 		for( let def of DataList ) {
 
-			it = new UseClass.prototype.constructor( def );
+			it = new cnstr( def );
 			if ( tag ) it.addTag( tag );
 			if ( type ) it.type = type;
 

@@ -1,4 +1,5 @@
 import Item from "./item";
+import Range from "../range";
 
 export default class Wearable extends Item {
 
@@ -12,10 +13,14 @@ export default class Wearable extends Item {
 		if ( this._attack ) data.attack = this._attack;
 		if ( this.hands ) data.hands = this.hands;
 		if ( this.level ) data.level = this.level;
+		if ( this.material ) data.material = this.material;
 
 		return data;
 
 	}
+
+	get material() { return this._material; }
+	set material(v) { this._material=v;}
 
 	/**
 	 * @property {} armor
@@ -45,6 +50,28 @@ export default class Wearable extends Item {
 			if ( !this.attack.tohit ) this.attack.tohit = 1;
 
 		}
+
+	}
+
+	applyMaterial( mat ) {
+
+		if (!mat) return;
+
+		this.material = mat;
+		if ( this.armor !== null && this.armor !== undefined ) this.applyBonus( this, 'armor', mat.bonus );
+
+		if ( this.attack ) {
+
+			if ( this.attack.damage !== null && this.attack.damage !== undefined ) this.applyBonus( this.attack, 'damage', mat.bonus );
+
+		}
+
+	}
+
+	applyBonus( obj, prop, amt ) {
+
+		if ( typeof obj[prop] === 'number') obj[prop] += amt;
+		else if ( obj[prop] instanceof Range ) obj[prop].add( amt );
 
 	}
 

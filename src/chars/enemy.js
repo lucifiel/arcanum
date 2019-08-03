@@ -42,6 +42,12 @@ export default class Enemy {
 	setEnemy( item ) {
 
 		if ( typeof item === 'string' ) item = Game.getItem(item);
+		if ( !item ) {
+			console.warn( 'item not found: ' + item );
+		}
+
+		this.loot = null;
+		this.attack = null;
 
 		/**
 		 * Note: id and name are properties of Item, not item insance,

@@ -202,7 +202,7 @@ export default class Item {
 
 			for( let p in m ) {
 
-				if ( p === 'rate' || p === 'pct' || p === 'max') continue;
+				if ( p === 'rate' || p === 'pct' || p === 'max' || p === 'skipLocked') continue;
 
 				if ( m[p] instanceof Object ) {
 					console.log('subassign: ' + p)

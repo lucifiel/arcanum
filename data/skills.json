@@ -84,20 +84,6 @@
 	},
 	{
 
-		"id":"divination",
-		"desc":"the art of foretelling",
-		"require":["state.lore>=6", "spiritsource"],
-		"school":"",
-		"result":{
-			"research.max":1,
-			"research.value":1,
-			"spirit.max":1,
-			"spirit.rate":0.01
-		}
-
-	},
-	{
-
 		"id":"anatomy",
 		"require":"state.neophyte>=0&&state.lore>=6",
 		"school":["nature","shadow","light"],
@@ -129,14 +115,123 @@
 
 	},
 	{
+
+		"id":"embalming",
+		"require":"state.dissection>=5",
+		"school":"shadow",
+		"cost":{
+			"stamina":0.5
+		},
+		"result":{
+			"shadow.max":1,
+			"shadow.rate":0.01
+		}
+
+	},
+	{
+
+		"id":"divination",
+		"desc":"the art of foretelling",
+		"require":["state.lore>=6", "spiritsource"],
+		"school":"shadow",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"spirit.max":1,
+			"spirit.rate":0.01
+		}
+
+	},
+	{
+		"id":"lumenology",
+		"desc":"study of light",
+		"require":"prism",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"light.max":1,
+			"light.rate":0.1
+		},
+		"flavor":"the light fantastic"
+
+	},
+	{
+		"id":"pyromancy",
+		"desc":"the investigation of fire",
+		"require":"firesource",
+		"cost":{
+			"stamina":0.4,
+			"hp":0.1
+		},
+		"result":{
+			"fire.max":1,
+			"fire.rate":0.1
+		},
+		"flavor":""
+
+	},
+	{
 		"id":"minerology",
 		"require":"earthsource",
 		"cost":{
 			"stamina":0.4
 		},
 		"result":{
-			"earth.max":1
+			"earth":{
+				"max":1,
+				"rate":0.1
+			}
 		}
+	},
+	{
+		"id":"waterlore",
+		"name":"water lore",
+		"verb":"the study of water",
+		"require":"watersource",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"water":{
+				"max":1,
+				"rate":0.1
+			}
+		}
+
+	},
+	{
+		"id":"airlore",
+		"name":"air lore",
+		"verb":"the study of air",
+		"require":"airsource",
+		"cost":{
+			"stamina":0.3
+		},
+		"result":{
+			"air":{
+				"max":1,
+				"rate":0.1
+			}
+		}
+
+	},
+	{
+		"id":"naturelore",
+		"name":"nature lore",
+		"verb":"observing nature",
+		"require":"state.herbs>=3&&state.animals>=2",
+		"cost":{
+			"stamina":0.4
+		},
+		"result":{
+			"nature":{
+				"max":1,
+				"rate":0.1
+			}
+		}
+
 	},
 	{
 
@@ -149,21 +244,6 @@
 		"result":{
 			"arcana.max":1,
 			"lore.rate":0.2
-		}
-
-	},
-	{
-
-		"id":"embalming",
-		"require":"state.dissection>=5",
-		"school":["shadow"],
-		"cost":{
-			"stamina":0.5
-		},
-		"result":{
-			"research.value":1,
-			"shadow.max":1,
-			"shadow.rate":0.01
 		}
 
 	},
@@ -197,35 +277,6 @@
 				"value":5
 			}
 		}
-	},
-	{
-		"id":"lumenology",
-		"desc":"study of light",
-		"require":"prism",
-		"cost":{
-			"stamina":0.4
-		},
-		"result":{
-			"light.max":1,
-			"light.rate":0.1
-		},
-		"flavor":"the light fantastic"
-
-	},
-	{
-		"id":"pyromancy",
-		"desc":"the investigation of fire",
-		"require":"firesource",
-		"cost":{
-			"stamina":0.4,
-			"hp":0.2
-		},
-		"result":{
-			"fire.max":1,
-			"fire.rate":0.1
-		},
-		"flavor":""
-
 	},
 	{
 		"id":"enchanting",
@@ -279,22 +330,6 @@
 		},
 		"mod":{
 			"arcana.max":1
-		}
-
-	},
-	{
-		"id":"naturelore",
-		"name":"nature lore",
-		"verb":"observing nature",
-		"require":"state.herbs>=3&&state.animals>=2",
-		"cost":{
-			"stamina":0.4
-		},
-		"result":{
-			"nature":{
-				"max":1,
-				"rate":0.1
-			}
 		}
 
 	},

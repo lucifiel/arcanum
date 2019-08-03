@@ -1,6 +1,6 @@
 import Game from './game';
 import Wearable from "./items/wearable";
-import {cloneClass} from 'objecty';
+import {cloneClass, sublists, randElm, randMatch } from 'objecty';
 import Percent from './percent';
 
 /*function isPercent(str) {
@@ -34,25 +34,42 @@ export default class ItemGen {
 		 */
 		this.byKind = {};
 
+		this.initMaterials( state.materials );
+
 		this.initList( 'armor', state.armors );
 		this.initList( 'weapon', state.weapons );
 		this.initList( 'equip', state.equip );
 	}
 
-	_itemClone(data) {
-		data = cloneClass(data);
-		data.id = data.id + ITEM_ID++;
-		return data;
+	initMaterials( mats ) {
+
+		let byId = {};
+		for( let i = mats.length-1; i>=0; i-- ) {
+			byId[ mats[i].id] = mats[i];
+		}
+
+		this.materials = byId;
+		this.matsByLevel = sublists( mats, 'level' );
+
 	}
 
 	/**
-	 * Generate an item from base item.
-	 * @param {Wearable} data 
+	 * Generate a new item from a template item.
+	 * @param {Wearable} data
+	 * @param {string|Material} material - material to use for item.
 	 */
-	fromData( data ) {
+	fromData( data, material=null ) {
 
+		console.log('wearable from data');
 		if ( data === null || data === undefined ) return null;
-		return this._itemClone(data);
+
+		let mat = material || data.material;
+		if ( !mat ) mat = this.getMatBelow( data.level || 1 );
+
+		if ( typeof mat === 'string' ) mat = this.state.getItem( mat );
+
+		console.log('cloning data');
+		return this.itemClone( data, mat );
 
 	}
 
@@ -61,37 +78,34 @@ export default class ItemGen {
 	 * @param {string|Wearable|Object|Array} info
 	 * @returns {?Wearable|Wearable[]}
 	 */
-	getLoot( info ) {
+	getLoot( info, amt=1 ) {
 
-		if ( typeof info === 'string' ) return this.fromData( this.state.getItem(info) );
-		else if ( info.type === 'wearable') return this.fromData( info );
+		if ( amt instanceof Percent ) {
+			if ( !amt.value ) return null;
+		} else if ( amt.value ) amt = amt.value;
+
+		if ( typeof info === 'string' ) {
+			console.log('getting item: ' + info );
+			info = this.state.getItem(info);
+			console.log( info.type );
+		}
+		if (!info) {
+			console.log('skipping NULL gen.')
+			return null;
+		}
+
+		if ( info.type === 'wearable') return this.fromData( info );
+		else if ( info.type != null ) Game.doItem( info, amt );
 		else if ( info instanceof Array ) return info.map( this.getLoot, this );
 
 		if ( info.pct && (100*Math.random() > info.pct) ) return null;
-
-		if ( info.level ) return this.fromLevel( info.level, info.kind );
-		else if ( info.max ) return this.rand( info.max, info.kind );
+		if ( info.level ) return this.fromLevel( info.level, info.kind, info.material );
+		else if ( info.max ) return this.rand( info.max, info.kind, info.material );
 
 		let items = [];
 		for( let p in info ) {
-
-			var it = this.state.getItem(p);
-			if ( !it ) {
-				console.log('LOOT UNDEFINED: ' + p );
-				continue;
-			}			
-			var itVal = info[p];
-
-			if ( itVal instanceof Percent ) {
-				if ( !itVal.value ) continue;
-			} else if ( itVal.value ) itVal = itVal.value;
-
-			if ( it.type === 'wearable') items.push( this.fromData(it) );
-
-			// loot is resource/skill/status effect etc.
-			else Game.doItem(it, itVal );
-
-
+			var it = this.getLoot( this.state.getItem(p), info[p] );
+			if ( it ) items.push(it );
 		}
 
 		return items;
@@ -99,11 +113,12 @@ export default class ItemGen {
 	}
 
 	/**
-	 * 
+	 * Return a random item of the given level.
 	 * @param {number} [level=0] 
-	 * @param {?string} [kind=null] 
+	 * @param {?string} [kind=null]
+	 * @param {?string|Material} [mat=null] - item material.
 	 */
-	fromLevel( level=0, kind=null ){
+	fromLevel( level=0, kind=null, mat=null ){
 
 		kind = kind || this.pickKind();
 
@@ -112,9 +127,8 @@ export default class ItemGen {
 
 			list = list[level];
 			if ( list ) {
-				let it = list[ Math.floor( Math.random()*list.length ) ];
-				console.log( 'cloning ' + it );
-				return this._itemClone( it );
+				let it = randElm( list );
+				return this.fromData( it, mat );
 			}
 
 
@@ -125,17 +139,17 @@ export default class ItemGen {
 	}
 
 	/**
-	 * Get random item of maximum level of below.
-	 * @param {number} [maxLevel=1]
-	 * @param {?string} [kind=null] kind of item to generate.
+	 * Get random item of given level or below.
+	 * @param {number} [maxLevel=1] - maximum level of item to return.
+	 * @param {?string} [kind=null] - kind of item to generate.
+	 * @param {?string|Material} [mat=null] - item material.
 	 * @returns {Wearable|null}
 	 */
-	rand( maxLevel=1, kind=null ){
+	rand( maxLevel=1, kind=null, mat=null ){
 
 		maxLevel = Math.floor( Math.random()*(maxLevel+1) );
 		do {
-	
-			var it = this.fromLevel( maxLevel, kind );
+			var it = this.fromLevel( maxLevel, kind, mat );
 
 		} while ( !it && --maxLevel >= 0 );
 
@@ -170,6 +184,37 @@ export default class ItemGen {
 
 	}
 
+	/**
+	 * Get a material below or including the given level.
+	 * @param {number} level 
+	 * @param {string} itemKind 
+	 */
+	getMatBelow( level, itemKind=null ) {
+		return this.getMat( Math.floor( Math.random()*level + 1 ), itemKind );
+	}
+
+	/**
+	 * Get a random material of the highest level available on or below
+	 * the given level.
+	 * @param {number} level - target level of material.
+	 * @param {?string} itemKind 
+	 */
+	getMat( level, itemKind=null ) {
+
+		do {
+
+			var arr = this.matsByLevel[level];
+			if ( !arr ) continue;
+
+			var it = itemKind == null ? randElm(arr) :
+				randMatch( arr, v=>!v.exclude||v.exclude.includes(itemKind) );
+
+		} while ( !it && --level >= 0 );
+
+		return it;
+
+	}
+
 	pickKind() {
 
 		let r = Math.random();
@@ -177,6 +222,21 @@ export default class ItemGen {
 		if ( r < 0.66 ) return 'weapon';
 		return 'equip';
 
+	}
+
+	itemClone( data, material ) {
+
+		data = cloneClass(data);
+
+		if ( material ) {
+			data.applyMaterial( Object.assign( {}, material ) );
+			data.name = material.id + ' ' + data.name;
+		} else data.name = data.name;
+
+		data.id = data.id + ITEM_ID++;
+
+		console.log('returning data');
+		return data;
 	}
 
 

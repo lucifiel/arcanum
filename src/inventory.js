@@ -3,7 +3,7 @@ export default class Inventory {
 	/**
 	 * @property {number} length - items in inventory.
 	 */
-	get length() { return this._items.length; }
+	get length() { return this.items.length; }
 
 	toJSON(){
 		return {
@@ -23,10 +23,11 @@ export default class Inventory {
 
 	add(it){
 
+		if ( it === null || it === undefined ) return;
 		if ( it instanceof Array ) {
 
-			this.items = this.items.concat(it);
-			//for( let i = it.length-1; i>=0; i-- ) this.items.push( it[i] );
+			//this.items = this.items.concat(it);
+			for( let i = it.length-1; i>=0; i-- ) this.items.push( it[i] );
 
 		} else this.items.push(it);
 

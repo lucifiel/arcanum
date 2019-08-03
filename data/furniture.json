@@ -71,7 +71,8 @@
 			"space":4
 		},
 		"mod":{
-			"rest.effect.stamina":0.1
+			"rest.effect.stamina":0.1,
+			"rest.effect.hp":0.02
 		}
 
 	},

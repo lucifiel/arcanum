@@ -201,11 +201,12 @@ export default class Raid {
 
 		if ( this.tryHit( enemy, this.player ) ) {
 
-			let dmg = this.getDamage( enemy.damage );
+			if ( enemy.damage ) {
+				let dmg = this.getDamage( enemy.damage );
+				this.enemyAct = this.player.name + ' hit: ' + dmg.toFixed(1);
+				this.player.hp -= dmg;
+			}
 
-			this.enemyAct = this.player.name + ' hit: ' + dmg.toFixed(1);
-
-			this.player.hp -= dmg;
 			if ( this.player.hp <= 0 ) this.playerDied();
 
 		} else {

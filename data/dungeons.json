@@ -14,7 +14,7 @@
 		"enemies":[
 
 			"lgmouse",
-			"smsnake",
+			"snake",
 			"stingybee",
 			"bigstone"
 		]
@@ -35,7 +35,7 @@
 
 			"lgrat",
 			"angrybird",
-			"smsnake"
+			"snake"
 
 		]
 
@@ -199,7 +199,7 @@
 		"id":"holyhouse",
 		"name":"house of the holy",
 		"desc":"",
-		"require":"state.planes.max>=30",
+		"require":"state.planeslore.max>=30",
 		"level":14,
 		"length":50,
 		"cost":{

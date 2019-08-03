@@ -20,9 +20,9 @@
         "id":"bat",
         "level":1,
         "kind":"beast",
-        "hp":"1~2",
+        "hp":3,
         "tohit":3,
-        "defense":2,
+        "defense":1,
         "attack":{
             "name":"bite",
             "type":"pierce",
@@ -38,7 +38,7 @@
 		"hp":2,
 		"tohit":2,
 		"defense":2,
-		"damage":"0~2",
+		"damage":"1~2",
 		"loot":{
 			"boots":1
 		}
@@ -57,25 +57,54 @@
 			"kind":"poison",
 			"damage":"1~2"
 		},
-		"loot":{
-			"hat":1,
-			"staff":1
-		}
+		"loot":[
+			"gloves"
+		]
 	},
 	{
 		"id":"bigstone",
 		"name":"Big Stone",
 		"type":"natural",
-		"level":1,
+		"level":0,
 		"hp":5,
 		"tohit":0,
 		"defense":2,
 		"damage":0,
 		"speed":-10,
 		"loot":{
-			"pct":15,
+			"pct":30,
 			"max":1
 		}
+	},
+	{
+        "id":"homonculus",
+        "level":1,
+        "kind":"construct",
+        "desc":"Must have escaped its jar.",
+        "hp":8,
+        "tohit":1,
+        "defense":5,
+        "attack":{
+            "name":"nasty bite",
+            "type":"pierce",
+            "dmg":"2~5"
+        }
+
+    },
+    {
+        "id":"jackal",
+        "level":1,
+        "kind":"beast",
+        "desc":"They're tricksy.",
+        "hp":9,
+        "tohit":2,
+        "defense":8,
+        "attack":{
+            "name":"bite",
+            "type":"pierce",
+            "dmg":"2~5"
+        },"biome":"plains"
+
 	},
 	{
 		"id":"lgsnail",
@@ -112,8 +141,7 @@
 		"speed":3,
 		"damage":"0~2",
 		"loot":{
-			"feather":"0~4",
-			"sash":1
+			"feather":"0~3"
 		}
 	},
 	{
@@ -387,7 +415,7 @@
     {
 		"id":"gardengnome",
         "name":"garden gnome",
-        "level":0.75,
+        "level":1,
         "desc":"Standard variety garden gnome.",
         "hp":"3~6",
         "defense":4,
@@ -402,7 +430,7 @@
     },
     {
         "id":"orc",
-        "level":1,
+        "level":4,
         "kind":"humanoid",
         "desc":"For the Horde!",
         "hp":"6~15",
@@ -411,13 +439,13 @@
         "attack":{
             "name":"spear",
             "type":"pierce",
-            "dmg":"1~6"
+            "dmg":"3~6"
         }, "loot":{"potion of cure light wounds":3}
 
     },
     {
         "id":"zombie",
-        "level":1,
+        "level":3,
         "kind":"undead",
         "evil":8,
         "desc":"Slow and rotting corpse.",
@@ -431,36 +459,6 @@
         }
 
     },
-    {
-        "id":"homonculus",
-        "level":1,
-        "kind":"construct",
-        "desc":"Must have escaped its jar.",
-        "hp":8,
-        "tohit":1,
-        "defense":5,
-        "attack":{
-            "name":"nasty bite",
-            "type":"pierce",
-            "dmg":"2~5"
-        }
-
-    },
-    {
-        "id":"jackal",
-        "level":1,
-        "kind":"beast",
-        "desc":"They're tricksy.",
-        "hp":9,
-        "tohit":2,
-        "defense":8,
-        "attack":{
-            "name":"bite",
-            "type":"pierce",
-            "dmg":"2~5"
-        },"biome":"plains"
-
-	},
 	{
         "id":"cutpurse",
         "level":4,
@@ -690,7 +688,7 @@
     {
 		"id":"giantcentipede",
         "name":"giant centipede",
-        "level":6,
+        "level":5,
         "desc":"creepy crawly",
         "hp":22,
         "defense":15,
@@ -745,6 +743,23 @@
 
 	},
 	{
+		"id":"mechswordsman",
+        "name":"mechanical swordsman",
+        "level":5,
+        "kind":"construct",
+        "evil":0,
+        "desc":"Durable, but not very good at its job.",
+        "tohit":6,
+        "hp":30,
+        "defense":28,
+        "attack":{
+            "name":"short sword",
+            "type":"slash",
+            "dmg":"3~8"
+        }
+
+    },
+	{
         "id":"crocodile",
         "biome":"swamp",
         "level":5,
@@ -781,7 +796,7 @@
         "evil":5,
         "desc":"",
         "tohit":7,
-        "hp":16,
+        "hp":28,
         "defense":25,
         "attack":{
             "name":"claws",
@@ -789,27 +804,25 @@
             "dmg":"3~6"
         }
 
-    },
+	},
 	{
-		"id":"mechswordsman",
-        "name":"mechanical swordsman",
-        "level":5,
-        "kind":"construct",
-        "evil":0,
-        "desc":"Durable, but not very good at its job.",
-        "tohit":6,
-        "hp":30,
-        "defense":28,
+        "id":"lion",
+        "level":6,
+        "kind":"beast",
+        "desc":"",
+        "hp":20,
+		"defense":18,
+		"speed":8,
         "attack":{
-            "name":"short sword",
+            "name":"claws",
             "type":"slash",
-            "dmg":"3~8"
-        }
+            "dmg":"7~11"
+        }, "loot":{}
 
     },
     {
         "id":"harpy",
-        "level":5,
+        "level":6,
         "kind":"humanoid",
         "evil":13,
         "desc":"She doesn't look harpy to see you.",
@@ -906,22 +919,6 @@
         }
 
 	},
-	{
-        "id":"bear",
-        "level":5,
-        "biome":["forest","hills","mountains"],
-        "kind":"beast",
-        "desc":"He's angry now!!!",
-        "hp":55,
-        "tohit":6,
-        "defense":30,
-        "attack":{
-            "name":"claws",
-            "type":"slash",
-            "dmg":"5~14"
-        }, "loot":["bear claw"]
-
-    },
     {
         "id":"wight",
         "level":6,
@@ -986,6 +983,22 @@
 
 	},
 	{
+		"id":"giantsnake",
+		"name":"giant snake",
+        "level":6,
+        "kind":"beast",
+        "desc":"",
+        "hp":25,
+        "defense":20,
+        "tohit":7,
+        "attack":{
+            "name":"constrict",
+            "type":"blunt",
+            "dmg":"8~13"
+        }
+
+    },
+	{
         "id":"bugbear",
         "level":6,
         "desc":"",
@@ -1031,6 +1044,22 @@
             "dmg":"4~9"
         }
 
+	},
+	{
+        "id":"bear",
+        "level":7,
+        "biome":["forest","hills","mountains"],
+        "kind":"beast",
+        "desc":"He's angry now!!!",
+        "hp":55,
+        "tohit":6,
+        "defense":30,
+        "attack":{
+            "name":"claws",
+            "type":"slash",
+            "dmg":"5~14"
+        }, "loot":["bear claw"]
+
     },
     {
         "id":"ghast",
@@ -1060,22 +1089,6 @@
             "name":"claymore",
             "type":"slash",
             "dmg":"3~10"
-        }
-
-    },
-    {
-		"id":"giantsnake",
-		"name":"giant snake",
-        "level":7,
-        "kind":"beast",
-        "desc":"",
-        "hp":38,
-        "defense":23,
-        "tohit":7,
-        "attack":{
-            "name":"constrict",
-            "type":"blunt",
-            "dmg":"8~17"
         }
 
     },
@@ -1222,7 +1235,22 @@
             "dmg":"5~11"
         }
 
-    },
+	},
+	{
+		"id":"druid",
+        "level":7,
+        "kind":"humanoid",
+        "desc":"ardent of nature",
+        "tohit":7,
+        "hp":27,
+        "defense":25,
+        "attack":{
+            "name":"spellstorm",
+            "type":"nature",
+            "dmg":"9~17"
+        }, "loot":{"raw wood":5}
+
+	},
     {
 		"id":"woodgolem",
         "name":"wooden golem",
@@ -1758,6 +1786,22 @@
             "dmg":"10~25"
         }, "loot":{"vampire fang":10, "potion of major agony":10}
 
+	},
+	{
+		"id":"firegolem",
+        "name":"fire golem",
+        "level":11,
+        "kind":"construct",
+        "desc":"Crafted from only the finest phlogiston.",
+        "hp":100,
+        "tohit":8,
+        "defense":53,
+        "attack":{
+            "name":"fire punch",
+            "type":"fire",
+            "dmg":"15~23"
+        }
+
     },
 	{
         "id":"grimstalk",
@@ -1778,7 +1822,7 @@
     },
     {
         "id":"valkyrie",
-        "level":11,
+        "level":12,
         "evil":-8,
         "desc":"She'll take you to Valhalla.",
         "hp":75,
@@ -1822,22 +1866,6 @@
             "name":"beak",
             "type":"pierce",
             "dmg":"21~27"
-        }
-
-    },
-    {
-		"id":"firegolem",
-        "name":"fire golem",
-        "level":12,
-        "kind":"construct",
-        "desc":"Crafted from only the finest phlogiston.",
-        "hp":100,
-        "tohit":8,
-        "defense":53,
-        "attack":{
-            "name":"fire punch",
-            "type":"fire",
-            "dmg":"15~23"
         }
 
     },
@@ -2061,6 +2089,22 @@
 
 	},
 	{
+		"id":"frostgiant",
+		"name":"frost giant",
+        "level":16,
+        "kind":"giant",
+        "desc":"",
+        "hp":170,
+        "tohit":17,
+        "defense":65,
+        "attack":{
+            "name":"punch",
+            "type":"cold",
+            "dmg":"30~40"
+         } , "loot":{ "potion of major agony":15, "potion of cure major wounds":15}
+
+    },
+	{
 		"id":"magmaelemental",
         "name":"magma elemental",
         "kind":"elemental",
@@ -2068,7 +2112,7 @@
         "level":16,
         "desc":"A small mountain of magma.",
         "hp":150,
-        "tohit":10,
+        "tohit":15,
         "defense":65,
         "attack":{
             "name":"lava slam",
@@ -2092,7 +2136,7 @@
             "dmg":"30~40"
         }, "loot":{ "potion of critical agony":15}
 
-    },
+	},
     {
 		"id":"mithrilgolem",
         "name":"mithril golem",
@@ -2201,6 +2245,22 @@
             "name":"fire breath",
             "type":"fire",
             "dmg":"50~100"
+        }
+	},
+	{
+		"id":"natureswrath",
+        "name":"nature's wrath",
+        "level":22,
+        "kind":"spirit",
+        "evil":20,
+        "desc":"",
+        "hp":400,
+        "tohit":23,
+        "defense":90,
+        "attack":{
+            "name":"lifestorm",
+            "type":"nature",
+            "dmg":"50~125"
         }
 	},
 	{

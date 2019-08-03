@@ -158,9 +158,11 @@ export default {
 	
 	<div :class="{ 'item-popup':true, show:item!=null }">
 		<div class='popup-content' v-if="item">
-		<span class="item-name">{{item.name}}</span>
-		<div class="item-desc" v-if="item.desc">{{ item.desc }}</div>
+		<span class="item-name">{{item.name}}
 
+			<span v-if="item.type==='resource'">{{ item.value + ' / ' + item.max }}</span>
+		</span>
+		<div class="item-desc" v-if="item.desc">{{ item.desc }}</div>
 		<div v-if="item.cost">
 
 			<hr>
@@ -174,7 +176,6 @@ export default {
 			
 
 		</div>
-
 		<div v-if="item.effect||item.mod||item.result">
 
 			<hr>

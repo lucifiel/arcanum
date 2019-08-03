@@ -41,4 +41,20 @@ export default class Range {
 
 	}
 
+	/**
+	 * Add amount to range.
+	 * @param {number|Range} amt 
+	 */
+	add( amt ) {
+
+		if ( typeof amt === 'number' ) {
+			this.min += amt;
+			this.max += amt;
+		} else if ( typeof amt ==='object') {
+			this.min += amt.min;
+			this.max += amt.max;
+		}
+
+	}
+
 }

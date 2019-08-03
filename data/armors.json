@@ -1,6 +1,6 @@
 [
-    { "id":"gloves", "armor":1, "slot":"hands", "cost":20 },
-    { "id":"boots", "armor":1, "slot":"feet", "cost":20 },
+    { "id":"gloves", "armor":0, "slot":"hands", "cost":20 },
+    { "id":"boots", "armor":0, "slot":"feet", "cost":20 },
 	
 	{ "id":"hat", "armor":0, "slot":"head", "cost":10 },
     { "id":"cap", "armor":1, "slot":"head", "cost":15 },
