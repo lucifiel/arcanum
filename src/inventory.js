@@ -1,3 +1,5 @@
+import Wearable from "./items/wearable";
+
 export default class Inventory {
 
 	/**
@@ -16,7 +18,9 @@ export default class Inventory {
 
 		if ( vars ) Object.assign(this,vars);
 
-		this.items = this.items || [];
+		if ( this.items )this.items = this.items.map( v=>new Wearable(v) );
+		else this.items = [];
+
 		this.max = this.max || 10;
 
 	}

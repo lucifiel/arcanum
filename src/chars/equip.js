@@ -1,4 +1,5 @@
 import Slot from './slot';
+import Wearable from '../items/wearable';
 
 export default class Equip {
 
@@ -6,11 +7,36 @@ export default class Equip {
 		return { slots:( this.slots ) };
 	}
 
+	get slots() { return this._slots; }
+	set slots(v) {
+
+		for( let p in v ) {
+
+			var s = v[p];
+			var it = s.item;
+			if ( it !== null && it !== undefined ) {
+
+				if ( it instanceof Array ) it = it.map( k=>new Wearable(k) );
+				else it = new Wearable(it);
+
+				s.item = it;
+
+			}
+
+			if ( s instanceof Slot ) continue;
+			v[p] = new Slot(s);
+
+		}
+
+		this._slots = v;
+
+	}
+
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign(this, vars);
 
-		this.slots = {
+		this.slots = this._slots || {
 			"left":new Slot({
 				id:'left'
 			}),

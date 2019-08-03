@@ -9,6 +9,8 @@ export default class Wearable extends Item {
 
 		data.kind = this.kind;
 		data.slot = this.slot;
+		data.name = this.name;
+
 		if ( this._armor ) data.armor = this._armor;
 		if ( this._attack ) data.attack = this._attack;
 		if ( this.hands ) data.hands = this.hands;
