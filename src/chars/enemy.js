@@ -27,8 +27,6 @@ export default class Enemy {
 
 		if ( vars ) Object.assign( this, vars );
 
-		if ( this.hp instanceof Range ) this.hp = this.hp.value;
-
 		this.dots = this.dots || [];
 
 		this.raid = raid;
@@ -36,6 +34,9 @@ export default class Enemy {
 		this.delay = getDelay( this.speed );
 
 		this.alive = this.alive || false;
+		if ( this.hp ) {
+			if ( this.hp instanceof Range ) this.hp = this.hp.value;
+		} else this.hp = 0;
 
 	}
 
@@ -43,7 +44,9 @@ export default class Enemy {
 
 		if ( typeof item === 'string' ) item = Game.getItem(item);
 		if ( !item ) {
-			console.warn( 'item not found: ' + item );
+			console.warn( 'ENEMY not found: ' + item );
+			this.alive = false;
+			return;
 		}
 
 		this.loot = null;

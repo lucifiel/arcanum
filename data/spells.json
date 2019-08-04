@@ -302,7 +302,7 @@
 		}
 	},
 	{
-		"id":"darkprompting",
+		"id":"darkpromptings",
 		"name":"dark promptings",
 		"level":2,
 		"desc":"malevolent voices whisper secrets to your mind.",
@@ -326,6 +326,29 @@
 				"embalming.rate":0.2,
 				"demonology.rate":0.2,
 				"reanimation.rate":0.2
+			}
+		}
+	},
+	{
+		"id":"whisper",
+		"level":2,
+		"desc":"spirits whisper hidden truths as you write.",
+		"require":{
+			"spirit.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"spirit":5
+		},
+		"dot":{
+			"duration":45,
+			"effect":{
+				"research":1
 			}
 		}
 	}

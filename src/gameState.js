@@ -86,6 +86,10 @@ export default class GameState {
 		*/
 		this.tagLists = this.makeLists( this.items );
 
+		for( let p in this.items ) {
+			if ( !(this.items[p] instanceof Item) ) console.warn( this.items[p].id + ' Not an Item');
+		}
+
 	}
 
 	initMaterials( mats ) {

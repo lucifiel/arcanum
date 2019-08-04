@@ -74,7 +74,7 @@ export default class Raid {
 		 */
 		this.dungeon = this.dungeon || null;
 
-		this.enemy = this._enemy || null;
+		if ( !this.enemy ) this.enemy = null;
 
 		this.playerAct = '';
 		this.enemyAct = '';
@@ -279,9 +279,12 @@ export default class Raid {
 	}
 
 	setDungeon( d ) {
+
 		this.dungeon = d;
 		this.player.timer = this.player.delay;
+
 		if ( d != null ) {
+			this.enemy.alive = false;
 			if ( d.progress >= d.length ) d.progress = 0;
 		}
 

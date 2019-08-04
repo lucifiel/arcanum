@@ -1541,7 +1541,7 @@
             "name":"broadsword",
             "type":"slash",
             "dmg":"12~17"
-        }, "loot":{ "potion of cure major wounds":15}
+        }, "loot":{ "level":8, "pct":80}
 
 	},
 	{

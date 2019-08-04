@@ -59,10 +59,10 @@ export default {
 
 	/**
 	 * 
-	 * @param {Object[][]} datas - array of Object lists of each type. 
+	 * @param {Object[][]} fileDatas - array of Object lists of each type. 
 	 * @param {?Object} [gameData=null] - complete previous save data, if any.
 	 */
-	dataLoaded( datas, gameData=null ) {
+	dataLoaded( fileDatas, gameData=null ) {
 
 		let mergedFiles = {};
 
@@ -83,12 +83,12 @@ export default {
 
 		}
 
-		for( let i = datas.length-1; i >= 0; i-- ) {
+		for( let i = fileDatas.length-1; i >= 0; i-- ) {
 
-			this.initJSON( datas[i], saveItems );
+			this.initJSON( fileDatas[i], saveItems );
 
 			// map of DataFile name -> data list.
-			mergedFiles[ DataFiles[i] ] = datas[i];
+			mergedFiles[ DataFiles[i] ] = fileDatas[i];
 
 		}
 
@@ -111,10 +111,11 @@ export default {
 		gd.homes = this.initItems( dataFiles['homes'], undefined, 'home', 'home' );
 		this.initItems( dataFiles['furniture'], undefined, 'furniture', 'furniture' );
 		this.initItems( dataFiles['skills'], Skill );
+
+		this.initItems( dataFiles['monsters'], Monster, 'monster', 'monster' );
 		this.initItems( dataFiles['dungeons'], Dungeon );
 		this.initItems( dataFiles['spells'], Spell );
 
-		this.initItems( dataFiles['monsters'], Monster, 'monster', 'monster' );
 
 		gd.armors = this.initItems( dataFiles['armors'], Wearable );
 		gd.armors.forEach( v=>v.kind = 'armor' );
@@ -145,7 +146,7 @@ export default {
 			for( let it of arr ) {
 
 				var saveObj = saveItems[it.id];
-				//console.log('MERGING: ' + it.id );
+				console.log('MERGING: ' + it.id );
 				if ( saveObj ) merge( it, saveObj );
 
 			}
@@ -178,7 +179,7 @@ export default {
 					else if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( !isNaN(obj) ) {
-						console.warn('string used as Number: ' + p + ' -> ' + obj );
+						if ( obj !== null && obj !== undefined ) console.warn('string used as Number: ' + p + ' -> ' + obj );
 						//console.warn('store numeric data as number.');
 						//sub[p] = Number(obj);
 					}
