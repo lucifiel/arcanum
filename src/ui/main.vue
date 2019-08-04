@@ -119,7 +119,7 @@ export default {
 			if ( !str ) console.log('no data saved.');
 			let obj = str ? JSON.parse( str ) : null;
 
-			console.log('Revived Save: ' + obj );
+			//console.log('Revived Save: ' + obj );
 
 			this.game.load( obj ).then( this.gameLoaded );
 

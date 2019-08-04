@@ -25,10 +25,14 @@ export default class Raid {
 		this.dungeon.progress=v;
 		
 		if ( this.dungeon.progress >= this.dungeon.length ) {
+			console.log('RAID DONE');
 			this.raidDone( this.dungeon );
 		}
 
 	}
+
+	percent() { return this.dungeon.percent(); }
+	maxed() { return this.dungeon.maxed(); }
 
 	/**
 	 * @property {number} length - length of dungeon in progress.
@@ -63,14 +67,12 @@ export default class Raid {
 	 */
 	constructor( vars=null ) {
 
-		if ( vars ) Object.assign(vars, this);
+		if ( vars ) Object.assign( this, vars);
 
 		/**
 		 * @property {Dungeon} dungeon - current dungeon.
 		 */
 		this.dungeon = this.dungeon || null;
-
-		if ( typeof this.dungeon === 'string') this.dungeon = Game.getItem(this.dungeon);
 
 		this.enemy = this._enemy || null;
 
@@ -79,14 +81,13 @@ export default class Raid {
 
 	}
 
-	percent() { return this.dungeon.percent(); }
-	maxed() { return this.dungeon.maxed(); }
-
 	initState( gameState ) {
 
 		this.state = gameState;
 		this.player = gameState.player;
-		this.dungeon = gameState.dungeon;
+		//this.dungeon = gameState.dungeon;
+
+		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getItem(this.dungeon);
 
 	}
 

@@ -22,7 +22,7 @@ export default class GameState {
 			inventory:( this.inventory ),
 			raid:( this.raid ),
 			sellRate:this.sellRate,
-			restAction:this.restAction.id,
+			restAction:this.restAction ? this.restAction.id : null,
 			NEXT_ID:this.NEXT_ID
 
 		};
@@ -52,7 +52,7 @@ export default class GameState {
 		 * @property {Item} curAction - ongoing action.
 		 */
 		this.curAction = this.curAction || null;
-
+	
 		/**
 		 * @property {Item} curHome
 		 */
@@ -101,10 +101,15 @@ export default class GameState {
 
 	revive() {
 
+		if ( typeof this.restAction === 'string') this.restAction = this.getItem( this.restAction );
+
 		if ( this.curHome ) this.curHome = this.getItem(this.curHome );
 		if ( this.curAction ) {
-			this.curAction = this.getItem( this.curAction );
-			if ( this.curAction.type === 'dungeon') this.curAction = this.raid;
+
+			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
+			if ( this.curAction.type === 'dungeon') {
+				this.curAction = this.raid;
+			}
 		}
 
 		if ( this.quickslots ) {

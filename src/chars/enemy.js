@@ -25,7 +25,7 @@ export default class Enemy {
 
 	constructor( vars=null, raid=null ){
 
-		if ( vars ) Object.assign(this.vars);
+		if ( vars ) Object.assign( this, vars );
 
 		if ( this.hp instanceof Range ) this.hp = this.range.value;
 
