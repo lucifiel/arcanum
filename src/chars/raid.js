@@ -69,6 +69,7 @@ export default class Raid {
 		 * @property {Dungeon} dungeon - current dungeon.
 		 */
 		this.dungeon = this.dungeon || null;
+
 		if ( typeof this.dungeon === 'string') this.dungeon = Game.getItem(this.dungeon);
 
 		this.enemy = this._enemy || null;

@@ -3,16 +3,6 @@ import Wearable from "./items/wearable";
 import {cloneClass, sublists, randElm, randMatch } from 'objecty';
 import Percent from './percent';
 
-/*function isPercent(str) {
-	return str[str.length-1] === '%';
-}*/
-
-/**
- * @constant {number} ITEM_ID - number to append to item ids
- * to give every cloned item a unique id.
- */
-var ITEM_ID = 0;
-
 /**
  * Generates random Equipment Items and Weapons from basic item data.
  */
@@ -228,7 +218,7 @@ export default class ItemGen {
 			data.name = material.id + ' ' + data.name;
 		} else data.name = data.name;
 
-		data.id = data.id + ITEM_ID++;
+		data.id = data.id + this.state.nextId();
 
 		console.log('returning data');
 		return data;

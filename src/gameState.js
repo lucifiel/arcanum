@@ -22,12 +22,17 @@ export default class GameState {
 			inventory:( this.inventory ),
 			raid:( this.raid ),
 			sellRate:this.sellRate,
-			restAction:this.restAction.id
+			restAction:this.restAction.id,
+			NEXT_ID:this.NEXT_ID
 
 		};
 
 		return data;
 
+	}
+
+	nextId() {
+		return this.NEXT_ID++;
 	}
 
 	/**
@@ -37,6 +42,11 @@ export default class GameState {
 	constructor( baseData, restore=false ){
 
 		Object.assign( this, baseData );
+
+		/**
+		 * Next item id.
+		 */
+		this.NEXT_ID = this.NEXT_ID || 0;
 
 		/**
 		 * @property {Item} curAction - ongoing action.
@@ -51,7 +61,7 @@ export default class GameState {
 		/**
 		 * @property {string} restAction - default resting action.
 		 */
-		this.restAction = this.rectAction || this.getItem( 'rest' );
+		this.restAction = this.restAction || this.getItem( 'rest' );
 
 		this.quickslots = this.quickslots || [];
 
@@ -92,7 +102,10 @@ export default class GameState {
 	revive() {
 
 		if ( this.curHome ) this.curHome = this.getItem(this.curHome );
-		if ( this.curAction ) this.curAction = this.getItem( this.curAction );
+		if ( this.curAction ) {
+			this.curAction = this.getItem( this.curAction );
+			if ( this.curAction.type === 'dungeon') this.curAction = this.raid;
+		}
 
 		if ( this.quickslots ) {
 			this.quickslots = this.quickslots.map( v=>this.getItem(v) );

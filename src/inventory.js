@@ -10,7 +10,8 @@ export default class Inventory {
 	toJSON(){
 		return {
 			items:(this.items),
-			max:(this.max)
+			max:(this.max),
+			NEXT_ID:this.NEXT_ID
 		}
 	}
 
