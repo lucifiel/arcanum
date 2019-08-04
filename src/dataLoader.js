@@ -60,21 +60,23 @@ export default {
 	/**
 	 * 
 	 * @param {Object[][]} datas - array of Object lists of each type. 
-	 * @param {?Object} [gameData=null] - previous save data, if any.
+	 * @param {?Object} [gameData=null] - complete previous save data, if any.
 	 */
 	dataLoaded( datas, gameData=null ) {
 
-		let raw = {};
+		let mergedFiles = {};
 
+		// id => item data only.
 		let saveItems = gameData ? gameData.items : null;
 
 		if ( gameData ) {
 
-			// parse subs into full objects.
+			// restore Percent/Range classes /special functions of non-item data.
 			for( let p in gameData ) {
 
 				if ( p === 'items') continue;
 				var dataItem = gameData[p];
+				//console.log('game save item: ' + p );
 				gameData[p] = this.parseSub(dataItem);
 
 			}
@@ -85,15 +87,16 @@ export default {
 
 			this.initJSON( datas[i], saveItems );
 
-			raw[ DataFiles[i] ] = datas[i];
+			// map of DataFile name -> data list.
+			mergedFiles[ DataFiles[i] ] = datas[i];
 
 		}
 
-		return this.initGameData( raw, gameData );
+		return this.initGameData( mergedFiles, gameData );
 
 	},
 
-	initGameData( rawData, saveState=null ){
+	initGameData( dataFiles, saveState=null ){
 
 		var gd = {
 			items:{},
@@ -102,34 +105,34 @@ export default {
 		
 		this.items = gd.items;
 
-		gd.resources = this.initItems( rawData['resources'], Resource );
+		gd.resources = this.initItems( dataFiles['resources'], Resource );
 
-		gd.upgrades = this.initItems( rawData['upgrades'], undefined, null, 'upgrade' );
-		gd.homes = this.initItems( rawData['homes'], undefined, 'home', 'home' );
-		this.initItems( rawData['furniture'], undefined, 'furniture', 'furniture' );
-		this.initItems( rawData['skills'], Skill );
-		this.initItems( rawData['dungeons'], Dungeon );
-		this.initItems( rawData['spells'], Spell );
+		gd.upgrades = this.initItems( dataFiles['upgrades'], undefined, null, 'upgrade' );
+		gd.homes = this.initItems( dataFiles['homes'], undefined, 'home', 'home' );
+		this.initItems( dataFiles['furniture'], undefined, 'furniture', 'furniture' );
+		this.initItems( dataFiles['skills'], Skill );
+		this.initItems( dataFiles['dungeons'], Dungeon );
+		this.initItems( dataFiles['spells'], Spell );
 
-		this.initItems( rawData['monsters'], Monster, 'monster', 'monster' );
+		this.initItems( dataFiles['monsters'], Monster, 'monster', 'monster' );
 
-		gd.armors = this.initItems( rawData['armors'], Wearable );
+		gd.armors = this.initItems( dataFiles['armors'], Wearable );
 		gd.armors.forEach( v=>v.kind = 'armor' );
 	
-		gd.weapons = this.initItems( rawData['weapons'], Wearable );
+		gd.weapons = this.initItems( dataFiles['weapons'], Wearable );
 		gd.weapons.forEach(v=>v.kind='weapon');
 
-		gd.materials = rawData['materials'];
+		gd.materials = dataFiles['materials'];
 
-		gd.events = this.initItems( rawData['events'], undefined, null, 'event' );
-		gd.events = gd.events.concat( this.initItems( rawData['classes'], undefined, null, 'event') );
+		gd.events = this.initItems( dataFiles['events'], undefined, null, 'event' );
+		gd.events = gd.events.concat( this.initItems( dataFiles['classes'], undefined, null, 'event') );
 
-		gd.actions = this.initItems( rawData['actions'], Action, null, 'action' );
+		gd.actions = this.initItems( dataFiles['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
-		gd.sections = this.initItems( rawData['sections']);
+		gd.sections = this.initItems( dataFiles['sections']);
 		
-		gd.player = this.items.player = this.initPlayer( rawData['player'], saveState ? saveState.player : null );
+		gd.player = this.items.player = this.initPlayer( dataFiles['player'], gd.items.player );
 
 		return gd;
 
@@ -264,6 +267,11 @@ export default {
 
 	},
 
+	/**
+	 * 
+	 * @param {*} stats - player stats from json.
+	 * @param {Object} savePlayer - player data from previous save. 
+	 */
 	initPlayer( stats, savePlayer=null ) {
 
 		let vars = savePlayer || {};

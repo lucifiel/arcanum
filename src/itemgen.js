@@ -43,12 +43,7 @@ export default class ItemGen {
 
 	initMaterials( mats ) {
 
-		let byId = {};
-		for( let i = mats.length-1; i>=0; i-- ) {
-			byId[ mats[i].id] = mats[i];
-		}
-
-		this.materials = byId;
+		this.materials = this.state.matsById;
 		this.matsByLevel = sublists( mats, 'level' );
 
 	}
@@ -229,7 +224,7 @@ export default class ItemGen {
 		data = cloneClass(data);
 
 		if ( material ) {
-			data.applyMaterial( Object.assign( {}, material ) );
+			data.applyMaterial( material );
 			data.name = material.id + ' ' + data.name;
 		} else data.name = data.name;
 

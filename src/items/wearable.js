@@ -15,7 +15,8 @@ export default class Wearable extends Item {
 		if ( this._attack ) data.attack = this._attack;
 		if ( this.hands ) data.hands = this.hands;
 		if ( this.level ) data.level = this.level;
-		if ( this.material ) data.material = this.material;
+		if ( this.material ) data.material = this.material.id;
+		else console.warn('no material for: ' + this.id );
 
 		return data;
 
@@ -75,6 +76,10 @@ export default class Wearable extends Item {
 		if ( typeof obj[prop] === 'number') obj[prop] += amt;
 		else if ( obj[prop] instanceof Range ) obj[prop].add( amt );
 
+	}
+
+	revive( state ) {
+		if ( typeof this.material === 'string') this.material = state.getMaterial( this.material );
 	}
 
 	equip( player ) {

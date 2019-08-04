@@ -25,6 +25,10 @@ export default class Inventory {
 
 	}
 
+	revive(state){
+		this.items.forEach(v=>v.revive(state));
+	}
+
 	add(it){
 
 		if ( it === null || it === undefined ) return;

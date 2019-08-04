@@ -160,7 +160,7 @@ export default {
 		<div class='popup-content' v-if="item">
 		<span class="item-name">{{item.name}}
 
-			<span v-if="item.type==='resource'">{{ item.value + ' / ' + item.max }}</span>
+			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value + ' / ' + item.max }}</span>
 		</span>
 		<div class="item-desc" v-if="item.desc">{{ item.desc }}</div>
 		<div v-if="item.cost">

@@ -122,6 +122,7 @@ export default class Player extends Item {
 	constructor( vars=null ){
 
 		super(vars);
+
 		//if ( vars ) Object.assign( this, vars );
 		this._level = this._level || 0;
 		this._title = this._title || 'waif';
@@ -185,8 +186,10 @@ export default class Player extends Item {
 	}
 
 	revive( state ) {
-		if ( this.weapon && typeof this.weapon === 'string' ) this.weapon = state.equip.find( this.weapon );
+
+		if ( this.weapon && (typeof this.weapon === 'string') ) this.weapon = state.equip.find( this.weapon );
 		this.primary = this.primary && typeof this.primary === 'string' ? state.getItem( this.primary ) : this.primary;
+
 	}
 
 	/**

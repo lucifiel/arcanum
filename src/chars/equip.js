@@ -164,6 +164,13 @@ export default class Equip {
 
 	}
 
+	revive(state) {
+		for( let p in this.slots ) {
+			this.slots[p].revive(state);
+		}
+
+	}
+
 	/**
 	 * 
 	 * @param {Armor|Weapon} it 

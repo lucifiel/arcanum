@@ -55,6 +55,7 @@ export default class GameState {
 
 		this.quickslots = this.quickslots || [];
 
+		this.initMaterials( this.materials );
 		this.inventory = new Inventory( baseData.inventory );
 		this.equip = new Equip( baseData.equip );
 
@@ -77,6 +78,17 @@ export default class GameState {
 
 	}
 
+	initMaterials( mats ) {
+
+		let byId = {};
+		for( let i = mats.length-1; i>=0; i-- ) {
+			byId[ mats[i].id] = mats[i];
+		}
+
+		this.matsById = byId;
+
+	}
+
 	revive() {
 
 		if ( this.curHome ) this.curHome = this.getItem(this.curHome );
@@ -85,6 +97,9 @@ export default class GameState {
 		if ( this.quickslots ) {
 			this.quickslots = this.quickslots.map( v=>this.getItem(v) );
 		}
+
+		this.equip.revive( this );
+		this.inventory.revive( this );
 
 		this.player.revive(this);
 
@@ -252,5 +267,7 @@ export default class GameState {
 	}
 
 	getItem(id) { return this.items[id];}
+
+	getMaterial(id) { return this.matsById[id]; }
 
 }

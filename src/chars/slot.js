@@ -62,6 +62,7 @@ export default class Slot {
 	 * @returns {Item|null}
 	 */
 	find(id ) {
+		if ( this.item === null) return null;
 		return this.multi ?
 			this.item.find(v=>v.id===id) :
 			(this.item.id === id) ? this.item : null
@@ -105,6 +106,14 @@ export default class Slot {
 		}
 
 		return false;
+
+	}
+
+	revive( state ) {
+
+		if ( this.item === null || this.item === undefined ) return;
+		if ( this.item instanceof Array ) this.item.forEach(v=>v.revive(state));
+		else this.item.revive(state );
 
 	}
 
