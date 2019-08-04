@@ -29,8 +29,9 @@ export default class Slot {
 
 	/**
 	 * 
-	 * @param {Item} it
-	 * @returns {Item|boolean} Item previously held, or true.
+	 * @param {Item} it - the item to equip in the slot.
+	 * @returns {Item|boolean} Item previously held, or true,
+	 * if no item needs to be removed.
 	 */
 	equip( it ){
 
@@ -80,12 +81,17 @@ export default class Slot {
 	/**
 	 * Remove item from slot.
 	 * @param {?Item} [it=null] - item to remove. If item is null, any item(s) in slot are removed.
-	 * @returns {?Item|boolean} - If no parameter is specified, returns any items removed.
-	 * If a param is specified, returns true if item removed, false otherwise.
+	 * @returns {?Item|boolean} - If no parameter is specified, removes all items and returns them.
+	 * If a param is specified, returns the item removed.
 	 */
 	remove( it=undefined) {
 
-		if ( it === null || it === undefined ) {
+		if ( this.item === it ) {
+
+			this.item = null;
+			return it;
+
+		} else if ( it === null || it === undefined ) {
 
 			it = this.item;
 			this.item = null;
@@ -97,11 +103,6 @@ export default class Slot {
 			let ind = this.item.indexOf(it);
 			if ( ind < 0 ) return false;
 			return this.item.splice(ind,1)[0];
-
-		} else if ( this.item === it ) {
-
-			this.item = null;
-			return true;
 
 		}
 

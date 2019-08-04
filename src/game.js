@@ -780,30 +780,31 @@ export default {
 
 	equip( it, slot=null ) {
 
-		console.log('equip: ' + it.id );
+		//console.log('equip: ' + it.id );
 		let res = this.state.equip.equip( it, slot );
-		if ( res ) {
+		if ( !res) return;
 
-			this.state.inventory.remove( it );
+		this.state.inventory.remove( it );
+		if ( typeof res === 'object') {
+
 			if ( res instanceof Array ) res.forEach(v=>{
 
-				if ( typeof v === 'boolean') return;
-				v.unequip(this.state.player);
-				this.remove(v);
-				this.state.inventory.add(res);
-
-			})
-			else if ( typeof res === 'object') {
-
+					if ( typeof v === 'boolean') return;
+					v.unequip(this.state.player);
+					this.remove(v);
+	
+				});
+			else {
 				res.unequip( this.state.player );
 				this.remove( res );
-				this.state.inventory.add(res);
-
 			}
-			this.doItem(it);
-			it.equip( this.state.player );
+			this.state.inventory.add(res);
 
 		}
+	
+		this.doItem(it);
+		it.equip( this.state.player );
+
 
 	},
 
@@ -812,16 +813,16 @@ export default {
 		let res = this.state.equip.remove( it, slot );
 		if ( res ) {
 
-			if ( typeof res === 'object') {
+			console.log('to inv-> ' + res.id );
+			this.state.inventory.add(res);
 
-				console.log('to inv-> ' + res.id );
-				this.state.inventory.add(res);
+			if ( res instanceof Array ) res.forEach(v=>{
+				v.unequip(this.state.player);
+				this.remove(v);
+			});
+			else res.unequip(this.state.player);
 
-			} else this.state.inventory.add( it );
-			it.unequip( this.state.player );
-			this.remove( it );
-
-		}
+		} else console.log('no reuslt');
 
 	},
 

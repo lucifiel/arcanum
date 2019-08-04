@@ -106,7 +106,7 @@ export default class Equip {
 		slot = slot || it.slot;
 		if ( typeof slot === 'string' ) slot = this.slots[slot];
 
-		console.log('remove from: ' + slot.id );
+		//console.log('remove from: ' + slot.id );
 		if ( slot ) return slot.remove(it);
 
 		return false;
@@ -135,7 +135,8 @@ export default class Equip {
 			let rightItem = right.equip( it );
 			let leftItem = left.remove();
 
-			return rightItem || leftItem || [ rightItem, leftItem ];
+			return rightItem && leftItem ? [ rightItem, leftItem ] :
+				(rightItem || leftItem );
 
 		} else {
 
