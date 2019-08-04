@@ -85,7 +85,7 @@ export default class Slot {
 	 */
 	remove( it=undefined) {
 
-		if ( it == null ) {
+		if ( it === null || it === undefined ) {
 
 			it = this.item;
 			this.item = null;

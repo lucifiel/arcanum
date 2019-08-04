@@ -104,8 +104,10 @@ export default class Equip {
 		if ( it.type === 'weapon') return this.removeWeap(it);
 
 		slot = slot || it.slot;
-		let cur = this.slots[it.slot];
-		if ( cur ) return cur.remove(it);
+		if ( typeof slot === 'string' ) slot = this.slots[slot];
+
+		console.log('remove from: ' + slot.id );
+		if ( slot ) return slot.remove(it);
 
 		return false;
 

@@ -818,6 +818,7 @@ export default {
 				this.state.inventory.add(res);
 
 			} else this.state.inventory.add( it );
+			it.unequip( this.state.player );
 			this.remove( it );
 
 		}
