@@ -45,7 +45,7 @@ export default class ItemGen {
 	 */
 	fromData( data, material=null ) {
 
-		console.log('wearable from data');
+		//console.log('wearable from data');
 		if ( data === null || data === undefined ) return null;
 
 		let mat = material || data.material;
@@ -53,7 +53,6 @@ export default class ItemGen {
 
 		if ( typeof mat === 'string' ) mat = this.state.getItem( mat );
 
-		console.log('cloning data');
 		return this.itemClone( data, mat );
 
 	}
@@ -70,9 +69,7 @@ export default class ItemGen {
 		} else if ( amt.value ) amt = amt.value;
 
 		if ( typeof info === 'string' ) {
-			console.log('getting item: ' + info );
 			info = this.state.getItem(info);
-			console.log( info.type );
 		}
 		if (!info) {
 			console.log('skipping NULL gen.')
@@ -220,7 +217,6 @@ export default class ItemGen {
 
 		data.id = data.id + this.state.nextId();
 
-		console.log('returning data');
 		return data;
 	}
 

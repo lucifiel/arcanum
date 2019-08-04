@@ -222,7 +222,7 @@ export default {
 		if ( action.cost ) {
 
 			if ( !this.canPay( action.cost, dt ) ) {
-				console.log('halting action: ' + action.id );
+				//console.log('halting action: ' + action.id );
 				this.haltAction()
 				return;
 			}

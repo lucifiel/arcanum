@@ -249,7 +249,7 @@ export default class Raid {
 
 	enemyDied() {
 
-		this.player.exp += this.enemy.level;
+		this.player.exp += 1 + this.enemy.level;
 		this.player.timer = this.player.delay;
 		
 		this.enemyAct = this.enemy.name + ' slain';

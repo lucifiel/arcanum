@@ -1,6 +1,6 @@
 [
-    { "id":"gloves", "armor":0, "slot":"hands", "cost":20 },
-    { "id":"boots", "armor":0, "slot":"feet", "cost":20 },
+    { "id":"gloves", "armor":1, "slot":"hands", "cost":20 },
+    { "id":"boots", "armor":1, "slot":"feet", "cost":20 },
 	
 	{ "id":"hat", "armor":0, "slot":"head", "cost":10 },
     { "id":"cap", "armor":1, "slot":"head", "cost":15 },
@@ -13,14 +13,14 @@
 
     { "id":"conical helm", "armor":3, "slot":"head", "cost":40 },
 
-    { "id":"girdle", "armor":0, "slot":"waist", "cost":50},
-    { "id":"belt", "armor":0, "slot":"waist", "cost":30},
-    { "id":"cincture", "armor":0, "slot":"waist", "cost":50},
+	{ "id":"belt", "armor":0, "slot":"waist", "cost":30},
+    { "id":"girdle", "armor":1, "slot":"waist", "cost":50},
+    { "id":"cincture", "armor":1, "slot":"waist", "cost":50},
     { "id":"sash", "armor":0, "slot":"waist", "cost":10},
 
     { "id":"cape", "armor":0, "slot":"back", "cost":50},
     { "id":"robe", "armor":0, "slot":"back", "cost":50},
-    { "id":"cloak", "armor":0, "slot":"back", "cost":50},
+    { "id":"cloak", "armor":1, "slot":"back", "cost":50},
     { "id":"wings", "armor":1, "slot":"back", "level":20, "cost":5000},
 
 

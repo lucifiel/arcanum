@@ -183,11 +183,11 @@
 
 	{
 		"id":"fire bolt",
+		"level":2,
 		"desc":"a small bolt of flame.",
 		"require":{
 			"fire.max":5
 		},
-		"level":2,
 		"cost":{
 
 			"research":30,
@@ -295,7 +295,37 @@
 			"duration":45,
 			"mod":{
 				"lore.rate":0.5,
-				"naturelore.rate":0.2
+				"naturelore.rate":0.2,
+				"lumenology.rate":0.2,
+				"languages.rate":0.2
+			}
+		}
+	},
+	{
+		"id":"darkprompting",
+		"name":"dark promptings",
+		"level":2,
+		"desc":"malevolent voices whisper secrets to your mind.",
+		"require":{
+			"shadow.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":1
+
+		},
+		"cast":{
+			"shadow":5
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"lore.rate":0.5,
+				"dissection.rate":0.2,
+				"embalming.rate":0.2,
+				"demonology.rate":0.2,
+				"reanimation.rate":0.2
 			}
 		}
 	}

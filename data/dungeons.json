@@ -34,6 +34,8 @@
 		"enemies":[
 
 			"lgrat",
+			"smbox",
+			"gremlin",
 			"angrybird",
 			"snake"
 
@@ -55,6 +57,8 @@
 
 			"coyote",
 			"warthog",
+			"kobold",
+			"smbox",
 			"bigstone",
 			"hawk"
 
@@ -77,7 +81,9 @@
 		"enemies":[
 			"lgrat",
 			"badexperiment",
-			"ratskeleton"
+			"ratskeleton",
+			"homonculus",
+			"gremlin"
 		]
 	},
 	{

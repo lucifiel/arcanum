@@ -27,7 +27,7 @@ export default class Enemy {
 
 		if ( vars ) Object.assign( this, vars );
 
-		if ( this.hp instanceof Range ) this.hp = this.range.value;
+		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 		this.dots = this.dots || [];
 
@@ -57,7 +57,7 @@ export default class Enemy {
 		this.name = item.name;
 		Object.assign( this, item );
 
-		if ( this.hp instanceof Range ) this.hp = this.range.value;
+		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 		this.delay = item.delay;
 		this.speed = item.speed;

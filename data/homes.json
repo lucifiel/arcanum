@@ -100,7 +100,9 @@
 		"cost":700,
 		"require":"state.adept&&state.arcana>=15",
 		"mod":{
-			"space.max":20
+			"space.max":20,
+			"gold.rate":0.2,
+			"gold.max":25
 		}
 	},
 	{
@@ -109,7 +111,9 @@
 		"cost":700,
 		"require":"adept",
 		"mod":{
-			"space.max":75
+			"space.max":75,
+			"nature.max":1,
+			"nature.rate":0.1
 		}
 	},
 	{
@@ -119,7 +123,11 @@
 		"cost":75,
 		"mod":{
 			"space.max":30,
-			"research.rate":-0.2
+			"research.rate":-0.2,
+			"shadow.max":2,
+			"shadow.rate":0.1,
+			"light.max":-2,
+			"light.rate":-1
 		},
 		"lock":["latticewindow"]
 
@@ -151,28 +159,56 @@
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":80,
-			"water.max":5,
+			"water.max":3,
 			"water.rate":0.1,
 			"light.max":3,
 			"light.rate":0.1
 		}
 	},
 	{
+		"id":"cataract",
+		"desc":"A secret cavern behind a waterfall.",
+		"require":"state.water>=15&&state.naturelore>=10",
+		"cost":{
+			"gold":500,
+			"gems":10
+		},
+		"mod":{
+			"space.max":40,
+			"research.rate":-0.5,
+			"water.max":5,
+			"water.rate":0.2,
+			"nature.max":3,
+			"nature.rate":0.1,
+			"light.max":-1,
+			"light.rate":-0.1
+		},
+		"lock":["latticewindow"]
+
+	},
+	{
 		"id":"citadel",
-		"desc":"A stronghold to protect yourself from the petty forces of the world.",
+		"desc":"A stronghold to defend you from the petty forces of the world.",
 		"cost":3000,
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
-			"space.max":200
+			"space.max":200,
+			"nature.max":-1,
+			"nature.rate":-0.1
 		}
 	},
 	{
 		"id":"academy",
-		"desc":"A place of learning",
-		"cost":10000,
+		"desc":"A austere house of learning",
+		"cost":{
+			"gold":10000,
+			"research":500
+		},
 		"require":"state.magician>0",
 		"mod":{
-			"space.max":300
+			"space.max":300,
+			"research.max":50,
+			"research.rate":0.4
 		}
 	},
 	{
@@ -181,7 +217,9 @@
 		"cost":10000,
 		"require":"state.arcana>=100",
 		"mod":{
-			"space.max":200
+			"space.max":200,
+			"shadow.max":-3,
+			"shadow.rate":-0.5
 		}
 	},
 	{
@@ -190,7 +228,8 @@
 		"cost":10000,
 		"require":"state.arcana>=10",
 		"mod":{
-			"space.max":400
+			"space.max":400,
+			"research.rate":-0.5
 		}
 	},
 	{

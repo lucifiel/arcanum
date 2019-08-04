@@ -516,8 +516,8 @@
 	},
 	{
 		"id":"shrine",
-		"desc":"A shrine to the divine forces.",
-		"require":"adept",
+		"desc":"A shrine to divine forces.",
+		"require":"good",
 		"tags":"lightsource",
 		"cost":{
 			"gold":30,

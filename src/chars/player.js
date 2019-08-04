@@ -22,7 +22,7 @@ export default class Player extends Item {
 	set name(v) { this._name = v;}
 
 	get level() { return this._level; }
-	set level(v) { this._level=-v;}
+	set level(v) { this._level=v;}
 
 	get title() { return this._title; }
 	set title(v) { this._title =v;}

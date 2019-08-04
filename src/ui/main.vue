@@ -27,6 +27,7 @@ const cheatKeys = {
 	s:'scrolls',
 	e:'exp',
 	t:'stamina',
+	h:"hp",
 	m:'mana',
 	c:'codices',
 	a:'arcana',
