@@ -76,9 +76,35 @@
 	},
 	{
 
-		"id":"seance",
+		"id":"bloodsiphon",
+		"name":"blood siphone",
+		"desc":"leech blood from a body to restore health",
+		"require":"transfusions",
+		"cost":{
+			"bodies":1
+		},
+		"effect":{
+			"hp":50
+		}
+
+	},
+	{
+		"id":"murder",
+		"desc":"an incidental necessity to the advancement of magic",
+		"require":"evil",
+		"cost":{
+			"stamina":10
+		},
+		"effect":{
+			"bodies":1
+		}
+	},
+	{
+
+		"id":"paidseance",
 		"name":"Hold Seance",
 		"verb":"communing",
+		"desc":"Commune with the dead relatives of patrons for a small fee.",
 		"require":["divination","spiritsource","adept"],
 		"perpetual":true,
 		"cost":{
@@ -128,12 +154,29 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"ignoreStamina":true,
-		"need":"state.adept>0&&state.evil<=0",
+		"need":"state.light>=5&&state.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
 			"mana":0.5,
 			"hp":1,
 			"light":0.05
+		}
+	},
+	{
+		"id":"eatchildren",
+		"name":"eat children",
+		"tag":"tagrest",
+		"verb":"eating children",
+		"perpetual":true,
+		"ignoreStamina":true,
+		"require":"state.evil>0&&state.witch>0",
+		"need":"cauldron",
+		"fill":[ "light", "hp", "mana" ],
+		"effect":{
+			"mana":0.2,
+			"shadow":0.1,
+			"stamina":0.1,
+			"hp":1
 		}
 	},
 	{
@@ -166,6 +209,23 @@
 			"arcana":{
 				"skipLocked":true,
 				"value":0.001
+			}
+		}
+	},
+	{
+		"id":"pace",
+		"perpetual":true,
+		"verb":"pacing",
+		"desc":"Pace your home as you comtemplate the arcane.",
+		"require":"adept",
+		"cost":{
+			"stamina":0.2
+		},
+		"effect":{
+			"research":1.75,
+			"arcana":{
+				"value":0.002,
+				"max":0.001
 			}
 		}
 	},
@@ -214,7 +274,7 @@
 		"name":"compile bestiary",
 		"verb":"compiling bestiary",
 		"require":"state.animals>=3",
-		"length":10,
+		"length":50,
 		"repeat":false,
 		"cost":{
 			"stamina":0.5
@@ -244,7 +304,8 @@
 			"mana":2
 		},
 		"effect":{
-			"gems":1
+			"gems":1,
+			"crafting.max":0.02
 		}
 	},
 	{

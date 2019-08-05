@@ -45,6 +45,19 @@
 		}
 	},
 	{
+
+		"id":"weaving",
+		"require":"loom",
+		"cost":{
+			"stamina":0.5
+		},
+		"result":{
+			"crafting.max":0.1,
+			"crafting.rate":0.1
+		}
+
+	},
+	{
 		"id":"lore",
 		"school":"arcane",
 		"verb":"reading lore",

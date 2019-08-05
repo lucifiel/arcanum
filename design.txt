@@ -1,16 +1,21 @@
+epiphany
+
 Spell Types per Level Used:
 1:
 arcane
 nature,
 earth,
 air,
-water
+water,
+fire
 2:
 arcane,
 earth,
 fire,
 light,
-air
+air,
+shadow,
+spirit
 3:
 4:
 5:

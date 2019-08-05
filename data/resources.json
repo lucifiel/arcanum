@@ -44,6 +44,14 @@
 		}
 	},
 	{
+		"id":"bodies",
+		"desc":"bodies for necromatic magic",
+		"max":1,
+		"mod":{
+			"shadow.rate":0.1
+		}
+	},
+	{
 		"id":"codices",
 		"name":"Codices",
 		"desc":"Codex of arcane lore",

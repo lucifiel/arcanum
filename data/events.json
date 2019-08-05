@@ -68,8 +68,9 @@
 	{
 
 		"id":"good",
-		"disable":"shadow",
-		"desc":"the forces of justice.",
+		"name":"virtuous",
+		"disable":["shadow","evil"],
+		"desc":"You have become virtuous",
 		"effect":{
 			"light.max":1,
 			"light.value":1,
@@ -79,8 +80,9 @@
 	},
 	{
 		"id":"evil",
+		"name":"wicked",
 		"desc":"You have taken your first step on the path of evil. It's a good thing.",
-		"disable":"light",
+		"disable":["light","good"],
 		"effect":{
 			"shadow":{
 				"max":1,

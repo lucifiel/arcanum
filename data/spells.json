@@ -154,7 +154,25 @@
 			"tohit":1
 		}
 	},
+	{
+		"id":"fire dart",
+		"level":1,
+		"locked":false,
+		"cost":{
 
+			"research":25,
+			"scrolls":1
+
+		},
+		"cast":{
+			"fire":1
+		},
+		"attack":{
+			"damage":"1~2",
+			"kind":"fire",
+			"tohit":2
+		}
+	},
 	{
 		"id":"stoneskin",
 		"name":"stone skin",

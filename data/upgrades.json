@@ -242,6 +242,17 @@
 	},
 	{
 
+		"id":"transfusions",
+		"desc":"Learn to perform transfusions",
+		"require":"state.anatomy>=5&&state.adept>0",
+		"cost":{
+			"research":100,
+			"arcana":1
+		}
+
+	},
+	{
+
 		"id":"hiddenpockets",
 		"require":"magician",
 		"cost":{
@@ -412,7 +423,7 @@
 		"max":2,
 		"require":"!state.evil&&state.light.max>=10",
 		"flavor":"It is better to light one candle than to curse the darkness.",
-		"cost":50,
+		"cost":75,
 		"mod":{
 			"light":{
 				"max":0.2,
@@ -427,7 +438,7 @@
 		"repeat":true,
 		"require":"state.shadow.max>=10&&!state.good",
 		"flavor":"darkness, darkness.",
-		"cost":50,
+		"cost":75,
 		"mod":{
 			"shadow":{
 				"max":0.2,
@@ -455,8 +466,12 @@
 	{
 		"id":"breviary",
 		"require":"pedestal",
-		"cost":100,
+		"cost":{
+			"research":50,
+			"gold":100
+		},
 		"mod":{
+			"lore.max":1,
 			"lore.effect.research":0.01,
 			"lore.rate":0.05,
 			"study.effect.research":0.01,
@@ -496,6 +511,19 @@
 			}
 		}
 
+	},
+	{
+		"id":"demonicpact",
+		"require":"state.demonology>4",
+		"desc":"A deal with demons",
+		"cost":{
+			"research":200,
+			"arcana":1
+		},
+		"mod":{
+			"lore.max":2,
+			"demonology.max":2
+		}
 	},
 	{
 

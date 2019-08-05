@@ -245,6 +245,22 @@
 
 	},
 	{
+
+		"id":"loom",
+		"desc":"unlocks the art of weaving",
+		"require":"state.crafting>=5",
+		"cost":{
+			"gold":50,
+			"research":100,
+			"space":1
+		},
+		"mod":{
+			"crafting.max":1,
+			"crafting.rate":0.1
+		}
+
+	},
+	{
 		"id":"sextant",
 		"desc":"Measure the stars.",
 		"require":"neophyte",
@@ -462,7 +478,7 @@
 			"space":5
 		},
 		"mod":{
-			"spirit.max":5,
+			"spirit.max":2,
 			"spirit.rate":0.1
 		}
 	},
@@ -480,7 +496,7 @@
 		},
 		"mod":{
 			"shadow.rate":0.1,
-			"shadow.max":5
+			"shadow.max":2
 		}
 	},
 	{
@@ -527,7 +543,7 @@
 		},
 		"mod":{
 			"light.rate":0.1,
-			"light.max":5
+			"light.max":2
 		}
 	},
 	{
@@ -544,7 +560,20 @@
 		},
 		"mod":{
 			"shadow.rate":0.5,
-			"shadow.max":10
+			"shadow.max":5
+		}
+	},
+	{
+		"id":"vat",
+		"desc":"grows bodies from raw materials",
+		"require":"state.anatomy>=5&&state.embalming>=5&&state.crafting>=5",
+		"cost":{
+			"space":2,
+			"research":100
+		},
+		"mod":{
+			"bodies.rate":0.01,
+			"bodies.max":1
 		}
 	},
 	{
