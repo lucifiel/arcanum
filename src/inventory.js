@@ -32,11 +32,15 @@ export default class Inventory {
 
 	add(it){
 
-		if ( it === null || it === undefined ) return;
+		if ( it === null || it === undefined || typeof it === 'boolean') return;
 		if ( it instanceof Array ) {
 
 			//this.items = this.items.concat(it);
-			for( let i = it.length-1; i>=0; i-- ) this.items.push( it[i] );
+			for( let i = it.length-1; i>=0; i-- ) {
+				var sub = it[i];
+				if ( sub === null || sub === undefined || typeof sub === 'boolean') continue;
+				this.items.push( sub );
+			}
 
 		} else this.items.push(it);
 

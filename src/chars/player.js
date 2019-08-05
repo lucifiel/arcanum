@@ -2,6 +2,7 @@ import Stat from "../stat";
 import Resource from "../items/resource";
 import Range from '../range';
 import Item from "../items/item";
+import Char from './char';
 
 /**
  * @constant {number} EXP_RATE
@@ -16,10 +17,7 @@ export function getDelay(s) {
 	return DELAY_RATE*Math.exp(-s/4);
 }
 
-export default class Player extends Item {
-
-	get name() { return this._name; }
-	set name(v) { this._name = v;}
+export default class Player extends Char {
 
 	get level() { return this._level; }
 	set level(v) { this._level=v;}
@@ -63,12 +61,6 @@ export default class Player extends Item {
 		if ( !v ) this._weapon = this.baseAttack;
 	}
 
-	get defense() { return this._defense; }
-	set defense(v) { this._defense =v; }
-
-	get tohit() { return this._tohit; }
-	set tohit(v) { this._tohit = v; }
-
 	/**
 	 * @property {Resource} speed
 	 * speed normalized to an average of level=speed.
@@ -83,11 +75,6 @@ export default class Player extends Item {
 		this._delay = getDelay( this._speed.value );
 
 	}
-
-	/**
-	 * @property {number} delay - time between attacks.
-	 */
-	get delay() { return this._delay; }
 
 	/**
 	 * NOTE: Elements that are items in themselves are not encoded.
@@ -108,6 +95,8 @@ export default class Player extends Item {
 		data.alignment = ( this.alignment );
 		data.damage = ( this.damage );
 		data.dots = ( this.dots );
+
+		data.statuses = this.statuses;
 
 		//data.speed = JSON.stringify( this.speed );
 		//data.exp = JSON.stringify( this.exp );
@@ -136,6 +125,29 @@ export default class Player extends Item {
 
 		this.type = "player";
 
+		this._statuses = this._statuses || {
+			fly:0,
+			sleep:0,
+			swim:0,
+			immortal:0,
+			paralyzed:0,
+			stoned:0,
+			confused:0
+		};
+
+		this.immunities = this.immunities || {
+			fire:0,
+			water:0,
+			air:0,
+			earth:0,
+			light:0,
+			shadow:0,
+			arcane:0,
+			physical:0,
+			natural:0,
+			poison:0,
+			disease:0
+		}
 		/**
 		 * @property {number} timer
 		 */
@@ -158,11 +170,6 @@ export default class Player extends Item {
 		this.alignment = this.alignment || 'neutral';
 
 		/**
-		 * @property {Object[]} dots - timed/ongoing effects.
-		 */
-		this.dots = this.dots || [];
-
-		/**
 		 * @property {Item} primary - primary attack.
 		 */
 		this.primary = this.primary || null;
@@ -173,7 +180,7 @@ export default class Player extends Item {
 	}
 
 	/**
-	 * Set player's primary attack.
+	 * Set primary spell attack.
 	 * @param {Item} s 
 	 */
 	setPrimary( s ) {
@@ -193,7 +200,7 @@ export default class Player extends Item {
 	}
 
 	/**
-	 * Clear player's primary spell attack.
+	 * Clear primary spell attack.
 	 */
 	removePrimary() {
 

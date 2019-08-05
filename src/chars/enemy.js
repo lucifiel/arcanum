@@ -1,4 +1,3 @@
-import Game from '../game';
 import Dot from './dot';
 import { getDelay } from './player';
 import Range from '../range';
@@ -23,14 +22,14 @@ export default class Enemy {
 
 	}
 
-	constructor( vars=null, raid=null ){
+	constructor( vars=null, raid=null, log=null ){
 
 		if ( vars ) Object.assign( this, vars );
 
 		this.dots = this.dots || [];
 
 		this.raid = raid;
-		this.log = Game.log;
+		this.log = log;
 		this.delay = getDelay( this.speed );
 
 		this.alive = this.alive || false;
@@ -42,7 +41,6 @@ export default class Enemy {
 
 	setEnemy( item ) {
 
-		if ( typeof item === 'string' ) item = Game.getItem(item);
 		if ( !item ) {
 			console.warn( 'ENEMY not found: ' + item );
 			this.alive = false;

@@ -1,8 +1,4 @@
--- different log items.
-
 assign custom rest action.
-
-show ongoing action buttons differently.
 
 resistances
 
@@ -15,6 +11,17 @@ popup doesn't appear after screen scroll.
 prevent stacking on monster dots
 optional stacking
 
-item generator
+display weapon damage in char.
 
-convert all data damage to dps
+more armor drop variations.
+
+ERRORS:
+
+empty weapon on battle axe equip. 2hand? undefined weapon?
+-> 2 handed weapon -> undefined 2nd weapon is placed in inventory.
+
+adding lock to attic doesn't remove max space.
+
+does not auto-move into inn
+
+leather weapons.

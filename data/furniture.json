@@ -318,8 +318,8 @@
 			"space":1
 		},
 		"mod":{
-			"light.max":5,
-			"air.max":10,
+			"light.max":1,
+			"air.max":2,
 			"light.rate":0.02,
 			"air.rate":0.05
 		}

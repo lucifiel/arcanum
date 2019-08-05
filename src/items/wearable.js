@@ -16,7 +16,6 @@ export default class Wearable extends Item {
 		if ( this.hands ) data.hands = this.hands;
 		if ( this.level ) data.level = this.level;
 		if ( this.material ) data.material = this.material.id;
-		else console.warn('no material for: ' + this.id );
 
 		return data;
 

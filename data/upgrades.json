@@ -466,14 +466,17 @@
 	{
 		"id":"breviary",
 		"require":"pedestal",
+		"desc":"a weighty tome of knowledge.",
 		"cost":{
 			"research":50,
 			"gold":100
 		},
 		"mod":{
-			"lore.max":1,
-			"lore.effect.research":0.01,
-			"lore.rate":0.05,
+			"lore":{
+				"max":1,
+				"effect.research":0.01,
+				"rate":0.05
+			},
 			"study.effect.research":0.01,
 			"study.effect.arcana":0.001
 		}
@@ -489,6 +492,24 @@
 		},
 		"mod":{
 			"rest.effect.stamina":0.1
+		}
+
+	},
+	{
+
+		"id":"crystalmind",
+		"name":"crystal mind",
+		"max":3,
+		"desc":"expend your research to enhance your mental fortitude.",
+		"require":"state.lore>=7&&state.adept>0",
+		"cost":{
+			"research.max":25,
+			"research":25,
+			"mana":5
+		},
+		"mod":{
+			"mana.max":1,
+			"lore.max":1
 		}
 
 	},

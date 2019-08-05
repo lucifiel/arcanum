@@ -76,6 +76,23 @@
 	},
 	{
 
+		"id":"spingold",
+		"name":"Spin Gold",
+		"desc":"Spain straw into gold",
+		"verb":"spinning",
+		"require":["state.weaving>=5"],
+		"perpetual":true,
+		"cost":{
+			"stamina":0.4,
+			"mana":0.1
+		},
+		"effect":{
+			"gold":2
+		}
+
+	},
+	{
+
 		"id":"bloodsiphon",
 		"name":"blood siphone",
 		"desc":"leech blood from a body to restore health",
@@ -248,7 +265,7 @@
 		"require":"state.crafting>=1",
 		"cost":{
 			"research":10,
-			"mana":2
+			"mana":1
 		},
 		"fill":"scrolls",
 		"effect":{

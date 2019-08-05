@@ -2,6 +2,8 @@ import Game from '../game';
 import Enemy from './enemy';
 import Range from '../range';
 
+const COMBAT_LOG = 'combat';
+
 /**
  * Represents an active dungeon raid.
  */
@@ -45,7 +47,9 @@ export default class Raid {
 	get enemy() { return this._enemy;}
 	set enemy(v) {
 
-		if (!this.enemy ) this._enemy = new Enemy(v, this);
+		if (typeof v === 'string') v = Game.getItem(v);
+
+		if (!this.enemy ) this._enemy = new Enemy(v, this, Game.log );
 		else this._enemy.setEnemy(v);
 
 	}
@@ -191,7 +195,7 @@ export default class Raid {
 		} else {
 
 			this.playerAct = this.player.name + ' misses';
-			Game.log.log( '', this.playerAct, 'combat');
+			Game.log.log( '', this.playerAct, COMBAT_LOG );
 
 		}
 
@@ -214,6 +218,7 @@ export default class Raid {
 		} else {
 			this.enemyAct = enemy.name + ' misses';
 		}
+		Game.log( '', this.enemyAct, COMBAT_LOG );
 
 	}
 
@@ -244,7 +249,6 @@ export default class Raid {
 
 	playerDied() {
 		Game.setAction( this.state.restAction );
-
 	}
 
 	enemyDied() {
@@ -253,7 +257,7 @@ export default class Raid {
 		this.player.timer = this.player.delay;
 		
 		this.enemyAct = this.enemy.name + ' slain';
-		Game.log.log( '', this.enemyAct, 'combat');
+		Game.log.log( '', this.enemyAct, COMBAT_LOG );
 
 		if ( this.enemy.result ) Game.applyEffect( this.enemy.result );
 		if ( this.enemy.loot ) Game.getLoot( this.enemy.loot );
