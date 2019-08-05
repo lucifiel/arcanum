@@ -304,8 +304,6 @@ export default class Item {
 	 * @param {string} t - tag to test.
 	 * @returns {boolean}
 	 */
-	hasTag( t ) {
-		return this._tags && this._tags.includes(t);
-	}
+	hasTag( t ) { return this._tags && this._tags.includes(t); }
 
 }

@@ -733,7 +733,13 @@ export default {
 			for( let p in cost ) {
 
 				res = this.getItem(p);
-				if ( res ) res.value -= cost[p]*unit;
+				if ( res ) {
+
+					if ( !isNaN(cost[p]) ) res.value -= cost[p]*unit;
+					else res.applyVars( cost[p], -unit );
+
+
+				}
 
 			}
 
