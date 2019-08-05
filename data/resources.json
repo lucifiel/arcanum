@@ -169,7 +169,7 @@
 		"id":"space",
 		"name":"floor space",
 		"desc":"Space Available",
-		"reverse":true,
+		"zerosum":true,
 		"max":0
 
 	},

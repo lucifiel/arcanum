@@ -17,9 +17,6 @@ more armor drop variations.
 
 ERRORS:
 
-empty weapon on battle axe equip. 2hand? undefined weapon?
--> 2 handed weapon -> undefined 2nd weapon is placed in inventory.
-
 adding lock to attic doesn't remove max space.
 
 does not auto-move into inn

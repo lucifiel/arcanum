@@ -238,7 +238,7 @@ export default {
 		 * Attempt to buy new house.
 		 */
 		onHome(it) {
-			this.game.setHome(it);
+			this.game.tryItem(it);
 		},
 
 		onUpgrade(upgrade) {

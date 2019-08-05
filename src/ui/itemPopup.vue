@@ -12,9 +12,6 @@ export default {
 	 * @property {boolean} sell - if the pane is a sell-view.
 	 */
 	props:["item", "elm", 'sell'],
-	data(){
-		return {};
-	},
 	watch:{
 		elm( newVal, oldVal ){
 			if ( newVal != null ) {
@@ -57,11 +54,6 @@ export default {
 	},
 	methods:{
 
-		costName(p) {
-			let it = Game.getItem(p);
-			return it ? it.name : 'gold';
-		},
-
 		effectItems(obj) {
 
 			let type = typeof obj;
@@ -84,7 +76,8 @@ export default {
 		},
 
 		/**
-		 * @param {Object} results - object to collect results.
+		 * @param {Object} obj - object whose effects to enumerate.
+		 * @param {Object} results - [name/effect] pairs to display to user.
 		 * @param {string} propPath - prop path from base.
 		 */
 		effectList( obj, results={}, propPath='' ) {
@@ -128,24 +121,6 @@ export default {
 
 			}
 
-		},
-
-		effectVal(v) {
-
-			if ( !isNaN(v) ) return v;
-			if ( v instanceof Object ) {
-
-				let res = '';
-				if ( v.value !== undefined ) res += v.value + '<br>';
-				if ( v.max !== undefined ) res += v.max + '<br>';
-				if ( v.base !== undefined ) res += v.base + '/s<br>';
-				if ( v.rate !== undefined ) res += v.rate + '/s<br>';
-				if ( v.pct !== undefined ) res += v.pct + '%<br>';
-
-				return res;
-			}
-			return '';
-
 		}
 
 	}
@@ -170,8 +145,9 @@ export default {
 			<div v-if="!isNaN(item.cost)">
 				Gold: {{ item.cost }}
 			</div>
-			<div v-else v-for="(val,prop) in item.cost" :key="prop">
-				{{ costName(prop) }}: {{ effectVal(val) }}
+			<div v-else v-for="(v,k) in effectItems(item.cost)" :key="k">
+				<span v-if="typeof v === 'boolean'">{{ k }}</span>
+					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
 			
 

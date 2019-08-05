@@ -1,5 +1,5 @@
 import Item from "./item";
-import { getDelay } from '../chars/player';
+import { getDelay } from '../chars/char';
 
 export default class Monster extends Item {
 

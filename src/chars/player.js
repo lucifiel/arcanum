@@ -2,20 +2,12 @@ import Stat from "../stat";
 import Resource from "../items/resource";
 import Range from '../range';
 import Item from "../items/item";
-import Char from './char';
+import Char, { getDelay } from './char';
 
 /**
  * @constant {number} EXP_RATE
  */
 const EXP_RATE = 0.125;
-
-/**
- * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
- */
-export const DELAY_RATE = 3;
-export function getDelay(s) {
-	return DELAY_RATE*Math.exp(-s/4);
-}
 
 export default class Player extends Char {
 
@@ -36,6 +28,9 @@ export default class Player extends Char {
 
 		}
 	}
+
+	get className() { return this._className; }
+	set className(v) { this._className = v; }
 
 	/**
 	 * @property {number} next - exp to level up.

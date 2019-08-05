@@ -57,13 +57,17 @@
 			"research":225,
 			"arcana":5
 		},
-		"effect":["evt_slay","adept","evil",
-		{
-			"bones":10
-		}]
+		"effect":["evt_slay","adept","evil", { "bones":10 }]
 
 	},
 
+	{
+
+		"id":"flyingcarpet",
+		"name":"flying carpet",
+		"flavor":"a whole new world"
+
+	},
 	{
 		"id":"up_magician",
 		"name":"The Prestige",

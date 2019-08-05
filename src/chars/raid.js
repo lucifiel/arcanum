@@ -48,8 +48,7 @@ export default class Raid {
 	set enemy(v) {
 
 		if (typeof v === 'string') v = Game.getItem(v);
-
-		if (!this.enemy ) this._enemy = new Enemy(v, this, Game.log );
+		if (!this._enemy ) this._enemy = new Enemy(v, this, Game.log );
 		else this._enemy.setEnemy(v);
 
 	}
@@ -101,7 +100,7 @@ export default class Raid {
 
 		if ( this.enemy.alive===false ) {
 
-			this.enemy.setEnemy( this.dungeon.getEnemy() );
+			this.enemy = this.dungeon.getEnemy();
 			this.player.timer = this.player.delay;
 
 		} else {
@@ -218,7 +217,7 @@ export default class Raid {
 		} else {
 			this.enemyAct = enemy.name + ' misses';
 		}
-		Game.log( '', this.enemyAct, COMBAT_LOG );
+		Game.log.log( '', this.enemyAct, COMBAT_LOG );
 
 	}
 

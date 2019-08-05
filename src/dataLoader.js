@@ -15,6 +15,7 @@ import Spell from './items/spell.js';
 import Action from './items/action';
 
 import { merge } from 'objecty';
+import ZeroSum from './items/zerosum';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -255,7 +256,7 @@ export default {
 		let it;
 		for( let def of DataList ) {
 
-			it = new cnstr( def );
+			it = def.zerosum === true ? new ZeroSum(def) : new cnstr( def );
 			if ( tag ) it.addTag( tag );
 			if ( type ) it.type = type;
 

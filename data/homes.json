@@ -28,7 +28,7 @@
 		"name":"Lodging at Inn",
 		"desc":"Rented room of a local Inn",
 		"require":"adept",
-		"lock":["alcove","atticbedroom"],
+		"disable":["alcove","atticbedroom"],
 		"mod":{
 			"space.max":10,
 			"gold.rate":-0.4

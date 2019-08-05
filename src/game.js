@@ -433,23 +433,18 @@ export default {
 	 * Attempt to set a new home.
 	 * @param {*} it 
 	 */
-	setHome( it ) {
+	/*setHome( it ) {
 
 		let prev = this.state.curHome;
 
 		if ( this.tryItem(it) ) {
-
-			/**
-			 * curHome must be removed AFTER to prevent all space being restored.
-			 * @todo: fix this.
-			*/
 
 			this.state.curHome = it;
 			if ( prev ) this.remove( prev );
 
 		}
 
-	},
+	},*/
 
 	/**
 	 * Attempt to pay for an item, and if the cost is met, apply it.
@@ -473,6 +468,13 @@ export default {
 
 		it.value += count;
 
+		if ( it.type === 'home') {
+			console.log('CHANGING HOME');
+			let prev = this.state.curHome;
+			if ( prev ) this.remove( prev );
+			this.state.curHome = it;
+		}
+	
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );

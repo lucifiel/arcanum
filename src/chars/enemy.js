@@ -1,5 +1,5 @@
 import Dot from './dot';
-import { getDelay } from './player';
+import { getDelay } from './char';
 import Range from '../range';
 /**
  * Represents the current enemy being fought.
@@ -30,7 +30,7 @@ export default class Enemy {
 
 		this.raid = raid;
 		this.log = log;
-		this.delay = getDelay( this.speed );
+		this.delay = this.speed !== undefined ? getDelay( this.speed ) : 0;
 
 		this.alive = this.alive || false;
 		if ( this.hp ) {
@@ -47,6 +47,7 @@ export default class Enemy {
 			return;
 		}
 
+		//console.log('setting new enemy: ' + item.id );
 		this.loot = null;
 		this.attack = null;
 

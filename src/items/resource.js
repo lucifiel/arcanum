@@ -28,8 +28,6 @@ export default class Resource extends Item {
 
 	/**
 	 * @property {Stat} max - maximum resource value.
-	 * @note reversed props start filled to max, any addition to max
-	 * adds an equal amount to value.
 	 */
 	get max() { return this._max; }
 	set max(v) {
@@ -38,19 +36,7 @@ export default class Resource extends Item {
 
 			this._max = new Stat(v);
 
-		} else {
-
-			if ( this.reverse ) {
-
-				var lastMax = this._max.value;
-				console.log('OLD MAX: ' + lastMax );
-				console.log('NEW MAX: ' + v );
-				this._max.base = v;
-				this.value += ( this._max.value - lastMax );
-
-			} else this._max.base = v;
-
-		}
+		} else this._max.base = v;
 
 	}
 
@@ -95,7 +81,7 @@ export default class Resource extends Item {
 	 * @returns {boolean} true if resource value is positive.
 	 */
 	positive(){
-		return (this._value > 0 || (this._rate.value>0&&this._value===0) );
+		return (this.value > 0 || (this._rate.value>0&&this._value===0) );
 	}
 
 }
