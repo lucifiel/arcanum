@@ -31,7 +31,7 @@ export default class Log {
 		this.items.push( new LogItem(title, text, type ) );
 	}
 
-	addItem(it) {
+	logItem(it) {
 		this.items.push( it);
 	}
 

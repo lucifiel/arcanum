@@ -112,6 +112,19 @@ export default {
 
 		},
 
+		fileDrop(evt){
+
+			evt.preventDefault();
+			if ( evt.dataTransfer.items ) {
+
+			} else {
+
+			}
+			
+		},
+		fileDrag(evt){
+
+		},
 		load() {
 
 			this.pause();
@@ -324,6 +337,8 @@ export default {
 		<div class="top-bar">	
 			<button @click="save">save</button>
 			<button @click="load">load</button>
+
+			<span id="drop_file" @drop="fileDrop" @dragover="fileDrag">[File]</span>
 			<confirm @confirm="reset">reset</confirm>
 			<dots v-if="state" :dots="state.player.dots" />
 			<span class="load-message" v-if="!state">LOADING DATA...</span>

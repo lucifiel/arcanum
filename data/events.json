@@ -31,16 +31,6 @@
 	},
 	{
 
-		"id":"evt_spellbook",
-		"name":"Book of Spells",
-		"desc":"Under your master's supervision, you manage to compile your very own book of spells.",
-		"effect":{
-			"player.exp":10
-		}
-
-	},
-	{
-
 		"id":"evt_pestcontrol",
 		"name":"Pest Control",
 		"desc":"After your daily castigation, your master mentions the rats in the basement have become a problem. Something about stolen shortswords and building barricades. You had better go down and deal with it.",

@@ -11,12 +11,16 @@
 		"result":{
 			"gold":"5~10"
 		},
+		"loot":{
+			"max":1
+		},
 		"enemies":[
 
 			"lgmouse",
 			"snake",
 			"stingybee",
-			"bigstone"
+			"bigstone",
+			"twikman"
 		]
 
 	},
@@ -30,6 +34,9 @@
 		},
 		"result":{
 			"gold":"7~14"
+		},
+		"loot":{
+			"max":2
 		},
 		"enemies":[
 
@@ -53,12 +60,16 @@
 		"result":{
 			"gold":"10~15"
 		},
+		"loot":{
+			"max":3
+		},
 		"enemies":[
 
 			"coyote",
 			"warthog",
 			"kobold",
 			"smbox",
+			"twik-man",
 			"bigstone",
 			"hawk"
 
@@ -76,6 +87,9 @@
 		},
 		"result":{
 			"gold":"15~20"
+		},
+		"loot":{
+			"max":4
 		},
 		"boss":"ratking",
 		"enemies":[

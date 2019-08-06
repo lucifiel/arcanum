@@ -13,7 +13,7 @@ export default {
 		round:round,
 
 		usable(it) {
-			return Game.canUse( it );
+			return (it.length || it.perpetual ) ? Game.canRun(it) : Game.canUse( it );
 		},
 
 		visible(it) {

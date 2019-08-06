@@ -33,6 +33,28 @@
 			"gloves":"10%"
 		}
 
+	},
+	{
+		"id":"twikman",
+		"name":"twik-man",
+        "level":1,
+        "kind":"humanoid",
+        "evil":5,
+		"flavor":"",
+		"desc":"Tiny vicious humanoid riding a dragonfly.",
+        "hp":"2~4",
+		"defense":1,
+		"speed":2,
+        "attack":{
+            "name":"spear",
+            "type":"slash",
+            "dmg":"1~2"
+        }, "loot":{
+			"spear":"20%",
+			"gloves":"10%",
+			"cap":"10%"
+		}
+
     },
 	{
         "id":"bat",
@@ -45,7 +67,9 @@
             "name":"bite",
             "type":"pierce",
             "dmg":"2~3"
-        }, "loot":"batwing"
+        }, "loot":{
+			"sash":"20%"
+		}
 
     },
 	{

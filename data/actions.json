@@ -60,6 +60,23 @@
 	},
 	{
 
+		"id":"makespellbook",
+		"name":"Compile Spellbook",
+		"require":"state.lore>=2&&state.crafting>=2",
+		"desc":"The portal to true magic.",
+		"length":50,
+		"repeat":false,
+		"cast":{
+			"research":20,
+			"codices":1,
+			"arcana":1,
+			"mana":5
+		},
+		"result":"spellbook"
+
+	},
+	{
+
 		"id":"service",
 		"name":"Offer Services",
 		"desc":"Offer your magical services to the nearby townsfolk.",
@@ -350,6 +367,9 @@
 		"need":"state.codices>=1",
 		"length":50,
 		"repeat":false,
+		"cast":{
+			"codices":1
+		},
 		"cost":{
 			"stamina":0.5
 		},

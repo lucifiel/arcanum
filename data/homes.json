@@ -335,15 +335,45 @@
 		}
 	},
 	{
+		"id":"volcano",
+		"name":"volcanic lair",
+		"desc":"Stark lair carved into a mountain of fire",
+		"require":"state.fire>=20",
+		"cost":{
+			"research":500,
+			"gold":3000,
+			"firegem":2
+		},
+		"mod":{
+			"space.max":200,
+			"research.rate":-0.5,
+			"fire":{
+				"max":4,
+				"rate":0.2
+			},
+			"earth":{
+				"max":3,
+				"rate":0.2
+			},
+			"water":{
+				"max":-3,
+				"rate":-2
+			}
+		},
+		"lock":["latticewindow"]
+
+	},
+	{
 		"id":"cavern",
 		"desc":"A wide and yawning cavern, deep beneath the earth",
 		"require":"adept",
 		"cost":{
 			"research":500,
-			"gold":3000
+			"gold":3000,
+			"earthgem":2
 		},
 		"mod":{
-			"space.max":100,
+			"space.max":200,
 			"research.rate":-0.5,
 			"earth":{
 				"max":4,

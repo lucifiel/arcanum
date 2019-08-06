@@ -2,7 +2,7 @@ import DataLoader from './dataLoader';
 import VarPath from './varPath';
 import Percent from './percent';
 import Item from './items/item';
-import Log from 'log.js';
+import Log from './log.js';
 import GameState from './gameState';
 import Range from './range';
 import ItemGen from './itemgen';
@@ -230,19 +230,16 @@ export default {
 
 		}
 
-		if ( action.update ) {
+		if ( action.fill && this.filled(action.fill ) ) this.haltAction();
+		else if ( action.update ) {
+
 			action.update(dt);
-
-		} else if ( action.length ) {
-
-			action.progress += dt;
-			/// action effects function as dots.
-			if ( action.effect) this.applyEffect( action.effect, dt );
 
 		} else {
 
-			if ( action.effect ) this.applyEffect( action.effect, dt );
-			if ( action.fill && this.filled(action.fill ) ) this.haltAction();
+			if ( action.length ) action.progress += dt;
+			// ongoing effect.
+			if ( action.effect) this.applyEffect( action.effect, dt );
 
 		}
 
@@ -276,7 +273,7 @@ export default {
 		/**
 		 * Cost to begin action.
 		 */
-		if ( act.cast && act.progress === 0 ) {
+		if ( act && act.cast && act.progress === 0 ) {
 
 			if ( !this.canPay(act.cast) ) return false;
 			this.payCost( act.cast);
@@ -497,6 +494,11 @@ export default {
 		if ( it.dot ) this.beginDot( it, it.dot );
 		if ( it.disable ) this.disable( it.disable );
 
+		if ( it.log ){
+			console.log('LOGGING');
+			this.log.log( it.log.title, it.log.text );
+		}
+
 		if ( it.attack ) {
 			if ( it.type !== 'wearable' && this.state.curAction === this.state.raid )
 				this.state.raid.spellAttack( it );
@@ -652,7 +654,7 @@ export default {
 			if ( target != null ) {
 
 				if ( target.type === 'event') this.doEvent( target );
-				else target.applyVars( 1, dt );
+				else this.doItem( target, dt );
 
 			}
 
@@ -711,7 +713,15 @@ export default {
 	 */
 	canRun( it ) {
 
-		if ( it.cast && it.progress === 0 && !this.canPay(it.cast) ) return false;
+		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
+		if ( it.cast && it.progress == 0 && !this.canPay(it.cast) ) return false;
+
+		if ( it.fill ) {
+
+			let t = this.getItem(it.fill);
+			if ( t && t.maxed() ) return false;
+
+		}
 		return this.canPay( it.cost, TICK_TIME/1000 );
 
 	},

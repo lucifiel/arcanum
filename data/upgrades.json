@@ -357,19 +357,17 @@
 	{
 		"id":"spellbook",
 		"name":"Spellbook",
-		"require":"state.lore>=2&&state.crafting>=2",
 		"desc":"The portal to true magic.",
-		"cost":{
-			"research":20,
-			"codices":1,
-			"arcana":1,
-			"mana":5
+		"locked":true,
+		"log":{
+			"title":"Book of Spells",
+			"text":"Under your master's critical eye, you compile your very own book of spells."
 		},
 		"effect":{
-			"evt_spellbook":true,
 			"research.max":15,
 			"research.rate":0.05,
-			"arcana.rate":0.0001
+			"arcana.rate":0.0001,
+			"player.exp":10
 		}
 	},
 	{

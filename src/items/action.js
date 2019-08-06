@@ -53,6 +53,7 @@ export default class Action extends Item {
 
 		this.repeat = this.repeat === false ? false : true;
 		this.type = 'action';
+		if ( this.length ) this._exp = this._exp || 0;
 
 	}
 
