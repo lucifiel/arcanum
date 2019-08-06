@@ -368,8 +368,8 @@
 		"effect":{
 			"evt_spellbook":true,
 			"research.max":15,
-			"research.rate":0.11,
-			"arcana.rate":0.001
+			"research.rate":0.05,
+			"arcana.rate":0.0001
 		}
 	},
 	{

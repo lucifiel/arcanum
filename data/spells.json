@@ -136,7 +136,8 @@
 
 	},
 	{
-		"id":"magic missile",
+		"id":"magicmissile",
+		"name":"magic missile",
 		"level":1,
 		"locked":false,
 		"cost":{
@@ -155,7 +156,8 @@
 		}
 	},
 	{
-		"id":"fire dart",
+		"id":"firedart",
+		"name":"fire dart",
 		"level":1,
 		"locked":false,
 		"cost":{

@@ -7,6 +7,7 @@ export default class Spell extends Item {
 		let data = super.toJSON();
 		data.learned = this.learned;
 		data.cast = (this.cast);
+		// cost already encoded.
 
 		if ( this.timer > 0 ) data.timer = this.timer;
 
@@ -22,12 +23,17 @@ export default class Spell extends Item {
 		this.repeat = true;
 		this.type = 'spell';
 		this.level = this.level || 1;
-		if ( !this.cost ) this.cost = {};
-		if ( !this.cost.arcana ) this.cost.arcana = this.level;
-
-		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;
 
 		this.learned = this.learned || false;
+		if ( !this.learned ) {
+			if ( !this.cost ) this.cost = {};
+			if ( !this.cost.arcana ) this.cost.arcana = this.level;
+		} else {
+
+			this.cost = this.cast;
+		}
+
+		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;
 
 	}
 

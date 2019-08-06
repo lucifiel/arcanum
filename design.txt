@@ -1,5 +1,7 @@
 epiphany
 
+grove/glade?
+
 new sections:
 familiars,
 alchemy,
@@ -7,6 +9,15 @@ crafting,
 enchanting,
 minions
 
+
+upgrades:
+
+cairn ( druid)
+obelisk
+
+
+weapons:
+Shillelagh
 
 
 Spell Types per Level Used:
@@ -31,11 +42,10 @@ spirit
 
 Types/Associations:
 
-Earth: Stamina/Hp
-Water: Dodge
+Earth: Defense/Hp
+Water: Dodge/Stamina
 Air: Speed/Dodge?
 Fire: damage
-Ice:
 Tempus: Speed
 
 

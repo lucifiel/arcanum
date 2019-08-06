@@ -17,6 +17,4 @@ more armor drop variations.
 
 ERRORS:
 
-buy/sell bookcase broken. (altering research.max? )
-
 leather weapons.

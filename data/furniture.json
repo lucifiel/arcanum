@@ -71,8 +71,12 @@
 			"space":4
 		},
 		"mod":{
-			"rest.effect.stamina":0.1,
-			"rest.effect.hp":0.02
+			"rest":{
+				"effect":{
+					"stamina":0.1,
+					"hp":0.02
+				}
+			}
 		}
 
 	},
@@ -132,7 +136,7 @@
 		},
 		"mod":{
 			"research.max":5,
-			"arcana.rate":0.001
+			"arcana.rate":0.0001
 		}
 	},
 	{
@@ -272,7 +276,7 @@
 		},
 		"mod":{
 			"arcana.max":1,
-			"arcana.rate":0.001
+			"arcana.rate":0.0001
 		}
 	},
 	{
@@ -466,7 +470,23 @@
 		},
 		"mod":{
 			"bones.max":10,
-			"shadow.max":2
+			"shadow.max":1
+		}
+	},
+	{
+		"id":"cairn",
+		"desc":"Mystic rock-pile",
+		"tags":"spiritsource",
+		"require":"state.spirit.max>=10",
+		"cost":{
+			"gold":100,
+			"spirit":5,
+			"space":10
+		},
+		"mod":{
+			"spirit.max":2,
+			"spirit.rate":0.02,
+			"nature.rate":0.01
 		}
 	},
 	{
@@ -479,8 +499,8 @@
 			"space":5
 		},
 		"mod":{
-			"spirit.max":2,
-			"spirit.rate":0.1
+			"spirit.max":1,
+			"spirit.rate":0.01
 		}
 	},
 	{
@@ -496,8 +516,8 @@
 			"space":1
 		},
 		"mod":{
-			"shadow.rate":0.1,
-			"shadow.max":2
+			"shadow.rate":0.01,
+			"shadow.max":1
 		}
 	},
 	{
@@ -543,8 +563,8 @@
 			"space":1
 		},
 		"mod":{
-			"light.rate":0.1,
-			"light.max":2
+			"light.rate":0.01,
+			"light.max":1
 		}
 	},
 	{
@@ -560,8 +580,8 @@
 			"space":5
 		},
 		"mod":{
-			"shadow.rate":0.5,
-			"shadow.max":5
+			"shadow.rate":0.05,
+			"shadow.max":2
 		}
 	},
 	{
@@ -638,10 +658,10 @@
 			"space":25
 		},
 		"mod":{
-			"water.rate":0.1,
-			"nature.rate":0.1,
-			"nature.max":5,
-			"water.max":10
+			"water.rate":0.01,
+			"nature.rate":0.01,
+			"nature.max":1,
+			"water.max":2
 		}
 	},
 	{
@@ -656,8 +676,8 @@
 			"research":100
 		},
 		"mod":{
-			"earth.max":5,
-			"earth.rate":0.1
+			"earth.max":2,
+			"earth.rate":0.02
 		}
 
 	},
@@ -670,7 +690,7 @@
 		"cost":{
 			"space":5,
 			"gems":10,
-			"research":300,
+			"research":500,
 			"arcana":1
 		},
 		"mod":{

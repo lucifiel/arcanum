@@ -273,6 +273,7 @@ export default class Raid {
 		this.dungeon.progress = this.dungeon.length;
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot );
+		if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
 
 		this.player.exp += (this.dungeon.level)*( 15 + this.dungeon.length );
 		this.dungeon = null;
