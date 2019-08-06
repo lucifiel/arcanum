@@ -66,7 +66,10 @@ waif
 apprentice
 neophyte
 adept
+
 magician
+dark magician
+bone monger
 
 base?
 mage
@@ -87,6 +90,7 @@ trickster
 Mid Tier?
 battlemage
 eradicator
+elementalist /elemancy
 fire/water/earth/air mage?
 warlock
 seer
@@ -105,7 +109,6 @@ archmage
 archlich
 avatar
 archlock
-elemental
 high elemental
 
 

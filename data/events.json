@@ -33,9 +33,9 @@
 
 		"id":"evt_spellbook",
 		"name":"Book of Spells",
-		"desc":"Under your master's supervision, you manager to compile your very own book of spells.",
+		"desc":"Under your master's supervision, you manage to compile your very own book of spells.",
 		"effect":{
-			"player.exp":5
+			"player.exp":10
 		}
 
 	},
@@ -60,6 +60,15 @@
 		"id":"evt_pestdone",
 		"name":"Pests Cleared",
 		"desc":"With the basement cleared, your master will have more room to stash all the gold you've been earning.",
+		"effect":{
+			"player.exp":10
+		}
+
+	},
+	{
+		"id":"tierone",
+		"name":"Profressional Magick",
+		"desc":"At last you are fit to style yourself a true practitioner of magic.",
 		"effect":{
 			"player.exp":10
 		}

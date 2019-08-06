@@ -280,7 +280,8 @@
 		"require":"state.research.max>=30&&state.crafting>=2",
 		"cost":{
 			"scrolls":10,
-			"research":20
+			"research":20,
+			"mana":3
 		},
 		"effect":{
 			"codices":1

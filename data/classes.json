@@ -26,9 +26,10 @@
 {
 	"id":"magician",
 	"title":"magician",
-	"desc":"A true practitioner of magic.",
+	"desc":"Magic in its purest form.",
 	"disable":["adept","witch","druid"],
 	"effect":{
+		"tierone":true,
 		"research.max":20,
 		"arcana.max":5,
 		"arcana.rate":0.001,
@@ -43,6 +44,7 @@
 	"require":"evil",
 	"disable":["adept","witch","druid","magician"],
 	"effect":{
+		"tierone":true,
 		"research.max":20,
 		"arcana.max":5,
 		"mana.max":1,
@@ -57,6 +59,7 @@
 	"desc":"Witch",
 	"disable":["adept"],
 	"effect":{
+		"tierone":true,
 		"research.max":10,
 		"naturelore.max":5,
 		"animals.max":3,
@@ -83,10 +86,11 @@
 {
 	"id":"bonemonger",
 	"title":"bone monger",
-	"desc":"A collector of re-animator of bones.",
+	"desc":"A collector and re-animator of bones.",
 	"require":"state.adept>0&&state.evil>0",
 	"disable":["adept","witch","magician"],
 	"effect":{
+		"tierone":true,
 		"research.max":10,
 		"potions.max":5,
 		"shadow.max":5,
@@ -208,7 +212,7 @@
 {
 	"id":"mage",
 	"title":"mage",
-	"desc":"A true practitioner of magic.",
+	"desc":"a follower of secret cabals.",
 	"disable":["adept"],
 	"effect":{
 		"research.max":40,

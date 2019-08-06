@@ -72,7 +72,8 @@ export default class Player extends Char {
 	}
 
 	/**
-	 * NOTE: Elements that are items in themselves are not encoded.
+	 * NOTE: Elements that are themselves Items are not encoded,
+	 * since they are encoded in the Item array.
 	 */
 	toJSON() {
 
@@ -180,7 +181,7 @@ export default class Player extends Char {
 	 */
 	setPrimary( s ) {
 
-		if ( this.primary === s || !s.attack ) return;
+		if ( this.primary === s || !s || !s.attack ) return;
 		if ( this.primary !== null ) this.removePrimary();
 
 		this.primary = s;
@@ -198,10 +199,8 @@ export default class Player extends Char {
 	 * Clear primary spell attack.
 	 */
 	removePrimary() {
-
 		//let p = this.primary;
 		this.primary = null;
-
 	}
 
 	levelUp() {

@@ -116,7 +116,7 @@
 			"space.max":50,
 			"research.rate":-0.5,
 			"gold":{
-				"max":30,
+				"max":40,
 				"rate":0.4
 			},
 			"arcana.rate":-0.001
@@ -131,6 +131,26 @@
 			"space.max":30,
 			"nature.max":1,
 			"nature.rate":0.1
+		}
+	},
+	{
+		"id":"gabledhouse",
+		"name":"house of many gables",
+		"desc":"A spacious house with gabled windows.",
+		"cost":1000,
+		"require":"state.tierone>0&&state.arcana>=10",
+		"mod":{
+			"space.max":50
+		}
+	},
+	{
+		"id":"halftimber",
+		"name":"half-timber house",
+		"desc":"A vast home of rustic design",
+		"cost":1500,
+		"require":"state.tierone>0&&state.arcana>=10",
+		"mod":{
+			"space.max":75
 		}
 	},
 	{
@@ -262,6 +282,22 @@
 			"space.max":200,
 			"shadow.max":-3,
 			"shadow.rate":-0.5
+		}
+	},
+	{
+
+		"id":"idrasil tree",
+		"desc":"Seedlings of Yggdrasil, a tree to rival mountains.",
+		"tags":"outdoors",
+		"cost":{
+
+		},
+		"require":"state.nature>=10&&state.arcana>=10",
+		"mod":{
+			"space.max":300,
+			"nature.max":2,
+			"air.max":1,
+			"fire.rate":-0.2
 		}
 	},
 	{
