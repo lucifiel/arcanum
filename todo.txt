@@ -17,8 +17,6 @@ more armor drop variations.
 
 ERRORS:
 
-adding lock to attic doesn't remove max space.
-
-does not auto-move into inn
+buy/sell bookcase broken. (altering research.max? )
 
 leather weapons.

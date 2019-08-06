@@ -90,7 +90,7 @@
 		"id":"goblincamp",
 		"name":"goblin camp",
 		"desc":"the pesky creatures are everywhere.",
-		"require":"",
+		"require":"adept",
 		"level":5,
 		"cost":{
 			"stamina":1
@@ -113,7 +113,7 @@
 		"id":"underden",
 		"name":"under den",
 		"desc":"proverbial den of thieves",
-		"require":"",
+		"require":"adept",
 		"level":5,
 		"cost":{
 			"stamina":1

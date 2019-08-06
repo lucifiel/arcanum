@@ -236,7 +236,7 @@ export default {
 		} else if ( action.length ) {
 
 			action.progress += dt;
-			/// any action effect functions as a dot.
+			/// action effects function as dots.
 			if ( action.effect) this.applyEffect( action.effect, dt );
 
 		} else {
@@ -469,7 +469,6 @@ export default {
 		it.value += count;
 
 		if ( it.type === 'home') {
-			console.log('CHANGING HOME');
 			let prev = this.state.curHome;
 			if ( prev ) this.remove( prev );
 			this.state.curHome = it;

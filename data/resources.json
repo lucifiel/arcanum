@@ -182,6 +182,7 @@
 	},
 	{
 		"id":"fire",
+		"require":"pyromancy",
 		"tags":"manas,elemental",
 		"desc":"Fire Mana",
 		"max":1
@@ -209,11 +210,13 @@
 		"id":"water",
 		"tags":"manas,elemental",
 		"desc":"Water Mana",
+		"require":"waterlore",
 		"max":1
 	},
 	{
 		"id":"nature",
 		"tags":"manas",
+		"require":"naturelore",
 		"desc":"Nature Mana",
 		"max":1
 	},
@@ -221,13 +224,14 @@
 		"id":"shadow",
 		"name":"shadow",
 		"tag":"manas",
+		"require":"state.evil>0||state.embalming>1",
 		"desc":"Shadow mana",
 		"max":1
 	},
 	{
 		"id":"light",
 		"tag":"manas",
-		"require":"state.lumenology>=3",
+		"require":"lumenology",
 		"desc":"Light mana",
 		"max":1
 	},

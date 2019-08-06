@@ -253,7 +253,7 @@ export default {
 
 			if ( action.perpetual || action.length > 0 ) {
 
-			this.game.setAction(action);
+				this.game.setAction(action);
 
 			} else this.game.tryItem( action );
 		},

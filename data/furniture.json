@@ -157,6 +157,7 @@
 		"id":"terrarium",
 		"desc":"a glass enclosure of dirt, insects, and wormy things.",
 		"tags":"earthsource,tagpen",
+		"require":"neophyte",
 		"cost":{
 			"space":1,
 			"research":40,
@@ -287,7 +288,7 @@
 		},
 		"mod":{
 			"codices":{
-				"research.max":5,
+				"mod.research.max":5,
 				"max":30
 			}
 		}

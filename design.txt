@@ -1,5 +1,14 @@
 epiphany
 
+new sections:
+familiars,
+alchemy,
+crafting,
+enchanting,
+minions
+
+
+
 Spell Types per Level Used:
 1:
 arcane

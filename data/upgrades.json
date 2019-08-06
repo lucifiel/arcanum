@@ -57,7 +57,10 @@
 			"research":225,
 			"arcana":5
 		},
-		"effect":["evt_slay","adept","evil", { "bones":10 }]
+		"effect":["evt_slay","adept","evil", {
+			"bones":10,
+			"shadow.max":1
+		}]
 
 	},
 
@@ -147,7 +150,7 @@
 		"id":"orb",
 		"name":"arcane orb",
 		"desc":"Stores magical energy.",
-		"require":"state.mana.max>=10",
+		"require":"state.mana.max>=10&&state.crafting>=7",
 		"max":2,
 		"cost":{
 			"gold":75,
@@ -209,7 +212,8 @@
 		"cost":{
 			"gold":50,
 			"spirit":2,
-			"research":50
+			"research":50,
+			"codices":1
 		},
 		"mod":{
 			"research.max":5,
@@ -390,7 +394,7 @@
 		"name":"dream catcher",
 		"desc":"you might not like what you catch.",
 		"tags":"spiritsource",
-		"require":"state.space>10",
+		"require":"state.space>10&&state.crafting>=5",
 		"cost":{
 			"gold":50,
 			"research":50,
@@ -473,13 +477,14 @@
 		"desc":"a weighty tome of knowledge.",
 		"cost":{
 			"research":50,
-			"gold":100
+			"gold":100,
+			"codices":1
 		},
 		"mod":{
 			"lore":{
 				"max":1,
 				"effect.research":0.01,
-				"rate":0.05
+				"rate":0.1
 			},
 			"study.effect.research":0.01,
 			"study.effect.arcana":0.001
@@ -489,7 +494,7 @@
 		"id":"pot",
 		"name":"Cooking Pot",
 		"desc":"standard cooking pot.",
-		"require":"fireplace",
+		"need":"fireplace",
 		"flavor":"boil things, mash things, stick 'em in a stew.",
 		"cost":{
 			"gold":25
@@ -514,6 +519,40 @@
 		"mod":{
 			"mana.max":1,
 			"lore.max":1
+		}
+
+	},
+	{
+
+		"id":"arcanebody",
+		"name":"arcane body",
+		"max":3,
+		"desc":"expend your research to enhance your durability.",
+		"require":"state.lore>=7&&state.adept>0",
+		"cost":{
+			"research.max":25,
+			"research":25,
+			"mana":5
+		},
+		"mod":{
+			"hp.max":1
+		}
+
+	},
+	{
+
+		"id":"arcaneenergy",
+		"name":"arcane energy",
+		"max":3,
+		"desc":"expend your research to enhance your innate energy.",
+		"require":"state.lore>=7&&state.adept>0",
+		"cost":{
+			"research.max":25,
+			"research":25,
+			"mana":5
+		},
+		"mod":{
+			"stamina.max":1
 		}
 
 	},

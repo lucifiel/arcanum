@@ -43,16 +43,17 @@
 	{
 
 		"id":"prestidigitation",
-		"desc":"Why study when you can perform paltry magic for money?",
+		"desc":"Why study when you can perform cheap parlor tricks for coins?",
 		"verb":"performing",
 		"require":"spellbook",
+		"length":20,
 		"perpetual":true,
 		"cost":{
 			"stamina":0.1,
 			"mana":0.2
 		},
 		"effect":{
-			"research":-0.75,
+			"research":-1,
 			"gold":0.7
 		}
 
@@ -94,7 +95,7 @@
 	{
 
 		"id":"bloodsiphon",
-		"name":"blood siphone",
+		"name":"blood siphon",
 		"desc":"leech blood from a body to restore health",
 		"require":"transfusions",
 		"cost":{
@@ -291,13 +292,15 @@
 		"name":"compile bestiary",
 		"verb":"compiling bestiary",
 		"require":"state.animals>=3",
+		"need":"state.codices>=1",
 		"length":50,
 		"repeat":false,
 		"cost":{
 			"stamina":0.5
 		},
 		"effect":{
-			"animals.exp":1
+			"animals.exp":1,
+			"codices":-1
 		},
 		"result":"bestiary"
 

@@ -66,7 +66,7 @@
 		"desc":"wheeled carriage for a nomadic life.",
 		"require":"adept",
 		"tags":"outdoors",
-		"cost":125,
+		"cost":150,
 		"mod":{
 			"space.max":10,
 			"nature.max":2,
@@ -80,7 +80,7 @@
 		"id":"cottage",
 		"desc":"Cozy and quaint.",
 		"require":"adept",
-		"cost":175,
+		"cost":225,
 		"mod":{
 			"space.max":20
 		}
