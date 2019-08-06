@@ -16,9 +16,8 @@
 		}
 	},
 	{
-		"id":"herbs",
+		"id":"herbalism",
 		"school":["nature"],
-		"name":"herbalism",
 		"require":"lore",
 		"need":"taggarden",
 		"cost":{
@@ -114,7 +113,7 @@
 	{
 
 		"id":"dissection",
-		"require":"state.anatomy>=3",
+		"need":"state.anatomy>=3",
 		"school":["shadow"],
 		"cost":{
 			"stamina":0.5
@@ -234,7 +233,7 @@
 		"id":"naturelore",
 		"name":"nature lore",
 		"verb":"observing nature",
-		"require":"state.herbs>=3&&state.animals>=2",
+		"require":"state.herbalism>=3&&state.animals>=2",
 		"cost":{
 			"stamina":0.4
 		},
@@ -296,7 +295,8 @@
 		"require":"state.adept>0&&state.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
 		"cost":{
-			"stamina":0.5
+			"stamina":0.5,
+			"research":1
 		},
 		"result":{
 			"research":{

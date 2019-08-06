@@ -9,7 +9,8 @@
     { "id":"steel", "kind":"metal", "weight":2, "priceMod":20, "bonus":3, "level":7 },
     { "id":"quicksteel", "kind":"metal", "weight":2, "priceMod":25, "bonus":5, "level":10 },
     { "id":"mithril", "kind":"metal", "weight":1, "priceMod":100, "bonus":7, "level":14 },
-    { "id":"ebonwood", "kind":"natural", "weight":1, "priceMod":100, "bonus":6, "level":17 },
+	{ "id":"ebonwood", "kind":"natural", "weight":1, "priceMod":100, "bonus":6, "level":17 },
+	{ "id":"etherial", "kind":"etherial", "weight":0, "priceMod":2000, "bonus":8, "level":21 },
     { "id":"adamant", "kind":"metal", "adj":"adamantine", "priceMod":1000, "bonus":10, "level":25 }
 
 ]

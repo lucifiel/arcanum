@@ -81,9 +81,10 @@ necromancer
 alchemist <->transmuter?
 witch
 medium
-acolyte
+acolyte <-- probably not.
 summoner
 keeper
+artificier
 warden
 trickster
 

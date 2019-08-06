@@ -81,6 +81,27 @@
 
 	},
 	{
+
+		"id":"burningcoals",
+		"name":"burning coals",
+		"desc":"bed of burning coals",
+		"slot":"bed",
+		"require":"state.fire>=10",
+		"cost":{
+			"fire":10,
+			"space":2
+		},
+		"mod":{
+			"rest":{
+				"effect":{
+					"stamina":0.1,
+					"mana":0.1,
+					"fire":0.2
+				}
+			}
+		}
+	},
+	{
 		"id":"cache",
 		"name":"Buried cache",
 		"desc":"A secret cache of treasure, buried in the ground.",
@@ -310,7 +331,10 @@
 		},
 		"mod":{
 			"light.rate":0.01,
-			"air.rate":0.02
+			"air":{
+				"max":1,
+				"rate":0.02
+			}
 		}
 	},
 	{
@@ -324,7 +348,7 @@
 		},
 		"mod":{
 			"light.max":1,
-			"air.max":2,
+			"air.max":1,
 			"light.rate":0.02,
 			"air.rate":0.05
 		}
@@ -581,13 +605,13 @@
 		},
 		"mod":{
 			"shadow.rate":0.05,
-			"shadow.max":2
+			"shadow.max":1
 		}
 	},
 	{
 		"id":"vat",
 		"desc":"grows bodies from raw materials",
-		"require":"state.anatomy>=5&&state.embalming>=5&&state.crafting>=5",
+		"require":"state.tierone>0&&state.anatomy>=5&&state.embalming>=5&&state.crafting>=5",
 		"cost":{
 			"space":2,
 			"research":100
@@ -641,8 +665,8 @@
 			"space":10
 		},
 		"mod":{
-			"herbs.rate":1,
-			"herbs.max":3,
+			"herbalism.rate":0.2,
+			"herbalism.max":3,
 			"nature.max":1,
 			"nature.rate":0.05
 		}
@@ -668,7 +692,7 @@
 
 		"id":"sandgarden",
 		"name":"sand garden",
-		"desc":"",
+		"desc":"rocks and sand form patterns of intricate design.",
 		"require":"state.earth.max>=5&&state.space>=50",
 		"cost":{
 			"space":20,
@@ -678,6 +702,26 @@
 		"mod":{
 			"earth.max":2,
 			"earth.rate":0.02
+		}
+
+	},
+	{
+
+		"id":"lakeoffire",
+		"name":"lake of fire",
+		"desc":"A lake of burning fire.",
+		"require":"state.fire.max>=10&&state.space>=100",
+		"cost":{
+			"space":20,
+			"fire":10,
+			"gold":100,
+			"firegem":10,
+			"research":200
+		},
+		"mod":{
+			"fire.max":2,
+			"fire.rate":0.02,
+			"firegem.rate":0.01
 		}
 
 	},
@@ -695,13 +739,13 @@
 		},
 		"mod":{
 			"air.max":1,
-			"air.rate":0.1,
+			"air.rate":0.01,
 			"earth.max":1,
-			"earth.rate":0.1,
+			"earth.rate":0.01,
 			"void.max":3,
-			"void.rate":0.2,
+			"void.rate":0.1,
 			"shadow.max":1,
-			"shadow.rate":0.1
+			"shadow.rate":0.01
 		}
 
 	},

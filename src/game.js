@@ -255,7 +255,10 @@ export default {
 	 */
 	toggleAction(act) {
 
-		this.state.curAction = this.state.curAction === act ? null : act;
+		if ( this.state.curAction === act ) {
+			this.state.curAction = null;
+		} else this.setAction(act);
+
 		this.state.resumeAction = null;
 		return this.state.curAction !== null;
 
@@ -269,8 +272,22 @@ export default {
 	},
 
 	setAction( act ) {
+
+		/**
+		 * Cost to begin action.
+		 */
+		if ( act.cast && act.progress === 0 ) {
+
+			if ( !this.canPay(act.cast) ) return false;
+			this.payCost( act.cast);
+
+		}
+
 		this.state.resumeAction = null;
 		this.state.curAction = act;
+
+		return true;
+
 	},
 
 	/**
@@ -692,12 +709,18 @@ export default {
 	 * Determines whether an item can be run as a continuous action.
 	 * @returns {boolean}
 	 */
-	runnable( it ) {
+	canRun( it ) {
 
+		if ( it.cast && it.progress === 0 && !this.canPay(it.cast) ) return false;
 		return this.canPay( it.cost, TICK_TIME/1000 );
 
 	},
 
+	/**
+	 * Determine if a one-use item can be used. Ongoing/perpetual actions
+	 * test with 'canRun' instead.
+	 * @param {*} it 
+	 */
 	canUse( it ){
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;

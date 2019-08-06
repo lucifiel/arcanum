@@ -121,14 +121,14 @@
 		"id":"mortar",
 		"name":"Mortar and Pestle",
 		"desc":"Useful for grinding herbs & fine ingredients.",
-		"require":"state.herbs>=2",
+		"require":"state.herbalism>=2&&state.herbs>=5",
 		"cost":{
 			"gold":40,
 			"research":10
 		},
 		"mod":{
 			"research.max":5,
-			"herbs":{
+			"herbalism":{
 				"rate":0.1,
 				"max":2
 			}
@@ -645,7 +645,7 @@
 		"name":"witchcraft",
 		"warn":true,
 		"desc":"Enter into the practice of witchcraft.",
-		"require":"state.adept>0&&state.animals>=2&&state.herbs>=3&&state.potions>=3",
+		"require":"state.adept>0&&state.animals>=2&&state.herbalism>=3&&state.potions>=3",
 		"flavor":"double, double, toil and trouble",
 		"cost":{
 			"research":100,

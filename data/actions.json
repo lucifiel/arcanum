@@ -43,18 +43,18 @@
 	{
 
 		"id":"prestidigitation",
-		"desc":"Why study when you can perform cheap parlor tricks for coins?",
+		"desc":"Why study when you can perform cheap parlor tricks for coin?",
 		"verb":"performing",
 		"require":"spellbook",
-		"length":20,
+		"length":15,
 		"perpetual":true,
 		"cost":{
-			"stamina":0.1,
+			"stamina":0.2,
 			"mana":0.2
 		},
 		"effect":{
 			"research":-1,
-			"gold":0.7
+			"gold":0.8
 		}
 
 	},
@@ -79,10 +79,11 @@
 
 		"id":"spingold",
 		"name":"Spin Gold",
-		"desc":"Spain straw into gold",
+		"desc":"Spin straw into gold",
 		"verb":"spinning",
-		"require":["state.weaving>=5"],
+		"require":["state.weaving>=5&&state.loom>0"],
 		"perpetual":true,
+		"length":10,
 		"cost":{
 			"stamina":0.4,
 			"mana":0.1
@@ -98,23 +99,53 @@
 		"name":"blood siphon",
 		"desc":"leech blood from a body to restore health",
 		"require":"transfusions",
-		"cost":{
+		"length":10,
+		"cast":{
 			"bodies":1
 		},
 		"effect":{
-			"hp":50
+			"hp":20
 		}
 
 	},
 	{
 		"id":"murder",
 		"desc":"an incidental necessity to the advancement of magic",
-		"require":"evil",
+		"require":"state.anatomy>=5&&state.embalming>=5&&state.dissection>=5",
+		"length":10,
 		"cost":{
-			"stamina":10
+			"stamina":1
 		},
-		"effect":{
+		"result":{
+			"evil":true,
 			"bodies":1
+		}
+	},
+	{
+		"id":"dissect",
+		"name":"dissect cadaver",
+		"require":"state.dissection>=5",
+		"desc":"dissect a body for components. only the best bone fragments will serve.",
+		"length":10,
+		"cast":{
+			"bodies":1
+		},
+		"result":{
+			"skull":1,
+			"bones":"2~4"
+		}
+	},
+	{
+		"id":"grindbones",
+		"name":"grind bones",
+		"desc":"grind bones into dust",
+		"require":"state.dissection>=3",
+		"length":10,
+		"cast":{
+			"bones":1
+		},
+		"result":{
+			"bones":"2~4"
 		}
 	},
 	{
@@ -125,6 +156,7 @@
 		"desc":"Commune with the dead relatives of patrons for a small fee.",
 		"require":["divination","spiritsource","adept"],
 		"perpetual":true,
+		"length":10,
 		"cost":{
 			"stamina":0.3,
 			"spirit":0.1
@@ -145,6 +177,25 @@
 		},
 		"effect":{
 			"gold":0.4
+		}
+
+	},
+	{
+		"id":"gatherherbs",
+		"name":"gather herbs",
+		"desc":"Gather herbs used in potions and alchemy.",
+		"verb":"gathering herbs",
+		"require":"state.neophyte>0&&state.herbalism>=1&&(state.taggarden+state.outdoors>0)",
+		"length":20,
+		"perpetual":true,
+		"cost":{
+			"stamina":0.4
+		},
+		"effect":{
+			"herbalism.exp":0.01
+		},
+		"result":{
+			"herbs":1
 		}
 
 	},
@@ -171,6 +222,7 @@
 		"tag":"tagrest",
 		"verb":"chanting",
 		"perpetual":true,
+		"length":10,
 		"ignoreStamina":true,
 		"need":"state.light>=5&&state.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
@@ -186,13 +238,15 @@
 		"tag":"tagrest",
 		"verb":"eating children",
 		"perpetual":true,
+		"length":10,
 		"ignoreStamina":true,
 		"require":"state.evil>0&&state.witch>0",
 		"need":"cauldron",
-		"fill":[ "light", "hp", "mana" ],
+		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
 		"effect":{
-			"mana":0.2,
+			"mana":0.1,
 			"shadow":0.1,
+			"spirit":0.1,
 			"stamina":0.1,
 			"hp":1
 		}
@@ -210,7 +264,7 @@
 			"nature.mana":0.5,
 			"naturelore.exp":1,
 			"animals.exp":1,
-			"herbs.exp":1
+			"herbalism.exp":1
 		}
 	},
 	{
@@ -310,7 +364,7 @@
 		"id":"buygem",
 		"name":"Purchase Gem",
 		"require":"gems",
-		"cost":75,
+		"cost":100,
 		"effect":{
 			"gems":1
 		}
@@ -319,14 +373,14 @@
 		"id":"craftgem",
 		"name":"Craft Gem",
 		"desc":"Craft a gem stone from raw minerals.",
-		"require":"state.crafting>=4&&state.alchemy>=4",
+		"require":"state.crafting>=5&&state.alchemy>=4",
 		"cost":{
 			"stamina":1,
 			"mana":2
 		},
 		"effect":{
 			"gems":1,
-			"crafting.max":0.02
+			"crafting.max":0.001
 		}
 	},
 	{
@@ -341,6 +395,18 @@
 		}
 	},
 	{
+		"id":"imbuemanagem",
+		"name":"Imbue gem (arcane)",
+		"require":"state.mana.max>=5&&state.enchanting>2",
+		"cost":{
+			"gem":1,
+			"mana":5
+		},
+		"effect":{
+			"managem":1
+		}
+	},
+	{
 		"id":"imbuefiregem",
 		"name":"Imbue Gem (Fire)",
 		"require":"state.fire.max>=5&&state.enchanting>2",
@@ -350,18 +416,6 @@
 		},
 		"effect":{
 			"firegem":1
-		}
-	},
-	{
-		"id":"imbuecoldgem",
-		"name":"imbue gem (cold)",
-		"require":"state.cold.max>=5&&state.enchanting>2",
-		"cost":{
-			"gem":1,
-			"cold":5
-		},
-		"effect":{
-			"coldgem":1
 		}
 	},
 	{
@@ -422,6 +476,18 @@
 		},
 		"effect":{
 			"shadowgem":1
+		}
+	},
+	{
+		"id":"imbuespiritgem",
+		"name":"Imbue gem (spirit)",
+		"require":"state.spirit.max>=5&&state.enchanting>2",
+		"cost":{
+			"gem":1,
+			"spirit":5
+		},
+		"effect":{
+			"spiritgem":1
 		}
 	},
 	{

@@ -68,9 +68,20 @@
 	{
 		"id":"tierone",
 		"name":"Profressional Magick",
-		"desc":"At last you are fit to style yourself a true practitioner of magic.",
+		"desc":"Every city has its share of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
 		"effect":{
-			"player.exp":10
+			"player.exp":15,
+			"lore.max":1
+		}
+
+	},
+	{
+		"id":"tiertwo",
+		"name":"Magical Mastery",
+		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
+		"effect":{
+			"player.exp":25,
+			"lore.max":2
 		}
 
 	},
@@ -81,9 +92,10 @@
 		"disable":["shadow","evil"],
 		"desc":"You have become virtuous",
 		"effect":{
-			"light.max":1,
-			"light.value":1,
-			"light.rate":0.1
+			"light":{
+				"max":1,
+				"rate":0.1
+			}
 		}
 
 	},
@@ -95,7 +107,6 @@
 		"effect":{
 			"shadow":{
 				"max":1,
-				"value":1,
 				"rate":0.1
 			}
 		}

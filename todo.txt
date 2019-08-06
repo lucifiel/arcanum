@@ -2,6 +2,9 @@ assign custom rest action.
 
 resistances
 
+start-of-action cost for ongoing actions.
+
+
 saving:
 1)toJSON functions.
 
@@ -16,5 +19,7 @@ display weapon damage in char.
 more armor drop variations.
 
 ERRORS:
+
+ongoing actions should stop if 'need' requirements not met.
 
 leather weapons.

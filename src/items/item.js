@@ -170,7 +170,7 @@ export default class Item {
 	 */
 	maxed() {
 		
-		return this.max != null ? this._value >= this.max :
+		return this.max ? this._value >= this.max :
 			!this.repeat && this._value > 0;
 
 	}

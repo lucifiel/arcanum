@@ -31,10 +31,10 @@
 	"effect":{
 		"tierone":true,
 		"research.max":20,
-		"arcana.max":5,
+		"lore.max":1,
 		"arcana.rate":0.001,
-		"mana.max":5,
-		"mana.rate":0.2
+		"mana.max":2,
+		"mana.rate":0.02
 	}
 },
 {
@@ -42,22 +42,23 @@
 	"title":"dark magician",
 	"desc":"A devotee of black magic.",
 	"require":"evil",
-	"disable":["adept","witch","druid","magician"],
+	"disable":["witch","druid","magician"],
 	"effect":{
 		"tierone":true,
 		"research.max":20,
-		"arcana.max":5,
+		"demonology.max":2,
+		"lore.max":1,
 		"mana.max":1,
-		"mana.rate":0.1,
-		"shadow.max":5,
-		"shadow.rate":0.1
+		"mana.rate":0.01,
+		"shadow.max":1,
+		"shadow.rate":0.01
 	}
 },
 {
 	"id":"witch",
 	"title":"witch",
 	"desc":"Witch",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
 		"tierone":true,
 		"research.max":10,
@@ -73,12 +74,16 @@
 	"name":"arcane trickster",
 	"title":"arcane trickster",
 	"desc":"Use magic for deceit and trickery.",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
+		"tierone":true,
 		"gold.max":10,
 		"research.max":2,
 		"mana.max":2,
-		"chaos.max":3,
+		"chaos":{
+			"max":3,
+			"rate":0.1
+		},
 		"potions.max":1,
 		"spirit.max":1
 	}
@@ -88,20 +93,22 @@
 	"title":"bone monger",
 	"desc":"A collector and re-animator of bones.",
 	"require":"state.adept>0&&state.evil>0",
-	"disable":["adept","witch","magician"],
+	"disable":["witch","magician"],
 	"effect":{
 		"tierone":true,
 		"research.max":10,
+		"reanimation.max":3,
+		"embalming.max":2,
 		"potions.max":5,
-		"shadow.max":5,
-		"spirit.max":5
+		"shadow.max":3,
+		"spirit.max":3
 	}
 },
 {
 	"id":"druid",
 	"title":"druid",
 	"desc":"druid",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
 		"research.max":5,
 		"naturelore.max":10,
@@ -115,8 +122,9 @@
 	"id":"alchemist",
 	"title":"alchemist",
 	"desc":"alchemist",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
+		"tierone":true,
 		"research.max":20,
 		"potions.max":5,
 		"alchemy.max":5,
@@ -127,9 +135,11 @@
 	"id":"enchanter",
 	"title":"enchanter",
 	"desc":"A master of charms and enchantments.",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
+		"tierone":true,
 		"research.max":15,
+		"enchanting.max":5,
 		"arcana.max":2,
 		"nature.max":5,
 		"mana.max":3,
@@ -142,7 +152,7 @@
 	"id":"geomancer",
 	"title":"geomancer",
 	"desc":"lord of rocks.",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
 		"research.max":15,
 		"earth.max":4,
@@ -155,8 +165,8 @@
 {
 	"id":"hydromancer",
 	"title":"hydromancer",
-	"desc":"lord of rocks.",
-	"disable":["adept"],
+	"desc":"master of water",
+	"disable":[],
 	"effect":{
 		"research.max":15,
 		"water.max":4,
@@ -170,7 +180,7 @@
 	"id":"evoker",
 	"title":"evoker",
 	"desc":"A wielder of raw magical power.",
-	"disable":["adept"],
+	"disable":[],
 	"effect":{
 		"research.max":5,
 		"arcana.max":1,

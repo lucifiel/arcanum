@@ -74,59 +74,66 @@
 		"max":10
 	},
 	{
+
+		"id":"managem",
+		"name":"arcane gem",
+		"desc":"Gem infused with arcane energy.",
+		"max":2
+	},
+	{
 		"id":"firegem",
 		"name":"fire gem",
 		"desc":"Gem imbued with the essence of fire.",
-		"max":5
-	},
-	{
-		"id":"coldgem",
-		"tags":"reagent",
-		"name":"frost gem",
-		"desc":"Gem imbued with the essence of cold.",
-		"max":5
+		"max":2
 	},
 	{
 		"id":"watergem",
 		"tags":"reagent",
 		"name":"water gem",
 		"desc":"Gem imbued with the essence of water.",
-		"max":5
+		"max":2
 	},
 	{
 		"id":"naturegem",
 		"tags":"reagent",
 		"name":"life gem",
-		"desc":"Gem imbued with the essence of nature.",
-		"max":5
+		"desc":"Gem imbued with the essence of life.",
+		"max":2
 	},
 	{
 		"id":"earthgem",
 		"tags":"reagent",
 		"name":"earth gem",
 		"desc":"Gem imbued with the essence of earth.",
-		"max":5
+		"max":2
 	},
 	{
 		"id":"airgem",
 		"tags":"reagent",
 		"name":"air gem",
 		"desc":"Gem imbued with the essence of air.",
-		"max":5
+		"max":2
 	},
 	{
 		"id":"shadowgem",
 		"tags":"reagent",
 		"name":"shadow gem",
-		"desc":"Gem imbued with the essence of shadow.",
-		"max":5
+		"desc":"Gem imbued with the essence of darkness.",
+		"max":2
 	},
 	{
 		"id":"lightgem",
 		"tags":"reagent",
 		"name":"light gem",
 		"desc":"Gem imbued with the essence of light.",
-		"max":5
+		"max":2
+	},
+	{
+		"id":"spiritgem",
+		"tags":"reagent",
+		"name":"spirit gem",
+		"desc":"Gem imbued with raw spirit.",
+		"max":2
 	},
 	{
 		"id":"ichor",
@@ -140,7 +147,7 @@
 		"id":"herbs",
 		"desc":"Special plants for potions and alchemy.",
 		"max":10,
-		"require":"cauldron"
+		"require":"herbalism"
 	},
 	{
 		"id":"sulphur",
