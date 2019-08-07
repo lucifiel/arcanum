@@ -4,8 +4,9 @@ ul {
 	padding: 2px;
 }
 
-input[type="button"], button {
+input[type="button"], button, .text-button {
 
+	background-color: rgb(226, 224, 224);
 	border: 1pt solid darkgray;
 	border-radius: 2px;
 	padding: 8px;

@@ -69,6 +69,8 @@ export default {
 	},
 	created(){
 
+		this.lastSave = null;
+
 		/**
 	 	* @property {Game} game
 	 	*/
@@ -112,11 +114,25 @@ export default {
 
 		},
 
+		saveFile(e){
+
+			if ( this.lastSave ) URL.revokeObjectURL( this.lastSave );
+
+			try {
+				let json = JSON.stringify( this.state );
+				this.lastSave = new File( [json], 'arcanum.json', {type:"text/json;charset=utf-8"} );
+
+				e.target.href = URL.createObjectURL( this.lastSave );
+
+			} catch(ex) { console.error(ex); }
+
+		},
+
 		fileDrop(e){
 			e.stopPropagation();
 			e.preventDefault();
 
-			e.currentTarget.classList.remove('hilite');
+			e.target.classList.remove('hilite');
 	
 			const dt = e.dataTransfer;
 			this.loadFile( dt.files );
@@ -338,8 +354,9 @@ export default {
 			<button @click="save">save</button>
 			<button @click="loadSave">load</button>
 
+			<a class="text-button" id="save-file" href="" download @click="saveFile" type="text/json">Get File</a>
 			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
-			<button id="drop-file" @drop="fileDrop" @dragover="fileDrag" @dragleave.capture.stop="dragOut">[File]</button>
+			<button id="drop-file" @drop="fileDrop" @dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
 
 			<confirm @confirm="reset">reset</confirm>
 			<dots v-if="state" :dots="state.player.dots" />
@@ -403,6 +420,9 @@ export default {
 
 <style scoped>
 
+#save-file {
+	text-decoration: none;
+}
 #drop-file {
 	border-width: 1.5px;
 	border-style: dashed;

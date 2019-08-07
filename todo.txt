@@ -17,8 +17,6 @@ more armor drop variations.
 
 ERRORS:
 
-don't grey out castable actions in-progress.
-
 fix scrolling combat text in raid section.
 
 ongoing actions should stop if 'need' requirements not met.

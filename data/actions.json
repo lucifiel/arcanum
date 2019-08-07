@@ -377,8 +377,7 @@
 			"stamina":0.5
 		},
 		"effect":{
-			"animals.exp":1,
-			"codices":-1
+			"animals.exp":1
 		},
 		"result":"bestiary"
 

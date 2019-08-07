@@ -302,8 +302,9 @@ export default {
 		/**
 		 * Cost to begin action.
 		 */
-		if ( act && act.cast && act.progress === 0 ) {
+		if ( act && act.cast && (act.progress === 0) ) {
 
+			console.log('PAY ACTION: ' + act.progress );
 			//if ( !this.canPay(act.cast) ) return false;
 			this.payCost( act.cast);
 
@@ -762,7 +763,10 @@ export default {
 	canRun( it ) {
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
-		if ( it.cast && it.progress === 0 && !this.canPay(it.cast) ) return false;
+		if ( it.cast && (it.progress === 0) && !this.canPay(it.cast) ) {
+			console.log('CANNOT PAY: ' + it.id );
+			return false;
+		}
 
 		if ( it.fill ) {
 
@@ -770,7 +774,7 @@ export default {
 			if ( t && t.maxed() ) return false;
 
 		}
-		return this.canPay( it.cost, TICK_TIME/1000 );
+		return !it.cost || this.canPay( it.cost, TICK_TIME/1000 );
 
 	},
 
