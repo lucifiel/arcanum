@@ -271,6 +271,7 @@ export default class Raid {
 
 		// can go over by cheat codes, or possibly unknown future skip-buffs.
 		this.dungeon.progress = this.dungeon.length;
+		this.dungeon.dirty = true;
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot );
 		if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );

@@ -108,6 +108,8 @@ export default class Player extends Char {
 
 		super(vars);
 
+		this.id = 'player';
+
 		//if ( vars ) Object.assign( this, vars );
 		this._level = this._level || 0;
 		this._title = this._title || 'waif';
@@ -207,6 +209,7 @@ export default class Player extends Char {
 
 		this._level++;
 
+		this.dirty = true;
 		if ( this._level % 2 === 1) this.tohit++;
 
 		this.hp.max += 1;

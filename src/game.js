@@ -9,7 +9,7 @@ import ItemGen from './itemgen';
 import TechTree from './unused/techTree';
 
 var unlockTests = 0;
-
+var lastTime = 0;
 var techTree;
 
 /**
@@ -110,8 +110,8 @@ export default {
 	 */
 	update() {
 
-		console.log('tests: ' + unlockTests );
-		unlockTests = 0;
+		//console.log('tests: ' + unlockTests );
+		//unlockTests = 0;
 
 		let time = Date.now();
 		let dt = ( time - this.lastUpdate )/1000;
@@ -123,20 +123,26 @@ export default {
 
 		this.doResources(dt);
 
-		/*for( let p in this._items ) {
+		if ( ++lastTime >= 2 ) {
+			lastTime = 0;
+			return;
+		}
+
+		for( let p in this._items ) {
 
 			var it = this._items[p];
-			if ( it.dirty ) {
+			if ( it.dirty === true ) {
+	
 				it.dirty = false;
 				techTree.changed(it);
 			}
 
-		}*/
+		}
 
 		/**
 		 * @todo - inefficient.
 		 */
-		this.checkEvents();
+		//this.checkEvents();
 
 	},
 
@@ -339,7 +345,12 @@ export default {
 	 */
 	filled( v ) {
 
-		if ( v instanceof Array ) return v.every( this.filled, this );
+		if ( v instanceof Array ) {
+			for( let i = v.length-1; i>=0; i-- ) {
+				if ( !this.filled( v[i] ) )return false;
+			}
+			return true;
+		}
 
 		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getItem(v);
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
@@ -581,7 +592,7 @@ export default {
 	 */
 	tryUnlock( it ) {
 
-		unlockTests++;
+		//unlockTests++;
 
 		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
@@ -618,8 +629,6 @@ export default {
 	 */
 	unlockTest( test, item=null ) {
 
-		if ( test instanceof Array ) return test.every( v=>this.unlockTest(v,item), this );
-
 		let type = typeof test;
 		if ( type === 'function') return test( this._items, item );
 
@@ -632,22 +641,22 @@ export default {
 				// tag test - if any item with the tag is unlocked, test passes.
 				it = this.state.getTagList(test);
 				
-				if ( !it ) console.warn('undefined: ' + test );
+				//if ( !it ) console.warn('undefined: ' + test );
 
 				return it ? it.some( this.unlockTest, this ) : false;
 
 			}
 
 			// don't need to actually use an action or resource to mark it unlocked.
-			if ( it.type === 'resource' || it.type === 'action') return !it.locked;
-			return it.value >0;
+			return ( it.type === 'resource' || it.type === 'action') ?
+				(it.locked === false) : it.value > 0;
 
-		} else if ( test instanceof Item ) {
+		} else if ( test instanceof Array ) return test.every( v=>this.unlockTest(v,item), this );
+		else if ( test instanceof Item ) {
 
-			if ( test.type === 'resource' || test.type === 'action') return !test.locked;
-			return test.value >0;
+			return ( test.type === 'resource' || test.type === 'action') ? !test.locked : test.value > 0;
 
-		} else console.warn( 'unknown test: ' + test.id || test );
+		} //else console.warn( 'unknown test: ' + test.id || test );
 
 	},
 
@@ -658,9 +667,12 @@ export default {
 	 */
 	applyEffect( effect, dt=1 ) {
 
-		if ( effect instanceof Array ) for( let e of effect ) this.applyEffect(e,dt);
+		if ( typeof effect === 'object' ) {
 
-		else if ( effect instanceof Object ) {
+			if ( effect instanceof Array ) {
+				for( let e of effect ) this.applyEffect(e,dt);
+				return;
+			}
 
 			let target, e;
 			for( let p in effect ){
@@ -681,7 +693,7 @@ export default {
 		} else if ( typeof effect === 'string') {
 
 			let target = this.getItem(effect);
-			if ( target != null ) {
+			if ( target !== undefined ) {
 
 				if ( target.type === 'event') this.doEvent( target );
 				else this.doItem( target, dt );
@@ -699,7 +711,7 @@ export default {
 	 */
 	addMod( mod, amt ) {
 
-		if ( mod instanceof Array ) mod.forEach( this.addMod, this );
+		if ( mod instanceof Array ) for( let m of mod ) this.addMod(m, amt);
 		else if ( typeof mod === 'object' ) {
 	
 			for( let p in mod ) {
@@ -725,12 +737,12 @@ export default {
 	applyToTag( tag, obj, dt ) {
 
 		let target = this.state.getTagList(tag);
-		if ( target ) target.forEach( v=>{
-
-			v.applyVars( obj, dt )
-			target.dirty = true;
-
-		});
+		if ( target ) {
+			for( let i = target.length-1; i>=0; i--) {
+				target[i].applyVars( obj, dt);
+				target[i].dirty = true;
+			}
+		}
 
 	},
 
@@ -798,7 +810,7 @@ export default {
 		if ( cost instanceof Array ) return cost.forEach( v=>this.payCost(v,unit), this );
 
 		let res;
-		if ( cost instanceof Object ){
+		if ( typeof cost === 'object' ){
 
 			for( let p in cost ) {
 
@@ -835,7 +847,7 @@ export default {
 
 		let res;
 
-		if ( cost instanceof Object ){
+		if ( typeof cost === 'object' ){
 
 			for( let p in cost ) {
 
@@ -849,7 +861,7 @@ export default {
 
 			res = this.getItem('gold');
 			if ( !res) console.error('Error: Gold is missing');
-			if ( res.value < cost*unit) return false;
+			return res.value >= cost*unit;
 
 		}
 

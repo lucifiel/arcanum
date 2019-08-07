@@ -39,8 +39,7 @@ export default class Spell extends Item {
 
 	/**
 	 * Default require function for spells.
-	 * @param {GameState} state 
-	 * @param {Spell} self 
+	 * @param {GameState} state
 	 */
 	spellRequire( state, self ) {
 		return state.player.level >= self.level;
