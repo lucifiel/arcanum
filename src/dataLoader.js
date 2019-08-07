@@ -180,7 +180,7 @@ export default {
 					else if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( !isNaN(obj) ) {
-						if ( obj !== null && obj !== undefined ) console.warn('string used as Number: ' + p + ' -> ' + obj );
+						if ( obj !== null && obj !== undefined && obj !== '' ) console.warn('string used as Number: ' + p + ' -> ' + obj );
 						//console.warn('store numeric data as number.');
 						//sub[p] = Number(obj);
 					}

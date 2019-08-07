@@ -72,6 +72,9 @@
 			"arcana":1,
 			"mana":5
 		},
+		"cost":{
+			"stamina":0.2
+		},
 		"result":"spellbook"
 
 	},

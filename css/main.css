@@ -13,7 +13,7 @@ input[type="button"], button {
 
 }
 
-input[type="button"]:enabled:active, button:enabled:active {
+input[type="button"]:enabled:active, button:enabled:active, .hilite {
 	background-color: rgb( 100, 100,100);
 }
 

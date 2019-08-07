@@ -94,7 +94,7 @@ export default {
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
 
-		this.load();
+		this.loadSave();
 
 
 	},
@@ -112,34 +112,58 @@ export default {
 
 		},
 
-		fileDrop(evt){
+		fileDrop(e){
+			e.stopPropagation();
+			e.preventDefault();
 
-			evt.preventDefault();
-			if ( evt.dataTransfer.items ) {
-
-			} else {
-
-			}
+			e.currentTarget.classList.remove('hilite');
+	
+			const dt = e.dataTransfer;
+			this.loadFile( dt.files );
 			
 		},
-		fileDrag(evt){
-			evt.preventDefault();
+		fileDrag(e){
+			e.stopPropagation();
+			e.preventDefault();
+			e.currentTarget.classList.add('hilite');
 		},
-		load() {
+		dragOut(e){
+			e.stopPropagation();
+			e.preventDefault();
+			e.currentTarget.classList.remove('hilite');
+		},
+		loadFile(files) {
 
-			this.pause();
+			const file = files[0];
+			if ( !file) return;
+	
+			const reader = new FileReader();
+			reader.onload = (e)=>{
+
+				this.loadData( e.target.result );
+
+			}
+			reader.readAsText( file );
+
+		},
+
+		loadSave() {
 
 			let str = window.localStorage.getItem( 'gameData');
 			if ( !str ) console.log('no data saved.');
-			let obj = str ? JSON.parse( str ) : null;
-
-			//console.log('Revived Save: ' + obj );
-
-			this.game.load( obj ).then( this.gameLoaded );
-
-
+			this.loadData( str );
 
 		},
+
+		loadData( text ){
+
+			this.pause();
+
+			let obj = text ? JSON.parse( text ) : null;
+			this.game.load( obj ).then( this.gameLoaded );
+
+		},
+
 		save() {
 
 			console.log('saving...');
@@ -296,24 +320,6 @@ export default {
 	},
 	computed:{
 
-		/*completed() {
-
-			let a = [];
-			for( let evt of this.state.events ) {
-	
-				if ( !evt.locked || a.disabled ) a.push(evt);
-				else if ( this.game.tryUnlock(evt) ) {
-
-					this.game.doEvent(evt);
-					a.push(evt);
-
-				}
-
-			}
-			return a;
-
-		},*/
-
 		menuItems(){
 			return this.state.sections.filter( it=>!this.locked(it) );
 		}
@@ -330,9 +336,11 @@ export default {
 
 		<div class="top-bar">	
 			<button @click="save">save</button>
-			<button @click="load">load</button>
+			<button @click="loadSave">load</button>
 
-			<button id="drop-file" @drop="fileDrop" @dragover="fileDrag">[File]</button>
+			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
+			<button id="drop-file" @drop="fileDrop" @dragover="fileDrag" @dragleave.capture.stop="dragOut">[File]</button>
+
 			<confirm @confirm="reset">reset</confirm>
 			<dots v-if="state" :dots="state.player.dots" />
 			<span class="load-message" v-if="!state">LOADING DATA...</span>

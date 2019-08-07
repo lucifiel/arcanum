@@ -17,8 +17,7 @@ export default {
 <div style="display:inline-block">
 	<label v-if="label" :for="elmId('bar')">{{label}}</label>
 	<div class="bar" :id="elmId('bar')">
-		<div class="fill" v-if="value>0" :style="'width:'+width"></div>
-		<div class="fill" v-else>&nbsp;</div>
+		<div class="fill" :style="'width:'+width">&nbsp;</div>
 	</div>
 </div>
 
