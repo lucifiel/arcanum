@@ -48,7 +48,7 @@
 		"desc":"bodies for necromatic magic",
 		"max":1,
 		"mod":{
-			"shadow.rate":0.1
+			"shadow.rate":0.01
 		}
 	},
 	{

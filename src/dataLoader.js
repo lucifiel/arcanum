@@ -147,7 +147,7 @@ export default {
 			for( let it of arr ) {
 
 				var saveObj = saveItems[it.id];
-				console.log('MERGING: ' + it.id );
+				//console.log('MERGING: ' + it.id );
 				if ( saveObj ) merge( it, saveObj );
 
 			}

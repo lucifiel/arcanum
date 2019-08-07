@@ -81,7 +81,7 @@
 		"name":"Offer Services",
 		"desc":"Offer your magical services to the nearby townsfolk.",
 		"verb":"servicing",
-		"require":["adept"],
+		"require":"adept",
 		"perpetual":true,
 		"cost":{
 			"stamina":0.25,
@@ -98,7 +98,7 @@
 		"name":"Spin Gold",
 		"desc":"Spin straw into gold",
 		"verb":"spinning",
-		"require":["state.weaving>=5&&state.loom>0"],
+		"require":"state.weaving>=5&&state.loom>0",
 		"perpetual":true,
 		"length":10,
 		"cost":{

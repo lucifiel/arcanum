@@ -62,7 +62,7 @@ export default class Resource extends Item {
 
 	update( dt ) {
 
-		if ( this._rate ) {
+		if ( this._rate.value ) {
 
 			let v = this._value + this._rate.value*dt;
 

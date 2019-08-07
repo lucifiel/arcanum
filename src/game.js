@@ -6,6 +6,11 @@ import Log from './log.js';
 import GameState from './gameState';
 import Range from './range';
 import ItemGen from './itemgen';
+import TechTree from './unused/techTree';
+
+var unlockTests = 0;
+
+var techTree;
 
 /**
  * @constant {number} TICK_TIME - time in milliseconds between updates.
@@ -58,10 +63,12 @@ export default {
 		return this.loader = DataLoader.loadData( saveData ).then( allData=>{
 
 			this.state = new GameState( allData, saveData );
-
 			this.itemGen = new ItemGen( this.state );
 
 			this._items = this.state.items;
+
+			techTree = new TechTree( this._items );
+
 			this.initEvents();
 
 			this.loaded = true;
@@ -103,6 +110,9 @@ export default {
 	 */
 	update() {
 
+		console.log('tests: ' + unlockTests );
+		unlockTests = 0;
+
 		let time = Date.now();
 		let dt = ( time - this.lastUpdate )/1000;
 		this.lastUpdate = time;
@@ -112,6 +122,16 @@ export default {
 		this.doCurrent( dt );
 
 		this.doResources(dt);
+
+		/*for( let p in this._items ) {
+
+			var it = this._items[p];
+			if ( it.dirty ) {
+				it.dirty = false;
+				techTree.changed(it);
+			}
+
+		}*/
 
 		/**
 		 * @todo - inefficient.
@@ -167,6 +187,7 @@ export default {
 			if ( stat.delta !== 0 ) {
 
 				if ( stat.mod ) this.addMod( stat.mod, stat.delta );
+				stat.dirty = true;
 
 			}
 
@@ -234,10 +255,12 @@ export default {
 		else if ( action.update ) {
 
 			action.update(dt);
+			action.dirty = true;
 
 		} else {
 
 			if ( action.length ) action.progress += dt;
+			action.dirty = true;
 			// ongoing effect.
 			if ( action.effect) this.applyEffect( action.effect, dt );
 
@@ -275,7 +298,7 @@ export default {
 		 */
 		if ( act && act.cast && act.progress === 0 ) {
 
-			if ( !this.canPay(act.cast) ) return false;
+			//if ( !this.canPay(act.cast) ) return false;
 			this.payCost( act.cast);
 
 		}
@@ -341,6 +364,7 @@ export default {
 
 		evt.locked = false;
 		evt.value = 1;
+		evt.dirty = true;
 
 		this.log.log( evt.name, evt.desc, 'event' );
 
@@ -419,7 +443,7 @@ export default {
 			if ( item ) this.remove( it, it.value );
 			else {
 
-				item = this.getTagList( it );
+				item = this.state.getTagList( it );
 				if ( item ) item.forEach( this.removeAll, this );
 
 			}
@@ -495,7 +519,6 @@ export default {
 		if ( it.disable ) this.disable( it.disable );
 
 		if ( it.log ){
-			console.log('LOGGING');
 			this.log.log( it.log.title, it.log.text );
 		}
 
@@ -504,6 +527,7 @@ export default {
 				this.state.raid.spellAttack( it );
 		}
 
+		it.dirty = true;
 		return true;
 
 	},
@@ -528,6 +552,8 @@ export default {
 		it.value -= amt;
 		if ( it.mod ) this.removeMod( it.mod, amt );
 		if ( it.lock ) this.unlock( it.lock );
+
+		it.dirty = true;
 
 	},
 
@@ -555,12 +581,15 @@ export default {
 	 */
 	tryUnlock( it ) {
 
+		unlockTests++;
+
 		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
 		else if ( it.require && this.unlockTest(it.require,it) ) {
 
 			this.log.log( 'Unlocked: ' + it.name, it.name + ' has been unlocked.', 'unlock' );
 			it.locked = false;
+			it.dirty = true;
 
 		}
 
@@ -646,6 +675,7 @@ export default {
 				else if ( typeof e === 'boolean') this.doItem( target );
 				else target.applyVars(e,dt);
 				
+				target.dirty = true;
 			}
 
 		} else if ( typeof effect === 'string') {
@@ -679,6 +709,7 @@ export default {
 				if ( target === undefined ) this.applyToTag( p, mod[p], amt );
 				else target.applyVars( mod[p], amt );
 
+				target.dirty = true;
 			}
 
 		}
@@ -686,15 +717,20 @@ export default {
 	},
 	
 	/**
-	 * Apply an effect or mod to all type tags.
-	 * @param {string} tag 
-	 * @param {Object} obj 
-	 * @param {number} dt 
+	 * Apply an effect or mod to all Items with given tag.
+	 * @param {string} tag - item tag.
+	 * @param {Object} obj - object mod.
+	 * @param {number} dt - time or percent of mod to apply.
 	 */
 	applyToTag( tag, obj, dt ) {
 
 		let target = this.state.getTagList(tag);
-		if ( target ) target.forEach( v=>v.applyVars( obj, dt ) );
+		if ( target ) target.forEach( v=>{
+
+			v.applyVars( obj, dt )
+			target.dirty = true;
+
+		});
 
 	},
 
@@ -714,7 +750,7 @@ export default {
 	canRun( it ) {
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
-		if ( it.cast && it.progress == 0 && !this.canPay(it.cast) ) return false;
+		if ( it.cast && it.progress === 0 && !this.canPay(it.cast) ) return false;
 
 		if ( it.fill ) {
 
@@ -771,7 +807,7 @@ export default {
 
 					if ( !isNaN(cost[p]) ) res.value -= cost[p]*unit;
 					else res.applyVars( cost[p], -unit );
-
+					res.dirty = true;
 
 				}
 
@@ -780,7 +816,8 @@ export default {
 		} else if ( !isNaN(cost ) ) {
 
 			res = this.getItem('gold');
-			if ( res ) res.value -= cost*unit;
+			res.value -= cost*unit;
+			res.dirty = true;
 
 		}
 
@@ -902,9 +939,10 @@ export default {
 
 		if ( id instanceof Array ) {
 			id.forEach( v=>this.lock(v,amt), this );
-		} else if ( id instanceof Object ) {
+		} else if ( typeof id === 'object' ) {
 
 			id.locks += amt;
+			id.dirty =true;
 
 		} else {
 
@@ -913,6 +951,7 @@ export default {
 
 				it.locks += amt;
 				console.log( it.id + ' adding locks: ' + it.locks );
+				it.dirty = true;
 
 			} else {
 

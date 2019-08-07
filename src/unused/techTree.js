@@ -1,129 +1,131 @@
-import Upgrade from './upgrade';
-import * as PIXI from 'pixi.js';
+import Game from '../game';
 
-export default class TechTree extends PIXI.utils.EventEmitter {
+/**
+ * @const {RegExp} FuncRE - regular expression to find tree relationships
+ * in requirement/need functions.
+ */
+const FuncRE = /state\.((?:\w|\.)+)/gi;
 
-	/**
-	 * {Object[id=>Upgrade]}
-	 */
-	get upgrades() { return this._upgrades;}
-	set upgrades(v) { this._upgrades =v;}
-
-	/**
-	 * {Object[id=>Number]} Number of times an upgrade has been unlocked.
-	 */
-	get lockStatus() { return this._lockStatus; }
-	set lockStatus(v) { this._lockStatus = v;}
-
-	/**
-	 * {Upgrade[]} Upgrades that can currently be unlocked.
-	 */
-	get fringe() { return this._fringe; }
-	set fringe(v) { this._fringe = v; }
+export default class TechTree {
 
 	/**
 	 * 
 	 * @param {Object} [vars=null] 
 	 */
-	constructor(vars=null){
+	constructor( items ) {
 
-		super();
+		this.items = items;
 
-		if ( vars) Object.assign( this, vars);
+		/**
+		 * @property {Object.<string,Array>} unlocks - maps item id to target Items
+		 * the id Item could potentially unlock.
+		 */
+		this.unlocks = {};
 
-		this._upgrades = this._upgrades || {};
-		this._lockStatus = this._lockStatus || {};
+		for( let p in this.items ) {
 
-		this._fringe = [];
-
-		let up;
-		for( let p in this._upgrades ) {
-
-			up = this._upgrades[p];
-
-			// no requirements. add to fringe.
-			if ( !up.requires ) {
-				this._fringe.push(up);
-				up.unlockable = true;
-			}
-
-		}
-
-
-	}
-
-	/**
-	 * Refresh the list of upgrades that can be unlocked.
-	 */
-	refreshFringe() {
-
-		let upgrades = this._upgrades;
-		let up;
-
-		for( let p of upgrades ) {
-
-			up = upgrades[p];
-			if ( up.unlockable === true || up.unlocked === true ) continue;
-
-			// no requirements. add to fringe.
-			if ( this.canUnlock(up) === true ) this._fringe.push(up);
+			this.mapTree( this.items[p]);
 
 		}
 
 	}
 
 	/**
-	 * 
-	 * @param {String} id 
+	 * Mark all Items which might potentially unlock this item.
+	 * @param {Item} item 
 	 */
-	unlocked(id, count=0) {
-		return this._lockStatus.hasOwnProperty(id) && this._lockStatus[id] > count;
+	mapTree( item ) {
+
+		if ( !item.locked || item.disabled ) return;
+
+		if ( item.require ) this.markLinks( item, item.require );
+		if ( item.need ) this.markLinks( item, item.need );
+
+	}
+
+	markLinks( item, need ) {
+
+		let type = typeof need;
+
+		if ( type === 'string') {
+
+			this.markUnlock( need, item );
+
+		} else if ( type === 'function' ) {
+
+			this.markFunc( item, need );
+
+		} else if ( need instanceof Array ) return need.forEach( v=>this.markLinks(item,v), this );
+
 	}
 
 	/**
-	 * 
-	 * @param {String|Upgrade} id 
+	 * Mark unlock links from a requirement function.
+	 * @param {Item} item - item being unlocked. 
+	 * @param {function} func - function testing if item can be unlocked.
 	 */
-	canUnlock( id ) {
+	markFunc( item, func ) {
 
-		let upgrade = (typeof id === 'string' ) ? this._upgrades[id] : id;
+		let text = func.toString();
+		let results;
+		while ( results = FuncRE.exec( text )) {
 
-		if ( !upgrade) return false;
+			//var varPath = results[1];
+			//console.log( item.id + 'require: ' + varPath );
 
-		let requires = upgrade.requires;
-		if ( requires ) {
-
-			if ( typeof requires === 'string') {
-
-				if ( this.unlocked( requires ) === false ) return false;
-
-			} else if ( requires instanceof Array ) {
-
-				for( let i = requires.length-1; i>= 0; i-- ) {
-					if ( this.unlocked(requires[i]) === false) return false;
-				}
-
-			} 
+			this.markUnlock( results[1].split('.')[0], item );
 
 		}
-
-		return true;
+		if ( text.includes('this') ) this.markUnlock( item.id, item );
 
 	}
 
-	unlock(upgrade) {
+	/**
+	 * Map src as an unlocker of item.
+	 * @param {string} src 
+	 * @param {Item} item 
+	 */
+	markUnlock( src, item ) {
 
-		if ( this.canUnlock( upgrade ) === false ) return false;
+		if ( !src) return;
+		let it = this.items[src];
+		if ( !it ) {
+			it = Game.state.getTagList( src );
+			if ( it ) it.forEach( v=>this.markUnlock(v,item) );
+			return;
+		}
 
-		let cur = this._lockStatus[upgrade.id] || 0;
-		this._lockStatus[upgrade.id] = cur+1;
+		let map = this.unlocks[src];
+		if ( map === undefined ) this.unlocks[src] = map = {};
 
-		let id = this._fringe.indexOf( upgrade );
-		if ( id >= 0 ) this._fringe.splice(id, 1 );
+		map[item.id] = true;
 
-		this.emit( 'unlocked', upgrade );
+	}
 
-		return true;
+	/**
+	 * Call when some variable of src Item changes.
+	 * Test unlocks on all variables linked by a possible unlock chain.
+	 * @param {string} src 
+	 */
+	changed( src ){
+
+		let links = this.unlocks[src];
+		if ( links === undefined) return;
+
+		let it;
+		let count = 0;
+		for( let p in links ) {
+
+			it = this.items[p];
+			if ( it.locked === false || it.disabled === true || Game.tryUnlock(it) ) {
+
+				// remove unlock link.
+				links[p] = undefined;
+
+			} else count++;
+
+		}
+		if ( count === 0 ) this.unlocks[src] = undefined;
 
 	}
 

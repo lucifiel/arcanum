@@ -383,8 +383,10 @@
 		"mod":{
 			"air.rate":0.01,
 			"air.max":1,
-			"spirit.max":1,
-			"sprit.rate":0.005
+			"spirit":{
+				"max":1,
+				"rate":0.005
+			}
 		}
 	},
 	{

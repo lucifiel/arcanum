@@ -123,7 +123,7 @@ export default {
 			
 		},
 		fileDrag(evt){
-
+			evt.preventDefault();
 		},
 		load() {
 
@@ -211,21 +211,15 @@ export default {
 
 		},
 
-		onEquip( it ) {
-			this.game.equip( it );
-		},
+		onEquip( it ) { this.game.equip( it ); },
 
-		onUnequip(slot, it){
-			this.game.unequip(slot, it)
-		},
+		onUnequip(slot, it){ this.game.unequip(slot, it) },
 
 		/**
 		 * Drop item from inventory.
 		 * @param {Item} it - item to drop
 		 */
-		onDrop(it) {
-			this.game.drop(it);
-		},
+		onDrop(it) { this.game.drop(it); },
 
 		onSell(it) {
 			this.game.trySell( it );
@@ -302,7 +296,7 @@ export default {
 	},
 	computed:{
 
-		completed() {
+		/*completed() {
 
 			let a = [];
 			for( let evt of this.state.events ) {
@@ -318,7 +312,7 @@ export default {
 			}
 			return a;
 
-		},
+		},*/
 
 		menuItems(){
 			return this.state.sections.filter( it=>!this.locked(it) );
@@ -338,7 +332,7 @@ export default {
 			<button @click="save">save</button>
 			<button @click="load">load</button>
 
-			<span id="drop_file" @drop="fileDrop" @dragover="fileDrag">[File]</span>
+			<button id="drop-file" @drop="fileDrop" @dragover="fileDrag">[File]</button>
 			<confirm @confirm="reset">reset</confirm>
 			<dots v-if="state" :dots="state.player.dots" />
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
@@ -400,6 +394,11 @@ export default {
 </template>
 
 <style scoped>
+
+#drop-file {
+	border-width: 1.5px;
+	border-style: dashed;
+}
 
 span.load-message {
 	padding: 8px 8px 2px;
