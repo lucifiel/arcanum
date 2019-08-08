@@ -14,7 +14,7 @@ import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 import Action from './items/action';
 
-import { merge } from 'objecty';
+import { merge, cloneClass, mergeSafe } from 'objecty';
 import ZeroSum from './items/zerosum';
 
 const DataDir = './data/';
@@ -31,6 +31,27 @@ const IdTest = /^[A-Za-z_]+\w*$/;
  * @todo replace with server call.
  */
 export default {
+
+	/**
+	 * 
+	 */
+	templates:null,
+
+	/**
+	 * Lists of item type to item.
+	 */
+	itemLists:null,
+
+	loadGame( saveData=null ) {
+
+		if ( this.templates === null ) {
+
+			this.loadData(saveData);
+
+		} else {
+		}
+
+	},
 
 	loadData( saveData=null ) {
 
@@ -53,8 +74,44 @@ export default {
 
 			)
 
-		).then( datas=>this.dataLoaded(datas, saveData),
+		).then( arr=>{
+
+
+				this.mergeData(arr, saveData)
+
+			},
 			err=>{ console.error(err); });
+
+	},
+
+	/**
+	 * Raw data files loaded.
+	 * @param {Object[][]} filesArr 
+	 */
+	filesLoaded( filesArr ) {
+
+		let templates = {};
+
+		let lists = {};
+		let itemList;
+
+		for( let i = filesArr.length-1; i>=0; i-- ) {
+
+			itemList = filesArr[i];
+			for( let j = itemList.length-1; j >= 0; j-- ) {
+
+				// copy every list item as a template.
+				templates[ itemList[j].id ] = ( itemList[j] );
+
+
+			}
+
+			lists[ DataFiles[i] ] = itemList;
+
+		}
+
+		this.templates = this.freezeData( templates );
+		this.itemLists = lists;
 
 	},
 
@@ -63,7 +120,7 @@ export default {
 	 * @param {Object[][]} fileDatas - array of Object lists of each type. 
 	 * @param {?Object} [gameData=null] - complete previous save data, if any.
 	 */
-	dataLoaded( fileDatas, gameData=null ) {
+	mergeData( fileDatas, gameData=null ) {
 
 		let mergedFiles = {};
 
@@ -108,9 +165,9 @@ export default {
 
 		gd.resources = this.initItems( dataFiles['resources'], Resource );
 
-		gd.upgrades = this.initItems( dataFiles['upgrades'], undefined, null, 'upgrade' );
-		gd.homes = this.initItems( dataFiles['homes'], undefined, 'home', 'home' );
-		this.initItems( dataFiles['furniture'], undefined, 'furniture', 'furniture' );
+		gd.upgrades = this.initItems( dataFiles['upgrades'], Item, null, 'upgrade' );
+		gd.homes = this.initItems( dataFiles['homes'], Item, 'home', 'home' );
+		this.initItems( dataFiles['furniture'], Item, 'furniture', 'furniture' );
 		this.initItems( dataFiles['skills'], Skill );
 
 		this.initItems( dataFiles['monsters'], Monster, 'monster', 'monster' );
@@ -126,8 +183,8 @@ export default {
 
 		gd.materials = dataFiles['materials'];
 
-		gd.events = this.initItems( dataFiles['events'], undefined, null, 'event' );
-		gd.events = gd.events.concat( this.initItems( dataFiles['classes'], undefined, null, 'event') );
+		gd.events = this.initItems( dataFiles['events'], Item, null, 'event' );
+		gd.events = gd.events.concat( this.initItems( dataFiles['classes'], Item, null, 'event') );
 
 		gd.actions = this.initItems( dataFiles['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
@@ -314,6 +371,25 @@ export default {
 		}
 
 		obj[ parts[max] ] = val;
+
+	},
+
+	/**
+	 * Freeze all template data.
+	 * Clones must be made for any new edits.
+	 */
+	freezeData( obj ) {
+
+		let sub;
+		for( let p in obj ){
+
+			sub = obj[p];
+			if ( typeof sub === 'object') this.freezeData(sub);
+			else Object.freeze( sub );
+
+		}
+
+		Object.freeze( obj );
 
 	}
 

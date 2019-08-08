@@ -294,7 +294,7 @@
 		"desc":"Study the arcane",
 		"require":"state.scrolls>=1",
 		"cost":{
-			"stamina":0.1
+			"stamina":0.2
 		},
 		"effect":{
 			"research":1,

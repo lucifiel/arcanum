@@ -1,4 +1,4 @@
-import { defineExcept, propPaths } from 'objecty';
+import { defineExcept, changes, jsonify } from 'objecty';
 import Stat from '../stat';
 
 import Game from '../game';
@@ -8,13 +8,19 @@ import Game from '../game';
  * @property {?number} duration
  */
 
- const JSONEncode = ["id","value","max","rate","cost",
- "slot", "effect", "mod", "result"];
+/* const JSONEncode = ["id","value","max","rate","cost",
+ "slot", "effect", "mod", "result"];*/
 
 /**
  * Game Items base class.
  */
 export default class Item {
+
+	/**
+	 * @property {Object} template - data used to create this Item.
+	 */
+	get template() { return this._template; }
+	set template(v) { this._template = v;}
 
 	/**
 	 * @property {string} type
@@ -127,9 +133,10 @@ export default class Item {
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
 
-	toJSON(){
+	toJSON() { return changes( jsonify(this,['id']), this.template || {} ); }
 
-		let data = {};
+	/*toJSON(){
+
 		let obj;
 
 		if ( this.disabled ) data.disabled = true;
@@ -146,7 +153,7 @@ export default class Item {
 		}
 		return data;
 
-	}
+	}*/
 
 	/**
 	 * 
