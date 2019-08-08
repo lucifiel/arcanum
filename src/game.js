@@ -6,9 +6,8 @@ import Log from './log.js';
 import GameState from './gameState';
 import Range from './range';
 import ItemGen from './itemgen';
-import TechTree from './unused/techTree';
+import TechTree from './techTree';
 
-var unlockTests = 0;
 var lastTime = 0;
 var techTree;
 
@@ -123,18 +122,13 @@ export default {
 
 		this.doResources(dt);
 
-		if ( ++lastTime >= 2 ) {
-			lastTime = 0;
-			return;
-		}
-
 		for( let p in this._items ) {
 
 			var it = this._items[p];
 			if ( it.dirty === true ) {
 	
 				it.dirty = false;
-				techTree.changed(it);
+				techTree.changed(p);
 			}
 
 		}
@@ -304,7 +298,7 @@ export default {
 		 */
 		if ( act && act.cast && (act.progress === 0) ) {
 
-			console.log('PAY ACTION: ' + act.progress );
+			//console.log('PAY ACTION: ' + act.progress );
 			//if ( !this.canPay(act.cast) ) return false;
 			this.payCost( act.cast);
 
@@ -376,9 +370,11 @@ export default {
 
 		evt.locked = false;
 		evt.value = 1;
-		evt.dirty = true;
 
+		//console.log('event done: ' + evt.id );
 		this.log.log( evt.name, evt.desc, 'event' );
+
+		evt.dirty = true;
 
 	},
 
@@ -601,7 +597,8 @@ export default {
 
 			this.log.log( 'Unlocked: ' + it.name, it.name + ' has been unlocked.', 'unlock' );
 			it.locked = false;
-			it.dirty = true;
+			if ( it.type === 'event') this.doEvent( it );
+			else it.dirty = true;
 
 		}
 
@@ -764,7 +761,6 @@ export default {
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
 		if ( it.cast && (it.progress === 0) && !this.canPay(it.cast) ) {
-			console.log('CANNOT PAY: ' + it.id );
 			return false;
 		}
 

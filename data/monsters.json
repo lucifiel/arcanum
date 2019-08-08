@@ -44,6 +44,7 @@
 		"desc":"Tiny vicious humanoid riding a dragonfly.",
         "hp":"2~4",
 		"defense":1,
+		"tohit":2,
 		"speed":2,
         "attack":{
             "name":"spear",

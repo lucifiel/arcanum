@@ -34,7 +34,7 @@
 		"id":"evt_pestcontrol",
 		"name":"Pest Control",
 		"desc":"After your daily castigation, your master mentions the rats in the basement have become a problem. Something about stolen shortswords and building barricades. You had better go down and deal with it.",
-		"require":"state.player.level>0&&(state.apprentice+state.neophyte>0)"
+		"require":"state.player.level>0&&(state.apprentice.value>0||state.neophyte.value>0)"
 
 	},
 	{

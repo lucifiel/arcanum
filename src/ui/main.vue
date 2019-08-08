@@ -424,8 +424,7 @@ export default {
 	text-decoration: none;
 }
 #drop-file {
-	border-width: 1.5px;
-	border-style: dashed;
+	border: 1.75px dashed rgb(117, 117, 117);
 }
 
 span.load-message {

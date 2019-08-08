@@ -43,12 +43,20 @@ export default {
 
 
 <template>
-	<div v-if="confirming">
+	<span class="my-span" v-if="confirming">
 		<button type="button" @click="confirmClick">{{btnConfirm}}</button>
 		<button type="button" @click="cancelClick">{{btnCancel}}</button>
-	</div>
-	<div v-else>
+	</span>
+	<span v-else class="my-span">
 		<button type="button" @click="mainClick"><slot>Delete</slot></button>
-	</div>
+	</span>
 
 </template>
+
+<style scoped>
+
+span.my-span {
+	display:contents;
+}
+
+</style>

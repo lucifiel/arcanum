@@ -12,7 +12,7 @@ export default class Resource extends Item {
 	/**
 	 * @property {number} value
 	 */
-	get value() { return this._value || 0; }
+	get value() { return this._value; }
 	set value(v) {
 		if ( this._max && v > this._max.value ) v = this._max.value;
 		else if ( v < 0 ) v = 0;

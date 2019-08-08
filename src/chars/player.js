@@ -109,6 +109,7 @@ export default class Player extends Char {
 		super(vars);
 
 		this.id = 'player';
+		this.type = "player";
 
 		//if ( vars ) Object.assign( this, vars );
 		this._level = this._level || 0;
@@ -120,8 +121,6 @@ export default class Player extends Char {
 
 		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 1;
-
-		this.type = "player";
 
 		this._statuses = this._statuses || {
 			fly:0,

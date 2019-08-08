@@ -367,7 +367,6 @@
 		"name":"compile bestiary",
 		"verb":"compiling bestiary",
 		"require":"state.animals>=3",
-		"need":"state.codices>=1",
 		"length":50,
 		"repeat":false,
 		"cast":{
