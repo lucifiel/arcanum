@@ -59,7 +59,7 @@ export default {
 
 		this.loaded = false;
 
-		return this.loader = DataLoader.loadData( saveData ).then( allData=>{
+		return this.loader = DataLoader.loadGame( saveData ).then( allData=>{
 
 			this.state = new GameState( allData, saveData );
 			this.itemGen = new ItemGen( this.state );

@@ -77,7 +77,7 @@ export default class Player extends Char {
 	 */
 	toJSON() {
 
-		let data = super.toJSON();
+		let data = {};
 
 		data.defense = ( this.defense );
 		data.tohit = ( this.tohit );
@@ -93,9 +93,10 @@ export default class Player extends Char {
 		data.dots = ( this.dots );
 
 		data.statuses = this.statuses;
+		data.className = this.className;
 
-		//data.speed = JSON.stringify( this.speed );
-		//data.exp = JSON.stringify( this.exp );
+		data.speed = JSON.stringify( this.speed );
+		data.exp = JSON.stringify( this.exp );
 
 		if ( this.primary ) data.primary = this.primary.id;
 		if ( this.weapon ) data.weapon = this.weapon.id;

@@ -33,27 +33,31 @@ const IdTest = /^[A-Za-z_]+\w*$/;
 export default {
 
 	/**
-	 * 
+	 * @property {Object.<string,Object>} templates - default Item templates.
+	 * item id => default item data.
 	 */
 	templates:null,
 
 	/**
-	 * Lists of item type to item.
+	 * Lists of item ids for each item type.
+	 * itemType => item id list
+	 * @property {Object.<string,string[]>}
 	 */
 	itemLists:null,
 
-	loadGame( saveData=null ) {
+	async loadGame( saveData ) {
 
 		if ( this.templates === null ) {
 
-			this.loadData(saveData);
+			return this.loadData().then(()=>{
+				return this.makeGameData( this.templates, this.itemLists, saveData );
+			});
 
-		} else {
-		}
+		} else return this.makeGameData( this.templates, this.itemLists, saveData );
 
 	},
 
-	loadData( saveData=null ) {
+	loadData() {
 
 		let headers = new Headers();
 		headers.append( 'Content-Type', 'text/json');
@@ -74,12 +78,7 @@ export default {
 
 			)
 
-		).then( arr=>{
-
-
-				this.mergeData(arr, saveData)
-
-			},
+		).then( arr=>this.filesLoaded(arr),
 			err=>{ console.error(err); });
 
 	},
@@ -97,124 +96,133 @@ export default {
 
 		for( let i = filesArr.length-1; i>=0; i-- ) {
 
-			itemList = filesArr[i];
+			lists[ DataFiles[i] ] = itemList = filesArr[i];
+			//console.log('Setting Default List: ' + DataFiles[i] );
+
 			for( let j = itemList.length-1; j >= 0; j-- ) {
 
 				// copy every list item as a template.
 				templates[ itemList[j].id ] = ( itemList[j] );
-
+				// transform to list of ids.
+				itemList[j] = itemList[j].id;
 
 			}
-
-			lists[ DataFiles[i] ] = itemList;
 
 		}
 
 		this.templates = this.freezeData( templates );
+		//for( let p in this.templates ) console.log('template: ' + p );
+
 		this.itemLists = lists;
+
+	},
+
+	makeGameData( templates, itemLists, saveData={} ){
+
+		saveData = saveData || {};
+
+		// restore Percent/Range classes /special functions of non-item data.
+		for( let p in saveData ) {
+
+			if ( p === 'items') continue;
+			var dataItem = saveData[p];
+			//console.log('game save item: ' + p );
+			saveData[p] = this.parseSub(dataItem);
+		
+		}
+
+		saveData.items = this.mergeDefaults( templates, saveData.items );
+
+		/**
+		 * Form the actual item lists used as the gameData.
+		 */
+		let gameLists = {};
+
+		var idList, gameList;
+		for( let p in itemLists ) {
+
+			idList = itemLists[p];
+
+			//console.log('CREATING LIST TYPE: ' + p );
+			// lists of game-item data by type.
+			gameLists[p] = gameList = [];
+
+			for( let i = 0; i < idList.length; i++ ) {
+				// copy actual game data into game list.
+				//console.log('Adding ' + idList[i] + ' Item: ' + saveData.items[ idList[i] ] );
+				gameList[i] = saveData.items[ idList[i] ];
+			}
+
+
+		}
+
+		return this.initGameData( saveData, gameLists );
 
 	},
 
 	/**
 	 * 
-	 * @param {Object[][]} fileDatas - array of Object lists of each type. 
-	 * @param {?Object} [gameData=null] - complete previous save data, if any.
+	 * @param {Object.<string,Object>} templates - template items. 
+	 * @param {?Object} [saveItems={}] - previous save items, if any.
+	 * @returns {Object.<string,Object>} - the saveItems with data merged from default data.
 	 */
-	mergeData( fileDatas, gameData=null ) {
+	mergeDefaults( templates, saveItems={} ) {
 
-		let mergedFiles = {};
+		//console.log('Merging Template Data');
 
-		// id => item data only.
-		let saveItems = gameData ? gameData.items : null;
+		// NOTE: This requires that properties are never actually deleted from items,
+		// though they can be set to null.
+		for( let p in templates ) {
 
-		if ( gameData ) {
+			//console.log('MERGING: ' + p );
 
-			// restore Percent/Range classes /special functions of non-item data.
-			for( let p in gameData ) {
+			var saveObj = saveItems[p] || {};
 
-				if ( p === 'items') continue;
-				var dataItem = gameData[p];
-				//console.log('game save item: ' + p );
-				gameData[p] = this.parseSub(dataItem);
+			mergeSafe( saveObj, templates[p] );
 
-			}
+			saveItems[p] = this.parseSub( saveObj );
+			saveObj.template = templates[p];
 
 		}
 
-		for( let i = fileDatas.length-1; i >= 0; i-- ) {
-
-			this.initJSON( fileDatas[i], saveItems );
-
-			// map of DataFile name -> data list.
-			mergedFiles[ DataFiles[i] ] = fileDatas[i];
-
-		}
-
-		return this.initGameData( mergedFiles, gameData );
+		return saveItems;
 
 	},
 
-	initGameData( dataFiles, saveState=null ){
-
-		var gd = {
-			items:{},
-		};
-		if ( saveState ) Object.assign( gd, saveState );
+	initGameData( gd, dataLists ){
 		
 		this.items = gd.items;
 
-		gd.resources = this.initItems( dataFiles['resources'], Resource );
+		gd.resources = this.initItems( dataLists['resources'], Resource );
 
-		gd.upgrades = this.initItems( dataFiles['upgrades'], Item, null, 'upgrade' );
-		gd.homes = this.initItems( dataFiles['homes'], Item, 'home', 'home' );
-		this.initItems( dataFiles['furniture'], Item, 'furniture', 'furniture' );
-		this.initItems( dataFiles['skills'], Skill );
+		gd.upgrades = this.initItems( dataLists['upgrades'], Item, null, 'upgrade' );
+		gd.homes = this.initItems( dataLists['homes'], Item, 'home', 'home' );
+		this.initItems( dataLists['furniture'], Item, 'furniture', 'furniture' );
+		this.initItems( dataLists['skills'], Skill );
 
-		this.initItems( dataFiles['monsters'], Monster, 'monster', 'monster' );
-		this.initItems( dataFiles['dungeons'], Dungeon );
-		this.initItems( dataFiles['spells'], Spell );
+		this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
+		this.initItems( dataLists['dungeons'], Dungeon );
+		this.initItems( dataLists['spells'], Spell );
 
-
-		gd.armors = this.initItems( dataFiles['armors'], Wearable );
+		gd.armors = this.initItems( dataLists['armors'], Wearable );
 		gd.armors.forEach( v=>v.kind = 'armor' );
 	
-		gd.weapons = this.initItems( dataFiles['weapons'], Wearable );
+		gd.weapons = this.initItems( dataLists['weapons'], Wearable );
 		gd.weapons.forEach(v=>v.kind='weapon');
 
-		gd.materials = dataFiles['materials'];
+		gd.materials = dataLists['materials'];
 
-		gd.events = this.initItems( dataFiles['events'], Item, null, 'event' );
-		gd.events = gd.events.concat( this.initItems( dataFiles['classes'], Item, null, 'event') );
+		gd.events = this.initItems( dataLists['events'], Item, null, 'event' );
+		gd.events = gd.events.concat( this.initItems( dataLists['classes'], Item, null, 'event') );
 
-		gd.actions = this.initItems( dataFiles['actions'], Action, null, 'action' );
+		gd.actions = this.initItems( dataLists['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
-		gd.sections = this.initItems( dataFiles['sections']);
+		gd.sections = this.initItems( dataLists['sections']);
 		
-		gd.player = this.items.player = this.initPlayer( dataFiles['player'], gd.items.player );
+		gd.player = this.items.player = this.initPlayer( dataLists['player'], gd.items.player );
 
 		return gd;
-
-	},
-
-	initJSON( arr, saveItems=null ) {
-
-		if ( saveItems ) {
-
-			for( let it of arr ) {
-
-				var saveObj = saveItems[it.id];
-				//console.log('MERGING: ' + it.id );
-				if ( saveObj ) merge( it, saveObj );
-
-			}
-
-		}
-
-		for( let it of arr ) {
-			//console.log('parsing sub: ' + it.id );
-			this.parseSub(it);
-		}
 
 	},
 
@@ -305,24 +313,23 @@ export default {
 		return new Function( 'state', 'player', 'target', 'return ' + text );
 	},
 
-	initItems( DataList, UseClass=Item, tag=null, type=null ) {
+	initItems( dataList, UseClass=Item, tag=null, type=null ) {
 
-		let a = [];
 		let cnstr = UseClass ? UseClass.prototype.constructor : null;
 
-		let it;
-		for( let def of DataList ) {
+		for( let i = dataList.length-1; i >= 0; i-- ) {
 
-			it = def.zerosum === true ? new ZeroSum(def) : new cnstr( def );
-			if ( tag ) it.addTag( tag );
-			if ( type ) it.type = type;
+			var def = dataList[i];
 
-			a.push(it);
-			this.items[it.id] = it;
+			dataList[i] = def = def.zerosum === true ? new ZeroSum(def) : new cnstr( def );
+			if ( tag ) def.addTag( tag );
+			if ( type ) def.type = type;
+
+			this.items[def.id] = def;
 
 		}
 
-		return a;
+		return dataList;
 
 	},
 
@@ -389,7 +396,7 @@ export default {
 
 		}
 
-		Object.freeze( obj );
+		return Object.freeze( obj );
 
 	}
 

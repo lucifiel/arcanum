@@ -33,7 +33,7 @@
 		"id":"cot",
 		"desc":"Slightly better than sleeping on the floor",
 		"require":"apprentice",
-		"tag":"bed",
+		"tags":"bed",
 		"slot":"bed",
 		"max":1,
 		"cost":{
@@ -48,7 +48,7 @@
 	{
 		"id":"woodbed",
 		"desc":"small wooden bed.",
-		"tag":"bed",
+		"tags":"bed",
 		"slot":"bed",
 		"require":"neophyte",
 		"cost":{
@@ -63,7 +63,7 @@
 	{
 		"id":"fourposter",
 		"desc":"four post bed",
-		"tag":"bed",
+		"tags":"bed",
 		"slot":"bed",
 		"require":"adept",
 		"cost":{
@@ -199,7 +199,7 @@
 
 		"id":"workbench",
 		"desc":"A small bench for arts and crafts.",
-		"tag":"workspace",
+		"tags":"workspace",
 		"locked":false,
 		"cost":{
 			"gold":15,
@@ -216,7 +216,7 @@
 		"name":"writing desk",
 		"desc":"A desk for working and scribing.",
 		"require":"neophyte",
-		"tag":"workspace",
+		"tags":"workspace",
 		"cost":{
 			"gold":25,
 			"space":2
@@ -232,7 +232,7 @@
 		"name":"potted milkweed",
 		"locked":false,
 		"desc":"Really brightens up the place",
-		"tag":"taggarden",
+		"tags":"taggarden",
 		"cost":{
 			"gold":25,
 			"space":1
@@ -245,7 +245,7 @@
 	{
 		"id":"birdcage",
 		"desc":"Perfect for robins.",
-		"tag":"tagpen",
+		"tags":"tagpen",
 		"require":"apprentice",
 		"cost":{
 			"gold":25,

@@ -11,6 +11,11 @@ import Game from '../game';
 /* const JSONEncode = ["id","value","max","rate","cost",
  "slot", "effect", "mod", "result"];*/
 
+ /**
+  * @const {string[]} JSONIgnore - ignore these properties by default when saving.
+  */
+ const EncodeIgnore = ['id', 'template', 'desc', 'type', 'tag', 'disabled', 'value', 'locked', 'locks', 'name', 'delta'];
+
 /**
  * Game Items base class.
  */
@@ -21,6 +26,24 @@ export default class Item {
 	 */
 	get template() { return this._template; }
 	set template(v) { this._template = v;}
+
+	toJSON() {
+
+		let vars = changes( jsonify(this, EncodeIgnore ),
+			this.template || {} );
+
+		if ( !vars ) vars = {};
+
+		if ( this.disabled === true ) vars.disabled = true;
+		if ( this.locked !== true ) vars.locked = this.locked;
+		if ( this.locks ) vars.locks = this.locks;
+
+		if ( this.template.value != this.value ) vars.value = this.value;
+
+		return vars;
+
+	}
+
 
 	/**
 	 * @property {string} type
@@ -76,12 +99,6 @@ export default class Item {
 	}
 
 	/**
-	 * Convenience setter only for json data.
-	 */
-	set tag(v) { if ( v ) this.addTag(v); }
-	get tag() { return this._tags; }
-
-	/**
 	 * @property {Stat} max
 	 */
 	get max() { return this._max; }
@@ -132,8 +149,6 @@ export default class Item {
 	 */
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
-
-	toJSON() { return changes( jsonify(this,['id']), this.template || {} ); }
 
 	/*toJSON(){
 
@@ -279,7 +294,7 @@ export default class Item {
 	}
 
 	/**
-	 * 
+	 * Test if item has every tag in list.
 	 * @param {string[]} a - array of tags to test.
 	 * @returns {boolean}
 	 */
@@ -293,7 +308,7 @@ export default class Item {
 	}
 
 	/**
-	 * Test if any tag in the list is matched.
+	 * Test if tag has any tag in the list.
 	 * @param {string[]} a - array of tags to test.
 	 * @returns {boolean}
 	 */

@@ -1,12 +1,4 @@
-effects are applied once.
 
-mods are applied per quantity, and are removed when a quantity
-of the item is removed.
-
-in dots/continuous actions, effects are applied continuously.
-mods are applied at start of dot, and removed at the end.
-
-'result' is applied once at the end of a continuous/ongoing event, or dot.
 
 -- skipLocked could cause problems on mods. the lock status of skipped stat could change
 after the initial mod is applied. TODO: this is a long-term problem.
@@ -15,3 +7,23 @@ after the initial mod is applied. TODO: this is a long-term problem.
 slot: item takes a unique slot. can't buy multiple types of same slot.
 
 need: need represents a combination of an unlock and a usability requirement.
+
+ITEMS:
+
+
+!NOTE: Properties of Items can be set to null, but should not be deleted, otherwise
+saved-data with deleted properties would have those properties restored by default values
+on reload.
+
+effects are applied once and are not reversible. During Runnable actions and Dots,
+effects are applied per-frame and mulitplied by the elapsed frame-time.
+
+mods are applied per-quantity, and are removed whenever a quantity
+of the item is removed.
+
+in dots/Runnable actions, effects are applied continuously.
+Mods are applied at start of dot, and removed at the end.
+TODO: also allow runnable actions to add/remove mods.
+
+'cast' is a one-time cost applied at the start of a Runnable action.
+'result' is applied once at the end of a Runnable action, or dot.

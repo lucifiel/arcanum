@@ -182,7 +182,7 @@
 	},
 	{
 		"id":"mana",
-		"tag":"manas",
+		"tags":"manas",
 		"require":"state.arcana>=1",
 		"name":"mana",
 		"max":5
@@ -230,14 +230,14 @@
 	{
 		"id":"shadow",
 		"name":"shadow",
-		"tag":"manas",
+		"tags":"manas",
 		"require":"state.evil>0||state.embalming>1",
 		"desc":"Shadow mana",
 		"max":1
 	},
 	{
 		"id":"light",
-		"tag":"manas",
+		"tags":"manas",
 		"require":"lumenology",
 		"desc":"Light mana",
 		"max":1
@@ -245,25 +245,25 @@
 	{
 
 		"id":"spirit",
-		"tag":"manas",
+		"tags":"manas",
 		"desc":"Spirit mana",
 		"max":1
 	},
 	{
 		"id":"tempus",
-		"tag":"manas",
+		"tags":"manas",
 		"desc":"Time incarnate",
 		"max":0
 	},
 	{
 		"id":"chaos",
-		"tag":"manas",
+		"tags":"manas",
 		"desc":"Chaos incarnate",
 		"max":0
 	},
 	{
 		"id":"void",
-		"tag":"manas",
+		"tags":"manas",
 		"desc":"nothingness",
 		"flavor":"",
 		"max":0
