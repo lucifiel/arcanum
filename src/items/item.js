@@ -14,7 +14,7 @@ import Game from '../game';
  /**
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
- const EncodeIgnore = ['id', 'template', 'desc', 'type', 'tag', 'disabled', 'value', 'locked', 'locks', 'name', 'delta'];
+ const EncodeIgnore = [ 'template', 'type', 'name', 'desc', 'locked', 'delta'];
 
 /**
  * Game Items base class.
@@ -29,16 +29,16 @@ export default class Item {
 
 	toJSON() {
 
-		let vars = changes( jsonify(this, EncodeIgnore ),
+		let vars = changes( jsonify(this, EncodeIgnore, ['id']),
 			this.template || {} );
 
 		if ( !vars ) vars = {};
 
-		if ( this.disabled === true ) vars.disabled = true;
-		if ( this.locked !== true ) vars.locked = this.locked;
-		if ( this.locks ) vars.locks = this.locks;
+		//if ( this.disabled === true ) vars.disabled = true;
+		//if ( this.locked != this.template.locked ) vars.locked = this.locked;
+		//if ( this.locks ) vars.locks = this.locks;
 
-		if ( this.template.value != this.value ) vars.value = this.value;
+		//if ( this.template.value != this.value ) vars.value = this.value;
 
 		return vars;
 
@@ -289,8 +289,8 @@ export default class Item {
 	 * @param {string} tag 
 	 */
 	addTag( tag ) {
-		if ( this._tags === null || this._tags === undefined) this._tags = [];
-		this._tags.push(tag);
+		if ( this._tags === null || this._tags === undefined) this._tags = [ tag ];
+		else if ( !this._tags.includes(tag) ) this._tags.push(tag);
 	}
 
 	/**

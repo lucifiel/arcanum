@@ -3,9 +3,7 @@ import Game from '../game';
 
 export default class Action extends Item {
 
-	valueOf(){
-		return this.locked ? 0 : this._value;
-	}
+	valueOf(){ return this.locked ? 0 : this._value; }
 	
 	get level() {return this._value;}
 	set level(v) { this._value =v;}
@@ -36,7 +34,7 @@ export default class Action extends Item {
 		return 100*(this._exp / this._length );
 	}
 
-	toJSON(){
+	/*toJSON(){
 
 		let data = super.toJSON();
 
@@ -45,7 +43,7 @@ export default class Action extends Item {
 
 		return data;
 
-	}
+	}*/
 
 	constructor( vars=null ){
 

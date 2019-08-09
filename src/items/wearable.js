@@ -3,7 +3,7 @@ import Range from "../range";
 
 export default class Wearable extends Item {
 
-	toJSON() {
+	/*toJSON() {
 
 		let data = super.toJSON();
 
@@ -19,7 +19,7 @@ export default class Wearable extends Item {
 
 		return data;
 
-	}
+	}*/
 
 	get material() { return this._material; }
 	set material(v) { this._material=v;}

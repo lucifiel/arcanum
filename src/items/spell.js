@@ -2,13 +2,14 @@ import Item from './item';
 
 export default class Spell extends Item {
 
+	get cast() { return this._cast; }
+	set cast(v) { this._cast = v; }
+
 	toJSON(){
 
 		let data = super.toJSON();
-		data.learned = this.learned;
-		data.cast = (this.cast);
-		// cost already encoded.
 
+		if ( this.learned ) data.learned = this.learned;
 		if ( this.timer > 0 ) data.timer = this.timer;
 
 		return data;

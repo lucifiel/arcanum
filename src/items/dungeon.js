@@ -25,7 +25,7 @@ export default class Dungeon extends Action {
 		this._exp =v;
 	}
 
-	toJSON(){
+	/*toJSON(){
 
 		let data = super.toJSON();
 
@@ -34,7 +34,7 @@ export default class Dungeon extends Action {
 
 		return data;
 
-	}
+	}*/
 
 	/**
 	 * 

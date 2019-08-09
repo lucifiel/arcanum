@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "eventemitter3": "^3.1.2",
-    "objecty": "^0.3.2",
+    "objecty": "^0.4.0",
     "vue": "^2.6.10"
   }
 }

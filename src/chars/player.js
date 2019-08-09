@@ -95,9 +95,6 @@ export default class Player extends Char {
 		data.statuses = this.statuses;
 		data.className = this.className;
 
-		data.speed = JSON.stringify( this.speed );
-		data.exp = JSON.stringify( this.exp );
-
 		if ( this.primary ) data.primary = this.primary.id;
 		if ( this.weapon ) data.weapon = this.weapon.id;
 
