@@ -137,6 +137,20 @@ export default {
 			
 
 		</div>
+			<div v-if="item.cast">
+
+			<hr>
+			<!--<span class="note-text">cost:</span>-->
+			<div v-if="!isNaN(item.cast)">
+				Gold: {{ item.cast }}
+			</div>
+			<div v-else v-for="(v,k) in effectItems(item.cast)" :key="k">
+				<span v-if="typeof v === 'boolean'">{{ k }}</span>
+					<span v-else>{{ `${k}: ${v}` }}</span>
+			</div>
+			
+
+		</div>
 		<div v-if="item.effect||item.mod||item.result">
 
 			<hr>
