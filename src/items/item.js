@@ -8,13 +8,12 @@ import Game from '../game';
  * @property {?number} duration
  */
 
-/* const JSONEncode = ["id","value","max","rate","cost",
- "slot", "effect", "mod", "result"];*/
+ // TODO: restore 'tags' later if tags become dynamic.
 
  /**
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
- const EncodeIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta'];
+ const EncodeIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta', 'tags'];
 
 /**
  * Game Items base class.
@@ -169,26 +168,6 @@ export default class Item {
 	 */
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
-
-	/*toJSON(){
-
-		let obj;
-
-		if ( this.disabled ) data.disabled = true;
-		if ( this._locks > 0 ) data.locks = this._locks;
-		if ( !this._locked ) data.locked = false;
-
-		for( let p of JSONEncode ) {
-
-			obj = this[p];
-			if ( obj === null || obj === undefined ) continue;
-
-			data[p] = obj;
-
-		}
-		return data;
-
-	}*/
 
 	/**
 	 * 

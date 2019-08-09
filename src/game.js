@@ -990,18 +990,6 @@ export default {
 	},
 
 	/**
-	 * Assign all items passing the predicate test the given tag.
-	 * @param {Predicate} test 
-	 * @param {string} tag 
-	 */
-	tagItems( test, tag ) {
-		let items = this._items;
-		for( let p in items ) {
-			if ( test( items[p] ) ) items[p].addTag(tag);
-		}
-	},
-
-	/**
 	 * Get an item on an item-id varpath.
 	 * @param {VarPath} v 
 	 */

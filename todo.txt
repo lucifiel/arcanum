@@ -2,9 +2,6 @@ assign custom rest action.
 
 resistances
 
-saving:
-1)toJSON functions.
-
 popup appears too low on screen.
 popup doesn't appear after screen scroll.
 
