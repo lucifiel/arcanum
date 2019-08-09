@@ -3,23 +3,18 @@ import Range from "../range";
 
 export default class Wearable extends Item {
 
-	/*toJSON() {
+	toJSON() {
 
-		let data = super.toJSON();
+		let data = this.subJSON( ['kind', 'material'] );
 
-		data.kind = this.kind;
-		data.slot = this.slot;
-		data.name = this.name;
+		if ( this.material ) {
+			if ( !data ) data = {};
+			data.material = this.material.id;
+		}
 
-		if ( this._armor ) data.armor = this._armor;
-		if ( this._attack ) data.attack = this._attack;
-		if ( this.hands ) data.hands = this.hands;
-		if ( this.level ) data.level = this.level;
-		if ( this.material ) data.material = this.material.id;
+		return data ? data : undefined;
 
-		return data;
-
-	}*/
+	}
 
 	get material() { return this._material; }
 	set material(v) { this._material=v;}

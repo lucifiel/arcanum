@@ -14,7 +14,7 @@ import Game from '../game';
  /**
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
- const EncodeIgnore = [ 'template', 'type', 'name', 'desc', 'locked', 'delta'];
+ const EncodeIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta'];
 
 /**
  * Game Items base class.
@@ -27,20 +27,40 @@ export default class Item {
 	get template() { return this._template; }
 	set template(v) { this._template = v;}
 
-	toJSON() {
+	/**
+	 * Get JSON for a sub-class with additional properties excluded.
+	 * @param {string[]} excludes 
+	 */
+	subJSON( excludes ) {
 
-		let vars = changes( jsonify(this, EncodeIgnore, ['id']),
+		let vars = changes( jsonify(this, EncodeIgnore.concat(excludes) ),
 			this.template || {} );
 
-		if ( !vars ) vars = {};
+		if ( this.locked === false && this.template.locked !== false ){
+			vars = vars || {};
+			vars.locked = this.locked;
+		}
+
+		return vars != null ? vars : undefined;
+
+	}
+
+	toJSON() {
+
+		let vars = changes( jsonify(this, EncodeIgnore ),
+			this.template || {} );
+
+
+		if ( this.locked === false && this.template.locked !== false ){
+			vars = vars || {};
+			vars.locked = this.locked;
+		}
 
 		//if ( this.disabled === true ) vars.disabled = true;
-		//if ( this.locked != this.template.locked ) vars.locked = this.locked;
 		//if ( this.locks ) vars.locks = this.locks;
-
 		//if ( this.template.value != this.value ) vars.value = this.value;
 
-		return vars;
+		return vars != null ? vars : undefined;
 
 	}
 

@@ -25,17 +25,6 @@ export default class Dungeon extends Action {
 		this._exp =v;
 	}
 
-	/*toJSON(){
-
-		let data = super.toJSON();
-
-		//data.enemies = ( this.enemies );
-		data.exp = this.exp;
-
-		return data;
-
-	}*/
-
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 
@@ -51,8 +40,6 @@ export default class Dungeon extends Action {
 		 */
 		this.exp = this.exp || 0;
 		this.length = this.length || 100;
-
-		this.repeat = ( this.repeat === undefined||this.repeat===null ) ? true : this.repeat;
 
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
