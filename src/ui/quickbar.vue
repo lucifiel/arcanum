@@ -3,12 +3,12 @@
  * Bar for quick-use items.
  */
 export default {
-	props:['state'],
-	data(){
+	props:['slots'],
+	/*data(){
 		return {
 			slots:this.state.quickslots
 		}
-	},
+	},*/
 	methods:{
 
 		remove(ind){
@@ -20,13 +20,6 @@ export default {
 	},
 	computed:{
 
-		/**
-		 * Reorder slots so index-0 comes last.
-		 */
-		mySlots() {
-			if ( this.slots.length === 0 ) return this.slots;
-			return this.slots.slice( 1 ).concat( this.slots[0] );
-		},
 		hasItems(){ return this.slots.some(v=>v!=null); }
 
 	}
@@ -37,22 +30,20 @@ export default {
 <template>
 	<div class="quickbar" v-if="hasItems">
 
-		<div class="quickslot" v-for="(it,i) in mySlots" :key="i">
+		<div class="quickslot" v-for="(it,i) in slots" :key="i">
 
-			<div v-if="it!=null" :class="it.school ? it.school :''">
+			<div v-if="it!=null" :class="it.school ? it.school :''"
+					@click="dispatch('action', it)"
+					@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
 				
-				<div @click="dispatch('action', it)"
-				@mouseenter.capture.stop="dispatch('itemover',$event,it)">
-				{{ it.name.slice(0,1) }}
-
-				</div>
+				<div>{{ it.name.slice(0,1) }}</div>
 
 				<div class="remove" @click="remove(i)" />
 				<div v-if="it.school" class="bgfill" >&nbsp;</div>
 
 			</div>
-			<div v-else>{{ i != (slots.length -1) ? i + 1 : 0 }}</div>
+			<div v-else>{{ (i != 9) ? i + 1 : 0 }}</div>
 
 		</div>
 

@@ -31,26 +31,11 @@ export default {
 					style['left'] = ( left-240 ) + 'px';
 				}
 
-				style['top'] = ( rect.top ) + 'px';
+				if ( rect.top < window.innerHeight-140) style['top'] = ( rect.top ) + 'px';
+				else style.top = (rect.top - 52) + 'px';
 
 			}
 		}
-	},
-	computed:{
-
-		/**
-		 * Do not show skipLocked effects/mods.
-		 */
-
-		/**
-		 * @method effects
-		 */
-		effects(){
-		},
-
-		mods(){
-		}
-
 	},
 	methods:{
 

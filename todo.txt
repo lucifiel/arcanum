@@ -1,21 +1,25 @@
-assign custom rest action.
-
 resistances
-
-popup appears too low on screen.
-popup doesn't appear after screen scroll.
 
 prevent stacking on monster dots
 optional stacking
 
 display weapon damage in char.
 
-more armor drop variations.
 
 ERRORS:
+
+quickbar blocks some low-items.
 
 fix scrolling combat text in raid section.
 
 ongoing actions should stop if 'need' requirements not met.
 
 leather weapons.
+
+MINOR:
+
+popup positioning improvements.
+
+more armor drop variations.
+
+assign custom rest action.

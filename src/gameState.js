@@ -181,16 +181,23 @@ export default class GameState {
 	/**
 	 * 
 	 * @param {Item} it 
-	 * @param {number} ind 
+	 * @param {number} slotNum 
 	 */
-	setQuickSlot( it, ind=-1 ) {
+	setQuickSlot( it, slotNum ) {
 
+		console.log('use slot: ' + slotNum );
 		// NOTE: using splice for Vue reactivity.
-		if ( ind >= 0 && ind <=10 ) this.quickslots.splice(ind,1, it );
-		else {
+		if ( slotNum >= 0 && slotNum <=9 ) {
 
-			if ( this.quickslots.length <= MAX_QUICK_SLOTS ) this.quickslots.push(it);
-			else this.quickslots.splice( MAX_QUICK_SLOTS-1, 1, it );
+			let ind = slotNum > 0 ? slotNum - 1 : 9;
+			if ( ind < this.quickslots.length ) this.quickslots.splice(ind,1, it );
+			else {
+
+				let a = this.quickslots.slice();
+				a[ind] = it;
+				this.quickslots = a;
+	
+			}
 
 		}
 

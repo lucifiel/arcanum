@@ -417,7 +417,7 @@ export default {
 
 		</div>
 
-		<div v-if="state" class="bot-bar"><quickbar :state="state" /></div>
+		<div v-if="state" class="bot-bar"><quickbar :slots="state.quickslots" /></div>
 
 	</div>
 </template>
