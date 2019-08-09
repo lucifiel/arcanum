@@ -224,17 +224,21 @@ export default {
 
 			if ( !this.runner ) return;
 
-			let key = e.key.toLowerCase();
-			if ( !isNaN(key) ) {
+			let slice = e.code.slice(0,-1);
+			if ( slice === 'Digit' || slice === 'Numpad' ) {
 
-				if ( e.shiftKey && this.overItem ) this.state.setQuickSlot( this.overItem, Number(key) );
+				let num = Number( e.code.slice(-1) );
+				//console.log('number: ' + num );
+				
+				if ( e.shiftKey && this.overItem ) this.state.setQuickSlot( this.overItem, num );
 				else {
-					let it = this.state.quickslots[Number(key)];
+					let it = this.state.quickslots[num];
 					if ( it) this.game.tryItem( it );
 				}
 
 			} else {
 
+				let key = e.key.toLowerCase();
 				for( let p in cheatKeys ) {
 					if ( key === p ) {
 						if ( e.shiftKey ) this.state.addMax( cheatKeys[p] );
@@ -378,7 +382,7 @@ export default {
 		</template>
 	
 		<template slot="sect_player">
-			<player :player="state.player" />
+			<player />
 		</template>
 
 		<template slot="sect_house">

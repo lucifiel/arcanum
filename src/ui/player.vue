@@ -1,10 +1,9 @@
 <script>
-
+import Game from '../game';
 import { round } from 'format';
 
 export default {
 	
-	props:['player'],
 	computed:{
 
 		name:{
@@ -12,7 +11,21 @@ export default {
 			set(v){
 				if ( v ) this.player.name = v;
 			}
-		}
+		},
+		title(){ return this.player.title; },
+		speed() { return this.player.speed; },
+		stamina() { return this.player.stamina; },
+		level() {return this.player.level; },
+		hp() {return this.player.hp; },
+		defense() {return this.player.defense; },
+		tohit() {return this.player.tohit; },
+		exp() {return this.round( this.player.exp.value ); },
+		next() {return this.round( this.player.next ); },
+		level() {return this.player.hp; },
+	},
+	beforeCreate(){
+
+		this.player = Game.state.player;
 	},
 	methods:{
 		round:round
@@ -28,22 +41,22 @@ export default {
 
 		<table>
 		<tr><td>name</td><th>
-			<input type="text" v-model.lazy="name"></th></tr>
-		<tr><td>title</td><th> {{ player.title}}</th></tr>
-		<tr><td>alignment</td><th>{{player.alignment}}</th></tr>
-		<tr><td>level</td><th> {{ player.level }}</th></tr>
-		<tr><td>exp</td><th> {{ round(player.exp.value) }} / {{ round(player.next ) }} </th></tr>
+			<input type="text" v-model="name"></th></tr>
+		<tr><td>title</td><th> {{ title}}</th></tr>
+		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
+		<tr><td>level</td><th> {{ level }}</th></tr>
+		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>
 		<tr><td>hp</td><th>
-			{{ round( player.hp.value ) }} / {{ round( player.hp.max.value ) }}</th></tr>
+			{{ round( hp.value ) }} / {{ round( hp.max.value ) }}</th></tr>
 
-		<tr><td>defense</td><th>{{ player.defense }}</th></tr>
-		<tr><td>hit bonus</td><th>{{ player.tohit }}</th></tr>
+		<tr><td>defense</td><th>{{ defense }}</th></tr>
+		<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
 
 			<tr><td>stamina</td><th>
-			{{ round( player.stamina.value ) }} / {{ round(player.stamina.max.value )}}</th></tr>
+			{{ round( stamina.value ) }} / {{ round(stamina.max.value )}}</th></tr>
 		
-		<tr><td>speed</td><th>{{ player.speed.value }}</th></tr>
+		<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 
 		</table>
 
