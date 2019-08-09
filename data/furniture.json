@@ -6,7 +6,7 @@
 		"require":"state.gold.max>=50",
 		"repeat":true,
 		"cost":{
-			"gold":50,
+			"gold":40,
 			"space":1
 		},
 		"mod":{

@@ -185,7 +185,7 @@ export default class GameState {
 	 */
 	setQuickSlot( it, slotNum ) {
 
-		console.log('use slot: ' + slotNum );
+		//console.log('use slot: ' + slotNum );
 		// NOTE: using splice for Vue reactivity.
 		if ( slotNum >= 0 && slotNum <=9 ) {
 

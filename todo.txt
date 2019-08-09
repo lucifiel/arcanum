@@ -14,9 +14,9 @@ fix scrolling combat text in raid section.
 
 ongoing actions should stop if 'need' requirements not met.
 
-leather weapons.
-
 MINOR:
+
+leather weapons.
 
 popup positioning improvements.
 

@@ -172,16 +172,17 @@ export default {
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
-			if ( stat.locked === false ) {
+			if ( stat.locked === false && stat.rate.value !== 0 ) {
 
-				stats[i].update( dt );
+				this.doItem( stat, stat.rate.value*dt );
+				//stats[i].update( dt );
 
 			}
 
 		}
 
 		// apply mods for stat changes.
-		for( let i = len-1; i>=0; i-- ) {
+		/*for( let i = len-1; i>=0; i-- ) {
 
 			stat = stats[i];
 			if ( stat.delta !== 0 ) {
@@ -191,7 +192,7 @@ export default {
 
 			}
 
-		}
+		}*/
 
 	},
 
@@ -519,7 +520,7 @@ export default {
 			if ( prev ) this.remove( prev );
 			this.state.curHome = it;
 		}
-	
+
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );
@@ -680,8 +681,8 @@ export default {
 
 				if ( target === undefined ) this.applyToTag( p, e, dt );
 				else if ( target.type === 'event' ) this.doEvent( target );
-				else if ( typeof e === 'number' ) target.value += e*dt;
-				else if ( e instanceof Range ) target.value += e.value;
+				else if ( typeof e === 'number' ) this.doItem( target, e*dt );
+				else if ( e instanceof Range ) this.doItem( target, e.value );
 				else if ( typeof e === 'boolean') this.doItem( target );
 				else target.applyVars(e,dt);
 				

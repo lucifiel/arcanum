@@ -17,7 +17,7 @@ export default class ZeroSum extends Resource {
 	 */
 	set value(v){
 
-		if ( this.max ) {
+		if ( this.max !== null && this.max !== undefined ) {
 
 			this._used = super.value = this.max.value - v;
 
