@@ -4,6 +4,7 @@
 		"name":"minor fount",
 		"level":1,
 		"require":"water",
+		"school":"water",
 		"cost":{
 
 			"research":25,
@@ -27,6 +28,7 @@
 		"name":"copper skin",
 		"level":1,
 		"require":"earth",
+		"school":"earth",
 		"cost":{
 
 			"research":25,
@@ -49,6 +51,7 @@
 		"name":"poison nettle",
 		"level":1,
 		"require":"nature",
+		"school":"nature",
 		"cost":{
 
 			"research":25,
@@ -72,6 +75,7 @@
 		"name":"minor whirling step",
 		"level":1,
 		"require":"air",
+		"school":"air",
 		"cost":{
 
 			"research":25,
@@ -92,6 +96,7 @@
 	{
 		"id":"minormana",
 		"name":"minor mana",
+		"school":"mana",
 		"locked":false,
 		"level":1,
 		"cost":{
@@ -115,6 +120,7 @@
 
 		"id":"minorregen",
 		"name":"minor regen",
+		"school":"light",
 		"level":1,
 		"cost":{
 
@@ -123,7 +129,7 @@
 
 		},
 		"cast":{
-			"mana":1
+			"light":1
 		},
 		"dot":{
 
@@ -139,6 +145,7 @@
 		"id":"magicmissile",
 		"name":"magic missile",
 		"level":1,
+		"school":"mana",
 		"locked":false,
 		"cost":{
 
@@ -160,6 +167,7 @@
 		"name":"fire dart",
 		"level":1,
 		"require":"fire",
+		"school":"fire",
 		"cost":{
 
 			"research":25,
@@ -179,6 +187,7 @@
 		"id":"stoneskin",
 		"name":"stone skin",
 		"desc":"hardens the skin of the caster.",
+		"school":"earth",
 		"require":{
 			"earth.max":5
 		},
@@ -206,6 +215,7 @@
 		"id":"fire bolt",
 		"level":2,
 		"desc":"a small bolt of flame.",
+		"school":"fire",
 		"require":{
 			"fire.max":5
 		},
@@ -232,6 +242,7 @@
 		"level":2,
 		"name":"seal wounds",
 		"desc":"a seam of light closes your wounds.",
+		"school":"light",
 		"require":{
 			"light.max":5
 		},
@@ -255,6 +266,7 @@
 		"level":2,
 		"name":"unseen servant",
 		"desc":"an invisible servant manages your affairs.",
+		"school":"air",
 		"require":{
 			"air.max":5
 		},
@@ -278,6 +290,7 @@
 	{
 		"id":"lessermana",
 		"name":"lesser mana",
+		"school":"mana",
 		"locked":false,
 		"level":2,
 		"cost":{
@@ -304,6 +317,7 @@
 		"level":2,
 		"desc":"all your studies seem to fall into place.",
 		"flavor":"I know the pieces fit",
+		"school":"light",
 		"require":{
 			"light.max":5
 		},
@@ -332,6 +346,7 @@
 		"name":"dark promptings",
 		"level":2,
 		"desc":"malevolent voices whisper secrets to your mind.",
+		"school":"shadow",
 		"require":{
 			"shadow.max":5
 		},
@@ -360,6 +375,7 @@
 		"id":"whisper",
 		"level":2,
 		"desc":"spirits whisper hidden truths as you study.",
+		"school":"spirit",
 		"require":{
 			"spirit.max":5
 		},
@@ -385,6 +401,7 @@
 		"id":"venom",
 		"level":3,
 		"require":"nature",
+		"school":"nature",
 		"cost":{
 
 			"research":50,

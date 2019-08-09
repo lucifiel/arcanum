@@ -134,56 +134,64 @@ div.menu {
 	margin: 20px 10px;
 }
 
-div.hp .fill {
+div.bgfill {
+	position: absolute;
+	z-index: -1;
+	left: 0px;
+	top: 0px;
+	display:block;
+	opacity: 0.4;
+	height: 100%;
+	width:100%;
+}
+
+div.hp .fill, div.hp .bgfill {
 	background:#ac0404;
 }
 
-div.arcane .fill {
+/*div.arcane .fill, div.arcane.bgfill {
 	background:#8011ac;
-}
+}*/
 
-div.mana .fill {
+div.mana .fill, div.mana .bgfill {
 	background: #2531b3;
 }
 
-div.fire .fill {
+div.fire .fill, div.fire .bgfill {
 	background:#ce230c;
 }
 
-div.ice .fill {
-	background:#97e5fc;
-}
-div.water .fill {
+div.water .fill, div.water .bgfill {
 	background:#0479c2;
 }
-div.air .fill {
+div.air .fill, div.air .bgfill {
 	background:#efefef;
 }
 
-div.earth .fill {
+div.earth .fill, div.earth .bgfill {
 	background:#c27304;
 }
 
-div.shadow .fill {
+div.shadow .fill, div.shadow .bgfill {
 	background:#3a0e66;
 }
 
-div.nature .fill {
+div.nature .fill, div.nature .bgfill {
 	background:#045a04;
 }
 
-div.spirit .fill {
+div.spirit .fill, div.spirit .bgfill {
 
 	background:#afa5a5;
 }
 
-div.light .fill {
+div.light .fill, div.light .bgfill {
 	background:#f0c907;
 }
 
-div.tempus .fill {
+div.tempus .fill, div.tempus .bgfill {
 	background:#c27304;
 }
-div.void .fill {
+div.void .fill, div.void .bgfill {
 	background:#1f1e1d;
 }

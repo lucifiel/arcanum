@@ -11,57 +11,90 @@ export default {
 	},
 	methods:{
 
-		remove(it){
+		remove(ind){
 
-			let ind = this.slots.indexOf(it);
 			if ( ind >= 0) this.$set( this.slots, ind, undefined );
 
 		}
 
 	},
 	computed:{
+
+		/**
+		 * Reorder slots so index-0 comes last.
+		 */
+		mySlots() {
+			if ( this.slots.length === 0 ) return this.slots;
+			return this.slots.slice( 1 ).concat( this.slots[0] );
+		},
 		hasItems(){ return this.slots.some(v=>v!=null); }
+
 	}
 
 }
 </script>
 
 <template>
-	<div :class="{quicktop:true, hide:!hasItems }">
+	<div class="quickbar" v-if="hasItems">
 
-		<div class="quickslot" v-for="(it,i) in slots" :key="i">
+		<div class="quickslot" v-for="(it,i) in mySlots" :key="i">
 
-			<div v-if="it" @click="dispatch('action', it)"
-			@mouseenter.capture.stop="dispatch('itemover',$event,it)">
-			{{ it.name.slice(0,1) }}
-			<div class="remove" @click="remove(it)">&nbsp;</div>
+			<div v-if="it!=null" :class="it.school ? it.school :''">
+
+				
+				<div @click="dispatch('action', it)"
+				@mouseenter.capture.stop="dispatch('itemover',$event,it)">
+				{{ it.name.slice(0,1) }}
+
+				</div>
+
+				<div class="remove" @click="remove(i)" />
+				<div v-if="it.school" class="bgfill" >&nbsp;</div>
 
 			</div>
+			<div v-else>{{ i != (slots.length -1) ? i + 1 : 0 }}</div>
+
 		</div>
 
 	</div>
+	<div class="quickbar" v-else>
+
+		<p class="use-msg">
+			Roll-over Item and press {Shift} + {Number} to assign quickslot.<br>
+			Press {Number} again to use quickslot Item.
+		</p>
+
+	</div>
+
 </template>
 
 <style scoped>
 
-div.hide {
-	visibility: hidden;
+p.use-msg {
+	font-size:20px;
+	line-height: 1.4em;
+	margin-left: 10%;
 }
 
-div.quicktop {
+div.quickbar {
 
 	display:flex;
 	cursor:pointer;
 	width:100%;
 	flex-direction: row;
+	position:fixed;
+	bottom: 8px;
+	left: 8px;
 }
 
 div.quickslot {
-	min-width: 42px;
-	min-height:42px;
-	margin: 2px 4px;
+	min-width: 52px;
+	min-height:52px;
+	margin: 2px 6px 4px 4px;
 	padding:2px;
-	position:relative;
+	text-align: center;
+	/** relative so remove button correctly placed. **/
+	position: relative;
 	font-size:xx-large;
 	border: 1px solid #181818;
 }
@@ -73,6 +106,10 @@ div.remove {
 	right:0px;
 	margin: 0px;
 	padding: 0px;
+	background:white;
+	z-index: 10;
+	min-height:12px;
+	min-width: 12px;
 	font-size: 0.8rem;
 }
 
