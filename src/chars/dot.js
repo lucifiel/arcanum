@@ -1,10 +1,10 @@
 export default class Dot {
 
-	constructor( vars, name=null ){
+	constructor( vars, id=null, name=null ){
 
 		Object.assign( this, vars );
 
-		if ( name ) this.name = name;
+		this.name = this.name || name || id;
 
 		/**
 		 * @property {boolean} stack - ability of dot to stack.

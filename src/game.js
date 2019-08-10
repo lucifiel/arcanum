@@ -7,6 +7,7 @@ import GameState from './gameState';
 import Range from './range';
 import ItemGen from './itemgen';
 import TechTree from './techTree';
+import Dot from './chars/dot';
 
 var lastTime = 0;
 var techTree;
@@ -116,7 +117,7 @@ export default {
 		let dt = ( time - this.lastUpdate )/1000;
 		this.lastUpdate = time;
 
-		this.player.update(dt);
+		this.state.player.update(dt);
 
 		this.doCurrent( dt );
 
@@ -493,7 +494,7 @@ export default {
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );
-		if ( it.dot ) this.state.player.addDot( it );
+		if ( it.dot ) this.state.player.addDot( new Dot(it.dot, it.id, it.name) );
 		if ( it.disable ) this.disable( it.disable );
 
 		if ( it.log ){

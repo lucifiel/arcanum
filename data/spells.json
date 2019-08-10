@@ -414,6 +414,7 @@
 		},
 		"attack":{
 			"dot":{
+				"id":"venom",
 				"kind":"poison",
 				"duration":15,
 				"damage":"2~4"

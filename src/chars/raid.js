@@ -2,6 +2,7 @@ import Game from '../game';
 import Char from './char';
 import Range from '../range';
 import { clone  } from 'objecty'
+import Dot from './dot';
 
 const COMBAT_LOG = 'combat';
 
@@ -18,7 +19,7 @@ export function tryDamage( target, attack, attacker ) {
 			Game.log.log( '', target.name + ' is immune to ' + attack.kind );
 			return false;
 		}
-		if ( target.resists(attack.kind) ) {
+		if ( target.tryResist(attack.kind) ) {
 			Game.log.log( '', target.name + ' resists ' + attack.kind );
 			return false;
 		}
@@ -27,14 +28,16 @@ export function tryDamage( target, attack, attacker ) {
 	if ( attack.damage ) {
 
 		// add optional base damage from attacker.
-		let dmg = getDamage( attack.damage ) + ( attacker ? attacker.damage || 0 : 0);
+		let dmg = getDamage( attack.damage )
+			+ ( (attacker && attacker!==attack) ? (attacker.damage || 0) : 0);
 
 		target.hp -= dmg;
 		Game.log.log( '', target.name + ' hit by ' + attack.name +': ' + dmg.toFixed(1),
 			COMBAT_LOG );
 	}
 
-	if ( attack.dot ) e.addDot( attack.dot );
+	if ( attack.dot ) target.addDot(
+			new Dot( attack.dot, attack.dot.id || attack.id || attacker.id, attack.dot.name || attack.name ) );
 
 	return true;
 
@@ -47,7 +50,9 @@ export function tryDamage( target, attack, attacker ) {
 export function getDamage( dmg ) {
 
 	if ( dmg instanceof Range) return dmg.value;
-	else if ( !isNaN(dmg) ) return dmg;
+	else if ( !isNaN(dmg) ) return Number(dmg);
+	console.log('Damage undefined: ' + dmg );
+	return 0;
 
 	// TODO: invalid
 	//else return dmg( this.state, this.player, this.enemy );
@@ -96,6 +101,7 @@ export default class Raid {
 	 */
 	set enemy(v) {
 
+		if ( !this._enemies ) this._enemies = [];
 		if (typeof v === 'string') v = Game.getItem(v);
 		this._enemies.push( new Char(v) );
 
@@ -156,6 +162,10 @@ export default class Raid {
 		} else {
 
 			this.player.timer -= dt;
+			if ( this.player.alive === false ) {
+				this.playerDied();
+				return;
+			}
 			if ( this.player.timer <= 0 ) {
 
 				this.player.timer += this.player.delay;
@@ -211,7 +221,7 @@ export default class Raid {
 
 		if ( this.tryHit( player, e ) ) {
 
-			if ( this.tryDamage( e, player ) ) if ( e.hp <= 0 ) this.enemyDied(e, player);
+			if ( tryDamage( e, player ) ) if ( e.hp <= 0 ) this.enemyDied(e, player);
 
 		} else {
 
@@ -223,7 +233,7 @@ export default class Raid {
 
 	/**
 	 * 
-	 * @param {Object} src - attack source. (spell,weapon,etc.)
+	 * @param {Item} src - attack source. (spell,weapon,etc.)
 	 */
 	playerAttack( src ) {
 
@@ -233,7 +243,7 @@ export default class Raid {
 
 		if ( this.tryHit( this.player, e, atk ) ) {
 
-			if ( this.tryDamage( e, atk, this.player ) ) if ( e.hp <= 0 ) this.enemyDied( e );
+			if ( tryDamage( e, atk, this.player ) ) if ( e.hp <= 0 ) this.enemyDied( e );
 
 		} else {
 
@@ -251,10 +261,10 @@ export default class Raid {
 	 */
 	enemyAttack( enemy, attack, target ) {
 
-		//console.log('monster attack: ' + atk);
+		console.log('monster attack: ' + attack );
 		if ( this.tryHit( enemy, target ) ) {
 
-			if ( this.tryDamage( target, attack ) ) if ( target.hp <= 0 ) this.charDied( target );
+			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
 
 		} else Game.log.log( '', enemy.name + ' misses', COMBAT_LOG );
 

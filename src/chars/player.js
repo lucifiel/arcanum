@@ -50,6 +50,8 @@ export default class Player extends Char {
 
 	}
 
+	get alive() {return this._hp.value > 0; }
+
 	/**
 	 * @property {Wearable} weapon - primary weapon.
 	 */
@@ -208,23 +210,18 @@ export default class Player extends Char {
 
 	/**
 	 * 
-	 * @param {Item|Object} it - object or item.
-	 * @param {Object} it.dot - dot being applied. 
+	 * @param {Dot} dot - dot to add.
 	 */
-	addDot( it ) {
+	addDot( dot ) {
 
-		let id = it.id;
+		let id = dot.id;
 
 		let cur = id ? this.dots.find( d=>d.id===id) : undefined;
-		if ( cur !== undefined ) cur.duration = it.dot.duration;
+		if ( cur !== undefined ) cur.duration = dot.duration;
 		else {
 
-			var dot = new Dot( it.dot, it.name );
-			dot.id = it.id;
 			this.dots.push( dot );
-			if ( dot.mod ) {
-				Game.addMod( dot.mod, 1 );
-			}
+			if ( dot.mod ) Game.addMod( dot.mod, 1 );
 
 		}
 

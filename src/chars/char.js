@@ -73,6 +73,9 @@ export default class Char {
 		this.delay = getDelay(v);
 	}
 
+	get alive() { return this.hp > 0; }
+	set alive(v) { if ( !v ) this.hp = 0;}
+
 	constructor( vars ){
 
 		if ( vars ) Object.assign( this, vars );
@@ -80,6 +83,9 @@ export default class Char {
 		this.statuses = this.statuses || {};
 		this.immunities = this.immunities || {};
 		this._resists = this._resists || {};
+
+		this.damage = this.damage || this.dmg;
+		this.damage = this.damage ? new Range( this.damage ) : null;
 
 		/**
 		 * @property {Object[]} dots - timed/ongoing effects.
@@ -90,6 +96,9 @@ export default class Char {
 		 * @property {number} timer
 		 */
 		this.timer = this.timer || this.delay;
+
+		if ( this.hp instanceof Range ) this.hp = this.hp.value;
+
 	}
 
 	/**
@@ -104,7 +113,7 @@ export default class Char {
 
 	/**
 	 * Base item of dot.
-	 * @param {Object} it 
+	 * @param {Dot} it 
 	 */
 	addDot( it ) {
 
@@ -145,7 +154,7 @@ export default class Char {
 		if ( this.timer <= 0 ) {
 
 			this.timer += this.delay;
-			return this.attack ? this.attack : ( this.damage ? this : null );
+			return this.attack ? this.attack : this;
 
 		}
 
