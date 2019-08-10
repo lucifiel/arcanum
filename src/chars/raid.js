@@ -1,9 +1,58 @@
 import Game from '../game';
 import Char from './char';
 import Range from '../range';
-import { clone, randElm  } from 'objecty'
+import { clone  } from 'objecty'
 
 const COMBAT_LOG = 'combat';
+
+/**
+* Attempt to damage a target. Made external for use by dots, other code.
+* @param {Char} target 
+* @param {Object} attack 
+*/
+export function tryDamage( target, attack, attacker ) {
+
+	if ( attack.kind ) {
+
+		if ( target.isImmune(attack.kind) ) {
+			Game.log.log( '', target.name + ' is immune to ' + attack.kind );
+			return false;
+		}
+		if ( target.resists(attack.kind) ) {
+			Game.log.log( '', target.name + ' resists ' + attack.kind );
+			return false;
+		}
+
+	}
+	if ( attack.damage ) {
+
+		// add optional base damage from attacker.
+		let dmg = getDamage( attack.damage ) + ( attacker ? attacker.damage || 0 : 0);
+
+		target.hp -= dmg;
+		Game.log.log( '', target.name + ' hit by ' + attack.name +': ' + dmg.toFixed(1),
+			COMBAT_LOG );
+	}
+
+	if ( attack.dot ) e.addDot( attack.dot );
+
+	return true;
+
+}
+
+/**
+* Convert damage object to raw damage value.
+* @param {number|function|Range} dmg /
+*/
+export function getDamage( dmg ) {
+
+	if ( dmg instanceof Range) return dmg.value;
+	else if ( !isNaN(dmg) ) return dmg;
+
+	// TODO: invalid
+	//else return dmg( this.state, this.player, this.enemy );
+
+}
 
 /**
  * Represents an active dungeon raid.
@@ -158,18 +207,11 @@ export default class Raid {
 	 */
 	baseAttack( player ) {
 
-		let e = randElm( this.enemies );
-		if ( e === undefined ) return;
+		let e = this.enemies[0];
 
 		if ( this.tryHit( player, e ) ) {
 
-			if ( player.damage != null ) {
-
-				let dmg = this.getDamage( player.damage );
-
-				e.doDamage( dmg, player );
-
-			}
+			if ( this.tryDamage( e, player ) ) if ( e.hp <= 0 ) this.enemyDied(e, player);
 
 		} else {
 
@@ -187,19 +229,11 @@ export default class Raid {
 
 		let atk = src.attack;
 
-		let e = randElm( this.enemies );
-		if ( e === undefined ) return;
+		let e = this.enemies[0];
 
-		if ( this.rollHit( this.player, atk, e ) ) {
+		if ( this.tryHit( this.player, e, atk ) ) {
 
-			if ( atk.damage != null ) {
-
-				let dmg = this.getDamage( atk.damage ) + this.player.damage;
-
-				e.doDamage( dmg, src );
-
-			}
-			if ( atk.dot ) e.addDot( atk.dot, src.name );
+			if ( this.tryDamage( e, atk, this.player ) ) if ( e.hp <= 0 ) this.enemyDied( e );
 
 		} else {
 
@@ -218,77 +252,24 @@ export default class Raid {
 	enemyAttack( enemy, attack, target ) {
 
 		//console.log('monster attack: ' + atk);
-
-		var actStr;
-
 		if ( this.tryHit( enemy, target ) ) {
 
-			if ( attack.damage ) {
-				let dmg = this.getDamage( attack.damage );
-				actStr = target.name + ' hit: ' + dmg.toFixed(1);
-				target.hp -= dmg;
-			}
+			if ( this.tryDamage( target, attack ) ) if ( target.hp <= 0 ) this.charDied( target );
 
-			if ( target.hp <= 0 ) this.charDied( target, enemy );
-
-		} else actStr = enemy.name + ' misses';
-
-		Game.log.log( '', actStr, COMBAT_LOG );
+		} else Game.log.log( '', enemy.name + ' misses', COMBAT_LOG );
 
 	}
 
 	/**
-	 * 
-	 * @param {Char} target 
-	 * @param {Object} attack 
+	 * Rolls an attack roll against a defender.
+	 * @param {Char} attacker - attack object
+	 * @param {Char} defender - defending char.
+	 * @param {Object} attack - attack or weapon used to hit.
+	 * @returns {boolean} true if char hit.
 	 */
-	tryDamage( target, attack ) {
-
-		if ( attack.kind ) {
-
-			if ( target.isImmune(attack.kind) ) {
-				Game.log.log( '', target.name + ' is immune to ' + attack.kind );
-				return false;
-			}
-			if ( target.resists(attack.kind) ) {
-				Game.log.log( '', target.name + ' resists ' + attack.kind );
-				return false;
-			}
-
-		}
-		let dmg = this.getDamage( attack.damage );
-		target.hp -= dmg;
-		if ( target.hp <= 0 ) this.charDied( target );
-
-		return true;
-
-	}
-
-	rollHit( attacker, weapon, defender ) {
-		return Math.random()*( attacker.tohit + weapon.tohit ) >= Math.random()*defender.defense;
-	}
-
-	/**
-	 * Rolls a player attack roll against the current enemy.
-	 * @param {Object} attacker - attack object
-	 * @returns {boolean} true if enemy hit.
-	 */
-	tryHit( attacker, defender ){
-		return Math.random()*attacker.tohit >= Math.random()*defender.defense;
-	}
-
-	/**
-	 * Convert damage object to raw damage value.
-	 * @param {number|function|Range} dmg /
-	 */
-	getDamage( dmg ) {
-
-		if ( dmg instanceof Range) return dmg.value;
-		else if ( !isNaN(dmg) ) return dmg;
-
-		// TODO: invalid
-		//else return dmg( this.state, this.player, this.enemy );
-
+	tryHit( attacker, defender, attack ){
+		return Math.random()*( attacker.tohit + (attack ? attack.tohit || 0 : 0) )
+			>= Math.random()*defender.defense;
 	}
 
 	charDied( char, attacker ) {

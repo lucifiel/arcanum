@@ -116,7 +116,7 @@ export default {
 		let dt = ( time - this.lastUpdate )/1000;
 		this.lastUpdate = time;
 
-		this.doDots(dt);
+		this.player.update(dt);
 
 		this.doCurrent( dt );
 
@@ -193,37 +193,6 @@ export default {
 			}
 
 		}*/
-
-	},
-
-	/**
-	 * Perform any update effects.
-	 * @param {number} dt - elapsed time.
-	 */
-	doDots( dt ) {
-
-		let updates = this.state.player.dots;
-		let dot;
-
-		for( let i = updates.length-1; i >= 0; i-- ) {
-
-			dot = updates[i];
-			dot.duration -= dt;
-			if ( dot.duration <= 0 ) {
-
-				updates.splice( i, 1 );
-				if ( dot.mod ) {
-					this.addMod( dot.mod, -1 );
-				}
-
-			} else {
-
-				// ignore any remainder beyond 0.
-				if ( dot.effect ) this.applyEffect( dot.effect, dt );
-
-			}
-
-		}
 
 	},
 
@@ -524,7 +493,7 @@ export default {
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );
-		if ( it.dot ) this.beginDot( it, it.dot );
+		if ( it.dot ) this.state.player.addDot( it );
 		if ( it.disable ) this.disable( it.disable );
 
 		if ( it.log ){
@@ -563,23 +532,6 @@ export default {
 		if ( it.lock ) this.unlock( it.lock );
 
 		it.dirty = true;
-
-	},
-
-	beginDot( it, dot ) {
-
-		let id = it.id;
-
-		let cur = this.state.player.dots.find( d=>d.id===id);
-		if ( cur !== undefined ) cur.duration = dot.duration;
-		else {
-
-			this.state.player.dots.push( Object.assign( { id:id, name:it.name }, dot ) );
-			if ( dot.mod ) {
-				this.addMod( dot.mod, 1 );
-			}
-
-		}
 
 	},
 

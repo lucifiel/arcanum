@@ -2,6 +2,9 @@ import Stat from "../stat";
 import Resource from "../items/resource";
 import Range from '../range';
 import Item from "../items/item";
+import Game from '../game';
+import { tryDamage } from './raid';
+
 import Char, { getDelay } from './char';
 
 /**
@@ -67,7 +70,7 @@ export default class Player extends Char {
 		else if ( v instanceof Resource ) this._speed = v;
 		else this._speed = new Resource( {value:v} );
 
-		this._delay = getDelay( this._speed.value );
+		this.delay = getDelay( this._speed.value );
 
 	}
 
@@ -106,8 +109,7 @@ export default class Player extends Char {
 
 		super(vars);
 
-		this.id = 'player';
-		this.type = "player";
+		this.id = this.type = "player";
 
 		//if ( vars ) Object.assign( this, vars );
 		this._level = this._level || 0;
@@ -148,10 +150,6 @@ export default class Player extends Char {
 			poison:0,
 			disease:0
 		}
-		/**
-		 * @property {number} timer
-		 */
-		this.timer = this.timer || 0;
 
 		this.baseAttack = this.baseAttack || {
 
@@ -176,6 +174,59 @@ export default class Player extends Char {
 		this.weapon = this.weapon || this.baseAttack;
 
 		this._name = this._name || 'wizrobe';
+
+	}
+
+	/**
+	 * Perform update effects.
+	 * @param {number} dt - elapsed time.
+	 */
+	update( dt ) {
+
+		let updates = this.dots;
+		let dot;
+
+		for( let i = updates.length-1; i >= 0; i-- ) {
+
+			dot = updates[i];
+
+			// ignore any remainder beyond 0.
+			if ( dot.effect ) Game.applyEffect( dot.effect, dt < dot.duration ? dt : dot.duration );
+			if ( dot.damage ) tryDamage( dot.damage, dot );
+
+			if ( dot.duration <= dt ) {
+
+				updates.splice( i, 1 );
+				if ( dot.mod ) Game.addMod( dot.mod, -1 );
+
+			} else dot.duration -= dt;
+
+
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param {Item|Object} it - object or item.
+	 * @param {Object} it.dot - dot being applied. 
+	 */
+	addDot( it ) {
+
+		let id = it.id;
+
+		let cur = id ? this.dots.find( d=>d.id===id) : undefined;
+		if ( cur !== undefined ) cur.duration = it.dot.duration;
+		else {
+
+			var dot = new Dot( it.dot, it.name );
+			dot.id = it.id;
+			this.dots.push( dot );
+			if ( dot.mod ) {
+				Game.addMod( dot.mod, 1 );
+			}
+
+		}
 
 	}
 

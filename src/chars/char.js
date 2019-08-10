@@ -1,6 +1,4 @@
-import Game from '../game';
-import Item from "../items/item";
-import Resource from '../items/resource';
+import {tryDamage} from './raid';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -24,7 +22,7 @@ export function getDamage( dmg ) {
 
 export default class Char {
 
-	/*toJSON(){
+	toJSON(){
 
 		let data = {}
 
@@ -37,7 +35,7 @@ export default class Char {
 
 		return data;
 
-	}*/
+	}
 
 	get name() { return this._name; }
 	set name(v) { this._name = v; }
@@ -69,10 +67,11 @@ export default class Char {
 	get resists() { return this._resists };
 	set resists(v) { this._resists = v; }
 
-	/**
-	 * @property {number} delay - time between attacks.
-	 */
-	get delay() { return this._delay; }
+	get speed() { return this._speed; }
+	set speed(v) {
+		this._speed = v;
+		this.delay = getDelay(v);
+	}
 
 	constructor( vars ){
 
@@ -87,12 +86,14 @@ export default class Char {
 		*/
 		this.dots = this.dots || [];
 
-		this.delay = this.getDelay( this.speed );
-		this.timer = this.delay;
+		/**
+		 * @property {number} timer
+		 */
+		this.timer = this.timer || this.delay;
 	}
 
 	/**
-	 * Monster no longer being used as a prototype, but as an active combatant.
+	 * Monster no longer being used as a prototype, but as active combatant.
 	 */
 	setActive() {
 
@@ -103,11 +104,18 @@ export default class Char {
 
 	/**
 	 * Base item of dot.
-	 * @param {Object} item 
+	 * @param {Object} it 
 	 */
-	addDot( item ) {
+	addDot( it ) {
 
-		this.dots.push( new Dot(item) );
+		let id = it.id;
+
+		let cur = id ? this.dots.find( d=>d.id===id) : undefined;
+		if ( cur !== undefined ) cur.duration = it.duration;
+		else {
+			this.dots.push( new Dot(it) );
+		}
+
 	}
 
 	update(dt) {
@@ -125,7 +133,7 @@ export default class Char {
 					this.dots.splice( i, 1);
 				}
 				if ( dot.damage ) {
-					this.doDamage( getDamage( dot.damage ), dot );
+					tryDamage( dot.damage, dot );
 					if ( !this.alive ) return;
 				}
 	
@@ -140,20 +148,6 @@ export default class Char {
 			return this.attack ? this.attack : ( this.damage ? this : null );
 
 		}
-
-	}
-
-	doDamage( dmg, src ) {
-
-		this.hp -= dmg;
-
-		Game.log.log( '',
-			this.name + ' hit by '
-				+ src.name
-				+ ': ' + dmg.toFixed(1),
-			'combat' );
-
-		if ( this.hp <= 0 ) this.alive=false;
 
 	}
 

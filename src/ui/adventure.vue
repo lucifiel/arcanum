@@ -41,9 +41,6 @@ export default {
 
 	<div v-if="raiding">
 		Adventuring...<br>
-		{{ raid.enemy ? raid.enemy.name + ' Encountered' : 'Exploring...' }}<br>
-		{{ raid.playerAct }}<br>
-		{{ raid.enemyAct }}
 	</div>
 	<br>
 
