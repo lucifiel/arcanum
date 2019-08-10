@@ -363,6 +363,22 @@
 
 	},
 	{
+
+		"id":"compiletome",
+		"name":"Compile Tome",
+		"require":"state.arcana.max>=10&&state.crafting>=10",
+		"length":20,
+		"cast":{
+			"codices":10,
+			"research":100,
+			"mana":10
+		},
+		"effect":{
+			"tomes":1
+		}
+
+	},
+	{
 		"id":"makebestiary",
 		"name":"compile bestiary",
 		"verb":"compiling bestiary",

@@ -68,6 +68,21 @@
 
 	},
 	{
+		"id":"tome",
+		"name":"Tomes",
+		"desc":"A hefty tome of knowledge.",
+		"max":5,
+		"mod":{
+			"arcana":{
+				"rate":0.001
+			},
+			"lore":{
+				"rate":0.1
+			}
+		}
+
+	},
+	{
 		"id":"gems",
 		"desc":"Various fine gemstones.",
 		"require":"adept",

@@ -89,7 +89,7 @@ export default class GameState {
 		for( let p in this.items ) {
 			if ( !(this.items[p] instanceof Item) ) {
 				console.warn( this.items[p].id + ' Not an Item. Removing.');
-				delete this.items[p];
+				if ( items[p] !== this.player ) delete this.items[p];
 			}
 		}
 

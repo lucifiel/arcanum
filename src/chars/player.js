@@ -120,6 +120,11 @@ export default class Player extends Char {
 		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 1;
 
+		this._resists = this._resists || {};
+		for( let p in this._resists ) {
+			this._resists[p] = new Stat( this._resists[p]);
+		}
+
 		this._statuses = this._statuses || {
 			fly:0,
 			sleep:0,
@@ -171,6 +176,17 @@ export default class Player extends Char {
 		this.weapon = this.weapon || this.baseAttack;
 
 		this._name = this._name || 'wizrobe';
+
+	}
+
+	removeResist( kind, amt ) {
+		if ( this._resists[kind] ) this._resists[kind].base -= amt;
+	}
+
+	addResist( kind, amt ) {
+
+		if ( !this._resists[kind] ) this._resists[kind] = new Stat( amt );
+		else this._resists[kind].base += amt;
 
 	}
 

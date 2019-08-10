@@ -1,6 +1,7 @@
 import Game from '../game';
-import Enemy from './enemy';
+import Char from './char';
 import Range from '../range';
+import { clone, randElm  } from 'objecty'
 
 const COMBAT_LOG = 'combat';
 
@@ -42,24 +43,27 @@ export default class Raid {
 	get length() { return this.dungeon.length; }
 
 	/**
-	 * @property {Enemy} enemy - current enemy.
+	 * @property {Char} enemy - backward save compatibility.
 	 */
-	get enemy() { return this._enemy;}
 	set enemy(v) {
 
 		if (typeof v === 'string') v = Game.getItem(v);
-		if (!this._enemy ) this._enemy = new Enemy(v, this, Game.log );
-		else this._enemy.setEnemy(v);
+		this._enemies.push( new Char(v) );
 
+	}
+
+	get enemies() { return this._enemies; }
+	set enemies(v) {
+
+		for( let i = v.length-1; i>= 0; i--) v[i] = new Char(v);
+		this._enemies = v;
 	}
 
 	toJSON() {
 
 		return {
 			dungeon:this.dungeon ? this.dungeon.id : undefined,
-			enemy:this.enemy,
-			playerAct:this.playerAct,
-			enemyAct:this.enemyAct
+			enemies:this._enemies
 		}
 
 	}
@@ -77,10 +81,7 @@ export default class Raid {
 		 */
 		this.dungeon = this.dungeon || null;
 
-		if ( !this.enemy ) this.enemy = null;
-
-		this.playerAct = '';
-		this.enemyAct = '';
+		this._enemies = this._enemies || [];
 
 	}
 
@@ -98,9 +99,9 @@ export default class Raid {
 
 		if ( this.dungeon == null ) return;
 
-		if ( this.enemy.alive===false ) {
+		if ( this._enemies.length === 0 ) {
 
-			this.enemy = this.dungeon.getEnemy();
+			this.nextEnemy();
 			this.player.timer = this.player.delay;
 
 		} else {
@@ -120,8 +121,16 @@ export default class Raid {
 
 			}
 
-			this.enemy.update(dt);
-			if ( this.enemy.alive === false ) this.enemyDied();
+			for( let i = this._enemies.length-1; i >= 0; i-- ) {
+	
+				var e = this._enemies[i];
+				var action = e.update(dt);
+				if ( e.alive === false ) {
+					this._enemies.splice(i,1);
+				}
+				else if ( action ) this.enemyAttack( e, action, this.player );
+
+			}
 
 		}
 
@@ -129,15 +138,14 @@ export default class Raid {
 
 	/**
 	 * Player-casted spell or action attack.
-	 * @param {*} it 
+	 * @param {Item} it 
 	 */
 	spellAttack( it ) {
 
 		console.log('spell attack');
-		if ( this.dungeon == null || !this.enemy.alive ) {
+		if ( this.dungeon == null || !this._enemies.length===0 ) {
 
-			this.playerAct = this.player.name + ' casts ' + it.name + ' at the darkness.';
-			Game.log.log( '', this.playerAct, 'combat');
+			Game.log.log( '', this.player.name + ' casts ' + it.name + ' at the darkness.', 'combat');
 
 		} else this.playerAttack( it );
 
@@ -150,20 +158,22 @@ export default class Raid {
 	 */
 	baseAttack( player ) {
 
-		if ( this.tryHit( player, this.enemy ) ) {
+		let e = randElm( this.enemies );
+		if ( e === undefined ) return;
+
+		if ( this.tryHit( player, e ) ) {
 
 			if ( player.damage != null ) {
 
 				let dmg = this.getDamage( player.damage );
 
-				this.enemy.doDamage( dmg, player );
+				e.doDamage( dmg, player );
 
 			}
 
 		} else {
 
-			this.playerAct = player.name + ' misses';
-			Game.log.log( '', this.playerAct, 'combat');
+			Game.log.log( '', player.name + ' misses', 'combat');
 
 		}
 
@@ -177,47 +187,80 @@ export default class Raid {
 
 		let atk = src.attack;
 
-		if ( this.rollHit( this.player, atk, this.enemy ) ) {
+		let e = randElm( this.enemies );
+		if ( e === undefined ) return;
+
+		if ( this.rollHit( this.player, atk, e ) ) {
 
 			if ( atk.damage != null ) {
 
 				let dmg = this.getDamage( atk.damage ) + this.player.damage;
 
-			//this.playerAct = this.enemy.name + ' hit: ' + dmg.toFixed(1);
-			//Game.log.log( '', this.playerAct, 'combat');
-
-				this.enemy.doDamage( dmg, src );
+				e.doDamage( dmg, src );
 
 			}
-			if ( atk.dot ) this.enemy.addDot( atk.dot, src.name );
+			if ( atk.dot ) e.addDot( atk.dot, src.name );
 
 		} else {
 
-			this.playerAct = this.player.name + ' misses';
-			Game.log.log( '', this.playerAct, COMBAT_LOG );
+			Game.log.log( '', this.player.name + ' misses', COMBAT_LOG );
 
 		}
 
 	}
 
-	enemyAttack( enemy ) {
+	/**
+	 * 
+	 * @param {Char} enemy - enemy attacking. 
+	 * @param {Object|Char} attack - attack object. 
+	 * @param {Char} target - target of attack. ( currently player ).
+	 */
+	enemyAttack( enemy, attack, target ) {
 
 		//console.log('monster attack: ' + atk);
 
-		if ( this.tryHit( enemy, this.player ) ) {
+		var actStr;
 
-			if ( enemy.damage ) {
-				let dmg = this.getDamage( enemy.damage );
-				this.enemyAct = this.player.name + ' hit: ' + dmg.toFixed(1);
-				this.player.hp -= dmg;
+		if ( this.tryHit( enemy, target ) ) {
+
+			if ( attack.damage ) {
+				let dmg = this.getDamage( attack.damage );
+				actStr = target.name + ' hit: ' + dmg.toFixed(1);
+				target.hp -= dmg;
 			}
 
-			if ( this.player.hp <= 0 ) this.playerDied();
+			if ( target.hp <= 0 ) this.charDied( target, enemy );
 
-		} else {
-			this.enemyAct = enemy.name + ' misses';
+		} else actStr = enemy.name + ' misses';
+
+		Game.log.log( '', actStr, COMBAT_LOG );
+
+	}
+
+	/**
+	 * 
+	 * @param {Char} target 
+	 * @param {Object} attack 
+	 */
+	tryDamage( target, attack ) {
+
+		if ( attack.kind ) {
+
+			if ( target.isImmune(attack.kind) ) {
+				Game.log.log( '', target.name + ' is immune to ' + attack.kind );
+				return false;
+			}
+			if ( target.resists(attack.kind) ) {
+				Game.log.log( '', target.name + ' resists ' + attack.kind );
+				return false;
+			}
+
 		}
-		Game.log.log( '', this.enemyAct, COMBAT_LOG );
+		let dmg = this.getDamage( attack.damage );
+		target.hp -= dmg;
+		if ( target.hp <= 0 ) this.charDied( target );
+
+		return true;
 
 	}
 
@@ -242,7 +285,16 @@ export default class Raid {
 
 		if ( dmg instanceof Range) return dmg.value;
 		else if ( !isNaN(dmg) ) return dmg;
-		else return dmg( this.state, this.player, this.enemy );
+
+		// TODO: invalid
+		//else return dmg( this.state, this.player, this.enemy );
+
+	}
+
+	charDied( char, attacker ) {
+
+		if ( char === this.player ) this.playerDied();
+		else this.enemyDied( char, attacker );
 
 	}
 
@@ -250,18 +302,36 @@ export default class Raid {
 		Game.setAction( this.state.restAction );
 	}
 
-	enemyDied() {
+	/**
+	 * Get next dungeon enemy.
+	 */
+	nextEnemy() {
+		
+		var enemy = this.dungeon.getEnemy();
+		if ( enemy instanceof Array ){
 
-		this.player.exp += 1 + this.enemy.level;
+			for( let i = enemy.length-1; i >=0; i-- ) {
+				var e = enemy[i];
+				if ( typeof e === 'string' ) e = Game.getItem(e);
+				this._enemies.push( new Char( clone(e) ) );
+			}
+
+		} else {
+			if ( typeof enemy === 'string' ) enemy = Game.getItem( enemy );
+			this._enemies.push( new Char( clone(enemy )) );
+		}
+
+	}
+
+	enemyDied( enemy, attacker ) {
+
+		this.player.exp += 1 + enemy.level;
 		this.player.timer = this.player.delay;
 		
-		this.enemyAct = this.enemy.name + ' slain';
-		Game.log.log( '', this.enemyAct, COMBAT_LOG );
+		Game.log.log( '', enemy.name + ' slain' + ( attacker ? ' by ' + attacker.name : ''), COMBAT_LOG );
 
-		if ( this.enemy.result ) Game.applyEffect( this.enemy.result );
-		if ( this.enemy.loot ) Game.getLoot( this.enemy.loot );
-
-		this.enemy.clear();
+		if ( enemy.result ) Game.applyEffect( enemy.result );
+		if ( enemy.loot ) Game.getLoot( enemy.loot );
 
 		this.progress += 1;
 
@@ -289,7 +359,7 @@ export default class Raid {
 		this.player.timer = this.player.delay;
 
 		if ( d != null ) {
-			this.enemy.alive = false;
+			this._enemies = [];
 			if ( d.progress >= d.length ) d.progress = 0;
 		}
 

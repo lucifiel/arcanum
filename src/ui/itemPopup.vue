@@ -137,7 +137,7 @@ export default {
 			
 
 		</div>
-			<div v-if="item.cast">
+			<div v-if="item.cast&&item.cast!==item.cost">
 
 			<hr>
 			<!--<span class="note-text">cost:</span>-->
