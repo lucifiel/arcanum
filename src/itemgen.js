@@ -208,7 +208,7 @@ export default class ItemGen {
 
 	itemClone( data, material ) {
 
-		data = cloneClass(data);
+		data = new Wearable(data);
 
 		if ( material ) {
 			data.applyMaterial( material );

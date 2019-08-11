@@ -31,13 +31,17 @@ export default class Wearable extends Item {
 	get attack() { return this._attack; }
 	set attack(v) {
 
-		let dmg = v.damage = v.damage || v.dmg;
-		if ( dmg && !(dmg instanceof Range)) {
+		if ( v ) {
 
-			v.damage = new Range(dmg)
+			let dmg = v.damage = v.damage || v.dmg;
+			if ( dmg && !(dmg instanceof Range)) {
+
+				v.damage = new Range(dmg)
+
+			}
+			v.tohit = v.tohit || 0;
 
 		}
-		v.tohit = v.tohit || 0; 
 
 		this._attack = v;		
 

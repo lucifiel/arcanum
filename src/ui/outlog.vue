@@ -20,6 +20,13 @@ export default {
 		}
 
 	},
+	methods:{
+
+		clearLog(){
+			this.log.clear();
+		}
+
+	},
 	computed:{
 
 		visItems(){
@@ -36,10 +43,14 @@ export default {
 	
 	<div class="log-view">
 
-			<span class="check-span" v-for="p in LogTypes" :key="p">
-				<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
-				<label :for="elmId(p)">{{ p }}</label>
+			<span class="top-span">
+				<button type="button" @click="clearLog">Clear</button>
+				<span class="checks" v-for="p in LogTypes" :key="p">
+					<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
+					<label :for="elmId(p)">{{ p }}</label>
+				</span>
 			</span>
+		
 
 			<div class="outlog">
 			<div class="log-item" v-for="(it,i) in visItems" :key="i">
@@ -55,7 +66,7 @@ export default {
 </template>
 
 <style scoped>
-span.check-span {
+span.top-span {
 	margin: 2px 0px 5px;
 	padding-bottom: 2px;
 	border-bottom: 1px solid rgb(88, 87, 87);

@@ -27,6 +27,10 @@ export default class Log {
 
 	}
 
+	clear() {
+		this.items.splice( 0, this.items.length );
+	}
+
 	log( title='', text='', type='event' ) {
 		this.items.push( new LogItem(title, text, type ) );
 	}

@@ -161,7 +161,6 @@ export default class Raid {
 		if ( this._enemies.length === 0 ) {
 
 			this.nextEnemy();
-			console.log('getting next enemy');
 			this.player.timer = this.player.delay;
 
 		} else {
