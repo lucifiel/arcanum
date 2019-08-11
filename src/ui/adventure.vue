@@ -10,8 +10,12 @@ export default {
 	mixins:[ItemBase],
 	data(){
 		return {
-			game:Game
-		};
+			log:Game.log
+		}
+	},
+	beforeCreate(){
+		this.game = Game;
+		this.MAX_ITEMS = 5;
 	},
 	components:{
 		progbar:ProgBar
@@ -20,6 +24,13 @@ export default {
 
 	},
 	computed:{
+
+		combatLog() {
+
+			console.log('getting combat log');
+			return this.log.items.filter(
+				v=>v.type==='combat' ).slice( -this.MAX_ITEMS );
+		},
 
 		raid() { return this.state.raid; },
 
@@ -39,8 +50,13 @@ export default {
 
 <div class="adventure">
 
-	<div v-if="raiding">
-		Adventuring...<br>
+	<div>
+		<span v-if="raiding">Adventuring...<br></span>
+		<div class="outlog">
+		<div v-for="(it,i) in combatLog" :key="i">
+			<span class="log-text">{{ it.text || 'Nothing' }}</span>
+		</div>
+		</div>
 	</div>
 	<br>
 

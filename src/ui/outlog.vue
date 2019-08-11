@@ -79,11 +79,6 @@ div.log-view {
 	overflow-y: auto;
 }
 
-div.outlog {
-	display:flex;
-	flex-direction: column-reverse;
-}
-
 div.log-item {
 	display:flex;
 	flex-direction: column;

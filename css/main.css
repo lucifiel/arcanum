@@ -113,6 +113,11 @@ table.item-table tr, table.item-table th {
 	padding: 1px 8px;
 }
 
+div.outlog {
+	display:flex;
+	flex-direction: column-reverse;
+}
+
 button.rest-btn {
 	padding:3px 8px;
 }
