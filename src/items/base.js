@@ -10,7 +10,10 @@ export function mergeClass( destClass, src ) {
 
 	}*/
 
-	Object.defineProperties( proto,  Object.getOwnPropertyDescriptors(src) );
+	let descs = Object.getOwnPropertyDescriptors(src);
+	for( let p in descs ) {
+		if ( proto[p] === undefined ) Object.defineProperty( proto, p, descs[p]);
+	}
 
 	return destClass;
 

@@ -7,7 +7,7 @@ export default class Wearable {
 
 	toJSON() {
 
-		let data = this.excludeJSON( ['material'] );
+		let data = this.excludeJSON( ['material', 'kind'] );
 
 		data.id = this.id;
 		data.template = this.template.id;
@@ -36,7 +36,6 @@ export default class Wearable {
 
 		if ( v ) {
 
-			console.log(this.id + ' setting attack: ' + v);
 			let dmg = v.damage = v.damage || v.dmg;
 			if ( dmg && !(dmg instanceof Range)) {
 
