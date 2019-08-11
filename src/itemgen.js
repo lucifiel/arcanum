@@ -1,5 +1,5 @@
 import Game from './game';
-import Wearable from "./items/wearable";
+import Wearable from "./chars/wearable";
 import {cloneClass, sublists, randElm, randMatch } from 'objecty';
 import Percent from './percent';
 

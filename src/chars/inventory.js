@@ -1,4 +1,4 @@
-import Wearable from "./items/wearable";
+import Wearable from "./wearable";
 
 export default class Inventory {
 

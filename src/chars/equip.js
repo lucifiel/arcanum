@@ -1,5 +1,5 @@
 import Slot from './slot';
-import Wearable from '../items/wearable';
+import Wearable from './wearable';
 
 export default class Equip {
 

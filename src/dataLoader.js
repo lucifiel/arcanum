@@ -1,7 +1,6 @@
 import Item from 'items/item';
 import Player from './chars/player';
 
-import Wearable from './items/wearable';
 import Range, {RangeTest} from './range';
 import Percent, {PercentTest} from './percent';
 
@@ -14,8 +13,9 @@ import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 import Action from './items/action';
 
-import { merge, cloneClass, mergeSafe } from 'objecty';
+import { mergeSafe } from 'objecty';
 import ZeroSum from './items/zerosum';
+import ProtoItem from './items/protoItem';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -204,10 +204,10 @@ export default {
 		this.initItems( dataLists['dungeons'], Dungeon );
 		this.initItems( dataLists['spells'], Spell );
 
-		gd.armors = this.initItems( dataLists['armors'], Wearable );
+		gd.armors = this.initItems( dataLists['armors'], ProtoItem );
 		gd.armors.forEach( v=>v.kind = 'armor' );
 	
-		gd.weapons = this.initItems( dataLists['weapons'], Wearable );
+		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem );
 		gd.weapons.forEach(v=>v.kind='weapon');
 
 		gd.materials = dataLists['materials'];

@@ -1,12 +1,15 @@
-import Item from "./item";
+import Item from "../items/item";
 import Range from "../range";
+import {mergeSafe} from "objecty";
 
 export default class Wearable extends Item {
 
 	toJSON() {
 
-		let data = this.subJSON( ['kind', 'material'] );
+		let data = this.subJSON( ['material'] );
 
+		data.id = this.id;
+		data.template = this.template.id;
 		if ( this.material ) {
 			if ( !data ) data = {};
 			data.material = this.material.id;
@@ -26,7 +29,19 @@ export default class Wearable extends Item {
 	set armor(v) { this._armor = v; }
 
 	get attack() { return this._attack; }
-	set attack(v) { this._attack = v; }
+	set attack(v) {
+
+		let dmg = v.damage = v.damage || v.dmg;
+		if ( dmg && !(dmg instanceof Range)) {
+
+			v.damage = new Range(dmg)
+
+		}
+		v.tohit = v.tohit || 0; 
+
+		this._attack = v;		
+
+	}
 
 	/**
 	 * @property {string} kind - subtype of wearable.
@@ -41,12 +56,16 @@ export default class Wearable extends Item {
 
 		this.level = this.level || 1;
 		this.kind = this.kind || 'equip';
-		if ( this.attack ) {
 
-			this.attack.damage = this.attack.dmg;
-			if ( !this.attack.tohit ) this.attack.tohit = 1;
+	}
 
-		}
+	revive( state ) {
+
+		if ( typeof this.material === 'string') this.material = state.getMaterial( this.material );
+
+		if ( typeof this.template === 'string' ) this.template = state.getItem( this.template );
+		if ( this.template ) mergeSafe( this, this.template );
+		else console.log('wearable template not found: ' + this.template );
 
 	}
 
@@ -70,10 +89,6 @@ export default class Wearable extends Item {
 		if ( typeof obj[prop] === 'number') obj[prop] += amt;
 		else if ( obj[prop] instanceof Range ) obj[prop].add( amt );
 
-	}
-
-	revive( state ) {
-		if ( typeof this.material === 'string') this.material = state.getMaterial( this.material );
 	}
 
 	equip( player ) {
