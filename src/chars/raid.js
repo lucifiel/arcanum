@@ -1,7 +1,6 @@
 import Game from '../game';
-import Char from './char';
+import Char, {fromMonster} from './char';
 import Range from '../range';
-import { clone  } from 'objecty'
 import Dot from './dot';
 
 const COMBAT_LOG = 'combat';
@@ -32,8 +31,13 @@ export function tryDamage( target, attack, attacker ) {
 			+ ( (attacker && attacker!==attack) ? (attacker.damage || 0) : 0);
 
 		target.hp -= dmg;
-		Game.log.log( '', target.name + ' hit by ' + attack.name +': ' + dmg.toFixed(1),
+
+		var attackName = attack.name || ( attacker ? attacker.name : '' );
+		Game.log.log( '', target.name + ' hit' +
+			( attackName ? ' by ' + attackName : '' ) +
+			': ' + dmg.toFixed(1),
 			COMBAT_LOG );
+
 	}
 
 	if ( attack.dot ) target.addDot(
@@ -157,6 +161,7 @@ export default class Raid {
 		if ( this._enemies.length === 0 ) {
 
 			this.nextEnemy();
+			console.log('getting next enemy');
 			this.player.timer = this.player.delay;
 
 		} else {
@@ -201,7 +206,7 @@ export default class Raid {
 	 */
 	spellAttack( it ) {
 
-		console.log('spell attack');
+		//console.log('spell attack');
 		if ( this.dungeon == null || !this._enemies.length===0 ) {
 
 			Game.log.log( '', this.player.name + ' casts ' + it.name + ' at the darkness.', 'combat');
@@ -261,7 +266,6 @@ export default class Raid {
 	 */
 	enemyAttack( enemy, attack, target ) {
 
-		console.log('monster attack: ' + attack );
 		if ( this.tryHit( enemy, target ) ) {
 
 			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
@@ -278,8 +282,8 @@ export default class Raid {
 	 * @returns {boolean} true if char hit.
 	 */
 	tryHit( attacker, defender, attack ){
-		return Math.random()*( attacker.tohit + (attack ? attack.tohit || 0 : 0) )
-			>= Math.random()*defender.defense;
+		return Math.random()*( 10 + attacker.tohit + (attack ? attack.tohit || 0 : 0) )
+			>= Math.random()*(10 + defender.defense );
 	}
 
 	charDied( char, attacker ) {
@@ -304,12 +308,15 @@ export default class Raid {
 			for( let i = enemy.length-1; i >=0; i-- ) {
 				var e = enemy[i];
 				if ( typeof e === 'string' ) e = Game.getItem(e);
-				this._enemies.push( new Char( clone(e) ) );
+				this._enemies.push( fromMonster( e ) );
 			}
 
 		} else {
+
 			if ( typeof enemy === 'string' ) enemy = Game.getItem( enemy );
-			this._enemies.push( new Char( clone(enemy )) );
+			if ( !enemy) {console.warn( 'Missing Enemy'); return }
+			this._enemies.push( fromMonster(enemy ) );
+
 		}
 
 	}

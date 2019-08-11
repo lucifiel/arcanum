@@ -21,7 +21,7 @@ export default {
 		tohit() {return this.player.tohit; },
 		exp() {return this.round( this.player.exp.value ); },
 		next() {return this.round( this.player.next ); },
-		level() {return this.player.hp; },
+
 	},
 	beforeCreate(){
 

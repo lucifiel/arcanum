@@ -1,4 +1,6 @@
+import Range from '../range';
 import {tryDamage} from './raid';
+import { clone  } from 'objecty'
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -9,14 +11,25 @@ export function getDelay(s) {
 }
 
 /**
-* Convert damage object to raw damage value.
-* Does not include complex damage functions.
-* @param {number|function|Range} dmg /
-*/
-export function getDamage( dmg ) {
+ * Create new character from Monster data.
+ * @param {Monster} data 
+ */
+export function fromMonster( data ) {
 
-	if ( dmg instanceof Range) return dmg.value;
-	else if ( !isNaN(dmg) ) return dmg;
+	let c = new Char( clone(data) );
+
+	if ( c.dmg && !c.damage ) c.damage = c.dmg;
+	if ( c.damage && !(c.damage instanceof Range) ) {
+
+		if ( typeof c.damage === 'string' || typeof c.damage === 'object') c.damage = new Range( c.damage );
+		else c.damage = Number( c.damage );
+
+	}
+
+	if ( typeof c.hp === 'string' || typeof c.hp === 'object') c.hp = new Range(c.hp);
+	if ( c.hp instanceof Range ) c.hp = c.hp.value;
+
+	return c;
 
 }
 
@@ -37,7 +50,7 @@ export default class Char {
 
 	}
 
-	get name() { return this._name; }
+	get name() { return this._name || this.id; }
 	set name(v) { this._name = v; }
 
 	/**
@@ -73,6 +86,17 @@ export default class Char {
 		this.delay = getDelay(v);
 	}
 
+	get attack() { return this._attack; }
+	set attack(v) {
+
+		v.damage = v.damage || v.dmg;
+		if ( v.damage ) {
+			if (typeof v.damage === 'string' ) v.damage = new Range(v.damage);
+			else if ( isNaN(v.damage)) v.damage = new Range( v.damage);
+		}
+
+	}
+
 	get alive() { return this.hp > 0; }
 	set alive(v) { if ( !v ) this.hp = 0;}
 
@@ -84,8 +108,8 @@ export default class Char {
 		this.immunities = this.immunities || {};
 		this._resists = this._resists || {};
 
-		this.damage = this.damage || this.dmg;
-		this.damage = this.damage ? new Range( this.damage ) : null;
+		//console.log( this.id + ' damage: ' + this.damage );
+		//console.log( this.id + ' tohit: ' + this.tohit );
 
 		/**
 		 * @property {Object[]} dots - timed/ongoing effects.
@@ -96,8 +120,6 @@ export default class Char {
 		 * @property {number} timer
 		 */
 		this.timer = this.timer || this.delay;
-
-		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 	}
 
