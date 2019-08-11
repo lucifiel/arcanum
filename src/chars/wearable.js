@@ -61,7 +61,7 @@ export default class Wearable {
 
 		if( vars ) Object.assign( this, vars);
 
-		console.log('this.attack: ' + this.attack );
+		//console.log('this.attack: ' + this.attack );
 		this.type = 'wearable';
 
 	}

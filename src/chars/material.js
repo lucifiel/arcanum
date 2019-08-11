@@ -1,3 +1,5 @@
+import Base, {mergeClass} from '../items/base';
+
 export default class Material {
 
 	constructor(vars=null) {
@@ -7,3 +9,5 @@ export default class Material {
 	}
 
 }
+
+mergeClass( Material, Base );

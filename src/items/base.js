@@ -1,14 +1,18 @@
 import {changes, jsonify} from 'objecty';
 
-export function mergeClass( destClass, obj ) {
+export function mergeClass( destClass, src ) {
 
 	let proto = destClass.prototype;
-	let props = Object.getOwnPropertyNames(obj);
+	/*let props = Object.getOwnPropertyNames(src);
 	for( let i = props.length-1; i >= 0; i-- ) {
 
-		if ( proto[props[i]] === undefined ) proto[ props[i] ] = obj[ props[i] ];
+		if ( proto[props[i]] === undefined ) proto[ props[i] ] = src[ props[i] ];
 
-	}
+	}*/
+
+	Object.defineProperties( proto,  Object.getOwnPropertyDescriptors(src) );
+
+	return destClass;
 
 }
 
@@ -17,7 +21,7 @@ export function mergeClass( destClass, obj ) {
  /**
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
- const EncodeIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta', 'tags'];
+ const JSONIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta', 'tags'];
 
 /**
  * Base class of all Game Objects.
@@ -30,7 +34,7 @@ export default {
 	*/
 	excludeJSON( excludes ) {
 
-		excludes = excludes ? EncodeIgnore.concat( excludes ) : EncodeIgnore;
+		excludes = excludes ? JSONIgnore.concat( excludes ) : JSONIgnore;
 
 		let vars = changes( jsonify(this, excludes ), this.template || {} );
 
@@ -47,7 +51,7 @@ export default {
 
 	toJSON() {
 
-		let vars = changes( jsonify(this, EncodeIgnore ),
+		let vars = changes( jsonify(this, JSONIgnore ),
 			this.template || {} );
 
 		if ( this.locked === false && this.template.locked !== false ){
@@ -80,7 +84,8 @@ export default {
 	 * @property {string} name - displayed name.
 	 */
 	get name() { return this._name || this.id;},
-	set name(v) { this._name = v;},
+	set name(v) {
+		this._name = v;},
 
 	/**
 	 * @property {boolean} repeat - whether the item is repeatable.

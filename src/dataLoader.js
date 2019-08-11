@@ -16,6 +16,7 @@ import Action from './items/action';
 import { mergeSafe } from 'objecty';
 import ZeroSum from './items/zerosum';
 import ProtoItem from './items/protoItem';
+import Material from './chars/material';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -206,11 +207,11 @@ export default {
 
 		gd.armors = this.initItems( dataLists['armors'], ProtoItem );
 		gd.armors.forEach( v=>v.kind = 'armor' );
-	
+
 		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem );
 		gd.weapons.forEach(v=>v.kind='weapon');
 
-		gd.materials = dataLists['materials'];
+		gd.materials = this.initItems( dataLists['materials'], Material, 'material', 'material ');
 
 		gd.events = this.initItems( dataLists['events'], Item, null, 'event' );
 		gd.events = gd.events.concat( this.initItems( dataLists['classes'], Item, null, 'event') );
