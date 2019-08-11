@@ -1,8 +1,10 @@
+import Base, {mergeClass} from '../items/base';
 import Item from "../items/item";
 import Range from "../range";
 import {mergeSafe} from "objecty";
 
-export default class Wearable extends Item {
+ 
+export default class Wearable {
 
 	toJSON() {
 
@@ -55,11 +57,9 @@ export default class Wearable extends Item {
 
 	constructor(vars=null){
 
-		super(vars);
-		this.type = 'wearable';
+		if( vars )Object.assign( this, vars);
 
-		this.level = this.level || 1;
-		this.kind = this.kind || 'equip';
+		this.type = 'wearable';
 
 	}
 
@@ -68,8 +68,16 @@ export default class Wearable extends Item {
 		if ( typeof this.material === 'string') this.material = state.getMaterial( this.material );
 
 		if ( typeof this.template === 'string' ) this.template = state.getItem( this.template );
-		if ( this.template ) mergeSafe( this, this.template );
-		else console.log('wearable template not found: ' + this.template );
+		if ( this.template ) {
+
+			if ( this.armor === null || this.armor === undefined ) this.armor = this.template.armor;
+			if ( this.tohit === null || this.tohit === undefined ) this.tohit = this.template.tohit;
+
+			mergeSafe( this, this.template );
+
+		} else console.log('wearable template not found: ' + this.template );
+
+		console.log( this.id + ' REVIVE DEF: ' + this.armor );
 
 	}
 
@@ -110,3 +118,6 @@ export default class Wearable extends Item {
 	}
 
 }
+
+
+mergeClass( Wearable, Base );

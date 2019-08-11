@@ -315,13 +315,11 @@ export default {
 
 	initItems( dataList, UseClass=Item, tag=null, type=null ) {
 
-		let cnstr = UseClass ? UseClass.prototype.constructor : null;
-
 		for( let i = dataList.length-1; i >= 0; i-- ) {
 
 			var def = dataList[i];
 
-			dataList[i] = def = def.zerosum === true ? new ZeroSum(def) : new cnstr( def );
+			dataList[i] = def = def.zerosum === true ? new ZeroSum(def) : new UseClass( def );
 			if ( tag ) def.addTag( tag );
 			if ( type ) def.type = type;
 

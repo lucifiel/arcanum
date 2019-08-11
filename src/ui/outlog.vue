@@ -43,13 +43,13 @@ export default {
 	
 	<div class="log-view">
 
-			<span class="top-span">
-				<button type="button" @click="clearLog">Clear</button>
+			<div class="top-span">
+				<button type="button" style="display:inline-block" @click="clearLog">Clear</button>
 				<span class="checks" v-for="p in LogTypes" :key="p">
 					<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
 					<label :for="elmId(p)">{{ p }}</label>
 				</span>
-			</span>
+			</div>
 		
 
 			<div class="outlog">
@@ -66,7 +66,7 @@ export default {
 </template>
 
 <style scoped>
-span.top-span {
+div.top-span {
 	margin: 2px 0px 5px;
 	padding-bottom: 2px;
 	border-bottom: 1px solid rgb(88, 87, 87);
