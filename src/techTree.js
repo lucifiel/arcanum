@@ -90,9 +90,9 @@ export default class TechTree {
 		if ( !src) return;
 		let it = this.items[src];
 		
-		if ( !it ) {
+		if ( it === undefined ) {
 			it = Game.state.getTagList( src );
-			if ( it ) it.forEach( v=>this.markUnlock(v,item) );
+			if ( it ) it.forEach( v=>this.markUnlock(v.id,item) );
 			return;
 		}
 

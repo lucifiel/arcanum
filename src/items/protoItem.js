@@ -7,7 +7,7 @@ export default class ProtoItem extends Item {
 
 	toJSON() {
 
-		let data = super.toJSON( ['kind'] );
+		let data = this.excludeJSON( ['kind'] );
 		return data ? data : undefined;
 
 	}

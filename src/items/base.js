@@ -3,13 +3,6 @@ import {changes, jsonify} from 'objecty';
 export function mergeClass( destClass, src ) {
 
 	let proto = destClass.prototype;
-	/*let props = Object.getOwnPropertyNames(src);
-	for( let i = props.length-1; i >= 0; i-- ) {
-
-		if ( proto[props[i]] === undefined ) proto[ props[i] ] = src[ props[i] ];
-
-	}*/
-
 	let descs = Object.getOwnPropertyDescriptors(src);
 	for( let p in descs ) {
 		if ( proto[p] === undefined ) Object.defineProperty( proto, p, descs[p]);
