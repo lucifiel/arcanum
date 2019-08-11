@@ -1,18 +1,63 @@
+import {changes, jsonify} from 'objecty';
+
 export function mergeClass( destClass, obj ) {
 
 	let proto = destClass.prototype;
 	let props = Object.getOwnPropertyNames(obj);
 	for( let i = props.length-1; i >= 0; i-- ) {
 
-		proto[ props[i] ] = obj[ props[i] ];
+		if ( proto[props[i]] === undefined ) proto[ props[i] ] = obj[ props[i] ];
+
 	}
 
 }
+
+
+ // TODO: restore 'tags' later if tags become dynamic.
+ /**
+  * @const {string[]} JSONIgnore - ignore these properties by default when saving.
+  */
+ const EncodeIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta', 'tags'];
 
 /**
  * Base class of all Game Objects.
  */
 export default {
+
+	/**
+	 * Get JSON for a sub-class with additional properties excluded.
+	 * @param {string[]} [excludes=null]
+	*/
+	excludeJSON( excludes ) {
+
+		excludes = excludes ? EncodeIgnore.concat( excludes ) : EncodeIgnore;
+
+		let vars = changes( jsonify(this, excludes ), this.template || {} );
+
+
+		if ( this.locked === false && this.template.locked !== false ){
+			vars = vars || {};
+			vars.locked = this.locked;
+		}
+
+		return vars || undefined;
+
+	},
+
+
+	toJSON() {
+
+		let vars = changes( jsonify(this, EncodeIgnore ),
+			this.template || {} );
+
+		if ( this.locked === false && this.template.locked !== false ){
+			vars = vars || {};
+			vars.locked = this.locked;
+		}
+
+		return vars || undefined;
+
+	},
 
 	/**
 	 * @property {Object} template - data used to create this Item.

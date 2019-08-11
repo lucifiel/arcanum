@@ -517,7 +517,7 @@ export default {
 	 */
 	remove( id, amt=1 ){
 
-		let it = id instanceof Item ? id : this.getItem(id);
+		let it = typeof id === 'string' ? this.getItem(id) : id;
 		if ( !it ) {
 
 			it = this.state.getTagList(id);
@@ -604,7 +604,7 @@ export default {
 				(it.locked === false) : it.value > 0;
 
 		} else if ( test instanceof Array ) return test.every( v=>this.unlockTest(v,item), this );
-		else if ( test instanceof Item ) {
+		else if ( test.type != null ) {
 
 			return ( test.type === 'resource' || test.type === 'action') ? !test.locked : test.value > 0;
 

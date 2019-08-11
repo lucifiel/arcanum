@@ -1,4 +1,4 @@
-import { defineExcept, changes, jsonify } from 'objecty';
+import { defineExcept } from 'objecty';
 import Stat from '../stat';
 import Base, {mergeClass} from './base';
 import Game from '../game';
@@ -8,54 +8,10 @@ import Game from '../game';
  * @property {?number} duration
  */
 
- // TODO: restore 'tags' later if tags become dynamic.
-
- /**
-  * @const {string[]} JSONIgnore - ignore these properties by default when saving.
-  */
- const EncodeIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta', 'tags'];
-
 /**
  * Game Items base class.
  */
 export default class Item {
-
-	/**
-	 * Get JSON for a sub-class with additional properties excluded.
-	 * @param {string[]} excludes 
-	 */
-	subJSON( excludes ) {
-
-		let vars = changes( jsonify(this, EncodeIgnore.concat(excludes) ),
-			this.template || {} );
-
-		if ( this.locked === false && this.template.locked !== false ){
-			vars = vars || {};
-			vars.locked = this.locked;
-		}
-
-		return vars != null ? vars : undefined;
-
-	}
-
-	toJSON() {
-
-		let vars = changes( jsonify(this, EncodeIgnore ),
-			this.template || {} );
-
-
-		if ( this.locked === false && this.template.locked !== false ){
-			vars = vars || {};
-			vars.locked = this.locked;
-		}
-
-		//if ( this.disabled === true ) vars.disabled = true;
-		//if ( this.locks ) vars.locks = this.locks;
-		//if ( this.template.value != this.value ) vars.value = this.value;
-
-		return vars != null ? vars : undefined;
-
-	}
 
 	/**
 	 * @property {boolean} disabled - whether the item has been

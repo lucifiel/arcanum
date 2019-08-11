@@ -1,4 +1,5 @@
 import Range from '../range';
+import Base, {mergeClass} from '../items/base';
 import {tryDamage} from './raid';
 import { clone  } from 'objecty'
 
@@ -47,21 +48,6 @@ export default class Char {
 		}
 
 		return data;
-
-	}
-
-	get name() { return this._name || this.id; }
-	set name(v) { this._name = v; }
-
-	/**
-	 * @property {string|string[]} tag - tag to distinguish between
-	 * item subtypes.
-	 */
-	get tags() { return this._tags;}
-	set tags(v) {
-
-		if ( typeof v === 'string') this._tags = v.split(',');
-		else this._tags = v;
 
 	}
 
@@ -231,48 +217,6 @@ export default class Char {
 		this.immunities[kind] = this.immunities[kind] ? this.immunities[kind] - 1 : 0;
 	}
 
-		/**
-	 * 
-	 * @param {string} tag 
-	 */
-	addTag( tag ) {
-		if ( this._tags === null || this._tags === undefined) this._tags = [ tag ];
-		else if ( !this._tags.includes(tag) ) this._tags.push(tag);
-	}
-
-	/**
-	 * Test if item has every tag in list.
-	 * @param {string[]} a - array of tags to test.
-	 * @returns {boolean}
-	 */
-	hasTags( a ) {
-
-		if ( !this._tags ) return false;
-		for( let i = a.length-1; i >= 0; i-- ) if ( !this._tags.includes(a[i]) ) return false;
-
-		return true;
-
-	}
-
-	/**
-	 * Test if tag has any tag in the list.
-	 * @param {string[]} a - array of tags to test.
-	 * @returns {boolean}
-	 */
-	anyTag( a ) {
-
-		if ( !this._tags ) return false;
-		for( let i = a.length-1; i >= 0; i-- ) if ( !this._tags.includes(a[i]) ) return true;
-
-		return false;
-
-	}
-
-	/**
-	 * 
-	 * @param {string} t - tag to test.
-	 * @returns {boolean}
-	 */
-	hasTag( t ) { return this._tags && this._tags.includes(t); }
-
 }
+
+mergeClass( Char, Base );

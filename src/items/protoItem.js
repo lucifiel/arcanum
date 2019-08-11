@@ -7,7 +7,7 @@ export default class ProtoItem extends Item {
 
 	toJSON() {
 
-		let data = this.subJSON( ['kind'] );
+		let data = super.toJSON( ['kind'] );
 		return data ? data : undefined;
 
 	}

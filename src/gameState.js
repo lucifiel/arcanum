@@ -87,9 +87,9 @@ export default class GameState {
 		this.tagLists = this.makeLists( this.items );
 
 		for( let p in this.items ) {
-			if ( !(this.items[p] instanceof Item) ) {
-				console.warn( this.items[p].id + ' Not an Item. Removing.');
-				if ( this.items[p] !== this.player ) delete this.items[p];
+			if ( !this.items[p].type ) {
+				console.warn( this.items[p].id + ' Has no type. Removing.');
+				delete this.items[p];
 			}
 		}
 

@@ -1,5 +1,4 @@
 import Base, {mergeClass} from '../items/base';
-import Item from "../items/item";
 import Range from "../range";
 import {mergeSafe} from "objecty";
 
@@ -8,10 +7,12 @@ export default class Wearable {
 
 	toJSON() {
 
-		let data = this.subJSON( ['material'] );
+		let data = this.excludeJSON( ['material'] );
 
 		data.id = this.id;
 		data.template = this.template.id;
+		data.name = this.name;
+
 		if ( this.material ) {
 			if ( !data ) data = {};
 			data.material = this.material.id;
@@ -35,6 +36,7 @@ export default class Wearable {
 
 		if ( v ) {
 
+			console.log(this.id + ' setting attack: ' + v);
 			let dmg = v.damage = v.damage || v.dmg;
 			if ( dmg && !(dmg instanceof Range)) {
 
@@ -57,8 +59,9 @@ export default class Wearable {
 
 	constructor(vars=null){
 
-		if( vars )Object.assign( this, vars);
+		if( vars ) Object.assign( this, vars);
 
+		console.log('this.attack: ' + this.attack );
 		this.type = 'wearable';
 
 	}
@@ -76,8 +79,6 @@ export default class Wearable {
 			mergeSafe( this, this.template );
 
 		} else console.log('wearable template not found: ' + this.template );
-
-		console.log( this.id + ' REVIVE DEF: ' + this.armor );
 
 	}
 
