@@ -16,9 +16,9 @@
 		},
 		"enemies":[
 
-			"lgmouse",
-			"snake",
+			"smsnake",
 			"bigstone",
+			"lgmouse",
 			"stingybee",
 			"twikman"
 		]

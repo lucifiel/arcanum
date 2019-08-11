@@ -4,6 +4,7 @@ export default class Dot {
 
 		Object.assign( this, vars );
 
+		this.id = this.id || id;
 		this.name = this.name || name || id;
 
 		/**

@@ -1,7 +1,7 @@
 import Range from '../range';
 import Base, {mergeClass} from '../items/base';
 import {tryDamage} from './raid';
-import { clone  } from 'objecty'
+import { cloneClass  } from 'objecty'
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -17,7 +17,7 @@ export function getDelay(s) {
  */
 export function fromMonster( data ) {
 
-	let c = new Char( clone(data) );
+	let c = new Char( cloneClass(data) );
 
 	if ( c.dmg && !c.damage ) c.damage = c.dmg;
 	if ( c.damage && !(c.damage instanceof Range) ) {
@@ -80,6 +80,7 @@ export default class Char {
 			if (typeof v.damage === 'string' ) v.damage = new Range(v.damage);
 			else if ( isNaN(v.damage)) v.damage = new Range( v.damage);
 		}
+		this._attack = v;
 
 	}
 

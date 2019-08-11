@@ -34,17 +34,6 @@ export default class Action extends Item {
 		return 100*(this._exp / this._length );
 	}
 
-	/*toJSON(){
-
-		let data = super.toJSON();
-
-		if ( this.length ) data.length = this.length;
-		if ( this._exp ) data.exp = this._exp;
-
-		return data;
-
-	}*/
-
 	constructor( vars=null ){
 
 		super(vars);

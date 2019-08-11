@@ -199,18 +199,18 @@
 		}
 	},
 	{
-		"id":"snake",
+		"id":"smsnake",
 		"kind":"natural",
 		"level":2,
 		"hp":5,
-		"tohit":4,
+		"tohit":2,
 		"defense":2,
 		"attack":{
 			"dot":{
 				"name":"venom",
-				"duration":5,
+				"duration":3,
 				"kind":"poison",
-				"damage":"1~3"
+				"damage":"0.2~0.5"
 			}
 		}
 	},

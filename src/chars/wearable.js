@@ -7,7 +7,7 @@ export default class Wearable {
 
 	toJSON() {
 
-		let data = this.excludeJSON( ['material', 'kind'] );
+		let data = this.excludeJSON( ['material', 'kind'] ) || {};
 
 		data.id = this.id;
 		data.template = this.template.id;

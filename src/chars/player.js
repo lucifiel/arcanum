@@ -191,10 +191,11 @@ export default class Player extends Char {
 		for( let i = updates.length-1; i >= 0; i-- ) {
 
 			dot = updates[i];
+			if ( !dot.tick(dt) ) continue;
 
 			// ignore any remainder beyond 0.
-			if ( dot.effect ) Game.applyEffect( dot.effect, dt < dot.duration ? dt : dot.duration );
-			if ( dot.damage ) tryDamage( dot.damage, dot );
+			if ( dot.effect ) Game.applyEffect( dot.effect );
+			if ( dot.damage ) tryDamage( this, dot );
 
 			if ( dot.duration <= dt ) {
 
@@ -217,7 +218,9 @@ export default class Player extends Char {
 		let id = dot.id;
 
 		let cur = id ? this.dots.find( d=>d.id===id) : undefined;
-		if ( cur !== undefined ) cur.duration = dot.duration;
+		if ( cur !== undefined ) {
+			cur.duration = dot.duration;
+		}
 		else {
 
 			this.dots.push( dot );

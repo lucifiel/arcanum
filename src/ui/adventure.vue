@@ -20,14 +20,9 @@ export default {
 	components:{
 		progbar:ProgBar
 	},
-	methods:{
-
-	},
 	computed:{
 
 		combatLog() {
-
-			console.log('getting combat log');
 			return this.log.items.filter(
 				v=>v.type==='combat' ).slice( -this.MAX_ITEMS );
 		},

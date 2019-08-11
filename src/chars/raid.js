@@ -40,8 +40,12 @@ export function tryDamage( target, attack, attacker ) {
 
 	}
 
-	if ( attack.dot ) target.addDot(
-			new Dot( attack.dot, attack.dot.id || attack.id || attacker.id, attack.dot.name || attack.name ) );
+	if ( attack.dot ) {
+		target.addDot(
+			new Dot( attack.dot,
+				attack.id || ( attacker? attacker.id : null ),
+				attack.name ) );
+	}
 
 	return true;
 
@@ -265,7 +269,7 @@ export default class Raid {
 	 */
 	enemyAttack( enemy, attack, target ) {
 
-		if ( this.tryHit( enemy, target ) ) {
+		if ( this.tryHit( enemy, target, (attack!=enemy)?attack:null ) ) {
 
 			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
 
@@ -281,6 +285,7 @@ export default class Raid {
 	 * @returns {boolean} true if char hit.
 	 */
 	tryHit( attacker, defender, attack ){
+
 		return Math.random()*( 10 + attacker.tohit + (attack ? attack.tohit || 0 : 0) )
 			>= Math.random()*(10 + defender.defense );
 	}
