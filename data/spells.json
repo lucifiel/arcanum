@@ -211,6 +211,35 @@
 
 	},
 	{
+		"id":"minorslow",
+		"name":"mud",
+		"desc":"engulfs target in mud",
+		"school":"earth",
+		"require":{
+			"earth.max":5
+		},
+		"level":2,
+		"cost":{
+
+			"research":30,
+			"scrolls":5,
+			"earthgem":1
+
+		},
+		"cast":{
+			"earth":5
+		},
+		"attack":{
+			"dot":{
+				"duration":20,
+				"mod":{
+					"speed":-0.2
+				}
+			}
+		}
+
+	},
+	{
 
 		"id":"proshadow",
 		"name":"protection: shadow",
@@ -237,7 +266,8 @@
 
 	},
 	{
-		"id":"fire bolt",
+		"id":"firebolt",
+		"name":"fire bolt",
 		"level":2,
 		"desc":"a small bolt of flame.",
 		"school":"fire",
@@ -262,6 +292,32 @@
 
 	},
 	{
+		"id":"vinewhip",
+		"name":"vine whip",
+		"level":2,
+		"desc":"vines lash out from the ground.",
+		"school":"nature",
+		"require":{
+			"nature.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":5,
+			"naturegem":1
+
+		},
+		"cast":{
+			"nature":5
+		},
+		"attack":{
+			"damage":"2~4",
+			"tohit":3,
+			"kind":"nature"
+		}
+
+	},
+	{
 
 		"id":"profire",
 		"name":"protection: fire",
@@ -281,6 +337,31 @@
 			"duration":20,
 			"mod":{
 				"player.resists.fire":10
+			}
+
+		}
+
+	},
+	{
+
+		"id":"prowater",
+		"name":"protection: water",
+		"school":"water",
+		"level":2,
+		"cost":{
+
+			"research":25,
+			"scrolls":5
+
+		},
+		"cast":{
+			"water":2
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"player.resists.water":10
 			}
 
 		}
@@ -496,5 +577,32 @@
 			}
 		}
 
+	},
+	{
+		"id":"minorspeed",
+		"level":3,
+		"name":"dust devil",
+		"desc":"a whirl or wind at your feet",
+		"school":"air",
+		"require":{
+			"air.max":5
+		},
+		"cost":{
+
+			"research":30,
+			"scrolls":5,
+			"airgem":1
+
+		},
+		"cast":{
+			"air":5
+		},
+		"dot":{
+			"duration":20,
+			"mod":{
+				"speed":0.5
+			}
+		}
 	}
+
 ]

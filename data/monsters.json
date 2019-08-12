@@ -1328,6 +1328,26 @@
 			"earth":20
 		}
 
+	},
+	{
+        "id":"shark",
+        "level":9,
+        "kind":"beast",
+        "biome":"sea",
+        "desc":"It's bitey.",
+        "hp":58,
+		"tohit":11,
+		"speed":11,
+        "defense":18,
+        "attack":{
+            "name":"bite",
+            "kind":"pierce",
+            "dmg":"10~15"
+		},
+		"resists":{
+			"water":50
+		}
+
     },
     {
         "id":"shade",
@@ -1363,7 +1383,8 @@
             "dmg":"5~11"
 		},
 		"resists":{
-			"air":10
+			"air":10,
+			"arcane":10
 		}
 
 	},
