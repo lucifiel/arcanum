@@ -210,7 +210,32 @@
 		}
 
 	},
+	{
 
+		"id":"proshadow",
+		"name":"protection: shadow",
+		"school":"light",
+		"level":2,
+		"cost":{
+
+			"research":25,
+			"scrolls":5
+
+		},
+		"cast":{
+			"light":2
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"player.resists.shadow":10,
+				"player.resists.undead":10
+			}
+
+		}
+
+	},
 	{
 		"id":"fire bolt",
 		"level":2,
@@ -236,7 +261,57 @@
 		}
 
 	},
+	{
 
+		"id":"profire",
+		"name":"protection: fire",
+		"school":"fire",
+		"level":2,
+		"cost":{
+
+			"research":25,
+			"scrolls":5
+
+		},
+		"cast":{
+			"fire":2
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"player.resists.fire":10
+			}
+
+		}
+
+	},
+	{
+
+		"id":"pronature",
+		"name":"protection: nature",
+		"school":"nature",
+		"level":2,
+		"cost":{
+
+			"research":25,
+			"scrolls":5
+
+		},
+		"cast":{
+			"nature":2
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"player.resists.nature":10,
+				"player.resists.poison":10
+			}
+
+		}
+
+	},
 	{
 		"id":"sealwounds",
 		"level":2,

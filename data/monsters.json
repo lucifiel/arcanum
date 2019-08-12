@@ -70,6 +70,9 @@
             "dmg":"2~3"
         }, "loot":{
 			"sash":"20%"
+		},
+		"resists":{
+			"poison":5
 		}
 
     },
@@ -114,6 +117,9 @@
 		"loot":{
 			"pct":30,
 			"max":1
+		},
+		"resists":{
+			"earth":30
 		}
 	},
 	{
@@ -142,7 +148,10 @@
             "name":"nasty bite",
             "kind":"pierce",
             "dmg":"2~5"
-        }
+		},
+		"resists":{
+			"arcane":20
+		}
 
     },
     {
@@ -182,7 +191,10 @@
 		"hp":5,
 		"tohit":2,
 		"defense":2,
-		"damage":"1~3"
+		"damage":"1~3",
+		"resists":{
+			"poison":10
+		}
 	},
 	{
 		"id":"angrybird",
@@ -196,6 +208,9 @@
 		"damage":"0~2",
 		"loot":{
 			"feather":"0~3"
+		},
+		"resists":{
+			"air":20
 		}
 	},
 	{
@@ -212,6 +227,9 @@
 				"kind":"poison",
 				"damage":"0.2~0.5"
 			}
+		},
+		"resists":{
+			"poison":25
 		}
 	},
 	{
@@ -290,6 +308,9 @@
 		"loot":{
 			"max":3,
 			"pct":25
+		},
+		"resists":{
+			"arcane":10
 		}
 
 	},
@@ -334,6 +355,9 @@
 		"loot":{
 			"bones":"2~5",
 			"shortsword":1
+		},
+		"resists":{
+			"shadow":5
 		}
 	},
 	{
@@ -429,6 +453,7 @@
 	},
 	{
 		"id":"giantspider",
+		"name":"giant spider",
 		"kind":"natural",
 		"level":5,
 		"hp":10,
@@ -466,7 +491,10 @@
             "kind":"arcane",
             "dmg":"2~4"
         },"biome":["town","plains","hills"],
-        "loot":{ "potion of cure light wounds":5, "potion of cure minor wounds":5 }
+		"loot":{ "potion of cure light wounds":5, "potion of cure minor wounds":5 },
+		"resists":{
+			"arcane":5
+		}
 
     },
     {
@@ -497,7 +525,10 @@
             "name":"smash",
             "kind":"blunt",
             "dmg":"3~8"
-        }
+		},
+		"resists":{
+			"shadow":15
+		}
 
     },
 	{
@@ -596,7 +627,10 @@
             "name":"bite",
             "kind":"pierce",
             "dmg":"1~4"
-        }
+		},
+		"resists":{
+			"water":15
+		}
 
     },
     {
@@ -613,7 +647,10 @@
             "name":"bite",
             "kind":"pierce",
             "dmg":"2~4"
-        }
+        },
+		"resists":{
+			"water":20
+		}
 
     },
     {
@@ -723,7 +760,10 @@
             "name":"bite",
             "kind":"pierce",
             "dmg":"3~6"
-        }
+		},
+		"resists":{
+			"water":10
+		}
 
     },
     {
@@ -780,7 +820,10 @@
             "name":"claws",
             "kind":"slash",
             "dmg":"3~7"
-        }
+		},
+		"resists":{
+			"shadow":25
+		}
 
 	},
 	{
@@ -813,7 +856,11 @@
             "name":"bite",
             "kind":"pierce",
             "dmg":"4~7"
-        },"loot":{"crocodile tooth":10, "crocodile tears":5}
+		},"loot":{"crocodile tooth":10, "crocodile tears":5},
+		"resists":{
+			"water":10,
+			"nature":20
+		}
 
     },
     {
@@ -907,6 +954,9 @@
             "kind":"slash",
         	"dmg":"4~8"
 		},
+		"resists":{
+			"fire":20
+		},
 		"loot":{"sulfur":5, "potion of cure light wounds":10, "potion of cure moderate wounds":10}
 
     },
@@ -923,7 +973,10 @@
             "name":"bite",
             "kind":"pierce",
             "dmg":"4~9"
-        }, "biome":["swamp", "forest", "mountains"]
+		},
+		"resists":{
+			"poison":25
+		},"biome":["swamp", "forest", "mountains"]
 
     },
     {
@@ -974,7 +1027,10 @@
             "kind":"slash",
             "dmg":"3~9"
         },
-        "loot":{"wight pus":40}
+		"loot":{"wight pus":40},
+		"resists":{
+			"shadow":10
+		}
 
     },
 	{
@@ -989,7 +1045,10 @@
             "name":"slam",
             "kind":"blunt",
             "dmg":"3~8"
-        }
+		},
+		"resists":{
+			"arcane":15
+		}
 
 	},
 	{
@@ -1005,7 +1064,10 @@
             "name":"death touch",
             "kind":"drain",
             "dmg":"3~8"
-        },"loot":{"spectral essence":5}
+		},"loot":{"spectral essence":5},
+		"resists":{
+			"spirit":20
+		}
 
     },
     {
@@ -1020,7 +1082,10 @@
             "name":"flame claws",
             "kind":"fire",
             "dmg":"3~9"
-        }
+		},
+		"resists":{
+			"fire":20
+		}
 
 	},
 	{
@@ -1036,7 +1101,10 @@
             "name":"constrict",
             "kind":"blunt",
             "dmg":"8~13"
-        }
+        },
+		"resists":{
+			"poison":20
+		}
 
     },
 	{
@@ -1067,7 +1135,10 @@
             "name":"harm",
             "kind":"evil",
             "dmg":"2~6"
-        },"loot":{ "potion of cure moderate wounds":20, "potion of cure serious wounds":10}
+		},"loot":{ "potion of cure moderate wounds":20, "potion of cure serious wounds":10},
+		"resists":{
+			"shadow":10
+		}
 
     },
     {
@@ -1083,7 +1154,10 @@
             "name":"magic sword",
             "kind":"slash",
             "dmg":"4~9"
-        }
+		},
+		"resists":{
+			"arcane":20
+		}
 
 	},
 	{
@@ -1115,7 +1189,10 @@
             "name":"claws",
             "kind":"slash",
             "dmg":"7~13"
-        }
+		},
+		"resists":{
+			"shadow":10
+		}
 
     },
     {
@@ -1193,7 +1270,10 @@
             "name":"smash",
             "kind":"blunt",
             "dmg":"2~7"
-        }
+		},
+		"resists":{
+			"earth":15
+		}
 
     },
     {
@@ -1243,7 +1323,10 @@
             "name":"claws",
             "kind":"slash",
             "dmg":"8~12"
-        }
+		},
+		"resists":{
+			"earth":20
+		}
 
     },
     {
@@ -1259,7 +1342,11 @@
             "name":"cold touch",
             "kind":"cold",
             "dmg":"10~20"
-        },"loot":{"spectral essence":5}
+		},"loot":{"spectral essence":5},
+		"resists":{
+			"shadow":20,
+			"spirit":20
+		}
 
     },
     {
@@ -1274,7 +1361,10 @@
             "name":"slam",
             "kind":"blunt",
             "dmg":"5~11"
-        }
+		},
+		"resists":{
+			"air":10
+		}
 
 	},
 	{
@@ -1289,7 +1379,10 @@
             "name":"spellstorm",
             "kind":"nature",
             "dmg":"9~17"
-        }, "loot":{"raw wood":5}
+		}, "loot":{"raw wood":5},
+		"resists":{
+			"nature":20
+		}
 
 	},
     {
@@ -1305,7 +1398,11 @@
             "name":"punch",
             "kind":"blunt",
             "dmg":"2~11"
-        }, "loot":{"raw wood":5}
+		}, "loot":{"raw wood":5},
+		"resists":{
+			"earth":10,
+			"nature":10
+		}
 
 	},
 	{
@@ -1338,7 +1435,10 @@
             "name":"trample",
             "kind":"blunt",
             "dmg":"9~15"
-        }
+        },
+		"resists":{
+			"air":20
+		}
 
     },
     {
@@ -1354,7 +1454,8 @@
             "name":"pound",
             "kind":"blunt",
             "dmg":"8~12"
-        },"loot":{"raw earth":5}
+		},"loot":{"raw earth":5},
+		"immune":"earth"
 
     },
     {
@@ -1371,7 +1472,8 @@
             "kind":"slash",
             "dmg":"5~12"
         },
-        "loot":{"air essence":10}
+		"loot":{"air essence":10},
+		"immune":"air"
 
     },
     {
@@ -1388,8 +1490,8 @@
             "kind":"blunt",
             "dmg":"9~13"
 		},
-		"loot":{
-
+		"resists":{
+			"earth":20
 		}
 
     },
@@ -1439,7 +1541,10 @@
             "name":"bite",
             "kind":"drain",
             "dmg":"9~18"
-        }, "loot":{"vampire fang":5, "potion of moderate agony":10}
+		}, "loot":{"vampire fang":5, "potion of moderate agony":10},
+		"resists":{
+			"shadow":20
+		}
 
     },
     {
@@ -1455,7 +1560,11 @@
             "name":"death touch",
             "kind":"drain",
             "dmg":"5~8"
-        },"loot":{"spectral essence":5}
+		},"loot":{"spectral essence":5},
+		"resists":{
+			"spirit":20,
+			"shadow":10
+		}
 
 	},
 	{
@@ -1472,7 +1581,10 @@
             "name":"light",
             "kind":"light",
             "dmg":"11~20"
-        }
+		},
+		"resists":{
+			"arcane":30
+		}
 
     },
     {
@@ -1504,7 +1616,8 @@
             "name":"ice shard",
             "kind":"cold",
             "dmg":"8~15"
-        },"loot":{"ice essence":10}
+		},"loot":{"ice essence":10},
+		"immune":"water,air"
 
 	},
 	{
@@ -1519,7 +1632,10 @@
             "name":"beak",
             "kind":"pierce",
             "dmg":"11~17"
-        },"biome":"mountains"
+		},"biome":"mountains",
+		"resists":{
+			"air":30
+		}
 
     },
     {
@@ -1601,7 +1717,9 @@
             "name":"chill touch",
             "kind":"drain",
             "dmg":"6~16"
-        }
+        },"resists":{
+			"shadow":20
+		}
 
 	},
 	{
@@ -1616,7 +1734,10 @@
             "name":"vorpal sword",
             "kind":"slash",
             "dmg":"13~21"
-        }, "biome":["town","forest","plains"]
+		}, "biome":["town","forest","plains"],
+		"resists":{
+			"spirit":20
+		}
 
 	},
     {
@@ -1647,7 +1768,10 @@
             "name":"chill touch",
             "kind":"drain",
             "dmg":"8~15"
-        }, "loot":{"spectral essence":10}
+		}, "loot":{"spectral essence":10},
+		"resists":{
+			"spirit":30
+		}
 
     },
     {
@@ -1663,7 +1787,8 @@
             "name":"flame",
             "kind":"fire",
             "dmg":"14~20"
-        },"loot":{"Fire Essence":10}
+		},"loot":{"Fire Essence":10},
+		"immune":"fire"
 
 	},
 	{
@@ -1696,7 +1821,11 @@
             "name":"smash",
             "kind":"blunt",
             "dmg":"9~14"
-        },"loot":{"raw iron":10}
+		},"loot":{"raw iron":10},
+		"resists":{
+			"earth":15,
+			"physical":10
+		}
 
 	},
 	{
@@ -1729,12 +1858,15 @@
             "name":"fists",
             "kind":"blunt",
             "dmg":"7~17"
-        }, "loot":{"whiskey":20}
+		}, "loot":{"whiskey":20},
+		"resists":{
+			"physical":20
+		}
 
     },
     {
-		"id":"mindflayer",
-        "name":"mind flayer",
+		"id":"mindslayer",
+        "name":"mind slayer",
         "level":11,
         "evil":24,
         "desc":"It licks your brain with its mind.",
@@ -1775,7 +1907,8 @@
             "name":"stare",
             "kind":"earth",
             "dmg":"20~50"
-        }
+		},
+		"immune":"poison"
 
 	},
 	
@@ -1793,7 +1926,10 @@
         "attack":{"name":"club",
             "kind":"blunt",
             "dmg":"15~24"
-        }, "loot":{"potion of cure serious wounds":15}
+		}, "loot":{"potion of cure serious wounds":15},
+		"resists":{
+			"earth":20
+		}
 
     },
     {
@@ -1841,7 +1977,7 @@
             "name":"fire punch",
             "kind":"fire",
             "dmg":"15~23"
-        }
+        },"immune":"fire"
 
     },
 	{
@@ -1984,7 +2120,7 @@
             "name":"lightning",
             "kind":"electric",
             "dmg":"23~42"
-        }
+        },"immune":"air,fire"
 
     },
     {
@@ -2046,7 +2182,8 @@
             "name":"light sword",
             "kind":"holy",
             "dmg":"20~50"
-        }, "loot":{"angel wing":10, "halo":5, "potion of cure critical wounds":20 }
+		}, "loot":{"angel wing":10, "halo":5, "potion of cure critical wounds":20 },
+		"immune":"light"
 
     },
     {
@@ -2109,7 +2246,18 @@
             "name":"trample",
             "kind":"blunt",
             "dmg":"17~37"
-        }
+		},
+		"resists":{
+			"nature":15,
+			"arcane":15,
+			"shadow":15,
+			"earth":15,
+			"physical":15,
+			"air":15,
+			"water":15,
+			"poison":15,
+			"fire":15
+		}
 
     },
     {
@@ -2126,7 +2274,10 @@
             "name":"bite",
             "kind":"drain",
             "dmg":"12~45"
-        }, "loot":{"vampire fang":15, "potion of critical agony":20}
+		}, "loot":{"vampire fang":15, "potion of critical agony":20},
+		"resists":{
+			"shadow":30
+		}
 
 	},
 	{
@@ -2142,7 +2293,11 @@
             "name":"punch",
             "kind":"cold",
             "dmg":"30~40"
-         } , "loot":{ "potion of major agony":15, "potion of cure major wounds":15}
+		 } , "loot":{ "potion of major agony":15, "potion of cure major wounds":15},
+		 "resists":{
+			 "water":50,
+			 "air":40
+		 }
 
     },
 	{
@@ -2159,7 +2314,8 @@
             "name":"lava slam",
             "kind":"fire",
             "dmg":"25~50"
-        }, "loot":{"raw iron":15, "raw stone":10, "fire essence":10}
+		}, "loot":{"raw iron":15, "raw stone":10, "fire essence":10},
+		"immune":"fire"
     },
 	{
 		"id":"lichlord",
@@ -2191,7 +2347,11 @@
             "name":"pound",
             "kind":"blunt",
             "dmg":"20~75"
-        },"loot":{"mithril":25}
+		},"loot":{"mithril":25},
+		"resists":{
+			"earth":30,
+			"physical":70
+		}
     },
     {
 		"id":"ancientvampire",
@@ -2207,7 +2367,10 @@
             "name":"bite",
             "kind":"drain",
             "dmg":"20~50"
-        }, "loot":{"vampire fang":25, "potion of critical agony":30}
+		}, "loot":{"vampire fang":25, "potion of critical agony":30},
+		"resists":{
+			"shadow":80
+		}
 
 	},
 	{
@@ -2222,7 +2385,8 @@
             "name":"crush",
             "kind":"blunt",
             "dmg":"20~42"
-        }
+		},
+		"immune":"water"
 
     },
     {
@@ -2238,7 +2402,8 @@
             "name":"flame whip",
             "kind":"fire",
             "dmg":"45~75"
-        }, "loot":{"fire essence":10}
+		}, "loot":{"fire essence":10},
+		"immune":"fire"
 
 	},
 	{
@@ -2254,7 +2419,8 @@
             "name":"light sword",
             "kind":"holy",
             "dmg":"30~55"
-        }, "loot":{"angel wing":10, "halo":5, "potion of cure critical wounds":20 }
+		}, "loot":{"angel wing":10, "halo":5, "potion of cure critical wounds":20 },
+		"immune":"light"
 
     },
     {
@@ -2270,7 +2436,8 @@
             "name":"SMASH",
             "kind":"blunt",
             "dmg":"25~100"
-        },"loot":{"adamant":25}
+		},"loot":{"adamant":25},
+		"immune":"physical"
     },
     {
 		"id":"maturereddragon",
@@ -2302,7 +2469,8 @@
             "name":"lifestorm",
             "kind":"nature",
             "dmg":"50~125"
-        }
+		},
+		"immune":"nature,poison"
 	},
 	{
 		"id":"avatar",
@@ -2316,7 +2484,7 @@
             "name":"holy sword",
             "kind":"holy",
             "dmg":"75~100"
-        }
+        },"immune":"light"
 	},
 	{
 		"id":"ancientlich",
@@ -2362,7 +2530,7 @@
 			"name":"crush",
 			"kind":"blunt",
 			"dmg":"200~350"
-		}
+		},"immune":"earth"
 	},
 	{
 		"id":"primummobile",

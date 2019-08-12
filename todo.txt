@@ -1,7 +1,6 @@
 resistances
 
-prevent stacking on monster dots
-optional stacking
+optional dot stacking
 
 display weapon damage in char.
 
@@ -10,11 +9,9 @@ ERRORS:
 
 quickbar blocks some low-items.
 
-fix scrolling combat text in raid section.
 
 ongoing actions should stop if 'need' requirements not met.
 
-Adventure Combat Log
 
 MINOR:
 
@@ -27,5 +24,7 @@ more armor drop variations.
 assign custom rest action.
 
 UI TWEAKS:
+
+Clear button/rest button redesign
 
 Spellbook: More space between set-primary button and spell name.
