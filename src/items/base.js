@@ -127,6 +127,7 @@ export default {
 
 			if ( m.max ) {
 
+				console.log('adding max: ' + m.max );
 				let vars = m.max;
 				if ( !isNaN(vars) ) this.max += ( vars * amt );
 				else if ( typeof vars === 'object' ) {

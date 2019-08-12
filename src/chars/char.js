@@ -2,6 +2,7 @@ import Range from '../range';
 import Base, {mergeClass} from '../items/base';
 import {tryDamage} from './raid';
 import { cloneClass  } from 'objecty'
+import Stat from '../stat';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -9,29 +10,6 @@ import { cloneClass  } from 'objecty'
 export const DELAY_RATE = 3;
 export function getDelay(s) {
 	return DELAY_RATE*Math.exp(-s/4);
-}
-
-/**
- * Create new character from Monster data.
- * @param {Monster} data 
- */
-export function fromMonster( data ) {
-
-	let c = new Char( cloneClass(data) );
-
-	if ( c.dmg && !c.damage ) c.damage = c.dmg;
-	if ( c.damage && !(c.damage instanceof Range) ) {
-
-		if ( typeof c.damage === 'string' || typeof c.damage === 'object') c.damage = new Range( c.damage );
-		else c.damage = Number( c.damage );
-
-	}
-
-	if ( typeof c.hp === 'string' || typeof c.hp === 'object') c.hp = new Range(c.hp);
-	if ( c.hp instanceof Range ) c.hp = c.hp.value;
-
-	return c;
-
 }
 
 export default class Char {
@@ -83,6 +61,9 @@ export default class Char {
 		this._attack = v;
 
 	}
+
+	get regen() { return this._regen; }
+	set regen(v) { this._regen = ( v instanceof Stat ) ? v : new Stat(v); }
 
 	get alive() { return this.hp > 0; }
 	set alive(v) { if ( !v ) this.hp = 0;}
@@ -138,8 +119,6 @@ export default class Char {
 
 	update(dt) {
 
-		if ( this.alive===false) return;
-
 		for( let i = this.dots.length-1; i >= 0; i-- ) {
 
 			var dot = this.dots[i];
@@ -152,12 +131,15 @@ export default class Char {
 				}
 				if ( dot.damage ) {
 					tryDamage( dot.damage, dot );
-					if ( !this.alive ) return;
 				}
 	
 			}
 
 		}
+
+		if ( this.regen ) this.hp += this.regen*dt;
+
+		if ( !this.alive ) return;
 
 		this.timer -= dt;
 		if ( this.timer <= 0 ) {

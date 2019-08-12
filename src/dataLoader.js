@@ -367,16 +367,18 @@ export default {
 		let val = obj[prop];
 		delete obj[prop];
 
-		let parts = prop.split('.');
+		let keys = prop.split('.');
 
-		let max = parts.length-1;
+		let max = keys.length-1;
 
 		// stops before length-1 since last assign goes to val.
 		for( let i = 0; i < max; i++ ) {
-			obj = obj[ parts[i] ] = {};
+
+			obj = obj[ keys[i] ] = typeof obj[ [keys[i]]] === 'object' ? obj[ keys[i] ] : {};
+
 		}
 
-		obj[ parts[max] ] = val;
+		obj[ keys[max] ] = val;
 
 	},
 

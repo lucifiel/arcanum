@@ -23,7 +23,8 @@
         "evil":5,
         "flavor":"Na-na-na-na-Na-na Na-na-na-na-Na-na...",
         "hp":"2~4",
-        "defense":2,
+		"defense":2,
+		"regen":1,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -334,8 +335,9 @@
 		"name":"Rat King",
 		"kind":"natural",
 		"level":4,
-		"hp":7,
+		"hp":10,
 		"tohit":3,
+		"regen":1,
 		"defense":4,
 		"damage":"3~5",
 		"loot":{
@@ -815,7 +817,8 @@
         "desc":"",
         "hp":27,
         "tohit":2,
-        "defense":18,
+		"defense":18,
+		"regen":1,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -884,7 +887,8 @@
         "evil":5,
         "desc":"",
         "tohit":7,
-        "hp":28,
+		"hp":28,
+		"regen":2,
         "defense":25,
         "attack":{
             "name":"claws",
@@ -948,7 +952,8 @@
         "evil":5,
         "desc":"little demonic bastards",
         "hp":13,
-        "defense":30,
+		"defense":30,
+		"regen":1,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -1021,7 +1026,8 @@
         "evil":12,
         "hp":18,
         "tohit":5,
-        "defense":22,
+		"defense":22,
+		"regen":1,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -1067,7 +1073,7 @@
 		},"loot":{"spectral essence":5},
 		"resists":{
 			"spirit":20
-		}
+		},"immune":"physical"
 
     },
     {
@@ -1084,7 +1090,7 @@
             "dmg":"3~9"
 		},
 		"resists":{
-			"fire":20
+			"fire":40
 		}
 
 	},
@@ -1156,7 +1162,7 @@
             "dmg":"4~9"
 		},
 		"resists":{
-			"arcane":20
+			"arcane":30
 		}
 
 	},
@@ -1184,7 +1190,8 @@
         "desc":"",
         "hp":42,
         "tohit":3,
-        "defense":26,
+		"defense":26,
+		"regen":2,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -1217,7 +1224,8 @@
         "desc":"Like a demonic humanoid vulture.",
         "tohit":5,
         "hp":22,
-        "defense":30,
+		"defense":30,
+		"regen":1,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -1235,7 +1243,8 @@
         "desc":"It ate up all the smaller zombies.",
         "hp":42,
         "defense":22,
-        "tohit":5,
+		"tohit":5,
+		"regen":1,
         "attack":{
             "name":"slam",
             "kind":"blunt",
@@ -1302,7 +1311,8 @@
         "desc":"Two heads is better than one.",
         "hp":65,
         "tohit":11,
-        "defense":30,
+		"defense":30,
+		"regen":5,
         "attack":{
             "name":"spiked club",
             "kind":"blunt",
@@ -1365,7 +1375,8 @@
 		},"loot":{"spectral essence":5},
 		"resists":{
 			"shadow":20,
-			"spirit":20
+			"spirit":20,
+			"air":20
 		}
 
     },
@@ -1383,8 +1394,8 @@
             "dmg":"5~11"
 		},
 		"resists":{
-			"air":10,
-			"arcane":10
+			"air":30,
+			"arcane":20
 		}
 
 	},
@@ -1821,7 +1832,8 @@
         "desc":"They have a cave troll...",
         "hp":90,
         "tohit":4,
-        "defense":35,
+		"defense":35,
+		"regen":2,
         "attack":{
             "name":"club",
             "kind":"blunt",
@@ -1960,7 +1972,8 @@
         "desc":"tro lo lo.",
         "hp":100,
         "tohit":3,
-        "defense":50,
+		"defense":50,
+		"regen":5,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -1977,7 +1990,8 @@
         "desc":"Worked his way up the vampire ranks, and has his very own brood now.",
         "hp":87,
         "tohit":10,
-        "defense":42,
+		"defense":42,
+		"regen":3,
         "attack":{
             "name":"bite",
             "kind":"drain",
@@ -2008,9 +2022,10 @@
         "desc":"Slashy wood demon.",
         "kind":"demon",
         "evil":19,
-        "hp":63,
+        "hp":53,
         "tohit":15,
-        "defense":43,
+		"defense":43,
+		"regen":7,
         "attack":{
             "name":"claws",
             "kind":"slash",
@@ -2043,12 +2058,19 @@
         "desc":"Vicious witch in the waters of the Great Bog",
         "hp":110,
         "tohit":5,
-        "defense":48,
+		"defense":48,
+		"regen":2,
         "attack":{
             "name":"claws",
             "kind":"slash",
             "dmg":"18~25"
-        }, "loot":{ "potion of major agony":15}
+		}, "loot":{ "potion of major agony":15},
+		"immune":"poison",
+		"resists":{
+			"water":20,
+			"nature":20,
+			"shadow":20
+		}
 
 	},
 	{
@@ -2064,13 +2086,14 @@
             "name":"beak",
             "kind":"pierce",
             "dmg":"21~27"
-        }
+        },"resists":{
+			"air":30
+		}
 
     },
     {
         "id":"wyvern",
         "level":13,
-        "evil":5,
         "desc":"Not a dragon. But it will kill you like one.",
         "hp":132,
         "tohit":5,
@@ -2079,7 +2102,9 @@
             "name":"claws",
             "kind":"slash",
             "dmg":"20~30"
-        }
+        },"resists":{
+			"air":30
+		}
 
     },
     {
@@ -2152,7 +2177,8 @@
         "hp":138,
         "evil":-18,
         "tohit":2,
-        "defense":50,
+		"defense":50,
+		"regen":3,
         "attack":{
             "name":"pound",
             "kind":"blunt",
@@ -2173,7 +2199,9 @@
             "name":"fire breath",
             "kind":"fire",
             "dmg":"28~40"
-        }
+        },"resists":{
+			"fire":50
+		}
     },
     {
         "id":"beholder",
@@ -2247,7 +2275,8 @@
         "desc":"",
         "hp":150,
         "tohit":15,
-        "defense":70,
+		"defense":70,
+		"regen":2,
         "attack":{
             "name":"darksword",
             "kind":"evil",
@@ -2262,7 +2291,8 @@
         "desc":"",
         "hp":225,
         "tohit":15,
-        "defense":75,
+		"defense":75,
+		"regen":1,
         "attack":{
             "name":"trample",
             "kind":"blunt",
@@ -2290,7 +2320,8 @@
         "desc":"Master Vampires are its lackeys.",
         "hp":120,
         "tohit":15,
-        "defense":70,
+		"defense":70,
+		"regen":10,
         "attack":{
             "name":"bite",
             "kind":"drain",
@@ -2316,8 +2347,8 @@
             "dmg":"30~40"
 		 } , "loot":{ "potion of major agony":15, "potion of cure major wounds":15},
 		 "resists":{
-			 "water":50,
-			 "air":40
+			 "water":70,
+			 "air":70
 		 }
 
     },
@@ -2347,7 +2378,8 @@
         "desc":"It was a wizard, once.",
         "hp":150,
         "tohit":20,
-        "defense":71,
+		"defense":71,
+		"regen":10,
         "attack":{
             "name":"death touch",
             "kind":"drain",
@@ -2383,7 +2415,8 @@
         "desc":"Probably on a first name basis with Dracula.",
         "hp":150,
         "tohit":15,
-        "defense":75,
+		"defense":75,
+		"regen":15,
         "attack":{
             "name":"bite",
             "kind":"drain",
@@ -2435,7 +2468,8 @@
         "desc":"It has wings and a halo of light.",
         "hp":270,
         "tohit":23,
-        "defense":90,
+		"defense":90,
+		"regen":10,
         "attack":{
             "name":"light sword",
             "kind":"holy",
@@ -2484,7 +2518,8 @@
         "evil":20,
         "desc":"",
         "hp":400,
-        "tohit":23,
+		"tohit":23,
+		"regen":15,
         "defense":90,
         "attack":{
             "name":"lifestorm",
@@ -2500,7 +2535,8 @@
         "desc":"incarnation of a god",
         "hp":500,
         "tohit":30,
-        "defense":100,
+		"defense":100,
+		"regen":20,
         "attack":{
             "name":"holy sword",
             "kind":"holy",
@@ -2515,7 +2551,8 @@
         "evil":30,
         "desc":"Not one lich in a hundred live to reach such heights.",
         "hp":400,
-        "tohit":27,
+		"tohit":27,
+		"regen":25,
         "defense":95,
         "attack":{
             "name":"death touch",
@@ -2531,7 +2568,8 @@
         "kind":"outsider",
         "desc":"In his house at R'lyeh dead Cthulhu waits dreaming.",
         "hp":1000,
-        "tohit":30,
+		"tohit":30,
+		"regen":30,
         "defense":175,
         "attack":{
             "name":"Madness",

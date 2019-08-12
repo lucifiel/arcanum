@@ -61,6 +61,7 @@
 	{
 
 		"id":"thievery",
+		"name":"arcane thievery",
 		"desc":"Use your arcane powers to cajole, coerce, and cudgel the gold from the pockets of civilians.",
 		"verb":"thieving",
 		"require":"trickster",
@@ -73,6 +74,28 @@
 		"effect":{
 			"research":-0.75,
 			"gold":1
+		}
+
+	},
+	{
+
+		"id":"heist",
+		"name":"arcane thievery",
+		"desc":"Orchestrate a theft of a guarded vault.",
+		"verb":"thieving",
+		"require":"trickster",
+		"length":50,
+		"perpetual":true,
+		"cost":{
+			"stamina":0.4,
+			"mana":0.4
+		},
+		"effect":{
+			"research":-0.8
+		},
+		"result":{
+			"gems":"4~10",
+			"gold":100
 		}
 
 	},
@@ -119,7 +142,7 @@
 		"name":"Spin Gold",
 		"desc":"Spin straw into gold",
 		"verb":"spinning",
-		"require":"state.weaving>=5&&state.loom>0",
+		"require":"state.weaving>=5&&state.loom>0&&state.enchanting>=3",
 		"perpetual":true,
 		"length":10,
 		"cost":{

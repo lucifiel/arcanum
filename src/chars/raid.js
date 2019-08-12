@@ -1,7 +1,8 @@
 import Game from '../game';
-import Char, {fromMonster} from './char';
+import Char from './char';
 import Range from '../range';
 import Dot from './dot';
+import Npc from './npc';
 
 const COMBAT_LOG = 'combat';
 
@@ -312,14 +313,14 @@ export default class Raid {
 			for( let i = enemy.length-1; i >=0; i-- ) {
 				var e = enemy[i];
 				if ( typeof e === 'string' ) e = Game.getItem(e);
-				this._enemies.push( fromMonster( e ) );
+				this._enemies.push( new Npc( e ) );
 			}
 
 		} else {
 
 			if ( typeof enemy === 'string' ) enemy = Game.getItem( enemy );
 			if ( !enemy) {console.warn( 'Missing Enemy'); return }
-			this._enemies.push( fromMonster(enemy ) );
+			this._enemies.push( new Npc(enemy ) );
 
 		}
 

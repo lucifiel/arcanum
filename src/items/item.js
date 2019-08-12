@@ -24,7 +24,9 @@ export default class Item {
 	 * @property {Stat} max
 	 */
 	get max() { return this._max; }
-	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
+	set max(v) {
+		this._max = v instanceof Stat ? v : new Stat(v);
+	}
 
 	/**
 	 * @property {Stat} rate - rate of stat change in value/second.

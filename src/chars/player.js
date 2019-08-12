@@ -209,6 +209,7 @@ export default class Player extends Char {
 
 
 		}
+		if ( this.regen ) this.hp += this.regen*dt;
 
 	}
 
