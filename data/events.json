@@ -58,7 +58,7 @@
 	{
 		"id":"tierone",
 		"name":"Profressional Magick",
-		"desc":"Every city has its share of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
+		"desc":"Every city has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
 		"effect":{
 			"player.exp":15,
 			"lore.max":1

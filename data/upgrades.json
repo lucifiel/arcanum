@@ -466,7 +466,7 @@
 		},
 		"mod":{
 			"arcana":{
-				"rate":0.001
+				"rate":0.0001
 			},
 			"spirit.rate":0.01
 		}
@@ -579,14 +579,19 @@
 	{
 		"id":"demonicpact",
 		"require":"state.demonology>4",
-		"desc":"A deal with demons",
+		"desc":"A deal with a demon, sealed in blood.",
 		"cost":{
 			"research":200,
-			"arcana":1
+			"arcana":1,
+			"hp":15
 		},
 		"mod":{
 			"lore.max":2,
-			"demonology.max":2
+			"demonology":{
+				"max":2,
+				"rate":0.1
+			},
+			"planeslore.max":1
 		}
 	},
 	{
@@ -666,6 +671,22 @@
 		"mod":[
 			"trickster"
 		]
+	},
+	{
+		"id":"bagoftricks",
+		"name":"bag of tricks",
+		"require":"trickster",
+		"cost":{
+			"research":100,
+			"codices":1,
+			"gold":200
+		},
+		"mod":{
+			"gold":{
+				"max":50,
+				"rate":0.01
+			}
+		}
 	},
 	{
 		"id":"up_geomancer",

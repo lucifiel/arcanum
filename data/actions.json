@@ -60,6 +60,24 @@
 	},
 	{
 
+		"id":"thievery",
+		"desc":"Use your arcane powers to cajole, coerce, and cudgel the gold from the pockets of civilians.",
+		"verb":"thieving",
+		"require":"trickster",
+		"length":15,
+		"perpetual":true,
+		"cost":{
+			"stamina":0.22,
+			"mana":0.25
+		},
+		"effect":{
+			"research":-0.75,
+			"gold":1
+		}
+
+	},
+	{
+
 		"id":"makespellbook",
 		"name":"Compile Spellbook",
 		"require":"state.lore>=2&&state.crafting>=2",
@@ -264,10 +282,10 @@
 		"need":"cauldron",
 		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
 		"effect":{
-			"mana":0.1,
-			"shadow":0.1,
-			"spirit":0.1,
-			"stamina":0.1,
+			"mana":0.5,
+			"shadow":0.2,
+			"spirit":0.2,
+			"stamina":1,
 			"hp":1
 		}
 	},
@@ -282,7 +300,10 @@
 		},
 		"effect":{
 			"nature.mana":0.5,
-			"naturelore.exp":1,
+			"naturelore":{
+				"exp":0.1,
+				"max":0.001
+			},
 			"animals.exp":1,
 			"herbalism.exp":1
 		}
@@ -379,6 +400,20 @@
 
 	},
 	{
+		"id":"mapstars",
+		"name":"map stars",
+		"length":10,
+		"verb":"mapping",
+		"require":"",
+		"cast":{
+			"scrolls":1
+		},
+		"cost":{
+			"research":2
+		},
+		"result":"starchart"
+	},
+	{
 		"id":"makebestiary",
 		"name":"compile bestiary",
 		"verb":"compiling bestiary",
@@ -398,6 +433,38 @@
 
 	},
 	{
+		"id":"almagest",
+		"action":"compile almagest",
+		"desc":"manual of the sun and stars",
+		"require":"state.astronomy>=5&&state.adept>0",
+		"repeat":false,
+		"length":50,
+		"cast":{
+			"codices":1
+		},
+		"cost":{
+			"research":1,
+			"starcharts":0.1
+		},
+		"log":{
+			"title":"almagest",
+			"text":"you have mapped the physical heavens"
+		},
+		"effect":{
+			"arcana.max":1,
+			"arcana.rate":0.001,
+			"astronomy":{
+				"max":1,
+				"rate":0.1
+			},
+			"planeslore":{
+				"max":1,
+				"rate":0.1
+			}
+		}
+
+	},
+	{
 		"id":"buygem",
 		"name":"Purchase Gem",
 		"require":"gems",
@@ -409,7 +476,7 @@
 	{
 		"id":"craftgem",
 		"name":"Craft Gem",
-		"desc":"Craft a gem stone from raw minerals.",
+		"desc":"Craft a gem from raw minerals.",
 		"require":"state.crafting>=5&&state.alchemy>=4",
 		"cost":{
 			"stamina":1,

@@ -254,7 +254,7 @@
 			"hp":0.1
 		},
 		"result":{
-			"arcana.max":1,
+			"arcana.max":0.1,
 			"lore.rate":0.2
 		}
 

@@ -153,6 +153,9 @@ export default class Player extends Char {
 			disease:0
 		}
 
+		this.bonuses = this.bonuses || {
+		}
+
 		this.baseAttack = this.baseAttack || {
 
 			id:'baseAttack',

@@ -576,6 +576,24 @@
 
 	},
 	{
+		"id":"archive",
+		"desc":"arcane archive",
+		"require":"lore.max>=15",
+		"cost":{
+			"gold":400,
+			"research":100,
+			"research.max":10,
+			"space":10
+		},
+		"mod":{
+			"scrolls.max":20,
+			"tomes.max":20,
+			"codices.max":20,
+			"arcana.max":1
+		}
+
+	},
+	{
 		"id":"shrine",
 		"desc":"A shrine to divine forces.",
 		"require":"good",

@@ -47,6 +47,31 @@
 
 	},
 	{
+		"id":"darkbolt",
+		"name":"dark bolt",
+		"level":1,
+		"require":"shadow",
+		"school":"shadow",
+		"cost":{
+
+			"research":25,
+			"scrolls":1
+
+		},
+		"cast":{
+			"shadow":1
+		},
+		"attack":{
+			"damage":"0.5~1",
+			"dot":{
+				"kind":"shadow",
+				"duration":10,
+				"damage":0.2
+			}
+		}
+
+	},
+	{
 		"id":"poisonnettle",
 		"name":"poison nettle",
 		"level":1,
@@ -65,7 +90,7 @@
 			"dot":{
 				"kind":"poison",
 				"duration":10,
-				"damage":"0.75~1.25"
+				"damage":"0.5~1"
 			}
 		}
 
@@ -157,9 +182,9 @@
 			"mana":1
 		},
 		"attack":{
-			"damage":"2~3",
+			"damage":"1.5~2.5",
 			"kind":"arcane",
-			"tohit":1
+			"tohit":2
 		}
 	},
 	{
@@ -178,9 +203,9 @@
 			"fire":1
 		},
 		"attack":{
-			"damage":"1~2",
+			"damage":"2~3",
 			"kind":"fire",
-			"tohit":2
+			"tohit":1
 		}
 	},
 	{
@@ -308,7 +333,7 @@
 
 		},
 		"cast":{
-			"nature":5
+			"nature":3
 		},
 		"attack":{
 			"damage":"2~4",
@@ -326,11 +351,12 @@
 		"cost":{
 
 			"research":25,
-			"scrolls":5
+			"scrolls":5,
+			"firegem":1
 
 		},
 		"cast":{
-			"fire":2
+			"fire":1
 		},
 		"dot":{
 
@@ -351,11 +377,12 @@
 		"cost":{
 
 			"research":25,
-			"scrolls":5
+			"scrolls":5,
+			"watergem":1
 
 		},
 		"cast":{
-			"water":2
+			"water":1
 		},
 		"dot":{
 
@@ -380,7 +407,7 @@
 
 		},
 		"cast":{
-			"nature":2
+			"nature":1
 		},
 		"dot":{
 
@@ -560,8 +587,8 @@
 		"school":"nature",
 		"cost":{
 
-			"research":50,
-			"scrolls":10,
+			"research":100,
+			"codices":1,
 			"naturegem":3
 
 		},
@@ -589,9 +616,9 @@
 		},
 		"cost":{
 
-			"research":30,
-			"scrolls":5,
-			"airgem":1
+			"research":100,
+			"codices":1,
+			"airgem":3
 
 		},
 		"cast":{
@@ -603,6 +630,33 @@
 				"speed":0.5
 			}
 		}
+	},
+	{
+		"id":"ironskin",
+		"name":"iron skin",
+		"desc":"hardens the skin of the caster.",
+		"school":"earth",
+		"require":{
+			"earth.max":5
+		},
+		"level":2,
+		"cost":{
+
+			"research":30,
+			"codices":1,
+			"earthgem":3
+
+		},
+		"cast":{
+			"earth":5
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"defense":5
+			}
+		}
+
 	}
 
 ]
