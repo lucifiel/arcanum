@@ -55,7 +55,7 @@ export default class TechTree {
 
 			this.markFunc( item, need );
 
-		} else if ( need instanceof Array ) return need.forEach( v=>this.markLinks(item,v), this );
+		} else if (  Array.isArray(need) ) return need.forEach( v=>this.markLinks(item,v), this );
 
 	}
 

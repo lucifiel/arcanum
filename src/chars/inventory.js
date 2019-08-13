@@ -33,7 +33,7 @@ export default class Inventory {
 	add(it){
 
 		if ( it === null || it === undefined || typeof it === 'boolean') return;
-		if ( it instanceof Array ) {
+		if ( Array.isArray(it) ) {
 
 			//this.items = this.items.concat(it);
 			for( let i = it.length-1; i>=0; i-- ) {

@@ -311,7 +311,7 @@ export default {
 	 */
 	filled( v ) {
 
-		if ( v instanceof Array ) {
+		if ( Array.isArray(v) ) {
 			for( let i = v.length-1; i>=0; i-- ) {
 				if ( !this.filled( v[i] ) )return false;
 			}
@@ -355,7 +355,7 @@ export default {
 	 */
 	disable( it ) {
 
-		if ( it instanceof Array ) for( let v of it ) this.disable(v);
+		if ( Array.isArray(it) ) for( let v of it ) this.disable(v);
 		else {
 
 			if ( typeof it === 'string' ) it = this.getItem( it );
@@ -413,7 +413,7 @@ export default {
 
 			this.remove( it, it.value );
 
-		} else if ( it instanceof Array ) {
+		} else if ( Array.isArray(it)) {
 			it.forEach( this.removeAll, this );
 
 		} else {
@@ -603,7 +603,7 @@ export default {
 			return ( it.type === 'resource' || it.type === 'action') ?
 				(it.locked === false) : it.value > 0;
 
-		} else if ( test instanceof Array ) return test.every( v=>this.unlockTest(v,item), this );
+		} else if (  Array.isArray(test) ) return test.every( v=>this.unlockTest(v,item), this );
 		else if ( test.type != null ) {
 
 			return ( test.type === 'resource' || test.type === 'action') ? !test.locked : test.value > 0;
@@ -621,8 +621,10 @@ export default {
 
 		if ( typeof effect === 'object' ) {
 
-			if ( effect instanceof Array ) {
-				for( let e of effect ) this.applyEffect(e,dt);
+			if (  Array.isArray(effect) ) {
+				for( let e of effect ) {
+					this.applyEffect( e,dt);
+				}
 				return;
 			}
 
@@ -632,14 +634,17 @@ export default {
 				target = this.getItem(p);
 				e = effect[p];
 
-				if ( target === undefined ) this.applyToTag( p, e, dt );
-				else if ( target.type === 'event' ) this.doEvent( target );
-				else if ( typeof e === 'number' ) this.doItem( target, e*dt );
-				else if ( e instanceof Range ) this.doItem( target, e.value );
-				else if ( typeof e === 'boolean') this.doItem( target );
-				else target.applyVars(e,dt);
+				if ( target === undefined ) {
+					this.applyToTag( p, e, dt );
+				} else {
+					if ( target.type === 'event' ) this.doEvent( target );
+					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
+					else if ( e instanceof Range ) this.doItem( target, e.value );
+					else if ( typeof e === 'boolean') this.doItem( target );
+					else target.applyVars(e,dt);
 				
-				target.dirty = true;
+					target.dirty = true;
+				}
 			}
 
 		} else if ( typeof effect === 'string') {
@@ -663,7 +668,7 @@ export default {
 	 */
 	addMod( mod, amt ) {
 
-		if ( mod instanceof Array ) for( let m of mod ) this.addMod(m, amt);
+		if ( Array.isArray(mod)  ) for( let m of mod ) this.addMod(m, amt);
 		else if ( typeof mod === 'object' ) {
 	
 			for( let p in mod ) {
@@ -671,9 +676,10 @@ export default {
 				var target = this.getItem( p );
 
 				if ( target === undefined ) this.applyToTag( p, mod[p], amt );
-				else target.applyVars( mod[p], amt );
-
-				target.dirty = true;
+				else {
+					target.applyVars( mod[p], amt );
+					target.dirty = true;
+				}
 			}
 
 		}
@@ -761,7 +767,7 @@ export default {
 	payCost( cost, unit=1) {
 
 		if ( cost === undefined || cost === null ) return;
-		if ( cost instanceof Array ) return cost.forEach( v=>this.payCost(v,unit), this );
+		if ( Array.isArray(cost)  ) return cost.forEach( v=>this.payCost(v,unit), this );
 
 		let res;
 		if ( typeof cost === 'object' ){
@@ -797,7 +803,7 @@ export default {
 	 */
 	canPay( cost, unit=1 ) {
 
-		if ( cost instanceof Array ) return cost.every( v=>this.canPay(v,unit), this );
+		if (Array.isArray(cost) ) return cost.every( v=>this.canPay(v,unit), this );
 
 		let res;
 
@@ -831,7 +837,7 @@ export default {
 		this.state.inventory.remove( it );
 		if ( typeof res === 'object') {
 
-			if ( res instanceof Array ) res.forEach(v=>{
+			if ( Array.isArray(res) ) res.forEach(v=>{
 
 					if ( typeof v === 'boolean') return;
 					v.unequip(this.state.player);
@@ -860,7 +866,7 @@ export default {
 			console.log('to inv-> ' + res.id );
 			this.state.inventory.add(res);
 
-			if ( res instanceof Array ) res.forEach(v=>{
+			if (  Array.isArray(res) ) res.forEach(v=>{
 				v.unequip(this.state.player);
 				this.remove(v);
 			});
@@ -903,7 +909,7 @@ export default {
 	 */
 	lock(id, amt=1) {
 
-		if ( id instanceof Array ) {
+		if (  Array.isArray(id)) {
 			id.forEach( v=>this.lock(v,amt), this );
 		} else if ( typeof id === 'object' ) {
 

@@ -229,7 +229,7 @@ export default {
 
 	parseSub( sub ) {
 
-		if ( sub instanceof Array ) {
+		if (Array.isArray(sub) ) {
 
 			for( let i = sub.length-1; i >= 0; i-- ) sub[i] = this.parseSub( sub[i] );
 

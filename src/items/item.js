@@ -24,7 +24,12 @@ export default class Item {
 	 */
 	get max() { return this._max; }
 	set max(v) {
-		this._max = v instanceof Stat ? v : new Stat(v);
+		if ( this._max ) {
+
+			if ( v instanceof Stat ) this._max = v;
+			else if ( !isNaN(v) ) this._max.base = v;
+
+		} this._max = v instanceof Stat ? v : new Stat(v);
 	}
 
 	/**
@@ -82,6 +87,7 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 
 		if ( this._locked === undefined ) this._locked = true;
+		
 
 		this._value = this._value || 0;
 

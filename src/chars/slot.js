@@ -21,7 +21,7 @@ export default class Slot {
 		/**
 		 * @property {boolean} multi - true if slot holds multiple items.
 		 */
-		this.multi = this.item instanceof Array;
+		this.multi = Array.isArray( this.item );
 
 		this.name = this.name || this.id;
 
@@ -113,7 +113,7 @@ export default class Slot {
 	revive( state ) {
 
 		if ( this.item === null || this.item === undefined ) return;
-		if ( this.item instanceof Array ) this.item.forEach(v=>v.revive(state));
+		if ( Array.isArray( this.item) ) this.item.forEach(v=>v.revive(state));
 		else this.item.revive(state );
 
 	}
@@ -127,7 +127,7 @@ export default class Slot {
 
 	empty(){
 		return this.item === null ||
-			((this.item instanceof Array) && this.item.length===0);
+			(Array.isArray(this.item) && this.item.length===0);
 	}
 
 }

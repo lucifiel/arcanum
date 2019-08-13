@@ -16,7 +16,7 @@ export default class Equip {
 			var it = s.item;
 			if ( it !== null && it !== undefined ) {
 
-				if ( it instanceof Array ) it = it.map( k=>new Wearable(k) );
+				if ( Array.isArray(it) ) it = it.map( k=>new Wearable(k) );
 				else it = new Wearable(it);
 
 				s.item = it;

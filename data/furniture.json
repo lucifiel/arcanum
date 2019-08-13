@@ -667,13 +667,14 @@
 			"space":50
 		},
 		"mod":{
+			"chronomancy.max":1,
+			"chronomancy.rate":0.1,
 			"astronomy.max":3,
 			"astronomy.rate":0.1,
 			"planeslore.max":2,
 			"planeslore.rate":0.1,
 			"divination.max":2,
-			"divination.rate":0.1,
-			"research.max":50
+			"divination.rate":0.1
 		}
 
 	},

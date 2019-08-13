@@ -701,6 +701,22 @@
 
 	},
 	{
+		"id":"crucible",
+		"name":"fine crucible",
+		"desc":"resiliant vessel for melting substances",
+		"require":"adept",
+		"cost":{
+			"gold":125
+		},
+		"mod":{
+			"alchemy":{
+				"rate":0.1,
+				"max":1
+			}
+		}
+
+	},
+	{
 		"id":"cauldron",
 		"name":"Cauldron",
 		"desc":"Like a cooking pot, but larger.",
@@ -757,6 +773,44 @@
 				"max":50,
 				"rate":0.01
 			}
+		}
+	},
+	{
+		"id":"cellar",
+		"desc":"add a cellar to your domicile",
+		"locked":false,
+		"max":1,
+		"cost":{
+			"gold":10
+		},
+		"mod":{
+			"space.max":5
+		}
+	},
+	{
+
+		"id":"expandcellar",
+		"name":"expanded cellars",
+		"desc":"Increase the size of your existing cellars.",
+		"locked":false,
+		"cost":{
+			"gold":10
+		},
+		"mod":{
+			"cellar.mod.space.max":5
+		}
+	},
+	{
+		"id":"basement",
+		"desc":"install a basement beneath your lair",
+		"require":"tierone",
+		"max":1,
+		"cost":{
+			"gold":200,
+			"research":200
+		},
+		"mod":{
+			"space.max":"50%"
 		}
 	},
 	{

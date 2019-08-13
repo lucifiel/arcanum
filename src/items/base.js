@@ -1,4 +1,6 @@
 import {changes, jsonify} from 'objecty';
+import Percent from '../percent';
+import Game from '../game';
 
 export function mergeClass( destClass, src ) {
 
@@ -127,13 +129,16 @@ export default {
 
 			if ( m.max ) {
 
-				console.log('adding max: ' + m.max );
 				let vars = m.max;
 				if ( !isNaN(vars) ) this.max += ( vars * amt );
 				else if ( typeof vars === 'object' ) {
 
-					if ( vars.base ) this.max.base += vars.base*amt;
-					if ( vars.pct ) this.max.pct += vars.pct*amt;
+					if ( vars instanceof Percent ) this.max.pct += vars.pct*amt/100;
+					else {
+						if ( vars.base ) this.max.base += vars.base*amt;
+						if ( vars.pct ) this.max.pct += vars.pct*amt;
+					}
+
 				}
 				if ( this.value > this.max.value ) this.value = this.max.value;
 

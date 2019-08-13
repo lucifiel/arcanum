@@ -308,7 +308,7 @@ export default class Raid {
 	nextEnemy() {
 		
 		var enemy = this.dungeon.getEnemy();
-		if ( enemy instanceof Array ){
+		if (  Array.isArray(enemy)){
 
 			for( let i = enemy.length-1; i >=0; i-- ) {
 				var e = enemy[i];
