@@ -463,7 +463,7 @@
 		"repeat":false,
 		"length":50,
 		"cast":{
-			"codices":1
+			"codices":5
 		},
 		"cost":{
 			"research":1,
@@ -474,6 +474,10 @@
 			"text":"you have mapped the physical heavens"
 		},
 		"effect":{
+			"divination":{
+				"max":1,
+				"rate":0.1
+			},
 			"arcana.max":1,
 			"arcana.rate":0.001,
 			"astronomy":{

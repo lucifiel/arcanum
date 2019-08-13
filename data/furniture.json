@@ -658,6 +658,26 @@
 
 	},
 	{
+		"id":"orrery",
+		"desc":"a vast mechanical model of existence",
+		"require":"state.codices>=100",
+		"cost":{
+			"gold":500,
+			"research":500,
+			"space":50
+		},
+		"mod":{
+			"astronomy.max":3,
+			"astronomy.rate":0.1,
+			"planeslore.max":2,
+			"planeslore.rate":0.1,
+			"divination.max":2,
+			"divination.rate":0.1,
+			"research.max":50
+		}
+
+	},
+	{
 		"id":"library",
 		"desc":"",
 		"require":"state.codices>=100",

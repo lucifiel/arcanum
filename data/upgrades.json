@@ -68,7 +68,13 @@
 
 		"id":"flyingcarpet",
 		"name":"flying carpet",
-		"flavor":"a whole new world"
+		"flavor":"a whole new world",
+		"cost":{
+
+		},
+		"mod":{
+			"player.dist.max":100
+		}
 
 	},
 	{
@@ -190,23 +196,68 @@
 
 	},
 	{
+
+		"id":"woodpipe",
+		"name":"wood pipe",
+		"desc":"Finely carved wooden pipe. Enhaces rumination while peering into the sunset or a fire.",
+		"require":"state.scrying>=5",
+		"cost":{
+			"gems":5
+		},
+		"mod":{
+			"scrying.max":1,
+			"scrying.rate":0.1
+		}
+
+	},
+	{
+		"id":"pendulum",
+		"tags":"timesource",
+		"require":"state.lore>=10",
+		"cost":{
+			"gems":1
+		},
+		"mod":{
+			"tempus.rate":0.01
+		}
+	},
+	{
 		"id":"metronome",
 		"desc":"focus of temporal synchronicity",
+		"tags":"timesource",
 		"require":"state.craft>=10&&state.tempus.max>=1",
 		"cost":{
 			"gold":50,
 			"gems":10
 		},
 		"mod":{
-			"tempus.max":1,
+			"chronomancy.max":1,
 			"tempus.rate":0.1
 		}
 
 	},
 	{
+		"id":"armillarysphere",
+		"name":"armillary sphere",
+		"desc":"a small mechanical model of known worlds",
+		"require":"state.astronomy.max>=7&&state.crafting>=7",
+		"cost":{
+			"arcana":1,
+			"research":100,
+			"gold":200
+		},
+		"mod":{
+			"planeslore.max":1,
+			"planeslore.rate":0.1,
+			"astronomy.max":1,
+			"astronomy.rate":0.1,
+			"starcharts.rate":0.001
+		}
+	},
+	{
 
 		"id":"grimoire",
-		"desc":"A handbook for witches",
+		"desc":"The handbook of witches",
 		"require":"witch",
 		"locked":true,
 		"cost":{
@@ -227,13 +278,15 @@
 		"id":"speakbirds",
 		"name":"Speak to Birds",
 		"desc":"Learn the secret languages of birds.",
-		"require":"state.languages>0&&state.animals>2&&state.birdcage>1&&state.nature.max>0",
+		"require":"state.languages>0&&state.animals>2&&state.birdcage>1&&state.nature>0",
 		"cost":{
-			"research":20,
+			"research":75,
 			"nature":1
 		},
 		"mod":{
 			"research.max":5,
+			"languages.max":1,
+			"languages.rate":0.1,
 			"animals.rate":0.2
 		}
 
@@ -262,7 +315,7 @@
 	{
 
 		"id":"hiddenpockets",
-		"require":"magician",
+		"require":"state.magician>0||state.trickster>0",
 		"cost":{
 			"research":100,
 			"arcana":1
@@ -297,7 +350,7 @@
 			"research":100
 		},
 		"repeat":false,
-		"flavor":"you didn't even palm it.",
+		"flavor":"didn't even palm it.",
 		"mod":{
 			"gold.rate":0.15
 		}
@@ -601,11 +654,11 @@
 		"tags":"watersource",
 		"desc":"unlimited source of water.",
 		"flavor":"all you can drink",
-		"require":"state.water.max>=3",
+		"require":"state.water.max>=5",
 		"cost":{
 			"research":100,
 			"gold":75,
-			"water":2,
+			"water":5,
 			"arcana":1
 		},
 		"mod":{
@@ -613,6 +666,24 @@
 			"water.rate":0.1
 		}
 
+	},
+	{
+		"id":"swirlglobe",
+		"name":"swirling globe",
+		"tags":"airsupply",
+		"desc":"an unending supply of air.",
+		"flavor":"out of nothing at all",
+		"require":"state.air.max>=5",
+		"cost":{
+			"research":100,
+			"gold":75,
+			"air":5,
+			"arcana":1
+		},
+		"mod":{
+			"air.max":2,
+			"air.rate":0.1
+		}
 	},
 	{
 		"id":"alembic",

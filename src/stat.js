@@ -58,7 +58,7 @@ export default class Stat {
 	add( v ) {
 
 		if ( !isNaN(v)) this._base += v;
-		else if ( v instanceof Object ) {
+		else if ( typeof v === 'object' ) {
 
 			this._base += v.base ? v.base : 0;
 			this._pct += v.pct ? v.pct : 0;

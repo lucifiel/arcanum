@@ -108,6 +108,18 @@ export default {
 
 		}
 
+	},
+	computed:{
+
+		desc(){
+
+			// item.action allows desc to behave as an action description until
+			// action is completed.
+			return this.item.action ?
+				( this.item.value < 1 ? this.item.action : this.item.desc ) : this.item.desc;
+
+		}
+
 	}
 
 }
@@ -122,7 +134,7 @@ export default {
 
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value.toFixed(0) + ' / ' + item.max }}</span>
 		</span>
-		<div class="item-desc" v-if="item.desc">{{ item.desc }}</div>
+		<div class="item-desc" v-if="desc">{{ desc }}</div>
 		<div v-if="item.cost">
 
 			<hr>

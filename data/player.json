@@ -19,6 +19,17 @@
 		"locked":false
 	},
 	{
+		"id":"dist",
+		"name":"distance",
+		"value":0,
+		"locked":false
+	},
+	{
+		"id":"sight",
+		"value":0,
+		"locked":false
+	},
+	{
 		"id":"exp",
 		"value":0,
 		"locked":false

@@ -164,6 +164,16 @@ export default {
 	},
 
 	/**
+	 * Add new sub-object to this object.
+	 * Vue reactivity??
+	 * @todo
+	 * @param {string} key 
+	 * @param {Object} obj 
+	 */
+	newSub( key, obj ) {
+	},
+
+	/**
 	 * Change a modifier controlled by this Item.
 	 * @param {Object} mod
 	 * @param {number} amt - percent of change applied to modifier.

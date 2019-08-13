@@ -93,7 +93,7 @@
 		"id":"evil",
 		"name":"wicked",
 		"desc":"You have taken your first step on the path of evil. It's a good thing.",
-		"disable":["light","good"],
+		"disable":["light","good", "lumenology"],
 		"effect":{
 			"shadow":{
 				"max":1,

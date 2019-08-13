@@ -336,13 +336,28 @@
 
 		"id":"planeslore",
 		"name":"planes lore",
-		"require":"state.astronomy>=5",
+		"require":"state.astronomy>=5&&state.tierone>0",
 		"cost":{
 			"stamina":0.7,
+			"research":1,
 			"mana":0.1
 		},
 		"mod":{
 			"arcana.max":1
+		}
+
+	},
+	{
+		"id":"chronomancy",
+		"require":"state.timesource>0&&state.tiertwo>0",
+		"cost":{
+			"stamina":0.3,
+			"research":1,
+			"mana":1
+		},
+		"result":{
+			"tempus.max":1,
+			"tempus.rate":0.01
 		}
 
 	},
@@ -353,8 +368,9 @@
 			"stamina":0.5
 		},
 		"result":{
+			"mana.max":0.2,
 			"lore.rate":0.15,
-			"arcana.max":0.5
+			"arcana.max":0.2
 		}
 	}
 

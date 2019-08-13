@@ -1,7 +1,6 @@
 import { defineExcept } from 'objecty';
 import Stat from '../stat';
 import Base, {mergeClass} from './base';
-import Game from '../game';
 
 /**
  * @typedef {Object} Effect
