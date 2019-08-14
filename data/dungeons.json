@@ -198,7 +198,7 @@
 		"name":"orc camp",
 		"desc":"a scourge of cities.",
 		"require":"adept",
-		"level":5,
+		"level":7,
 		"cost":{
 			"stamina":1.2
 		},
@@ -241,6 +241,30 @@
 
 	},
 	{
+		"id":"aragwastes",
+		"name":"arag wastes",
+		"desc":"the arid plain stretching from the heights.",
+		"require":"",
+		"level":8,
+		"cost":{
+			"stamina":2
+		},
+		"boss":"roc",
+		"result":{
+			"gold":"20~30"
+		},
+		"enemies":[
+			"lgbird",
+			"orc",
+			"bandit",
+			"wolf",
+			"hawk",
+			"goblin",
+			"coyote"
+		]
+
+	},
+	{
 		"id":"greatbog",
 		"name":"the great bog",
 		"desc":"",
@@ -269,11 +293,32 @@
 
 	},
 	{
+		"id":"desillagrotto",
+		"name":"desilla's grotto",
+		"desc":"",
+		"require":"state.player.dist>=500",
+		"level":14,
+		"cost":{
+			"stamina":2
+		},
+		"length":50,
+		"result":{
+			"gems":"3~5"
+		},
+		"boss":"bogwitch",
+		"enemies":[
+			"stalker",
+			"willowisp",
+			"succubus"
+		]
+
+	},
+	{
 		"id":"holyhouse",
 		"name":"house of the holy",
 		"desc":"",
 		"require":"state.planeslore.max>=30",
-		"level":14,
+		"level":17,
 		"length":50,
 		"cost":{
 			"stamina":1

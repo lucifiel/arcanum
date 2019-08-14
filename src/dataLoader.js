@@ -201,7 +201,7 @@ export default {
 		this.initItems( dataLists['furniture'], Item, 'furniture', 'furniture' );
 		this.initItems( dataLists['skills'], Skill );
 
-		this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
+		gd.monsters = this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
 		this.initItems( dataLists['dungeons'], Dungeon );
 		this.initItems( dataLists['spells'], Spell );
 

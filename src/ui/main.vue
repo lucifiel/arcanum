@@ -8,6 +8,7 @@ import HomeView from './homes.vue';
 import EquipView from './equip.vue';
 import Quickbar from './quickbar.vue';
 import Inventory from './inventory.vue';
+import Bestiary from './bestiary.vue';
 
 import ItemsBase from './itemsBase';
 
@@ -53,6 +54,7 @@ export default {
 		homes:HomeView,
 		quickbar:Quickbar,
 		player:PlayerView,
+		bestiary:Bestiary,
 		spellbook:Spellbook,
 		adventure:Adventure,
 		'vue-menu':Menu
@@ -410,6 +412,10 @@ export default {
 
 		</template>
 
+		<template slot="sect_bestiary">
+			<bestiary />
+		</template>
+	
 		</vue-menu>
 
 		<vitals :player="state.player" :state="state" />

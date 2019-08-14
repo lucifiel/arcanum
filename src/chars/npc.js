@@ -1,6 +1,7 @@
 import Char from './char';
 import Monster from '../items/monster';
 import { cloneClass  } from 'objecty'
+import Range from '../range';
 
 /**
  * Class for specific Enemies/Minions in game.
@@ -28,7 +29,9 @@ export default class Npc extends Char {
 		if ( v && !(v instanceof Range) ) {
 	
 			if ( typeof v === 'string' || typeof v === 'object') this._damage = new Range( v );
-			else this._damage = Number( v );
+			else {
+				this._damage = Number( v );
+			}
 	
 		} else this._damage = v;
 
@@ -44,6 +47,7 @@ export default class Npc extends Char {
 		this._maxHp = this._maxHp || this._hp;
 
 		if ( this.dmg && !this.damage ) this.damage = this.dmg;
+		if ( this.damage ) console.log('dmg: ' + this.damage);
 
 	}
 

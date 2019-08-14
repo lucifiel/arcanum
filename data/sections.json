@@ -40,6 +40,11 @@
 		"id":"sect_equip",
 		"name":"equip",
 		"require":"apprentice"
+	},
+	{
+		"id":"sect_bestiary",
+		"name":"bestiary",
+		"require":"bestiary"
 	}
 
 ]

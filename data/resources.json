@@ -196,19 +196,6 @@
 		"max":10
 	},
 	{
-		"id":"dragonscale",
-		"tags":"reagent",
-		"name":"dragon scales",
-		"desc":"plucked from a living dragon.",
-		"max":5
-	},
-	{
-		"id":"eyeofnewt",
-		"tags":"reagent",
-		"name":"eye of newt",
-		"max":10
-	},
-	{
 		"id":"space",
 		"name":"floor space",
 		"desc":"Space Available",
@@ -228,40 +215,40 @@
 		"require":"pyromancy",
 		"tags":"manas,elemental",
 		"desc":"Fire Mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"cold",
 		"tags":"manas,elemental",
 		"desc":"Cold Mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"air",
 		"tags":"manas,elemental",
 		"desc":"Air Mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"earth",
 		"tags":"manas,elemental",
 		"require":"minerology",
 		"desc":"Earth Mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"water",
 		"tags":"manas,elemental",
 		"desc":"Water Mana",
 		"require":"waterlore",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"nature",
 		"tags":"manas",
 		"require":"naturelore",
 		"desc":"Nature Mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"shadow",
@@ -269,21 +256,21 @@
 		"tags":"manas",
 		"require":"state.evil>0||state.embalming>1",
 		"desc":"Shadow mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"light",
 		"tags":"manas",
 		"require":"lumenology",
 		"desc":"Light mana",
-		"max":1
+		"max":0
 	},
 	{
 
 		"id":"spirit",
 		"tags":"manas",
 		"desc":"Spirit mana",
-		"max":1
+		"max":0
 	},
 	{
 		"id":"tempus",

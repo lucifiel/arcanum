@@ -32,8 +32,9 @@ export default class Dot {
 
 		Object.assign( this, vars );
 
-		this.id = this.id || (source ? source.id : '');
 		this.name = name || this.name || ( source ? source.name : '' );
+		this.id = this.id || this.name || (source ? source.id || source.name : '');
+		console.log('DOT ID: ' + this.id );
 
 		this.source = this.source || null;
 

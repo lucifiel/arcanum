@@ -401,7 +401,6 @@
 		"mod":{
 			"research.max":10,
 			"light":{
-				"max":1,
 				"rate":0.01
 			}
 		}

@@ -39,8 +39,8 @@ export function tryDamage( target, attack, attacker ) {
 			': ' + dmg.toFixed(1),
 			COMBAT_LOG );
 
-		if ( attack.siphon && attacker ) {
-			let amt = Math.floor( 100*attack.siphon*dmg )/100;
+		if ( attack.leech && attacker ) {
+			let amt = Math.floor( 100*attack.leech*dmg )/100;
 			attacker.hp += amt;
 			Game.log.log( '', attacker.name + ' steals ' + amt + ' life.' );
 		}
@@ -334,7 +334,15 @@ export default class Raid {
 
 		this.player.exp += 1 + enemy.level;
 		this.player.timer = this.player.delay;
-		
+
+		if ( enemy.id ) {
+			let tmp = this.state.getItem(enemy.id);
+			if ( tmp ) {
+				tmp.value++;
+				console.log('ENEMY INC: ' + tmp.value );
+			}
+		}
+
 		Game.log.log( '', enemy.name + ' slain' + ( attacker ? ' by ' + attacker.name : ''), COMBAT_LOG );
 
 		if ( enemy.result ) Game.applyEffect( enemy.result );
