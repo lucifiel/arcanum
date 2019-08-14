@@ -11,7 +11,7 @@ const COMBAT_LOG = 'combat';
 * @param {Char} target 
 * @param {Object} attack 
 */
-export function tryDamage( target, attack, attacker ) {
+export function tryDamage( target, attack, attacker=null ) {
 
 	if ( attack.kind ) {
 
@@ -28,8 +28,9 @@ export function tryDamage( target, attack, attacker ) {
 	if ( attack.damage ) {
 
 		// add optional base damage from attacker.
-		let dmg = getDamage( attack.damage )
-			+ ( (attacker && attacker!==attack) ? (attacker.damage || 0) : 0);
+		let dmg = getDamage( attack.damage ) +
+		( attacker !== null && attacker !== attack && attacker.damage ) ?
+			getDamage(attacker.damage) : 0;
 
 		target.hp -= dmg;
 

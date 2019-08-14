@@ -85,7 +85,6 @@
 		"hp":2,
 		"tohit":2,
 		"defense":2,
-		"dmg":"1~2",
 		"attack":{
 			"name":"nibble",
 			"kind":"physical",

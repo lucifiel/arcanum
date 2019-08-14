@@ -30,6 +30,7 @@ export default class Npc extends Char {
 	
 			if ( typeof v === 'string' || typeof v === 'object') this._damage = new Range( v );
 			else {
+
 				this._damage = Number( v );
 			}
 	
@@ -46,7 +47,7 @@ export default class Npc extends Char {
 
 		this._maxHp = this._maxHp || this._hp;
 
-		if ( this.dmg && !this.damage ) this.damage = this.dmg;
+		if ( this.dmg && (this.damage===null||this.damage===undefined) ) this.damage = this.dmg;
 		if ( this.damage ) console.log('dmg: ' + this.damage);
 
 	}
