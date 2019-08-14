@@ -279,6 +279,19 @@
 		}
 	},
 	{
+		"id":"willowisp",
+		"name":"will o' wisp",
+		"desc":"a gleaming orb of light",
+		"level":3,
+		"defense":4,
+		"hp":4,
+		"speed":4,
+		"attack":{
+			"dmg":"1~2",
+			"kind":"light"
+		},"immune":"light,fire,spirit"
+	},
+	{
 		"id":"warthog",
 		"name":"Warthog",
 		"kind":"natural",
@@ -446,7 +459,7 @@
 		"loot":{
 			"cap":"20%",
 			"boots":"10%"
-		}
+		},"flavor":"you remind me of the babe"
 	},
 	{
 		"id":"warg",
@@ -602,7 +615,8 @@
         "attack":{
             "name":"bite",
             "kind":"pierce",
-            "dmg":"3~7"
+			"dmg":"3~7",
+			"siphon":0.1
         }
 
     },
@@ -784,7 +798,12 @@
         "attack":{
             "name":"sting",
             "kind":"pierce",
-            "dmg":"5~8"
+			"dmg":"5~8",
+			"dot":{
+				"dmg":"1~3",
+				"kind":"venom",
+				"duration":3
+			}
         }
 
     },
@@ -801,7 +820,20 @@
             "dmg":"3~5"
         }
 
-    },
+	},
+	{
+		"id":"leech",
+		"level":4,
+		"desc":"blood sucking leech",
+		"hp":8,
+		"attack":{
+			"name":"suck",
+			"kind":"pierce",
+			"siphon":0.5,
+			"dmg":"2~4"
+		}
+
+	},
     {
         "id":"slime",
         "level":4,
@@ -849,7 +881,8 @@
             "name":"short sword",
             "kind":"slash",
             "dmg":"3~8"
-        }
+		},
+		"immune":"spirit"
 
     },
 	{
@@ -983,7 +1016,13 @@
         "attack":{
             "name":"bite",
             "kind":"pierce",
-            "dmg":"4~9"
+			"dmg":"4~9",
+			"dot":{
+				"kind":"venom",
+				"name":"poison",
+				"dmg":"1~2",
+				"duration":3
+			}
 		},
 		"resists":{
 			"poison":25
@@ -1002,7 +1041,8 @@
         "defense":25,
         "attack":{
             "name":"bite",
-            "kind":"pierce",   
+			"kind":"pierce",
+			"siphon":0.2, 
             "dmg":"5~8"
         },"loot":"bat wing"
 
@@ -1093,7 +1133,13 @@
         "attack":{
             "name":"flame claws",
             "kind":"fire",
-            "dmg":"3~9"
+			"dmg":"3~9",
+			"dot":{
+				"kind":"fire",
+				"name":"burning",
+				"dmg":"1~3",
+				"duration":3
+			}
 		},
 		"resists":{
 			"fire":40
@@ -1304,7 +1350,8 @@
         "attack":{
             "name":"bite",
             "kind":"pierce",
-            "dmg":"7~15"
+			"dmg":"7~15",
+			"siphon":0.3
         },"loot":{"crocodile tooth":10, "crocodile tears":5}
 
     },
@@ -1358,7 +1405,8 @@
         "attack":{
             "name":"bite",
             "kind":"pierce",
-            "dmg":"10~15"
+			"dmg":"10~15",
+			"siphon":0.2
 		},
 		"resists":{
 			"water":50
@@ -1377,7 +1425,8 @@
         "attack":{
             "name":"cold touch",
             "kind":"cold",
-            "dmg":"10~20"
+			"dmg":"10~20",
+			"siphon":0.5
 		},"loot":{"spectral essence":5},
 		"resists":{
 			"shadow":20,
@@ -1387,6 +1436,7 @@
 
     },
     {
+		"id":"stalker",
         "name":"invisible stalker",
         "level":7,
         "evil":13,
@@ -1578,7 +1628,8 @@
         "attack":{
             "name":"bite",
             "kind":"drain",
-            "dmg":"9~18"
+			"dmg":"9~18",
+			"siphon":0.3
 		}, "loot":{"vampire fang":5, "potion of moderate agony":10},
 		"resists":{
 			"shadow":20
@@ -1622,7 +1673,7 @@
 		},
 		"resists":{
 			"arcane":30
-		}
+		},"immune":"light"
 
     },
     {
@@ -1789,7 +1840,13 @@
         "attack":{
             "name":"scimitars",
             "kind":"slash",
-            "dmg":"9~14"
+			"dmg":"9~14",
+			"dot":{
+				"kind":"poison",
+				"name":"poison",
+				"dmg":"3~7",
+				"duration":5
+			}
         }, "loot":{"potion of cure light wounds":20}
 
     },
@@ -1826,7 +1883,7 @@
             "kind":"fire",
             "dmg":"14~20"
 		},"loot":{"Fire Essence":10},
-		"immune":"fire"
+		"immune":"fire,light"
 
 	},
 	{
@@ -1864,7 +1921,7 @@
 		"resists":{
 			"earth":15,
 			"physical":10
-		}
+		},"immune":"spirit"
 
 	},
 	{
@@ -1901,6 +1958,22 @@
 		"resists":{
 			"physical":20
 		}
+
+	},
+    {
+		"id":"lightningelemental",
+        "name":"lightning elemental",
+        "level":10,
+        "desc":"All your hairs feel prickly.",
+        "kind":"elemental",
+        "tohit":14,
+        "hp":28,
+        "defense":63,
+        "attack":{
+            "name":"lightning",
+            "kind":"electric",
+            "dmg":"23~42"
+        },"immune":"light,fire"
 
     },
     {
@@ -2001,7 +2074,8 @@
         "attack":{
             "name":"bite",
             "kind":"drain",
-            "dmg":"10~25"
+			"dmg":"10~25",
+			"siphon":0.4
         }, "loot":{"vampire fang":10, "potion of major agony":10}
 
 	},
@@ -2055,21 +2129,48 @@
 
 	},
 	{
+        "id":"manticore",
+        "level":12,
+        "kind":"magic beast",
+        "evil":5,
+        "desc":"",
+        "hp":130,
+        "tohit":10,
+        "defense":48,
+        "attack":{
+			"name":"sting",
+			"dmg":"15~25",
+			"kind":"pierce",
+			"dot":{
+				"kind":"poison",
+				"dmg":"4~7",
+				"duration":5
+			}
+        }
+
+    },
+	{
 		"id":"bogwitch",
         "name":"bog witch",
-        "level":12,
+        "level":13,
         "evil":29,
         "kind":"humanoid",
         "biome":"swamp",
         "desc":"Vicious witch in the waters of the Great Bog",
         "hp":110,
-        "tohit":5,
+        "tohit":14,
 		"defense":48,
 		"regen":2,
         "attack":{
             "name":"claws",
             "kind":"slash",
-            "dmg":"18~25"
+			"dmg":"18~25",
+			"dot":{
+				"kind":"poison",
+				"name":"black blood",
+				"dmg":"3~5",
+				"duration":8
+			}
 		}, "loot":{ "potion of major agony":15},
 		"immune":"poison",
 		"resists":{
@@ -2096,13 +2197,28 @@
 			"air":30
 		}
 
-    },
+	},
+	{
+		"id":"bloodgolem",
+		"name":"blood golem",
+		"level":13,
+		"desc":"a creature of pure blood.",
+		"tohit":10,
+		"hp":90,
+		"defense":45,
+		"attack":{
+			"name":"slam",
+			"kind":"blunt",
+			"dmg":"17~23",
+			"siphon":0.7
+		}
+	},
     {
         "id":"wyvern",
         "level":13,
         "desc":"Not a dragon. But it will kill you like one.",
         "hp":132,
-        "tohit":5,
+        "tohit":12,
         "defense":42,
         "attack":{
             "name":"claws",
@@ -2141,38 +2257,6 @@
             "kind":"blunt",
             "dmg":"14~27"
         },"loot":{"raw stone":25}
-
-    },
-    {
-        "id":"manticore",
-        "level":10,
-        "kind":"magic beast",
-        "evil":5,
-        "desc":"",
-        "hp":130,
-        "tohit":8,
-        "defense":48,
-        "attack":{
-            "name":"sting",
-            "kind":"pierce",
-            "dmg":"15~25"
-        }
-
-    },
-    {
-		"id":"lightningelemental",
-        "name":"lightning elemental",
-        "level":10,
-        "desc":"All your hairs feel prickly.",
-        "kind":"elemental",
-        "tohit":14,
-        "hp":28,
-        "defense":63,
-        "attack":{
-            "name":"lightning",
-            "kind":"electric",
-            "dmg":"23~42"
-        },"immune":"air,fire"
 
     },
     {
@@ -2331,7 +2415,8 @@
         "attack":{
             "name":"bite",
             "kind":"drain",
-            "dmg":"12~45"
+			"dmg":"12~45",
+			"siphon":0.45
 		}, "loot":{"vampire fang":15, "potion of critical agony":20},
 		"resists":{
 			"shadow":30
@@ -2425,8 +2510,9 @@
 		"regen":15,
         "attack":{
             "name":"bite",
-            "kind":"drain",
-            "dmg":"20~50"
+            "kind":"shadow",
+			"dmg":"20~50",
+			"siphon":0.7
 		}, "loot":{"vampire fang":25, "potion of critical agony":30},
 		"resists":{
 			"shadow":80
@@ -2562,7 +2648,7 @@
         "defense":95,
         "attack":{
             "name":"death touch",
-            "kind":"drain",
+            "kind":"shadow",
             "dmg":"80~120"
         }, "loot":{ "potion of critical agony":15}
 
@@ -2578,7 +2664,8 @@
 		"regen":30,
         "defense":175,
         "attack":{
-            "name":"Madness",
+			"name":"Madness",
+			"siphon":0.25,
             "kind":"psychic",
             "dmg":"100~300"
         }

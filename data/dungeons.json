@@ -216,6 +216,34 @@
 
 	},
 	{
+		"id":"greatbog",
+		"name":"the great bog",
+		"desc":"",
+		"require":"state.player.dist>=200",
+		"level":11,
+		"cost":{
+			"stamina":2
+		},
+		"length":50,
+		"result":{
+			"gems":"3~5"
+		},
+		"boss":"bogwitch",
+		"enemies":[
+			"direcrocodile",
+			"ghost",
+			"leech",
+			"grimstalk",
+			"stalker",
+			"eel",
+			"lesserwyrm",
+			"willowisp",
+			"direrat",
+			"piranha"
+		]
+
+	},
+	{
 		"id":"holyhouse",
 		"name":"house of the holy",
 		"desc":"",
