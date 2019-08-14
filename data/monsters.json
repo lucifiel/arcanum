@@ -129,6 +129,25 @@
 		}
 	},
 	{
+		"id":"gardengnome",
+        "name":"garden gnome",
+        "level":1,
+        "desc":"Standard variety garden gnome.",
+        "hp":"3~6",
+        "defense":4,
+        "tohit":2,
+        "attack":{
+            "name":"magic missile",
+            "kind":"arcane",
+            "dmg":"2~4"
+        },"biome":["town","plains","hills"],
+		"loot":{ "potion of cure light wounds":5, "potion of cure minor wounds":5 },
+		"resists":{
+			"arcane":5
+		}
+
+    },
+	{
 		"id":"smbox",
 		"name":"Small Chest",
 		"kind":"natural",
@@ -500,25 +519,6 @@
 
     },
     {
-		"id":"gardengnome",
-        "name":"garden gnome",
-        "level":1,
-        "desc":"Standard variety garden gnome.",
-        "hp":"3~6",
-        "defense":4,
-        "tohit":2,
-        "attack":{
-            "name":"magic missile",
-            "kind":"arcane",
-            "dmg":"2~4"
-        },"biome":["town","plains","hills"],
-		"loot":{ "potion of cure light wounds":5, "potion of cure minor wounds":5 },
-		"resists":{
-			"arcane":5
-		}
-
-    },
-    {
         "id":"orc",
         "level":4,
         "kind":"humanoid",
@@ -674,6 +674,30 @@
 			"water":20
 		}
 
+	},
+	{
+        "id":"jellyfish",
+        "level":3,
+        "kind":"beast",
+        "biome":"swamp",
+        "desc":"don't touch.",
+        "hp":4,
+		"tohit":5,
+		"speed":5,
+        "defense":15,
+        "attack":{
+            "name":"sting",
+			"kind":"venom",
+			"dmg":"1~3",
+			"dot":{
+				"dmg":"1~2",
+				"duration":3
+			}
+        },
+		"resists":{
+			"water":20
+		}
+
     },
     {
         "id":"ranger",
@@ -721,6 +745,29 @@
         }
 
 	},
+	{
+		"id":"electriceel",
+		"name":"electric eel",
+        "level":5,
+        "kind":"beast",
+        "biome":"water",
+        "desc":"So wriggly.",
+        "hp":5,
+        "tohit":3,
+		"defense":15,
+		"speed":7,
+        "attack":{
+            "name":"zap",
+            "kind":"pierce",
+            "dmg":"2~5"
+		},
+		"resists":{
+			"light":20,
+			"water":25,
+			"air":25
+		}
+
+    },
 	{
 		"id":"banditlord",
 		"name":"bandit lord",
@@ -1361,7 +1408,7 @@
         "evil":8,
         "kind":"giant",
         "biome":["hills","forest","swamp","mountains"],
-        "desc":"Two heads is better than one.",
+        "desc":"Two heads are better than one.",
         "hp":65,
         "tohit":11,
 		"defense":30,

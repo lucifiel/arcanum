@@ -50,6 +50,30 @@
 
 	},
 	{
+		"id":"pestcontrol",
+		"name":"Leaky Cellar",
+		"require":"evt_pestcontrol",
+		"level":3,
+		"length":25,
+		"cost":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"15~20"
+		},
+		"loot":{
+			"max":4
+		},
+		"boss":"ratking",
+		"enemies":[
+			"lgrat",
+			"badexperiment",
+			"ratskeleton",
+			"homonculus",
+			"gremlin"
+		]
+	},
+	{
 		"id":"hills",
 		"name":"Stony Hills",
 		"level":3,
@@ -77,35 +101,11 @@
 
 	},
 	{
-		"id":"pestcontrol",
-		"name":"Leaky Cellar",
-		"require":"evt_pestcontrol",
-		"level":4,
-		"length":25,
-		"cost":{
-			"stamina":1
-		},
-		"result":{
-			"gold":"15~20"
-		},
-		"loot":{
-			"max":4
-		},
-		"boss":"ratking",
-		"enemies":[
-			"lgrat",
-			"badexperiment",
-			"ratskeleton",
-			"homonculus",
-			"gremlin"
-		]
-	},
-	{
 		"id":"goblincamp",
 		"name":"goblin camp",
 		"desc":"the pesky creatures are everywhere.",
 		"require":"adept",
-		"level":5,
+		"level":4,
 		"cost":{
 			"stamina":1
 		},
@@ -160,11 +160,11 @@
 		},
 		"enemies":[
 			"lgbird",
-			"ogre",
+			"orc",
 			"bandit",
 			"wolf",
 			"hawk",
-			"ogre",
+			"goblin",
 			"coyote"
 		]
 
@@ -194,6 +194,29 @@
 
 	},
 	{
+		"id":"orccamp",
+		"name":"orc camp",
+		"desc":"a scourge of cities.",
+		"require":"adept",
+		"level":5,
+		"cost":{
+			"stamina":1.2
+		},
+		"result":{
+			"gold":"40~50"
+		},
+		"boss":"orcchief",
+		"enemies":[
+			"orc",
+			"orcwarrior",
+			"orcwarrior",
+			"orc",
+			"orc",
+			"orcpriest"
+		]
+
+	},
+	{
 		"id":"veldranswreck",
 		"name":"veldran's wreck",
 		"desc":"Off the stormy cliffs of the arag highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
@@ -209,9 +232,11 @@
 		},
 		"enemies":[
 			"eel",
+			"jellyfish",
 			"ghost",
 			"barracuda",
-			"piranha"
+			"piranha",
+			"electriceel"
 		]
 
 	},
