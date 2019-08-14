@@ -76,7 +76,7 @@ export default class GameState {
 		this.sellRate = this.sellRate || 0.5;
 
 		this.raid = new Raid( baseData.raid );
-		this.raid.initState( this );
+		this.raid.revive( this );
 
 		if ( restore ) this.revive();
 
@@ -201,6 +201,16 @@ export default class GameState {
 
 		}
 
+	}
+
+	/**
+	 * Get quickslot item for slot number.
+	 * @param {number} slotNum 
+	 * @returns {?Item}
+	 */
+	getQuickSlot( slotNum ) {
+		let ind = slotNum > 0 ? slotNum - 1 : 9;
+		return this.quickslots[ind];
 	}
 
 	/**

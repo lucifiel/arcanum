@@ -3,14 +3,21 @@ import Range from "../range";
 export default class Attack {
 
 	toJSON(){
+
+		return {
+			dmg:this._damage,
+			kind:this.kind,
+			id:this.id,
+			dot:this.dot
+		};
+
 	}
 
 	set dmg(v) {
 		this.damage = v;
 	}
 
-	get damage() {
-	}
+	get damage() { return this._damage; }
 	set damage(v) {
 
 		if ( v instanceof Range ) this._damage = v;

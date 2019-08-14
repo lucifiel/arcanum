@@ -640,6 +640,21 @@
 		}
 	},
 	{
+		"id":"portaalchemica",
+		"name":"porta alchemica",
+		"require":"state.alchemy>=5&&state.planeslore>=5&&state.crafting>=10",
+		"desc":"a monument inscribed with alchemical runes",
+		"cost":{
+			"gems":20,
+			"space":5
+		},
+		"mod":{
+			"alchemy.max":2,
+			"alchemy.rate":0.1,
+			"arcana.rate":0.0001
+		}
+	},
+	{
 		"id":"studyroom",
 		"name":"study",
 		"desc":"A place for reading and research",

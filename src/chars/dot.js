@@ -1,11 +1,41 @@
+import Range from "../range";
+
 export default class Dot {
 
-	constructor( vars, id=null, name=null ){
+	toJSON(){
+
+		return {
+
+			id:this.id || undefined,
+			kind:this.kind || undefined,
+			name:this.name || undefined,
+			dmg:this.damage || undefined,
+			acc:this.acc,
+			duration:this.duration,
+			source:this.source ? this.source.id : undefined
+		};
+
+	}
+
+	set dmg(v) { this.damage = v; }
+
+	get damage() { return this._damage; }
+	set damage(v) {
+
+		if ( v instanceof Range ) this._damage = v;
+		else if ( !isNaN(v) ) this._damage = Number(v);
+		else if ( typeof v === 'string' || typeof v === 'object') this._damage = new Range(v);
+
+	}
+
+	constructor( vars, source, name ){
 
 		Object.assign( this, vars );
 
-		this.id = this.id || id;
-		this.name = this.name || name || id;
+		this.id = this.id || (source ? source.id : '');
+		this.name = name || this.name || ( source ? source.name : '' );
+
+		this.source = this.source || null;
 
 		/**
 		 * @property {boolean} stack - ability of dot to stack.
@@ -16,6 +46,10 @@ export default class Dot {
 		 */
 		this.acc = 0;
 
+	}
+
+	revive(state) {
+		if ( this.source && typeof this.source === 'string') this.source = state.getItem( this.source );
 	}
 
 	/**

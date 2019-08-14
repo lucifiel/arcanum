@@ -81,6 +81,7 @@ div.quickbar {
 div.quickslot {
 	min-width: 52px;
 	min-height:52px;
+	text-transform: capitalize;
 	margin: 2px 6px 4px 4px;
 	padding:2px;
 	text-align: center;

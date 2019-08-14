@@ -232,7 +232,7 @@ export default {
 				
 				if ( e.shiftKey && this.overItem ) this.state.setQuickSlot( this.overItem, num );
 				else {
-					let it = this.state.quickslots[num];
+					let it = this.state.getQuickSlot(num);
 					if ( it) this.game.tryItem( it );
 				}
 

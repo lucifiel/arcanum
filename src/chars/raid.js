@@ -39,13 +39,16 @@ export function tryDamage( target, attack, attacker ) {
 			': ' + dmg.toFixed(1),
 			COMBAT_LOG );
 
+		if ( attack.siphon && attacker ) {
+			let amt = Math.floor( 100*attack.siphon*dmg )/100;
+			attacker.hp += amt;
+			Game.log.log( '', attacker.name + ' steals ' + amt + ' life.' );
+		}
+
 	}
 
 	if ( attack.dot ) {
-		target.addDot(
-			new Dot( attack.dot,
-				attack.id || ( attacker? attacker.id : null ),
-				attack.name ) );
+		target.addDot( new Dot( attack.dot, attacker, attack.name ) );
 	}
 
 	return true;
@@ -149,11 +152,12 @@ export default class Raid {
 
 	}
 
-	initState( gameState ) {
+	revive( gameState ) {
 
 		this.state = gameState;
 		this.player = gameState.player;
-		//this.dungeon = gameState.dungeon;
+
+		for( let i = this._enemies.length-1; i>=0; i-- ) this._enemies[i].revive(gameState);
 
 		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getItem(this.dungeon);
 

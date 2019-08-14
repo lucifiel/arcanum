@@ -198,7 +198,7 @@ export default class Player extends Char {
 
 			// ignore any remainder beyond 0.
 			if ( dot.effect ) Game.applyEffect( dot.effect );
-			if ( dot.damage ) tryDamage( this, dot );
+			if ( dot.damage ) tryDamage( this, dot, dot.source );
 
 			if ( dot.duration <= dt ) {
 
@@ -259,6 +259,8 @@ export default class Player extends Char {
 	}
 
 	revive( state ) {
+
+		super.revive(state);
 
 		if ( this.weapon && (typeof this.weapon === 'string') ) this.weapon = state.equip.find( this.weapon );
 		this.primary = this.primary && typeof this.primary === 'string' ? state.getItem( this.primary ) : this.primary;

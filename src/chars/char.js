@@ -3,6 +3,7 @@ import Base, {mergeClass} from '../items/base';
 import {tryDamage} from './raid';
 import { cloneClass  } from 'objecty'
 import Stat from '../stat';
+import Dot from './dot';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -62,6 +63,16 @@ export default class Char {
 
 	}
 
+	get dots() { return this._dots; }
+	set dots(v) {
+
+		for( let i = v.length-1; i >= 0; i-- ) {
+			v[i] = new Dot(v[i]);
+		}
+		this._dots =v;
+
+	}
+
 	get regen() { return this._regen; }
 	set regen(v) { this._regen = ( v instanceof Stat ) ? v : new Stat(v); }
 
@@ -89,6 +100,10 @@ export default class Char {
 		 */
 		this.timer = this.timer || this.delay;
 
+	}
+
+	revive( state ){
+		for( let i = this.dots.length-1; i>=0; i--) this.dots[i].revive(state);
 	}
 
 	/**
@@ -130,7 +145,7 @@ export default class Char {
 					this.dots.splice( i, 1);
 				}
 				if ( dot.damage ) {
-					tryDamage( dot.damage, dot );
+					tryDamage( dot.damage, dot, dot.source );
 				}
 	
 			}

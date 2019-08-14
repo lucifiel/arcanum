@@ -9,6 +9,7 @@ export default {
 	beforeCreate(){
 		this.seconds = seconds;
 	}
+
 }
 </script>
 
@@ -16,11 +17,14 @@ export default {
 	
 	<div class="dot-view">
 
-		<div class="dot" v-for="d in dots" :key="d.id"
+		<div :class="['dot',d.kind]" v-for="d in dots" :key="d.id"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,d)">
 
 			{{ seconds( d.duration ) }}<br>
 			{{ d.name }}
+
+			<div v-if="d.kind" class="bgfill" >&nbsp;</div>
+
 		</div>
 
 	</div>

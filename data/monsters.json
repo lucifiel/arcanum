@@ -85,7 +85,12 @@
 		"hp":2,
 		"tohit":2,
 		"defense":2,
-		"damage":"1~2",
+		"attack":{
+			"name":"nibble",
+			"kind":"physical",
+			"damage":"1~2",
+			"siphon":0.2
+		},
 		"loot":{
 			"boots":"5%"
 		}
@@ -216,6 +221,7 @@
 	},
 	{
 		"id":"smsnake",
+		"name":"small snake",
 		"kind":"natural",
 		"level":2,
 		"hp":5,

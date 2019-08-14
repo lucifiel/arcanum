@@ -87,7 +87,6 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 
 		if ( this._locked === undefined ) this._locked = true;
-		
 
 		this._value = this._value || 0;
 

@@ -17,6 +17,13 @@ input[type="button"], button, .text-button {
 
 }
 
+div.div-hr {
+	border-bottom: 1px solid black;
+	margin-bottom: 6px;
+	padding-bottom:2px;
+}
+
+
 .text-button:link, .text-button:visited {
 	color: #111111;
 	text-decoration: none;

@@ -2,6 +2,8 @@
 import Game from '../game';
 import { round } from 'format';
 
+import AllUpgrades from './allupgrades.vue';
+
 export default {
 	
 	computed:{
@@ -22,6 +24,9 @@ export default {
 		exp() {return this.round( this.player.exp.value ); },
 		next() {return this.round( this.player.next ); },
 
+	},
+	components:{
+		'upgrades':AllUpgrades
 	},
 	beforeCreate(){
 
@@ -60,11 +65,20 @@ export default {
 
 		</table>
 
+		<upgrades></upgrades>
+
 	</div>
 
 </template>
 
 <style scoped>
+
+div.player-view {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 input[type=text] {
 	border: none;
 	border-bottom: 1px solid black;
