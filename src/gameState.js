@@ -180,6 +180,7 @@ export default class GameState {
 
 			for( var t of tags ){
 
+				//console.log('adding list: ' + t );
 				var list = lists[t];
 				if ( !list ) lists[t] = list = [];
 				list.push( it );

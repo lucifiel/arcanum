@@ -49,7 +49,7 @@ export default class TechTree {
 
 		if ( type === 'string') {
 
-			this.markUnlock( need, item );
+			this.markUnlocker( need, item );
 
 		} else if ( type === 'function' ) {
 
@@ -73,10 +73,10 @@ export default class TechTree {
 			//var varPath = results[1];
 			//console.log( item.id + 'require: ' + varPath );
 
-			this.markUnlock( results[1].split('.')[0], item );
+			this.markUnlocker( results[1].split('.')[0], item );
 
 		}
-		if ( text.includes('this') ) this.markUnlock( item.id, item );
+		if ( text.includes('this') ) this.markUnlocker( item.id, item );
 
 	}
 
@@ -85,14 +85,16 @@ export default class TechTree {
 	 * @param {string} src 
 	 * @param {Item} item 
 	 */
-	markUnlock( src, item ) {
+	markUnlocker( src, item ) {
 
 		if ( !src) return;
 		let it = this.items[src];
-		
+
+		if ( item.id === 'minerology') console.log('unlocker: ' + src );
 		if ( it === undefined ) {
 			it = Game.state.getTagList( src );
-			if ( it ) it.forEach( v=>this.markUnlock(v.id,item) );
+			if ( it ) it.forEach( v=>this.markUnlocker(v.id,item) );
+			else console.warn('unlocker not found: ' + src );
 			return;
 		}
 

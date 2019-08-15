@@ -57,7 +57,7 @@ export default {
 
 		<div>
 
-			<span>home: {{ curHome ? curHome.name : 'None'}}</span>
+			<span @mouseenter.capture.stop="dispatch('itemover', $event, curHome )">home: {{ curHome ? curHome.name : 'None'}}</span>
 			<div v-if="homesAvail.length>0">
 			<button @click="toggleSwitch">{{ switching ? 'Done' : 'Switch' }}</button>
 			<upgrades v-if="switching" class="homes-view" :items="homesAvail" pick-event="home" />
@@ -98,7 +98,7 @@ div.home-view {
 .furniture {
 	overflow-y:auto;
 	width:100%;
-	height:93vh;
+	max-height:90vh;
 }
 
 table .count, table .space {

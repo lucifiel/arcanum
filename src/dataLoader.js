@@ -285,6 +285,7 @@ export default {
 	parseRequire( sub ){
 
 		// REQUIRE
+		if ( sub === null || sub === undefined || sub === false || sub === '') return null;
 		if ( typeof sub === 'string' && !IdTest.test(sub )) return this.makeTestFunc( sub );
 		else return this.parseSub( sub );
 

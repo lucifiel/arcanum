@@ -500,13 +500,14 @@ export default {
 
 		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
 
-		else if ( it.require && this.unlockTest(it.require,it) ) {
+		else if ( !it.require || this.unlockTest(it.require,it) ) {
 
 			this.log.log( 'Unlocked: ' + it.name, it.name + ' has been unlocked.', 'unlock' );
 			it.locked = false;
 			if ( it.type === 'event') this.doEvent( it );
 			else it.dirty = true;
 
+			return true;
 		}
 
 		return !it.locked;
@@ -547,7 +548,8 @@ export default {
 				it = this.state.getTagList(test);
 				
 				//if ( !it ) console.warn('undefined: ' + test );
-
+				console.log('testting tag list: ' + test );
+				it.forEach( v=>console.log(v.id));
 				return it ? it.some( this.unlockTest, this ) : false;
 
 			}
