@@ -69,7 +69,7 @@ export default {
 
 		<div class="warn-text" style="text-align:center" v-if="state.items.space.value===0">No space available. Sell items to free space</div>
 		<table class="furniture item-table">
-			<tr><th class="space">Space</th><th class="name">Furnishing</th><th class="count">Count</th></tr>
+			<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
 		<tr v-for="it in viewable" :key="it.id">
 
 			<td class="space">{{ it.cost.space }}</td>
@@ -96,9 +96,7 @@ div.home-view {
 }
 
 .furniture {
-	display:flex;
 	overflow-y:auto;
-	flex-direction: column;
 	width:100%;
 	height:93vh;
 }
