@@ -82,7 +82,7 @@
 		"name":"old nag",
 		"desc":"this horse has seen better days.",
 		"require":"state.animals>=3",
-		"tags":"mount",
+		"slot":"mount",
 		"buy":{
 			"gold":100
 		},
@@ -95,7 +95,7 @@
 		"id":"gelding",
 		"name":"demur gelding",
 		"desc":"a calm and sturdy horse, for moderate journeys.",
-		"tags":"mount",
+		"slot":"mount",
 		"require":"stables",
 		"buy":{
 			"gold":500,
@@ -111,7 +111,7 @@
 		"name":"fine bay",
 		"desc":"a fine horse in its prime",
 		"require":"stables",
-		"tags":"mount",
+		"slot":"mount",
 		"buy":{
 			"gold":700,
 			"gems":5

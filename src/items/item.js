@@ -100,8 +100,8 @@ export default class Item {
 	 */
 	maxed() {
 		
-		return this.max ? this._value >= this.max :
-			!this.repeat && this._value > 0;
+		return this.max ? (this._value >= this.max) :
+			(!this.repeat && !this.owned && this._value > 0);
 
 	}
 

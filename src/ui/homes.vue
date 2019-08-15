@@ -67,6 +67,7 @@ export default {
 
 		<div class="furniture">
 
+		<div class="warn-text" style="text-align:center" v-if="state.items.space.value===0">No space available. Sell items to free space</div>
 		<table class="furniture item-table">
 			<tr><th class="space">Space</th><th class="name">Furnishing</th><th class="count">Count</th></tr>
 		<tr v-for="it in viewable" :key="it.id">

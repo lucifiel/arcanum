@@ -1,7 +1,8 @@
 <script>
 import Game from '../game';
-import ItemsBase from './itemsBase.js';
 
+import ItemsBase from './itemsBase.js';
+import Upgrades from './upgrades.vue'
 /**
  * Component to pick current slot item from all available slot items.
  */
@@ -21,6 +22,9 @@ export default {
 			changing:false
 		};
 	},
+	components:{
+		'upgrades':Upgrades
+	},
 	methods:{
 
 		toggleChange(){
@@ -38,8 +42,8 @@ export default {
 		},
 
 		avail() {
-			return this.choices ? this.choices.filter( v=>!this.locked(v) ) :
-			Game.state.filterItems( v=>v.slot===this.pick&&!this.locked(v) );
+			return this.choices ? this.choices.filter( v=>!Game.canUse(v) ) :
+			Game.state.filterItems( v=>v.slot===this.pick&&Game.canUse(v) );
 		}
 
 	}

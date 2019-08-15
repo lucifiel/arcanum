@@ -105,6 +105,9 @@ span.separate {
 	justify-content: space-between;
 }
 
+.warn-text {
+	color:rgb(216, 8, 8);
+}
 .note-text {
 	padding:0px;
 	margin:8px 0px;

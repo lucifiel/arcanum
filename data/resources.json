@@ -106,7 +106,7 @@
 	{
 		"id":"gems",
 		"desc":"Various fine gemstones.",
-		"require":"adept",
+		"require":"state.adepth>0||state.prestidigitation>=50",
 		"max":10
 	},
 	{

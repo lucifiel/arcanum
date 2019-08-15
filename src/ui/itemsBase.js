@@ -20,15 +20,15 @@ export default {
 			return !it.locked && it.disabled === false;
 		},
 
+		buyable(it) { return Game.canBuy(it)},
+
 		reslocked( it ) {
 			return it.disabled === true || it.locks > 0 || it.locked !== false;
-			//return it.disabled === true || it.locks > 0 || ( it.locked && !Game.tryUnlock(it) );
 		},
 
 		locked(it) {
 
 			return it.disabled === true || it.maxed() || it.locks>0 || it.locked !== false;
-			//return it.disabled === true || it.maxed() || it.locks>0 || ( it.locked && !Game.tryUnlock(it) );
 
 		}
 

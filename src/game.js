@@ -665,6 +665,19 @@ export default {
 	},
 
 	/**
+	 * 
+	 * @param {*} it 
+	 */
+	canBuy(it) {
+
+		if ( it.owned || it.disabled || it.locked || it.maxed() || it.locks > 0 ) return false;
+		if ( it.buy && !this.canPay(it.buy) ) return false;
+
+		return true;
+
+	},
+
+	/**
 	 * Determines whether an item can be run as a continuous action.
 	 * @returns {boolean}
 	 */
