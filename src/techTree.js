@@ -90,7 +90,6 @@ export default class TechTree {
 		if ( !src) return;
 		let it = this.items[src];
 
-		if ( item.id === 'minerology') console.log('unlocker: ' + src );
 		if ( it === undefined ) {
 			it = Game.state.getTagList( src );
 			if ( it ) it.forEach( v=>this.markUnlocker(v.id,item) );

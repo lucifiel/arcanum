@@ -135,7 +135,7 @@ export default {
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value.toFixed(0) + ' / ' + item.max }}</span>
 		</span>
 		<div class="item-desc" v-if="desc">{{ desc }}</div>
-		<div v-if="item.buy">
+		<div v-if="item.buy&&!item.owned">
 
 			<hr>
 			<!--<span class="note-text">cost:</span>-->

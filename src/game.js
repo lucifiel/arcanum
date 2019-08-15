@@ -548,8 +548,9 @@ export default {
 				it = this.state.getTagList(test);
 				
 				//if ( !it ) console.warn('undefined: ' + test );
-				console.log('testting tag list: ' + test );
-				it.forEach( v=>console.log(v.id));
+				//console.log('testing tag list: ' + test );
+				//it.forEach( v=>console.log(v.id));
+
 				return it ? it.some( this.unlockTest, this ) : false;
 
 			}

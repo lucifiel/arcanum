@@ -438,6 +438,7 @@
 		"id":"prism",
 		"desc":"A small crystal for performing optical experiments.",
 		"require":"state.research.max>=50",
+		"tags":"lightsource",
 		"cost":{
 			"gold":50,
 			"research":50
@@ -473,8 +474,8 @@
 		"desc":"Focus of air magic.",
 		"require":"state.space>10",
 		"cost":{
-			"gold":50,
-			"research":75
+			"gems":10,
+			"research":100
 		},
 		"mod":{
 			"air.rate":0.01,
