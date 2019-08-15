@@ -76,6 +76,11 @@ export default class Player extends Char {
 
 	}
 
+	get mount() { return this._mount; }
+	set mount(v) {
+		this._mount = v;
+	}
+
 	/**
 	 * NOTE: Elements that are themselves Items are not encoded,
 	 * since they are encoded in the Item array.

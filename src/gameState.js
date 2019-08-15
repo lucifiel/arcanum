@@ -3,11 +3,6 @@ import Raid from './chars/raid';
 import Item from './items/item';
 import Equip from './chars/equip';
 
-/**
- * @const {number} MAX_QUICK_SLOTS - maximum number of quickslots.
- */
-const MAX_QUICK_SLOTS = 10;
-
 export default class GameState {
 
 	toJSON(){
@@ -58,6 +53,14 @@ export default class GameState {
 		 */
 		this.curHome = this.curHome || null;
 
+		/**
+		 * @property {Object.<string,Item>} slots - slots for items which can only have
+		 * a single active at a given time.
+		 */
+		this.slots = this.slots || {
+
+		}
+	
 		/**
 		 * @property {string} restAction - default resting action.
 		 */

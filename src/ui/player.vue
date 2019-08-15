@@ -23,6 +23,8 @@ export default {
 		tohit() {return this.player.tohit; },
 		exp() {return this.round( this.player.exp.value ); },
 		next() {return this.round( this.player.next ); },
+		mount() { return this.player.mount; }
+
 
 	},
 	components:{
@@ -63,6 +65,7 @@ export default {
 		
 		<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 
+		<tr v-if="mount"><td>mount</td><th>{{ mount.name }}</th></tr>
 		</table>
 
 		<upgrades></upgrades>

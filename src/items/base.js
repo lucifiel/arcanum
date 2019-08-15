@@ -210,7 +210,13 @@ export default {
 			if ( typeof m[p] === 'object' ) {
 				this.subassign( obj[p], m[p], amt );
 			} else {
-				obj[p] += Number(m[p])*amt;
+
+				if ( typeof obj[p] === 'object') {
+
+					obj[p].value = ( obj[p].value || 0 ) + Number(m[p])*amt;
+
+				} else obj[p] += Number(m[p])*amt;
+
 			}
 
 		}

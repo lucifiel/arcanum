@@ -73,7 +73,7 @@ div.quickbar {
 	cursor:pointer;
 	width:100%;
 	flex-direction: row;
-	position:fixed;
+	justify-self: flex-end;
 	bottom: 8px;
 	left: 8px;
 }
