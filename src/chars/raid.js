@@ -315,11 +315,17 @@ export default class Raid {
 		var enemy = this.dungeon.getEnemy();
 		if (  Array.isArray(enemy)){
 
+			let enemyList = [];
+
 			for( let i = enemy.length-1; i >=0; i-- ) {
 				var e = enemy[i];
 				if ( typeof e === 'string' ) e = Game.getItem(e);
 				this._enemies.push( new Npc( e ) );
+
+				enemyList.push( e.name);
 			}
+
+			Game.log.log( enemyList.join(',') + ' Encountered', '', COMBAT_LOG );
 
 		} else {
 
@@ -327,6 +333,7 @@ export default class Raid {
 			if ( !enemy) {console.warn( 'Missing Enemy'); return }
 			this._enemies.push( new Npc(enemy ) );
 
+			Game.log.log(enemy.name + ' Encountered', '', COMBAT_LOG );
 		}
 
 	}

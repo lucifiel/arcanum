@@ -17,6 +17,10 @@ input[type="button"], button, .text-button {
 
 }
 
+.num-align {
+	text-align: right;
+}
+
 div.div-hr {
 	border-bottom: 1px solid black;
 	margin-bottom: 6px;
