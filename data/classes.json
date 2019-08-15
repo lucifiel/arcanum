@@ -4,9 +4,11 @@
 	"title":"neophyte",
 	"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies.",
 	"disable":["apprentice","chores"],
+	"mod":{
+		"arcana.rate":0.0001
+	},
 	"effect":{
 		"gold.rate":0.1,
-		"research.max":5,
 		"lore.max":2,
 		"player.exp":10
 	}

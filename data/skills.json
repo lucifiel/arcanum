@@ -172,7 +172,7 @@
 	{
 		"id":"pyromancy",
 		"desc":"the investigation of fire",
-		"require":"firesource",
+		"need":"firesource",
 		"cost":{
 			"stamina":0.4,
 			"hp":0.1
@@ -186,7 +186,7 @@
 	},
 	{
 		"id":"minerology",
-		"require":"earthsource",
+		"need":"earthsource",
 		"cost":{
 			"stamina":0.4
 		},
@@ -201,7 +201,7 @@
 		"id":"waterlore",
 		"name":"water lore",
 		"verb":"the study of water",
-		"require":"watersource",
+		"need":"watersource",
 		"cost":{
 			"stamina":0.4
 		},
@@ -217,7 +217,7 @@
 		"id":"airlore",
 		"name":"air lore",
 		"verb":"the study of air",
-		"require":"airsource",
+		"need":"airsource",
 		"cost":{
 			"stamina":0.3
 		},

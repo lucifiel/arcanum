@@ -50,6 +50,8 @@ th td {
 }
 
 td.num-align {
+	padding: 8px;
+	margin: 8px;
 	text-align: right;
 
 }

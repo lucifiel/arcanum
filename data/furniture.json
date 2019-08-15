@@ -95,7 +95,7 @@
 			"rest":{
 				"effect":{
 					"stamina":0.1,
-					"mana":0.1,
+					"manas":0.1,
 					"fire":0.2
 				}
 			}
@@ -104,11 +104,14 @@
 	{
 		"id":"cache",
 		"name":"Buried cache",
-		"desc":"A secret cache of treasure, buried in the ground.",
-		"need":"state.outdoors",
+		"desc":"A cache of treasure buried in the ground, protected by enchantment.",
+		"need":"state.outdoors>0&&state.enchanting>0",
 		"max":3,
 		"cost":{
-			"space":1
+			"space":1,
+			"research":50,
+			"gems":3,
+			"mana":5
 		},
 		"mod":{
 			"gold.max":200,
@@ -149,7 +152,7 @@
 		"name":"magic circle",
 		"desc":"Magic circle",
 		"require":"arcana",
-		"max":1,
+		"max":2,
 		"cost":{
 			"space":1,
 			"research":40,
@@ -190,7 +193,6 @@
 		},
 		"mod":{
 			"research.max":5,
-			"earth.max":1,
 			"earth.rate":0.01
 		}
 
@@ -383,7 +385,7 @@
 		"mod":{
 			"candle.max":4,
 			"shadow":{
-				"rate":0.04
+				"rate":0.03
 			}
 		}
 
@@ -400,8 +402,7 @@
 		},
 		"mod":{
 			"water":{
-				"rate":0.1,
-				"max":1
+				"rate":0.02
 			}
 		}
 	},
@@ -416,8 +417,7 @@
 		},
 		"mod":{
 			"fire":{
-				"max":1,
-				"rate":0.1
+				"rate":0.02
 			}
 		}
 
@@ -431,8 +431,7 @@
 		},
 		"mod":{
 			"fire":{
-				"max":1,
-				"rate":0.1
+				"rate":0.05
 			}
 		}
 
@@ -478,9 +477,19 @@
 			"space":5
 		},
 		"mod":{
-			"water.rate":0.5,
-			"water.max":3
+			"water.rate":0.1,
+			"water.max":1
 		}
+	},
+	{
+		"id":"smstables",
+		"require":"state.adept>0&&state.animals>=5",
+		"tags":"stables",
+		"cost":{
+			"space":10,
+			"gold":200
+		}
+
 	},
 	{
 		"id":"ossuary",

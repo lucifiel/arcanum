@@ -78,6 +78,50 @@
 
 	},
 	{
+		"id":"oldnag",
+		"name":"old nag",
+		"desc":"this horse has seen better days.",
+		"require":"state.animals>=3",
+		"tags":"steed",
+		"cost":{
+			"gold":100
+		},
+		"mod":{
+			"dist.max":15
+		}
+
+	},
+	{
+		"id":"gelding",
+		"name":"demur gelding",
+		"desc":"a calm and sturdy horse, for moderate journeys.",
+		"tags":"steed",
+		"require":"stables",
+		"cost":{
+			"gold":500,
+			"gems":2
+		},
+		"mod":{
+			"dist.max":30
+		}
+
+	},
+	{
+		"id":"bayhorse",
+		"name":"fine bay",
+		"desc":"a fine horse in its prime",
+		"require":"stables",
+		"tags":"steed",
+		"cost":{
+			"gold":700,
+			"gems":5
+		},
+		"mod":{
+			"dist.max":50
+		}
+
+	},
+	{
 		"id":"up_magician",
 		"name":"The Prestige",
 		"desc":"Pursue the path of pure magic.",
