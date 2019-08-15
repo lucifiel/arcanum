@@ -1,11 +1,11 @@
 [
 	{
-		"id":"stables",
+		"id":"cleanstables",
 		"name":"Clean Stables",
 		"desc":"working from home.",
 		"verb":"cleaning",
 		"locked":false,
-		"run":{
+		"cost":{
 			"stamina":0.08
 		},
 		"effect":{
@@ -18,7 +18,7 @@
 		"desc":"standard apprentice work.",
 		"verb":"working",
 		"require":"apprentice",
-		"run":{
+		"cost":{
 			"stamina":0.17
 		},
 		"effect":{

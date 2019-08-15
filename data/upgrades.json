@@ -83,7 +83,7 @@
 		"desc":"this horse has seen better days.",
 		"require":"state.animals>=3",
 		"tags":"mount",
-		"cost":{
+		"buy":{
 			"gold":100
 		},
 		"mod":{
@@ -97,7 +97,7 @@
 		"desc":"a calm and sturdy horse, for moderate journeys.",
 		"tags":"mount",
 		"require":"stables",
-		"cost":{
+		"buy":{
 			"gold":500,
 			"gems":2
 		},
@@ -112,7 +112,7 @@
 		"desc":"a fine horse in its prime",
 		"require":"stables",
 		"tags":"mount",
-		"cost":{
+		"buy":{
 			"gold":700,
 			"gems":5
 		},

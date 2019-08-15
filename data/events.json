@@ -16,7 +16,7 @@
 		"name":"Apprenticeship",
 		"title":"apprentice",
 		"desc":"After paying a small fee, you became apprenticed to a local wizard.",
-		"disable":["stables"],
+		"disable":["cleanstables"],
 		"effect":{
 			"research.max":10,
 			"player.exp":5
