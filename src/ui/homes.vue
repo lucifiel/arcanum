@@ -31,6 +31,10 @@ export default {
 	},
 	computed:{
 
+		curHome() {
+			return this.state.getSlot('home');
+		},
+
 		homesAvail() {
 			return this.state.homes.filter( v=>!this.locked(v) );
 		},
@@ -53,7 +57,7 @@ export default {
 
 		<div>
 
-			<span>home: {{ state.curHome ? state.curHome.name : 'None'}}</span>
+			<span>home: {{ curHome ? curHome.name : 'None'}}</span>
 			<div v-if="homesAvail.length>0">
 			<button @click="toggleSwitch">{{ switching ? 'Done' : 'Switch' }}</button>
 			<upgrades v-if="switching" class="homes-view" :items="homesAvail" pick-event="home" />

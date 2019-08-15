@@ -5,7 +5,7 @@
 		"desc":"working from home.",
 		"verb":"cleaning",
 		"locked":false,
-		"cost":{
+		"run":{
 			"stamina":0.08
 		},
 		"effect":{
@@ -18,7 +18,7 @@
 		"desc":"standard apprentice work.",
 		"verb":"working",
 		"require":"apprentice",
-		"cost":{
+		"run":{
 			"stamina":0.17
 		},
 		"effect":{
@@ -32,7 +32,7 @@
 		"verb":"running errands",
 		"require":"apprentice",
 		"perpetual":true,
-		"cost":{
+		"run":{
 			"stamina":0.2
 		},
 		"effect":{
@@ -48,7 +48,7 @@
 		"require":"spellbook",
 		"length":15,
 		"perpetual":true,
-		"cost":{
+		"run":{
 			"stamina":0.2,
 			"mana":0.2
 		},
@@ -67,7 +67,7 @@
 		"require":"trickster",
 		"length":15,
 		"perpetual":true,
-		"cost":{
+		"run":{
 			"stamina":0.22,
 			"mana":0.25
 		},
@@ -86,7 +86,7 @@
 		"require":"trickster",
 		"length":50,
 		"perpetual":true,
-		"cost":{
+		"run":{
 			"stamina":0.4,
 			"mana":0.4
 		},
@@ -107,13 +107,13 @@
 		"desc":"The portal to true magic.",
 		"length":50,
 		"repeat":false,
-		"cast":{
+		"buy":{
 			"research":20,
 			"codices":1,
 			"arcana":1,
 			"mana":5
 		},
-		"cost":{
+		"run":{
 			"stamina":0.2
 		},
 		"result":"spellbook"
@@ -127,7 +127,7 @@
 		"verb":"servicing",
 		"require":"adept",
 		"perpetual":true,
-		"cost":{
+		"run":{
 			"stamina":0.25,
 			"mana":0.1
 		},
@@ -145,7 +145,7 @@
 		"require":"state.weaving>=5&&state.loom>0&&state.enchanting>=3",
 		"perpetual":true,
 		"length":10,
-		"cost":{
+		"run":{
 			"stamina":0.4,
 			"mana":0.1
 		},
@@ -161,7 +161,7 @@
 		"desc":"leech blood from a body to restore health",
 		"require":"transfusions",
 		"length":10,
-		"cast":{
+		"cost":{
 			"bodies":1
 		},
 		"effect":{
@@ -174,7 +174,7 @@
 		"desc":"an incidental necessity to the advancement of magic",
 		"require":"state.anatomy>=5&&state.embalming>=5&&state.dissection>=5",
 		"length":10,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"result":{
@@ -188,7 +188,7 @@
 		"require":"state.dissection>=5",
 		"desc":"dissect a body for components. only the best bone fragments will serve.",
 		"length":10,
-		"cast":{
+		"cost":{
 			"bodies":1
 		},
 		"result":{
@@ -202,8 +202,11 @@
 		"desc":"grind bones into dust",
 		"require":"state.dissection>=3",
 		"length":10,
-		"cast":{
+		"cost":{
 			"bones":1
+		},
+		"run":{
+			"stamina":0.2
 		},
 		"result":{
 			"bones":"2~4"
@@ -218,7 +221,7 @@
 		"require":["divination","spiritsource","adept"],
 		"perpetual":true,
 		"length":10,
-		"cost":{
+		"run":{
 			"stamina":0.3,
 			"spirit":0.1
 		},
@@ -233,7 +236,7 @@
 		"desc":"Cure customers of magical ailments.",
 		"verb":"treating locals",
 		"require":"neophyte",
-		"cost":{
+		"run":{
 			"stamina":0.2
 		},
 		"effect":{
@@ -249,7 +252,7 @@
 		"require":"state.neophyte>0&&state.herbalism>=1&&(state.taggarden+state.outdoors>0)",
 		"length":20,
 		"perpetual":true,
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"effect":{
@@ -318,7 +321,7 @@
 		"verb":"travelling",
 		"desc":"Travel the wide world.",
 		"require":"state.wagon>0",
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"effect":{
@@ -337,7 +340,7 @@
 		"verb":"studying",
 		"desc":"Study the arcane",
 		"require":"state.scrolls>=1",
-		"cost":{
+		"run":{
 			"stamina":0.2
 		},
 		"effect":{
@@ -354,7 +357,7 @@
 		"verb":"pacing",
 		"desc":"Pace your home as you comtemplate the arcane.",
 		"require":"adept",
-		"cost":{
+		"run":{
 			"stamina":0.2
 		},
 		"effect":{
@@ -412,10 +415,13 @@
 		"name":"Compile Tome",
 		"require":"state.arcana.max>=10&&state.crafting>=10",
 		"length":20,
-		"cast":{
+		"cost":{
 			"codices":10,
 			"research":100,
 			"mana":10
+		},
+		"run":{
+			"stamina":0.4
 		},
 		"effect":{
 			"tomes":1
@@ -428,10 +434,10 @@
 		"length":10,
 		"verb":"mapping",
 		"require":"",
-		"cast":{
+		"cost":{
 			"scrolls":1
 		},
-		"cost":{
+		"run":{
 			"research":2
 		},
 		"result":"starchart"
@@ -443,10 +449,10 @@
 		"require":"state.animals>=3",
 		"length":50,
 		"repeat":false,
-		"cast":{
+		"cost":{
 			"codices":1
 		},
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"effect":{
@@ -462,10 +468,10 @@
 		"require":"state.astronomy>=5&&state.adept>0",
 		"repeat":false,
 		"length":50,
-		"cast":{
+		"cost":{
 			"codices":5
 		},
-		"cost":{
+		"run":{
 			"research":1,
 			"starcharts":0.1
 		},
@@ -505,7 +511,7 @@
 		"name":"Craft Gem",
 		"desc":"Craft a gem from raw minerals.",
 		"require":"state.crafting>=5&&state.alchemy>=4",
-		"cost":{
+		"run":{
 			"stamina":1,
 			"mana":2
 		},

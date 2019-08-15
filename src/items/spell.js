@@ -2,14 +2,11 @@ import Item from './item';
 
 export default class Spell extends Item {
 
-	get cast() { return this._cast; }
-	set cast(v) { this._cast = v; }
-
 	toJSON(){
 
 		let data = super.toJSON();
 
-		if ( this.learned ) data.learned = this.learned;
+		if ( this.owned ) data.owned = this.owned;
 		if ( this.timer > 0 ) data.timer = this.timer;
 
 		return data;
@@ -25,13 +22,12 @@ export default class Spell extends Item {
 		this.type = 'spell';
 		this.level = this.level || 1;
 
-		this.learned = this.learned || false;
-		if ( !this.learned ) {
-			if ( !this.cost ) this.cost = {};
-			if ( !this.cost.arcana ) this.cost.arcana = this.level;
-		} else {
+		this.owned = this.owned || false;
+		if ( !this.owned ) {
 
-			this.cost = this.cast;
+			if ( !this.buy ) this.buy = {};
+			if ( !this.buy.arcana ) this.buy.arcana = this.level;
+
 		}
 
 		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;

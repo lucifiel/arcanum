@@ -176,24 +176,10 @@ export default {
 			if ( stat.locked === false && stat.rate.value !== 0 ) {
 
 				this.doItem( stat, stat.rate.value*dt );
-				//stats[i].update( dt );
 
 			}
 
 		}
-
-		// apply mods for stat changes.
-		/*for( let i = len-1; i>=0; i-- ) {
-
-			stat = stats[i];
-			if ( stat.delta !== 0 ) {
-
-				if ( stat.mod ) this.addMod( stat.mod, stat.delta );
-				stat.dirty = true;
-
-			}
-
-		}*/
 
 	},
 
@@ -363,7 +349,10 @@ export default {
 
 				it.disabled = true;
 
-				if ( it == this.state.curHome ) this.state.curHome = null;
+				if ( it.slot && this.state.getSlot(it.slot) === it ) {
+					this.state.setSlot(it.slot, null );
+				}
+
 				if ( it == this.state.curAction ) this.state.curAction = null;
 				if ( it == this.state.raid.dungeon ) this.state.raid.setDungeon(null);
 	
@@ -442,26 +431,9 @@ export default {
 		this.payCost( it.cost );
 
 		it.cost = it.cast || it.use;
-		it.learned = true;
+		it.owned = true;
 
 	},
-
-	/**
-	 * Attempt to set a new home.
-	 * @param {*} it 
-	 */
-	/*setHome( it ) {
-
-		let prev = this.state.curHome;
-
-		if ( this.tryItem(it) ) {
-
-			this.state.curHome = it;
-			if ( prev ) this.remove( prev );
-
-		}
-
-	},*/
 
 	/**
 	 * Attempt to pay for an item, and if the cost is met, apply it.
@@ -485,10 +457,12 @@ export default {
 
 		it.value += count;
 
-		if ( it.type === 'home') {
-			let prev = this.state.curHome;
-			if ( prev ) this.remove( prev );
-			this.state.curHome = it;
+		if ( it.slot ) {
+
+			let cur = this.state.getSlot(it.slot);
+			if ( cur ) { this.remove( cur, 1 ); }
+			this.state.setSlot(it.slot, it);
+
 		}
 
 		if ( it.effect ) this.applyEffect(it.effect);
@@ -524,6 +498,10 @@ export default {
 			it = it ? it.find( v=>!v.disabled&& v.value>=amt ) : null;
 			if ( !it ) return;
 
+		}
+
+		if ( it.slot ) {
+			if ( this.state.getSlot(it.id) === it ) this.state.setSlot(it.id, null);
 		}
 
 		if ( it.cost && it.cost.space ) this.getItem('space').value += amt*it.cost.space;
@@ -720,9 +698,8 @@ export default {
 	canRun( it ) {
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
-		if ( it.cast && (it.progress === 0) && !this.canPay(it.cast) ) {
-			return false;
-		}
+	
+		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 
 		if ( it.fill ) {
 
@@ -742,12 +719,9 @@ export default {
 	canUse( it ){
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
-		else if ( it.slot ) {
 
-			let list = this.state.getTagList(it.slot );
-			if ( list && list.some(v=>!v.locked&&!v.disabled&&v.value>0)) return false;
+		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 
-		}
 		if ( it.fill ) {
 
 			let t = this.getItem(it.fill);

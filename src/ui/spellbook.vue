@@ -40,13 +40,13 @@ export default {
 		<table>
 		<tr v-for="s in spells" :key="s.id">
 
-			<td><button v-if="s.learned&&s.attack" @click="dispatch('primary',s)">
+			<td><button v-if="s.owned&&s.attack" @click="dispatch('primary',s)">
 				{{ state.player.primary===s ? 'Unequip' : 'Primary' }}
 				</button></td>
 			<td>{{ s.name }}</td>
 			<td>
 				
-				<button v-if="s.learned" @click="dispatch('spell', s)" :disabled="!usable(s)"
+				<button v-if="s.owned" @click="dispatch('spell', s)" :disabled="!usable(s)"
 					@mouseenter.capture.stop="dispatch('itemover', $event, s )">Cast</button>
 
 				<button v-else @click="dispatch('learn', s)" :disabled="!usable(s)"

@@ -197,7 +197,10 @@ export default {
 		gd.resources = this.initItems( dataLists['resources'], Resource );
 
 		gd.upgrades = this.initItems( dataLists['upgrades'], Item, null, 'upgrade' );
+
 		gd.homes = this.initItems( dataLists['homes'], Item, 'home', 'home' );
+		gd.homes.forEach( v=>v.slot='home');
+
 		this.initItems( dataLists['furniture'], Item, 'furniture', 'furniture' );
 		this.initItems( dataLists['skills'], Skill );
 

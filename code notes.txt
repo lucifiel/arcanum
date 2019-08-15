@@ -25,5 +25,18 @@ in dots/Runnable actions, effects are applied continuously.
 Mods are applied at start of dot, and removed at the end.
 TODO: also allow runnable actions to add/remove mods.
 
-'cast' is a one-time cost applied at the start of a Runnable action.
+
+COSTS:
+
+'buy' is a one-time price to own or learn an item. once bought, normal cost and run fees
+still apply if they are defined. The 'buy' cost is never applied more than once.
+
+'cost' is a one-time price to cast a spell, perform an action, or start a continuous action.
+
+'run' is the ongoing price to continue using a runnable action or spell. it is applied each
+frame based on the time elapsed.
+this is similar to an ongoing 'effect' but will prevent the action from running if not met;
+whereas an action can still be used even when the effect won't work.
+
+
 'result' is applied once at the end of a Runnable action, or dot.

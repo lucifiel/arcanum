@@ -25,7 +25,7 @@ export default class Skill extends Action {
 		this.exp = this.exp || 0;
 
 		this._value = this._value || 0;
-		this.rate = this.rate || 1;
+		this.rate = this.rate || 0.5;
 		this.max = this.max || 5;
 
 	}

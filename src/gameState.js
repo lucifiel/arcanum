@@ -7,12 +7,17 @@ export default class GameState {
 
 	toJSON(){
 
+		let slotIds = {};
+		for( let p in this.slots ) {
+			slotIds[p] = this.slots[p].id;
+		}
+
 		let data = {
 
 			items:( this.items ),
 			quickslots:this.quickslots.map(v=> v ? v.id : null ),
 			curAction: this.curAction ? this.curAction.id : undefined,
-			curHome: this.curHome ? this.curHome.id : undefined,
+			slots:slotIds,
 			equip:( this.equip ),
 			inventory:( this.inventory ),
 			raid:( this.raid ),
@@ -47,11 +52,6 @@ export default class GameState {
 		 * @property {Item} curAction - ongoing action.
 		 */
 		this.curAction = this.curAction || null;
-	
-		/**
-		 * @property {Item} curHome
-		 */
-		this.curHome = this.curHome || null;
 
 		/**
 		 * @property {Object.<string,Item>} slots - slots for items which can only have
@@ -113,7 +113,16 @@ export default class GameState {
 
 		if ( typeof this.restAction === 'string') this.restAction = this.getItem( this.restAction );
 
-		if ( this.curHome ) this.curHome = this.getItem(this.curHome );
+		/**
+		 * @compatibility
+		 */
+		if ( this.curHome ) this.slots['home'] = this.curHome;
+
+		for( let p in this.slots ) {
+
+			if ( typeof this.slots[p] === 'string') this.slots[p] = this.getItem(this.slots[p] );
+		}
+
 		if ( this.curAction ) {
 
 			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
@@ -310,6 +319,19 @@ export default class GameState {
 	getPathItem(v){
 		return v.readVar( this._items );
 	}
+
+	/**
+	 * Get item in named slot.
+	 * @param {string} id 
+	 */
+	getSlot(id) { return this.slots[id];}
+
+	/**
+	 * Set slotted item for exclusive items.
+	 * @param {string} id 
+	 * @param {Item} v 
+	 */
+	setSlot(id,v) { this.slots[id] = v;}
 
 	getItem(id) { return this.items[id];}
 
