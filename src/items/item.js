@@ -78,6 +78,9 @@ export default class Item {
 	get locked() { return this._locked; }
 	set locked(v) { this._locked = v; }
 
+	get owned() { return this._owned;}
+	set owned(v) { this._owned = v; }
+
 	/**
 	 * 
 	 * @param {?Object} [vars=null] 
@@ -89,6 +92,8 @@ export default class Item {
 		if ( this._locked === undefined ) this._locked = true;
 
 		this._value = this._value || 0;
+
+		//if ( this.owned) console.log('owned: ' + this.owned + ' id: ' + this.id);
 
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'value', 'buy', 'max', 'cost', 'id', 'name', 'warn', 'effect', 'slot' ]);

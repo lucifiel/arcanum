@@ -2,7 +2,7 @@
 import Game from '../game';
 
 import ItemsBase from './itemsBase.js';
-import Upgrades from './upgrades.vue'
+
 /**
  * Component to pick current slot item from all available slot items.
  */
@@ -19,11 +19,9 @@ export default {
 	mixins:[ItemsBase],
 	data(){
 		return {
-			changing:false
+			changing:false,
+			pEvent:this.pickEvent||'upgrade'
 		};
-	},
-	components:{
-		'upgrades':Upgrades
 	},
 	methods:{
 
@@ -42,8 +40,8 @@ export default {
 		},
 
 		avail() {
-			return this.choices ? this.choices.filter( v=>!Game.canUse(v) ) :
-			Game.state.filterItems( v=>v.slot===this.pick&&Game.canUse(v) );
+			return this.choices ? this.choices :
+			Game.state.filterItems( v=>v.slot===this.pick );
 		}
 
 	}
@@ -54,10 +52,23 @@ export default {
 <template>
 <div>
 
-	<span>{{ slotName || pick }}: {{ curItem ? curItem.name : 'None'}}</span>
+	<span v-if="slotName">{{slotName}}:</span><span>{{ curItem ? curItem.name : 'None'}}</span>
 	<div v-if="avail.length>0">
 	<button @click="toggleChange">{{ changing ? 'Done' : 'Choose' }}</button>
-	<upgrades v-if="changing" class="slot-list" :items="avail" :pick-event="pickEvent" />
+
+	<div class="upgrade-list" v-if="changing">
+
+		<span class="action-btn" v-for="it in avail" :key="it.id"
+			@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
+
+		<button
+			class="wrapped-btn"
+			:disabled="!usable(it)"
+			@click="dispatch( pEvent, it)">{{ it.name || it.id }}</button>
+		</span>
+
+	</div>
+
 	</div>
 
 </div>

@@ -29,4 +29,4 @@ Clear button/rest button redesign
 
 Spellbook: More space between set-primary button and spell name.
 
-Homes: Put a note about used floor space.
+Popup: Mark unmet requirements.

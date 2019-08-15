@@ -412,9 +412,11 @@ export default {
 		if ( !this.canUse(it) ) return false;
 
 		if ( it.buy && !it.owned ) {
+			console.log('buying');
 			this.payCost( it.buy );
 			it.owned = true;
 		}
+
 
 		this.payCost( it.cost );
 
@@ -707,7 +709,7 @@ export default {
 	 */
 	canUse( it ){
 
-		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
+		if ( it.disabled || (it.need && !this.unlockTest( it.need, it )) ) return false;
 
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 
