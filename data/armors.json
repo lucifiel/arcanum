@@ -3,8 +3,8 @@
     { "id":"boots", "armor":1, "slot":"feet", "cost":20 },
 	
 	{ "id":"hat", "armor":0, "slot":"head", "cost":10 },
-    { "id":"cap", "armor":1, "slot":"head", "cost":15 },
-    { "id":"helm", "armor":2, "slot":"head", "cost":30 },
+    { "id":"cap", "armor":1, "slot":"head", "cost":15, "level":1 },
+    { "id":"helm", "armor":2, "slot":"head", "cost":30, "level":3 },
 
     { "id":"jerkin", "armor":2, "slot":"chest", "cost":100 },
     { "id":"padded armor", "armor":3, "slot":"chest", "cost":150, "level":4 },

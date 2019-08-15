@@ -107,7 +107,7 @@
 		"desc":"The portal to true magic.",
 		"length":50,
 		"repeat":false,
-		"buy":{
+		"cost":{
 			"research":20,
 			"codices":1,
 			"arcana":1,
