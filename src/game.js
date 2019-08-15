@@ -197,14 +197,14 @@ export default {
 			return;
 		}
 
-		if ( action.cost ) {
+		if ( action.run ) {
 
-			if ( !this.canPay( action.cost, dt ) ) {
+			if ( !this.canPay( action.run, dt ) ) {
 				//console.log('halting action: ' + action.id );
 				this.haltAction()
 				return;
 			}
-			this.payCost( action.cost, dt );
+			this.payCost( action.run, dt );
 
 		}
 
@@ -253,11 +253,11 @@ export default {
 		/**
 		 * Cost to begin action.
 		 */
-		if ( act && act.cast && (act.progress === 0) ) {
+		if ( act && act.cost && (act.progress === 0) ) {
 
 			//console.log('PAY ACTION: ' + act.progress );
-			//if ( !this.canPay(act.cast) ) return false;
-			this.payCost( act.cast);
+			//if ( !this.canPay(act.cost) ) return false;
+			this.payCost( act.cost);
 
 		}
 
@@ -425,12 +425,11 @@ export default {
 	 * @param {Item} it 
 	 * @returns {boolean}
 	 */
-	tryLearn(it) {
+	tryBuy(it) {
 
 		if ( !this.canUse(it) ) return false;
-		this.payCost( it.cost );
+		this.payCost( it.buy );
 
-		it.cost = it.cast || it.use;
 		it.owned = true;
 
 	},
@@ -701,13 +700,16 @@ export default {
 	
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 
+		// cost only paid at _start_ of runnable action.
+		if ( it.cost && (it.progress === 0) && !this.canPay(it.cost) ) return false;
+
 		if ( it.fill ) {
 
 			let t = this.getItem(it.fill);
 			if ( t && t.maxed() ) return false;
 
 		}
-		return !it.cost || this.canPay( it.cost, TICK_TIME/1000 );
+		return !it.run || this.canPay( it.run, TICK_TIME/1000 );
 
 	},
 

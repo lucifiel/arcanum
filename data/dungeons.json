@@ -5,7 +5,7 @@
 		"name":"Sunny Field",
 		"level":1,
 		"length":10,
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"result":{
@@ -29,7 +29,7 @@
 		"name":"Placid Grove",
 		"level":2,
 		"length":12,
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -55,7 +55,7 @@
 		"require":"evt_pestcontrol",
 		"level":3,
 		"length":25,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"result":{
@@ -78,7 +78,7 @@
 		"name":"Stony Hills",
 		"level":3,
 		"length":15,
-		"cost":{
+		"run":{
 			"stamina":0.75
 		},
 		"result":{
@@ -106,7 +106,7 @@
 		"desc":"the pesky creatures are everywhere.",
 		"require":"adept",
 		"level":4,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"result":{
@@ -129,7 +129,7 @@
 		"desc":"proverbial den of thieves",
 		"require":"adept",
 		"level":5,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"result":{
@@ -151,7 +151,7 @@
 		"desc":"barren mountains over arazor",
 		"require":"",
 		"level":6,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"boss":"roc",
@@ -175,7 +175,7 @@
 		"desc":"",
 		"require":"state.spirit.max>=15",
 		"level":6,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"length":20,
@@ -199,7 +199,7 @@
 		"desc":"a scourge of cities.",
 		"require":"adept",
 		"level":7,
-		"cost":{
+		"run":{
 			"stamina":1.2
 		},
 		"result":{
@@ -223,7 +223,7 @@
 		"require":"state.water.max>=10",
 		"level":5,
 		"length":20,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"result":{
@@ -246,7 +246,7 @@
 		"desc":"the arid plain stretching from the heights.",
 		"require":"",
 		"level":8,
-		"cost":{
+		"run":{
 			"stamina":2
 		},
 		"boss":"roc",
@@ -270,7 +270,7 @@
 		"desc":"",
 		"require":"state.player.dist>=200",
 		"level":11,
-		"cost":{
+		"run":{
 			"stamina":2
 		},
 		"length":50,
@@ -298,7 +298,7 @@
 		"desc":"",
 		"require":"state.player.dist>=500",
 		"level":14,
-		"cost":{
+		"run":{
 			"stamina":2
 		},
 		"length":50,
@@ -320,7 +320,7 @@
 		"require":"state.planeslore.max>=30",
 		"level":17,
 		"length":50,
-		"cost":{
+		"run":{
 			"stamina":1
 		},
 		"result":{

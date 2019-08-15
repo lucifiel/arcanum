@@ -93,7 +93,7 @@ export default {
 		this.listen('home', this.onHome );
 
 		this.listen( 'spell', this.onSpell );
-		this.listen( 'learn', this.onLearn );
+		this.listen( 'buy', this.onBuy );
 
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
@@ -312,11 +312,11 @@ export default {
 		},
 
 		/**
-		 * Learn to use a spell or item.
-		 * @property {Item} item - item to learn.
+		 * Buy spell or item.
+		 * @property {Item} item - item to buy.
 		 */
-		onLearn(item) {
-			this.game.tryLearn(item);
+		onBuy(item) {
+			this.game.tryBuy(item);
 		},
 
 		/**

@@ -135,6 +135,20 @@ export default {
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value.toFixed(0) + ' / ' + item.max }}</span>
 		</span>
 		<div class="item-desc" v-if="desc">{{ desc }}</div>
+		<div v-if="item.buy">
+
+			<hr>
+			<!--<span class="note-text">cost:</span>-->
+			<div v-if="!isNaN(item.buy)">
+				Gold: {{ item.buy }}
+			</div>
+			<div v-else v-for="(v,k) in effectItems(item.buy)" :key="k">
+				<span v-if="typeof v === 'boolean'">{{ k }}</span>
+					<span v-else>{{ `${k}: ${v}` }}</span>
+			</div>
+			
+
+		</div>
 		<div v-if="item.cost">
 
 			<hr>
@@ -149,14 +163,14 @@ export default {
 			
 
 		</div>
-			<div v-if="item.cast&&item.cast!==item.cost">
+		<div v-if="item.run">
 
 			<hr>
 			<!--<span class="note-text">cost:</span>-->
-			<div v-if="!isNaN(item.cast)">
-				Gold: {{ item.cast }}
+			<div v-if="!isNaN(item.run)">
+				Gold: {{ item.run }}
 			</div>
-			<div v-else v-for="(v,k) in effectItems(item.cast)" :key="k">
+			<div v-else v-for="(v,k) in effectItems(item.run)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>

@@ -5,14 +5,14 @@
 		"level":1,
 		"require":"water",
 		"school":"water",
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
 		"flavor":"Come thou fount",
-		"cast":{
+		"cost":{
 			"water":1
 		},
 		"dot":{
@@ -29,13 +29,13 @@
 		"level":1,
 		"require":"earth",
 		"school":"earth",
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"earth":1
 		},
 		"dot":{
@@ -52,13 +52,13 @@
 		"level":1,
 		"require":"shadow",
 		"school":"shadow",
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"shadow":1
 		},
 		"attack":{
@@ -77,13 +77,13 @@
 		"level":1,
 		"require":"nature",
 		"school":"nature",
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"nature":1
 		},
 		"attack":{
@@ -101,13 +101,13 @@
 		"level":1,
 		"require":"air",
 		"school":"air",
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"air":1
 		},
 		"dot":{
@@ -124,13 +124,13 @@
 		"school":"mana",
 		"locked":false,
 		"level":1,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"mana":1
 		},
 		"dot":{
@@ -147,13 +147,13 @@
 		"name":"minor regen",
 		"school":"light",
 		"level":1,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"light":1
 		},
 		"dot":{
@@ -172,13 +172,13 @@
 		"level":1,
 		"school":"mana",
 		"locked":false,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"mana":1
 		},
 		"attack":{
@@ -193,13 +193,13 @@
 		"level":1,
 		"require":"fire",
 		"school":"fire",
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":1
 
 		},
-		"cast":{
+		"cost":{
 			"fire":1
 		},
 		"attack":{
@@ -217,14 +217,14 @@
 			"earth.max":5
 		},
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"earthgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"earth":5
 		},
 		"dot":{
@@ -244,14 +244,14 @@
 			"earth.max":5
 		},
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"earthgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"earth":5
 		},
 		"attack":{
@@ -270,13 +270,13 @@
 		"name":"protection: shadow",
 		"school":"light",
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":5
 
 		},
-		"cast":{
+		"cost":{
 			"light":2
 		},
 		"dot":{
@@ -299,14 +299,14 @@
 		"require":{
 			"fire.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"firegem":1
 
 		},
-		"cast":{
+		"cost":{
 			"fire":5
 		},
 		"attack":{
@@ -325,14 +325,14 @@
 		"require":{
 			"nature.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"naturegem":1
 
 		},
-		"cast":{
+		"cost":{
 			"nature":3
 		},
 		"attack":{
@@ -348,14 +348,14 @@
 		"name":"protection: fire",
 		"school":"fire",
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":5,
 			"firegem":1
 
 		},
-		"cast":{
+		"cost":{
 			"fire":1
 		},
 		"dot":{
@@ -374,14 +374,14 @@
 		"name":"protection: water",
 		"school":"water",
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":5,
 			"watergem":1
 
 		},
-		"cast":{
+		"cost":{
 			"water":1
 		},
 		"dot":{
@@ -400,13 +400,13 @@
 		"name":"protection: nature",
 		"school":"nature",
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":25,
 			"scrolls":5
 
 		},
-		"cast":{
+		"cost":{
 			"nature":1
 		},
 		"dot":{
@@ -429,14 +429,14 @@
 		"require":{
 			"light.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"lightgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"light":5
 		},
 		"effect":{
@@ -453,14 +453,14 @@
 		"require":{
 			"air.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"airgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"air":5
 		},
 		"dot":{
@@ -476,14 +476,14 @@
 		"school":"mana",
 		"locked":false,
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"managem":1
 
 		},
-		"cast":{
+		"cost":{
 			"mana":2
 		},
 		"dot":{
@@ -504,14 +504,14 @@
 		"require":{
 			"light.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"lightgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"light":5
 		},
 		"dot":{
@@ -533,14 +533,14 @@
 		"require":{
 			"shadow.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"shadowgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"shadow":5
 		},
 		"dot":{
@@ -562,14 +562,14 @@
 		"require":{
 			"spirit.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"scrolls":5,
 			"spiritgem":1
 
 		},
-		"cast":{
+		"cost":{
 			"spirit":5,
 			"mana":2
 		},
@@ -585,14 +585,14 @@
 		"level":3,
 		"require":"nature",
 		"school":"nature",
-		"cost":{
+		"buy":{
 
 			"research":100,
 			"codices":1,
 			"naturegem":3
 
 		},
-		"cast":{
+		"cost":{
 			"nature":5
 		},
 		"attack":{
@@ -614,14 +614,14 @@
 		"require":{
 			"air.max":5
 		},
-		"cost":{
+		"buy":{
 
 			"research":100,
 			"codices":1,
 			"airgem":3
 
 		},
-		"cast":{
+		"cost":{
 			"air":5
 		},
 		"dot":{
@@ -640,14 +640,14 @@
 			"earth.max":5
 		},
 		"level":2,
-		"cost":{
+		"buy":{
 
 			"research":30,
 			"codices":1,
 			"earthgem":3
 
 		},
-		"cast":{
+		"cost":{
 			"earth":5
 		},
 		"dot":{
