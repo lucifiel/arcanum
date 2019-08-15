@@ -29,8 +29,8 @@ export function tryDamage( target, attack, attacker=null ) {
 
 		// add optional base damage from attacker.
 		let dmg = getDamage( attack.damage ) +
-		( attacker !== null && attacker !== attack && attacker.damage ) ?
-			getDamage(attacker.damage) : 0;
+		( ( attacker && (attacker !== attack) && attacker.damage ) ?
+			getDamage(attacker.damage) : 0 );
 
 		target.hp -= dmg;
 
@@ -347,7 +347,6 @@ export default class Raid {
 			let tmp = this.state.getItem(enemy.id);
 			if ( tmp ) {
 				tmp.value++;
-				console.log('ENEMY INC: ' + tmp.value );
 			}
 		}
 
