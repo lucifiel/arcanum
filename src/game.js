@@ -82,17 +82,11 @@ export default {
 
 	initEvents() {
 
-		/// events to watch for unlocking.
-		this.watchEvents = [];
-
 		let evts = this.state.events;
 		for( let i = evts.length-1; i>= 0; i-- ) {
 
 			var e = evts[i];
 			if ( !e.locked ) this.doEvent(e);
-			else if ( !e.disabled && (e.require||e.need) ) {
-				this.watchEvents.push(e);
-			}
 
 		}
 
@@ -134,32 +128,6 @@ export default {
 
 		}
 
-		/**
-		 * @todo - inefficient.
-		 */
-		//this.checkEvents();
-
-	},
-
-	checkEvents(){
-
-		let a = this.watchEvents;
-		for( let i = a.length-1; i>=0; i-- ) {
-
-			var e = a[i];
-			if ( e.locked && !e.disabled ) {
-
-				if ( this.tryUnlock(e) ) {
-					this.doEvent(e);			
-				} else continue;
-
-			}
-			a[i] = a[a.length-1];
-			a.pop();
-
-
-		}
-	
 	},
 
 	/**
@@ -421,13 +389,13 @@ export default {
 	},
 
 	/**
-	 * Attempt to pay the cost to learn a spell. (Possibly skills later.)
+	 * Attempt to pay the cost to permanently buy an item.
 	 * @param {Item} it 
 	 * @returns {boolean}
 	 */
 	tryBuy(it) {
 
-		if ( !this.canUse(it) ) return false;
+		if ( !this.canPay(it.buy) ) return false;
 		this.payCost( it.buy );
 
 		it.owned = true;
@@ -442,6 +410,12 @@ export default {
 	tryItem(it) {
 
 		if ( !this.canUse(it) ) return false;
+
+		if ( it.buy && !it.owned ) {
+			this.payCost( it.buy );
+			it.owned = true;
+		}
+
 		this.payCost( it.cost );
 
 		return this.doItem(it);
@@ -788,7 +762,7 @@ export default {
 			for( let p in cost ) {
 
 				res = this.getItem(p);
-				if ( !res || res.value < cost[p]*unit ) return false;
+				if ( res === undefined || res.value < cost[p]*unit ) return false;
 
 			}
 

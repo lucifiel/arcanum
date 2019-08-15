@@ -9,7 +9,7 @@ export default class GameState {
 
 		let slotIds = {};
 		for( let p in this.slots ) {
-			slotIds[p] = this.slots[p].id;
+			if ( this.slots[p] ) slotIds[p] = this.slots[p].id;
 		}
 
 		let data = {
@@ -58,7 +58,9 @@ export default class GameState {
 		 * a single active at a given time.
 		 */
 		this.slots = this.slots || {
-
+			'home':null,
+			'mount':null,
+			'bed':null
 		}
 	
 		/**

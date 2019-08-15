@@ -3,6 +3,7 @@ import Game from '../game';
 import { round } from 'format';
 
 import AllUpgrades from './allupgrades.vue';
+import SlotPick from './slotpick.vue';
 
 export default {
 	
@@ -23,12 +24,13 @@ export default {
 		tohit() {return this.player.tohit; },
 		exp() {return this.round( this.player.exp.value ); },
 		next() {return this.round( this.player.next ); },
-		mount() { return this.player.mount; }
+		mount() { return Game.state.getSlot('mount'); }
 
 
 	},
 	components:{
-		'upgrades':AllUpgrades
+		'upgrades':AllUpgrades,
+		'slotpick':SlotPick
 	},
 	beforeCreate(){
 
@@ -65,7 +67,7 @@ export default {
 		
 		<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 
-		<tr v-if="mount"><td>mount</td><th>{{ mount.name }}</th></tr>
+		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
 		</table>
 
 		<upgrades></upgrades>

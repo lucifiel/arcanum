@@ -236,7 +236,7 @@
 		"desc":"Cure customers of magical ailments.",
 		"verb":"treating locals",
 		"require":"neophyte",
-		"run":{
+		"cost":{
 			"stamina":0.2
 		},
 		"effect":{
