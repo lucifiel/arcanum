@@ -67,6 +67,13 @@ export default {
 		 */
 		effectList( obj, results={}, propPath='' ) {
 
+			if ( typeof obj === 'string' ) {
+
+				let it = Game.getItem(obj);
+				results[ it ? it.name : obj ] = true;
+				return;
+			}
+
 			for( let p in obj ) {
 
 				var subPath = p;

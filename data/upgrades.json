@@ -52,7 +52,7 @@
 		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=5",
 		"warn":true,
 		"repeat":false,
-		"flavor":"Saves heaps of money",
+		"flavor":"Save heaps of money with the power of evil",
 		"cost":{
 			"research":225,
 			"arcana":5
@@ -641,7 +641,7 @@
 		"id":"arcaneenergy",
 		"name":"arcane energy",
 		"max":3,
-		"desc":"expend your research to enhance your innate energy.",
+		"desc":"expend your research to permanently enhance your stamina.",
 		"require":"state.lore>=7&&state.adept>0",
 		"cost":{
 			"research.max":25,
@@ -875,7 +875,7 @@
 		"name":"hydromancy",
 		"warn":true,
 		"desc":"Become a hydromancer.",
-		"require":"state.adept>0&&state.minerology>=5",
+		"require":"state.adept>0&&state.waterlore>=5",
 		"flavor":"",
 		"cost":{
 			"research":100,

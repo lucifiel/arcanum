@@ -21,7 +21,8 @@
 	{
 		"id":"dist",
 		"name":"distance",
-		"value":25,
+		"zerosum":true,
+		"max":10,
 		"locked":false
 	},
 	{
