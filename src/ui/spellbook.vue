@@ -58,7 +58,8 @@ export default {
 			if ( vSchools.length>0 || level ) {
 
 				return spells.filter(v=>{
-					return (vSchools.includes(v.school))&&(!level||(v.level===level));
+					return ((vSchools.length===0||vSchools.includes(v.school)) )
+						&&(!level||(v.level===level));
 				});
 
 			}
@@ -104,8 +105,12 @@ export default {
 		</table>
 
 		<div class="filters">
-		<label :for="elmId('level')">Level</label>
-		<input :id="elmId('level')" type="number" v-model="minLevel" min=0>
+		<div>
+			<label class="level-lbl" :for="elmId('level')">Level</label>
+			<input class="level" :id="elmId('level')" type="number" v-model="minLevel" min=0 size=5>
+		
+		</div>
+		
 		<div class="checks" v-for="(p,k) in schools" :key="k">
 					<input type="checkbox" :value="k" :id="elmId('chk'+k)" v-model="viewSchools" >
 					<label :for="elmId('chk'+k)">{{ k }}</label>
@@ -126,14 +131,23 @@ div.spellbook {
 .spellbook table{
 	min-width: 50%;
 }
+
+
 div.filters{
 	margin-left: 30px;
 	margin-top:10px;
+	line-height:30px;
+	font-size: 1em;
 }
 
-.filters input {
-	line-height: 30px;
+.filters div.checks {
+	margin: 8px 0px;
+}
+
+.filters input[type=number] {
+	margin-left: 8px;
 	text-decoration: none;
+	line-height:28px;
 }
 
 </style>

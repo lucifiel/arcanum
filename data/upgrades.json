@@ -77,7 +77,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":100
+			"dist":100
 		}
 
 	},
@@ -91,7 +91,7 @@
 			"gold":100
 		},
 		"mod":{
-			"dist.max":15
+			"dist":15
 		}
 
 	},
@@ -106,7 +106,7 @@
 			"gems":2
 		},
 		"mod":{
-			"dist.max":30
+			"dist":30
 		}
 
 	},
@@ -121,7 +121,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":50
+			"dist":50
 		}
 
 	},

@@ -141,6 +141,12 @@ export default {
 
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value.toFixed(0) + ' / ' + item.max }}</span>
 		</span>
+		<div v-if="item.level">
+			Level: {{item.level}}
+		</div>
+		<div v-if="item.dist">
+			Distance: {{item.dist}}
+		</div>
 		<div class="item-desc" v-if="desc">{{ desc }}</div>
 		<div v-if="item.buy&&!item.owned">
 

@@ -129,6 +129,9 @@ export default class Item {
 
 			cur[reqStr] = amt;
 
+		} else if ( typeof cur === 'function') {
+			console.log('adding requirement');
+			this[type] = [ cur, {[reqStr]:amt} ];
 		}
 
 	}
