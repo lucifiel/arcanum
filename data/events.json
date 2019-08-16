@@ -12,17 +12,6 @@
 		"desc":"You buy a strange scroll from a travelling peddlar. If you could only decipher the ancient runes."
 	},
 	{
-		"id":"apprentice",
-		"name":"Apprenticeship",
-		"title":"apprentice",
-		"desc":"After paying a small fee, you became apprenticed to a local wizard.",
-		"disable":["cleanstables"],
-		"effect":{
-			"research.max":10,
-			"player.exp":5
-		}
-	},
-	{
 		"id":"evt_alcove",
 		"name":"Moving In",
 		"desc":"After taking your savings, your new master grants you a small book under the stairs.",

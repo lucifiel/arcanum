@@ -25,7 +25,7 @@ export default {
 		exp() {return this.round( this.player.exp.value ); },
 		next() {return this.round( this.player.next ); },
 		mount() { return Game.state.getSlot('mount'); },
-		dist() { return Game.state.getItem('dist').max.value; }
+		dist() { return Game.state.getItem('dist').value; }
 
 
 	},
@@ -68,7 +68,7 @@ export default {
 		
 		<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 
-		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
+		<tr><td>mount</td><th><slotpick class="inline-block" pick="mount" /></th></tr>
 		<tr><td>distance</td><th>{{ dist }}</th></tr>
 		</table>
 

@@ -463,8 +463,8 @@
 	},
 	{
 		"id":"almagest",
-		"action":"compile almagest",
 		"desc":"manual of the sun and stars",
+		"actname":"compile almagest",
 		"require":"state.astronomy>=5&&state.adept>0",
 		"repeat":false,
 		"length":50,

@@ -217,8 +217,8 @@ export default {
 		gd.materials = this.initItems( dataLists['materials'], Material, 'material', 'material ');
 
 		gd.events = this.initItems( dataLists['events'], Item, null, 'event' );
-		gd.events = gd.events.concat( this.initItems( dataLists['classes'], Item, null, 'event') );
-
+		gd.classes = this.initItems( dataLists['classes'], Item, 'class', 'class' );
+		
 		gd.actions = this.initItems( dataLists['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 

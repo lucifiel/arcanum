@@ -25,7 +25,7 @@ export default {
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 	<button class="wrapped-btn"
 		:disabled="!usable(it)"
-		@click.stop="dispatch( 'action', it)">{{ it.name || it.id }}</button>
+		@click.stop="dispatch( 'action', it)">{{ showName(it) }}</button>
 	</span>
 
 </div>

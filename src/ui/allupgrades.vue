@@ -4,6 +4,9 @@ import Game from '../game';
 export default {
 	
 	computed:{
+		classes() {
+			return Game.state.classes.filter(v=>!v.disabled&&v.value>=1);
+		},
 		upgrades(){
 			return Game.state.upgrades.filter(v=>!v.disabled&&v.value>=1);
 		}
@@ -16,6 +19,9 @@ export default {
 <template>
 <div class="up-list">
 	<div class="div-hr">upgrades</div>
+	<div v-for="it in classes" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
+		{{it.name}}
+	</div>
 	<div v-for="it in upgrades" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 		{{it.name}}
 	</div>

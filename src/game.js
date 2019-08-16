@@ -9,7 +9,6 @@ import ItemGen from './itemgen';
 import TechTree from './techTree';
 import Dot from './chars/dot';
 
-var lastTime = 0;
 var techTree;
 
 /**
@@ -86,7 +85,7 @@ export default {
 		for( let i = evts.length-1; i>= 0; i-- ) {
 
 			var e = evts[i];
-			if ( !e.locked ) this.doEvent(e);
+			if ( !e.locked && e.value===0 ) this.doEvent(e);
 
 		}
 
@@ -224,7 +223,6 @@ export default {
 		if ( act && act.cost && (act.progress === 0) ) {
 
 			//console.log('PAY ACTION: ' + act.progress );
-			//if ( !this.canPay(act.cost) ) return false;
 			this.payCost( act.cost);
 
 		}
@@ -287,7 +285,19 @@ export default {
 		if ( Array.isArray(it) ) for( let v of it ) this.disable(v);
 		else {
 
-			if ( typeof it === 'string' ) it = this.getItem( it );
+			if ( typeof it === 'string' ) {
+
+				let item = this.getItem( it );
+				if ( !item ) {
+
+					let list = this.state.getTagList(it);
+					if ( list ) for( let v of list ) this.disable(v);
+					return;
+
+				} else it = item;
+
+			}
+
 			if ( it ) {
 
 				it.disabled = true;
@@ -321,7 +331,7 @@ export default {
 
 			this.getItem('gold').value += costObj*this.state.sellRate;
 
-		} else if ( costObj instanceof Object ) {
+		} else if ( typeof costObj === 'object' ) {
 
 			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*this.state.sellRate;
 			if ( costObj.space ) this.getItem('space').value += costObj.space;
@@ -405,6 +415,7 @@ export default {
 	 */
 	doItem(it, count=1) {
 
+		if ( it.maxed() ) return false;
 		it.value += count;
 
 		if ( it.slot ) {
@@ -415,6 +426,7 @@ export default {
 
 		}
 
+		if ( it.title ) this.state.player.title = it.title;
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, 1 );
 		if ( it.lock ) this.lock( it.lock );
@@ -441,22 +453,12 @@ export default {
 	 */
 	doEvent( evt ) {
 
-		if ( evt.maxed() ) return;
-		if ( evt.disable ) this.disable( evt.disable);
-
-		if ( evt.title ) this.state.player.title = evt.title;
-
-		if ( evt.effect ){
-			this.applyEffect( evt.effect, 1 );
-		}
+		if ( !this.doItem(evt) ) return false;
 
 		evt.locked = false;
-		evt.value = 1;
 
 		//console.log('event done: ' + evt.id );
 		this.log.log( evt.name, evt.desc, 'event' );
-
-		evt.dirty = true;
 
 	},
 
@@ -596,8 +598,12 @@ export default {
 					if ( target.type === 'event' ) this.doEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
 					else if ( e instanceof Range ) this.doItem( target, e.value );
-					else if ( typeof e === 'boolean') this.doItem( target );
-					else target.applyVars(e,dt);
+					else if ( typeof e === 'boolean') {
+
+						target.locked = e;
+						this.doItem( target );
+
+					} else target.applyVars(e,dt);
 				
 					target.dirty = true;
 				}
@@ -867,9 +873,7 @@ export default {
 	 * Decrement lock count on an Item or array of items, etc.
 	 * @param {string|string[]|Item|Item[]} id 
 	 */
-	unlock( id ) {
-		this.lock(id, -1);
-	},
+	unlock( id ) { this.lock(id, -1); },
 
 	/**
 	 * Increment lock counter on item or items.

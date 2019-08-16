@@ -380,6 +380,7 @@ export default {
 		<template slot="sect_main">
 		<actions :items="state.actions" />
 		<upgrades :items="state.upgrades" />
+		<upgrades :items="state.classes" />
 
 		</template>
 	

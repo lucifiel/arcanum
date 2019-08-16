@@ -12,6 +12,10 @@ export default {
 
 		round:round,
 
+		showName(it) {
+			return it.actname || it.name || it.id;
+		},
+
 		usable(it) {
 			return (it.length || it.perpetual ) ? Game.canRun(it) : Game.canUse( it );
 		},

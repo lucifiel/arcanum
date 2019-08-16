@@ -1,20 +1,6 @@
 [
 
 	{
-		"id":"apprenticeship",
-		"name":"Apprenticeship",
-		"desc":"Become an apprentice.",
-		"require":"state.research.max>=10",
-		"repeat":false,
-		"cost":{
-			"research":10,
-			"gold":20
-		},
-		"effect":"apprentice"
-
-	},
-
-	{
 		"id":"neophytism",
 		"name":"Neophyte",
 		"desc":"Ascend to the next level of wizardry.",
@@ -63,7 +49,25 @@
 		}]
 
 	},
+	{
 
+		"id":"broomstick",
+		"name":"magic broomstick",
+		"require":"state.crafting>=5&&state.air.max>=5",
+		"flavor":"",
+		"slot":"mount",
+		"buy":{
+			"research":200,
+			"nature":5,
+			"air":5,
+			"gold":100,
+			"arcana":1
+		},
+		"mod":{
+			"dist":75
+		}
+
+	},
 	{
 
 		"id":"flyingcarpet",

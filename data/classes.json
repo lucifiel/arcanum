@@ -1,4 +1,25 @@
 [
+	{
+		"id":"apprentice",
+		"desc":"appentice to a notable wizard",
+		"actname":"Apprenticeship",
+		"actdesc":"Become an apprentice.",
+		"require":"state.research.max>=10",
+		"disable":["cleanstables"],
+		"log":{
+			"title":"Apprentice",
+			"text":"After paying a small fee, you became apprenticed to a local wizard."
+		},
+		"cost":{
+			"research":10,
+			"gold":20
+		},
+		"effect":{
+			"research.max":10,
+			"player.exp":5
+		}
+
+	},
 {
 	"id":"neophyte",
 	"title":"neophyte",
@@ -28,10 +49,10 @@
 
 {
 	"id":"magician",
-	"name":"The Prestige",
 	"title":"magician",
 	"desc":"Magic in its purest form.",
-	"action":"Pursue the path of pure magic.",
+	"actname":"The Prestige",
+	"actdesc":"Pursue the path of pure magic.",
 	"warn":true,
 	"require":"state.adept>0&&state.research.max>=300&&state.lore>=10",
 	"disable":["adept","witch","druid"],
@@ -73,7 +94,7 @@
 	"desc":"Witch",
 	"name":"witchcraft",
 	"warn":true,
-	"action":"Enter into the practice of witchcraft.",
+	"actdesc":"Enter into the practice of witchcraft.",
 	"require":"state.adept>0&&state.animals>=2&&state.herbalism>=3&&state.potions>=3",
 	"flavor":"double, double, toil and trouble",
 	"cost":{
@@ -183,7 +204,7 @@
 	"desc":"lord of rocks.",
 	"disable":[],
 	"warn":true,
-	"action":"Become a geomancer.",
+	"actdesc":"Become a geomancer.",
 	"require":"state.adept>0&&state.minerology>=10",
 	"cost":{
 		"research":100,
@@ -206,7 +227,7 @@
 	"disable":[],
 	"name":"hydromancy",
 	"warn":true,
-	"action":"Become a hydromancer.",
+	"actdesc":"Become a hydromancer.",
 	"require":"state.adept>0&&state.waterlore>=10",
 	"cost":{
 		"research":100,
@@ -238,6 +259,17 @@
 		"fire.max":3,
 		"fire.rate":0.1
 	}
+},
+{
+	"id":"stormcaller",
+	"require":"hydromancer",
+	"cost":{
+
+	},
+	"effect":{
+		"tiertwo":true
+	},
+	"flavor":"there's a storm coming"
 },
 {
 	"id":"elementalist",
@@ -282,7 +314,7 @@
 	"id":"battlemage",
 	"name":"battle mage",
 	"title":"Battlemage",
-	"action":"Pursue the path of battle.",
+	"actdesc":"Pursue the path of battle.",
 	"warn":true,
 	"require":"state.player.level>5&&state.research.max>=250&&state.lore>=8",
 	"cost":{

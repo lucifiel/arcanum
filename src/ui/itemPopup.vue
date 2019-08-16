@@ -118,12 +118,16 @@ export default {
 	},
 	computed:{
 
+		name() {
+
+			return ( this.item.actname && this.item.value < 1 ) ? this.item.actname : (this.item.name||this.item.id);
+		},
+
 		desc(){
 
 			// item.action allows desc to behave as an action description until
 			// action is completed.
-			return this.item.action ?
-				( this.item.value < 1 ? this.item.action : this.item.desc ) : this.item.desc;
+			return ( this.item.actdesc && this.item.value < 1 ) ? this.item.actdesc : this.item.desc;
 
 		}
 
@@ -137,7 +141,7 @@ export default {
 	
 	<div :class="{ 'item-popup':true, show:item!=null }">
 		<div class='popup-content' v-if="item">
-		<span class="item-name">{{item.name}}
+		<span class="item-name">{{name}}
 
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value.toFixed(0) + ' / ' + item.max }}</span>
 		</span>
