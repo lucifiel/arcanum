@@ -397,9 +397,10 @@ export default {
 		if ( !this.canUse(it) ) return false;
 
 		if ( it.buy && !it.owned ) {
-			console.log('buying');
+
 			this.payCost( it.buy );
 			it.owned = true;
+
 		}
 
 
@@ -416,15 +417,18 @@ export default {
 	doItem(it, count=1) {
 
 		if ( it.maxed() ) return false;
-		it.value += count;
-
 		if ( it.slot ) {
 
 			let cur = this.state.getSlot(it.slot);
-			if ( cur ) { this.remove( cur, 1 ); }
+			if ( cur ) {
+				if ( cur == it ) return false;
+				this.remove( cur, 1 );
+			}
 			this.state.setSlot(it.slot, it);
 
 		}
+
+		it.value += count;
 
 		if ( it.title ) this.state.player.title = it.title;
 		if ( it.effect ) this.applyEffect(it.effect);

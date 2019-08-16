@@ -1,22 +1,6 @@
 [
 
 	{
-		"id":"neophytism",
-		"name":"Neophyte",
-		"desc":"Ascend to the next level of wizardry.",
-		"require":"state.research.max>=70&&state.spellbook>0&&state.languages>1",
-		"repeat":false,
-		"flavor":"Why does Master charge so many fees?",
-		"cost":{
-			"gold":100,
-			"research":100,
-			"arcana":1
-		},
-		"effect":"neophyte"
-
-	},
-
-	{
 		"id":"leavemaster",
 		"name":"End Apprenticeship",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",

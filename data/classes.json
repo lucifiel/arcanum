@@ -23,8 +23,19 @@
 {
 	"id":"neophyte",
 	"title":"neophyte",
-	"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies.",
+	"actdesc":"The next step on the twisting stairwell of apprenticeship.",
+	"require":"state.research.max>=70&&state.spellbook>0&&state.languages>1",
+	"log":{
+		"title":"Neophyte",
+		"text":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies."
+	},
+	"flavor":"Why does Master charge so many fees?",
 	"disable":["apprentice","chores"],
+	"cost":{
+		"gold":100,
+		"research":100,
+		"arcana":1
+	},
 	"mod":{
 		"arcana.rate":0.0001
 	},

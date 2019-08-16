@@ -68,7 +68,7 @@ export default {
 		
 		<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 
-		<tr><td>mount</td><th><slotpick class="inline-block" pick="mount" /></th></tr>
+		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
 		<tr><td>distance</td><th>{{ dist }}</th></tr>
 		</table>
 
@@ -94,6 +94,7 @@ input[type=text] {
 
 td, th {
 	padding: 2px 4px;
+	vertical-align: text-top;
 }
 
 td {
@@ -102,6 +103,7 @@ td {
 
 th {
 	text-align: left;
+	
 }
 
 </style>

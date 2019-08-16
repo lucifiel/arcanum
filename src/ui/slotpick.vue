@@ -41,7 +41,7 @@ export default {
 
 		avail() {
 			return this.choices ? this.choices :
-			Game.state.filterItems( v=>v.slot===this.pick );
+			Game.state.filterItems( v=>v.slot===this.pick&&!v.locked );
 		}
 
 	}
@@ -53,7 +53,7 @@ export default {
 <div>
 
 	<span v-if="slotName">{{slotName}}:</span><span>{{ curItem ? curItem.name : 'None'}}</span>
-	<div v-if="avail.length>0">
+	<div class="inline" v-if="avail.length>0">
 	<button @click="toggleChange">{{ changing ? 'Done' : 'Choose' }}</button>
 
 	<div class="upgrade-list" v-if="changing">
