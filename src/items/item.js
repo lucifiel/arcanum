@@ -110,6 +110,29 @@ export default class Item {
 
 	}
 
+	/**
+	 * Add a requirement to unlock this item.
+	 * @param {string} reqStr
+	 * @param {number} amt
+	 * @param {'require'|'need'} type - requirement to set.
+	 */
+	addRequire( reqStr, amt, type='require' ){
+
+		let cur = this[type];
+		if ( !cur) {
+			this[type] = {[reqStr]:amt};
+		} else if ( Array.isArray(cur) ) {
+
+			cur.push( { [reqStr]:amt} );
+
+		} else if ( typeof cur === 'object' ) {
+
+			cur[reqStr] = amt;
+
+		}
+
+	}
+
 }
 
 mergeClass( Item, Base );

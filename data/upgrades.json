@@ -68,12 +68,16 @@
 
 		"id":"flyingcarpet",
 		"name":"flying carpet",
+		"require":"state.weaving>=5&&state.airlore>=10",
 		"flavor":"a whole new world",
-		"cost":{
-
+		"slot":"mount",
+		"buy":{
+			"gems":20,
+			"research":300,
+			"arcana":1
 		},
 		"mod":{
-			"player.dist.max":100
+			"dist.max":100
 		}
 
 	},

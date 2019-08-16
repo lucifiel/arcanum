@@ -2,30 +2,76 @@
 import ItemBase from './itemsBase';
 import Game from '../game';
 
-import ResoucesView from './resources.vue';
-
 export default {
 
 	props:['state'],
 	mixins:[ItemBase],
-	components:{
+	data(){
 
-		mana:ResoucesView
+		return {
+			school:null,
+			pMin:null,
+			pMax:null
+		};
+
 	},
 	methods: {
 
 	},
 	computed:{
 
+		minLevel:{
+
+			get(){return this.pMin;},
+			set(v){
+				this.pMin = Number(v);
+			}
+
+		},
+
+		/**
+		 * @property {Object.<string,string>} schools - schools of all unlocked spells.
+		 */
+		schools() {
+
+			let res = {};
+
+			let a = this.spells;
+			for( let i = a.length-1; i>= 0; i-- ) {
+				var s = a[i];
+				if ( s.school ) res[s.school] = true;
+			}
+
+			return res;
+	
+		},
+
+		/**
+		 * @property {Spell[]} viewing - array of spells actually visible.
+		 */
+		viewing() {
+
+			let spells = this.spells;
+			let school = this.school;
+			let level = this.minLevel;
+
+			if ( school || level ) {
+
+				return spells.filter(v=>{
+					return (!school||v.school===school)&&(!level||(v.level===level));
+				});
+
+			}
+			return spells;
+
+		},
+
+		/**
+		 * @property {Spell} spells - array of spells unlocked.
+		 */
 		spells(){
 			return this.state.filterItems(
 				it=>it.type ==='spell' && !this.locked(it) );
-		},
-		mana(){
-
-			return this.state.filterItems( it=>
-				it.type ==='resource' && it.hasTag('mana') && !this.locked(it)
-			);
 		}
 
 	}
@@ -37,8 +83,10 @@ export default {
 
 	<div>
 
+		<label :for="elmId('level')">Level</label>
+		<input :id="elmId('level')" type="number" v-model="minLevel">
 		<table>
-		<tr v-for="s in spells" :key="s.id">
+		<tr v-for="s in viewing" :key="s.id">
 
 			<td><button v-if="s.owned&&s.attack" @click="dispatch('primary',s)">
 				{{ state.player.primary===s ? 'Unequip' : 'Primary' }}
@@ -57,7 +105,7 @@ export default {
 		</tr>
 		</table>
 
-		<mana :items="mana" />
+		<!--<mana :items="mana" />-->
 
 	</div>
 
