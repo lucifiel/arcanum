@@ -81,10 +81,8 @@ export default {
 
 <template>
 
-	<div>
+	<div class="spellbook">
 
-		<label :for="elmId('level')">Level</label>
-		<input :id="elmId('level')" type="number" v-model="minLevel">
 		<table>
 		<tr v-for="s in viewing" :key="s.id">
 
@@ -105,12 +103,33 @@ export default {
 		</tr>
 		</table>
 
-		<!--<mana :items="mana" />-->
+		<div class="filters">
+		<label :for="elmId('level')">Level</label>
+		<input :id="elmId('level')" type="number" v-model="minLevel" min=0>
+		</div>
 
 	</div>
 
 </template>
 
 <style scoped>
+
+div.spellbook {
+	display:flex;
+	flex-direction: row;
+}
+
+.spellbook table{
+	min-width: 50%;
+}
+div.filters{
+	margin-left: 30px;
+	margin-top:10px;
+}
+
+.filters input {
+	line-height: 30px;
+	text-decoration: none;
+}
 
 </style>
