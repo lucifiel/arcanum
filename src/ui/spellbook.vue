@@ -9,7 +9,7 @@ export default {
 	data(){
 
 		return {
-			school:null,
+			viewSchools:[],
 			pMin:null,
 			pMax:null
 		};
@@ -52,13 +52,13 @@ export default {
 		viewing() {
 
 			let spells = this.spells;
-			let school = this.school;
+			let vSchools = this.viewSchools;
 			let level = this.minLevel;
 
-			if ( school || level ) {
+			if ( vSchools.length>0 || level ) {
 
 				return spells.filter(v=>{
-					return (!school||v.school===school)&&(!level||(v.level===level));
+					return (vSchools.includes(v.school))&&(!level||(v.level===level));
 				});
 
 			}
@@ -106,6 +106,10 @@ export default {
 		<div class="filters">
 		<label :for="elmId('level')">Level</label>
 		<input :id="elmId('level')" type="number" v-model="minLevel" min=0>
+		<div class="checks" v-for="(p,k) in schools" :key="k">
+					<input type="checkbox" :value="k" :id="elmId('chk'+k)" v-model="viewSchools" >
+					<label :for="elmId('chk'+k)">{{ k }}</label>
+		</div>
 		</div>
 
 	</div>
