@@ -279,31 +279,6 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {Object} evt 
-	 */
-	doEvent( evt ) {
-
-		if ( evt.maxed() ) return;
-		if ( evt.disable ) this.disable( evt.disable);
-
-		if ( evt.title ) this.state.player.title = evt.title;
-
-		if ( evt.effect ){
-			this.applyEffect( evt.effect, 1 );
-		}
-
-		evt.locked = false;
-		evt.value = 1;
-
-		//console.log('event done: ' + evt.id );
-		this.log.log( evt.name, evt.desc, 'event' );
-
-		evt.dirty = true;
-
-	},
-
-	/**
 	 * Completely disable an item - cannot be purchased/used/etc.
 	 * @param {string|Item|Array} it 
 	 */
@@ -457,6 +432,31 @@ export default {
 
 		it.dirty = true;
 		return true;
+
+	},
+
+	/**
+	 * 
+	 * @param {Object} evt 
+	 */
+	doEvent( evt ) {
+
+		if ( evt.maxed() ) return;
+		if ( evt.disable ) this.disable( evt.disable);
+
+		if ( evt.title ) this.state.player.title = evt.title;
+
+		if ( evt.effect ){
+			this.applyEffect( evt.effect, 1 );
+		}
+
+		evt.locked = false;
+		evt.value = 1;
+
+		//console.log('event done: ' + evt.id );
+		this.log.log( evt.name, evt.desc, 'event' );
+
+		evt.dirty = true;
 
 	},
 

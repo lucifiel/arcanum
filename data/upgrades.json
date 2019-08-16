@@ -32,7 +32,7 @@
 
 	{
 		"id":"leavemaster",
-		"name":"Leave Master",
+		"name":"End Apprenticeship",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
 		"warn":true,
 		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=5",
@@ -74,6 +74,8 @@
 		"buy":{
 			"gems":20,
 			"research":300,
+			"air":5,
+			"gold":100,
 			"arcana":1
 		},
 		"mod":{
@@ -87,6 +89,7 @@
 		"desc":"this horse has seen better days.",
 		"require":"state.animals>=3",
 		"slot":"mount",
+		"tags":"steed",
 		"buy":{
 			"gold":100
 		},
@@ -100,6 +103,7 @@
 		"name":"demur gelding",
 		"desc":"a calm and sturdy horse, for moderate journeys.",
 		"slot":"mount",
+		"tags":"steed",
 		"require":"stables",
 		"buy":{
 			"gold":500,
@@ -116,6 +120,7 @@
 		"desc":"a fine horse in its prime",
 		"require":"stables",
 		"slot":"mount",
+		"tags":"steed",
 		"buy":{
 			"gold":700,
 			"gems":5
@@ -126,36 +131,19 @@
 
 	},
 	{
-		"id":"up_magician",
-		"name":"The Prestige",
-		"desc":"Pursue the path of pure magic.",
-		"warn":true,
-		"require":"state.adept>0&&state.research.max>=300&&state.lore>=10",
-		"repeat":false,
-		"cost":{
-			"research":300,
-			"arcana":5,
-			"gold":200
+		"id":"magichorseshoe",
+		"name":"Enchanted Horseshoes",
+		"require":"state.enchanting>=5&&state.crafting>=10",
+		"need":"steed",
+		"buy":{
+			"gems":5,
+			"research":200
 		},
-		"effect":"magician"
+		"mod":{
+			"dist":"20%"
+		}
 
 	},
-	{
-		"id":"up_battle",
-		"name":"Battle Mage",
-		"desc":"Pursue the path of battle.",
-		"warn":true,
-		"require":"state.player.level>5&&state.research.max>=250&&state.lore>=8",
-		"repeat":false,
-		"cost":{
-			"research":250,
-			"arcana":3,
-			"gold":300
-		},
-		"effect":"battlemage"
-
-	},
-
 	{
 		"id":"waxcandle",
 		"name":"wax candle",
@@ -781,33 +769,6 @@
 
 	},
 	{
-		"id":"up_witchcraft",
-		"name":"witchcraft",
-		"warn":true,
-		"desc":"Enter into the practice of witchcraft.",
-		"require":"state.adept>0&&state.animals>=2&&state.herbalism>=3&&state.potions>=3",
-		"flavor":"double, double, toil and trouble",
-		"cost":{
-			"research":100,
-			"arcana":1
-		},
-		"mod":["witchcraft","witch"]
-	},
-	{
-
-		"id":"up_trickster",
-		"name":"Path of Trickery",
-		"desc":"",
-		"require":"state.prestidigitation>=50",
-		"cost":{
-			"research":50,
-			"gems":10
-		},
-		"mod":[
-			"trickster"
-		]
-	},
-	{
 		"id":"bagoftricks",
 		"name":"bag of tricks",
 		"require":"trickster",
@@ -850,7 +811,7 @@
 	},
 	{
 		"id":"basement",
-		"desc":"install a basement beneath your lair",
+		"desc":"install a basement beneath your home",
 		"require":"tierone",
 		"max":1,
 		"cost":{
@@ -860,32 +821,6 @@
 		"mod":{
 			"space.max":"50%"
 		}
-	},
-	{
-		"id":"up_geomancer",
-		"name":"geomancy",
-		"warn":true,
-		"desc":"Become a geomancer.",
-		"require":"state.adept>0&&state.minerology>=5",
-		"flavor":"",
-		"cost":{
-			"research":100,
-			"arcana":1
-		},
-		"mod":["geomancer"]
-	},
-	{
-		"id":"up_hydromancer",
-		"name":"hydromancy",
-		"warn":true,
-		"desc":"Become a hydromancer.",
-		"require":"state.adept>0&&state.waterlore>=5",
-		"flavor":"",
-		"cost":{
-			"research":100,
-			"arcana":1
-		},
-		"mod":["hydromancer"]
 	}
 
 ]

@@ -25,11 +25,21 @@
 		"player.exp":10
 	}
 },
+
 {
 	"id":"magician",
+	"name":"The Prestige",
 	"title":"magician",
 	"desc":"Magic in its purest form.",
+	"action":"Pursue the path of pure magic.",
+	"warn":true,
+	"require":"state.adept>0&&state.research.max>=300&&state.lore>=10",
 	"disable":["adept","witch","druid"],
+	"cost":{
+		"research":300,
+		"arcana":5,
+		"gold":200
+	},
 	"effect":{
 		"tierone":true,
 		"research.max":20,
@@ -56,12 +66,23 @@
 		"shadow.rate":0.01
 	}
 },
+
 {
 	"id":"witch",
 	"title":"witch",
 	"desc":"Witch",
+	"name":"witchcraft",
+	"warn":true,
+	"action":"Enter into the practice of witchcraft.",
+	"require":"state.adept>0&&state.animals>=2&&state.herbalism>=3&&state.potions>=3",
+	"flavor":"double, double, toil and trouble",
+	"cost":{
+		"research":100,
+		"arcana":1
+	},
 	"disable":[],
 	"effect":{
+		"witchcraft":true,
 		"tierone":true,
 		"research.max":10,
 		"naturelore.max":5,
@@ -77,6 +98,12 @@
 	"title":"arcane trickster",
 	"desc":"Use magic for deceit and trickery.",
 	"disable":[],
+	"buyname":"Path of Trickery",
+	"require":"state.prestidigitation>=50",
+	"cost":{
+		"research":50,
+		"gems":10
+	},
 	"effect":{
 		"tierone":true,
 		"gold.max":10,
@@ -155,7 +182,15 @@
 	"title":"geomancer",
 	"desc":"lord of rocks.",
 	"disable":[],
+	"warn":true,
+	"action":"Become a geomancer.",
+	"require":"state.adept>0&&state.minerology>=10",
+	"cost":{
+		"research":100,
+		"arcana":1
+	},
 	"effect":{
+		"tierone":true,
 		"research.max":15,
 		"earth.max":4,
 		"earth.rate":0.1,
@@ -169,14 +204,23 @@
 	"title":"hydromancer",
 	"desc":"master of water",
 	"disable":[],
+	"name":"hydromancy",
+	"warn":true,
+	"action":"Become a hydromancer.",
+	"require":"state.adept>0&&state.waterlore>=10",
+	"cost":{
+		"research":100,
+		"arcana":1
+	},
 	"effect":{
+		"tierone":true,
 		"research.max":15,
 		"water.max":4,
 		"water.rate":0.1,
 		"dodge.max.pct":0.1,
 		"mana.max":2
 	},
-	"flavor":"your empire of dirt"
+	"flavor":""
 },
 {
 	"id":"evoker",
@@ -232,11 +276,20 @@
 		"mana.max":5
 	}
 },
+
 {
 
 	"id":"battlemage",
+	"name":"battle mage",
 	"title":"Battlemage",
-	"desc":"",
+	"action":"Pursue the path of battle.",
+	"warn":true,
+	"require":"state.player.level>5&&state.research.max>=250&&state.lore>=8",
+	"cost":{
+		"research":250,
+		"arcana":3,
+		"gold":300
+	},
 	"disable":["adept","magician","witch","enchanter"],
 	"effect":{
 		"research.max":-10,
