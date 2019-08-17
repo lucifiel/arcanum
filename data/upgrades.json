@@ -37,19 +37,19 @@
 
 		"id":"broomstick",
 		"name":"magic broomstick",
-		"require":"state.crafting>=5&&state.air.max>=5",
+		"require":"state.crafting>=5&&state.spirit.max>=5",
 		"flavor":"",
 		"slot":"mount",
 		"buy":{
 			"research":200,
 			"nature":5,
-			"air":5,
+			"spirit":5,
 			"gold":100,
 			"arcana":1
 		},
 		"mod":{
 			"dist":75,
-			"air.max":1
+			"spirit.max":1
 		}
 
 	},
@@ -161,7 +161,7 @@
 			"research.max":5,
 			"herbalism":{
 				"rate":0.1,
-				"max":2
+				"max":1
 			}
 		}
 	},
@@ -290,6 +290,9 @@
 			"spirit":2,
 			"research":50,
 			"codices":1
+		},
+		"effect":{
+			"sp":1
 		},
 		"mod":{
 			"research.max":5,

@@ -25,7 +25,8 @@ export default {
 		exp() {return this.round( this.player.exp.value ); },
 		next() {return this.round( this.player.next ); },
 		mount() { return Game.state.getSlot('mount'); },
-		dist() { return Game.state.getItem('dist').value; }
+		dist() { return this.player.dist; },
+		sp(){return this.player.sp; }
 
 
 	},
@@ -50,26 +51,32 @@ export default {
 	<div class="player-view">
 
 		<table>
+			
 		<tr><td>name</td><th>
 			<input type="text" v-model="name"></th></tr>
 		<tr><td>title</td><th> {{ title}}</th></tr>
 		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
 		<tr><td>level</td><th> {{ level }}</th></tr>
 		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>
-		<tr><td>hp</td><th>
+		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ sp.value }}</th></tr>
+
+		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
+		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.value }}</th></tr>
+		</table>
+
+		<table>
+			<tr><th>Combat</th></tr>
+			<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event, hp)">life</td><th>
 			{{ round( hp.value ) }} / {{ round( hp.max.value ) }}</th></tr>
 
-		<tr><td>defense</td><th>{{ defense }}</th></tr>
-		<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
+			<tr><td>defense</td><th>{{ defense }}</th></tr>
+			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
 
 			<tr><td>stamina</td><th>
 			{{ round( stamina.value ) }} / {{ round(stamina.max.value )}}</th></tr>
 		
-		<tr><td>speed</td><th>{{ speed.value }}</th></tr>
-
-		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
-		<tr><td>distance</td><th>{{ dist }}</th></tr>
+			<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 		</table>
 
 		<upgrades></upgrades>

@@ -143,7 +143,8 @@ export default {
 		<div class='popup-content' v-if="item">
 		<span class="item-name">{{name}}
 
-			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{ item.value.toFixed(0) + ' / ' + item.max }}</span>
+			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
+				item.value.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
 		</span>
 		<div v-if="item.level">
 			Level: {{item.level}}

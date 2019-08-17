@@ -8,10 +8,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
+			"sp":0.01
 		}
 	},
 	{
@@ -75,6 +72,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.01,
 			"crafting.max":0.1,
 			"crafting.rate":0.1
 		}
@@ -106,6 +104,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.01,
 			"research":{
 				"max":1,
 				"value":5
@@ -316,6 +315,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.01,
 			"research":{
 				"max":1,
 				"value":5

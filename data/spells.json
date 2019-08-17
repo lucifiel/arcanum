@@ -576,7 +576,8 @@
 		"dot":{
 			"duration":45,
 			"effect":{
-				"research":1
+				"research":1,
+				"sp":0.0001
 			}
 		}
 	},

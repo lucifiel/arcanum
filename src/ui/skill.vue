@@ -47,6 +47,9 @@ export default {
 </template>
 
 <style scoped>
+span.separate {
+	text-align: center;
+}
 button.train-btn {
 	max-height:24px;
 	margin-top:4px;

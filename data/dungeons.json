@@ -59,6 +59,7 @@
 			"stamina":1
 		},
 		"result":{
+			"sp":1,
 			"gold":"15~20"
 		},
 		"loot":{

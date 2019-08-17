@@ -16,7 +16,8 @@
 		},
 		"effect":{
 			"research.max":10,
-			"player.exp":5
+			"player.exp":5,
+			"sp":1
 		}
 
 	},
@@ -40,6 +41,7 @@
 		"arcana.rate":0.0001
 	},
 	"effect":{
+		"sp":1,
 		"gold.rate":0.1,
 		"lore.max":2,
 		"player.exp":10
@@ -54,7 +56,8 @@
 	"effect":{
 		"innroom":true,
 		"research.max":5,
-		"player.exp":10
+		"player.exp":10,
+		"sp":2
 	}
 },
 
@@ -78,7 +81,8 @@
 		"lore.max":1,
 		"arcana.rate":0.001,
 		"mana.max":2,
-		"mana.rate":0.02
+		"mana.rate":0.02,
+		"sp":1
 	}
 },
 {
@@ -95,7 +99,8 @@
 		"mana.max":1,
 		"mana.rate":0.01,
 		"shadow.max":1,
-		"shadow.rate":0.01
+		"shadow.rate":0.01,
+		"sp":1
 	}
 },
 
@@ -121,7 +126,8 @@
 		"animals.max":3,
 		"potions.max":5,
 		"nature.max":1,
-		"spirit.max":2
+		"spirit.max":2,
+		"sp":2
 	}
 },
 {
@@ -146,7 +152,8 @@
 			"rate":0.1
 		},
 		"potions.max":1,
-		"spirit.max":1
+		"spirit.max":1,
+		"sp":3
 	}
 },
 {
@@ -162,7 +169,8 @@
 		"embalming.max":2,
 		"potions.max":5,
 		"shadow.max":3,
-		"spirit.max":3
+		"spirit.max":3,
+		"sp":2
 	}
 },
 {
@@ -176,7 +184,8 @@
 		"animals.max":5,
 		"potions.max":1,
 		"nature.max":5,
-		"nature.rate":0.1
+		"nature.rate":0.1,
+		"sp":1
 	}
 },
 {
@@ -189,7 +198,8 @@
 		"research.max":20,
 		"potions.max":5,
 		"alchemy.max":5,
-		"arcana.max":2
+		"arcana.max":2,
+		"sp":3
 	}
 },
 {
@@ -206,7 +216,8 @@
 		"mana.max":3,
 		"air.max":5,
 		"water.max":5,
-		"naturelore.max":2
+		"naturelore.max":2,
+		"sp":2
 	}
 },
 {
@@ -227,7 +238,8 @@
 		"earth.max":4,
 		"earth.rate":0.1,
 		"stamina.max.pct":0.1,
-		"mana.max":2
+		"mana.max":2,
+		"sp":2
 	},
 	"flavor":"your empire of dirt"
 },
@@ -250,7 +262,8 @@
 		"water.max":4,
 		"water.rate":0.1,
 		"dodge.max.pct":0.1,
-		"mana.max":2
+		"mana.max":2,
+		"sp":2
 	},
 	"flavor":""
 },
@@ -268,7 +281,8 @@
 		"cold.max":3,
 		"cold.rate":0.1,
 		"fire.max":3,
-		"fire.rate":0.1
+		"fire.rate":0.1,
+		"sp":1
 	}
 },
 {
@@ -278,7 +292,8 @@
 
 	},
 	"effect":{
-		"tiertwo":true
+		"tiertwo":true,
+		"sp":1
 	},
 	"flavor":"there's a storm coming"
 },
@@ -290,7 +305,8 @@
 	"effect":{
 		"research.max":5,
 		"elemental.max":5,
-		"elemental.rate":0.2
+		"elemental.rate":0.2,
+		"sp":1
 	}
 },
 {
@@ -305,7 +321,8 @@
 		"mana.max":3,
 		"air.max":1,
 		"spirit.max":5,
-		"spirit.rate":0.1
+		"spirit.rate":0.1,
+		"sp":2
 	}
 },
 {
@@ -316,7 +333,8 @@
 	"effect":{
 		"research.max":40,
 		"arcana.max":2,
-		"mana.max":5
+		"mana.max":5,
+		"sp":2
 	}
 },
 
@@ -337,7 +355,8 @@
 	"effect":{
 		"research.max":-10,
 		"mana.max":3,
-		"mana.rate":0.1
+		"mana.rate":0.1,
+		"sp":1
 	}
 
 }

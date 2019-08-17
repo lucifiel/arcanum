@@ -843,6 +843,7 @@
 			"research":25
 		},
 		"mod":{
+			"sp.rate":0.0001,
 			"crafting.max":2,
 			"crafting.rate":0.1
 		}
