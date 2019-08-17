@@ -1,5 +1,4 @@
 import Action from './action';
-import Stat from '../stat';
 
 const EXP_RATIO = 0.4;
 
@@ -23,6 +22,8 @@ export default class Skill extends Action {
 		this.type = 'skill';
 		this.length = this.length || 50;
 		this.exp = this.exp || 0;
+
+		this.buy = this.buy || { "sp":1 };
 
 		this._value = this._value || 0;
 		this.rate = this.rate || 0.5;

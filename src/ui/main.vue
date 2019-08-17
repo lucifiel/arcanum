@@ -312,7 +312,7 @@ export default {
 		},
 
 		/**
-		 * Buy spell or item.
+		 * Buy a spell or item without casting/using the item or its mods.
 		 * @property {Item} item - item to buy.
 		 */
 		onBuy(item) {
@@ -456,8 +456,9 @@ div.main {
 }
 
 div.mid-view {
-	flex-basis:35%;
-	margin: 12px 8px;
+	flex-basis:40%;
+	justify-self: center;
+	margin: 0px 20px;
 }
 
 div.inv-equip {

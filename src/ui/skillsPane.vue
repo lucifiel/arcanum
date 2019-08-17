@@ -28,9 +28,20 @@ export default {
 </script>
 
 <template>
-	<div class="skills-view">
+	<div class="skills">
 
 		<skill v-for="s in skills" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
 
 	</div>
 </template>
+
+<style scoped>
+
+div.skills {
+	display:flex;
+	flex-direction: column;
+	flex-basis: 50%;
+	flex-wrap: wrap;
+}
+
+</style>

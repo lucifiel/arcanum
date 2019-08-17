@@ -1,6 +1,7 @@
 [
 	{
 		"id":"hp",
+		"name":"life",
 		"desc":"Wizard life-force",
 		"value":10,
 		"max":10,
@@ -21,6 +22,7 @@
 	{
 		"id":"dist",
 		"name":"distance",
+		"desc":"Maximum travel distance.",
 		"value":10,
 		"locked":false
 	},
@@ -32,6 +34,12 @@
 	{
 		"id":"exp",
 		"value":0,
+		"locked":false
+	},
+	{
+		"id":"sp",
+		"name":"skill points",
+		"value":1,
 		"locked":false
 	},
 	{

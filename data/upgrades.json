@@ -48,7 +48,8 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist":75
+			"dist":75,
+			"air.max":1
 		}
 
 	},

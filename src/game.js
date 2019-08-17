@@ -401,12 +401,12 @@ export default {
 			this.payCost( it.buy );
 			it.owned = true;
 
+		} else {
+
+			this.payCost( it.cost );
+			return this.doItem(it);
 		}
 
-
-		this.payCost( it.cost );
-
-		return this.doItem(it);
 	},
 
 	/**
@@ -508,7 +508,7 @@ export default {
 
 		else if ( !it.require || this.unlockTest(it.require,it) ) {
 
-			this.log.log( 'Unlocked: ' + it.name, it.name + ' has been unlocked.', 'unlock' );
+			this.log.log( 'Unlocked: ' + it.name, null, 'unlock' );
 			it.locked = false;
 			if ( it.type === 'event') this.doEvent( it );
 			else it.dirty = true;
@@ -763,7 +763,8 @@ export default {
 
 			}
 
-		} else if ( !isNaN(cost ) ) {
+		} else if ( typeof cost === 'boolean') return;
+	 	else if ( !isNaN(cost ) ) {
 
 			res = this.getItem('gold');
 			res.value -= cost*unit;
@@ -795,7 +796,8 @@ export default {
 			}
 
 
-		} else if (!isNaN(cost) ) {
+		} else if ( typeof cost === 'boolean') return true;
+		else if (!isNaN(cost) ) {
 
 			res = this.getItem('gold');
 			if ( !res) console.error('Error: Gold is missing');

@@ -1,40 +1,10 @@
 [
 
 	{
-		"id":"animals",
-		"name":"animal handling",
-		"need":"tagpen",
-		"require":"tagpen",
-		"cost":{
-			"stamina":0.5
-		},
-		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
-		},
-		"flavor":"you can tend the rabbits"
-	},
-	{
-		"id":"herbalism",
-		"school":["nature"],
-		"require":"lore",
-		"need":"taggarden",
-		"cost":{
-			"stamina":0.25
-		},
-		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
-		}
-	},
-	{
 		"id":"crafting",
 		"require":"workspace",
-		"cost":{
+		"buy":true,
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -43,26 +13,14 @@
 				"value":5
 			}
 		}
-	},
-	{
-
-		"id":"weaving",
-		"require":"loom",
-		"cost":{
-			"stamina":0.5
-		},
-		"result":{
-			"crafting.max":0.1,
-			"crafting.rate":0.1
-		}
-
 	},
 	{
 		"id":"lore",
 		"school":"arcane",
 		"verb":"reading lore",
 		"locked":false,
-		"cost":{
+		"buy":true,
+		"run":{
 			"stamina":0.2
 		},
 		"effect":{
@@ -79,11 +37,55 @@
 
 	},
 	{
+		"id":"animals",
+		"name":"animal handling",
+		"need":"tagpen",
+		"require":"tagpen",
+		"run":{
+			"stamina":0.5
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
+		},
+		"flavor":"you can tend the rabbits"
+	},
+	{
+		"id":"herbalism",
+		"school":["nature"],
+		"require":"lore",
+		"need":"taggarden",
+		"run":{
+			"stamina":0.25
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
+		}
+	},
+	{
+
+		"id":"weaving",
+		"require":"loom",
+		"run":{
+			"stamina":0.5
+		},
+		"result":{
+			"crafting.max":0.1,
+			"crafting.rate":0.1
+		}
+
+	},
+	{
 		"id":"languages",
 		"school":"lore",
 		"require":"lore",
 		"verb":"linguisticizing",
-		"cost":{
+		"run":{
 			"stamina":0.2
 		},
 		"effect":{
@@ -100,7 +102,7 @@
 		"id":"anatomy",
 		"require":"state.neophyte>=0&&state.lore>=6",
 		"school":["nature","shadow","light"],
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -116,7 +118,7 @@
 		"id":"dissection",
 		"need":"state.anatomy>=3",
 		"school":["shadow"],
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -132,7 +134,7 @@
 		"id":"embalming",
 		"require":"state.dissection>=5",
 		"school":"shadow",
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -147,7 +149,7 @@
 		"desc":"the art of foretelling",
 		"require":["state.lore>=6", "spiritsource"],
 		"school":"shadow",
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"result":{
@@ -160,7 +162,7 @@
 		"id":"lumenology",
 		"desc":"study of light",
 		"require":"prism",
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"result":{
@@ -174,7 +176,7 @@
 		"id":"pyromancy",
 		"desc":"the investigation of fire",
 		"need":"firesource",
-		"cost":{
+		"run":{
 			"stamina":0.4,
 			"hp":0.1
 		},
@@ -188,7 +190,7 @@
 	{
 		"id":"minerology",
 		"need":"earthsource",
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"result":{
@@ -203,7 +205,7 @@
 		"name":"water lore",
 		"verb":"the study of water",
 		"need":"watersource",
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"result":{
@@ -219,7 +221,7 @@
 		"name":"air lore",
 		"verb":"the study of air",
 		"need":"airsource",
-		"cost":{
+		"run":{
 			"stamina":0.3
 		},
 		"result":{
@@ -235,7 +237,7 @@
 		"name":"nature lore",
 		"verb":"observing nature",
 		"require":"state.herbalism>=3&&state.animals>=2",
-		"cost":{
+		"run":{
 			"stamina":0.4
 		},
 		"result":{
@@ -250,7 +252,7 @@
 
 		"id":"demonology",
 		"require":"state.witch>0||state.magician>0",
-		"cost":{
+		"run":{
 			"stamina":0.4,
 			"hp":0.1
 		},
@@ -265,7 +267,7 @@
 		"id":"reanimation",
 		"require":"state.evil>0&&state.embalming>=3",
 		"school":["shadow"],
-		"cost":{
+		"run":{
 			"stamina":0.5,
 			"shadow":0.1
 		},
@@ -281,7 +283,7 @@
 		"school":["nature","water"],
 		"name":"Potions",
 		"require":["cauldron","state.crafting>=5"],
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -295,7 +297,7 @@
 		"id":"enchanting",
 		"require":"state.adept>0&&state.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
-		"cost":{
+		"run":{
 			"stamina":0.5,
 			"research":1
 		},
@@ -310,7 +312,7 @@
 		"id":"alchemy",
 		"school":["elemental"],
 		"require":"alembic",
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -323,7 +325,7 @@
 	{
 		"id":"astronomy",
 		"require":"state.sextant>0||state.telescope>0",
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{
@@ -338,7 +340,7 @@
 		"id":"planeslore",
 		"name":"planes lore",
 		"require":"state.astronomy>=5&&state.tierone>0",
-		"cost":{
+		"run":{
 			"stamina":0.7,
 			"research":1,
 			"mana":0.1
@@ -351,7 +353,7 @@
 	{
 		"id":"chronomancy",
 		"require":"state.timesource>0&&state.tiertwo>0",
-		"cost":{
+		"run":{
 			"stamina":0.3,
 			"research":1,
 			"mana":1
@@ -365,7 +367,7 @@
 	{
 		"id":"scrying",
 		"require":"state.divination>5&&state.ball>0",
-		"cost":{
+		"run":{
 			"stamina":0.5
 		},
 		"result":{

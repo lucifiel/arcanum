@@ -26,16 +26,19 @@ export default {
 	<div class="skill">
 
 		<span class="separate">
-			<span>{{ skill.name }}</span>&nbsp;<span>{{ 'lvl: ' + skill.level }}</span>
+			<span>{{ skill.name }}</span>&nbsp;
+			<span v-if="skill.owned">{{ 'lvl: ' + skill.level }}<button class="train-btn"
+			@click="$emit('train',skill)" :disabled="!this.usable(skill)"
+				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button></span>
+			<span v-else>
+				<button @click="dispatch('buy', skill)"
+					@mouseenter.capture.stop="dispatch('itemover', $event, skill )">Unlock</button>
+			</span>
 		</span>
 
-		<div>
+		<div v-if="skill.owned">
 
 		<bar :value="skill.progress" :max="skill.length" />
-
-		<button class="train-btn"
-			@click="$emit('train',skill)" :disabled="!this.usable(skill)"
-				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button>
 
 		</div>
 
@@ -46,8 +49,7 @@ export default {
 <style scoped>
 button.train-btn {
 	max-height:24px;
-	margin:2px;
+	margin-top:4px;
 	padding:3px;
-	text-justify: center;
 }
 </style>
