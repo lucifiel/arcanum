@@ -43,7 +43,7 @@ export default {
 
 <template>
 
-<div class="adventure">
+<div class="skills">
 
 	<div>
 		<span v-if="raiding">Adventuring...<br></span>
@@ -53,20 +53,19 @@ export default {
 		</div>
 		</div>
 	</div>
-	<br>
 
-	<table>
-	<tr v-for="d in dungeons" :key="d.id">
+	<div class="list">
+	<div class="dungeon" v-for="d in dungeons" :key="d.id">
 
-		<td>{{ d.name }}</td>
-		<td><progbar class="dungeon" :value="d.progress" :max="d.length" /></td>
-		<td><button class="raid-btn" :disabled="!game.canRun(d)"
+		<span>{{ d.name }}</span>
+		<span class="bar"><progbar :value="d.progress" :max="d.length" /></span>
+		<span><button class="raid-btn" :disabled="!game.canRun(d)"
 			@click="dispatch( 'raid', d, !raiding || (raid.dungeon !== d) )"
 			@mouseenter.capture.stop="dispatch('itemover', $event, d )">
-			{{ raiding && (raid.dungeon === d) ? 'Stop' : 'Enter' }}</button></td>
+			{{ raiding && (raid.dungeon === d) ? 'Stop' : 'Enter' }}</button></span>
 
-	</tr>
-	</table>
+	</div>
+	</div>
 
 </div>
 	
@@ -74,5 +73,21 @@ export default {
 
 <style scoped>
 
+div.list {
+	display:flex;
+	width:100%;
+	flex-flow: column wrap;
+}
 
+div.dungeon {
+	display:flex;
+	width:50%;
+	justify-content: space-between;
+	align-items: center;
+	flex-flow: row nowrap;
+}
+
+span.bar {
+	flex-basis: 55%;
+}
 </style>

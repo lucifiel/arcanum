@@ -52,7 +52,7 @@ export default {
 <template>
 <div>
 
-	<span v-if="slotName">{{slotName}}:</span><span>{{ curItem ? curItem.name : 'None'}}</span>
+	<span v-if="slotName">{{slotName}}:</span><span @mouseenter.capture.stop="dispatch('itemover',$event,curItem)">{{ curItem ? curItem.name : 'None'}}</span>
 	<div class="inline" v-if="avail.length>0">
 	<button @click="toggleChange">{{ changing ? 'Done' : 'Choose' }}</button>
 

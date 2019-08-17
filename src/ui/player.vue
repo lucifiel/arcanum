@@ -90,6 +90,7 @@ export default {
 div.player-view {
 	display:flex;
 	flex-direction: row;
+	width:100%;
 	justify-content: space-between;
 }
 

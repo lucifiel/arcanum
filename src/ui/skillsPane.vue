@@ -37,11 +37,8 @@ export default {
 
 <style scoped>
 
-div.skills {
-	display:flex;
-	flex-direction: column;
-	flex-basis: 50%;
-	flex-wrap: wrap;
+div.skill {
+	margin: 12px 0px;
 }
 
 </style>

@@ -69,17 +69,6 @@ div.inline {
 	background: #fdc679;
 }
 
-div.action-list, div.upgrade-list {
-	flex-direction: row;
-	text-transform: capitalize;
-}
-
-div.resource-list, div.center-view,
-div.upgrade-list {
-	margin: 20px 2px 2px;
-
-}
-
 div.center-view, div.home-view {
 	display:flex;
 	flex-direction: row;
@@ -94,18 +83,20 @@ div.resource-list {
 	width: fit-content;
 }
 
-div.skill {
-	padding:2px;
-	margin:4px 0px;
-	max-width: 33%;
-}
 
+div.skills {
+	display:flex;
+	width: 100%;
+	align-self: flex-start;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+}
 
 
 span.separate {
 	display:flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content:space-between;
 }
 
 .warn-text {
@@ -153,13 +144,14 @@ div.menu {
 .menu-items {
 	display:flex;
 	flex-direction: row;
-	align-items: center;
+	justify-content: center;
 }
 
 .menu-item {
 	font-size: 1.1em;
 	cursor: pointer;
 	margin: 20px 10px;
+	justify-content: center;
 }
 
 div.bgfill {

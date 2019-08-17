@@ -18,6 +18,7 @@ export default {
 
 				let style = this.$el.style;
 				let rect = newVal.getBoundingClientRect();
+				//let myBox = this.$el.getBoundingClientRect();
 
 				let left = rect.left;
 				if ( left < window.innerWidth/2 ) {
@@ -27,8 +28,8 @@ export default {
 
 				} else {
 
-					//console.log('left: ' + left);
-					style['left'] = ( left-240 ) + 'px';
+					//console.log('width: ' + myBox.width + ' , ' + myBox.right );
+					style['left'] = ( left- 240 ) + 'px';
 				}
 
 				if ( rect.top < window.innerHeight-140) style['top'] = ( rect.top ) + 'px';
@@ -146,11 +147,11 @@ export default {
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
 				item.value.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
 		</span>
-		<div v-if="item.level">
-			Level: {{item.level}}
+		<div v-if="item.level&&item.type!=='action'">
+			lvl: {{item.level}}
 		</div>
 		<div v-if="item.dist">
-			Distance: {{item.dist}}
+			distance: {{item.dist}}
 		</div>
 		<div class="item-desc" v-if="desc">{{ desc }}</div>
 		<div v-if="item.buy&&!item.owned">
@@ -158,7 +159,7 @@ export default {
 			<hr>
 			<!--<span class="note-text">cost:</span>-->
 			<div v-if="!isNaN(item.buy)">
-				Gold: {{ item.buy }}
+				gold: {{ item.buy }}
 			</div>
 			<div v-else v-for="(v,k) in effectItems(item.buy)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
@@ -172,7 +173,7 @@ export default {
 			<hr>
 			<!--<span class="note-text">cost:</span>-->
 			<div v-if="!isNaN(item.cost)">
-				Gold: {{ item.cost }}
+				gold: {{ item.cost }}
 			</div>
 			<div v-else v-for="(v,k) in effectItems(item.cost)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
@@ -186,7 +187,7 @@ export default {
 			<hr>
 			<!--<span class="note-text">cost:</span>-->
 			<div v-if="!isNaN(item.run)">
-				Gold: {{ item.run }}
+				gold: {{ item.run }}
 			</div>
 			<div v-else v-for="(v,k) in effectItems(item.run)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
@@ -226,6 +227,7 @@ export default {
 	height:auto;
 	min-height:100px;
 	min-width:200px;
+	max-width:240px;
 	position: absolute;
 	z-index:10000;
 	top:0;

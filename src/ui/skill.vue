@@ -11,13 +11,7 @@ export default {
 	mixins:[ItemsBase],
 	components:{
 		bar:Progress
-	},
-	computed:{
-
-		width(){ return this.skill.percent() + '%;' }
-
 	}
-
 }
 </script>
 
@@ -47,11 +41,17 @@ export default {
 </template>
 
 <style scoped>
-span.separate {
-	text-align: center;
+
+div.skill {
+	width: 33%;
 }
-button.train-btn {
-	max-height:24px;
+
+span.separate {
+	width: 100%;
+	align-items: center;
+}
+button {
+	max-height:36px;
 	margin-top:4px;
 	padding:3px;
 }

@@ -14,7 +14,7 @@ export default {
 
 <template>
 
-<div style="display:inline-block">
+<div style="container">
 	<label v-if="label" :for="elmId('bar')">{{label}}</label>
 	<div class="bar" :id="elmId('bar')">
 		<div class="fill" :style="'width:'+width">&nbsp;</div>
@@ -24,14 +24,19 @@ export default {
 </template>
 
 <style>
+div.container {
+display:inline-block;
+width:100%;
+}
 div.bar {
 	display:inline-block;
 	background: #333;
 	margin:4px 4px 0px 2px;
-	padding:3px;
+	padding:2px;
 	min-height:18px;
-	width:200px;
-	border-radius: 9px;
+	width:-webkit-fill-available;
+	width:-moz-available;
+	border-radius: 8px;
 }
 div.bar > div {
 	background:orange;

@@ -126,6 +126,7 @@ export default {
 div.spellbook {
 	display:flex;
 	flex-direction: row;
+	justify-content: space-between;
 }
 
 .spellbook table{

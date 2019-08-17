@@ -8,7 +8,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.01
+			"sp":0.05
 		}
 	},
 	{
@@ -42,6 +42,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -58,6 +59,7 @@
 			"stamina":0.25
 		},
 		"result":{
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -72,8 +74,8 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.01,
-			"crafting.max":0.1,
+			"sp":0.05,
+			"crafting.max":0.2,
 			"crafting.rate":0.1
 		}
 
@@ -104,7 +106,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.01,
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -121,6 +123,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -137,6 +140,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.05,
 			"shadow.max":1,
 			"shadow.rate":0.01
 		}
@@ -144,15 +148,33 @@
 	},
 	{
 
-		"id":"divination",
-		"desc":"the art of foretelling",
+		"id":"secondsight",
+		"desc":"seeing the unseen",
 		"require":["state.lore>=6", "spiritsource"],
-		"school":"shadow",
+		"school":"spirit",
 		"run":{
 			"stamina":0.4
 		},
 		"result":{
 			"spirit.max":1,
+			"spirit.rate":0.01
+		}
+
+	},
+	{
+
+		"id":"divination",
+		"desc":"the art of foretelling",
+		"require":["secondsight.lore>=6", "spiritsource"],
+		"school":"shadow",
+		"run":{
+			"stamina":0.4
+		},
+		"effect":{
+			"arcana":0.001
+		},
+		"result":{
+			"spirit.max":0.1,
 			"spirit.rate":0.01
 		}
 
@@ -256,6 +278,7 @@
 			"hp":0.1
 		},
 		"result":{
+			"sp":0.1,
 			"arcana.max":0.1,
 			"lore.rate":0.2
 		}
@@ -286,6 +309,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -301,6 +325,7 @@
 			"research":1
 		},
 		"result":{
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -315,7 +340,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.01,
+			"sp":0.05,
 			"research":{
 				"max":1,
 				"value":5
@@ -369,6 +394,9 @@
 		"require":"state.divination>5&&state.ball>0",
 		"run":{
 			"stamina":0.5
+		},
+		"effect":{
+			"arcana":0.001
 		},
 		"result":{
 			"mana.max":0.2,

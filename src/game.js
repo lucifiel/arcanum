@@ -403,6 +403,8 @@ export default {
 
 		} else {
 
+			if ( it.slot && this.state.getSlot(it.slot) === it )return;
+	
 			this.payCost( it.cost );
 			return this.doItem(it);
 		}
@@ -421,7 +423,6 @@ export default {
 
 			let cur = this.state.getSlot(it.slot);
 			if ( cur ) {
-				if ( cur == it ) return false;
 				this.remove( cur, 1 );
 			}
 			this.state.setSlot(it.slot, it);
@@ -473,6 +474,7 @@ export default {
 	remove( id, amt=1 ){
 
 		let it = typeof id === 'string' ? this.getItem(id) : id;
+
 		if ( !it ) {
 
 			it = this.state.getTagList(id);
@@ -718,13 +720,14 @@ export default {
 	/**
 	 * Determine if a one-use item can be used. Ongoing/perpetual actions
 	 * test with 'canRun' instead.
-	 * @param {*} it 
+	 * @param {Item} it 
 	 */
 	canUse( it ){
 
 		if ( it.disabled || (it.need && !this.unlockTest( it.need, it )) ) return false;
 
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
+		if ( it.slot && this.state.getSlot(it.slot) === it) return false;
 
 		if ( it.fill ) {
 

@@ -65,7 +65,21 @@ export default {
 <style scoped>
 
 div.vitals {
-	margin:4px 10px;
+	margin:4px 8px;
+	flex-basis: 16%;
+}
+
+table {
+	width: -moz-available;
+	width:-webkit-fill-available;
+}
+
+tr td:first-child {
+	max-width: 33%;
+}
+
+tr td:last-child {
+	width:100%;
 }
 
 </style>

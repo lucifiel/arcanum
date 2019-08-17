@@ -378,9 +378,9 @@ export default {
 		<vue-menu class="mid-view" :items="menuItems" active="sect_main">
 
 		<template slot="sect_main">
-		<actions :items="state.actions" />
-		<upgrades :items="state.upgrades" />
-		<upgrades :items="state.classes" />
+		<actions class="action-list" :items="state.actions" />
+		<upgrades class="upgrade-list" :items="state.upgrades" />
+		<upgrades class="upgrade-list" :items="state.classes" />
 
 		</template>
 	
@@ -456,9 +456,25 @@ div.main {
 }
 
 div.mid-view {
+	display:flex;
 	flex-basis:40%;
-	justify-self: center;
-	margin: 0px 20px;
+	margin: 0px 14px;
+	align-items: center;
+	align-content: flex-end;
+}
+
+div.action-list, div.upgrade-list {
+	display:flex;
+	flex-flow: row wrap;
+	justify-items: center;
+	flex-direction: row;
+	text-transform: capitalize;
+}
+
+div.resource-list, div.center-view,
+div.upgrade-list {
+	margin: 20px 2px 2px;
+
 }
 
 div.inv-equip {
