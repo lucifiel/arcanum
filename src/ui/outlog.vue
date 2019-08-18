@@ -75,7 +75,7 @@ div.top-span {
 div.log-view {
 	flex-direction: column;
 	height:95vh;
-	flex-basis: 22%;
+	flex-basis: 20%;
 	overflow-y: auto;
 }
 

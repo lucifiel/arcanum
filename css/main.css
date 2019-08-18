@@ -93,7 +93,7 @@ div.skills {
 }
 
 
-span.separate {
+.separate {
 	display:flex;
 	flex-direction: row;
 	justify-content:space-between;
@@ -134,11 +134,6 @@ div.outlog {
 
 button.rest-btn {
 	padding:3px 8px;
-}
-
-div.menu {
-	display:flex;
-	flex-direction: column;
 }
 
 .menu-items {

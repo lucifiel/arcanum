@@ -26,7 +26,6 @@ export default {
 <style>
 div.container {
 display:inline-block;
-width:100%;
 }
 div.bar {
 	display:inline-block;
@@ -36,16 +35,14 @@ div.bar {
 	min-height:18px;
 	width:-webkit-fill-available;
 	width:-moz-available;
-	border-radius: 8px;
+	border-radius: 10px;
 }
 div.bar > div {
 	background:orange;
 	border-radius: 7px;
-	height:100%;
+	max-height: 100%;
 	min-width:0px;
 	width:0px;
 }
-div.bar>div:after{
-	content:"\00a0";
-}
+
 </style>

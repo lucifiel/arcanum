@@ -102,7 +102,7 @@
 	{
 
 		"id":"makespellbook",
-		"name":"Compile Spellbook",
+		"name":"Bind Spellbook",
 		"require":"state.lore>=2&&state.crafting>=2",
 		"desc":"The portal to true magic.",
 		"length":50,
@@ -243,6 +243,41 @@
 			"gold":0.4
 		}
 
+	},
+	{
+		"id":"readpalms",
+		"name":"Read Palms",
+		"verb":"reading palms",
+		"require":"state.divination>=5||state.trickster>0",
+		"desc":"read palms for a small fee.",
+		"cost":{
+			"stamina":0.3,
+			"mana":1
+		},
+		"effect":{
+			"gold":0.5
+		}
+	},
+	{
+		"id":"hattrick",
+		"name":"hat trick",
+		"require":"state.trickster>0",
+		"desc":"pull small objects out of thin air.",
+		"cost":{
+			"mana":5,
+			"stamina":4,
+			"gold":50
+		},
+		"effect":{
+			"bones":"5%",
+			"skull":"5%",
+			"gems":"5%",
+			"firegem":"0.5%",
+			"earthgem":"0.5%",
+			"airgem":"0.5%",
+			"watergem":"0.5%"
+		},
+		"flavor":"an ordinary wizard's cap"
 	},
 	{
 		"id":"gatherherbs",

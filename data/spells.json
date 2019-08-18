@@ -607,6 +607,27 @@
 
 	},
 	{
+
+		"id":"jinx",
+		"level":3,
+		"require":"trickster",
+		"desc":"curse an enemy with a streak of bad luck.",
+		"buy":{
+			"research":75
+		},
+		"cost":{
+
+		},
+		"attack":{
+			"dot":{
+				"id":"jinx",
+				"kind":"curse",
+				"duration":20,
+				"tohit":-5
+			}
+		}
+	},
+	{
 		"id":"minorspeed",
 		"level":3,
 		"name":"dust devil",
@@ -655,6 +676,33 @@
 			"duration":45,
 			"mod":{
 				"defense":5
+			}
+		}
+
+	},
+	{
+		"id":"steelskin",
+		"name":"steel skin",
+		"desc":"hardens the skin of the caster.",
+		"school":"earth",
+		"require":{
+			"earth.max":15
+		},
+		"level":4,
+		"buy":{
+
+			"research":100,
+			"tomes":1,
+			"earthgem":5
+
+		},
+		"cost":{
+			"earth":10
+		},
+		"dot":{
+			"duration":90,
+			"mod":{
+				"defense":10
 			}
 		}
 

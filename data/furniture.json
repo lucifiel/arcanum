@@ -848,6 +848,22 @@
 			"crafting.rate":0.1
 		}
 
+	},
+	{
+		"id":"dungeon",
+		"desc":"A vast complex to lock away hazardous experiments, deadly creatures, and all those who displease you.",
+		"tags":"prison",
+		"require":"tiertwo",
+		"cost":{
+			"gold":1000,
+			"space":100
+		},
+		"mod":{
+			"shadow.max":1,
+			"shadow.rate":0.01,
+			"demonology.max":1
+		}
+
 	}
 
 ]

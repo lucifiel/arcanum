@@ -18,7 +18,8 @@ export default {
 
 
 <template>
-<div class="action-list">
+<div>
+
 
 	<span :class="{ 'action-btn':true, locked:locked(it),
 		'running':it===game.state.curAction, runnable:it.perpetual||it.length>0 }" v-for="it in items" :key="it.id"
@@ -27,6 +28,7 @@ export default {
 		:disabled="!usable(it)"
 		@click.stop="dispatch( 'action', it)">{{ showName(it) }}</button>
 	</span>
+
 
 </div>
 </template>

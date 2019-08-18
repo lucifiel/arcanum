@@ -29,6 +29,7 @@ const cheatKeys = {
 	e:'exp',
 	t:'stamina',
 	h:"hp",
+	k:'sp',
 	m:'mana',
 	c:'codices',
 	a:'arcana',
@@ -71,12 +72,12 @@ export default {
 	},
 	created(){
 
-		this.lastSave = null;
-
 		/**
 	 	* @property {Game} game
 	 	*/
 		this.game = Game;
+
+		this.listen('game-loaded', this.gameLoaded );
 
 		this.listen( 'sell', this.onSell );
 		this.listen( 'itemover', this.itemOver );
@@ -95,10 +96,9 @@ export default {
 		this.listen( 'spell', this.onSpell );
 		this.listen( 'buy', this.onBuy );
 
+		this.listen('pause', this.pause );
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
-
-		this.loadSave();
 
 
 	},
@@ -106,27 +106,12 @@ export default {
 
 		gameLoaded() {
 
-			console.log('gameLoaded()');
 			this.state = Game.state;
 
 			window.addEventListener('keydown',evt=>{
 				this.keyDown( evt ); evt.stopPropagation(); }, false );
 
 			this.unpause();
-
-		},
-
-		saveFile(e){
-
-			if ( this.lastSave ) URL.revokeObjectURL( this.lastSave );
-
-			try {
-				let json = JSON.stringify( this.state );
-				this.lastSave = new File( [json], 'arcanum.json', {type:"text/json;charset=utf-8"} );
-
-				e.target.href = URL.createObjectURL( this.lastSave );
-
-			} catch(ex) { console.error(ex); }
 
 		},
 
@@ -137,7 +122,7 @@ export default {
 			e.target.classList.remove('hilite');
 	
 			const dt = e.dataTransfer;
-			this.loadFile( dt.files );
+			this.dispatch('load-file', dt.files);
 			
 		},
 		fileDrag(e){
@@ -149,59 +134,6 @@ export default {
 			e.stopPropagation();
 			e.preventDefault();
 			e.currentTarget.classList.remove('hilite');
-		},
-		loadFile(files) {
-
-			const file = files[0];
-			if ( !file) return;
-	
-			const reader = new FileReader();
-			reader.onload = (e)=>{
-
-				this.loadData( e.target.result );
-
-			}
-			reader.readAsText( file );
-
-		},
-
-		loadSave() {
-
-			let str = window.localStorage.getItem( 'gameData');
-			if ( !str ) console.log('no data saved.');
-			this.loadData( str );
-
-		},
-
-		loadData( text ){
-
-			this.pause();
-
-			let obj = text ? JSON.parse( text ) : null;
-			this.game.load( obj ).then( this.gameLoaded );
-
-		},
-
-		save() {
-
-			console.log('saving...');
-			let store = window.localStorage;
-
-			let json = JSON.stringify( this.state );
-			console.log( json )
-			store.setItem( 'gameData', json );
-
-		},
-		reset() {
-
-			this.pause();
-
-			// clear all save data.
-			let store = window.localStorage;
-			store.clear();
-
-			this.game.reset().then( this.gameLoaded );
-
 		},
 
 		pause() {
@@ -357,14 +289,16 @@ export default {
 		@mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">	
-			<button @click="save">save</button>
-			<button @click="loadSave">load</button>
+			<button @click="dispatch('save')">save</button>
+			<button @click="dispatch('load')">load</button>
 
-			<a class="text-button" id="save-file" href="" download @click="saveFile" type="text/json">Get File</a>
+			<a class="text-button" id="save-file" href=""
+				download @click="dispatch('save-file',$event)" type="text/json">Get File</a>
 			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
-			<button id="drop-file" @drop="fileDrop" @dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
+			<button id="drop-file" @drop="fileDrop"
+				@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
 
-			<confirm @confirm="reset">reset</confirm>
+			<confirm @confirm="dispatch('reset')">reset</confirm>
 			<dots v-if="state" :dots="state.player.dots" />
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
@@ -420,6 +354,8 @@ export default {
 		</vue-menu>
 
 		<vitals :player="state.player" :state="state" />
+
+
 		<log :log="game.log" />
 
 		</div>
@@ -457,16 +393,16 @@ div.main {
 
 div.mid-view {
 	display:flex;
-	flex-basis:40%;
+	flex-flow: column nowrap;
+	flex-basis:42%;
 	margin: 0px 14px;
-	align-items: center;
-	align-content: flex-end;
+	align-content: space-around;
 }
 
 div.action-list, div.upgrade-list {
 	display:flex;
 	flex-flow: row wrap;
-	justify-items: center;
+	justify-content:left;
 	flex-direction: row;
 	text-transform: capitalize;
 }

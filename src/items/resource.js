@@ -60,6 +60,16 @@ export default class Resource extends Item {
 
 	}
 
+	/**
+	 * @returns {boolean} true if an unlocked item is at maximum value.
+	 */
+	maxed() {
+
+		return this.max ? (this._value >= this.max) : false;
+
+	}
+
+
 	update( dt ) {
 
 		if ( this._rate.value ) {

@@ -2,6 +2,9 @@ star cinder
 star well
 cloak of ashes
 amulet of xulang
+living fire
+zavid's compass
+tenwick's walking stick
 
 
 staff of the dryad
@@ -22,7 +25,8 @@ familiars,
 alchemy,
 crafting,
 enchanting,
-minions
+minions,
+potions
 
 
 upgrades:
@@ -30,6 +34,8 @@ upgrades:
 cairn ( druid)
 obelisk
 
+crocodile tears
+- as crocodiles do not cry, they are notoriously difficult to come by.
 
 weapons:
 Shillelagh

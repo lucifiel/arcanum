@@ -35,7 +35,9 @@ export default {
 </script>
 
 <template>
+
 	<div class="vitals">
+		<!-- anything not a table is a headache -->
 		<table>
 		
 		<tr><td><button class="rest-btn" @click="dispatch('rest')"
@@ -57,8 +59,6 @@ export default {
 
 		</table>
 
-		<br>
-
 	</div>
 </template>
 
@@ -66,7 +66,7 @@ export default {
 
 div.vitals {
 	margin:4px 8px;
-	flex-basis: 16%;
+	flex-basis: 19%;
 }
 
 table {
