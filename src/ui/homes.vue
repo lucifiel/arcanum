@@ -3,6 +3,7 @@ import Game from '../game';
 
 import ItemsBase from './itemsBase';
 import UpgradeView from './upgrades.vue';
+import FilterBox from './component/filterbox.vue';
 
 /**
  * @emits sell
@@ -12,7 +13,8 @@ export default {
 	props:['state'],
 	mixins:[ItemsBase],
 	components:{
-		'upgrades':UpgradeView
+		upgrades:UpgradeView,
+		filterbox:FilterBox
 	},
 	data(){
 
@@ -20,7 +22,11 @@ export default {
 			/**
 			 * @property {boolean} switching - true when switching homes.
 			 */
-			switching:false
+			switching:false,
+			/**
+			 * @property {Item[]} filtered - items after text-search filtering.
+			 */
+			filtered:null
 		}
 
 	},
@@ -31,20 +37,14 @@ export default {
 	},
 	computed:{
 
-		curHome() {
-			return this.state.getSlot('home');
-		},
+		curHome() { return this.state.getSlot('home'); },
 
-		homesAvail() {
-			return this.state.homes.filter( v=>!this.locked(v) );
-		},
+		homesAvail() { return this.state.homes.filter( v=>!this.locked(v) ); },
 
 		furniture(){
 			return Game.filterItems( it=>this.state.typeCost(it.cost, 'space')>0);
 		},
-		viewable(){
-			return this.furniture.filter( it=>!this.reslocked(it));
-		}
+		viewable() { return this.furniture.filter( it=>!this.reslocked(it)); }
 
 	}
 
@@ -67,10 +67,15 @@ export default {
 
 		<div class="furniture">
 
-		<div class="warn-text" style="text-align:center" v-if="state.items.space.value===0">No space available. Sell items to free space</div>
+		<div class="warn-text"
+			style="text-align:center"
+			v-if="state.items.space.value===0">No space remaining. Sell items or find new Home</div>
+
+		<filterbox v-model="filtered" :items="viewable" />
+
 		<table class="furniture item-table">
 			<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
-		<tr v-for="it in viewable" :key="it.id">
+		<tr v-for="it in filtered" :key="it.id">
 
 			<td class="space">{{ it.cost.space }}</td>
 			<td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
@@ -98,7 +103,7 @@ div.home-view {
 .furniture {
 	overflow-y:auto;
 	width:100%;
-	max-height:90vh;
+	max-height:70vh;
 }
 
 table .count, table .space {

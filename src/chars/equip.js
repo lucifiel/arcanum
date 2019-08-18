@@ -91,8 +91,19 @@ export default class Equip {
 
 	}
 
+	/**
+	 * Get item or items in a named slot.
+	 * @param {string} slot 
+	 * @returns {?Item|Item[]}
+	 */
 	get( slot ) {
-		return this.slots[slot];
+
+		slot = this.slots[slot];
+		if ( slot === undefined ) return undefined;
+
+		return slot.item;
+
+
 	}
 
 	/**

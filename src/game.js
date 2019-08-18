@@ -302,7 +302,7 @@ export default {
 
 				it.disabled = true;
 
-				if ( it.slot && this.state.getSlot(it.slot) === it ) {
+				if ( it.slot && this.state.getSlot(it.slot, it.type) === it ) {
 					this.state.setSlot(it.slot, null );
 				}
 
@@ -403,7 +403,7 @@ export default {
 
 		} else {
 
-			if ( it.slot && this.state.getSlot(it.slot) === it )return;
+			if ( it.slot && this.state.getSlot(it.slot, it.type) === it )return;
 	
 			this.payCost( it.cost );
 			return this.doItem(it);
@@ -419,9 +419,9 @@ export default {
 	doItem(it, count=1) {
 
 		if ( it.maxed() ) return false;
-		if ( it.slot ) {
+		if ( it.slot) {
 
-			let cur = this.state.getSlot(it.slot);
+			let cur = this.state.getSlot(it.slot, it.type );
 			if ( cur ) {
 				this.remove( cur, 1 );
 			}
@@ -727,7 +727,7 @@ export default {
 		if ( it.disabled || (it.need && !this.unlockTest( it.need, it )) ) return false;
 
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
-		if ( it.slot && this.state.getSlot(it.slot) === it) return false;
+		if ( it.slot && this.state.getSlot(it.slot, it.type ) === it) return false;
 		if ( it.maxed() ) return false;
 
 		if ( it.fill ) {

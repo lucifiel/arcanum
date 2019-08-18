@@ -2,7 +2,7 @@
 import Game from '../game';
 import ItemBase from './itemsBase.js';
 
-import ProgBar from './progbar.vue';
+import ProgBar from './component/progbar.vue';
 
 export default {
 	

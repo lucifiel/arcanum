@@ -65,6 +65,8 @@ export default class Wearable {
 
 	}
 
+	maxed() { return false; }
+
 	revive( state ) {
 
 		if ( typeof this.material === 'string') this.material = state.getMaterial( this.material );

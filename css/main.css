@@ -122,10 +122,11 @@ border-spacing: 0px;
 }
 
 table.item-table tr, table.item-table th {
-	padding: 1px 8px;
+	padding: 1px 0px;
 	max-height: 24px;
 	border-spacing: 0px;
 }
+
 
 div.outlog {
 	display:flex;

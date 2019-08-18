@@ -1,6 +1,6 @@
 <script>
 import Game from '../game';
-import Menu from './menu.vue';
+import Menu from './component/menu.vue';
 import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
 import upgrades from './upgrades.vue';

@@ -21,9 +21,7 @@ export default class Npc extends Char {
 
 	}
 
-	get damage() {
-		return this._damage;
-	}
+	get damage() { return this._damage; }
 	set damage(v) {
 
 		if ( v && !(v instanceof Range) ) {
@@ -45,14 +43,14 @@ export default class Npc extends Char {
 		if ( typeof this.hp === 'string' || typeof this.hp === 'object') this.hp = new Range(this.hp);
 		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
+		this.tohit = this.tohit || 0;
 		this._maxHp = this._maxHp || this._hp;
 
 		if ( this.dmg && (this.damage===null||this.damage===undefined) ) this.damage = this.dmg;
-		if ( this.damage ) console.log('dmg: ' + this.damage);
 
 	}
 
-	update(dt) {
+	/*update(dt) {
 
 		super.update(dt);
 		
@@ -66,6 +64,6 @@ export default class Npc extends Char {
 
 		}
 
-	}
+	}*/
 
 }

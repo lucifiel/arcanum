@@ -325,16 +325,23 @@ export default class GameState {
 
 	/**
 	 * Get item in named slot.
-	 * @param {string} id 
+	 * @param {string} id - slot id.
+	 * @param {string} type - item type for determining subslot (equip,home,etc)
 	 */
-	getSlot(id) { return this.slots[id];}
+	getSlot( id, type) {
+		if ( type === 'wearable' || type === 'furniture') return null;
+		return this.slots[id];
+	}
 
 	/**
 	 * Set slotted item for exclusive items.
 	 * @param {string} id 
-	 * @param {Item} v 
+	 * @param {?Item} v - item to place in slot, or null.
 	 */
-	setSlot(id,v) { this.slots[id] = v;}
+	setSlot(id,v) {
+		if ( v && v.type === 'wearable' || v.type === 'furniture') return;
+		this.slots[id] = v;
+	}
 
 	getItem(id) { return this.items[id];}
 

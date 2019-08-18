@@ -127,7 +127,7 @@ export default class Player extends Char {
 		this.speed = this._speed || 1;
 
 		this._tohit = this._tohit || 1;
-		this._defense = this._defense || 1;
+		this._defense = this._defense || 0;
 
 		this._resists = this._resists || {};
 		for( let p in this._resists ) {
