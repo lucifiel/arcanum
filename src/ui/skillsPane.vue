@@ -3,12 +3,24 @@ import Game from '../game';
 import ItemBase from './itemsBase';
 import SkillView from './skill.vue';
 
+import FilterBox from './component/filterbox.vue';
+
 export default {
 	
 	props:['state'],
 	mixins:[ItemBase],
 	components:{
-		'skill':SkillView
+		skill:SkillView,
+		filterbox:FilterBox
+	},
+	data() {
+
+		return {
+			/**
+			 * @property {Item[]} filtered - filtered search results.
+			 */
+			filtered:null
+		}
 	},
 	computed:{
 
@@ -30,7 +42,9 @@ export default {
 <template>
 	<div class="skills">
 
-		<skill v-for="s in skills" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
+		<filterbox v-show="skills.length>=8" v-model="filtered" :items="skills" />
+
+		<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
 
 	</div>
 </template>
