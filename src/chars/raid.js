@@ -88,6 +88,7 @@ export default class Raid {
 	get name() { return this.dungeon.name; }
 
 	get cost() { return this.dungeon ? this.dungeon.cost : null; }
+	get run() { return this.dungeon ? this.dungeon.run : null; }
 
 	get progress(){ return this.dungeon.progress; }
 	set progress(v){
@@ -198,9 +199,7 @@ export default class Raid {
 	
 				var e = this._enemies[i];
 				var action = e.update(dt);
-				if ( e.alive === false ) {
-					this._enemies.splice(i,1);
-				}
+				if ( e.alive === false ) { this._enemies.splice(i,1); }
 				else if ( action ) this.enemyAttack( e, action, this.player );
 
 			}
@@ -275,7 +274,12 @@ export default class Raid {
 	 */
 	enemyAttack( enemy, attack, target ) {
 
-		if ( this.tryHit( enemy, target, (attack!=enemy)?attack:null ) ) {
+		if ( Array.isArray(attack) ) {
+			attack.forEach(v=>this.enemyAttack(enemy,v,target), this);
+			return;
+		}
+
+		if ( this.tryHit( enemy, target, attack ) ) {
 
 			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
 
@@ -292,8 +296,11 @@ export default class Raid {
 	 */
 	tryHit( attacker, defender, attack ){
 
-		return Math.random()*( 10 + attacker.tohit + (attack ? attack.tohit || 0 : 0) )
-			>= Math.random()*(10 + defender.defense );
+		let tohit = attacker.tohit || 0;
+		if ( attack && (attack != attacker) ) tohit += ( attack.tohit || 0 );
+
+		//console.log( attacker.name + ': ' + tohit + '  vs: ' + defender.defense );
+		return Math.random()*( 10 + tohit ) >= Math.random()*(10 + defender.defense );
 	}
 
 	charDied( char, attacker ) {

@@ -34,6 +34,8 @@ upgrades:
 cairn ( druid)
 obelisk
 
+astral projection
+lucky coin
 crocodile tears
 - as crocodiles do not cry, they are notoriously difficult to come by.
 

@@ -188,7 +188,7 @@
 			"research":50
 		},
 		"mod":{
-			"manas.max":1
+			"mana.max":1
 		}
 
 	},
@@ -240,7 +240,8 @@
 		"tags":"timesource",
 		"require":"state.lore>=10",
 		"cost":{
-			"gems":1
+			"gems":1,
+			"research":20
 		},
 		"mod":{
 			"tempus.rate":0.01
@@ -264,7 +265,7 @@
 	{
 		"id":"armillarysphere",
 		"name":"armillary sphere",
-		"desc":"a small mechanical model of known worlds",
+		"desc":"a small mechanical model of the known worlds",
 		"require":"state.astronomy.max>=7&&state.crafting>=7",
 		"cost":{
 			"arcana":1,
@@ -299,6 +300,19 @@
 			"potions.max":5,
 			"potions.rate":0.1,
 			"spirit.rate":0.1
+		}
+
+	},
+	{
+		"id":"fourleaf",
+		"name":"four leaf clover",
+		"desc":"a small but helpful charm.",
+		"cost":{
+			"nature":5,
+			"luck":5
+		},
+		"mod":{
+			"player.dodge":1
 		}
 
 	},
@@ -730,6 +744,10 @@
 			"arcana":1
 		},
 		"mod":{
+			"player.attack.bonus":{
+				"kind":"fire",
+				"damage":1
+			},
 			"fire.max":2,
 			"fire.rate":0.1
 		}
@@ -841,6 +859,24 @@
 		"mod":{
 			"cellar.mod.space.max":5
 		}
+	},
+	{
+
+		"id":"up_apprentice",
+		"name":"apprentice",
+		"desc":"Take on an apprentice to do work for you",
+		"require":"tiertwo",
+		"cost":{
+			"space":5,
+			"gold":300
+		},
+		"mod":{
+			"gold.rate":0.01,
+			"scrolls.rate":0.002,
+			"codices.rate":0.001,
+			"tomes.rate":0.0001
+		},"flavor":"why does it cost money?"
+
 	},
 	{
 		"id":"basement",

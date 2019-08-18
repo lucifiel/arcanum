@@ -285,8 +285,7 @@ export default {
 
 <template>
 
-	<div class="full"
-		@mouseover.capture.stop="dispatch('itemout')">
+	<div class="full" @mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">	
 			<button @click="dispatch('save')">save</button>
@@ -318,25 +317,15 @@ export default {
 
 		</template>
 	
-		<template slot="sect_player">
-			<player />
-		</template>
+		<template slot="sect_player"><player /></template>
 
-		<template slot="sect_house">
-			<homes :state="state" />
-		</template>
+		<template slot="sect_house"><homes :state="state" /></template>
 	
-		<template slot="sect_raid">
-			<adventure :state="state" />
-		</template>
+		<template slot="sect_raid"><adventure :state="state" /></template>
 
-		<template slot="sect_skills">
-			<skills :state="state"></skills>
-		</template>
+		<template slot="sect_skills"><skills :state="state"></skills></template>
 
-		<template slot="sect_spells">
-			<spellbook :state="state" />
-		</template>
+		<template slot="sect_spells"><spellbook :state="state" /></template>
 
 		<template slot="sect_equip">
 
@@ -347,14 +336,11 @@ export default {
 
 		</template>
 
-		<template slot="sect_bestiary">
-			<bestiary />
-		</template>
+		<template slot="sect_bestiary"><bestiary /></template>
 	
 		</vue-menu>
 
 		<vitals :player="state.player" :state="state" />
-
 
 		<log :log="game.log" />
 

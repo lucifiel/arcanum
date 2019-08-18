@@ -62,7 +62,7 @@ export default class Npc extends Char {
 		if ( this.timer <= 0 ) {
 
 			this.timer += this.delay;
-			return this.attack || this;
+			return this.attacks || this.attack || this;
 
 		}
 

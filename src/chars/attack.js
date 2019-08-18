@@ -13,9 +13,7 @@ export default class Attack {
 
 	}
 
-	set dmg(v) {
-		this.damage = v;
-	}
+	set dmg(v) { this.damage = v; }
 
 	get damage() { return this._damage; }
 	set damage(v) {
@@ -29,6 +27,9 @@ export default class Attack {
 	constructor( vars=null ){
 
 		if ( vars ) Object.assign(this,vars);
+
+		this.damage = this.damage || 0;
+		this.tohit = this.tohit || 0;
 
 	}
 

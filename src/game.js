@@ -728,6 +728,7 @@ export default {
 
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 		if ( it.slot && this.state.getSlot(it.slot) === it) return false;
+		if ( it.maxed() ) return false;
 
 		if ( it.fill ) {
 

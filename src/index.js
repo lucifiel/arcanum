@@ -106,7 +106,7 @@ var vm = new Vue({
 			console.log('saving...');
 			let store = window.localStorage;
 
-			let json = JSON.stringify( this.state );
+			let json = JSON.stringify( this.game.state );
 			console.log( json )
 			store.setItem( 'gameData', json );
 

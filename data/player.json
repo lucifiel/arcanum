@@ -40,7 +40,7 @@
 		"id":"sp",
 		"name":"skill points",
 		"desc":"Spend to unlock new skills",
-		"value":0,
+		"value":1,
 		"locked":false
 	},
 	{

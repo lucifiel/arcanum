@@ -4,6 +4,8 @@ import {tryDamage} from './raid';
 import { cloneClass  } from 'objecty'
 import Stat from '../stat';
 import Dot from './dot';
+import Attack from './attack';
+import GameState from '../gameState';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -51,16 +53,20 @@ export default class Char {
 		this.delay = getDelay(v);
 	}
 
+	get attacks() { return this._attacks; }
+	set attacks(v){
+
+		for( let i = v.length-1; i>=0; i-- ) {
+			v[i] = (v[i] instanceof Attack) ? v[i] : new Attack(v[i]);
+			
+		}
+
+		this._attacks = v;
+	}
+
 	get attack() { return this._attack; }
 	set attack(v) {
-
-		v.damage = v.damage || v.dmg;
-		if ( v.damage ) {
-			if (typeof v.damage === 'string' ) v.damage = new Range(v.damage);
-			else if ( isNaN(v.damage)) v.damage = new Range( v.damage);
-		}
-		this._attack = v;
-
+		this._attack = ( v instanceof Attack) ? v : new Attack(v);
 	}
 
 	get dots() { return this._dots; }
@@ -102,18 +108,12 @@ export default class Char {
 
 	}
 
+	/**
+	 * Revive from data after Game state restored.
+	 * @param {GameState} state 
+	 */
 	revive( state ){
 		for( let i = this.dots.length-1; i>=0; i--) this.dots[i].revive(state);
-	}
-
-	/**
-	 * Monster no longer being used as a prototype, but as active combatant.
-	 */
-	setActive() {
-
-		if ( this.hp instanceof Range ) this.hp = this.hp.value;
-		this.alive = true;
-
 	}
 
 	/**
@@ -160,7 +160,7 @@ export default class Char {
 		if ( this.timer <= 0 ) {
 
 			this.timer += this.delay;
-			return this.attack ? this.attack : this;
+			return this.attacks || ( this.attack || this );
 
 		}
 

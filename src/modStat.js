@@ -1,3 +1,5 @@
+import Mod from "./mod";
+
 /**
  * Stat with a list of modifications.
  */
@@ -39,8 +41,10 @@ export default class ModStat {
 
 		for( let i = v.length-1; i>=0;i--){
 
+			var mod = v[i];
+			if ( mod instanceof Mod ) continue;
+			v[i] = new Mod( v[i] );
 		}
-
 		this._mods = v;
 	}
 
@@ -60,15 +64,26 @@ export default class ModStat {
 		this._bonus = this._bonus || 0;
 		this._pct = this._pct || 0;
 
+		this._rate = this._rate || null;
+
 		this.mods = this.mods || [];
 
 	}
 
+	/**
+	 * Add a modifier to the stat.
+	 * @param {} mod 
+	 */
 	addMod(mod) {
+
+		this._pct += mod.pct;
+		this._bonus += mod.bonus;
 
 		let cur = this.mods.find( v=>v.id===mod.id );
 		if ( cur ) {
 
+			cur.pct += mod.pct;
+			cur.bonus += mod.bonus;
 
 		} else {
 
@@ -78,6 +93,9 @@ export default class ModStat {
 
 	}
 
+	/**
+	 * Recalculate the total bonus and percent applied to stat.
+	 */
 	recalc(){
 
 		let bonus = 0, pct = 0;

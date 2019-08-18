@@ -27,7 +27,7 @@ export default class Mod {
 	set pct(v) { this._pct = v; }
 
 	/**
-	 * @property {number} bonus - base modifier.
+	 * @property {number} bonus - base modifier. (constant added bonus)
 	 */
 	get bonus() { return this._bonus; }
 	set bonus(v) { this._bonus = v; }
@@ -53,7 +53,10 @@ export default class Mod {
 	 */
 	constructor( vars=null ){
 
-		if ( vars ) Object.assign( this, vars );
+		if ( typeof vars === 'string') this.value = vars;
+		else if ( vars ) Object.assign( this, vars );
+
+		this.id = this.id || null;
 
 	}
 
