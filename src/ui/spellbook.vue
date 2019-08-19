@@ -22,6 +22,8 @@ export default {
 	},
 	computed:{
 
+
+
 		minLevel:{
 
 			get(){ return this.pMin; },
@@ -51,7 +53,7 @@ export default {
 		 */
 		viewing() {
 
-			let spells = this.spells;
+			let spells = this.filtered;
 			let vSchools = this.viewSchools;
 			let level = this.minLevel;
 
@@ -106,7 +108,7 @@ export default {
 
 		<div class="filters">
 
-			<filterbox v-model="filtered" />
+			<filterbox v-model="filtered" :items="spells" />
 
 		<div>
 			<label class="level-lbl" :for="elmId('level')">Level</label>
