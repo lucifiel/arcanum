@@ -39,7 +39,7 @@ div.bar {
 }
 div.bar > div {
 	background:orange;
-	border-radius: 7px;
+	border-radius: 8px;
 	max-height: 100%;
 	min-width:0px;
 	width:0px;

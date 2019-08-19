@@ -1,7 +1,7 @@
 import Range from '../range';
 import Base, {mergeClass} from '../items/base';
 import {tryDamage} from './raid';
-import { cloneClass  } from 'objecty'
+import { mergeSafe } from 'objecty';
 import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';
@@ -113,7 +113,18 @@ export default class Char {
 	 * @param {GameState} state 
 	 */
 	revive( state ){
+
 		for( let i = this.dots.length-1; i>=0; i--) this.dots[i].revive(state);
+
+		if ( this.template ) {
+
+			console.log('restoring from template');
+			let it = state.getItem( this.template );
+			if ( it ) this.mergeSafe( this, it );
+			else console.warn('template not found: ' + this.template );
+
+		}
+
 	}
 
 	/**

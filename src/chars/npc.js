@@ -40,6 +40,8 @@ export default class Npc extends Char {
 
 		super( vars instanceof Monster ? cloneClass(vars) : vars );
 
+		this.template = vars.id;
+
 		if ( typeof this.hp === 'string' || typeof this.hp === 'object') this.hp = new Range(this.hp);
 		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 

@@ -1,7 +1,8 @@
 import Slot from './slot';
 import Wearable from './wearable';
+import SlotGroup from './slotgroup';
 
-export default class Equip {
+export default class Equip extends SlotGroup {
 
 	toJSON(){
 		return { slots:( this.slots ) };
@@ -34,7 +35,7 @@ export default class Equip {
 
 	constructor( vars=null ) {
 
-		if ( vars ) Object.assign(this, vars);
+		super(vars );
 
 		this.slots = this._slots || {
 			"left":new Slot({
@@ -77,51 +78,11 @@ export default class Equip {
 	}
 
 	/**
-	 * Find equipment item by id.
-	 * @param {string} id 
-	 * @returns {Item|null}
-	 */
-	find( id ) {
-
-		for( let p in this.slots ) {
-			var it = this.slots[p].find(id);
-			if ( it ) return it;
-		}
-		return null;
-
-	}
-
-	/**
-	 * Get item or items in a named slot.
-	 * @param {string} slot 
-	 * @returns {?Item|Item[]}
-	 */
-	get( slot ) {
-
-		slot = this.slots[slot];
-		if ( slot === undefined ) return undefined;
-
-		return slot.item;
-
-
-	}
-
-	/**
 	 * 
 	 * @param {Item} it 
 	 */
 	remove( it, slot=null ) {
-
-		if ( it.type === 'weapon') return this.removeWeap(it);
-
-		slot = slot || it.slot;
-		if ( typeof slot === 'string' ) slot = this.slots[slot];
-
-		//console.log('remove from: ' + slot.id );
-		if ( slot ) return slot.remove(it);
-
-		return false;
-
+		return ( it.type === 'weapon') ? this.removeWeap(it) : super.remove(it,slot);
 	}
 
 	removeWeap( it ) {
@@ -178,13 +139,6 @@ export default class Equip {
 
 	}
 
-	revive(state) {
-		for( let p in this.slots ) {
-			this.slots[p].revive(state);
-		}
-
-	}
-
 	/**
 	 * 
 	 * @param {Armor|Weapon} it 
@@ -200,22 +154,6 @@ export default class Equip {
 		
 		let cur = this.slots[slot];
 		return cur.equip(it);
-	}
-
-	/**
-	 * Iterate slot names.
-	 */
-	* slotNames() {
-		for( let k in this.slots ) yield k;
-	}
-
-	* items() {
-
-		for( let k in this.slots ) {
-			var it = this.slots[k];
-			if ( it ) yield it;
-		}
-
 	}
 
 }

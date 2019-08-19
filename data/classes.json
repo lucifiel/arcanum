@@ -2,6 +2,7 @@
 	{
 		"id":"apprentice",
 		"desc":"appentice to a notable wizard",
+		"title":"Apprentice",
 		"actname":"Apprenticeship",
 		"actdesc":"Become an apprentice.",
 		"require":"state.research.max>=10",
@@ -25,7 +26,7 @@
 	"id":"neophyte",
 	"title":"neophyte",
 	"actdesc":"The next step on the twisting stairwell of apprenticeship.",
-	"require":"state.research.max>=70&&state.spellbook>0&&state.languages>1",
+	"require":"state.research.max>=70&&state.spellbook.value>0&&state.languages>1",
 	"log":{
 		"title":"Neophyte",
 		"text":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies."

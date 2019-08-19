@@ -45,7 +45,12 @@ export default {
 			let type = typeof obj;
 			let results = {};
 
-			if ( type === 'string') {
+			if ( type === 'number') {
+
+				// gold is default.
+				results.gold = obj;
+
+			} else if ( type === 'string') {
 
 				let it = Game.getItem(obj);
 				results[ it ? it.name : obj ] = true;
@@ -128,7 +133,7 @@ export default {
 
 			// item.action allows desc to behave as an action description until
 			// action is completed.
-			return ( this.item.actdesc && this.item.value < 1 ) ? this.item.actdesc : this.item.desc;
+			return ( this.item.actdesc && this.item.value < 1 ) ? this.item.actdesc : (this.item.desc || null );
 
 		}
 
@@ -147,21 +152,24 @@ export default {
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
 				item.value.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
 		</span>
-		<div v-if="item.level&&item.type!=='action'">
-			lvl: {{item.level}}
+
+		<div>
+		
+		<span class="separate">
+			<span v-if="item.level&&item.type!=='action'">lvl: {{item.level}}</span>
+			<span v-if="item.slot">slot: {{ item.slot }}</span>
+		</span>
+		
+			<div v-if="item.dist">distance: {{item.dist}}</div>
+			<div v-if="item.armor">armor: {{ item.armor }}</div>
+			<div class="item-desc" v-if="desc">{{ desc }}</div>
+
 		</div>
-		<div v-if="item.dist">
-			distance: {{item.dist}}
-		</div>
-		<div class="item-desc" v-if="desc">{{ desc }}</div>
+
 		<div v-if="item.buy&&!item.owned">
 
 			<hr>
-			<!--<span class="note-text">cost:</span>-->
-			<div v-if="!isNaN(item.buy)">
-				gold: {{ item.buy }}
-			</div>
-			<div v-else v-for="(v,k) in effectItems(item.buy)" :key="k">
+			<div v-for="(v,k) in effectItems(item.buy)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
@@ -171,11 +179,7 @@ export default {
 		<div v-if="item.cost">
 
 			<hr>
-			<!--<span class="note-text">cost:</span>-->
-			<div v-if="!isNaN(item.cost)">
-				gold: {{ item.cost }}
-			</div>
-			<div v-else v-for="(v,k) in effectItems(item.cost)" :key="k">
+			<div v-for="(v,k) in effectItems(item.cost)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
@@ -185,11 +189,7 @@ export default {
 		<div v-if="item.run">
 
 			<hr>
-			<!--<span class="note-text">cost:</span>-->
-			<div v-if="!isNaN(item.run)">
-				gold: {{ item.run }}
-			</div>
-			<div v-else v-for="(v,k) in effectItems(item.run)" :key="k">
+			<div v-for="(v,k) in effectItems(item.run)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>

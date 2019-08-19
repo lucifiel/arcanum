@@ -16,7 +16,11 @@ export default class Resource extends Item {
 	set value(v) {
 		if ( this._max && v > this._max.value ) v = this._max.value;
 		else if ( v < 0 ) v = 0;
-		this._value = v;
+
+		if ( this.unit ) {
+			this.realValue = v;
+			this._value = Math.floor( v);
+		} else this._value = v;
 	}
 	valueOf(){ return this._value; }
 
@@ -49,6 +53,21 @@ export default class Resource extends Item {
 		super(vars);
 
 		this._value = this._value || 0;
+
+		if ( this.unit === null || this.unit === undefined ) this.unit = true;
+
+		/**
+		 * @property {boolean} unit - value only changes on integers.
+		 */
+		if ( this.unit ) {
+
+			/**
+		 	* @property {number} realValue - real (continuous) value of a unit-resource.
+		 	*/
+			this.realValue = this._value;
+			this._value = Math.floor( this._value);
+		}
+
 		//if ( this._max === undefined ) this.max = new Stat(0);
 		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
 

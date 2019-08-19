@@ -1,6 +1,6 @@
 <script>
 import Game from '../game';
-import { round } from 'format';
+import { floor } from 'format';
 
 import AllUpgrades from './allupgrades.vue';
 import SlotPick from './slotpick.vue';
@@ -22,8 +22,8 @@ export default {
 		hp() {return this.player.hp; },
 		defense() {return this.player.defense; },
 		tohit() {return this.player.tohit; },
-		exp() {return this.round( this.player.exp.value ); },
-		next() {return this.round( this.player.next ); },
+		exp() {return this.floor( this.player.exp.value ); },
+		next() {return this.floor( this.player.next ); },
 		mount() { return Game.state.getSlot('mount'); },
 		dist() { return this.player.dist; },
 		sp(){return this.player.sp; }
@@ -39,7 +39,7 @@ export default {
 		this.player = Game.state.player;
 	},
 	methods:{
-		round:round
+		floor:floor
 	}
 
 }
@@ -58,7 +58,7 @@ export default {
 		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
 		<tr><td>level</td><th> {{ level }}</th></tr>
 		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>
-		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ sp.value }}</th></tr>
+		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ Math.floor(sp.value) }}</th></tr>
 
 		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
 		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.value }}</th></tr>
@@ -67,14 +67,14 @@ export default {
 		<table>
 			<tr><th>Combat</th></tr>
 			<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event, hp)">life</td><th>
-			{{ round( hp.value ) }} / {{ round( hp.max.value ) }}</th></tr>
+			{{ floor( hp.value ) }} / {{ floor( hp.max.value ) }}</th></tr>
 
 			<tr><td>defense</td><th>{{ defense }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
 
 			<tr><td>stamina</td><th>
-			{{ round( stamina.value ) }} / {{ round(stamina.max.value )}}</th></tr>
+			{{ floor( stamina.value ) }} / {{ floor(stamina.max.value )}}</th></tr>
 		
 			<tr><td>speed</td><th>{{ speed.value }}</th></tr>
 		</table>

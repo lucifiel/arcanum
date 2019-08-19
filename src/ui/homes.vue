@@ -67,10 +67,6 @@ export default {
 
 		<div class="furniture">
 
-		<div class="warn-text"
-			style="text-align:center"
-			v-if="state.items.space.value===0">No space remaining. Sell items or find new Home</div>
-
 		<filterbox v-model="filtered" :items="viewable" />
 
 		<table class="furniture item-table">
@@ -88,7 +84,13 @@ export default {
 		</tr>
 		</table>
 
+			<div class="warn-text"
+			style="text-align:center"
+			v-if="state.items.space.value===0">No space remaining. Sell items or find new Home</div>
+
 		</div>
+
+
 
 	</div>
 
@@ -100,10 +102,11 @@ div.home-view {
 	height:100%;
 }
 
-.furniture {
+table.furniture {
 	overflow-y:auto;
 	width:100%;
 	max-height:70vh;
+	margin: 0px 0px 4px 0px;
 }
 
 table .count, table .space {

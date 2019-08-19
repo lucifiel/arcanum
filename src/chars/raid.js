@@ -111,20 +111,12 @@ export default class Raid {
 	get length() { return this.dungeon.length; }
 
 	/**
-	 * @property {Char} enemy - backward save compatibility.
+	 * @property {Npc[]} enemies - enemies currently being encountered (in combat)
 	 */
-	set enemy(v) {
-
-		if ( !this._enemies ) this._enemies = [];
-		if (typeof v === 'string') v = Game.getItem(v);
-		this._enemies.push( new Char(v) );
-
-	}
-
 	get enemies() { return this._enemies; }
 	set enemies(v) {
 
-		for( let i = v.length-1; i>= 0; i--) v[i] = new Char(v);
+		for( let i = v.length-1; i>= 0; i--) v[i] = new Npc(v);
 		this._enemies = v;
 	}
 
@@ -198,9 +190,9 @@ export default class Raid {
 			for( let i = this._enemies.length-1; i >= 0; i-- ) {
 	
 				var e = this._enemies[i];
+				if ( e.alive === false ) { this._enemies.splice(i,1); continue;}
 				var action = e.update(dt);
-				if ( e.alive === false ) { this._enemies.splice(i,1); }
-				else if ( action ) this.enemyAttack( e, action, this.player );
+				if ( action ) this.enemyAttack( e, action, this.player );
 
 			}
 

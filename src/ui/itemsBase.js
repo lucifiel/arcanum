@@ -1,7 +1,7 @@
 /**
  * Base view for all item lists.
  */
-import { round } from 'format';
+import { floor } from 'format';
 
 import Game from '../game';
 
@@ -10,7 +10,7 @@ export default {
 	props:['items'],
 	methods:{
 
-		round:round,
+		floor:floor,
 
 		showName(it) {
 			return it.actname || it.name || it.id;

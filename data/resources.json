@@ -206,6 +206,7 @@
 	{
 		"id":"mana",
 		"tags":"manas",
+		"unit":false,
 		"require":"state.arcana>=1",
 		"name":"mana",
 		"max":5
@@ -213,24 +214,28 @@
 	{
 		"id":"fire",
 		"require":"pyromancy",
+		"unit":false,
 		"tags":"manas,elemental",
 		"desc":"Fire Mana",
 		"max":0
 	},
 	{
 		"id":"cold",
+		"unit":false,
 		"tags":"manas,elemental",
 		"desc":"Cold Mana",
 		"max":0
 	},
 	{
 		"id":"air",
+		"unit":false,
 		"tags":"manas,elemental",
 		"desc":"Air Mana",
 		"max":0
 	},
 	{
 		"id":"earth",
+		"unit":false,
 		"tags":"manas,elemental",
 		"require":"minerology",
 		"desc":"Earth Mana",
@@ -238,6 +243,7 @@
 	},
 	{
 		"id":"water",
+		"unit":false,
 		"tags":"manas,elemental",
 		"desc":"Water Mana",
 		"require":"waterlore",
@@ -246,6 +252,7 @@
 	{
 		"id":"nature",
 		"tags":"manas",
+		"unit":false,
 		"require":"naturelore",
 		"desc":"Nature Mana",
 		"max":0
@@ -254,6 +261,7 @@
 		"id":"shadow",
 		"name":"shadow",
 		"tags":"manas",
+		"unit":false,
 		"require":"state.evil>0||state.embalming>1",
 		"desc":"Shadow mana",
 		"max":0
@@ -261,6 +269,7 @@
 	{
 		"id":"light",
 		"tags":"manas",
+		"unit":false,
 		"require":"lumenology",
 		"desc":"Light mana",
 		"max":0
@@ -269,24 +278,28 @@
 
 		"id":"spirit",
 		"tags":"manas",
+		"unit":false,
 		"desc":"Spirit mana",
 		"max":0
 	},
 	{
 		"id":"tempus",
 		"tags":"manas",
+		"unit":false,
 		"desc":"Time incarnate",
 		"max":0
 	},
 	{
 		"id":"chaos",
 		"tags":"manas",
+		"unit":false,
 		"desc":"Chaos incarnate",
 		"max":0
 	},
 	{
 		"id":"void",
 		"tags":"manas",
+		"unit":false,
 		"desc":"nothingness",
 		"flavor":"",
 		"max":0

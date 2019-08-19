@@ -47,6 +47,7 @@
 	},
 	{
 		"id":"woodbed",
+		"name":"wooden bed",
 		"desc":"small wooden bed.",
 		"tags":"bed",
 		"slot":"bed",
@@ -220,7 +221,7 @@
 		"require":"neophyte",
 		"tags":"workspace",
 		"cost":{
-			"gold":25,
+			"gold":50,
 			"space":2
 		},
 		"mod":{
@@ -228,6 +229,21 @@
 			"scrolls.max":10
 		}
 
+	},
+	{
+		"id":"crafttable",
+		"name":"crafting table",
+		"tags":"workspace",
+		"desc":"Wide table for crafting projects.",
+		"require":"neophyte",
+		"cost":{
+			"gold":100,
+			"space":2
+		},
+		"mod":{
+			"crafting.max":1,
+			"crafting.rate":0.1
+		}
 	},
 	{
 		"id":"plant",
@@ -845,7 +861,7 @@
 		"mod":{
 			"sp.rate":0.0001,
 			"crafting.max":2,
-			"crafting.rate":0.1
+			"crafting.rate":0.2
 		}
 
 	},
