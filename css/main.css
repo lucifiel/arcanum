@@ -140,14 +140,15 @@ button.rest-btn {
 
 .menu-items {
 	display:flex;
-	flex-direction: row;
+	margin: 6px 10px;
+	flex-flow: row wrap;
 	justify-content: center;
 }
 
 .menu-item {
 	font-size: 1.1em;
 	cursor: pointer;
-	margin: 20px 10px;
+	margin: 2px 10px;
 	justify-content: center;
 }
 
