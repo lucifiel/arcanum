@@ -382,7 +382,7 @@ div.mid-view {
 	flex-flow: column nowrap;
 	flex-basis:42%;
 	min-width: 320px;
-	margin: 0px 14px;
+	margin: 0px 12px 0px 32px;
 	align-content: space-around;
 }
 

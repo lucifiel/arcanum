@@ -1,13 +1,24 @@
 <script>
 import Game from '../game';
 
+import FilterBox from './component/filterbox.vue';
+
 export default {
 
+	data(){
+		return {
+			filtered:null
+		};
+	},
 	computed:{
 
 		items(){
 			return Game.state.monsters.filter( v=>v.value>=1 );
 		}
+
+	},
+	components:{
+		filterbox:FilterBox
 	}
 
 }
@@ -15,13 +26,19 @@ export default {
 
 <template>
 
-<table class="bestiary">
-	<tr><th>Creature</th><th>Slain</th></tr>
-	<tr v-for="b in items" :key="b.id">
-		<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
-		<td class="num-align">{{ b.value }}</td>
-	</tr>
-</table>
+<div>
+
+	<filterbox v-model="filtered" :items="items" min-items="10" />
+
+	<table class="bestiary">
+		<tr><th>Creature</th><th>Slain</th></tr>
+		<tr v-for="b in items" :key="b.id">
+			<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
+			<td class="num-align">{{ b.value }}</td>
+		</tr>
+	</table>
+
+</div>
 
 </template>
 

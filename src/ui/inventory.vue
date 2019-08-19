@@ -1,12 +1,20 @@
 <script>
+
+import FilterBox from './component/filterbox.vue';
+
 export default {
 
 	/**
 	 * @property {Inventory} inv - the inventory object.
 	 */
 	props:['inv'],
-	methods:{
-
+	data() {
+		return {
+			filtered:null
+		}
+	},
+	components:{
+		filterbox:FilterBox
 	}
 
 }
@@ -14,13 +22,16 @@ export default {
 
 
 <template>
+<div>
+	<filteredbox v-model="filtered" :items="inv" min-items="10" />
 <table class="inv item-table">
 	<tr v-for="it in inv.items" :key="it.id">
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name }}</td>
 		<td><button @click="dispatch('equip',it)">Equip</button></td>
 		<td><button @click="dispatch('drop',it)">Drop</button></td>
 	</tr>
-</table>	
+</table>
+</div>
 </template>
 
 

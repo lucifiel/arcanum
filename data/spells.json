@@ -41,7 +41,7 @@
 		"dot":{
 			"duration":30,
 			"mod":{
-				"defense":1
+				"player.defense":1
 			}
 		}
 
@@ -230,7 +230,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"defense":2
+				"player.defense":2
 			}
 		}
 
@@ -675,7 +675,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"defense":5
+				"player.defense":5
 			}
 		}
 
@@ -702,7 +702,7 @@
 		"dot":{
 			"duration":90,
 			"mod":{
-				"defense":10
+				"player.defense":10
 			}
 		}
 

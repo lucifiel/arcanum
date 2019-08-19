@@ -376,13 +376,14 @@ export default class Raid {
 
 	setDungeon( d ) {
 
-		this.dungeon = d;
 		this.player.timer = this.player.delay;
 
 		if ( d != null ) {
-			this._enemies = [];
+			if ( d != this.dungeon ) this._enemies = [];
 			if ( d.progress >= d.length ) d.progress = 0;
 		}
+
+		this.dungeon = d;
 
 	}
 

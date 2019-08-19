@@ -3,6 +3,7 @@ import Game from '../game';
 import ItemBase from './itemsBase.js';
 
 import ProgBar from './component/progbar.vue';
+import FilterBox from './component/filterbox.vue';
 
 export default {
 	
@@ -10,7 +11,8 @@ export default {
 	mixins:[ItemBase],
 	data(){
 		return {
-			log:Game.log
+			log:Game.log,
+			filtered:null
 		}
 	},
 	beforeCreate(){
@@ -18,7 +20,8 @@ export default {
 		this.MAX_ITEMS = 5;
 	},
 	components:{
-		progbar:ProgBar
+		progbar:ProgBar,
+		filterbox:FilterBox
 	},
 	computed:{
 
@@ -46,6 +49,9 @@ export default {
 <div class="adventure">
 
 	<div class="list">
+
+		<filterbox v-model="filtered" :items="dungeons" min-items="8" />
+
 	<div class="dungeon" v-for="d in dungeons" :key="d.id">
 
 		<span>{{ d.name }}</span>

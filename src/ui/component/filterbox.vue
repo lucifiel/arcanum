@@ -4,8 +4,10 @@ export default {
 	/**
 	 * @property {object[]} items - items to filter.
 	 * @property {prop} [prop='name'] - target prop of filter test.
+	 * 
+	 * @property {number} [minItems=0] - minimum number of items before box is visible.
 	 */
-	props:['value', 'items', 'prop'],
+	props:['value', 'items', 'prop', 'minItems'],
 	data() {
 		return {
 			text:'',
@@ -43,7 +45,7 @@ export default {
 
 
 <template>
-	<div class="filter-box">
+	<div class="filter-box" v-if="!this.minItems||(this.items.length>=this.minItems)">
 		<label :for="elmId('filter')">Find</label>
 		<input :id="elmId('filter')" v-model="findText" type="text">
 	</div>

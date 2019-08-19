@@ -23,3 +23,11 @@ export default {
 
 </div>
 </template>
+
+<style scoped>
+
+tr td:first-child {
+	padding-right: 6px;
+}
+
+</style>

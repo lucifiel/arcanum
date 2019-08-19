@@ -42,7 +42,7 @@ export default {
 <template>
 	<div class="skills">
 
-		<filterbox v-show="skills.length>=8" v-model="filtered" :items="skills" />
+		<filterbox v-model="filtered" :items="skills" min-items="7" />
 
 		<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
 
