@@ -32,7 +32,7 @@ export default {
 
 	<table class="bestiary">
 		<tr><th>Creature</th><th>Slain</th></tr>
-		<tr v-for="b in items" :key="b.id">
+		<tr v-for="b in filtered" :key="b.id">
 			<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
 			<td class="num-align">{{ b.value }}</td>
 		</tr>

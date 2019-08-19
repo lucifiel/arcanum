@@ -1,5 +1,6 @@
 <script>
 import ItemBase from './itemsBase';
+import FilterBox from './component/filterbox.vue';
 import Game from '../game';
 
 export default {
@@ -9,23 +10,22 @@ export default {
 	data(){
 
 		return {
+			filtered:null,
 			viewSchools:[],
 			pMin:null,
 			pMax:null
 		};
 
 	},
-	methods: {
-
+	components:{
+		filterbox:FilterBox
 	},
 	computed:{
 
 		minLevel:{
 
-			get(){return this.pMin;},
-			set(v){
-				this.pMin = Number(v);
-			}
+			get(){ return this.pMin; },
+			set(v){ this.pMin = Number(v); }
 
 		},
 
@@ -72,7 +72,7 @@ export default {
 		 */
 		spells(){
 			return this.state.filterItems(
-				it=>it.type ==='spell' && !this.locked(it) );
+				it=>it.type === 'spell' && !this.locked(it) );
 		}
 
 	}
@@ -105,6 +105,9 @@ export default {
 		</table>
 
 		<div class="filters">
+
+			<filterbox v-model="filtered" />
+
 		<div>
 			<label class="level-lbl" :for="elmId('level')">Level</label>
 			<input class="level" :id="elmId('level')" type="number" v-model="minLevel" min=0 size=5>

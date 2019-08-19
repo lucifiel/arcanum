@@ -52,7 +52,7 @@ export default {
 
 		<filterbox v-model="filtered" :items="dungeons" min-items="8" />
 
-	<div class="dungeon" v-for="d in dungeons" :key="d.id">
+	<div class="dungeon" v-for="d in filtered" :key="d.id">
 
 		<span>{{ d.name }}</span>
 		<span class="bar"><progbar :value="d.progress" :max="d.length" /></span>

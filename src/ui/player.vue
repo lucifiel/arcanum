@@ -65,7 +65,7 @@ export default {
 		</table>
 
 		<table>
-			<tr><th>Combat</th></tr>
+			<tr><td class="table-head">Combat</td></tr>
 			<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event, hp)">life</td><th>
 			{{ floor( hp.value ) }} / {{ floor( hp.max.value ) }}</th></tr>
 

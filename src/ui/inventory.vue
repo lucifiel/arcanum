@@ -23,9 +23,9 @@ export default {
 
 <template>
 <div>
-	<filteredbox v-model="filtered" :items="inv" min-items="10" />
+	<filterbox v-model="filtered" :items="inv.items" min-items="10" />
 <table class="inv item-table">
-	<tr v-for="it in inv.items" :key="it.id">
+	<tr v-for="it in filtered" :key="it.id">
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name }}</td>
 		<td><button @click="dispatch('equip',it)">Equip</button></td>
 		<td><button @click="dispatch('drop',it)">Drop</button></td>

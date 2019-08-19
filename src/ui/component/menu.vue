@@ -49,14 +49,12 @@ export default {
 			<span v-else :key="itemTitle(it)"> {{ itemTitle(it) }} </span>
 
 		</div>
-			<slot>
-		</slot>
 
 		</div>
 
 
 		<!-- NOTE: slot css-class ignored -->
-		<slot :name="itemId(cur)"></slot>
+		<span class="menu-content"><slot :name="itemId(cur)"></slot></span>
 
 	</div>
 </template>

@@ -79,10 +79,18 @@ div.homes-view {
 	flex-direction: column;
 }
 
+.menu-content {
+	margin-top:4px;
+}
+
 div.resource-list {
 	width: fit-content;
 }
 
+.table-head {
+	border-bottom: 1px solid black;
+	padding-bottom: 4px;
+}
 
 div.skills {
 	display:flex;
