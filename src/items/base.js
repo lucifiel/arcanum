@@ -98,6 +98,11 @@ export default {
 	set desc(v) { this._desc=v;},
 
 	/**
+	 * @property {number} current - displayable value; override in subclass for auto rounding, floor, etc.
+	 */
+	get current() { return this._value },
+
+	/**
 	 * @property {number} value
 	 */
 	get value() { return this._value; },

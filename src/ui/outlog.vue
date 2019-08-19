@@ -66,17 +66,19 @@ export default {
 </template>
 
 <style scoped>
-div.top-span {
-	margin: 2px 0px 5px;
-	padding-bottom: 2px;
-	border-bottom: 1px solid rgb(88, 87, 87);
-}
 
 div.log-view {
+	margin-left: 8px;
 	flex-direction: column;
 	height:95vh;
 	flex-basis: 20%;
 	overflow-y: auto;
+}
+
+div.top-span {
+	margin: 2px 0px 5px;
+	padding-bottom: 2px;
+	border-bottom: 1px solid rgb(88, 87, 87);
 }
 
 div.log-item {

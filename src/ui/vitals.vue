@@ -67,6 +67,7 @@ export default {
 div.vitals {
 	margin:4px 8px;
 	flex-basis: 19%;
+	min-width: 200px;
 }
 
 table {

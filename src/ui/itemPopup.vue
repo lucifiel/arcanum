@@ -150,7 +150,7 @@ export default {
 		<span class="item-name">{{name}}
 
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
-				item.value.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
+				item.current.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
 		</span>
 
 		<div>

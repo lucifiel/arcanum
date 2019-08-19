@@ -58,10 +58,10 @@ export default {
 		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
 		<tr><td>level</td><th> {{ level }}</th></tr>
 		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>
-		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ Math.floor(sp.value) }}</th></tr>
+		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ sp.current }}</th></tr>
 
 		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
-		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.value }}</th></tr>
+		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.current }}</th></tr>
 		</table>
 
 		<table>
@@ -69,14 +69,14 @@ export default {
 			<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event, hp)">life</td><th>
 			{{ floor( hp.value ) }} / {{ floor( hp.max.value ) }}</th></tr>
 
+			<tr><td>stamina</td><th>
+			{{ floor( stamina.value ) }} / {{ floor(stamina.max.value )}}</th></tr>
+
 			<tr><td>defense</td><th>{{ defense }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
-
-			<tr><td>stamina</td><th>
-			{{ floor( stamina.value ) }} / {{ floor(stamina.max.value )}}</th></tr>
 		
-			<tr><td>speed</td><th>{{ speed.value }}</th></tr>
+			<tr><td>speed</td><th>{{ speed.current }}</th></tr>
 		</table>
 
 		<upgrades></upgrades>

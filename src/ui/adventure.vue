@@ -43,16 +43,7 @@ export default {
 
 <template>
 
-<div class="skills">
-
-	<div>
-		<span v-if="raiding">Adventuring...<br></span>
-		<div class="outlog">
-		<div v-for="(it,i) in combatLog" :key="i">
-			<span class="log-text">{{ it.text || 'Nothing' }}</span>
-		</div>
-		</div>
-	</div>
+<div class="adventure">
 
 	<div class="list">
 	<div class="dungeon" v-for="d in dungeons" :key="d.id">
@@ -67,21 +58,42 @@ export default {
 	</div>
 	</div>
 
+	<div class="log">
+		<span v-if="raiding">Adventuring...<br></span>
+		<div class="outlog">
+		<div v-for="(it,i) in combatLog" :key="i">
+			<span class="log-text">{{ it.text || 'Nothing' }}</span>
+		</div>
+		</div>
+	</div>
+
 </div>
 	
 </template>
 
 <style scoped>
 
+div.adventure {
+	display:flex;
+	width: 100%;
+	align-self: flex-start;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+}
+
+div.log {
+	width:40%;
+}
+
 div.list {
 	display:flex;
-	width:100%;
-	flex-flow: column wrap;
+	width: 50%;
+	flex-direction:column;
 }
 
 div.dungeon {
 	display:flex;
-	width:50%;
+	width:100%;
 	justify-content: space-between;
 	align-items: center;
 	flex-flow: row nowrap;

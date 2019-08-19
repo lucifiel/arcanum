@@ -10,17 +10,20 @@ export default class Resource extends Item {
 	set require(v){super.require = v;}
 
 	/**
+	 * @property {number} current - identical to value except uses floor of values.
+	 */
+	get current() { return this.unit ? Math.floor(this.value) : this._value; }
+
+	/**
 	 * @property {number} value
 	 */
 	get value() { return this._value; }
 	set value(v) {
+
 		if ( this._max && v > this._max.value ) v = this._max.value;
 		else if ( v < 0 ) v = 0;
+		this._value = v;
 
-		if ( this.unit ) {
-			this.realValue = v;
-			this._value = Math.floor( v);
-		} else this._value = v;
 	}
 	valueOf(){ return this._value; }
 
@@ -54,19 +57,10 @@ export default class Resource extends Item {
 
 		this._value = this._value || 0;
 
-		if ( this.unit === null || this.unit === undefined ) this.unit = true;
-
 		/**
-		 * @property {boolean} unit - value only changes on integers.
+		 * @property {boolean} unit - true if current value is reported in integer amounts.
 		 */
-		if ( this.unit ) {
-
-			/**
-		 	* @property {number} realValue - real (continuous) value of a unit-resource.
-		 	*/
-			this.realValue = this._value;
-			this._value = Math.floor( this._value);
-		}
+		if ( this.unit === null || this.unit === undefined ) this.unit = true;
 
 		//if ( this._max === undefined ) this.max = new Stat(0);
 		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
@@ -100,7 +94,7 @@ export default class Resource extends Item {
 
 			this._delta = v - this._lastValue;
 
-			this._lastValue = this._value = v;
+			this._value = this._lastValue = v;
 
 		} else this._delta = 0;
 
@@ -110,7 +104,7 @@ export default class Resource extends Item {
 	 * @returns {boolean} true if resource value is positive.
 	 */
 	positive(){
-		return (this.value > 0 || (this._rate.value>0&&this._value===0) );
+		return (this._value > 0 || (this._rate.value>0&&this._value===0) );
 	}
 
 }

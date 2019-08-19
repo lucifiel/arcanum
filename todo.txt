@@ -5,9 +5,12 @@ optional dot stacking
 display weapon damage in char.
 
 
-ERRORS:
+GAME:
 
-quickbar blocks some low-items.
+Travel Component
+
+
+ERRORS:
 
 
 ongoing actions should stop if 'need' requirements not met.
