@@ -46,12 +46,21 @@ export default class Stat {
 	}
 
 	/**
-	 * Get the result of changing the base and percents by the given amounts.
+	 * Get the result of using an alternative base amount.
+	 * @param {number} newBase - delta base.
+	 * @returns {number}
+	 */
+	altValue( newBase ) {
+		return ( newBase )*( 1 + this._pct );
+	}
+
+	/**
+	 * Get the result of using an alternative base amount.
 	 * @param {number} delBase - delta base.
 	 * @param {number} delPct - delta percent.
 	 * @returns {number}
 	 */
-	newValue( delBase, delPct ) {
+	delValue( delBase=0, delPct=0 ) {
 		return (this._base + delBase )*( 1 + this._pct + delPct );
 	}
 

@@ -544,7 +544,7 @@ export default {
 	unlockTest( test, item=null ) {
 
 		let type = typeof test;
-		if ( type === 'function') return test( this._items, item );
+		if ( type === 'function') return test( this._items, item, this.state );
 
 		else if ( type === 'string') {
 

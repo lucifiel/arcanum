@@ -105,8 +105,12 @@ export default class GameState {
 
 	}
 
-	homeTest( state, self ) {
-		return state.space.used <= self.mod.space.max;
+	homeTest( state, self, gs ) {
+
+		var cur = gs.slots.home;
+		return state.space.used <=
+			state.space.max.delValue( self.mod.space.max - ( cur ? cur.mod.space.max : 0) );
+
 	}
 
 	initMaterials( mats ) {
