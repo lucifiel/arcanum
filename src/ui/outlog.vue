@@ -22,9 +22,7 @@ export default {
 	},
 	methods:{
 
-		clearLog(){
-			this.log.clear();
-		}
+		clearLog(){ this.log.clear(); }
 
 	},
 	computed:{

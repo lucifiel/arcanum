@@ -747,8 +747,8 @@
 		"mod":{
 			"herbalism.rate":0.2,
 			"herbalism.max":3,
-			"naturelore.max":1,
-			"naturelore.rate":0.05
+			"nature.max":1,
+			"nature.rate":0.05
 		}
 
 	},

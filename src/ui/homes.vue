@@ -37,9 +37,13 @@ export default {
 	},
 	computed:{
 
+		space() { return this.state.getItem('space'); },
+
 		curHome() { return this.state.getSlot('home'); },
 
-		homesAvail() { return this.state.homes.filter( v=>!this.locked(v) ); },
+		homesAvail() {
+			return this.state.homes.filter( v=>!this.locked(v) );
+		},
 
 		furniture(){
 			return Game.filterItems( it=>this.state.typeCost(it.cost, 'space')>0);
@@ -105,6 +109,10 @@ div.home-view {
 div.home {
 	margin-top:12px;
 	margin-right: 24px;
+}
+
+div.nospace {
+	color: red;
 }
 
 table.furniture {
