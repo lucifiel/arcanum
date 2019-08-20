@@ -1,7 +1,5 @@
 <script>
-
 import Game from '../game';
-import VarPath from '../varPath';
 
 import ItemView from './items/item.vue';
 

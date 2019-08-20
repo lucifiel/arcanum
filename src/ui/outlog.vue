@@ -44,11 +44,15 @@ export default {
 	<div class="log-view">
 
 			<div class="top-span">
-				<button type="button" style="display:inline-block" @click="clearLog">Clear</button>
-				<span class="checks" v-for="p in LogTypes" :key="p">
+				<button type="button" class="inline small-btn" @click="clearLog">Clear</button>
+				<span class="checks">
+					
+				<span v-for="p in LogTypes" :key="p">
 					<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
 					<label :for="elmId(p)">{{ p }}</label>
 				</span>
+				</span>
+				
 			</div>
 		
 
@@ -76,9 +80,17 @@ div.log-view {
 }
 
 div.top-span {
-	margin: 2px 0px 5px;
+	display:flex;
+	flex-flow: row nowrap;
+	margin: 2px 8px 5px;
 	padding-bottom: 2px;
 	border-bottom: 1px solid rgb(88, 87, 87);
+
+}
+
+span.checks {
+	display:flex;
+	flex-flow: row wrap;
 }
 
 div.log-item {

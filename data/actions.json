@@ -420,7 +420,7 @@
 	{
 		"id":"scribescroll",
 		"name":"Scribe Scroll",
-		"require":"state.crafting>=1",
+		"require":"state.crafting>=1&&state.mana>0",
 		"cost":{
 			"research":10,
 			"mana":1

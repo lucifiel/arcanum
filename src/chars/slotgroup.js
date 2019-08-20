@@ -30,9 +30,6 @@ export default class SlotGroup {
 
 		if ( vars ) Object.assign(this, vars);
 
-		this.slots = this._slots || {
-		};
-
 	}
 
 	/**

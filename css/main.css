@@ -37,7 +37,7 @@ input[type="button"]:enabled:active, button:enabled:active, .hilite {
 	background-color: rgb( 100, 100,100);
 }
 
-div.inline {
+.inline {
 	display:inline-block;
 }
 
@@ -142,7 +142,7 @@ div.outlog {
 	flex-direction: column-reverse;
 }
 
-button.rest-btn {
+button.small-btn {
 	padding:3px 8px;
 }
 
