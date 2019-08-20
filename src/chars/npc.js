@@ -42,6 +42,8 @@ export default class Npc extends Char {
 
 		this.template = vars.id;
 
+		this.dodge = this.dodge || 0;
+
 		if ( typeof this.hp === 'string' || typeof this.hp === 'object') this.hp = new Range(this.hp);
 		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 

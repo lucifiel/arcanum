@@ -10,8 +10,7 @@ export default class Inventory {
 	toJSON(){
 		return {
 			items:(this.items),
-			max:(this.max),
-			NEXT_ID:this.NEXT_ID
+			max:(this.max)
 		}
 	}
 
@@ -22,7 +21,7 @@ export default class Inventory {
 		if ( this.items )this.items = this.items.map( v=>new Wearable(v) );
 		else this.items = [];
 
-		this.max = this.max || 10;
+		this.max = this.max || 0;
 
 	}
 
@@ -32,7 +31,7 @@ export default class Inventory {
 
 	add(it){
 
-		if ( it === null || it === undefined || typeof it === 'boolean') return;
+		if ( it === null || it === undefined || typeof it === 'boolean' || this.full() ) return false;
 		if ( Array.isArray(it) ) {
 
 			//this.items = this.items.concat(it);
@@ -44,6 +43,21 @@ export default class Inventory {
 
 		} else this.items.push(it);
 
+	}
+
+	/**
+	 * @returns {boolean} true if inventory full.
+	 */
+	full(){
+		return this.max >0 && this.items.length >= this.max;
+	}
+
+	/**
+	 * Remove all items from inventory.
+	 * splice is used for vue reactivity.
+	 */
+	clear() {	
+		this.items.splice(0, this.items.length);
 	}
 
 	removeAt(ind) {

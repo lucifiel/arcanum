@@ -891,7 +891,8 @@
 		"dot":{
 			"duration":90,
 			"effect":{
-				"bodies":0.03
+				"bodies":0.03,
+				"souls":0.012
 			}
 		}
 

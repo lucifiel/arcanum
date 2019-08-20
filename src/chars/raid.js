@@ -3,6 +3,7 @@ import Char from './char';
 import Range from '../range';
 import Dot from './dot';
 import Npc from './npc';
+import Inventory from './inventory';
 
 const COMBAT_LOG = 'combat';
 
@@ -96,7 +97,6 @@ export default class Raid {
 		this.dungeon.progress=v;
 		
 		if ( this.dungeon.progress >= this.dungeon.length ) {
-			console.log('RAID DONE');
 			this.raidDone( this.dungeon );
 		}
 
@@ -120,6 +120,13 @@ export default class Raid {
 		this._enemies = v;
 	}
 
+	/**
+	 * @property {Inventory} drops - items dropped in current dungeon.
+	 * can be taken by player.
+	 */
+	get drops() { return this._drops; }
+	set drops(v) { this._drops = v; }
+
 	toJSON() {
 
 		return {
@@ -136,6 +143,8 @@ export default class Raid {
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign( this, vars);
+
+		this.drops = this.drops || new Inventory();
 
 		/**
 		 * @property {Dungeon} dungeon - current dungeon.
@@ -250,10 +259,6 @@ export default class Raid {
 
 			if ( tryDamage( e, atk, this.player ) ) if ( e.hp <= 0 ) this.enemyDied( e );
 
-		} else {
-
-			Game.log.log( '', this.player.name + ' misses', COMBAT_LOG );
-
 		}
 
 	}
@@ -275,7 +280,7 @@ export default class Raid {
 
 			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
 
-		} else Game.log.log( '', enemy.name + ' misses', COMBAT_LOG );
+		}
 
 	}
 
@@ -291,8 +296,25 @@ export default class Raid {
 		let tohit = attacker.tohit || 0;
 		if ( attack && (attack != attacker) ) tohit += ( attack.tohit || 0 );
 
+		if ( Math.random() >  this.dodgeRoll( defender.dodge, tohit )) {
+
+			Game.log.log( '', defender.name + ' dodges ' + (attack.name||attacker.name), COMBAT_LOG );
+			return false;
+		}
+
 		//console.log( attacker.name + ': ' + tohit + '  vs: ' + defender.defense );
-		return Math.random()*( 10 + tohit ) >= Math.random()*(10 + defender.defense );
+		if ( Math.random()*( 10 + tohit ) >= Math.random()*(10 + defender.defense ) ) return true;
+
+		Game.log.log( '', attacker.name + ' misses', COMBAT_LOG );
+		return false;
+	
+	}
+
+	dodgeRoll( dodge, tohit ) {
+
+		let x = ( tohit > dodge ? 1 : dodge - tohit )/10;
+		return ( Math.exp( -x*x ) );
+
 	}
 
 	charDied( char, attacker ) {
@@ -379,7 +401,12 @@ export default class Raid {
 		this.player.timer = this.player.delay;
 
 		if ( d != null ) {
-			if ( d != this.dungeon ) this._enemies = [];
+
+			if ( d != this.dungeon ) {
+				this._enemies = [];
+				this.drops.clear();
+			}
+
 			if ( d.progress >= d.length ) d.progress = 0;
 		}
 
