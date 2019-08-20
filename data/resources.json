@@ -69,7 +69,16 @@
 		"max":1,
 		"mod":{
 			"shadow.rate":0.01
-		}
+		},"flavor":"why do they come to me to die?"
+	},
+	{
+		"id":"souls",
+		"desc":"imprisoned souls of living creatures.",
+		"mod":{
+			"shadow.rate":0.01,
+			"spirit.rate":0.01
+		},
+		"flavor":"is it wrong?"
 	},
 	{
 		"id":"codices",

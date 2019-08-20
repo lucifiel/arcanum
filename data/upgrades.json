@@ -197,6 +197,7 @@
 		"name":"unseen scribe",
 		"desc":"the quill lifts off the desk and begins to write...",
 		"need":["writingdesk","air","spirit"],
+		"max":3,
 		"cost":{
 			"arcana":1,
 			"spirit":1,
@@ -223,6 +224,21 @@
 		"mod":{
 			"scrolls.rate":-0.001,
 			"codices.rate":0.001
+		}
+
+	},
+	{
+		"id":"bonecollector",
+		"name":"bone collector",
+		"require":"state.reanimation>=5",
+		"desc":"summon a gibbering ghoul to scavenge for bones.",
+		"cost":{
+			"arcana":1,
+			"shadow":5,
+			"research":200
+		},
+		"mod":{
+			"bones.rate":0.001
 		}
 
 	},
@@ -690,13 +706,14 @@
 	},
 	{
 
-		"id":"skull",
+		"id":"magicskull",
+		"name":"magic skull",
 		"require":"state.necromancer>0||state.witch>0",
-		"desc":"An ordinary human skull",
+		"desc":"An ordinary human skull, infused with necromantic magicks.",
 		"cost":{
 			"bones":1,
-			"gold":10,
-			"research":25
+			"gems":2,
+			"research":200
 		},
 		"mod":{
 
@@ -710,11 +727,13 @@
 	},
 	{
 		"id":"demonicpact",
+		"name":"demonic pact",
 		"require":"state.demonology>4",
-		"desc":"A deal with a demon, sealed in blood.",
+		"desc":"A deal with a demon, sealed in blood. The knowledge offered is worth twice the price.",
 		"cost":{
-			"research":200,
+			"research":300,
 			"arcana":1,
+			"gems":10,
 			"hp":15
 		},
 		"mod":{
@@ -724,7 +743,7 @@
 				"rate":0.1
 			},
 			"planeslore.max":1
-		}
+		}, "flavor":"they say the blood has to be yours, however."
 	},
 	{
 
@@ -735,8 +754,8 @@
 		"flavor":"all you can drink",
 		"require":"state.water.max>=10",
 		"cost":{
-			"research":100,
-			"gold":75,
+			"research":200,
+			"watergem":1,
 			"water":5,
 			"arcana":1
 		},
@@ -755,9 +774,9 @@
 		"flavor":"all you can drink",
 		"require":"state.fire.max>=10",
 		"cost":{
-			"research":100,
-			"gold":75,
-			"fire":10,
+			"research":200,
+			"fire":5,
+			"firegem":1,
 			"arcana":1
 		},
 		"mod":{
@@ -778,9 +797,9 @@
 		"flavor":"out of nothing at all",
 		"require":"state.air.max>=5",
 		"cost":{
-			"research":100,
-			"gold":75,
+			"research":200,
 			"air":5,
+			"airgem":1,
 			"arcana":1
 		},
 		"mod":{
