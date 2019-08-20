@@ -195,17 +195,34 @@
 	{
 		"id":"unseenscribe",
 		"name":"unseen scribe",
-		"desc":"",
+		"desc":"the quill lifts off the desk and begins to write...",
 		"need":["writingdesk","air","spirit"],
 		"cost":{
 			"arcana":1,
 			"spirit":1,
 			"air":1,
-			"research":10
+			"research":100
 		},
 		"flavor":"magic will do our magic for us now",
 		"mod":{
 			"scrolls.rate":0.01
+		}
+
+	},
+	{
+		"id":"ghostcompiler",
+		"name":"ghost compiler",
+		"desc":"an invisible spirit binds your scrolls into codicils.",
+		"require":["unseenscribe"],
+		"cost":{
+			"arcana":1,
+			"spirit":5,
+			"research":200
+		},
+		"flavor":"spirits never sleep",
+		"mod":{
+			"scrolls.rate":-0.001,
+			"codices.rate":0.001
 		}
 
 	},

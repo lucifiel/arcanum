@@ -24,29 +24,6 @@
 
 	},
 	{
-		"id":"copperskin",
-		"name":"copper skin",
-		"level":1,
-		"require":"earth",
-		"school":"earth",
-		"buy":{
-
-			"research":25,
-			"scrolls":1
-
-		},
-		"cost":{
-			"earth":1
-		},
-		"dot":{
-			"duration":30,
-			"mod":{
-				"player.defense":1
-			}
-		}
-
-	},
-	{
 		"id":"darkbolt",
 		"name":"dark bolt",
 		"level":1,
@@ -96,8 +73,8 @@
 
 	},
 	{
-		"id":"minorwhirl",
-		"name":"minor whirling step",
+		"id":"whirl1",
+		"name":"whirling step I",
 		"level":1,
 		"require":"air",
 		"school":"air",
@@ -115,6 +92,30 @@
 			"mod":{
 				"dodge":1
 			}
+		}
+
+	},
+	{
+		"id":"whirl1",
+		"name":"whirling step I",
+		"level":3,
+		"require":"air",
+		"school":"air",
+		"buy":{
+
+			"research":100,
+			"scrolls":5
+
+		},
+		"cost":{
+			"air":5
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"dodge":2
+			},
+			"speed":0.1
 		}
 
 	},
@@ -142,10 +143,59 @@
 
 	},
 	{
+		"id":"lessermana",
+		"name":"lesser mana",
+		"school":"mana",
+		"locked":false,
+		"level":2,
+		"buy":{
 
-		"id":"minorregen",
-		"name":"minor regen",
+			"research":30,
+			"codices":1,
+			"managem":1
+
+		},
+		"cost":{
+			"mana":2
+		},
+		"dot":{
+			"duration":45,
+			"effect":{
+				"mana":1.1
+			}
+		}
+
+	},
+	{
+		"id":"magicmana",
+		"name":"mana",
+		"school":"mana",
+		"locked":false,
+		"level":5,
+		"buy":{
+
+			"research":200,
+			"tomes":1,
+			"managem":5
+
+		},
+		"cost":{
+			"mana":5
+		},
+		"dot":{
+			"duration":60,
+			"effect":{
+				"mana":2
+			}
+		}
+
+	},
+	{
+
+		"id":"lightregen1",
+		"name":"pulsing light",
 		"school":"light",
+		"desc":"a small pulse of light zips around you, searching for injuries.",
 		"level":1,
 		"buy":{
 
@@ -161,6 +211,59 @@
 			"duration":30,
 			"effect":{
 				"hp":1.1
+			}
+
+		}
+
+	},
+	{
+
+		"id":"lightregen2",
+		"name":"pulsing light II",
+		"school":"light",
+		"desc":"a small pulse of light zips around you, searching for injuries.",
+		"level":3,
+		"buy":{
+
+			"research":100,
+			"scrolls":25
+
+		},
+		"cost":{
+			"light":5
+		},
+		"dot":{
+
+			"duration":45,
+			"effect":{
+				"hp":2
+			}
+
+		}
+
+	},
+	{
+
+		"id":"lightregen3",
+		"name":"pulsing light III",
+		"school":"light",
+		"desc":"a small pulse of light zips around you, searching for injuries.",
+		"level":5,
+		"buy":{
+
+			"research":100,
+			"tomes":5,
+			"lightgem":3
+
+		},
+		"cost":{
+			"light":10
+		},
+		"dot":{
+
+			"duration":60,
+			"effect":{
+				"hp":3
 			}
 
 		}
@@ -187,54 +290,7 @@
 			"tohit":2
 		}
 	},
-	{
-		"id":"firedart",
-		"name":"fire dart",
-		"level":1,
-		"require":"fire",
-		"school":"fire",
-		"buy":{
 
-			"research":25,
-			"scrolls":1
-
-		},
-		"cost":{
-			"fire":1
-		},
-		"attack":{
-			"damage":"2~3",
-			"kind":"fire",
-			"tohit":1
-		}
-	},
-	{
-		"id":"stoneskin",
-		"name":"stone skin",
-		"desc":"hardens the skin of the caster.",
-		"school":"earth",
-		"require":{
-			"earth.max":5
-		},
-		"level":2,
-		"buy":{
-
-			"research":30,
-			"scrolls":5,
-			"earthgem":1
-
-		},
-		"cost":{
-			"earth":5
-		},
-		"dot":{
-			"duration":45,
-			"mod":{
-				"player.defense":2
-			}
-		}
-
-	},
 	{
 		"id":"minorslow",
 		"name":"mud",
@@ -265,30 +321,25 @@
 
 	},
 	{
-
-		"id":"proshadow",
-		"name":"protection: shadow",
-		"school":"light",
-		"level":2,
+		"id":"firedart",
+		"name":"fire dart",
+		"level":1,
+		"require":"fire",
+		"school":"fire",
 		"buy":{
 
 			"research":25,
-			"scrolls":5
+			"scrolls":1
 
 		},
 		"cost":{
-			"light":2
+			"fire":1
 		},
-		"dot":{
-
-			"duration":20,
-			"mod":{
-				"player.resists.shadow":10,
-				"player.resists.undead":10
-			}
-
+		"attack":{
+			"damage":"2~3",
+			"kind":"fire",
+			"tohit":1
 		}
-
 	},
 	{
 		"id":"firebolt",
@@ -317,6 +368,36 @@
 
 	},
 	{
+		"id":"searingbolt",
+		"name":"searing bolt",
+		"level":3,
+		"desc":"a bolt of fire with lingerine flame",
+		"school":"fire",
+		"require":{
+			"fire.max":7
+		},
+		"buy":{
+
+			"research":100,
+			"tomes":1,
+			"firegem":3
+
+		},
+		"cost":{
+			"fire":7
+		},
+		"attack":{
+			"damage":"7~10",
+			"tohit":2,
+			"kind":"fire",
+			"dot":{
+				"dmg":"2~3",
+				"duration":10
+			}
+		}
+
+	},
+	{
 		"id":"vinewhip",
 		"name":"vine whip",
 		"level":2,
@@ -339,6 +420,32 @@
 			"damage":"2~4",
 			"tohit":3,
 			"kind":"nature"
+		}
+
+	},
+	{
+
+		"id":"proshadow",
+		"name":"protection: shadow",
+		"school":"light",
+		"level":2,
+		"buy":{
+
+			"research":25,
+			"scrolls":5
+
+		},
+		"cost":{
+			"light":2
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"player.resists.shadow":10,
+				"player.resists.undead":10
+			}
+
 		}
 
 	},
@@ -469,30 +576,6 @@
 				"gold":2
 			}
 		}
-	},
-	{
-		"id":"lessermana",
-		"name":"lesser mana",
-		"school":"mana",
-		"locked":false,
-		"level":2,
-		"buy":{
-
-			"research":30,
-			"scrolls":5,
-			"managem":1
-
-		},
-		"cost":{
-			"mana":2
-		},
-		"dot":{
-			"duration":45,
-			"effect":{
-				"mana":1.1
-			}
-		}
-
 	},
 	{
 		"id":"insight",
@@ -654,6 +737,56 @@
 		}
 	},
 	{
+		"id":"copperskin",
+		"name":"copper skin",
+		"level":1,
+		"require":"earth",
+		"school":"earth",
+		"buy":{
+
+			"research":25,
+			"scrolls":1
+
+		},
+		"cost":{
+			"earth":1
+		},
+		"dot":{
+			"duration":30,
+			"mod":{
+				"player.defense":1
+			}
+		}
+
+	},
+	{
+		"id":"stoneskin",
+		"name":"stone skin",
+		"desc":"hardens the skin of the caster.",
+		"school":"earth",
+		"require":{
+			"earth.max":5
+		},
+		"level":2,
+		"buy":{
+
+			"research":30,
+			"scrolls":5,
+			"earthgem":1
+
+		},
+		"cost":{
+			"earth":5
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"player.defense":2
+			}
+		}
+
+	},
+	{
 		"id":"ironskin",
 		"name":"iron skin",
 		"desc":"hardens the skin of the caster.",
@@ -703,6 +836,33 @@
 			"duration":90,
 			"mod":{
 				"player.defense":10
+			}
+		}
+
+	},
+	{
+		"id":"adamantshell",
+		"name":"adamant shell",
+		"desc":"your skin becomes adamant.",
+		"school":"earth",
+		"require":{
+			"earth.max":20
+		},
+		"level":10,
+		"buy":{
+
+			"research":300,
+			"tomes":5,
+			"earthgem":5
+
+		},
+		"cost":{
+			"earth":20
+		},
+		"dot":{
+			"duration":120,
+			"mod":{
+				"player.defense":20
 			}
 		}
 
