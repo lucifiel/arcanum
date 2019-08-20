@@ -105,7 +105,7 @@
 		"id":"goblincamp",
 		"name":"goblin camp",
 		"desc":"the pesky creatures are everywhere.",
-		"require":"adept",
+		"require":"tier0",
 		"level":4,
 		"run":{
 			"stamina":1
@@ -128,7 +128,7 @@
 		"id":"underden",
 		"name":"under den",
 		"desc":"proverbial den of thieves",
-		"require":"adept",
+		"require":"tier0",
 		"level":5,
 		"run":{
 			"stamina":1
@@ -198,7 +198,7 @@
 		"id":"orccamp",
 		"name":"orc camp",
 		"desc":"a scourge of cities.",
-		"require":"adept",
+		"require":"tier0",
 		"level":7,
 		"run":{
 			"stamina":1.2

@@ -27,7 +27,7 @@
 		"id":"innroom",
 		"name":"Lodging at Inn",
 		"desc":"Rented room of a local Inn",
-		"require":"adept",
+		"require":"tier0",
 		"disable":["alcove","atticbedroom"],
 		"mod":{
 			"space.max":10,
@@ -38,7 +38,7 @@
 	{
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
-		"require":"adept",
+		"require":"tier0",
 		"cost":100,
 		"mod":{
 			"space.max":15
@@ -48,13 +48,13 @@
 
 		"id":"camp",
 		"desc":"A wild camp and its environs.",
-		"require":"state.adept>0&&state.naturelore>=5",
+		"require":"state.tier0>0&&state.naturelore>=5",
 		"tags":"outdoors",
 		"cost":50,
 		"mod":{
 			"space.max":12,
-			"nature.max":1,
-			"nature.rate":0.1,
+			"naturelore.max":1,
+			"naturelore.rate":0.1,
 			"animals.max":1,
 			"animals.rate":0.1
 		}
@@ -63,14 +63,14 @@
 	{
 		"id":"wagon",
 		"name":"tinker's wagon",
-		"desc":"wheeled carriage for a nomadic life.",
-		"require":"adept",
+		"desc":"wheeled carriage for a nomadic lifestyle.",
+		"require":"state.tier0>0&&state.naturelore>=5",
 		"tags":"outdoors",
 		"cost":150,
 		"mod":{
 			"space.max":10,
-			"nature.max":2,
-			"nature.rate":0.15,
+			"naturelore.max":2,
+			"naturelore.rate":0.15,
 			"animals.max":1,
 			"animals.rate":0.15
 		}
@@ -79,8 +79,8 @@
 	{
 		"id":"cottage",
 		"desc":"Cozy and quaint.",
-		"require":"adept",
-		"cost":225,
+		"require":"tier0",
+		"cost":325,
 		"mod":{
 			"space.max":20
 		}
@@ -89,7 +89,7 @@
 		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":500,
-		"require":"state.adept&&state.arcana>=10",
+		"require":"state.tier0>0&&state.arcana.max>=10",
 		"mod":{
 			"space.max":30
 		}
@@ -98,7 +98,7 @@
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
 		"cost":700,
-		"require":"state.adept&&state.arcana>=15",
+		"require":"state.tier0&&state.arcana.max>=15",
 		"mod":{
 			"space.max":25,
 			"gold.rate":0.2,
@@ -111,7 +111,7 @@
 		"id":"inn",
 		"desc":"A quiet inn for hosting wayfarers.",
 		"cost":1000,
-		"require":"adept",
+		"require":"state.tier0&&state.languages>=7",
 		"mod":{
 			"space.max":50,
 			"research.rate":-0.5,
@@ -126,7 +126,7 @@
 		"id":"lodge",
 		"desc":"A rugged lodge in the woods.",
 		"cost":700,
-		"require":"state.adept>0&&state.naturelore>=3",
+		"require":"state.tier0>0&&state.naturelore>=7",
 		"mod":{
 			"space.max":30,
 			"nature.max":1,
@@ -138,7 +138,7 @@
 		"name":"house of many gables",
 		"desc":"A spacious house with gabled windows.",
 		"cost":1000,
-		"require":"state.tierone>0&&state.arcana>=10",
+		"require":"state.tier1>0&&state.arcana>=10",
 		"mod":{
 			"space.max":50
 		}
@@ -148,7 +148,7 @@
 		"name":"half-timber house",
 		"desc":"A vast home of rustic design",
 		"cost":1500,
-		"require":"state.tierone>0&&state.arcana>=10",
+		"require":"state.tier1>0&&state.arcana>=10",
 		"mod":{
 			"space.max":75
 		}
@@ -156,7 +156,7 @@
 	{
 		"id":"cave",
 		"desc":"A primitive dwelling well-suited to particular areas of study. Some less so.",
-		"require":"adept",
+		"require":"tier0",
 		"cost":100,
 		"mod":{
 			"space.max":30,
@@ -165,7 +165,7 @@
 				"max":2,
 				"rate":0.1
 			},
-			"shadow":{
+			"shadowlore":{
 				"max":1,
 				"rate":0.1
 			},
@@ -196,8 +196,8 @@
 		"require":"state.spirit>=5&&state.arcana>=10",
 		"mod":{
 			"space.max":50,
-			"spirit.max":1,
-			"spirit.rate":0.1,
+			"spiritlore.max":1,
+			"spiritlore.rate":0.1,
 			"shadow.rate":0.1
 		}
 	},
@@ -208,7 +208,7 @@
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":50,
-			"air":{
+			"airlore":{
 				"max":1,
 				"rate":0.1
 			}
@@ -221,10 +221,10 @@
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":80,
-			"water.max":3,
-			"water.rate":0.1,
-			"light.max":3,
-			"light.rate":0.1
+			"waterlore.max":3,
+			"waterlore.rate":0.1,
+			"lightlore.max":3,
+			"lightlore.rate":0.1
 		}
 	},
 	{
@@ -238,12 +238,12 @@
 		"mod":{
 			"space.max":40,
 			"research.rate":-0.7,
-			"water.max":5,
-			"water.rate":0.2,
-			"nature.max":3,
-			"nature.rate":0.1,
-			"light.max":-1,
-			"light.rate":-0.1
+			"waterlore.max":5,
+			"waterlore.rate":0.2,
+			"naturelore.max":3,
+			"naturelore.rate":0.1,
+			"lightlore.max":-1,
+			"lightlore.rate":-0.1
 		},
 		"lock":["latticewindow"]
 
@@ -366,7 +366,7 @@
 	{
 		"id":"cavern",
 		"desc":"A wide and yawning cavern, deep beneath the earth",
-		"require":"adept",
+		"require":"tier0",
 		"cost":{
 			"research":500,
 			"gold":3000,

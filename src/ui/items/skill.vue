@@ -1,6 +1,6 @@
 <script>
-import ItemsBase from './itemsBase.js';
-import Progress from './component/progbar.vue';
+import ItemsBase from '../itemsBase.js';
+import Progress from '../component/progbar.vue';
 
 export default {
 	

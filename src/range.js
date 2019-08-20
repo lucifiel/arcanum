@@ -6,6 +6,8 @@ export default class Range {
 
 	toJSON() { return this.min + SPLIT_CHAR + this.max; }
 
+	toString() { return this.min + ' ' + SPLIT_CHAR + ' ' + this.max; }
+
 	/**
 	 * @property {number} value - getting a range value
 	 * returns a random number in the range, inclusive.

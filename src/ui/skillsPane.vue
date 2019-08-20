@@ -1,7 +1,7 @@
 <script>
 import Game from '../game';
 import ItemBase from './itemsBase';
-import SkillView from './skill.vue';
+import SkillView from './items/skill.vue';
 
 import FilterBox from './component/filterbox.vue';
 

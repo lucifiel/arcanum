@@ -66,7 +66,7 @@
 		"desc":"four post bed",
 		"tags":"bed",
 		"slot":"bed",
-		"require":"adept",
+		"require":"tier0",
 		"cost":{
 			"gold":150,
 			"space":4
@@ -359,7 +359,7 @@
 		"id":"latticewindow",
 		"name":"lattice window",
 		"desc":"An elegant latticed portal.",
-		"require":"adept",
+		"require":"tier0",
 		"cost":{
 			"gold":300,
 			"space":1
@@ -426,7 +426,7 @@
 		"id":"brazier",
 		"desc":"Stand of burning hot coals.",
 		"tags":"firesource",
-		"require":"adept",
+		"require":"tier0",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -499,7 +499,7 @@
 	},
 	{
 		"id":"smstables",
-		"require":"state.adept>0&&state.animals>=5",
+		"require":"state.tier0>0&&state.animals>=7",
 		"tags":"stables",
 		"cost":{
 			"space":10,
@@ -574,7 +574,7 @@
 		"name":"iron cell",
 		"desc":"A simple, bare cell.",
 		"tags":"prison",
-		"require":"adept",
+		"require":"tier0",
 		"cost":{
 			"gold":50,
 			"space":5
@@ -589,7 +589,7 @@
 		"id":"armory",
 		"desc":"A storeroom of arms.",
 		"tags":"armssource",
-		"require":"adept",
+		"require":"tier0",
 		"cost":{
 			"gold":300,
 			"space":10
@@ -647,6 +647,7 @@
 			"space":5
 		},
 		"mod":{
+			"regen":0.1,
 			"shadow.rate":0.05,
 			"shadow.max":1
 		}
@@ -654,7 +655,7 @@
 	{
 		"id":"vat",
 		"desc":"grows bodies from raw materials",
-		"require":"state.tierone>0&&state.anatomy>=5&&state.embalming>=5&&state.crafting>=5",
+		"require":"state.tier1>0&&state.anatomy>=5&&state.embalming>=5&&state.crafting>=10",
 		"cost":{
 			"space":2,
 			"research":100
@@ -746,8 +747,8 @@
 		"mod":{
 			"herbalism.rate":0.2,
 			"herbalism.max":3,
-			"nature.max":1,
-			"nature.rate":0.05
+			"naturelore.max":1,
+			"naturelore.rate":0.05
 		}
 
 	},
@@ -869,7 +870,7 @@
 		"id":"dungeon",
 		"desc":"A vast complex to lock away hazardous experiments, deadly creatures, and all those who displease you.",
 		"tags":"prison",
-		"require":"tiertwo",
+		"require":"tier2",
 		"cost":{
 			"gold":1000,
 			"space":100

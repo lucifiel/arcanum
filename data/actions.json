@@ -172,7 +172,7 @@
 	{
 		"id":"murder",
 		"desc":"an incidental necessity to the advancement of magic",
-		"require":"state.anatomy>=5&&state.embalming>=5&&state.dissection>=5",
+		"require":"state.anatomy>=5&&state.shadowlore>=5&&state.dissection>=5",
 		"length":10,
 		"run":{
 			"stamina":1
@@ -186,7 +186,7 @@
 		"id":"dissect",
 		"name":"dissect cadaver",
 		"require":"state.dissection>=5",
-		"desc":"dissect a body for components. only the best bone fragments will serve.",
+		"desc":"dissect a body for components. only the best pieces will serve.",
 		"length":10,
 		"cost":{
 			"bodies":1
@@ -498,10 +498,28 @@
 
 	},
 	{
+		"id":"lemurlexicon",
+		"name":"lemurian lexicon",
+		"require":"state.languages>=5&&state.tier0>0",
+		"length":50,
+		"repeat":false,
+		"cost":{
+			"codices":5
+		},
+		"run":{
+			"research":1
+		},
+		"effect":{
+			"languages.max":2,
+			"languages.rate":0.1
+		}
+
+	},
+	{
 		"id":"almagest",
 		"desc":"manual of the sun and stars",
 		"actname":"compile almagest",
-		"require":"state.astronomy>=5&&state.adept>0",
+		"require":"state.astronomy>=5&&state.tier0>0",
 		"repeat":false,
 		"length":50,
 		"cost":{
@@ -546,7 +564,7 @@
 		"id":"craftgem",
 		"name":"Craft Gem",
 		"desc":"Craft a gem from raw minerals.",
-		"require":"state.crafting>=5&&state.alchemy>=4",
+		"require":"state.crafting>=5&&state.alchemy>=5",
 		"run":{
 			"stamina":1,
 			"mana":2
@@ -677,7 +695,7 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"(state.adept>0&&state.animals>=5)||state.witch>0",
+		"require":"(state.tier0>0&&state.animals>=5)||state.witch>0",
 		"cost":{
 			"gold":50,
 			"research":100

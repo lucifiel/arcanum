@@ -20,7 +20,7 @@
 
 		"id":"bones",
 		"desc":"human bones.",
-		"require":"adept",
+		"require":"tier0",
 		"max":10
 
 	},
@@ -29,7 +29,7 @@
 		"id":"dust",
 		"name":"bone dust",
 		"desc":"The dust of human bones.",
-		"require":"adept",
+		"require":"tier0",
 		"max":10
 	},
 	{
@@ -78,7 +78,7 @@
 		"max":10,
 		"mod":{
 			"research":{
-				"rate":0.1,
+				"rate":0.08,
 				"max":10
 			},
 			"lore":{
@@ -106,7 +106,7 @@
 	{
 		"id":"gems",
 		"desc":"Various fine gemstones.",
-		"require":"state.adept>0||state.prestidigitation>=50",
+		"require":"tier0",
 		"max":10
 	},
 	{
@@ -213,7 +213,7 @@
 	},
 	{
 		"id":"fire",
-		"require":"pyromancy",
+		"require":"firelore",
 		"unit":false,
 		"tags":"manas,elemental",
 		"desc":"Fire Mana",
@@ -262,7 +262,7 @@
 		"name":"shadow",
 		"tags":"manas",
 		"unit":false,
-		"require":"state.evil>0||state.embalming>1",
+		"require":"state.evil>0||state.shadowlore>1",
 		"desc":"Shadow mana",
 		"max":0
 	},
@@ -270,7 +270,7 @@
 		"id":"light",
 		"tags":"manas",
 		"unit":false,
-		"require":"lumenology",
+		"require":"lightlore",
 		"desc":"Light mana",
 		"max":0
 	},

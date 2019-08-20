@@ -28,6 +28,8 @@ enchanting,
 minions,
 potions
 
+baffling
+befuddlement
 
 upgrades:
 

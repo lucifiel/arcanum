@@ -83,9 +83,8 @@ export default {
 	/**
 	 * @property {string} name - displayed name.
 	 */
-	get name() { return this._name || this.id;},
-	set name(v) {
-		this._name = v;},
+	get name() { return ( this._actname && this._value < 1 ) ? this.actname : (this._name||this.id); },
+	set name(v) { this._name = v;},
 
 	/**
 	 * @property {boolean} repeat - whether the item is repeatable.
@@ -94,7 +93,7 @@ export default {
 	/**
 	 * @property {string} desc
 	 */
-	get desc() { return this._desc; },
+	get desc() { return ( this.actdesc && this._value < 1 ) ? this.actdesc : (this._desc || null ); },
 	set desc(v) { this._desc=v;},
 
 	/**

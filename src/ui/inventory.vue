@@ -27,7 +27,7 @@ export default {
 <table class="inv item-table">
 	<tr v-for="it in filtered" :key="it.id">
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name }}</td>
-		<td><button @click="dispatch('equip',it)">Equip</button></td>
+		<td><button @click="dispatch('equip',it)" @mouseenter.capture.stop="dispatch('itemover',$event,it)">Equip</button></td>
 		<td><button @click="dispatch('drop',it)">Drop</button></td>
 	</tr>
 </table>

@@ -20,9 +20,6 @@
 		"run":{
 			"stamina":0.2
 		},
-		"effect":{
-			"research":0.01
-		},
 		"result":{
 
 			"research.max":5,
@@ -102,6 +99,7 @@
 		"id":"anatomy",
 		"require":"state.neophyte>=0&&state.lore>=6",
 		"school":["nature","shadow","light"],
+		"desc":"the study of physical form.",
 		"run":{
 			"stamina":0.5
 		},
@@ -110,7 +108,8 @@
 			"research":{
 				"max":1,
 				"value":5
-			}
+			},
+			"hp.max":1
 		}
 
 	},
@@ -132,6 +131,19 @@
 
 	},
 	{
+		"id":"shadowlore",
+		"require":"state.dissection>=5",
+		"school":"shadow",
+		"run":{
+			"stamina":0.5
+		},
+		"result":{
+			"sp":0.05,
+			"shadow.max":1,
+			"shadow.rate":0.01
+		}
+	},
+	{
 
 		"id":"embalming",
 		"require":"state.dissection>=5",
@@ -148,7 +160,8 @@
 	},
 	{
 
-		"id":"secondsight",
+		"id":"spiritlore",
+		"name":"second sight",
 		"desc":"seeing the unseen",
 		"require":["state.lore>=6", "spiritsource"],
 		"school":"spirit",
@@ -165,7 +178,7 @@
 
 		"id":"divination",
 		"desc":"the art of foretelling",
-		"require":["secondsight.lore>=6", "spiritsource"],
+		"require":["spiritlore.lore>=6", "spiritsource"],
 		"school":"shadow",
 		"run":{
 			"stamina":0.4
@@ -180,21 +193,23 @@
 
 	},
 	{
-		"id":"lumenology",
-		"desc":"study of light",
+		"id":"lightlore",
+		"name":"lumenology",
+		"desc":"study of pure light",
 		"require":"prism",
 		"run":{
 			"stamina":0.4
 		},
 		"result":{
 			"light.max":1,
-			"light.rate":0.1
+			"light.rate":0.01
 		},
 		"flavor":"the light fantastic"
 
 	},
 	{
-		"id":"pyromancy",
+		"id":"firelore",
+		"name":"pyromancy",
 		"desc":"the investigation of fire",
 		"need":"firesource",
 		"run":{
@@ -318,7 +333,7 @@
 	},
 	{
 		"id":"enchanting",
-		"require":"state.adept>0&&state.lore>=7",
+		"require":"state.tier0>0&&state.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
 		"run":{
 			"stamina":0.5,
@@ -364,7 +379,7 @@
 
 		"id":"planeslore",
 		"name":"planes lore",
-		"require":"state.astronomy>=5&&state.tierone>0",
+		"require":"state.astronomy>=5&&state.tier1>0",
 		"run":{
 			"stamina":0.7,
 			"research":1,
@@ -377,7 +392,7 @@
 	},
 	{
 		"id":"chronomancy",
-		"require":"state.timesource>0&&state.tiertwo>0",
+		"require":"state.timesource>0&&state.tier2>0",
 		"run":{
 			"stamina":0.3,
 			"research":1,

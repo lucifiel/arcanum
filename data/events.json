@@ -45,22 +45,43 @@
 
 	},
 	{
-		"id":"tierone",
-		"name":"Profressional Magick",
-		"desc":"Every city has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
+		"id":"tier0",
+		"name":"Solitary Magic",
+		"desc":"Some say the study of magic doesn't truly begin until after apprenticeship ends.",
 		"effect":{
 			"player.exp":15,
-			"lore.max":1
+			"innroom":true,
+			"sp":2,
+			"research.max":5
 		}
 
 	},
 	{
-		"id":"tiertwo",
+		"id":"tier1",
+		"name":"Profressional Magick",
+		"desc":"Every province has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
+		"disable":["treatailments","prestidigitation"],
+		"effect":{
+			"player.exp":15,
+			"lore.max":1,
+			"sp":1,
+			"arcanebody.max":1,
+			"occultendure.max":1,
+			"crystalmind.max":1
+		}
+
+	},
+	{
+		"id":"tier2",
 		"name":"Magical Mastery",
 		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
 		"effect":{
 			"player.exp":25,
-			"lore.max":2
+			"lore.max":2,
+			"sp":2,
+			"arcanebody.max":1,
+			"occultendure.max":1,
+			"crystalmind.max":1
 		}
 
 	},
@@ -82,7 +103,7 @@
 		"id":"evil",
 		"name":"wicked",
 		"desc":"You have taken your first step on the path of evil. It's a good thing.",
-		"disable":["light","good", "lumenology"],
+		"disable":["light","good", "lightlore"],
 		"effect":{
 			"shadow":{
 				"max":1,

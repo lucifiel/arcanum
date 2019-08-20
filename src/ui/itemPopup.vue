@@ -3,6 +3,8 @@
 import Game from '../game';
 import VarPath from '../varPath';
 
+import ItemView from './items/item.vue';
+
 /**
  * Box for displaying item information.
  */
@@ -38,106 +40,7 @@ export default {
 			}
 		}
 	},
-	methods:{
-
-		effectItems(obj) {
-
-			let type = typeof obj;
-			let results = {};
-
-			if ( type === 'number') {
-
-				// gold is default.
-				results.gold = obj;
-
-			} else if ( type === 'string') {
-
-				let it = Game.getItem(obj);
-				results[ it ? it.name : obj ] = true;
-
-			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
-			else if ( type === 'object') {
-
-				this.effectList( obj, results );
-
-			}
-
-			return results;
-
-		},
-
-		/**
-		 * @param {Object} obj - object whose effects to enumerate.
-		 * @param {Object} results - [name/effect] pairs to display to user.
-		 * @param {string} propPath - prop path from base.
-		 */
-		effectList( obj, results={}, propPath='' ) {
-
-			if ( typeof obj === 'string' ) {
-
-				let it = Game.getItem(obj);
-				results[ it ? it.name : obj ] = true;
-				return;
-			}
-
-			for( let p in obj ) {
-
-				var subPath = p;
-				var sub = obj[p];
-
-				if ( p === 'skipLocked') continue;
-				else if ( p === 'max' ) {
-
-					subPath = 'max ' + propPath;
-
-				} else if ( p==='base' || p === 'value') subPath = propPath;
-				else if ( p === 'rate') {
-
-					subPath = propPath;
-					if ( typeof sub !== 'object' ) sub = sub + '/s';
-
-				} else {
-
-					// check if sub-prop refers to an item.
-					let refItem = Game.getItem(p);
-					if ( refItem ) subPath = refItem.name;
-
-					subPath = propPath ? propPath + ' ' + subPath : subPath;
-
-				}
-
-				if ( typeof sub !== 'object' ) results[subPath] = sub;
-				else {
-
-					if ( sub.skipLocked ) {
-						let refItem = Game.getItem(p);
-						if ( refItem && refItem.locked || refItem.disabled ) continue;
-					}
-					this.effectList( sub, results, subPath );
-
-				}
-
-			}
-
-		}
-
-	},
-	computed:{
-
-		name() {
-
-			return ( this.item.actname && this.item.value < 1 ) ? this.item.actname : (this.item.name||this.item.id);
-		},
-
-		desc(){
-
-			// item.action allows desc to behave as an action description until
-			// action is completed.
-			return ( this.item.actdesc && this.item.value < 1 ) ? this.item.actdesc : (this.item.desc || null );
-
-		}
-
-	}
+	components:{ item:ItemView }
 
 }
 </script>
@@ -146,76 +49,7 @@ export default {
 <template>
 	
 	<div :class="{ 'item-popup':true, show:item!=null }">
-		<div class='popup-content' v-if="item">
-		<span class="item-name">{{name}}
-
-			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
-				item.current.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
-		</span>
-
-		<div>
-		
-		<span class="separate">
-			<span v-if="item.level&&item.type!=='action'">lvl: {{item.level}}</span>
-			<span v-if="item.slot">slot: {{ item.slot }}</span>
-		</span>
-		
-			<div v-if="item.dist">distance: {{item.dist}}</div>
-			<div v-if="item.armor">armor: {{ item.armor }}</div>
-			<div class="item-desc" v-if="desc">{{ desc }}</div>
-
-		</div>
-
-		<div v-if="item.buy&&!item.owned">
-
-			<hr>
-			<div v-for="(v,k) in effectItems(item.buy)" :key="k">
-				<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-			</div>
-			
-
-		</div>
-		<div v-if="item.cost">
-
-			<hr>
-			<div v-for="(v,k) in effectItems(item.cost)" :key="k">
-				<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-			</div>
-			
-
-		</div>
-		<div v-if="item.run">
-
-			<hr>
-			<div v-for="(v,k) in effectItems(item.run)" :key="k">
-				<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-			</div>
-			
-
-		</div>
-		<div v-if="item.effect||item.mod||item.result">
-
-			<hr>
-			<div class="note-text">effects:</div>
-
-			<div v-for="(obj,key) in [item.effect,item.mod,item.result]" :key="key">
-
-				<div v-for="(v,k) in effectItems(obj)" :key="k">
-
-					<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-
-				</div>
-
-			</div>
-
-		</div>
-
-		<span class="note-text" v-if="item.flavor">{{ item.flavor}}</span>
-		</div>
+		<item class='popup-content' v-if="item" :item="item" />
 	</div>
 
 </template>
@@ -240,19 +74,6 @@ export default {
 }
 .show {
 	display: inline-block;
-}
-
-
-div.item-desc {
-	margin: 5px 0px 10px;
-	font-size: 0.96em;
-}
-
-.item-popup .item-name {
-	font-weight: bold;
-}
-.item-popup .flavor {
-	font-style: italic;
 }
 
 </style>

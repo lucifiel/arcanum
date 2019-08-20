@@ -519,7 +519,7 @@
 			"mod":{
 				"lore.rate":0.5,
 				"naturelore.rate":0.2,
-				"lumenology.rate":0.2,
+				"lightlore.rate":0.2,
 				"languages.rate":0.2
 			}
 		}
@@ -548,7 +548,7 @@
 			"mod":{
 				"lore.rate":0.5,
 				"dissection.rate":0.2,
-				"embalming.rate":0.2,
+				"shadowlore.rate":0.2,
 				"demonology.rate":0.2,
 				"reanimation.rate":0.2
 			}
