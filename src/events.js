@@ -20,21 +20,26 @@ export default {
 	
 	log:null,
 
+	ready:false,
+
 	init( game ) {
 
 		this.log = game.log;
-
 		this.game = game;
 
-		events.addListener( EVT_LOOT, this.onLoot, this );
-		events.addListener( EVT_UNLOCK, this.onUnlock, this );
-		events.addListener( EVT_EVENT, this.onEvent, this );
+		if ( !this.ready ) {
 
-		events.addListener( EVT_COMBAT, this.onCombat, this );
-		events.addListener( ENEMY_SLAIN, this.enemySlain, this );
-		events.addListener( PLAYER_SLAIN, this.onDied, this );
-		events.addListener( DAMAGE_MISS, this.onMiss, this );
-		
+			events.addListener( EVT_LOOT, this.onLoot, this );
+			events.addListener( EVT_UNLOCK, this.onUnlock, this );
+			events.addListener( EVT_EVENT, this.onEvent, this );
+
+			events.addListener( EVT_COMBAT, this.onCombat, this );
+			events.addListener( ENEMY_SLAIN, this.enemySlain, this );
+			events.addListener( PLAYER_SLAIN, this.onDied, this );
+			events.addListener( DAMAGE_MISS, this.onMiss, this );
+
+			this.ready = true;
+		}
 
 	},
 

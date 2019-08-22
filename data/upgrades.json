@@ -178,17 +178,32 @@
 		}
 	},
 	{
+		"id":"gembag",
+		"name":"velvet bag",
+		"desc":"Small bag keeps gems safe without scratching.",
+		"require":"state.gems>=5",
+		"max":2,
+		"repeat":true,
+		"cost":300,
+		"flavor":"seems a bit pricey for a bag.",
+		"mod":{
+			"gems.max":5
+		}
+	},
+	
+	{
 		"id":"orb",
 		"name":"arcane orb",
 		"desc":"Stores magical energy.",
 		"require":"state.mana.max>=10&&state.crafting>=7",
 		"max":2,
 		"cost":{
-			"gold":75,
-			"research":50
+			"gems":5,
+			"mana":10,
+			"research":200
 		},
 		"mod":{
-			"mana.max":1
+			"mana.rate":0.2
 		}
 
 	},
@@ -590,8 +605,8 @@
 		"desc":"A crystal sphere revealing distant lands.",
 		"require":"tier0",
 		"cost":{
-			"gold":50,
-			"research":100
+			"gems":3,
+			"research":200
 		},
 		"mod":{
 			"arcana":{
@@ -813,7 +828,8 @@
 		"desc":"essential instrument in alchemical distilling",
 		"require":"tier0",
 		"cost":{
-			"gold":125
+			"gold":150,
+			"research":100
 		},
 		"mod":{
 			"potions":{
@@ -827,9 +843,9 @@
 		"id":"crucible",
 		"name":"fine crucible",
 		"desc":"resiliant vessel for melting substances",
-		"require":"tier0",
+		"require":"tier0>0&&alchemy>0",
 		"cost":{
-			"gold":125
+			"gold":150
 		},
 		"mod":{
 			"alchemy":{
