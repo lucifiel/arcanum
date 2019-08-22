@@ -1,7 +1,6 @@
 import Range from '../range';
 import Base, {mergeClass} from '../items/base';
 import {tryDamage} from './raid';
-import { mergeSafe } from 'objecty';
 import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';

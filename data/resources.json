@@ -116,7 +116,7 @@
 		"id":"gems",
 		"desc":"Various fine gemstones.",
 		"require":"tier0",
-		"max":10
+		"max":5
 	},
 	{
 

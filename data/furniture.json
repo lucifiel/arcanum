@@ -1,6 +1,6 @@
 [
 	{
-		"id":"smallchest",
+		"id":"smchest",
 		"name":"small chest",
 		"desc":"A small wooden chest.",
 		"require":"state.gold.max>=50",
@@ -10,6 +10,7 @@
 			"space":1
 		},
 		"mod":{
+			"inv.max":1,
 			"gold":{
 				"max":75
 			}
@@ -26,6 +27,7 @@
 			"space":2
 		},
 		"mod":{
+			"inv.max":2,
 			"gold.max":175
 		}
 	},

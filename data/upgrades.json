@@ -379,7 +379,7 @@
 	{
 
 		"id":"transfusions",
-		"desc":"Learn to perform transfusions",
+		"desc":"Learn to perform life-force transfusions",
 		"require":"state.anatomy>=5&&state.tier0>0",
 		"cost":{
 			"research":100,

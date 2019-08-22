@@ -589,9 +589,7 @@ export default {
 		if ( typeof effect === 'object' ) {
 
 			if (  Array.isArray(effect) ) {
-				for( let e of effect ) {
-					this.applyEffect( e,dt);
-				}
+				for( let e of effect ) { this.applyEffect( e,dt); }
 				return;
 			}
 

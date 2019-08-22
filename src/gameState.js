@@ -19,7 +19,6 @@ export default class GameState {
 			curAction: this.curAction ? this.curAction.id : undefined,
 			slots:slotIds,
 			equip:( this.equip ),
-			inventory:( this.inventory ),
 			raid:( this.raid ),
 			sellRate:this.sellRate,
 			restAction:this.restAction ? this.restAction.id : null,
@@ -71,7 +70,10 @@ export default class GameState {
 		this.quickslots = this.quickslots || [];
 
 		this.initMaterials( this.materials );
-		this.inventory = new Inventory( baseData.inventory );
+
+		this.inventory = new Inventory( this.items.inv || baseData.inventory || {max:5} );
+		this.items.inv = this.inventory;
+
 		this.equip = new Equip( baseData.equip );
 
 		/**

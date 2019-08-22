@@ -1,4 +1,6 @@
 import Wearable from "./wearable";
+import Stat from "../stat";
+import Base, {mergeClass} from '../items/base';
 
 export default class Inventory {
 
@@ -14,6 +16,9 @@ export default class Inventory {
 		}
 	}
 
+	get max() { return this._max; }
+	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
+
 	constructor(vars=null){
 
 		if ( vars ) Object.assign(this,vars);
@@ -21,7 +26,10 @@ export default class Inventory {
 		if ( this.items )this.items = this.items.map( v=>new Wearable(v) );
 		else this.items = [];
 
-		this.max = this.max || 0;
+		this.type = this.id = 'inventory';
+		
+		console.log('this max: ' + this.max );
+		this._max = this._max || 0;
 
 	}
 
@@ -89,3 +97,5 @@ export default class Inventory {
 	}
 
 }
+
+mergeClass( Inventory, Base );
