@@ -194,6 +194,7 @@ export default class ItemGen {
 				if ( only && !includesAny(only, v.type, v.kind ) ) return false;
 				if ( exclude && includesAny(exclude, v.type, v.kind, v.name) ) return false;
 
+				if ( v.only && !includesAny( v.only, item.type, item.kind ) ) return false;
 				if ( v.exclude && includesAny( v.exclude, item.type, item.kind ) ) return false;
 				return true;
 	

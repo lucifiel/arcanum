@@ -10,7 +10,29 @@ export default {
 			filtered:null
 		};
 	},
+	beforeCreate(){
+		this.game = Game;
+	},
+	methods:{
+
+		showHp(m) {
+			return this.totalLore >= 4*m.level;
+		},
+
+		toNum(v) {
+			return ( typeof v === 'object' ? v.value : v ).toFixed(0);
+		}
+
+	},
 	computed:{
+
+		totalLore() { return this.animals.value + this.lore.value + this.demonology.value; },
+
+		animals() { return Game.state.getItem('animals');},
+
+		lore() { return Game.state.getItem('lore');},
+
+		demonology() { return Game.state.getItem('demonology');},
 
 		items(){
 			return Game.state.monsters.filter( v=>v.value>=1 );
@@ -31,10 +53,11 @@ export default {
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
 	<table class="bestiary">
-		<tr><th>Creature</th><th>Slain</th></tr>
+		<tr><th>Creature</th><th>Slain</th><th class="number">Hp</th></tr>
 		<tr v-for="b in filtered" :key="b.id">
 			<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
-			<td class="num-align">{{ b.value }}</td>
+			<td class="number">{{ b.value }}</td>
+			<td class="number">{{ showHp(b) ? toNum(b.hp) : '??' }}</td>
 		</tr>
 	</table>
 
@@ -61,15 +84,17 @@ tr > th:first-of-type {
 	text-align: left;
 }
 
-th td {
-	padding: 8px;
-	margin: 8px;
+th {
+	padding: 4px 10px;
 }
 
-td.num-align {
-	padding: 8px;
-	margin: 8px;
+th.number {
 	text-align: right;
-
 }
+
+td.number {
+	padding: 8px;
+	text-align: right;
+}
+
 </style>

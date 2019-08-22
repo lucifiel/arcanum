@@ -18,15 +18,18 @@ ongoing actions should stop if 'need' requirements not met.
 
 MINOR:
 
-leather weapons.
-
 popup positioning improvements.
 
 more armor drop variations.
 
 assign custom rest action.
 
+
 UI TWEAKS:
+
+Display bestiary hp.
+
+Display Weapon/Dot stats
 
 Clear button/rest button redesign
 

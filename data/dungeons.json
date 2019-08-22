@@ -55,6 +55,7 @@
 		"require":"evt_pestcontrol",
 		"level":3,
 		"length":25,
+		"dist":0,
 		"run":{
 			"stamina":1
 		},
