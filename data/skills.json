@@ -218,7 +218,7 @@
 		},
 		"result":{
 			"fire.max":1,
-			"fire.rate":0.1
+			"fire.rate":0.01
 		},
 		"flavor":"dry is good and wind is better"
 
@@ -232,7 +232,7 @@
 		"result":{
 			"earth":{
 				"max":1,
-				"rate":0.1
+				"rate":0.01
 			}
 		}
 	},
@@ -247,7 +247,7 @@
 		"result":{
 			"water":{
 				"max":1,
-				"rate":0.1
+				"rate":0.01
 			}
 		}
 
@@ -263,7 +263,7 @@
 		"result":{
 			"air":{
 				"max":1,
-				"rate":0.1
+				"rate":0.01
 			}
 		}
 
@@ -279,7 +279,7 @@
 		"result":{
 			"nature":{
 				"max":1,
-				"rate":0.1
+				"rate":0.01
 			}
 		}
 

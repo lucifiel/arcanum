@@ -2,13 +2,22 @@ resistances
 
 optional dot stacking
 
-display weapon damage in char.
+Display Weapon/Dot stats
 
 
 GAME:
 
+Alchemy&Potions
+
+Enchant Items
+
+Familiars
+
+Magic Items
+
 Travel Component
 
+Storage max+upgrades
 
 ERRORS:
 
@@ -18,6 +27,8 @@ ongoing actions should stop if 'need' requirements not met.
 
 MINOR:
 
+fix rollovers itemover etc.
+
 popup positioning improvements.
 
 more armor drop variations.
@@ -26,10 +37,6 @@ assign custom rest action.
 
 
 UI TWEAKS:
-
-Display bestiary hp.
-
-Display Weapon/Dot stats
 
 Clear button/rest button redesign
 

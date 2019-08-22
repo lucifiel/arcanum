@@ -683,7 +683,7 @@
 			"mana":5
 		},
 		"mod":{
-			"hp.max":1
+			"hp.max":2
 		}
 
 	},
@@ -700,7 +700,8 @@
 			"mana":5
 		},
 		"mod":{
-			"stamina.max":1
+			"stamina.max":1,
+			"stamina.rate":0.1
 		}
 
 	},

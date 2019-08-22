@@ -440,6 +440,7 @@
 			"research":20,
 			"mana":3
 		},
+		"fill":"codices",
 		"effect":{
 			"codices":1
 		}
@@ -456,6 +457,7 @@
 			"research":100,
 			"mana":10
 		},
+		"fill":"tomes",
 		"run":{
 			"stamina":0.4
 		},
