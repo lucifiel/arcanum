@@ -9,6 +9,8 @@ import ItemGen from './itemgen';
 import TechTree from './techTree';
 import Dot from './chars/dot';
 
+import Events, {EVT_UNLOCK, EVT_EVENT} from './events';
+
 var techTree;
 
 /**
@@ -80,6 +82,8 @@ export default {
 	},
 
 	initEvents() {
+
+		Events.init(this);
 
 		let evts = this.state.events;
 		for( let i = evts.length-1; i>= 0; i-- ) {
@@ -438,9 +442,7 @@ export default {
 		if ( it.dot ) this.state.player.addDot( new Dot(it.dot, it.id, it.name) );
 		if ( it.disable ) this.disable( it.disable );
 
-		if ( it.log ){
-			this.log.log( it.log.title, it.log.text );
-		}
+		if ( it.log ) Events.dispatch( EVT_EVENT, it.log );
 
 		if ( it.attack ) {
 			if ( it.type !== 'wearable' && this.state.curAction === this.state.raid )
@@ -462,8 +464,7 @@ export default {
 
 		evt.locked = false;
 
-		//console.log('event done: ' + evt.id );
-		this.log.log( evt.name, evt.desc, 'event' );
+		Events.dispatch( EVT_EVENT, evt );
 
 	},
 
@@ -510,10 +511,12 @@ export default {
 
 		else if ( !it.require || this.unlockTest(it.require,it) ) {
 
-			this.log.log( 'Unlocked: ' + it.name, null, 'unlock' );
-			it.locked = false;
 			if ( it.type === 'event') this.doEvent( it );
-			else it.dirty = true;
+			else {
+				it.locked = false;
+				it.dirty = true;
+				Events.dispatch( EVT_UNLOCK, it );
+			}
 
 			return true;
 		}
@@ -812,13 +815,33 @@ export default {
 		return true;
 	},
 
-	equip( it, slot=null ) {
+	/**
+	 * Test if equip is possible. ( Must have space in inventory
+	 * for any items replaced. )
+	 * @param {*} it 
+	 */
+	canEquip(it) {
 
-		//console.log('equip: ' + it.id );
-		let res = this.state.equip.equip( it, slot );
+		// if inventory contains item, +1 free spaces.
+		let adjust = this.state.inventory.includes(it) ? 1 : 0;
+		return this.state.equip.replaceCount(it ) <= this.state.inventory.freeSpace() + adjust;
+
+	},
+
+	/**
+	 * 
+	 * @param {*} it 
+	 * @param {?Inventory} inv - source inventory of item.
+	 */
+	equip( it, inv=null ) {
+
+		if ( !this.canEquip(it) ) return false;
+
+		let res = this.state.equip.equip( it );
 		if ( !res) return;
 
-		this.state.inventory.remove( it );
+		(inv || this.state.inventory).remove(it);
+
 		if ( typeof res === 'object') {
 
 			if ( Array.isArray(res) ) res.forEach(v=>{
@@ -843,6 +866,8 @@ export default {
 	},
 
 	unequip( slot, it){
+
+		if ( this.state.inventory.full() ) return false;
 
 		let res = this.state.equip.remove( it, slot );
 		if ( res ) {
@@ -869,13 +894,23 @@ export default {
 	},
 
 	/**
-	 * Get loot from an action, monster, or dungeon.
-	 * @param {string|Wearable|Object|Array} it 
+	 * Add an item to player's inventory.
+	 * @param {*} it 
 	 */
-	getLoot(it) {
+	take( it ) {
+		console.log('adding: ' + it.id );
+		return this.state.inventory.add(it);
+	},
+
+	/**
+	 * Get loot from an action, monster, or dungeon.
+	 * @param {string|Wearable|Object|Array} it
+	 * @param {?Inventory} inv - inventory to place looted item.
+	 */
+	getLoot(it, inv=null) {
 
 		let res = this.itemGen.getLoot(it);
-		if ( res !== null && res !== undefined ) this.state.inventory.add( res );
+		if ( res !== null && res !== undefined ) ( inv || this.state.inventory ).add( res );
 
 	},
 

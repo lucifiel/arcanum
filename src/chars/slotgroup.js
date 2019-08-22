@@ -62,6 +62,12 @@ export default class SlotGroup {
 
 	}
 
+	freeSpace( slot ) {
+		slot = this.slots[slot];
+		if ( slot === undefined ) return 0;
+		return slot.freeSpace();
+	}
+
 	/**
 	 * 
 	 * @param {Item} it 

@@ -80,6 +80,7 @@ export default {
 		this.listen('game-loaded', this.gameLoaded );
 
 		this.listen( 'sell', this.onSell );
+		this.listen( 'take', this.onTake );
 		this.listen( 'itemover', this.itemOver );
 		this.listen( 'itemout', this.itemOut );
 		this.listen( 'upgrade', this.onUpgrade );
@@ -189,7 +190,7 @@ export default {
 
 		},
 
-		onEquip( it ) { this.game.equip( it ); },
+		onEquip( it, inv ) { this.game.equip( it,inv ); },
 
 		onUnequip(slot, it){ this.game.unequip(slot, it) },
 
@@ -198,6 +199,8 @@ export default {
 		 * @param {Item} it - item to drop
 		 */
 		onDrop(it) { this.game.drop(it); },
+
+		onTake(it) { this.game.take(it); },
 
 		onSell(it) {
 			this.game.trySell( it );

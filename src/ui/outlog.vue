@@ -1,6 +1,6 @@
 <script>
 
-const LogTypes = ['event','unlock','combat', 'inventory'];
+const LogTypes = ['event','unlock','combat', 'loot'];
 
 /**
  * Displays event output to user.

@@ -1,3 +1,5 @@
+import Events from '../events';
+
 import Game from '../game';
 import Char from './char';
 import Range from '../range';
@@ -5,7 +7,8 @@ import Dot from './dot';
 import Npc from './npc';
 import Inventory from './inventory';
 
-const COMBAT_LOG = 'combat';
+import { EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN,
+		DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT } from '../events';
 
 /**
 * Attempt to damage a target. Made external for use by dots, other code.
@@ -17,11 +20,14 @@ export function tryDamage( target, attack, attacker=null ) {
 	if ( attack.kind ) {
 
 		if ( target.isImmune(attack.kind) ) {
-			Game.log.log( '', target.name + ' is immune to ' + attack.kind );
+
+			Events.dispatch( DAMAGE_MISS, target.name + ' is immune to ' + attack.kind );
+
 			return false;
 		}
 		if ( target.tryResist(attack.kind) ) {
-			Game.log.log( '', target.name + ' resists ' + attack.kind );
+
+			Events.dispatch( DAMAGE_MISS, target.name + ' resists ' + attack.kind )
 			return false;
 		}
 
@@ -36,15 +42,14 @@ export function tryDamage( target, attack, attacker=null ) {
 		target.hp -= dmg;
 
 		var attackName = attack.name || ( attacker ? attacker.name : '' );
-		Game.log.log( '', target.name + ' hit' +
+		Events.dispatch( EVT_COMBAT, null, target.name + ' hit' +
 			( attackName ? ' by ' + attackName : '' ) +
-			': ' + dmg.toFixed(1),
-			COMBAT_LOG );
+			': ' + dmg.toFixed(1) );
 
 		if ( attack.leech && attacker ) {
 			let amt = Math.floor( 100*attack.leech*dmg )/100;
 			attacker.hp += amt;
-			Game.log.log( '', attacker.name + ' steals ' + amt + ' life.' );
+			Events.dispatch( EVT_COMBAT, null, attacker.name + ' steals ' + amt + ' life.' );
 		}
 
 	}
@@ -125,13 +130,16 @@ export default class Raid {
 	 * can be taken by player.
 	 */
 	get drops() { return this._drops; }
-	set drops(v) { this._drops = v; }
+	set drops(v) {
+		this._drops = (v instanceof Inventory ) ? v : new Inventory(v);
+	}
 
 	toJSON() {
 
 		return {
 			dungeon:this.dungeon ? this.dungeon.id : undefined,
-			enemies:this._enemies
+			enemies:this._enemies,
+			drops:this.drops
 		}
 
 	}
@@ -159,6 +167,8 @@ export default class Raid {
 
 		this.state = gameState;
 		this.player = gameState.player;
+
+		this.drops.revive(gameState);
 
 		for( let i = this._enemies.length-1; i>=0; i-- ) this._enemies[i].revive(gameState);
 
@@ -218,7 +228,7 @@ export default class Raid {
 		//console.log('spell attack');
 		if ( this.dungeon == null || !this._enemies.length===0 ) {
 
-			Game.log.log( '', this.player.name + ' casts ' + it.name + ' at the darkness.', 'combat');
+			Events.dispatch(EVT_COMBAT, null, this.player.name + ' casts ' + it.name + ' at the darkness.' );
 
 		} else this.playerAttack( it );
 
@@ -239,7 +249,7 @@ export default class Raid {
 
 		} else {
 
-			Game.log.log( '', player.name + ' misses', 'combat');
+			Events.dispatch( DAMAGE_MISS, player.name + ' misses', 'combat' );
 
 		}
 
@@ -298,14 +308,14 @@ export default class Raid {
 
 		if ( Math.random() >  this.dodgeRoll( defender.dodge, tohit )) {
 
-			Game.log.log( '', defender.name + ' dodges ' + (attack.name||attacker.name), COMBAT_LOG );
+			Events.dispatch( DAMAGE_MISS, defender.name + ' dodges ' + (attack.name||attacker.name));
 			return false;
 		}
 
 		//console.log( attacker.name + ': ' + tohit + '  vs: ' + defender.defense );
 		if ( Math.random()*( 10 + tohit ) >= Math.random()*(10 + defender.defense ) ) return true;
 
-		Game.log.log( '', attacker.name + ' misses', COMBAT_LOG );
+		Events.dispatch( DAMAGE_MISS, attacker.name + ' misses' );
 		return false;
 	
 	}
@@ -325,6 +335,7 @@ export default class Raid {
 	}
 
 	playerDied() {
+		Events.dispatch( PLAYER_SLAIN, null );
 		Game.setAction( this.state.restAction );
 	}
 
@@ -346,7 +357,7 @@ export default class Raid {
 				enemyList.push( e.name);
 			}
 
-			Game.log.log( enemyList.join(',') + ' Encountered', '', COMBAT_LOG );
+			Events.dispatch( EVT_COMBAT, enemyList.join(',') + ' Encountered' );
 
 		} else {
 
@@ -354,7 +365,7 @@ export default class Raid {
 			if ( !enemy) {console.warn( 'Missing Enemy'); return }
 			this._enemies.push( new Npc(enemy ) );
 
-			Game.log.log(enemy.name + ' Encountered', '', COMBAT_LOG );
+			Events.dispatch( EVT_COMBAT, enemy.name + ' Encountered' );
 		}
 
 	}
@@ -371,10 +382,10 @@ export default class Raid {
 			}
 		}
 
-		Game.log.log( '', enemy.name + ' slain' + ( attacker ? ' by ' + attacker.name : ''), COMBAT_LOG );
+		Events.dispatch( ENEMY_SLAIN, enemy, attacker );
 
 		if ( enemy.result ) Game.applyEffect( enemy.result );
-		if ( enemy.loot ) Game.getLoot( enemy.loot );
+		if ( enemy.loot ) Game.getLoot( enemy.loot, this.drops );
 
 		this.progress += 1;
 
@@ -386,7 +397,8 @@ export default class Raid {
 		this.dungeon.progress = this.dungeon.length;
 		this.dungeon.dirty = true;
 
-		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot );
+		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot, this.drops );
+
 		if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
 
 		this.player.exp += (this.dungeon.level)*( 15 + this.dungeon.length );

@@ -8,8 +8,8 @@
 		"require":"state.research.max>=10",
 		"disable":["cleanstables"],
 		"log":{
-			"title":"Apprentice",
-			"text":"After paying a small fee, you became apprenticed to a local wizard."
+			"name":"Apprentice",
+			"desc":"After paying a small fee, you became apprenticed to a local wizard."
 		},
 		"cost":{
 			"research":10,
@@ -28,8 +28,8 @@
 	"actdesc":"The next step on the twisting stairwell of apprenticeship.",
 	"require":"state.research.max>=70&&state.spellbook.value>0&&state.languages>1",
 	"log":{
-		"title":"Neophyte",
-		"text":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies."
+		"name":"Neophyte",
+		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies."
 	},
 	"flavor":"Why does Master charge so many fees?",
 	"disable":["apprentice","chores"],

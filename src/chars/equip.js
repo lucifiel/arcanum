@@ -90,6 +90,40 @@ export default class Equip extends SlotGroup {
 	}
 
 	/**
+	 * Get a count of items returned when using item.
+	 * This is to ensure there is sufficient inventory space for new items.
+	 * (Equip from Dungeon drops, multihanded weaps, etc.)
+	 * @todo this is somewhat incorrect as inventory doesnt currently count spaces-used.
+	 * @param {Item} it
+	 * @returns {number}
+	 */
+	replaceCount(it) {
+
+		let space = (it.kind==='weapon') ?
+			this.freeSpace( 'right' ) + this.freeSpace('left') : this.freeSpace(it.slot);
+	
+		return Math.max( ( it.numslots || 1 ) - space, 0 );
+
+	}
+
+	/**
+	 * 
+	 * @param {Armor|Weapon} it 
+	 * @param {string} slot 
+	 * @returns {boolean|Wearable|Wearable[]}
+	 */
+	equip( it, slot=null ) {
+
+		if ( it.kind === 'weapon' ) return this.equipWeap(it);
+
+		slot = slot || it.slot;
+		if( slot === null || !this.slots.hasOwnProperty(slot)) return false;
+		
+		let cur = this.slots[slot];
+		return cur.equip(it);
+	}
+
+	/**
 	 * 
 	 * @param {*} it
 	 * @returns {Item|Item[]|true} 
@@ -137,23 +171,6 @@ export default class Equip extends SlotGroup {
 
 		}
 
-	}
-
-	/**
-	 * 
-	 * @param {Armor|Weapon} it 
-	 * @param {string} slot 
-	 * @returns {boolean|Wearable|Wearable[]}
-	 */
-	equip( it, slot=null ) {
-
-		if ( it.kind === 'weapon' ) return this.equipWeap(it);
-
-		slot = slot || it.slot;
-		if( slot === null || !this.slots.hasOwnProperty(slot)) return false;
-		
-		let cur = this.slots[slot];
-		return cur.equip(it);
 	}
 
 }

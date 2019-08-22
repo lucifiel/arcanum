@@ -489,8 +489,8 @@
 		"desc":"The portal to true magic.",
 		"locked":true,
 		"log":{
-			"title":"Book of Spells",
-			"text":"Under your master's critical eye, you compile your very own book of spells."
+			"name":"Book of Spells",
+			"desc":"Under your master's critical eye, you compile your very own book of spells."
 		},
 		"effect":{
 			"research.max":15,

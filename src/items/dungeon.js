@@ -21,9 +21,7 @@ export default class Dungeon extends Action {
 	}
 
 	get progress(){return this._exp;}
-	set progress(v){
-		this._exp =v;
-	}
+	set progress(v){ this._exp =v; }
 
 	/**
 	 * 

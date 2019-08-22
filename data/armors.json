@@ -18,9 +18,9 @@
     { "id":"cincture", "armor":1, "slot":"waist", "cost":50},
     { "id":"sash", "armor":0, "slot":"waist", "cost":10},
 
-    { "id":"cape", "armor":0, "slot":"back", "cost":50},
-    { "id":"robe", "armor":0, "slot":"back", "cost":50},
-    { "id":"cloak", "armor":1, "slot":"back", "cost":50},
+    { "id":"cape", "armor":0, "slot":"back", "cost":50, "only":"cloth"},
+    { "id":"robe", "armor":0, "slot":"back", "cost":50, "only":"cloth" },
+    { "id":"cloak", "armor":1, "slot":"back", "cost":50, "only":"cloth" },
     { "id":"wings", "armor":1, "slot":"back", "level":20, "cost":5000},
 
 

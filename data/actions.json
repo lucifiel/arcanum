@@ -530,8 +530,8 @@
 			"starcharts":0.1
 		},
 		"log":{
-			"title":"almagest",
-			"text":"you have mapped the physical heavens"
+			"name":"almagest",
+			"desc":"you have mapped the physical heavens"
 		},
 		"effect":{
 			"divination":{

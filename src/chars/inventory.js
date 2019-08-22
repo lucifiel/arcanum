@@ -45,10 +45,22 @@ export default class Inventory {
 
 	}
 
+	includes(it) {
+		return this.items.includes(it);
+	}
+
+	/**
+	 * @returns {number} number of free spaces left.
+	 */
+	freeSpace() {
+		return this.max ? this.max - this.items.length : Number.MAX_SAFE_INTEGER;
+	}
+
 	/**
 	 * @returns {boolean} true if inventory full.
 	 */
 	full(){
+		console.log('full: ' + ( this.max >0 && this.items.length >= this.max));
 		return this.max >0 && this.items.length >= this.max;
 	}
 
@@ -64,10 +76,14 @@ export default class Inventory {
 		this.items.splice(ind,1);
 	}
 
+	/**
+	 * 
+	 * @param {Item} it
+	 */
 	remove( it ){
 
 		let ind = this.items.indexOf( it );
-		if ( ind < 0 ) return undefined;
+		if ( ind < 0 ) return;
 		this.items.splice( ind, 1 );
 
 	}

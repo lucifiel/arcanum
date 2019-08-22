@@ -1,7 +1,16 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
-import {cloneClass, sublists, randElm, randMatch } from 'objecty';
+import { sublists, randElm, randMatch, includesAny } from 'objecty';
 import Percent from './percent';
+
+const exclusions = {
+
+	cloth:['weapon'],
+	waist:['metal'],
+	back:['metal','wood']
+
+
+}
 
 /**
  * Generates random Equipment Items and Weapons from basic item data.
@@ -49,7 +58,7 @@ export default class ItemGen {
 		if ( data === null || data === undefined ) return null;
 
 		let mat = material || data.material;
-		if ( !mat ) mat = this.getMatBelow( data.level || 1 );
+		if ( !mat ) mat = this.matForItem( data );
 
 		if ( typeof mat === 'string' ) mat = this.state.getItem( mat );
 
@@ -64,13 +73,11 @@ export default class ItemGen {
 	 */
 	getLoot( info, amt=1 ) {
 
-		if ( amt instanceof Percent ) {
-			if ( !amt.value ) return null;
-		} else if ( amt.value ) amt = amt.value;
+		if ( amt instanceof Percent && !amt.value ) return null;
+		else if ( amt.value ) amt = amt.value;
 
-		if ( typeof info === 'string' ) {
-			info = this.state.getItem(info);
-		}
+		if ( typeof info === 'string' ) {info = this.state.getItem(info);}
+
 		if (!info) {
 			console.log('skipping NULL gen.')
 			return null;
@@ -82,7 +89,7 @@ export default class ItemGen {
 
 		if ( info.pct && (100*Math.random() > info.pct) ) return null;
 		if ( info.level ) return this.fromLevel( info.level, info.kind, info.material );
-		else if ( info.max ) return this.rand( info.max, info.kind, info.material );
+		else if ( info.max ) return this.randBelow( info.max, info.kind, info.material );
 
 		let items = [];
 		for( let p in info ) {
@@ -127,7 +134,7 @@ export default class ItemGen {
 	 * @param {?string|Material} [mat=null] - item material.
 	 * @returns {Wearable|null}
 	 */
-	rand( maxLevel=1, kind=null, mat=null ){
+	randBelow( maxLevel=1, kind=null, mat=null ){
 
 		maxLevel = Math.floor( Math.random()*(maxLevel+1) );
 		do {
@@ -163,6 +170,39 @@ export default class ItemGen {
 		this.byKind[kind] = list || [];
 		this.byLevel[ kind ] = byLevel;
 
+	}
+
+	/**
+	 * Get a material compatible with the given item data.
+	 * @param {Item} item
+	 * @returns {Material|null}
+	 */
+	matForItem( item ) {
+
+		let max = item.level || 1;
+
+		let only = item.only;
+		let exclude = item.exclude;
+
+		while ( max >= 0 ) {
+
+			var matList = this.matsByLevel[max--];
+			if ( !matList) continue;
+		
+			var res = randMatch( matList, v=>{
+
+				if ( only && !includesAny(only, v.type, v.kind ) ) return false;
+				if ( exclude && includesAny(exclude, v.type, v.kind, v.name) ) return false;
+
+				if ( v.exclude && includesAny( v.exclude, item.type, item.kind ) ) return false;
+				return true;
+	
+			});
+			if ( res ) return res;
+
+		}
+
+		return null;
 
 	}
 

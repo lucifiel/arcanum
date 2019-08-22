@@ -2,6 +2,7 @@
 import Game from '../game';
 import ItemBase from './itemsBase.js';
 
+import Inv from './inventory.vue';
 import ProgBar from './component/progbar.vue';
 import FilterBox from './component/filterbox.vue';
 
@@ -21,7 +22,8 @@ export default {
 	},
 	components:{
 		progbar:ProgBar,
-		filterbox:FilterBox
+		filterbox:FilterBox,
+		inv:Inv
 	},
 	computed:{
 
@@ -48,7 +50,7 @@ export default {
 
 <div class="adventure">
 
-	<div class="list">
+	<div class="dungeon-list">
 
 		<filterbox v-model="filtered" :items="dungeons" min-items="8" />
 
@@ -64,13 +66,17 @@ export default {
 	</div>
 	</div>
 
-	<div class="log">
-		<span v-if="raiding">Adventuring...<br></span>
-		<div class="outlog">
-		<div v-for="(it,i) in combatLog" :key="i">
-			<span class="log-text">{{ it.text || 'Nothing' }}</span>
+	<div>
+		<div class="log">
+			<span v-if="raiding">Adventuring...<br></span>
+			<div class="outlog">
+			<div v-for="(it,i) in combatLog" :key="i">
+				<span class="log-text">{{ it.text || 'Nothing' }}</span>
+			</div>
+			</div>
 		</div>
-		</div>
+
+		<inv :inv="raid.drops" take="true" />
 	</div>
 
 </div>
@@ -88,12 +94,14 @@ div.adventure {
 }
 
 div.log {
-	width:40%;
+	width:100%;
+	margin: 0px 0px 10px 10px;
 }
 
-div.list {
+div.dungeon-list {
 	display:flex;
-	width: 50%;
+	width: 55%;
+	min-width:222px;
 	flex-direction:column;
 }
 

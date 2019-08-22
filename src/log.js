@@ -25,6 +25,11 @@ export default class Log {
 		 */
 		this.items = this.items || [];
 
+		/**
+		 * @property {number} maxItems
+		 */
+		this.maxItems = this.maxItems || 100;
+
 	}
 
 	clear() {
