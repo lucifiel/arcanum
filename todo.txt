@@ -35,8 +35,24 @@ more armor drop variations.
 
 assign custom rest action.
 
+mod->max itempopup fix.
+
+UI display spell attacks
+
+BALANCE:
+
+reduce player level-up speed.
+
+player stronger vs monsters same level.
+
 
 UI TWEAKS:
+
+Combat log/drops alignment.
+
+itempopup flavortext more spacing.
+
+itempopup offscreen popup.
 
 Clear button/rest button redesign
 

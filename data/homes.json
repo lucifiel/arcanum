@@ -39,7 +39,7 @@
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
 		"require":"tier0",
-		"cost":100,
+		"cost":150,
 		"mod":{
 			"space.max":15
 		}
@@ -155,11 +155,11 @@
 	},
 	{
 		"id":"cave",
-		"desc":"A primitive dwelling well-suited to particular areas of study. Some less so.",
+		"desc":"A primitive dwelling well-suited to particular areas of study. Others less so.",
 		"require":"tier0",
-		"cost":100,
+		"cost":150,
 		"mod":{
-			"space.max":30,
+			"space.max":25,
 			"research.rate":-0.5,
 			"earth":{
 				"max":2,
@@ -366,7 +366,7 @@
 	{
 		"id":"cavern",
 		"desc":"A wide and yawning cavern, deep beneath the earth",
-		"require":"tier0",
+		"require":"state.tier0>0&&state.earthlore>=5",
 		"cost":{
 			"research":500,
 			"gold":3000,

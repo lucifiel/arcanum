@@ -214,7 +214,7 @@
 		"need":"firesource",
 		"run":{
 			"stamina":0.4,
-			"hp":0.1
+			"hp":0.2
 		},
 		"result":{
 			"fire.max":1,
@@ -290,7 +290,7 @@
 		"require":"state.witch>0||state.magician>0",
 		"run":{
 			"stamina":0.4,
-			"hp":0.1
+			"hp":1
 		},
 		"result":{
 			"sp":0.1,

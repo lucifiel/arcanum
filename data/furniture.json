@@ -32,6 +32,22 @@
 		}
 	},
 	{
+		"id":"ornatechest",
+		"name":"ornate chest",
+		"desc":"Treasure chest.",
+		"require":"state.gold.max>=400",
+		"repeat":true,
+		"cost":{
+			"gold":350,
+			"gems":5,
+			"space":3
+		},
+		"mod":{
+			"inv.max":2,
+			"gold.max":700
+		}
+	},
+	{
 		"id":"cot",
 		"desc":"Slightly better than sleeping on the floor",
 		"require":"apprentice",
@@ -328,12 +344,12 @@
 		"desc":"A rough but sturdy bookcase.",
 		"require":"state.codices>=10",
 		"cost":{
-			"gold":25,
+			"gold":100,
 			"space":2
 		},
 		"mod":{
 			"codices":{
-				"mod.research.max":5,
+				"mod.research.max":1,
 				"max":30
 			}
 		}
