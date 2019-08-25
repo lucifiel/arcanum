@@ -68,7 +68,7 @@ export default class Inventory {
 	 * @returns {boolean} true if inventory full.
 	 */
 	full(){
-		console.log('full: ' + ( this.max >0 && this.items.length >= this.max));
+		//console.log('full: ' + ( this.max >0 && this.items.length >= this.max));
 		return this.max >0 && this.items.length >= this.max;
 	}
 

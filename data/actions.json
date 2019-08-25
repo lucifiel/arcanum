@@ -104,7 +104,8 @@
 		"id":"spellbook",
 		"actname":"Bind Spellbook",
 		"verb":"binding spells",
-		"require":"state.lore>=2&&state.crafting>=2",
+		"require":"state.lore>=2&&state.crafting>=1",
+		"need":"state.languages>0&&state.crafting>1",
 		"desc":"The portal to true magic.",
 		"length":50,
 		"repeat":false,
@@ -116,14 +117,14 @@
 		},
 		"log":{
 			"name":"Book of Spells",
-			"desc":"Under your master's critical eye, you compile your very own book of spells."
+			"desc":"Under your master's critical eye, you've compiled your very own book of spells."
 		},
 		"run":{
 			"stamina":0.2
 		},
 		"result":{
 			"research.max":15,
-			"research.rate":0.05,
+			"research.rate":0.07,
 			"arcana.rate":0.0001,
 			"player.exp":10
 		}

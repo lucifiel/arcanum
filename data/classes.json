@@ -36,7 +36,7 @@
 	"cost":{
 		"gold":100,
 		"research":100,
-		"arcana":1
+		"arcana":3
 	},
 	"mod":{
 		"arcana.rate":0.0001

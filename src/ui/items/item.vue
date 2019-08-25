@@ -1,9 +1,13 @@
 <script>
 import ItemsBase from '../itemsBase.js';
+import Attack from './attack.vue';
 
 export default {
 	props:['item'],
-	mixins:[ItemsBase]
+	mixins:[ItemsBase],
+	components:{
+		attack:Attack
+	}
 }
 </script>
 
@@ -60,6 +64,7 @@ export default {
 			
 
 		</div>
+		<attack v-if="item.attack" :item="item.attack" />
 		<div v-if="item.effect||item.mod||item.result">
 
 			<hr>

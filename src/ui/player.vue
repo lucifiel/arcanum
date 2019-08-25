@@ -74,9 +74,16 @@ export default {
 
 			<tr><td>defense</td><th>{{ defense }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
-
 		
 			<tr><td>speed</td><th>{{ speed.current }}</th></tr>
+
+			<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.weapon)">
+				<td>spell</td><th>{{ player.weapon ? player.weapon.name : 'None' }}</th></tr>
+
+			<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.primary)">
+				<td>spell</td><th>{{ player.primary ? player.primary.name : 'None' }}</th></tr>
+
+
 		</table>
 
 		<upgrades></upgrades>

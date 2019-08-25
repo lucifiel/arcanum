@@ -256,7 +256,7 @@ export default class Player extends Char {
 	 */
 	setPrimary( s ) {
 
-		if ( this.primary === s || !s || !s.attack ) return;
+		if ( this.primary === s || ( s && !s.attack )) return;
 		if ( this.primary !== null ) this.removePrimary();
 
 		this.primary = s;
