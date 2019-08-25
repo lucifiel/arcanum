@@ -16,7 +16,7 @@
 		"require":"neophyte",
 		"lock":["alcove"],
 		"cost":{
-			"research":50
+			"research":100
 		},
 		"mod":{
 			"space.max":10
@@ -50,7 +50,7 @@
 		"desc":"A wild camp and its environs.",
 		"require":"state.tier0>0&&state.naturelore>=5",
 		"tags":"outdoors",
-		"cost":50,
+		"cost":75,
 		"mod":{
 			"space.max":12,
 			"naturelore.max":1,

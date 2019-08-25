@@ -285,10 +285,10 @@ export default class Player extends Char {
 		this._level++;
 
 		this.dirty = true;
-		if ( this._level % 2 === 1) this.tohit++;
-		if ( this._level % 3 === 1 ) this.sp.value++;
+		if ( this._level % 3 === 0 ) this.sp.value++;
 
-		this.hp.max += 1;
+		this.tohit++;
+		this.hp.max += 2;
 		this.stamina.max += 1;
 
 		this._exp.value -= this._next;

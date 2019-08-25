@@ -27,31 +27,13 @@
 
 	},
 	{
-		"id":"evt_slay",
-		"name":"Master Slain",
-		"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and freed you to pursue your own grander designs.",
-		"effect":{
-			"player.exp":10
-		}
-
-	},
-	{
-		"id":"evt_pestdone",
-		"name":"Pests Cleared",
-		"desc":"With the basement cleared, your master will have more room to stash all the gold you've been earning.",
-		"effect":{
-			"player.exp":10
-		}
-
-	},
-	{
 		"id":"tier0",
 		"name":"Solitary Magic",
 		"desc":"Some say the study of magic doesn't truly begin until after apprenticeship ends.",
 		"effect":{
 			"player.exp":15,
 			"innroom":true,
-			"sp":2,
+			"sp":1,
 			"research.max":5
 		}
 

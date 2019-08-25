@@ -2,12 +2,7 @@
 
 export default {
 
-	props:['active', 'items'],
-	data(){
-		return {
-			cur:this.active
-		};
-	},
+	props:['value', 'items'],
 	methods:{
 
 		itemTitle(it) {
@@ -27,7 +22,7 @@ export default {
 
 		setActive( it ) {
 
-			this.cur = it;
+			this.$emit( 'input', it );
 			this.$emit( 'changed', it );
 
 		}
@@ -45,7 +40,7 @@ export default {
 
 		<div class="menu-item" v-for="(it) in items" :key="it.id">
 			
-			<span v-if="it !== cur" @click="setActive(it)" :key="itemTitle(it)"> <u> {{ itemTitle(it) }} </u></span>
+			<span v-if="it != value" @click="setActive(it)" :key="itemTitle(it)"> <u> {{ itemTitle(it) }} </u></span>
 			<span v-else :key="itemTitle(it)"> {{ itemTitle(it) }} </span>
 
 		</div>
@@ -54,7 +49,7 @@ export default {
 
 
 		<!-- NOTE: slot css-class ignored -->
-		<span class="menu-content"><slot :name="itemId(cur)"></slot></span>
+		<span class="menu-content"><slot :name="itemId(value)"></slot></span>
 
 	</div>
 </template>

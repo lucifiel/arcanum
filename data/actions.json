@@ -101,8 +101,9 @@
 	},
 	{
 
-		"id":"makespellbook",
-		"name":"Bind Spellbook",
+		"id":"spellbook",
+		"actname":"Bind Spellbook",
+		"verb":"binding spells",
 		"require":"state.lore>=2&&state.crafting>=2",
 		"desc":"The portal to true magic.",
 		"length":50,
@@ -113,10 +114,19 @@
 			"arcana":1,
 			"mana":5
 		},
+		"log":{
+			"name":"Book of Spells",
+			"desc":"Under your master's critical eye, you compile your very own book of spells."
+		},
 		"run":{
 			"stamina":0.2
 		},
-		"result":"spellbook"
+		"result":{
+			"research.max":15,
+			"research.rate":0.05,
+			"arcana.rate":0.0001,
+			"player.exp":10
+		}
 
 	},
 	{
@@ -158,7 +168,7 @@
 
 		"id":"bloodsiphon",
 		"name":"blood siphon",
-		"desc":"leech blood from a body to restore health",
+		"desc":"leech blood from a body to restore your health",
 		"require":"transfusions",
 		"length":10,
 		"cost":{
@@ -180,7 +190,7 @@
 		"result":{
 			"evil":true,
 			"bodies":1
-		}
+		},"flavor":"why do they come to me to die?"
 	},
 	{
 		"id":"dissect",
@@ -235,7 +245,7 @@
 		"name":"Treat Ailments",
 		"desc":"Cure customers of magical ailments.",
 		"verb":"treating locals",
-		"require":"neophyte",
+		"require":"state.neophyte>0&&state.anatomy>=5",
 		"cost":{
 			"stamina":0.2
 		},
@@ -284,7 +294,7 @@
 		"name":"gather herbs",
 		"desc":"Gather herbs used in potions and alchemy.",
 		"verb":"gathering herbs",
-		"require":"state.neophyte>0&&state.herbalism>=1&&(state.taggarden+state.outdoors>0)",
+		"require":"state.neophyte>0&&state.herbalism>=1&&(state.taggarden+state.outdoors)>0",
 		"length":20,
 		"perpetual":true,
 		"run":{
@@ -347,7 +357,7 @@
 			"shadow":0.2,
 			"spirit":0.2,
 			"stamina":1,
-			"hp":1
+			"hp":2
 		}
 	},
 	{
@@ -379,10 +389,10 @@
 			"stamina":0.2
 		},
 		"effect":{
-			"research":1,
+			"research":0.55,
 			"arcana":{
 				"skipLocked":true,
-				"value":0.001
+				"value":0.002
 			}
 		}
 	},
@@ -481,11 +491,12 @@
 		"result":"starchart"
 	},
 	{
-		"id":"makebestiary",
-		"name":"compile bestiary",
-		"verb":"compiling bestiary",
+		"id":"bestiary",
+		"actname":"compile bestiary",
+		"verb":"researching beasts",
 		"require":"state.animals>=3",
 		"length":50,
+		"desc":"compendium of magical creatures",
 		"repeat":false,
 		"cost":{
 			"codices":1
@@ -496,24 +507,95 @@
 		"effect":{
 			"animals.exp":1
 		},
-		"result":"bestiary"
+		"result":{
+			"research.max":5,
+			"animals.max":2,
+			"animals.rate":0.2
+		}
+
+	},
+	{
+		"id":"sylvansyllabary",
+		"name":"sylvan syllabary",
+		"require":"state.languages>=4&&state.tier0>0",
+		"desc":"a book of elvish symbols",
+		"length":75,
+		"repeat":false,
+		"cost":{
+			"codices":10
+		},
+		"run":{
+			"research":1
+		},
+		"result":{
+			"languages.max":1,
+			"languages.rate":0.2,
+			"naturelore.max":1,
+			"naturelore.rate":0.2
+		}
+
+	},
+	{
+		"id":"dwarfbook",
+		"name":"dwarven runebook",
+		"require":"state.languages>=4&&state.tier0>0",
+		"desc":"a compilation of dwarven runes",
+		"length":75,
+		"repeat":false,
+		"cost":{
+			"codices":10
+		},
+		"run":{
+			"research":1
+		},
+		"result":{
+			"languages.max":1,
+			"languages.rate":0.2,
+			"crafting.max":1,
+			"crafting.rate":0.2
+		}
 
 	},
 	{
 		"id":"lemurlexicon",
 		"name":"lemurian lexicon",
-		"require":"state.languages>=5&&state.tier0>0",
+		"require":"state.languages>=7&&state.tier0>0",
+		"desc":"interprets the strange whisperings of spirits",
 		"length":50,
 		"repeat":false,
 		"cost":{
-			"codices":5
+			"codices":20
 		},
 		"run":{
-			"research":1
+			"research":2
 		},
-		"effect":{
+		"result":{
 			"languages.max":2,
-			"languages.rate":0.1
+			"languages.rate":0.2,
+			"spiritlore.max":2,
+			"spiritlore.rate":0.2
+		}
+
+	},
+	{
+		"id":"demondict",
+		"name":"demonic dictionary",
+		"require":"state.languages>=10&&state.tier1>0",
+		"desc":"a compiliation of obscure demonic languages",
+		"length":75,
+		"repeat":false,
+		"cost":{
+			"tomes":5,
+			"bones":10
+		},
+		"run":{
+			"research":4
+		},
+		"result":{
+			"languages.max":3,
+			"languages.rate":0.4,
+			"demonology.max":2,
+			"demonology.rate":0.2
 		}
 
 	},
@@ -525,7 +607,7 @@
 		"repeat":false,
 		"length":50,
 		"cost":{
-			"codices":5
+			"codices":10
 		},
 		"run":{
 			"research":1,
@@ -535,10 +617,10 @@
 			"name":"almagest",
 			"desc":"you have mapped the physical heavens"
 		},
-		"effect":{
+		"result":{
 			"divination":{
 				"max":1,
-				"rate":0.1
+				"rate":0.2
 			},
 			"arcana.max":1,
 			"arcana.rate":0.001,
@@ -548,7 +630,7 @@
 			},
 			"planeslore":{
 				"max":1,
-				"rate":0.1
+				"rate":0.2
 			}
 		}
 
@@ -566,7 +648,7 @@
 		"id":"craftgem",
 		"name":"Craft Gem",
 		"desc":"Craft a gem from raw minerals.",
-		"require":"state.crafting>=5&&state.alchemy>=5",
+		"require":"state.crafting>=7&&state.alchemy>=5",
 		"run":{
 			"stamina":1,
 			"mana":2
@@ -697,13 +779,22 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"(state.tier0>0&&state.animals>=5)||state.witch>0",
+		"require":"(state.tier0>0&&state.animals>=5&&state.demonology>=3)||state.witch>0",
+		"repeat":false,
+		"length":100,
 		"cost":{
-			"gold":50,
-			"research":100
+			"gold":400,
+			"gems":10,
+			"research":800
 		},
-		"effect":{
-
+		"result":{
+			"demonology.max":2,
+			"demonology.rate":0.2,
+			"lore.max":1,
+			"lore.rate":0.2,
+			"planeslore.max":1,
+			"languages.max":1,
+			"languages.rate":0.1
 		}
 
 	}

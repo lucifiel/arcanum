@@ -61,10 +61,15 @@
 		},
 		"result":{
 			"sp":1,
-			"gold":"15~20"
+			"gold":"15~20",
+			"player.exp":10
 		},
 		"loot":{
 			"max":4
+		},
+		"log":{
+			"name":"Pests Cleared",
+			"desc":"With the basement cleared, your master will have more room to stash all the gold you've been earning."
 		},
 		"boss":"ratking",
 		"enemies":[

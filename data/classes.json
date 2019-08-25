@@ -164,7 +164,6 @@
 	"title":"bone monger",
 	"desc":"A collector and re-animator of bones.",
 	"require":"state.tier0>0&&state.evil>0",
-	"disable":["witch","magician"],
 	"cost":{
 		"research":300,
 		"bones":10,
@@ -179,6 +178,30 @@
 		"shadowlore.max":3,
 		"potions.max":5,
 		"spiritlore.max":3,
+		"sp":2
+	}
+},
+{
+	"id":"necromancer",
+	"title":"necromancer",
+	"desc":"master of death magic",
+	"require":"state.tier1>0&&state.evil>0",
+	"cost":{
+		"research":1000,
+		"bones":100,
+		"bodies":50,
+		"arcana":10
+	},
+	"effect":{
+		"tier2":true,
+		"research.max":50,
+		"embalming.max":3,
+		"reanimation.max":1,
+		"shadowlore.max":3,
+		"shadowlore.rate":0.2,
+		"potions.max":5,
+		"spiritlore.max":3,
+		"spiritlore.rate":0.2,
 		"sp":2
 	}
 },
@@ -234,7 +257,7 @@
 	"disable":[],
 	"warn":true,
 	"actdesc":"Become a geomancer.",
-	"require":"state.tier0>0&&state.minerology>=10",
+	"require":"state.tier0>0&&state.earthlore>=10",
 	"cost":{
 		"research":100,
 		"arcana":1
@@ -243,7 +266,7 @@
 		"tier1":true,
 		"research.max":15,
 		"earthlore.max":4,
-		"earthlore.rate":0.1,
+		"earthlore.rate":0.2,
 		"stamina.max.pct":0.1,
 		"mana.max":2,
 		"sp":2
@@ -300,7 +323,11 @@
 	},
 	"effect":{
 		"tier2":true,
-		"sp":1
+		"sp":1,
+		"airlore.max":3,
+		"waterlore.max":3,
+		"airlore.rate":0.2,
+		"waterlore.rate":0.2
 	},
 	"flavor":"there's a storm coming"
 },
@@ -352,18 +379,19 @@
 	"title":"Battlemage",
 	"actdesc":"Pursue the path of battle.",
 	"warn":true,
-	"require":"state.player.level>5&&state.research.max>=250&&state.lore>=8",
+	"require":"state.player.level>=10&&state.lore>=8&&state.armory>0",
 	"cost":{
 		"research":250,
 		"arcana":3,
-		"gold":300
+		"gold":400
 	},
-	"disable":["adept","magician","witch","enchanter"],
 	"effect":{
 		"research.max":-50,
+		"tier1":true,
 		"mana.max":1,
 		"mana.rate":0.1,
 		"firelore.max":2,
+		"firelore.rate":0.1,
 		"earthlore.max":1,
 		"sp":1
 	}

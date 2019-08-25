@@ -126,6 +126,12 @@ export default class Raid {
 	}
 
 	/**
+	 * @property {Npc[]} allies - creatures fighting for player.
+	 */
+	get allies() { return this._allies; }
+	set allies(v) { this._allies=v; }
+
+	/**
 	 * @property {Inventory} drops - items dropped in current dungeon.
 	 * can be taken by player.
 	 */
@@ -139,6 +145,7 @@ export default class Raid {
 		return {
 			dungeon:this.dungeon ? this.dungeon.id : undefined,
 			enemies:this._enemies,
+			allies:this.allies,
 			drops:this.drops
 		}
 
@@ -372,7 +379,7 @@ export default class Raid {
 
 	enemyDied( enemy, attacker ) {
 
-		this.player.exp += 1 + enemy.level;
+		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
 		this.player.timer = this.player.delay;
 
 		if ( enemy.id ) {

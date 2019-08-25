@@ -326,6 +326,7 @@
 		"id":"sextant",
 		"desc":"Measure the stars.",
 		"require":"neophyte",
+		"tags":"starsource",
 		"cost":{
 			"gold":75,
 			"research":50,
@@ -334,6 +335,22 @@
 		"mod":{
 			"arcana.max":1,
 			"arcana.rate":0.0001
+		}
+	},
+	{
+		"id":"telescope",
+		"require":"adept",
+		"tags":"starsource",
+		"cost":{
+			"gold":400,
+			"research":300,
+			"space":2
+		},
+		"mod":{
+			"arcana.max":1,
+			"arcana.rate":0.0001,
+			"astronomy.max":2,
+			"astronomy.rate":0.2
 		}
 	},
 	{
@@ -394,10 +411,10 @@
 		"id":"brasscandelabra",
 		"name":"brass candelabra",
 		"desc":"Candle holder.",
-		"require":"state.candle>0&&state.gold.max>=200",
+		"require":"state.waxcandle>0&&state.gold.max>=200",
 		"cost":{
 			"space":1,
-			"gold":100
+			"gold":200
 		},
 		"mod":{
 			"candle.max":4
@@ -446,7 +463,7 @@
 		"tags":"firesource",
 		"require":"tier0",
 		"cost":{
-			"gold":50,
+			"gold":150,
 			"space":1
 		},
 		"mod":{
@@ -473,7 +490,7 @@
 	{
 		"id":"clepsydra",
 		"desc":"Crude measure of time",
-		"require":"magician",
+		"require":"tier2",
 		"tags":"timesource",
 		"cost":{
 			"gold":100,
@@ -491,9 +508,9 @@
 	{
 		"id":"fireplace",
 		"desc":"A cozy place for cooking food and brewing potions.",
-		"require":"state.space>=15",
+		"require":"state.space.max>=15",
 		"cost":{
-			"gold":50,
+			"gold":175,
 			"space":1
 		},
 		"mod":{

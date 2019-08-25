@@ -65,7 +65,8 @@ export default {
 		return {
 			state:null,
 			overItem:null,
-			overElm:null
+			overElm:null,
+			section:null
 		};
 
 
@@ -108,6 +109,7 @@ export default {
 		gameLoaded() {
 
 			this.state = Game.state;
+			this.section = this.state.sections.find( v=>v.id==='sect_main');
 
 			window.addEventListener('keydown',evt=>{
 				this.keyDown( evt ); evt.stopPropagation(); }, false );
@@ -311,7 +313,7 @@ export default {
 
 		<resources :items="state.resources"/>
 
-		<vue-menu class="mid-view" :items="menuItems" active="sect_main">
+		<vue-menu class="mid-view" :items="menuItems" v-model="section">
 
 		<template slot="sect_main">
 		<actions class="action-list" :items="state.actions" />
@@ -320,15 +322,13 @@ export default {
 
 		</template>
 	
+		<template slot="sect_skills"><skills :state="state"></skills></template>
+
 		<template slot="sect_player"><player /></template>
 
 		<template slot="sect_house"><homes :state="state" /></template>
 	
 		<template slot="sect_raid"><adventure :state="state" /></template>
-
-		<template slot="sect_skills"><skills :state="state"></skills></template>
-
-		<template slot="sect_spells"><spellbook :state="state" /></template>
 
 		<template slot="sect_equip">
 
@@ -338,6 +338,8 @@ export default {
 			</div>
 
 		</template>
+	
+		<template slot="sect_spells"><spellbook :state="state" /></template>
 
 		<template slot="sect_bestiary"><bestiary /></template>
 	
@@ -407,6 +409,7 @@ div.inv-equip {
 	display:flex;
 	flex-direction: row;
 	overflow-y: auto;
+	justify-content: space-between;
 	height: 80vh;
 	width:100%;
 }

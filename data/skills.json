@@ -44,7 +44,37 @@
 				"value":5
 			}
 		},
-		"flavor":"you can tend the rabbits"
+		"flavor":"tend the rabbits"
+	},
+	{
+		"id":"charms",
+		"require":"state.enchanting>=5&&state.lore>=10",
+		"run":{
+			"stamina":0.3
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
+		}
+	},
+	{
+		"id":"magicbeasts",
+		"name":"magic beasts",
+		"require":"state.animals>=7&&state.naturelore>=5",
+		"desc":"",
+		"run":{
+			"stamina":0.7
+		},
+		"result":{
+			"sp":0.05,
+			"research":{
+				"max":1,
+				"value":5
+			}
+		}
+
 	},
 	{
 		"id":"herbalism",
@@ -224,7 +254,8 @@
 
 	},
 	{
-		"id":"minerology",
+		"id":"earthlore",
+		"name":"minerology",
 		"need":"earthsource",
 		"run":{
 			"stamina":0.4
@@ -287,7 +318,7 @@
 	{
 
 		"id":"demonology",
-		"require":"state.witch>0||state.magician>0",
+		"require":"tier1",
 		"run":{
 			"stamina":0.4,
 			"hp":1
@@ -364,7 +395,7 @@
 	},
 	{
 		"id":"astronomy",
-		"require":"state.sextant>0||state.telescope>0",
+		"require":"starsource",
 		"run":{
 			"stamina":0.5
 		},

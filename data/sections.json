@@ -33,7 +33,7 @@
 	{
 		"id":"sect_spells",
 		"name":"spellbook",
-		"require":"spellbook"
+		"require":"state.spellbook.value>0"
 
 	},
 	{
@@ -45,6 +45,11 @@
 		"id":"sect_bestiary",
 		"name":"bestiary",
 		"require":"bestiary"
+	},
+	{
+		"id":"sect_minions",
+		"name":"minions",
+		"require":""
 	}
 
 ]

@@ -27,9 +27,14 @@
 			"research":225,
 			"arcana":5
 		},
-		"effect":["evt_slay","adept","evil", {
+		"log":{
+			"name":"Master Slain",
+			"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and frees you to pursue your own grander designs."
+		},
+		"effect":["adept","evil", {
 			"bones":10,
-			"shadow.max":1
+			"shadow.max":1,
+			"player.exp":10
 		}]
 
 	},
@@ -144,7 +149,7 @@
 		"cost":10,
 		"mod":{
 			"mana":{
-				"rate":0.1
+				"rate":0.05
 			}
 		}
 	},
@@ -258,21 +263,10 @@
 
 	},
 	{
-		"id":"bestiary",
-		"desc":"compendium of magical creatures",
-		"locked":true,
-		"mod":{
-			"research.max":5,
-			"animals.max":1,
-			"animals.rate":0.1
-		}
-
-	},
-	{
 
 		"id":"woodpipe",
 		"name":"wood pipe",
-		"desc":"Finely carved wooden pipe. Enhaces rumination while peering into the sunset or a fire.",
+		"desc":"Finely carved wooden pipe. Ruminate while peering into the sunset or a fire.",
 		"require":"state.scrying>=5",
 		"cost":{
 			"gems":5
@@ -280,6 +274,23 @@
 		"mod":{
 			"scrying.max":1,
 			"scrying.rate":0.1
+		}
+
+	},
+	{
+
+		"id":"longpipe",
+		"name":"long-stem pipe",
+		"desc":"",
+		"require":"state.scrying>=7",
+		"cost":{
+			"spiritgem":5,
+			"research":500,
+			"spirit":5
+		},
+		"mod":{
+			"scrying.max":1,
+			"scrying.rate":0.2
 		}
 
 	},
@@ -299,7 +310,7 @@
 		"id":"metronome",
 		"desc":"focus of temporal synchronicity",
 		"tags":"timesource",
-		"require":"state.craft>=10&&state.tempus.max>=1",
+		"require":"state.crafting>=10&&state.tempus.max>=1",
 		"cost":{
 			"gold":50,
 			"gems":10
@@ -344,7 +355,7 @@
 			"sp":1
 		},
 		"mod":{
-			"research.max":5,
+			"research.max":10,
 			"potions.max":5,
 			"potions.rate":0.1,
 			"spirit.rate":0.1
@@ -370,14 +381,30 @@
 		"desc":"Learn the secret languages of birds.",
 		"require":"state.languages>0&&state.animals>2&&state.birdcage>1&&state.nature>0",
 		"cost":{
-			"research":75,
+			"research":250,
 			"nature":1
 		},
 		"mod":{
 			"research.max":5,
 			"languages.max":1,
-			"languages.rate":0.1,
+			"languages.rate":0.2,
 			"animals.rate":0.2
+		}
+
+	},
+	{
+		"id":"dragontongue",
+		"name":"Draconic Tongue",
+		"desc":"Learn the ancient language of dragons.",
+		"require":"state.languages>10&&state.magicbeasts>=5",
+		"cost":{
+			"research":1000
+		},
+		"mod":{
+			"languages.max":2,
+			"languages.rate":0.2,
+			"magicbeasts.max":2,
+			"magicbeasts.rate":0.2
 		}
 
 	},
@@ -499,22 +526,6 @@
 
 	},
 	{
-		"id":"spellbook",
-		"name":"Spellbook",
-		"desc":"The portal to true magic.",
-		"locked":true,
-		"log":{
-			"name":"Book of Spells",
-			"desc":"Under your master's critical eye, you compile your very own book of spells."
-		},
-		"effect":{
-			"research.max":15,
-			"research.rate":0.05,
-			"arcana.rate":0.0001,
-			"player.exp":10
-		}
-	},
-	{
 		"id":"windchime",
 		"name":"windchime",
 		"tags":"airsource",
@@ -538,7 +549,7 @@
 		"name":"dream catcher",
 		"desc":"you might not like what you catch.",
 		"tags":"spiritsource",
-		"require":"state.space>10&&state.crafting>=5",
+		"require":"state.spirit>0&&state.space>10&&state.crafting>=5",
 		"cost":{
 			"gold":50,
 			"research":50,
@@ -600,7 +611,7 @@
 	},
 	{
 		"id":"ball",
-		"name":"Crystal Ball",
+		"name":"crystal ball",
 		"tags":"spiritsource",
 		"desc":"A crystal sphere revealing distant lands.",
 		"require":"tier0",
@@ -627,7 +638,6 @@
 		"mod":{
 			"lore":{
 				"max":1,
-				"effect.research":0.01,
 				"rate":0.1
 			},
 			"study.effect.research":0.01,

@@ -28,7 +28,7 @@ export default class Inventory {
 
 		this.type = this.id = 'inventory';
 		
-		console.log('this max: ' + this.max );
+		//console.log('this max: ' + this.max );
 		this._max = this._max || 0;
 
 	}
