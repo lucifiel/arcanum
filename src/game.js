@@ -760,7 +760,7 @@ export default {
 				res = this.getItem(p);
 				if ( res ) {
 
-					if ( !isNaN(cost[p]) ) res.value -= cost[p]*unit;
+					if ( !isNaN(cost[p]) ) this.remove( res, cost[p]*unit );
 					else res.applyVars( cost[p], -unit );
 					res.dirty = true;
 

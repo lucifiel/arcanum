@@ -611,11 +611,12 @@
 		"tags":"prison",
 		"require":"tier0",
 		"cost":{
-			"gold":50,
+			"gold":200,
 			"space":5
 		},
 		"mod":{
 			"shadow.max":1,
+			"bodies.max":2,
 			"dissection.rate":0.1
 		}
 
@@ -688,12 +689,26 @@
 		}
 	},
 	{
+		"id":"casket",
+		"desc":"simple container for preserving bodies.",
+		"require":"state.tier1>0&&state.embalming>=5&&state.crafting>=5",
+		"cost":{
+			"space":1,
+			"research":100,
+			"gold":50
+		},
+		"mod":{
+			"bodies.max":1
+		}
+	},
+	{
 		"id":"vat",
 		"desc":"grows bodies from raw materials",
 		"require":"state.tier1>0&&state.anatomy>=5&&state.embalming>=5&&state.crafting>=10",
 		"cost":{
 			"space":2,
-			"research":100
+			"research":300,
+			"gold":100
 		},
 		"mod":{
 			"bodies.rate":0.01,

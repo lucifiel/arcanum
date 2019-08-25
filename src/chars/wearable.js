@@ -1,5 +1,7 @@
 import Base, {mergeClass} from '../items/base';
 import Range from "../range";
+import Attack from './attack';
+
 import {mergeSafe} from "objecty";
 
  
@@ -36,17 +38,9 @@ export default class Wearable {
 
 		if ( v ) {
 
-			let dmg = v.damage = v.damage || v.dmg;
-			if ( dmg && !(dmg instanceof Range)) {
+			this._attack = v instanceof Attack ? v : new Attack(v);
 
-				v.damage = new Range(dmg)
-
-			}
-			v.tohit = v.tohit || 0;
-
-		}
-
-		this._attack = v;		
+		} else this._attack = null;
 
 	}
 
@@ -60,6 +54,7 @@ export default class Wearable {
 
 		if( vars ) Object.assign( this, vars);
 
+		console.log(this.id);
 		//console.log('this.attack: ' + this.attack );
 		this.type = 'wearable';
 
@@ -76,6 +71,8 @@ export default class Wearable {
 
 			if ( this.armor === null || this.armor === undefined ) this.armor = this.template.armor;
 			if ( this.tohit === null || this.tohit === undefined ) this.tohit = this.template.tohit;
+
+			if ( this.attack === null || this.attack === undefined ) this.attack = this.template.attack;
 
 			mergeSafe( this, this.template );
 

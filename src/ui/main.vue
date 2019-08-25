@@ -279,9 +279,7 @@ export default {
 	},
 	computed:{
 
-		menuItems(){
-			return this.state.sections.filter( it=>!this.locked(it) );
-		}
+		menuItems(){ return this.state.sections.filter( it=>!this.locked(it) ); }
 
 	}
 

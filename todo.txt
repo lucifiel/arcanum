@@ -26,6 +26,7 @@ Storage max+upgrades
 
 ERRORS:
 
+Spending codices doesn't cost research.
 
 ongoing actions should stop if 'need' requirements not met.
 

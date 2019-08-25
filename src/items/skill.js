@@ -1,6 +1,6 @@
 import Action from './action';
 
-const EXP_RATIO = 0.4;
+const EXP_RATIO = 0.35;
 
 export default class Skill extends Action {
 
