@@ -958,7 +958,7 @@
 		"require":"tier1",
 		"max":1,
 		"cost":{
-			"gold":10
+			"gold":200
 		},
 		"mod":{
 			"space.max":5
@@ -971,7 +971,7 @@
 		"desc":"Increase the size of your existing cellars.",
 		"require":"cellar",
 		"cost":{
-			"gold":10
+			"gold":200
 		},
 		"mod":{
 			"cellar.mod.space.max":5
@@ -998,14 +998,14 @@
 	{
 		"id":"basement",
 		"desc":"install a basement beneath your home",
-		"require":"tier1",
+		"require":"state.tier1>0&&state.earthlore>=3",
 		"max":1,
 		"cost":{
 			"gold":200,
 			"research":200
 		},
 		"mod":{
-			"space.max":"50%"
+			"space.max":"25%"
 		}
 	}
 

@@ -59,13 +59,17 @@ div.skills {
 	flex-flow: column nowrap;
 }
 div.subs {
+	display:flex;
+	flex-flow: column nowrap;
 	max-height: 100%;
 	width: 100%;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 div.skill {
 	margin: 18px 0px;
+	width:40%;
 }
 
 </style>

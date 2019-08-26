@@ -42,10 +42,6 @@ export default {
 
 <style scoped>
 
-div.skill {
-	width: 33%;
-}
-
 span.separate {
 	width: 100%;
 	align-items: center;

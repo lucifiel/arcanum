@@ -71,7 +71,10 @@ export default {
 
 		<div class="furniture">
 
-		<filterbox v-model="filtered" :items="viewable" />
+		<span class="separate">
+		<filterbox class="inline" v-model="filtered" :items="viewable" />
+		<span class="space">Space: {{space.value}} / {{ space.max.value }}</span>
+		</span>
 
 		<table class="furniture item-table">
 			<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
@@ -102,6 +105,10 @@ export default {
 
 <style scoped>
 
+span.space {
+	text-align: center;
+	margin: 0px 18px;
+}
 div.home-view {
 	height:100%;
 }
