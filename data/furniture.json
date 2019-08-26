@@ -539,7 +539,24 @@
 		"tags":"stables",
 		"cost":{
 			"space":10,
-			"gold":200
+			"gold":500
+		}
+
+	},
+	{
+		"id":"menagerie",
+		"require":"state.tier1>0&&state.animals>=10&&state.magicbeasts>=5",
+		"tags":"stables",
+		"cost":{
+			"space":20,
+			"gold":500,
+			"gems":10,
+			"research":500
+		},
+		"mod":{
+			"magicbeasts.max":2,
+			"magicbeasts.rate":0.4,
+			"animals.rate":0.3
 		}
 
 	},

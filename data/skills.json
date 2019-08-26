@@ -153,25 +153,10 @@
 		},
 		"result":{
 			"sp":0.05,
-			"research":{
-				"max":1,
-				"value":5
-			}
+			"research.max":1,
+			"bones":1
 		}
 
-	},
-	{
-		"id":"shadowlore",
-		"require":"state.dissection>=5",
-		"school":"shadow",
-		"run":{
-			"stamina":0.5
-		},
-		"result":{
-			"sp":0.05,
-			"shadow.max":1,
-			"shadow.rate":0.01
-		}
 	},
 	{
 
@@ -190,22 +175,6 @@
 	},
 	{
 
-		"id":"spiritlore",
-		"name":"second sight",
-		"desc":"seeing the unseen",
-		"require":["state.lore>=6", "spiritsource"],
-		"school":"spirit",
-		"run":{
-			"stamina":0.4
-		},
-		"result":{
-			"spirit.max":1,
-			"spirit.rate":0.01
-		}
-
-	},
-	{
-
 		"id":"divination",
 		"desc":"the art of foretelling",
 		"require":["spiritlore.lore>=6", "spiritsource"],
@@ -217,6 +186,7 @@
 			"arcana":0.001
 		},
 		"result":{
+			"research.max":1,
 			"spirit.max":0.1,
 			"spirit.rate":0.01
 		}
@@ -235,6 +205,35 @@
 			"light.rate":0.01
 		},
 		"flavor":"the light fantastic"
+
+	},
+	{
+		"id":"shadowlore",
+		"require":"state.dissection>=5",
+		"school":"shadow",
+		"run":{
+			"stamina":0.5
+		},
+		"result":{
+			"sp":0.05,
+			"shadow.max":1,
+			"shadow.rate":0.01
+		}
+	},
+	{
+
+		"id":"spiritlore",
+		"name":"second sight",
+		"desc":"seeing the unseen",
+		"require":["state.lore>=6", "spiritsource"],
+		"school":"spirit",
+		"run":{
+			"stamina":0.4
+		},
+		"result":{
+			"spirit.max":1,
+			"spirit.rate":0.01
+		}
 
 	},
 	{
@@ -417,7 +416,8 @@
 			"mana":0.1
 		},
 		"mod":{
-			"arcana.max":1
+			"arcana.max":1,
+			"research.max":1
 		}
 
 	},
@@ -446,6 +446,7 @@
 		},
 		"result":{
 			"mana.max":0.2,
+			"research.max":1,
 			"lore.rate":0.15,
 			"arcana.max":0.2
 		}

@@ -229,14 +229,8 @@
 		"max":0
 	},
 	{
-		"id":"cold",
-		"unit":false,
-		"tags":"manas,elemental",
-		"desc":"Cold Mana",
-		"max":0
-	},
-	{
 		"id":"air",
+		"require":"airlore",
 		"unit":false,
 		"tags":"manas,elemental",
 		"desc":"Air Mana",
@@ -271,7 +265,7 @@
 		"name":"shadow",
 		"tags":"manas",
 		"unit":false,
-		"require":"state.evil>0||state.shadowlore>1",
+		"require":"state.evil>0||state.shadowlore>0",
 		"desc":"Shadow mana",
 		"max":0
 	},
@@ -289,6 +283,7 @@
 		"tags":"manas",
 		"unit":false,
 		"desc":"Spirit mana",
+		"require":"spiritlore",
 		"max":0
 	},
 	{

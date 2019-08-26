@@ -354,7 +354,7 @@ export default class GameState {
 	 * @param {?Item} v - item to place in slot, or null.
 	 */
 	setSlot(id,v) {
-		if ( v && v.type === 'wearable' || v.type === 'furniture') return;
+		if ( v && (v.type === 'wearable' || v.type === 'furniture') ) return;
 		this.slots[id] = v;
 	}
 

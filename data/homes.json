@@ -135,12 +135,12 @@
 	},
 	{
 		"id":"gabledhouse",
-		"name":"house of many gables",
-		"desc":"A spacious house with gabled windows.",
-		"cost":1000,
+		"name":"gabled mansion",
+		"desc":"A spacious house with many gabled windows.",
+		"cost":1500,
 		"require":"state.tier1>0&&state.arcana>=10",
 		"mod":{
-			"space.max":50
+			"space.max":65
 		}
 	},
 	{
@@ -190,12 +190,26 @@
 		}
 	},
 	{
-		"id":"ruins",
-		"desc":"A crumbled fortress of rambling stone.",
-		"cost":500,
-		"require":"state.spirit>=5&&state.arcana>=10",
+		"id":"hauntedmanse",
+		"name":"haunted manse",
+		"desc":"legends of this mansion speak of ghosts and horrors",
+		"cost":2000,
+		"require":"state.spirit>=10&&state.arcana>=10",
 		"mod":{
-			"space.max":50,
+			"space.max":75,
+			"spiritlore.max":1,
+			"spiritlore.rate":0.1,
+			"shadow.rate":0.1
+		}
+	},
+	{
+		"id":"ancientruins",
+		"name":"ancient ruins",
+		"desc":"A rambling fortress of crumbled stone.",
+		"cost":5000,
+		"require":"state.spirit>=15&&state.arcana>=12",
+		"mod":{
+			"space.max":110,
 			"spiritlore.max":1,
 			"spiritlore.rate":0.1,
 			"shadow.rate":0.1
@@ -207,7 +221,7 @@
 		"cost":1500,
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
-			"space.max":50,
+			"space.max":55,
 			"airlore":{
 				"max":1,
 				"rate":0.1
@@ -236,7 +250,7 @@
 			"gems":10
 		},
 		"mod":{
-			"space.max":40,
+			"space.max":55,
 			"research.rate":-0.7,
 			"waterlore.max":5,
 			"waterlore.rate":0.2,

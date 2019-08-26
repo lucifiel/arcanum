@@ -128,7 +128,10 @@ export default {
 	 */
 	applyVars( m, amt=1 ) {
 
-		if (!isNaN(m)) this.value += m;
+		if (!isNaN(m)) {
+			console.log('apply num: ' + m );
+			this.value += m*amt;
+		}
 		else if ( typeof m === 'object' ) {
 
 			if ( m.max ) {

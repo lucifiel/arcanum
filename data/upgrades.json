@@ -186,7 +186,7 @@
 		"cost":10,
 		"mod":{
 			"mana":{
-				"rate":0.05
+				"rate":0.02
 			}
 		}
 	},
@@ -245,7 +245,7 @@
 			"research":200
 		},
 		"mod":{
-			"mana.rate":0.2
+			"mana.rate":0.1
 		}
 
 	},
@@ -337,9 +337,10 @@
 		"require":"state.lore>=20",
 		"cost":{
 			"gems":1,
-			"research":20
+			"research":200
 		},
 		"mod":{
+			"research.max":5,
 			"tempus.rate":0.01
 		}
 	},
@@ -350,6 +351,7 @@
 		"require":"state.crafting>=10&&state.tempus.max>=1",
 		"cost":{
 			"gold":50,
+			"research":300,
 			"gems":10
 		},
 		"mod":{
