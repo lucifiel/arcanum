@@ -482,7 +482,7 @@
 		"name":"map stars",
 		"length":10,
 		"verb":"mapping",
-		"require":"",
+		"require":"state.astronomy>=5",
 		"cost":{
 			"scrolls":1
 		},
@@ -532,7 +532,7 @@
 			"languages.max":1,
 			"languages.rate":0.2,
 			"naturelore.max":1,
-			"naturelore.rate":0.2
+			"naturelore.rate":0.3
 		}
 
 	},
@@ -553,7 +553,7 @@
 			"languages.max":1,
 			"languages.rate":0.2,
 			"crafting.max":1,
-			"crafting.rate":0.2
+			"crafting.rate":0.3
 		}
 
 	},
@@ -572,9 +572,9 @@
 		},
 		"result":{
 			"languages.max":2,
-			"languages.rate":0.2,
+			"languages.rate":0.5,
 			"spiritlore.max":2,
-			"spiritlore.rate":0.2
+			"spiritlore.rate":0.5
 		}
 
 	},

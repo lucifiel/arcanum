@@ -79,10 +79,6 @@ div.homes-view {
 	flex-direction: column;
 }
 
-.menu-content {
-	margin-top:12px;
-}
-
 div.resource-list {
 	width: fit-content;
 }
@@ -136,14 +132,9 @@ table.item-table tr, table.item-table th {
 	border-spacing: 0px;
 }
 
-
-div.outlog {
-	display:flex;
-	flex-direction: column-reverse;
-}
-
-button.small-btn {
-	padding:3px 8px;
+.menu-content {
+	margin-top:12px;
+	max-height: 90%;
 }
 
 .menu-items {
@@ -158,6 +149,15 @@ button.small-btn {
 	cursor: pointer;
 	margin: 2px 10px;
 	justify-content: center;
+}
+
+div.outlog {
+	display:flex;
+	flex-direction: column-reverse;
+}
+
+button.small-btn {
+	padding:3px 8px;
 }
 
 div.bgfill {

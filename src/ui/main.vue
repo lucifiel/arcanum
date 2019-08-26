@@ -304,6 +304,7 @@ export default {
 			<dots v-if="state" :dots="state.player.dots" />
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
+		
 		<div v-if="state" class="main">
 
 		<!-- popup -->
@@ -363,18 +364,29 @@ export default {
 	border: 1.75px dashed rgb(117, 117, 117);
 }
 
+div.full {
+	display:flex;
+	flex-direction: column;
+	min-width:500px;
+	width: 98vw;
+	max-height:100vh;
+	height:100vh;
+	margin: 0px;
+}
+
 span.load-message {
 	padding: 8px 8px 2px;
 }
 
 div.top-bar {
 	display:flex;
-	min-height: 24px;
+	min-height: 18px;
 	width:100%;
 }
 
 div.main {
 	display:flex;
+	max-height: 85vh;
 	flex-direction: row;
 	flex-grow: 1;
 	justify-content: space-between;
@@ -383,6 +395,8 @@ div.main {
 div.mid-view {
 	display:flex;
 	flex-flow: column nowrap;
+	max-height: 100%;
+	height:100%;
 	flex-basis:42%;
 	min-width: 320px;
 	margin: 0px 12px 0px 32px;
@@ -410,14 +424,6 @@ div.inv-equip {
 	justify-content: space-between;
 	height: 80vh;
 	width:100%;
-}
-
-div.full {
-	display:flex;
-	flex-direction: column;
-	min-width:500px;
-	width: 98vw;
-	margin: 0px;
 }
 
 

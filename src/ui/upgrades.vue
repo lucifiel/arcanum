@@ -7,7 +7,7 @@ export default {
 	/**
 	 * @property {string} event - name of event to fire when an item is selected.
 	 */
-	props:['pickEvent'],
+	props:['pickEvent', 'items'],
 	mixins:[ItemsBase],
 	created(){
 

@@ -8,7 +8,7 @@ export default {
 	 * @property {Inventory} inv - the inventory object.
 	 * @property {boolean} take - whether to display take button.
 	 */
-	props:['inv', 'take'],
+	props:['inv', 'take', 'value', 'selecting'],
 	data() {
 		return {
 			filtered:null
@@ -49,9 +49,14 @@ export default {
 <table class="inv item-table">
 	<tr v-for="it in filtered" :key="it.id">
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name }}</td>
-		<td><button @click="dispatch('equip',it, inv)">Equip</button></td>
-		<td v-if="take&&!playerFull"><button @click="onTake(it)">Take</button></td>
-		<td><button @click="drop(it)">Drop</button></td>
+		<template v-if="!selecting">
+			<td><button @click="dispatch('equip',it, inv)">Equip</button></td>
+			<td v-if="take&&!playerFull"><button @click="onTake(it)">Take</button></td>
+			<td><button @click="drop(it)">Drop</button></td>
+		</template>
+		<template v-else>
+			<td><button @click="$emit('input', it)">Select</button></td>
+		</template>
 	</tr>
 </table>
 <div v-if="playerFull" class="warn-text">Player inventory full</div>

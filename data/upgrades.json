@@ -334,7 +334,7 @@
 	{
 		"id":"pendulum",
 		"tags":"timesource",
-		"require":"state.lore>=10",
+		"require":"state.lore>=20",
 		"cost":{
 			"gems":1,
 			"research":20

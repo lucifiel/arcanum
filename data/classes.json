@@ -69,7 +69,7 @@
 	"cost":{
 		"research":400,
 		"arcana":10,
-		"gold":200
+		"gold":300
 	},
 	"effect":{
 		"tier1":true,
@@ -90,7 +90,7 @@
 	"cost":{
 		"research":400,
 		"arcana":10,
-		"gold":200,
+		"gold":300,
 		"bones":10
 	},
 	"effect":{
@@ -117,6 +117,7 @@
 	"flavor":"double, double, toil and trouble",
 	"cost":{
 		"research":350,
+		"gold":200,
 		"arcana":7
 	},
 	"disable":[],
@@ -209,13 +210,14 @@
 	"id":"druid",
 	"title":"druid",
 	"desc":"druid",
-	"disable":[],
+	"require":"state.tier1>0&&state.naturelore>=15",
 	"effect":{
+		"tier2":true,
 		"research.max":5,
-		"naturelore.max":10,
+		"naturelore.max":5,
 		"animals.max":5,
 		"potions.max":1,
-		"naturelore.rate":0.1,
+		"naturelore.rate":1,
 		"sp":1
 	}
 },

@@ -47,6 +47,12 @@
 		"require":"bestiary"
 	},
 	{
+
+		"id":"sect_enchanting",
+		"name":"enchanting",
+		"require":"enchanting"
+	},
+	{
 		"id":"sect_minions",
 		"name":"minions",
 		"require":""

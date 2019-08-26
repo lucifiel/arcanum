@@ -8,7 +8,7 @@ export default {
 
 	computed:{
 		displayed(){
-			return this.items.filter( v=>!v.hasType('mana')&&v.id!=='space')
+			return this.items.filter( v=>!v.hasTag('manas')&&v.id!=='space')
 		}		
 	}
 

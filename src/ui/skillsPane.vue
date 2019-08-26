@@ -44,15 +44,28 @@ export default {
 
 		<filterbox v-model="filtered" :items="skills" min-items="7" />
 
-		<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
+		<div class="subs">
+			<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
+		</div>
 
 	</div>
 </template>
 
 <style scoped>
 
+div.skills {
+	height:100%;
+	display:flex;
+	flex-flow: column nowrap;
+}
+div.subs {
+	max-height: 100%;
+	width: 100%;
+	overflow-y: auto;
+}
+
 div.skill {
-	margin: 12px 0px;
+	margin: 18px 0px;
 }
 
 </style>

@@ -59,7 +59,7 @@ export default {
 
 	<div class="home-view">
 
-		<div class="home">
+		<div class="cur-home">
 
 			<span @mouseenter.capture.stop="dispatch('itemover', $event, curHome )">home:<br>{{ curHome ? curHome.name : 'None'}}</span>
 			<div v-if="homesAvail.length>0">
@@ -106,7 +106,7 @@ div.home-view {
 	height:100%;
 }
 
-div.home {
+div.cur-home {
 	margin-top:12px;
 	margin-right: 24px;
 }
@@ -115,10 +115,10 @@ div.nospace {
 	color: red;
 }
 
-table.furniture {
+div.furniture {
 	overflow-y:auto;
 	width:100%;
-	max-height:70vh;
+	max-height: 100%;
 	margin-bottom: 4px;
 }
 

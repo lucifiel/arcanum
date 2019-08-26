@@ -2,8 +2,45 @@
 
 	{
 		"id":"armor1",
+		"name":"minor armor",
+		"verb":"infusing armor",
+		"target":"armor",
+		"desc":"infuse an item with magical protection.",
+		"require":"state.enchanting>=3",
+		"level":1,
+		"buy":{
+			"arcana":1,
+			"research":100
+		},
+		"length":30,
+		"cost":{
+			"earthgem":1,
+			"mana":5
+		},
 		"mod":{
 			"armor":1
 		}
+	},
+	{
+		"id":"tohit1",
+		"name":"keen weapon",
+		"verb":"infusing weapon",
+		"target":"weapon",
+		"desc":"infuse an item with magical protection.",
+		"require":"state.enchanting>=3",
+		"level":1,
+		"buy":{
+			"arcana":1,
+			"research":100
+		},
+		"length":30,
+		"cost":{
+			"managem":1,
+			"mana":5
+		},
+		"mod":{
+			"tohit":1
+		}
 	}
+
 ]
