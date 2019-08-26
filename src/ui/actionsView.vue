@@ -8,6 +8,7 @@ import game from '../game';
  */
 export default {
 
+	props:['items'],
 	mixins:[ItemsBase],
 	created(){
 		this.game = game;

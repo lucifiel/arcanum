@@ -3,7 +3,14 @@ import ItemsBase from './itemsBase.js';
 
 export default {
 	
-	mixins:[ItemsBase]
+	props:['items'],
+	mixins:[ItemsBase],
+
+	computed:{
+		displayed(){
+			return this.items.filter( v=>!v.hasType('mana')&&v.id!=='space')
+		}		
+	}
 
 }
 </script>
@@ -12,7 +19,7 @@ export default {
 <template>
 <div class="resource-list">
 
-		<tr :class="{'item-name':true, locked:reslocked(it)}" v-for="it in items" :key="it.id"
+		<tr :class="{'item-name':true, locked:reslocked(it)}" v-for="it in displayed" :key="it.id"
 			@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
 			<td>{{ it.name }}</td>

@@ -89,8 +89,13 @@ export default class Wearable {
 
 		if ( this.attack ) {
 
-			if ( this.attack.damage !== null && this.attack.damage !== undefined ) this.applyBonus( this.attack, 'damage', mat.bonus );
+			if ( this.attack.damage !== null && this.attack.damage !== undefined ) {
+				this.applyBonus( this.attack, 'damage', mat.bonus );
+			}
+			if ( mat.tohit ) this.applyBonus( this.attack, 'tohit', mat.tohit );
 
+		} else {
+	
 		}
 
 	}

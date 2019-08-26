@@ -176,7 +176,7 @@
 			"bodies":1
 		},
 		"effect":{
-			"hp":20
+			"hp":40
 		}
 
 	},
@@ -246,7 +246,7 @@
 		"name":"Treat Ailments",
 		"desc":"Cure customers of magical ailments.",
 		"verb":"treating locals",
-		"require":"state.neophyte>0&&state.anatomy>=5",
+		"require":"state.neophyte>0&&state.anatomy>=3",
 		"cost":{
 			"stamina":0.2
 		},
@@ -641,6 +641,7 @@
 		"name":"Purchase Gem",
 		"require":"gems",
 		"cost":100,
+		"fill":"gems",
 		"effect":{
 			"gems":1
 		}

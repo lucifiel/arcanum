@@ -7,7 +7,6 @@ import Game from '../game';
 
 export default {
 	
-	props:['items'],
 	methods:{
 
 		floor:floor,

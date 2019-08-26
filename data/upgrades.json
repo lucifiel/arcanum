@@ -104,7 +104,7 @@
 			"gems":2
 		},
 		"mod":{
-			"dist":30
+			"dist":25
 		}
 
 	},
@@ -120,7 +120,43 @@
 			"gems":5
 		},
 		"mod":{
-			"dist":50
+			"dist":40
+		}
+
+	},
+	{
+		"id":"skelcharger",
+		"name":"skeletal charger",
+		"desc":"it neither breathes nor tires.",
+		"require":"state.stables>0&&state.reanimation>=5",
+		"slot":"mount",
+		"tags":"steed",
+		"buy":{
+			"gold":400,
+			"bones":10,
+			"shadow":5,
+			"bonedust":10
+		},
+		"mod":{
+			"dist":66
+		}
+
+	},
+	{
+		"id":"firecharger",
+		"name":"fire charger",
+		"desc":"hooves of flame leave lines of fire in the ground",
+		"require":"state.stables>0&&state.firelore>5&&state.magicbeasts>=5",
+		"slot":"mount",
+		"tags":"steed",
+		"buy":{
+			"research":500,
+			"arcana":1,
+			"fire":5,
+			"firegem":5
+		},
+		"mod":{
+			"dist":75
 		}
 
 	},
@@ -138,6 +174,7 @@
 		}
 
 	},
+
 	{
 		"id":"waxcandle",
 		"name":"wax candle",
@@ -190,7 +227,7 @@
 		"max":2,
 		"repeat":true,
 		"cost":300,
-		"flavor":"seems a bit pricey for a bag.",
+		"flavor":"who sells these bags?!",
 		"mod":{
 			"gems.max":5
 		}
@@ -394,7 +431,7 @@
 	},
 	{
 		"id":"dragontongue",
-		"name":"Draconic Tongue",
+		"name":"Dragon Tongue",
 		"desc":"Learn the ancient language of dragons.",
 		"require":"state.languages>10&&state.magicbeasts>=5",
 		"cost":{
@@ -426,6 +463,23 @@
 		"cost":{
 			"research":100,
 			"arcana":1
+		}
+
+	},
+	{
+
+		"id":"manatrans",
+		"name":"Energy Transfusion",
+		"desc":"Transfusions now draw magical energy from bodies.",
+		"require":"state.anatomy>=7&&state.lore>=8&&state.transfusions>0",
+		"cost":{
+			"research":400,
+			"arcana":1
+		},
+		"mod":{
+			"bloodsiphon.effect.mana":1,
+			"bloodsiphon.effect.shadow":1,
+			"bloodsiphon.effect.spirit":1
 		}
 
 	},
