@@ -38,7 +38,7 @@ export default {
 <style scoped>
 
 div.up-list {
-	display:table;
+	overflow-y: auto;
 }
 
 </style>

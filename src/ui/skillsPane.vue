@@ -59,13 +59,14 @@ div.skills {
 	display:flex;
 	flex-flow: column nowrap;
 }
+
+
 div.subs {
 	display:flex;
 	flex-flow: row wrap;
-	max-height: 100%;
 	margin: 12px 12px 0px 0px;
 	padding: 12px 32px;
-	width: 95%;
+	width: 100%;
 	overflow-y: auto;
 	justify-content: space-between;
 }

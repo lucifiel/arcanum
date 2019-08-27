@@ -125,7 +125,6 @@ div.nospace {
 div.furniture {
 	overflow-y:auto;
 	width:100%;
-	max-height: 100%;
 	margin-bottom: 4px;
 }
 

@@ -88,15 +88,6 @@ div.resource-list {
 	padding-bottom: 4px;
 }
 
-div.skills {
-	display:flex;
-	width: 100%;
-	align-self: flex-start;
-	flex-flow: column wrap;
-	align-items: flex-start;
-}
-
-
 .separate {
 	display:flex;
 	flex-direction: row;

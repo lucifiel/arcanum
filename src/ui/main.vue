@@ -12,6 +12,7 @@ import Bestiary from './bestiary.vue';
 
 import ItemsBase from './itemsBase';
 
+import Warn from './component/warn.vue';
 import Vitals from 'ui/vitals.vue';
 import SkillsPane from './skillsPane.vue';
 import Spellbook from 'ui/spellbook.vue';
@@ -58,6 +59,7 @@ export default {
 		bestiary:Bestiary,
 		spellbook:Spellbook,
 		adventure:Adventure,
+		warn:Warn,
 		'vue-menu':Menu
 	},
 	data(){
@@ -84,6 +86,7 @@ export default {
 		this.listen( 'take', this.onTake );
 		this.listen( 'itemover', this.itemOver );
 		this.listen( 'itemout', this.itemOut );
+
 		this.listen( 'upgrade', this.onUpgrade );
 		this.listen( 'action', this.onAction );
 		this.listen( 'raid', this.onRaid );
@@ -227,17 +230,18 @@ export default {
 		/**
 		 * Attempt to buy new house.
 		 */
-		onHome(it) {
-			this.game.tryItem(it);
-		},
+		onHome(it) { this.game.tryItem(it); },
 
 		onUpgrade(upgrade) {
-			this.game.tryItem(upgrade);
+
+			if ( upgrade.warn ) this.$refs.warn.warn( upgrade );
+			else this.game.tryItem(upgrade);
+
 		},
 	
-		onSpell( spell ) {
-			this.game.tryItem(spell);
-		},
+		onConfirmed(it) { this.game.tryItem(it); },
+
+		onSpell( spell ) { this.game.tryItem(spell); },
 
 		onAction( action ) {
 
@@ -305,10 +309,11 @@ export default {
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
 		
-		<div v-if="state" class="main">
-
-		<!-- popup -->
+		<!-- popups -->
 		<itempopup :item="overItem" :elm="overElm" />
+		<warn ref="warn" @confirmed="onConfirmed" />
+
+		<div v-if="state" class="main">
 
 		<resources :items="state.resources"/>
 

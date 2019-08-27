@@ -72,8 +72,6 @@ export default {
 div.log-view {
 	margin-left: 8px;
 	flex-direction: column;
-	height:95vh;
-	flex-basis: 20%;
 	overflow-y: auto;
 }
 

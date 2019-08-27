@@ -33,6 +33,10 @@ export default {
 
 <style scoped>
 
+div.resource-list {
+	overflow-y:auto;
+}
+
 tr td:first-child {
 	padding-right: 6px;
 }
