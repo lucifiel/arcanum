@@ -95,7 +95,7 @@
 		},
 		"result":{
 			"gems":"4~10",
-			"gold":100
+			"gold":200
 		}
 
 	},
@@ -650,6 +650,8 @@
 		"name":"Craft Gem",
 		"desc":"Craft a gem from raw minerals.",
 		"require":"state.crafting>=7&&state.alchemy>=5",
+		"length":10,
+		"fill":"gems",
 		"run":{
 			"stamina":1,
 			"mana":2

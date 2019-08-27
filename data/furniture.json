@@ -240,11 +240,12 @@
 		"require":"neophyte",
 		"tags":"workspace",
 		"cost":{
-			"gold":50,
+			"gold":100,
 			"space":2
 		},
 		"mod":{
 			"research.max":5,
+			"languages.max":1,
 			"scrolls.max":10
 		}
 
@@ -261,7 +262,24 @@
 		},
 		"mod":{
 			"crafting.max":1,
-			"crafting.rate":0.1
+			"crafting.rate":0.2
+		}
+	},
+	{
+		"id":"enchanttable",
+		"name":"enchanting table",
+		"tags":"workspace",
+		"desc":"Runed table for enchanting",
+		"require":"neophyte",
+		"cost":{
+			"gold":200,
+			"reearch":200,
+			"gems":5,
+			"space":2
+		},
+		"mod":{
+			"enchanting.max":1,
+			"enchanting.rate":0.2
 		}
 	},
 	{

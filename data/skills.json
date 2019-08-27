@@ -87,8 +87,7 @@
 		"result":{
 			"sp":0.05,
 			"research":{
-				"max":1,
-				"value":5
+				"max":1
 			}
 		}
 	},
@@ -147,7 +146,7 @@
 
 		"id":"dissection",
 		"need":"state.anatomy>=3",
-		"school":["shadow"],
+		"school":"shadow",
 		"run":{
 			"stamina":0.5
 		},
@@ -178,7 +177,7 @@
 		"id":"divination",
 		"desc":"the art of foretelling",
 		"require":["spiritlore.lore>=6", "spiritsource"],
-		"school":"shadow",
+		"school":"spirit",
 		"run":{
 			"stamina":0.4
 		},
@@ -187,7 +186,7 @@
 		},
 		"result":{
 			"research.max":1,
-			"spirit.max":0.1,
+			"sp":0.05,
 			"spirit.rate":0.01
 		}
 
@@ -340,7 +339,6 @@
 		},
 		"result":{
 			"research.value":1,
-			"shadow.max":1,
 			"shadow.rate":0.01
 		}
 

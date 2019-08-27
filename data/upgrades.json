@@ -211,7 +211,33 @@
 		}
 
 	},
+	{
 
+		"id":"tent",
+		"name":"travel tent",
+		"require":"naturelore",
+		"desc":"allows you to stay in the wilds longer.",
+		"buy":{
+			"gold":100,
+			"research":50
+		},
+		"mod":{
+			"dist":5
+		}
+
+	},
+	{
+		"id":"magictent",
+		"name":"",
+		"desc":"",
+		"buy":{
+
+		},
+		"mod":{
+			"dist":20
+		}
+
+	},
 	{
 		"id":"waxcandle",
 		"name":"wax candle",
@@ -871,7 +897,7 @@
 			"research":300,
 			"arcana":1,
 			"gems":10,
-			"hp":15
+			"hp":20
 		},
 		"mod":{
 			"lore.max":2,
@@ -881,6 +907,26 @@
 			},
 			"planeslore.max":1
 		}, "flavor":"they say the blood has to be yours, however."
+	},
+	{
+		"id":"siversgate",
+		"name":"siver's gate",
+		"desc":"siver knew the greatest power came at the greatest cost",
+		"require":"state.lore>=20",
+		"cost":{
+
+		},
+		"mod":{
+			"hp.rate":-1,
+			"stamina.rate":-0.5,
+			"planeslore.max":2,
+			"shadowlore.max":2,
+			"reanimation.max":2,
+			"lore.max":1,
+			"demonology.max":3,
+			"spiritlore.max":2,
+			"spirit.rate":0.1
+		}
 	},
 	{
 
@@ -897,7 +943,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"water.max":2,
+			"waterlore.max":2,
 			"water.rate":0.1
 		}
 
@@ -921,7 +967,7 @@
 				"kind":"fire",
 				"damage":1
 			},
-			"fire.max":2,
+			"firelore.max":2,
 			"fire.rate":0.1
 		}
 
@@ -940,9 +986,26 @@
 			"arcana":1
 		},
 		"mod":{
-			"air.max":2,
+			"airlore.max":2,
 			"air.rate":0.1
 		}
+	},
+	{
+		"id":"bellows",
+		"name":"ceaseless bellows",
+		"desc":"these bellows run on their own.",
+		"require":"state.crafting>=7",
+		"cost":{
+			"gold":250,
+			"research":300
+		},
+		"mod":{
+			"crafting.max":1,
+			"crafting.rate":0.1,
+			"alchemy.max":1,
+			"alchemy.rate":0.1
+		}
+
 	},
 	{
 		"id":"alembic",
