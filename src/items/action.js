@@ -23,7 +23,8 @@ export default class Action extends Item {
 		this._exp = v;
 		if ( this.length && v >= this._length ) {
 			this.value++;
-			this._exp -= this._length;
+			// intentional no wrap around, so costs repeat on restart.
+			this._exp = 0;
 			this.dirty = true;
 			if ( this.complete ) this.complete();
 			if ( this.result ) Game.applyEffect( this.result );

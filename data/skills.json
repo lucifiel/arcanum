@@ -8,7 +8,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.05
+			"sp":0.1
 		}
 	},
 	{
@@ -47,19 +47,6 @@
 		"flavor":"tend the rabbits"
 	},
 	{
-		"id":"charms",
-		"require":"state.enchanting>=5&&state.lore>=10",
-		"run":{
-			"stamina":0.3
-		},
-		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
-		}
-	},
-	{
 		"id":"magicbeasts",
 		"name":"magic beasts",
 		"require":"state.animals>=7&&state.naturelore>=5",
@@ -75,6 +62,19 @@
 			}
 		}
 
+	},
+	{
+		"id":"charms",
+		"require":"state.enchanting>=5&&state.lore>=10",
+		"run":{
+			"stamina":0.3
+		},
+		"result":{
+			"research":{
+				"max":1,
+				"value":5
+			}
+		}
 	},
 	{
 		"id":"herbalism",
@@ -385,7 +385,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.05,
+			"sp":0.1,
 			"research":{
 				"max":1,
 				"value":5
@@ -399,9 +399,9 @@
 			"stamina":0.5
 		},
 		"result":{
+			"sp":0.05,
 			"research":{
-				"max":1,
-				"value":5
+				"max":1
 			}
 		}
 	},
@@ -415,7 +415,7 @@
 			"research":1,
 			"mana":0.1
 		},
-		"mod":{
+		"result":{
 			"arcana.max":1,
 			"research.max":1
 		}

@@ -54,11 +54,11 @@
 			},
 			"astronomy":{
 				"max":0.1,
-				"rate":0.1
+				"rate":0.02
 			},
 			"planeslore":{
 				"max":0.05,
-				"rate":0.05
+				"rate":0.02
 			}
 		}
 

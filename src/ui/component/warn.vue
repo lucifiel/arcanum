@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-	<div class="popup">
+	<div class="popup" v-if="item!=null">
 
 		<div>{{ item.name }}</div>
 		<div>{{item.desc }}</div>
@@ -34,10 +34,6 @@ export default {
 </template>
 
 <style scoped>
-
-.show {
-	display: inline-block;
-}
 
 div.popup {
 	display:none;

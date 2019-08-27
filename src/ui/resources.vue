@@ -35,7 +35,8 @@ export default {
 
 div.resource-list {
 	overflow-y:auto;
-	width: 100%;
+	width:fit-content;
+	overflow-x:visible;
 }
 
 tr td:first-child {

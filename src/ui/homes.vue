@@ -111,6 +111,7 @@ span.space {
 }
 div.home-view {
 	height:100%;
+	width: fit-content;
 }
 
 div.cur-home {

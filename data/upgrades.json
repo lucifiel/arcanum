@@ -156,7 +156,7 @@
 			"gold":400,
 			"bones":10,
 			"shadow":5,
-			"bonedust":10
+			"bonedust":20
 		},
 		"mod":{
 			"dist":66
@@ -701,6 +701,24 @@
 				"rate":0.01
 			}
 		}
+	},
+	{
+
+		"id":"urn",
+		"desc":"receptacle for dust",
+		"require":"state.crafting>=5&&state.spirit>4",
+		"max":3,
+		"cost":{
+			"gold":300,
+			"research":100,
+			"spirit":5
+		},
+		"mod":{
+			"dust.max":5,
+			"spiritlore.max":0.5,
+			"spiritlore.rate":0.1
+		}
+
 	},
 	{
 		"id":"ball",

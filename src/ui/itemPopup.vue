@@ -46,7 +46,7 @@ export default {
 
 <template>
 	
-	<div :class="{ 'item-popup':true, show:item!=null }">
+	<div :class="{ 'item-popup':true }" v-show="item!=null">
 		<item class='popup-content' v-if="item" :item="item" />
 	</div>
 
@@ -55,7 +55,6 @@ export default {
 <style scoped>
 
 .item-popup {
-	display:none;
 	height:auto;
 	min-height:100px;
 	min-width:200px;
@@ -69,9 +68,6 @@ export default {
 }
 .popup-content {
 	padding: 10px;
-}
-.show {
-	display: inline-block;
 }
 
 </style>

@@ -308,12 +308,12 @@ export default {
 			<dots v-if="state" :dots="state.player.dots" />
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
-		
+
+		<div v-if="state" class="main">
+
 		<!-- popups -->
 		<itempopup :item="overItem" :elm="overElm" />
 		<warn ref="warn" @confirmed="onConfirmed" />
-
-		<div v-if="state" class="main">
 
 		<resources :items="state.resources"/>
 
