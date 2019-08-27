@@ -404,7 +404,7 @@ div.mid-view {
 	height:100%;
 	flex-basis:42%;
 	min-width: 320px;
-	margin: 0px 12px 0px 32px;
+	margin: 0px 12px 0px 12px;
 	align-content: space-around;
 }
 

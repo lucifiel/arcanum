@@ -42,7 +42,7 @@
 
 		"id":"broomstick",
 		"name":"magic broomstick",
-		"require":"state.crafting>=5&&state.spirit.max>=5",
+		"require":"state.witch>0&&state.crafting>=7&&state.spirit.max>=5",
 		"flavor":"",
 		"slot":"mount",
 		"buy":{
@@ -60,6 +60,27 @@
 	},
 	{
 
+		"id":"ebonwoodbroomstick",
+		"name":"ebonwood broomstick",
+		"require":"state.witch>0&&state.crafting>=15&&state.spirit.max>=10",
+		"flavor":"",
+		"slot":"mount",
+		"buy":{
+			"research":1000,
+			"nature":10,
+			"spirit":10,
+			"gold":1000,
+			"arcana":1
+		},
+		"mod":{
+			"dist":200,
+			"spirit.max":1,
+			"spirit.rate":0.1
+		}
+
+	},
+	{
+
 		"id":"flyingcarpet",
 		"name":"flying carpet",
 		"require":"state.weaving>=5&&state.airlore>=10",
@@ -69,7 +90,7 @@
 			"gems":20,
 			"research":300,
 			"air":5,
-			"gold":100,
+			"gold":300,
 			"arcana":1
 		},
 		"mod":{
@@ -157,6 +178,22 @@
 		},
 		"mod":{
 			"dist":75
+		}
+
+	},
+	{
+		"id":"gryffonmount",
+		"name":"gryffon",
+		"desc":"as fleet as it is fearsome.",
+		"require":"stables",
+		"slot":"mount",
+		"tags":"steed",
+		"buy":{
+			"gold":2000,
+			"gems":5
+		},
+		"mod":{
+			"dist":120
 		}
 
 	},

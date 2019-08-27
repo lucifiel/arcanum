@@ -55,18 +55,18 @@ export default {
 
 div.skills {
 	height:100%;
-	margin-right: 32px;
 	display:flex;
 	flex-flow: column nowrap;
+	align-items: center;
 }
 
 
 div.subs {
 	display:flex;
 	flex-flow: row wrap;
-	margin: 12px 12px 0px 0px;
-	padding: 12px 32px;
-	width: 100%;
+	margin: 12px 0px 0px 0px;
+	padding: 12px 24px;
+	width: 98%;
 	overflow-y: auto;
 	justify-content: space-between;
 }

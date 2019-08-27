@@ -481,15 +481,16 @@
 		"id":"mapstars",
 		"name":"map stars",
 		"length":10,
-		"verb":"mapping",
+		"verb":"mapping stars",
 		"require":"state.astronomy>=5",
+		"fill":"starcharts",
 		"cost":{
 			"scrolls":1
 		},
 		"run":{
 			"research":2
 		},
-		"result":"starchart"
+		"result":"starcharts"
 	},
 	{
 		"id":"bestiary",
@@ -503,9 +504,7 @@
 			"codices":1
 		},
 		"run":{
-			"stamina":0.5
-		},
-		"effect":{
+			"stamina":0.5,
 			"animals.exp":1
 		},
 		"result":{

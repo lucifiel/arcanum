@@ -39,6 +39,7 @@ export default {
 
 div.up-list {
 	overflow-y: auto;
+	width: 100%;
 }
 
 </style>
