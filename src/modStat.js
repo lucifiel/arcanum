@@ -36,14 +36,17 @@ export default class ModStat {
 	 */
 	get pct() { return this._pct };
 
+	/**
+	 * @property {Object.<string,Mod>} mods - mods applied to object.
+	 */
 	get mods() { return this._mods; }
 	set mods(v) {
 
-		for( let i = v.length-1; i>=0;i--){
+		for( let p in v ) {
 
-			var mod = v[i];
+			var mod = v[p];
 			if ( mod instanceof Mod ) continue;
-			v[i] = new Mod( v[i] );
+			v[p] = new Mod( v[p] );
 		}
 		this._mods = v;
 	}
@@ -61,12 +64,11 @@ export default class ModStat {
 		} else if ( !isNaN(vars) ) this._base = Number(vars);
 
 		this._base = this._base||0;
-		this._bonus = this._bonus || 0;
-		this._pct = this._pct || 0;
 
 		this._rate = this._rate || null;
 
-		this.mods = this.mods || [];
+		this.mods = this.mods || {};
+		this.recalc();
 
 	}
 
@@ -74,12 +76,12 @@ export default class ModStat {
 	 * Add a modifier to the stat.
 	 * @param {} mod 
 	 */
-	addMod(mod) {
+	addMod( mod ) {
 
 		this._pct += mod.pct;
 		this._bonus += mod.bonus;
 
-		let cur = this.mods.find( v=>v.id===mod.id );
+		let cur = this.mods[mod.id];
 		if ( cur ) {
 
 			cur.pct += mod.pct;
@@ -100,12 +102,12 @@ export default class ModStat {
 
 		let bonus = 0, pct = 0;
 
-		let len = this.mods.length;
-		for( let i = 0; i < len; i++ ) {
+		for( let p in this._mods ) {
 
-			var mod = this._mods[i];
+			var mod = this._mods[p];
 			pct += mod.pct;
 			bonus += mod.bonus;
+
 		}
 
 		this._pct = pct;

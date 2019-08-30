@@ -44,6 +44,39 @@ export default class Action extends Item {
 		this.type = 'action';
 		if ( this.length ) this._exp = this._exp || 0;
 
+		if ( this.cd ) this.timer = this.timer || 0;
+	}
+
+	canUse() {
+		if ( this.maxed() ) return false;
+		if ( this.cd > 0 && this.timer > 0 ) return false;
+	}
+
+	exec() {
+		if ( this.timer > 0 ) return false;
+		if ( this.cd ) {
+			Game.addTimer( this );
+			this.timer = cd;
+		}
+
+	}
+
+	/**
+	 * Performs a timer tick.
+	 * @param {number} dt - elapsed time.
+	 * @returns {boolean} true if timer is complete.
+	 */
+	tick( dt) {
+
+		if ( this.timer > 0 ) {
+		
+			this.timer -= dt;
+			if ( this.timer > 0 ) return true;
+			this.timer = 0;
+
+		}
+		return false;
+
 	}
 
 }

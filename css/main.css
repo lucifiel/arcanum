@@ -12,7 +12,8 @@ input[type="button"], button, .text-button {
 	background-color: rgb(226, 224, 224);
 	border: 1pt solid darkgray;
 	border-radius: 2px;
-	padding: 8px;
+	padding: 4px;
+	text-align: center;
 	margin: 4px;
 
 }
@@ -49,12 +50,11 @@ input[type="button"]:enabled:active, button:enabled:active, .hilite {
 
 .wrapped-btn {
 	margin:0px;
+	padding: 8px;
 	min-width: 16ch;
 }
 
-.locked {
-	display:none;
-}
+.locked { display:none;}
 
 .item-name {
 	text-transform: capitalize;
@@ -69,18 +69,9 @@ input[type="button"]:enabled:active, button:enabled:active, .hilite {
 	background: #fdc679;
 }
 
-div.center-view, div.home-view {
-	display:flex;
-	flex-direction: row;
-}
-
 div.homes-view {
 	display:flex;
 	flex-direction: column;
-}
-
-div.resource-list {
-	width: fit-content;
 }
 
 .table-head {

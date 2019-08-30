@@ -3,7 +3,7 @@ import Game from '../game';
 
 import ItemsBase from './itemsBase';
 import UpgradeView from './upgrades.vue';
-import FilterBox from './component/filterbox.vue';
+import FilterBox from './components/filterbox.vue';
 
 /**
  * @emits sell
@@ -110,6 +110,8 @@ span.space {
 	margin: 0px 18px;
 }
 div.home-view {
+	display: flex;
+	flex-direction: row;
 	height:100%;
 	width: fit-content;
 }

@@ -1,6 +1,6 @@
 <script>
 
-import ProgBar from './component/progbar.vue';
+import ProgBar from './components/progbar.vue';
 import Game from '../game';
 
 /**

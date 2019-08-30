@@ -12,6 +12,7 @@ export default {
 
 
 <template>
+
 	<table class="equip">
 
 		<tr class="equip-slot" v-for="(slot,p) in equip.slots" :key="p">
@@ -40,9 +41,6 @@ export default {
 
 <style scoped>
 
-.equip {
-	height:auto;
-}
 
 tr.equip-slot {
 	margin: 2px 0px;

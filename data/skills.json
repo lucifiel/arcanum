@@ -114,7 +114,7 @@
 			"stamina":0.2
 		},
 		"effect":{
-			"research":0.01
+			"research":0.1
 		},
 		"result":{
 			"sp":0.05,

@@ -3,7 +3,7 @@ import Game from '../game';
 import ItemBase from './itemsBase';
 import SkillView from './items/skill.vue';
 
-import FilterBox from './component/filterbox.vue';
+import FilterBox from './components/filterbox.vue';
 
 export default {
 	

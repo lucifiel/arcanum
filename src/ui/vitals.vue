@@ -1,5 +1,5 @@
 <script>
-import ProgBar from 'ui/component/progbar.vue';
+import ProgBar from 'ui/components/progbar.vue';
 import Game from '../game';
 import ItemBase from './itemsBase';
 

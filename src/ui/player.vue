@@ -3,7 +3,7 @@ import Game from '../game';
 import { floor } from 'format';
 
 import AllUpgrades from './allupgrades.vue';
-import SlotPick from './slotpick.vue';
+import SlotPick from './components/slotpick.vue';
 
 export default {
 	

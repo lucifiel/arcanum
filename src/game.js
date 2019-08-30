@@ -1,6 +1,6 @@
 import DataLoader from './dataLoader';
 import VarPath from './varPath';
-import Percent from './percent';
+import {quickSplice} from './util';
 import Item from './items/item';
 import Log from './log.js';
 import GameState from './gameState';
@@ -44,6 +44,17 @@ export default {
 	 */
 	log:new Log(),
 
+	timers:[],
+
+	/**
+	 * 
+	 * @param {*} obj 
+	 * @param {(number)=>boolean} obj.tick -tick function.
+	 */
+	addTimer( obj ){
+		this.timers.push(obj);
+	},
+
 	/**
 	 * Clear game data.
 	 */
@@ -52,6 +63,7 @@ export default {
 		this.loaded = false;
 		this.state = null;
 		this._items = null;
+		this.timers = [];
 
 		return this.load();
 
@@ -71,6 +83,7 @@ export default {
 			techTree = new TechTree( this._items );
 
 			this.initEvents();
+			this.initTimers();
 
 			this.loaded = true;
 
@@ -91,6 +104,18 @@ export default {
 			var e = evts[i];
 			if ( !e.locked && e.value===0 ) this.doEvent(e);
 
+		}
+
+	},
+
+	/**
+	 * Any item with a timer>0 should be added to timers.
+	 */
+	initTimers() {
+
+		let acts = this.state.actions;
+		for( let i = acts.length-1; i>= 0; i-- ) {
+			if ( acts[i].timer > 0) this.addTimer( acts[i]);
 		}
 
 	},
@@ -119,6 +144,16 @@ export default {
 		this.doCurrent( dt );
 
 		this.doResources(dt);
+
+		if ( this.timers ) {
+
+			for( let i = this.timers.length-1; i>= 0; i-- ) {
+
+				if ( this.timers[i].tick() ) quickSplice( this.timers, i );
+				
+			}
+
+		}
 
 		for( let p in this._items ) {
 
@@ -432,6 +467,7 @@ export default {
 			this.state.setSlot(it.slot, it);
 
 		}
+		if ( it.exec ) it.exec();
 
 		it.value += count;
 
@@ -730,6 +766,8 @@ export default {
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 		if ( it.slot && this.state.getSlot(it.slot, it.type ) === it) return false;
 		if ( it.maxed() ) return false;
+
+		if ( it.cd && it.timer > 0 ) return false;
 
 		if ( it.fill ) {
 

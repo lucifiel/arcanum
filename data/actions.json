@@ -362,6 +362,32 @@
 		}
 	},
 	{
+
+		"id":"sabbat",
+		"name":"witch's sabbath",
+		"desc":"a revelry of demons and witches.",
+		"require":"state.witch>0&&state.demonology>=5&&state.spiritlore>=8",
+		"length":100,
+		"cd":3600,
+		"cost":{
+			"spirit":10,
+			"bodies":1
+		},
+		"run":{
+			"stamina":0.4
+
+		},
+		"effect":{
+			"arcana":0.01,
+			"sp":0.0001,
+			"demonology.max":0.001,
+			"demonology":0.001,
+			"spiritlore.max":0.001,
+			"spiritelore":0.001
+		}
+
+	},
+	{
 		"id":"travel",
 		"perpetual":true,
 		"verb":"travelling",
@@ -504,7 +530,9 @@
 			"codices":1
 		},
 		"run":{
-			"stamina":0.5,
+			"stamina":0.5
+		},
+		"effect":{
 			"animals.exp":1
 		},
 		"result":{
@@ -656,7 +684,7 @@
 			"stamina":1,
 			"mana":2
 		},
-		"effect":{
+		"result":{
 			"gems":1,
 			"crafting.max":0.001
 		}

@@ -1,6 +1,6 @@
 <script>
 import ItemBase from './itemsBase';
-import FilterBox from './component/filterbox.vue';
+import FilterBox from './components/filterbox.vue';
 import Game from '../game';
 
 export default {

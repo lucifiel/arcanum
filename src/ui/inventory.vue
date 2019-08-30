@@ -1,6 +1,6 @@
 <script>
 import Game from '../game';
-import FilterBox from './component/filterbox.vue';
+import FilterBox from './components/filterbox.vue';
 
 export default {
 
@@ -14,6 +14,9 @@ export default {
 			filtered:null
 		}
 	},
+	components:{
+		filterbox:FilterBox
+	},
 	methods:{
 
 		drop( it ){
@@ -22,7 +25,7 @@ export default {
 
 		onTake(it) {
 
-			console.log('start take: ' + it.id );
+			//console.log('start take: ' + it.id );
 			this.dispatch('take', it );
 			this.inv.remove(it);
 
@@ -33,9 +36,6 @@ export default {
 		playerFull(){
 			return Game.state.inventory.full();
 		}
-	},
-	components:{
-		filterbox:FilterBox
 	}
 
 }
@@ -69,7 +69,6 @@ export default {
 .inv {
 	margin-left: 48px;
 	width:auto;
-	height:auto;
 }
 
 

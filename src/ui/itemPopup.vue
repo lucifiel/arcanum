@@ -2,6 +2,8 @@
 import Game from '../game';
 
 import ItemView from './items/item.vue';
+import {positionAt} from './components/popups.js';
+
 
 /**
  * Box for displaying item information.
@@ -14,28 +16,11 @@ export default {
 	props:["item", "elm", 'sell'],
 	watch:{
 		elm( newVal, oldVal ){
+
 			if ( newVal != null ) {
-
-				let style = this.$el.style;
-				let rect = newVal.getBoundingClientRect();
-				//let myBox = this.$el.getBoundingClientRect();
-
-				let left = rect.left;
-				if ( left < window.innerWidth/2 ) {
-
-				//	console.log('left: ' + left);
-					style['left'] = ( left + newVal.offsetWidth + 40 ) + 'px';
-
-				} else {
-
-					//console.log('width: ' + myBox.width + ' , ' + myBox.right );
-					style['left'] = ( left- 240 ) + 'px';
-				}
-
-				if ( rect.top < window.innerHeight-140) style['top'] = ( rect.top ) + 'px';
-				else style.top = (rect.top - 52) + 'px';
-
+				positionAt( this.$el, newVal );
 			}
+
 		}
 	},
 	components:{ item:ItemView }

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Main from 'ui/main.vue';
-import Confirm from 'ui/component/confirm.vue';
+import Confirm from 'ui/components/confirm.vue';
 import Game from './game';
 
 /**

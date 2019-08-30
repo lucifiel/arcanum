@@ -2,19 +2,19 @@
  * Formatting helpers for HTML/Display.
  */
 
-export function seconds(v){
+export const seconds = (v) => {
 	return Math.ceil(v) + ' s';
 }
 
-export function floor( v ) {
+export const floor = ( v ) => {
 	return (v === null || isNaN(v)) ? 0 : Math.floor(v);
 }
 
-export function ceil( v ) {
+export const ceil = ( v ) => {
 	return (v === null || isNaN(v)) ? 0 : Math.ceil(v);
 }
 
 
-export function round( v ) {
+export const round = ( v ) => {
 	return (v === null || isNaN(v)) ? 0 : Math.round(v);
 }

@@ -3,8 +3,8 @@ import Game from '../game';
 import ItemBase from './itemsBase.js';
 
 import Inv from './inventory.vue';
-import ProgBar from './component/progbar.vue';
-import FilterBox from './component/filterbox.vue';
+import ProgBar from './components/progbar.vue';
+import FilterBox from './components/filterbox.vue';
 
 export default {
 	

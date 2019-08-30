@@ -1,7 +1,7 @@
 <script>
 import Game from '../game';
 
-import FilterBox from './component/filterbox.vue';
+import FilterBox from './components/filterbox.vue';
 
 export default {
 
@@ -9,6 +9,9 @@ export default {
 		return {
 			filtered:null
 		};
+	},
+	components:{
+		filterbox:FilterBox
 	},
 	beforeCreate(){
 		this.game = Game;
@@ -38,9 +41,6 @@ export default {
 			return Game.state.monsters.filter( v=>v.value>=1 );
 		}
 
-	},
-	components:{
-		filterbox:FilterBox
 	}
 
 }
@@ -53,11 +53,11 @@ export default {
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
 	<table class="bestiary">
-		<tr><th>Creature</th><th>Slain</th><th class="number">Hp</th></tr>
+		<tr><th>Creature</th><th>Slain</th><th class="num-align">Hp</th></tr>
 		<tr v-for="b in filtered" :key="b.id">
 			<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
-			<td class="number">{{ b.value }}</td>
-			<td class="number">{{ showHp(b) ? toNum(b.hp) : '??' }}</td>
+			<td class="num-align">{{ b.value }}</td>
+			<td class="num-align">{{ showHp(b) ? toNum(b.hp) : '??' }}</td>
 		</tr>
 	</table>
 
@@ -88,13 +88,8 @@ th {
 	padding: 4px 10px;
 }
 
-th.number {
-	text-align: right;
-}
-
-td.number {
+td.num-align {
 	padding: 8px;
-	text-align: right;
 }
 
 </style>

@@ -741,7 +741,7 @@
 		},
 		"mod":{
 			"dust.max":5,
-			"spiritlore.max":0.5,
+			"spiritlore.max":0.25,
 			"spiritlore.rate":0.1
 		}
 
@@ -911,14 +911,18 @@
 	{
 		"id":"siversgate",
 		"name":"siver's gate",
-		"desc":"siver knew the greatest power came at the greatest cost",
-		"require":"state.lore>=20",
+		"desc":"siver knew true power only comes at great cost",
+		"require":"state.lore>=30",
 		"cost":{
-
+			"research":1000,
+			"shadowgem":10,
+			"spiritgem":10,
+			"arcana":10
 		},
 		"mod":{
-			"hp.rate":-1,
-			"stamina.rate":-0.5,
+			"hp.rate":-2,
+			"stamina.rate":-1,
+			"sp.rate":0.0001,
 			"planeslore.max":2,
 			"shadowlore.max":2,
 			"reanimation.max":2,
@@ -1016,10 +1020,8 @@
 			"research":100
 		},
 		"mod":{
-			"potions":{
-				"rate":0.1,
-				"max":1
-			}
+			"potions.max":1,
+			"potions.rate":0.1
 		}
 
 	},
@@ -1047,7 +1049,7 @@
 		"require":["tier0","fireplace"],
 		"lock":"pot",
 		"cost":{
-			"gold":75
+			"gold":150
 		},
 		"flavor":"fire burn and cauldron bubble",
 		"mod":{

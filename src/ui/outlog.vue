@@ -73,6 +73,8 @@ div.log-view {
 	margin-left: 8px;
 	flex-direction: column;
 	overflow-y: auto;
+	flex-basis:20%;
+	max-width: 250px;
 }
 
 div.top-span {

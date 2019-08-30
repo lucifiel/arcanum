@@ -1,6 +1,6 @@
 <script>
 import Game from '../game';
-import Menu from './component/menu.vue';
+import Menu from './components/menu.vue';
 import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
 import upgrades from './upgrades.vue';
@@ -12,7 +12,7 @@ import Bestiary from './bestiary.vue';
 
 import ItemsBase from './itemsBase';
 
-import Warn from './component/warn.vue';
+import Warn from './components/warn.vue';
 import Vitals from 'ui/vitals.vue';
 import SkillsPane from './skillsPane.vue';
 import Spellbook from 'ui/spellbook.vue';
@@ -256,9 +256,7 @@ export default {
 		 * Buy a spell or item without casting/using the item or its mods.
 		 * @property {Item} item - item to buy.
 		 */
-		onBuy(item) {
-			this.game.tryBuy(item);
-		},
+		onBuy(item) { this.game.tryBuy(item); },
 
 		/**
 		 * @param {Dungeon} dungeon
@@ -309,7 +307,7 @@ export default {
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
 
-		<div v-if="state" class="main">
+		<div v-if="state" class="game-main">
 
 		<!-- popups -->
 		<itempopup :item="overItem" :elm="overElm" />
@@ -317,7 +315,7 @@ export default {
 
 		<resources :items="state.resources"/>
 
-		<vue-menu class="mid-view" :items="menuItems" v-model="section">
+		<vue-menu class="game-mid" :items="menuItems" v-model="section">
 
 		<template slot="sect_main">
 		<actions class="action-list" :items="state.actions" />
@@ -385,11 +383,10 @@ span.load-message {
 
 div.top-bar {
 	display:flex;
-	min-height: 18px;
 	width:100%;
 }
 
-div.main {
+div.game-main {
 	display:flex;
 	max-height: 85vh;
 	flex-direction: row;
@@ -397,7 +394,7 @@ div.main {
 	justify-content: space-between;
 }
 
-div.mid-view {
+div.game-mid {
 	display:flex;
 	flex-flow: column nowrap;
 	max-height: 100%;
@@ -416,8 +413,7 @@ div.action-list, div.upgrade-list {
 	text-transform: capitalize;
 }
 
-div.resource-list, div.center-view,
-div.upgrade-list {
+div.resource-list, div.upgrade-list {
 	margin: 20px 2px 2px;
 
 }
@@ -427,8 +423,7 @@ div.inv-equip {
 	flex-direction: row;
 	overflow-y: auto;
 	justify-content: space-between;
-	height: 80vh;
-	width:100%;
+	height:100%;
 }
 
 
