@@ -248,9 +248,7 @@
 		"require":"mana",
 		"cost":10,
 		"mod":{
-			"mana":{
-				"rate":0.02
-			}
+			"mana.rate":0.02
 		}
 	},
 	{
@@ -264,10 +262,8 @@
 		},
 		"mod":{
 			"research.max":5,
-			"herbalism":{
-				"rate":0.1,
-				"max":1
-			}
+			"herbalism.rate":0.1,
+			"herbalism.max":1
 		}
 	},
 	{
@@ -295,7 +291,7 @@
 			"gems.max":5
 		}
 	},
-	
+
 	{
 		"id":"orb",
 		"name":"arcane orb",
@@ -638,9 +634,7 @@
 		},
 		"mod":{
 			"research.max":10,
-			"light":{
-				"rate":0.01
-			}
+			"light.rate":0.01
 		}
 
 	},
@@ -657,10 +651,8 @@
 		"mod":{
 			"air.rate":0.01,
 			"air.max":1,
-			"spirit":{
-				"max":1,
-				"rate":0.005
-			}
+			"spirit.max":1,
+			"spirit.rate":0.005
 		}
 	},
 	{
@@ -675,10 +667,8 @@
 			"spirit":2
 		},
 		"mod":{
-			"spirit":{
-				"max":1,
-				"rate":0.01
-			}
+			"spirit.max":1,
+			"spirit.rate":0.01
 		}
 	},
 	{
@@ -691,10 +681,8 @@
 		"require":"state.mana.max>=50",
 		"cost":35,
 		"mod":{
-			"fire":{
-				"max":0.04,
-				"rate":0.01
-			}
+			"fire.max":0.04,
+			"fire.rate":0.01
 		}
 	},
 	{
@@ -707,10 +695,8 @@
 		"flavor":"It is better to light one candle than to curse the darkness.",
 		"cost":75,
 		"mod":{
-			"light":{
-				"max":0.2,
-				"rate":0.01
-			}
+			"light.max":0.2,
+			"light.rate":0.01
 		}
 	},
 	{
@@ -722,10 +708,8 @@
 		"flavor":"darkness, darkness.",
 		"cost":75,
 		"mod":{
-			"shadow":{
-				"max":0.2,
-				"rate":0.01
-			}
+			"shadow.max":0.2,
+			"shadow.rate":0.01
 		}
 	},
 	{
@@ -757,9 +741,7 @@
 			"research":200
 		},
 		"mod":{
-			"arcana":{
-				"rate":0.0001
-			},
+			"arcana.rate":0.0001,
 			"spirit.rate":0.01
 		}
 	},
@@ -773,10 +755,8 @@
 			"codices":1
 		},
 		"mod":{
-			"lore":{
-				"max":1,
-				"rate":0.1
-			},
+			"lore.max":1,
+			"lore.rate":0.1,
 			"study.effect.research":0.01,
 			"study.effect.arcana":0.001
 		}
@@ -882,9 +862,8 @@
 
 			"shadow.max":1,
 			"shadow.rate":0.01,
-			"spirit":{
-				"max":1
-			}
+			"spirit.max":1
+
 		}, "flavor":"I knew him well"
 
 	},
@@ -901,10 +880,8 @@
 		},
 		"mod":{
 			"lore.max":2,
-			"demonology":{
-				"max":2,
-				"rate":0.1
-			},
+			"demonology.max":2,
+			"demonology.rate":0.1,
 			"planeslore.max":1
 		}, "flavor":"they say the blood has to be yours, however."
 	},
@@ -1034,10 +1011,8 @@
 			"gold":150
 		},
 		"mod":{
-			"alchemy":{
-				"rate":0.1,
-				"max":1
-			},
+			"alchemy.rate":0.1,
+			"alchemy.max":1,
 			"fire.max":0.02
 		}
 
@@ -1068,10 +1043,8 @@
 			"gold":200
 		},
 		"mod":{
-			"gold":{
-				"max":50,
-				"rate":0.01
-			}
+			"gold.max":50,
+			"gold.rate":0.01
 		}
 	},
 	{

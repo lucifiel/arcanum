@@ -3,6 +3,7 @@ import Player from './chars/player';
 
 import Range, {RangeTest} from './range';
 import Percent, {PercentTest} from './percent';
+import Mod, {ModTest} from './mod';
 
 import Resource from './items/resource';
 import Skill from './items/skill';
@@ -86,7 +87,7 @@ export default {
 
 	/**
 	 * Raw data files loaded.
-	 * @param {Object[][]} filesArr 
+	 * @param {Object[][]} filesArr
 	 */
 	filesLoaded( filesArr ) {
 
@@ -129,7 +130,7 @@ export default {
 			var dataItem = saveData[p];
 			//console.log('game save item: ' + p );
 			saveData[p] = this.parseSub(dataItem);
-		
+
 		}
 
 		saveData.items = this.mergeDefaults( templates, saveData.items );
@@ -162,8 +163,8 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {Object.<string,Object>} templates - template items. 
+	 *
+	 * @param {Object.<string,Object>} templates - template items.
 	 * @param {?Object} [saveItems={}] - previous save items, if any.
 	 * @returns {Object.<string,Object>} - the saveItems with data merged from default data.
 	 */
@@ -191,7 +192,7 @@ export default {
 	},
 
 	initGameData( gd, dataLists ){
-		
+
 		this.items = gd.items;
 
 		gd.resources = this.initItems( dataLists['resources'], Resource );
@@ -218,12 +219,12 @@ export default {
 
 		gd.events = this.initItems( dataLists['events'], Item, null, 'event' );
 		gd.classes = this.initItems( dataLists['classes'], Item, 'class', 'class' );
-		
+
 		gd.actions = this.initItems( dataLists['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
 		gd.sections = this.initItems( dataLists['sections']);
-		
+
 		gd.player = this.items.player = this.initPlayer( dataLists['player'], gd.items.player );
 
 		return gd;
@@ -239,14 +240,21 @@ export default {
 		} else if ( sub instanceof Object ) {
 
 			for( let p in sub ) {
-	
+
+				if ( p === 'require' || p === 'need') {
+					sub[p] = this.parseRequire( sub[p] );
+					continue;
+				}
+				if ( p === 'mod') {
+					sub[p] = this.parseMods( sub[p], sub.id );
+					continue;
+				}
+
 				var obj = sub[p];
 				var type = typeof obj;
 				if ( type === 'string' ){
 
-					//console.log('parse string: ' + p + ' --> ' + obj );
-					if ( p === 'require' || p === 'need') sub[p] = this.parseRequire( obj );
-					else if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
+					if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( !isNaN(obj) ) {
 						if ( obj !== null && obj !== undefined && obj !== '' ) console.warn('string used as Number: ' + p + ' -> ' + obj );
@@ -271,7 +279,7 @@ export default {
 			if ( RangeTest.test(sub) ) return new Range(sub);
 			else if ( PercentTest.test(sub)) return new Percent(sub);
 			else if ( sub.includes('.') ) return new VarPath( sub );
-			
+
 		}
 
 		return sub;
@@ -291,6 +299,24 @@ export default {
 
 	},
 
+	parseMods( mods, id ) {
+
+		for( let s in mods ) {
+
+			var val = mods[s];
+			var typ = typeof val;
+			if ( typ === 'number' || typ === 'string' ) {
+
+					val = mods[s] = new Mod(val, id);
+
+			} else if ( val instanceof Mod ) continue;
+			else if ( typ === 'object') this.parseMods( val, id );
+
+		}
+		return mods;
+
+	},
+
 	/**
 	 * Create a boolean testing function from a data string.
 	 * @param {string} text - function text.
@@ -304,7 +330,7 @@ export default {
 	 * player and target params are given for simplicity.
 	 * target is the current enemy, if any.
 	 * dt is the elapsed time.
-	 * @param {*} text 
+	 * @param {*} text
 	 */
 	makeEffectFunc( text ) {
 		return new Function( 'state', 'target', 'dt', text );
@@ -312,7 +338,7 @@ export default {
 
 	/**
 	 * Create a damage-value function for an attack.
-	 * @param {*} text 
+	 * @param {*} text
 	 */
 	makeDmgFunc(text){
 		return new Function( 'state', 'player', 'target', 'return ' + text );
@@ -337,9 +363,9 @@ export default {
 	},
 
 	/**
-	 * 
+	 *
 	 * @param {*} stats - player stats from json.
-	 * @param {Object} savePlayer - player data from previous save. 
+	 * @param {Object} savePlayer - player data from previous save.
 	 */
 	initPlayer( stats, savePlayer=null ) {
 
@@ -363,8 +389,8 @@ export default {
 	 * part of the variable path.
 	 * This is done to allow object props to represent variable paths
 	 * without changing all the code to use Maps (with VarPath keys) and not Objects.
-	 * @param {Object} obj 
-	 * @param {string} prop 
+	 * @param {Object} obj
+	 * @param {string} prop
 	 */
 	splitKeyPath( obj, prop ) {
 

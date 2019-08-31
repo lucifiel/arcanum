@@ -5,13 +5,18 @@ export const PercentTest = /^(\d+(?:\.?\d+))\%$/i
  */
 export default class Percent {
 
-	toJSON(){return this.pct + '%'; }
+	toJSON(){ return (100*this.pct) + '%'; }
+
+	/**
+	 * @property {number} pct - decimal percent.
+	 */
+
 	/**
 	 * @property {boolean} value - returns true
 	 * if a random roll is beneath the percent.
 	 */
 	get value() {
-		return 100*Math.random() < this.pct;
+		return Math.random() < this.pct;
 	}
 
 	constructor( val ) {
@@ -27,7 +32,7 @@ export default class Percent {
 
 		} else if ( !isNaN(val) ) this.pct = val;
 
-		this.pct = this.pct || 0;
+		this.pct = ( this.pct || 0 )/100;
 
 	}
 

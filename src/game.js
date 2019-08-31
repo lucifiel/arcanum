@@ -9,6 +9,9 @@ import ItemGen from './itemgen';
 import TechTree from './techTree';
 import Dot from './chars/dot';
 
+/**
+ * @note these refer to Code-events, not in-game events.
+ */
 import Events, {EVT_UNLOCK, EVT_EVENT} from './events';
 
 var techTree;
@@ -47,8 +50,8 @@ export default {
 	timers:[],
 
 	/**
-	 * 
-	 * @param {*} obj 
+	 *
+	 * @param {*} obj
 	 * @param {(number)=>boolean} obj.tick -tick function.
 	 */
 	addTimer( obj ){
@@ -82,7 +85,11 @@ export default {
 
 			techTree = new TechTree( this._items );
 
-			this.initEvents();
+			// Code events. Not game events.
+			Events.init(this);
+
+			//this.initEvents();
+			this.restoreMods();
 			this.initTimers();
 
 			this.loaded = true;
@@ -96,13 +103,29 @@ export default {
 
 	initEvents() {
 
-		Events.init(this);
-
 		let evts = this.state.events;
 		for( let i = evts.length-1; i>= 0; i-- ) {
 
 			var e = evts[i];
 			if ( !e.locked && e.value===0 ) this.doEvent(e);
+
+		}
+
+	},
+
+	/**
+	 * Reapply mods for all owned items.
+	 */
+	restoreMods() {
+
+		let items = this.state.items;
+
+		for( let p in items ) {
+
+			var it = items[p];
+			if ( !it.locked && !it.disabled && it.value >= 0 ) {
+				if ( it.mod ) this.addMod( it.mod, it.value );
+			}
 
 		}
 
@@ -150,7 +173,7 @@ export default {
 			for( let i = this.timers.length-1; i>= 0; i-- ) {
 
 				if ( this.timers[i].tick() ) quickSplice( this.timers, i );
-				
+
 			}
 
 		}
@@ -159,7 +182,7 @@ export default {
 
 			var it = this._items[p];
 			if ( it.dirty === true ) {
-	
+
 				it.dirty = false;
 				techTree.changed(p);
 			}
@@ -170,7 +193,7 @@ export default {
 
 	/**
 	 * Frame update of all resources.
-	 * @param {number} dt - elapsed time. 
+	 * @param {number} dt - elapsed time.
 	 */
 	doResources( dt ) {
 
@@ -191,7 +214,7 @@ export default {
 
 	/**
 	 * Performs tick update of the current action/skill.
-	 * @param {number} dt - elapsed time 
+	 * @param {number} dt - elapsed time
 	 */
 	doCurrent( dt ) {
 
@@ -234,7 +257,7 @@ export default {
 	/**
 	 * Toggles an action on or off.
 	 * @param {Item} act
-	 * @returns {boolean} - true if action is now current, false otherwise. 
+	 * @returns {boolean} - true if action is now current, false otherwise.
 	 */
 	toggleAction(act) {
 
@@ -298,7 +321,7 @@ export default {
 
 	/**
 	 * Tests if a named resource has been filled to max.
-	 * @param {Resource|Resource[]} v 
+	 * @param {Resource|Resource[]} v
 	 */
 	filled( v ) {
 
@@ -317,7 +340,7 @@ export default {
 
 	/**
 	 * Completely disable an item - cannot be purchased/used/etc.
-	 * @param {string|Item|Array} it 
+	 * @param {string|Item|Array} it
 	 */
 	disable( it ) {
 
@@ -347,7 +370,7 @@ export default {
 
 				if ( it == this.state.curAction ) this.state.curAction = null;
 				if ( it == this.state.raid.dungeon ) this.state.raid.setDungeon(null);
-	
+
 				// remove all stat mods.
 				if ( it.mod ) this.removeMod( it.mod, it.value );
 
@@ -414,7 +437,7 @@ export default {
 
 	/**
 	 * Attempt to pay the cost to permanently buy an item.
-	 * @param {Item} it 
+	 * @param {Item} it
 	 * @returns {boolean}
 	 */
 	tryBuy(it) {
@@ -443,7 +466,7 @@ export default {
 		} else {
 
 			if ( it.slot && this.state.getSlot(it.slot, it.type) === it )return;
-	
+
 			this.payCost( it.cost );
 			return this.doItem(it);
 		}
@@ -452,8 +475,8 @@ export default {
 
 	/**
 	 * Get a game item without paying cost.
-	 * @param {Item} it 
-	 * @param {number} count 
+	 * @param {Item} it
+	 * @param {number} count
 	 */
 	doItem(it, count=1) {
 
@@ -491,8 +514,8 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {Object} evt 
+	 *
+	 * @param {Object} evt
 	 */
 	doEvent( evt ) {
 
@@ -537,7 +560,7 @@ export default {
 	/**
 	 * Attempt to unlock an item.
 	 * @param {Item} it
-	 * @returns {boolean} true on success. 
+	 * @returns {boolean} true on success.
 	 */
 	tryUnlock( it ) {
 
@@ -564,7 +587,7 @@ export default {
 	/**
 	 * Called when an item's modifier to other items changes.
 	 * The item must be subtracted and re-added to ensure mods are correct.
-	 * @param {Item} item 
+	 * @param {Item} item
 	 */
 	modChanged( it ) {
 
@@ -593,7 +616,7 @@ export default {
 
 				// tag test - if any item with the tag is unlocked, test passes.
 				it = this.state.getTagList(test);
-				
+
 				//if ( !it ) console.warn('undefined: ' + test );
 				//console.log('testing tag list: ' + test );
 				//it.forEach( v=>console.log(v.id));
@@ -647,7 +670,7 @@ export default {
 						this.doItem( target );
 
 					} else target.applyVars(e,dt);
-				
+
 					target.dirty = true;
 				}
 			}
@@ -675,14 +698,16 @@ export default {
 
 		if ( Array.isArray(mod)  ) for( let m of mod ) this.addMod(m, amt);
 		else if ( typeof mod === 'object' ) {
-	
+
 			for( let p in mod ) {
 
 				var target = this.getItem( p );
 
-				if ( target === undefined ) this.applyToTag( p, mod[p], amt );
+				if ( target === undefined ) this.modTag( p, mod[p], amt );
 				else {
-					target.applyVars( mod[p], amt );
+					console.log('adding mod for: ' + p );
+					console.log('sub mod: ' + mod[p] );
+					target.applyMods( mod[p], amt );
 					target.dirty = true;
 				}
 			}
@@ -690,7 +715,25 @@ export default {
 		}
 
 	},
-	
+
+	/**
+	 * Apply an effect or mod to all Items with given tag.
+	 * @param {string} tag - item tag.
+	 * @param {Object} mods - object mod.
+	 * @param {number} dt - time or percent of mod to apply.
+	 */
+	modTag( tag, mods, dt ) {
+
+		let target = this.state.getTagList(tag);
+		if ( target ) {
+			for( let i = target.length-1; i>=0; i--) {
+				target[i].applyMods( mods, dt);
+				target[i].dirty = true;
+			}
+		}
+
+	},
+
 	/**
 	 * Apply an effect or mod to all Items with given tag.
 	 * @param {string} tag - item tag.
@@ -710,17 +753,17 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {Object} mod 
-	 * @param {number} amt 
+	 *
+	 * @param {Object} mod
+	 * @param {number} amt
 	 */
 	removeMod( mod, amt ) {
 		this.addMod( mod, -amt);
 	},
 
 	/**
-	 * 
-	 * @param {*} it 
+	 *
+	 * @param {*} it
 	 */
 	canBuy(it) {
 
@@ -738,7 +781,7 @@ export default {
 	canRun( it ) {
 
 		if ( it.disabled || it.maxed() || (it.need && !this.unlockTest( it.need, it )) ) return false;
-	
+
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 
 		// cost only paid at _start_ of runnable action.
@@ -757,7 +800,7 @@ export default {
 	/**
 	 * Determine if a one-use item can be used. Ongoing/perpetual actions
 	 * test with 'canRun' instead.
-	 * @param {Item} it 
+	 * @param {Item} it
 	 */
 	canUse( it ){
 
@@ -782,7 +825,7 @@ export default {
 	/**
 	 * Attempts to pay the cost to perform an action, buy an upgrade, etc.
 	 * Before calling this function, ensure cost can be met with canPay()
-	 * 
+	 *
 	 * @param {Array|Object} cost
 	 */
 	payCost( cost, unit=1) {
@@ -854,7 +897,7 @@ export default {
 	/**
 	 * Test if equip is possible. ( Must have space in inventory
 	 * for any items replaced. )
-	 * @param {*} it 
+	 * @param {*} it
 	 */
 	canEquip(it) {
 
@@ -865,8 +908,8 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {*} it 
+	 *
+	 * @param {*} it
 	 * @param {?Inventory} inv - source inventory of item.
 	 */
 	equip( it, inv=null ) {
@@ -885,7 +928,7 @@ export default {
 					if ( typeof v === 'boolean') return;
 					v.unequip(this.state.player);
 					this.remove(v);
-	
+
 				});
 			else {
 				res.unequip( this.state.player );
@@ -894,7 +937,7 @@ export default {
 			this.state.inventory.add(res);
 
 		}
-	
+
 		this.doItem(it);
 		it.equip( this.state.player );
 
@@ -923,7 +966,7 @@ export default {
 
 	/**
 	 * Remove an item from inventory.
-	 * @param {*} it 
+	 * @param {*} it
 	 */
 	drop(it) {
 		this.state.inventory.remove(it);
@@ -931,7 +974,7 @@ export default {
 
 	/**
 	 * Add an item to player's inventory.
-	 * @param {*} it 
+	 * @param {*} it
 	 */
 	take( it ) {
 		console.log('adding: ' + it.id );
@@ -952,13 +995,13 @@ export default {
 
 	/**
 	 * Decrement lock count on an Item or array of items, etc.
-	 * @param {string|string[]|Item|Item[]} id 
+	 * @param {string|string[]|Item|Item[]} id
 	 */
 	unlock( id ) { this.lock(id, -1); },
 
 	/**
 	 * Increment lock counter on item or items.
-	 * @param {string|string[]|Item|Item[]} id 
+	 * @param {string|string[]|Item|Item[]} id
 	 */
 	lock(id, amt=1) {
 
@@ -990,8 +1033,8 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {(it)=>boolean} pred 
+	 *
+	 * @param {(it)=>boolean} pred
 	 */
 	filterItems( pred ) {
 		let a = [];
@@ -1004,16 +1047,16 @@ export default {
 
 	/**
 	 * Get an item on an item-id varpath.
-	 * @param {VarPath} v 
+	 * @param {VarPath} v
 	 */
 	getPathItem(v){
 		return v.readVar( this._items );
 	},
 
 	/**
-	 * 
+	 *
 	 * @param {string} id
-	 * @returns {Item|undefined} 
+	 * @returns {Item|undefined}
 	 */
 	getItem(id) { return this._items[id]; },
 

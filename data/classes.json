@@ -151,10 +151,8 @@
 		"gold.max":10,
 		"research.max":2,
 		"mana.max":2,
-		"chaos":{
-			"max":3,
-			"rate":0.1
-		},
+		"chaos.max":3,
+		"chaos.rate":0.1,
 		"potions.max":1,
 		"spiritlore.max":1,
 		"sp":3
@@ -269,7 +267,7 @@
 		"research.max":15,
 		"earthlore.max":4,
 		"earthlore.rate":0.2,
-		"stamina.max.pct":0.1,
+		"stamina.max":"10%",
 		"mana.max":2,
 		"sp":2
 	},
@@ -293,7 +291,7 @@
 		"research.max":15,
 		"waterlore.max":4,
 		"waterlore.rate":0.1,
-		"dodge.max.pct":0.1,
+		"dodge.max":"10%",
 		"mana.max":2,
 		"sp":2
 	},

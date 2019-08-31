@@ -1,4 +1,4 @@
-export const StatRe = /^([\+\-]?\d+\.?\d*)(?:([\+\-]\d+\.?\d*)\%)?$/i;
+export const StatRE = /^([\+\-]?\d+\.?\d*)(?:([\+\-]\d+\.?\d*)\%)?$/i;
 
 export default class Stat {
 
@@ -27,7 +27,7 @@ export default class Stat {
 		if ( type === 'object') Object.assign(this,vars);
 		else if ( type === 'string') {
 
-			let res = StatRe.exec( vars );
+			let res = StatRE.exec( vars );
 			if ( res ) {
 				this.base = Number( res[1] );
 				this.pct = res.length > 2 ? Number(res[2])/100 : 0;
@@ -38,7 +38,7 @@ export default class Stat {
 			this._base = Number(vars);
 			this._pct = 0;
 
-		} 
+		}
 
 		this._pct = this._pct||0;
 		this._base = this._base||0;
@@ -55,7 +55,7 @@ export default class Stat {
 	}
 
 	/**
-	 * Get the result of using an alternative base amount.
+	 * Get the result of changing the base and percents.
 	 * @param {number} delBase - delta base.
 	 * @param {number} delPct - delta percent.
 	 * @returns {number}

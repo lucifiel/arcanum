@@ -1,6 +1,8 @@
 import {changes, jsonify} from 'objecty';
 import Percent from '../percent';
 import Game from '../game';
+import ModStat from '../modStat';
+import Mod from '../mod';
 
 export function mergeClass( destClass, src ) {
 
@@ -21,7 +23,8 @@ export function mergeClass( destClass, src ) {
  /**
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
- const JSONIgnore = [ 'template', 'id', 'type', 'name', 'desc', 'locked', 'delta', 'tags'];
+ const JSONIgnore = [ 'template', 'id', 'type', 'name', 'desc',
+ 	'locked', 'delta', 'tags', 'mod', 'effect'];
 
 /**
  * Base class of all Game Objects.
@@ -51,8 +54,19 @@ export default {
 
 	toJSON() {
 
-		let vars = changes( jsonify(this, JSONIgnore ),
-			this.template || {} );
+		/*let vars = changes( jsonify(this, JSONIgnore ),
+			this.template || {} );*/
+
+		let vars = {
+			value:this.value
+		};
+
+		for( let p in this ) {
+
+			var obj = this[p];
+			if ( obj instanceof ModStat ) vars[p] = obj.defaultJSON();
+
+		}
 
 		if ( this.locked === false && this.template.locked !== false ){
 			vars = vars || {};
@@ -111,7 +125,7 @@ export default {
 	/**
 	 * @property {string|string[]} tag - tag to distinguish between
 	 * item subtypes.
-	*/
+	 */
 	get tags() { return this._tags;},
 	set tags(v) {
 
@@ -121,79 +135,92 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {Object} m - effect/mod description. 
+	 *
+	 * @param {Object} m - effect/mod description.
 	 * @param {number} amt - factor of base amount added
 	 * ( fractions of full amount due to tick time. )
 	 */
 	applyVars( m, amt=1 ) {
 
-		if (!isNaN(m)) {
-			console.log('apply num: ' + m );
-			this.value += m*amt;
-		}
-		else if ( typeof m === 'object' ) {
+		let typ = typeof m;
 
-			if ( m.max ) {
+		if ( typ === 'number') { this.value += m*amt; }
+		else if ( typ === 'object' ) {
 
-				let vars = m.max;
-				if ( !isNaN(vars) ) this.max += ( vars * amt );
-				else if ( typeof vars === 'object' ) {
-
-					if ( vars instanceof Percent ) this.max.pct += vars.pct*amt/100;
-					else {
-						if ( vars.base ) this.max.base += vars.base*amt;
-						if ( vars.pct ) this.max.pct += vars.pct*amt;
-					}
-
-				}
-				if ( this.value > this.max.value ) this.value = this.max.value;
-
-			}
 			if ( m.mod ) this.changeMod( m.mod, amt );
+
+			let targ = null;
 
 			for( let p in m ) {
 
-				if ( p === 'rate' || p === 'pct' || p === 'max' || p === 'skipLocked') continue;
+				if (  p === 'skipLocked') continue;
 
-				if ( m[p] instanceof Object ) {
+				targ = this[p];
+				if ( targ instanceof ModStat || targ instanceof Mod )
+					targ.apply( m[p], amt );
+				else if ( typeof m[p] === 'object' ) {
+
 					console.log('subassign: ' + p)
-					this.subassign( this[p], m[p], amt );
+					this.subeffect( this[p], m[p], amt );
+
 				} else if ( this[p] !== undefined ) {
 					//console.log('adding: ' + p );
 					this[p] += Number(m[p])*amt;
 				} else {
 					console.log('NEW SUB: ' + p );
+					this.newSub( p, m[p] )
 				}
 
 			}
-
-			if ( m.rate ) this.rate.base += m.rate*amt;
-			if ( m.pct ) this.rate.pct += m.pct*amt;
 
 		}
 
 	},
 
 	/**
-	 * Add new sub-object to this object.
-	 * Vue reactivity??
-	 * @todo
-	 * @param {string} key 
-	 * @param {Object} obj 
+	 *
+	 * @param {*} mods
+	 * @param {*} amt
+	 * @param {*} targ
 	 */
-	newSub( key, obj ) {
-	},
+	applyMods( mods, amt=1, targ=null ) {
 
-	/**
-	 * Change a modifier controlled by this Item.
-	 * @param {Object} mod
-	 * @param {number} amt - percent of change applied to modifier.
-	 */
-	changeMod( mod, amt ) {
+		targ = targ || this;
 
-		// apply change to modifier for existing item amount.
-		Game.addMod( mod, amt*this.value );
+		console.log('applying: ' + mods );
+
+		if ( typeof mods === 'object') {
+
+			for( let p in mods ) {
+
+				var sub = targ[p];
+				if ( sub === undefined ) {
+
+					console.log('create target: ' + p );
+					this.newSub(targ, p, mods[p], amt );
+
+				} else if ( sub instanceof ModStat ) {
+
+					sub.apply( mods[p], amt );
+
+				} else if ( sub instanceof Mod ) {
+
+					sub.apply( mods[p], amt );
+
+				} else if ( typeof sub === 'object' ) {
+
+					console.log('recursive mod: ' + p );
+					this.submod( sub, mods[p], amt );
+
+				} else console.warn( this.id + ' unknown mod target: ' + p );
+
+			}
+
+		} else if ( typeof mods === 'number') {
+
+			targ.value = (targ.value || 0 ) + amt*mods;
+
+		} else console.warn( this.id + ' unknown mod type: ' + mods );
 
 	},
 
@@ -203,19 +230,21 @@ export default {
 	 * @param {Object} m - object with subobjects representing assignment paths.
 	 * @param {number} amt - amount multiplier for any assignments.
 	 */
-	subassign( obj, m, amt ) {
+	subeffect( obj, m, amt ) {
 
-		if ( !typeof obj === 'object' ) {
+		if ( typeof obj !== 'object' ) {
 			console.warn( 'invalid assign: ' + obj + ' = ' + m );
 			return;
 		}
 
 		for( let p in m ) {
-		
+
 			console.log('assigning sub: ' + p + '=' + m[p]);
 
+			var mod = m[p];
+
 			if ( typeof m[p] === 'object' ) {
-				this.subassign( obj[p], m[p], amt );
+				this.subeffect( obj[p], m[p], amt );
 			} else {
 
 				if ( typeof obj[p] === 'object') {
@@ -231,8 +260,33 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {string} tag 
+	 * Add new sub-object to this object.
+	 * Vue reactivity??
+	 * @todo
+	 * @param {Object} obj - parent object.
+	 * @param {string} key - prop key to set.
+	 * @param {Object} mod - modify amount.
+	 * @param {number} amt - times modifier applied.
+	 */
+	newSub( obj, key, mod, amt ) {
+		console.warn('UNIMPLEMENTED: New SubStat: ' + key );
+	},
+
+	/**
+	 * Modify a mod applied by the Item.
+	 * @param {Object} mod
+	 * @param {number} amt - percent of change applied to modifier.
+	 */
+	changeMod( mod, amt ) {
+
+		// apply change to modifier for existing item amount.
+		Game.addMod( mod, amt*this.value );
+
+	},
+
+	/**
+	 *
+	 * @param {string} tag
 	 */
 	addTag( tag ) {
 		if ( this._tags === null || this._tags === undefined) this._tags = [ tag ];
@@ -268,7 +322,7 @@ export default {
 	},
 
 	/**
-	 * 
+	 *
 	 * @param {string} t - tag to test.
 	 * @returns {boolean}
 	 */

@@ -1,7 +1,7 @@
 <script>
-import Game from '../game';
+import Game from '../../game';
 
-import ItemsBase from './itemsBase.js';
+import ItemsBase from '../itemsBase.js';
 
 /**
  * Component to pick current slot item from all available slot items.

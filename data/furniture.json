@@ -11,9 +11,7 @@
 		},
 		"mod":{
 			"inv.max":1,
-			"gold":{
-				"max":75
-			}
+			"gold.max":75
 		}
 	},
 	{
@@ -403,10 +401,8 @@
 		},
 		"mod":{
 			"light.rate":0.01,
-			"air":{
-				"max":1,
-				"rate":0.02
-			}
+			"air.max":1,
+			"air.rate":0.02
 		}
 	},
 	{
@@ -454,9 +450,8 @@
 		},
 		"mod":{
 			"candle.max":4,
-			"shadow":{
-				"rate":0.03
-			}
+			"shadow.rate":0.03
+
 		}
 
 	},
@@ -471,9 +466,7 @@
 			"space":1
 		},
 		"mod":{
-			"water":{
-				"rate":0.02
-			}
+			"water.rate":0.02
 		}
 	},
 	{
@@ -486,9 +479,7 @@
 			"space":1
 		},
 		"mod":{
-			"fire":{
-				"rate":0.02
-			}
+			"fire.rate":0.02
 		}
 
 	},
@@ -500,9 +491,7 @@
 			"space":1
 		},
 		"mod":{
-			"fire":{
-				"rate":0.05
-			}
+			"fire.rate":0.05
 		}
 
 	},

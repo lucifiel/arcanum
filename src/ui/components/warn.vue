@@ -2,7 +2,7 @@
 import {center} from './popups.js';
 
 export default {
-	
+
 	data() {
 		return { item:null }
 	},

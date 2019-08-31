@@ -1,4 +1,4 @@
-import Stat from '../stat';
+import ModStat from '../modStat';
 import Item from './item';
 
 export default class Resource extends Item {
@@ -34,14 +34,14 @@ export default class Resource extends Item {
 	set delta(v) { this._delta = v; }
 
 	/**
-	 * @property {Stat} max - maximum resource value.
+	 * @property {ModStat} max - maximum resource value.
 	 */
 	get max() { return this._max; }
 	set max(v) {
 
 		if ( this._max == null ) {
 
-			this._max = new Stat(v);
+			this._max = new ModStat(v);
 
 		} else this._max.base = v;
 
@@ -62,8 +62,8 @@ export default class Resource extends Item {
 		 */
 		if ( this.unit === null || this.unit === undefined ) this.unit = true;
 
-		//if ( this._max === undefined ) this.max = new Stat(0);
-		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
+		//if ( this._max === undefined ) this.max = new ModStat(0);
+		if ( this._rate === null || this.rate === undefined ) this._rate = new ModStat(0);
 
 		this._lastValue = this._value;
 

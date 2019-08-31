@@ -115,10 +115,8 @@
 		"mod":{
 			"space.max":50,
 			"research.rate":-0.5,
-			"gold":{
-				"max":40,
-				"rate":0.4
-			},
+			"gold.max":40,
+			"gold.rate":0.4,
 			"arcana.rate":-0.001
 		}
 	},
@@ -161,18 +159,12 @@
 		"mod":{
 			"space.max":25,
 			"research.rate":-0.5,
-			"earth":{
-				"max":2,
-				"rate":0.1
-			},
-			"shadowlore":{
-				"max":1,
-				"rate":0.1
-			},
-			"light":{
-				"max":-2,
-				"rate":-1
-			}
+			"earth.max":2,
+			"earth.rate":0.1,
+			"shadowlore.max":1,
+			"shadowlore.rate":0.1,
+			"light.max":-2,
+			"light.rate":-1
 		},
 		"lock":["latticewindow"]
 
@@ -222,10 +214,8 @@
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":55,
-			"airlore":{
-				"max":1,
-				"rate":0.1
-			}
+			"airlore.max":1,
+			"airlore.rate":0.1
 		}
 	},
 	{
@@ -361,18 +351,12 @@
 		"mod":{
 			"space.max":200,
 			"research.rate":-0.5,
-			"fire":{
-				"max":4,
-				"rate":0.2
-			},
-			"earth":{
-				"max":3,
-				"rate":0.2
-			},
-			"water":{
-				"max":-3,
-				"rate":-2
-			}
+			"fire.max":4,
+			"fire.rate":0.2,
+			"earth.max":3,
+			"earth.rate":0.2,
+			"water.max":-3,
+			"water.rate":-2
 		},
 		"lock":["latticewindow"]
 
@@ -389,18 +373,12 @@
 		"mod":{
 			"space.max":200,
 			"research.rate":-0.5,
-			"earth":{
-				"max":4,
-				"rate":0.2
-			},
-			"shadow":{
-				"max":3,
-				"rate":0.2
-			},
-			"light":{
-				"max":-3,
-				"rate":-2
-			}
+			"earth.max":4,
+			"earth.rate":0.2,
+			"shadow.max":3,
+			"shadow.rate":0.2,
+			"light.max":-3,
+			"light.rate":-2
 		},
 		"lock":["latticewindow"]
 
@@ -440,6 +418,6 @@
 		}
 	}
 
-	
+
 
 ]

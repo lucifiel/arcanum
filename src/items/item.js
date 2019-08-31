@@ -1,5 +1,6 @@
 import { defineExcept } from 'objecty';
-import Stat from '../stat';
+import ModStat from '../modStat';
+import Mod from '../mod';
 import Base, {mergeClass} from './base';
 
 /**
@@ -20,20 +21,20 @@ export default class Item {
 	set disabled(v) { this._disabled = v;}
 
 	/**
-	 * @property {Stat} max
+	 * @property {ModStat} max
 	 */
 	get max() { return this._max; }
 	set max(v) {
 		if ( this._max ) {
 
-			if ( v instanceof Stat ) this._max = v;
+			if ( v instanceof ModStat ) this._max = v;
 			else if ( !isNaN(v) ) this._max.base = v;
 
-		} this._max = v instanceof Stat ? v : new Stat(v);
+		} this._max = v instanceof ModStat ? v : new ModStat(v);
 	}
 
 	/**
-	 * @property {Stat} rate - rate of stat change in value/second.
+	 * @property {ModStat} rate - rate of stat change in value/second.
 	 */
 	get rate() { return this._rate; }
 	set rate(v){
@@ -43,7 +44,7 @@ export default class Item {
 			if ( typeof v === 'object' ) Object.assign( this._rate, v);
 			else this._rate.base = v;
 
-		} else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
+		} else this._rate = ( v instanceof ModStat ) ? v : new ModStat(v);
 
 	}
 
@@ -82,8 +83,8 @@ export default class Item {
 	set owned(v) { this._owned = v; }
 
 	/**
-	 * 
-	 * @param {?Object} [vars=null] 
+	 *
+	 * @param {?Object} [vars=null]
 	 */
 	constructor( vars=null ){
 
@@ -104,7 +105,7 @@ export default class Item {
 	 * @returns {boolean} true if an unlocked item is at maximum value.
 	 */
 	maxed() {
-		
+
 		return this.max ? (this._value >= this.max) :
 			(!this.repeat && !this.owned && this._value > 0);
 
