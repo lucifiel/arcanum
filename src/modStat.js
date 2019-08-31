@@ -76,8 +76,6 @@ export default class ModStat {
 
 		this._base = this._base||0;
 
-		this._rate = this._rate || null;
-
 		this.mods = this.mods || {};
 		this.recalc();
 
@@ -93,7 +91,8 @@ export default class ModStat {
 	 */
 	apply( mod, amt=1 ) {
 
-		if ( mod instanceof Mod ) return this.addMod( mod, amt );
+		console.log('apply to stat');
+		if ( mod instanceof Mod ) return this.applyMod( mod, amt );
 
 		let cur = this.defaultMod();
 

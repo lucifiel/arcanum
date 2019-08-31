@@ -156,9 +156,10 @@ export default {
 				if (  p === 'skipLocked') continue;
 
 				targ = this[p];
-				if ( targ instanceof ModStat || targ instanceof Mod )
+				if ( targ instanceof ModStat || targ instanceof Mod ) {
+					console.log('applying to mod stat: '+ p);
 					targ.apply( m[p], amt );
-				else if ( typeof m[p] === 'object' ) {
+				} else if ( typeof m[p] === 'object' ) {
 
 					console.log('subassign: ' + p)
 					this.subeffect( this[p], m[p], amt );
@@ -200,11 +201,11 @@ export default {
 					this.newSub(targ, p, mods[p], amt );
 
 				} else if ( sub instanceof ModStat ) {
-
+					console.log('applying to mod stat: '+ p);
 					sub.apply( mods[p], amt );
 
 				} else if ( sub instanceof Mod ) {
-
+					console.log('applying to mod: '+ p);
 					sub.apply( mods[p], amt );
 
 				} else if ( typeof sub === 'object' ) {

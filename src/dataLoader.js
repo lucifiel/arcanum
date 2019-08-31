@@ -9,7 +9,7 @@ import Resource from './items/resource';
 import Skill from './items/skill';
 import Monster from './items/monster';
 
-import VarPath  from 'varPath';
+import VarPath, {IsVarPath}  from './varPath';
 import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 import Action from './items/action';
@@ -265,12 +265,7 @@ export default {
 
 				} else if ( type === 'object' ) this.parseSub(obj);
 
-				// convert to an assignment object.
-				if ( p.includes('.')) {
-					this.splitKeyPath( sub, p );
-					//var a = new Assign( p, mod[p] );
-					//mod[ a.parts[0] ] = a;
-				}
+				if ( p.includes('.')) this.splitKeyPath( sub, p );
 
 			}
 
@@ -300,6 +295,10 @@ export default {
 	},
 
 	parseMods( mods, id ) {
+
+		for( let s in mods ){
+			if ( s.includes('.')) this.splitKeyPath( mods, s );
+		}
 
 		for( let s in mods ) {
 
