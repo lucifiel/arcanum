@@ -54,19 +54,8 @@ export default {
 
 	toJSON() {
 
-		/*let vars = changes( jsonify(this, JSONIgnore ),
-			this.template || {} );*/
-
-		let vars = {
-			value:this.value
-		};
-
-		for( let p in this ) {
-
-			var obj = this[p];
-			if ( obj instanceof ModStat ) vars[p] = obj.defaultJSON();
-
-		}
+		let vars = changes( jsonify(this, JSONIgnore ),
+			this.template || {} );
 
 		if ( this.locked === false && this.template.locked !== false ){
 			vars = vars || {};
@@ -211,7 +200,7 @@ export default {
 				} else if ( typeof sub === 'object' ) {
 
 					console.log('recursive mod: ' + p );
-					this.submod( sub, mods[p], amt );
+					this.applyMods( sub, mods[p], amt );
 
 				} else console.warn( this.id + ' unknown mod target: ' + p );
 
