@@ -4,7 +4,7 @@ import Game from '../game';
 export default class Action extends Item {
 
 	valueOf(){ return this.locked ? 0 : this._value; }
-	
+
 	get level() {return this._value;}
 	set level(v) { this._value =v;}
 
@@ -22,13 +22,15 @@ export default class Action extends Item {
 	set progress(v){
 		this._exp = v;
 		if ( this.length && v >= this._length ) {
+
 			this.value++;
 			// intentional no wrap around, so costs repeat on restart.
 			this._exp = 0;
 			this.dirty = true;
 			if ( this.complete ) this.complete();
 			if ( this.result ) Game.applyEffect( this.result );
-			if ( this.loot ) Game.getLoot( this.loot ); 
+			if ( this.loot ) Game.getLoot( this.loot );
+
 		}
 	}
 
@@ -69,7 +71,7 @@ export default class Action extends Item {
 	tick( dt) {
 
 		if ( this.timer > 0 ) {
-		
+
 			this.timer -= dt;
 			if ( this.timer > 0 ) return true;
 			this.timer = 0;

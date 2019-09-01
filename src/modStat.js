@@ -10,7 +10,7 @@ export default class ModStat {
 
 		return {
 			base:this._base,
-			mods:{ DEFAULT_MOD:this._mods[DEFAULT_MOD] }
+			mods:{ [DEFAULT_MOD]:this._mods[DEFAULT_MOD] }
 		};
 
 	}

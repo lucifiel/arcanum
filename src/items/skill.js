@@ -5,15 +5,15 @@ const EXP_RATIO = 0.35;
 export default class Skill extends Action {
 
 	toJSON(){
-	
+
 		let data = super.toJSON();
 		return data;
 
 	}
 
 	/**
-	 * 
-	 * @param {?Object} [vars=null] 
+	 *
+	 * @param {?Object} [vars=null]
 	 */
 	constructor( vars=null){
 

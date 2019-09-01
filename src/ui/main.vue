@@ -126,10 +126,10 @@ export default {
 			e.preventDefault();
 
 			e.target.classList.remove('hilite');
-	
+
 			const dt = e.dataTransfer;
 			this.dispatch('load-file', dt.files);
-			
+
 		},
 		fileDrag(e){
 			e.stopPropagation();
@@ -143,7 +143,7 @@ export default {
 		},
 
 		pause() {
-			
+
 			if ( this.runner ) {
 				let int = this.runner;
 				this.runner = null;
@@ -169,7 +169,7 @@ export default {
 
 				let num = Number( e.code.slice(-1) );
 				//console.log('number: ' + num );
-				
+
 				if ( e.shiftKey && this.overItem ) this.state.setQuickSlot( this.overItem, num );
 				else {
 					let it = this.state.getQuickSlot(num);
@@ -182,7 +182,11 @@ export default {
 				for( let p in cheatKeys ) {
 					if ( key === p ) {
 						if ( e.shiftKey ) this.state.addMax( cheatKeys[p] );
-						else this.state.fillItem( cheatKeys[p]);
+						else {
+							let it = this.state.getItem( cheatKeys[p] );
+							if ( it.locked ) it.locked = false;
+							this.state.fillItem( cheatKeys[p]);
+						}
 						break;
 					}
 				}
@@ -220,7 +224,7 @@ export default {
 
 			this.overElm = null;
 			this.overItem = null;
-		
+
 		},
 
 		onRest(){
@@ -238,7 +242,7 @@ export default {
 			else this.game.tryItem(upgrade);
 
 		},
-	
+
 		onConfirmed(it) { this.game.tryItem(it); },
 
 		onSpell( spell ) { this.game.tryItem(spell); },
@@ -292,7 +296,7 @@ export default {
 
 	<div class="full" @mouseover.capture.stop="dispatch('itemout')">
 
-		<div class="top-bar">	
+		<div class="top-bar">
 			<button @click="dispatch('save')">save</button>
 			<button @click="dispatch('load')">load</button>
 
@@ -323,13 +327,13 @@ export default {
 		<upgrades class="upgrade-list" :items="state.classes" />
 
 		</template>
-	
+
 		<template slot="sect_skills"><skills :state="state"></skills></template>
 
 		<template slot="sect_player"><player /></template>
 
 		<template slot="sect_house"><homes :state="state" /></template>
-	
+
 		<template slot="sect_raid"><adventure :state="state" /></template>
 
 		<template slot="sect_equip">
@@ -340,11 +344,11 @@ export default {
 			</div>
 
 		</template>
-	
+
 		<template slot="sect_spells"><spellbook :state="state" /></template>
 
 		<template slot="sect_bestiary"><bestiary /></template>
-	
+
 		</vue-menu>
 
 		<vitals :player="state.player" :state="state" />

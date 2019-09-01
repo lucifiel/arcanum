@@ -2,7 +2,7 @@
 
 	{
 		"id":"crafting",
-		"require":"workspace",
+		"need":"workspace",
 		"buy":true,
 		"run":{
 			"stamina":0.5

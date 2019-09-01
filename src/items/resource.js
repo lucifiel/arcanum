@@ -20,9 +20,7 @@ export default class Resource extends Item {
 	get value() { return this._value; }
 	set value(v) {
 
-		if ( this._max && v > this._max.value ) v = this._max.value;
-		else if ( v < 0 ) v = 0;
-		this._value = v;
+		this._value = v >= 0 ? v : 0;
 
 	}
 	valueOf(){ return this._value; }
@@ -88,6 +86,10 @@ export default class Resource extends Item {
 	}
 
 
+	/**
+	 * Not currently used any more.
+	 * @param {} dt
+	 */
 	update( dt ) {
 
 		if ( this._rate.value ) {

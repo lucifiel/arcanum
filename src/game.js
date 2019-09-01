@@ -202,9 +202,10 @@ export default {
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
-			if ( stat.locked === false && stat.rate.value !== 0 ) {
+			if ( stat.locked === false ) {
 
-				this.doItem( stat, stat.rate.value*dt );
+				if  ( stat.rate.value !== 0 ) this.doItem( stat, stat.rate.value*dt );
+				if ( stat.value > stat.max ) stat.value = stat.max.value;
 
 			}
 
