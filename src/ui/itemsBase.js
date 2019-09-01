@@ -2,11 +2,12 @@
  * Base view for all item lists.
  */
 import { floor } from 'format';
+import Mod from '../mod';
 
 import Game from '../game';
 
 export default {
-	
+
 	methods:{
 
 		floor:floor,
@@ -77,13 +78,18 @@ export default {
 
 			for( let p in obj ) {
 
+				// displayed path to subitem.
 				var subPath = p;
 				var sub = obj[p];
 
 				if ( p === 'skipLocked') continue;
 				else if ( p === 'max' ) {
 
-					subPath = 'max ' + propPath;
+					let index = propPath.indexOf('mod');
+					if ( index < 0 ) index = propPath.indexOf( 'effect');
+
+					if ( index > 0 ) subPath = propPath.slice(0, index) + ' max' + propPath.slice(index);
+					else subPath = 'max ' + propPath;
 
 				} else if ( p==='base' || p === 'value') subPath = propPath;
 				else if ( p === 'rate') {
@@ -102,6 +108,7 @@ export default {
 				}
 
 				if ( typeof sub !== 'object' ) results[subPath] = sub;
+				else if ( sub instanceof Mod ) results[subPath] = sub.toString();
 				else {
 
 					if ( sub.skipLocked ) {

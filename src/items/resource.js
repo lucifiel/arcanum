@@ -42,10 +42,6 @@ export default class Resource extends Item {
 			this._max = new ModStat(v);
 
 		} else {
-
-			console.log('max exists: ' + this.id);
-			console.log('max: ' + this._max );
-			console.log(this._max.constructor);
 			this._max.base = v;
 		}
 

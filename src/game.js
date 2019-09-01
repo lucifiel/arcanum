@@ -700,16 +700,13 @@ export default {
 		if ( Array.isArray(mod)  ) for( let m of mod ) this.addMod(m, amt);
 		else if ( typeof mod === 'object' ) {
 
-			console.log('mod is obj');
 			for( let p in mod ) {
 
 				var target = this.getItem( p );
 
-				console.log('mod targ: ' + p);
 				if ( target === undefined ) this.modTag( p, mod[p], amt );
 				else {
 					console.log('adding mod for: ' + p );
-					console.log('sub mod: ' + mod[p] );
 					target.applyMods( mod[p], amt );
 					target.dirty = true;
 				}

@@ -11,7 +11,7 @@ export default class Mod {
 
 	toJSON(){
 
-		var val = this.bonus + ( this._pct ?
+		var val = ( this.bonus !== 0 ? this.bonus : '' ) + ( this._pct ?
 			( this._pct > 0 ? '+' : '') + (100*this._pct)  + '%' : '' );
 
 		return {
@@ -23,7 +23,7 @@ export default class Mod {
 	}
 
 	toString() {
-		let s = ( this.id ? this.id + ': ' : '') + this.bonus;
+		let s = this.bonus !== 0 ? this.bonus : '';
 		if ( this._pct !== 0 ) {
 			s += ( this._pct > 0 ? '+' : '' ) + this._pct + '%';
 		}
@@ -100,6 +100,18 @@ export default class Mod {
 		}
 
 
+	}
+
+	/**
+	 * Apply modifier numbers to the indicated target.
+	 * This is a one-time modify and doesnt use count total.
+	 * @param {*} targ
+	 * @param {number} amt
+	 * @returns {*} updated value of target.
+	 */
+	applyTo( targ, amt ) {
+
+		if ( typeof targ === 'number') return ( targ + amt*this._bonus )*(1 + amt*this._pct );
 	}
 
 	/**
