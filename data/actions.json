@@ -26,6 +26,23 @@
 		}
 	},
 	{
+		"id":"study",
+		"perpetual":true,
+		"verb":"studying",
+		"desc":"Study the arcane",
+		"require":"state.scrolls>=1",
+		"run":{
+			"stamina":0.2
+		},
+		"effect":{
+			"research":0.55,
+			"arcana":{
+				"skipLocked":true,
+				"value":0.002
+			}
+		}
+	},
+	{
 		"id":"errands",
 		"name":"Run Errands",
 		"desc":"standard apprentice work.",
@@ -404,23 +421,6 @@
 			},
 			"animals.exp":1,
 			"herbalism.exp":1
-		}
-	},
-	{
-		"id":"study",
-		"perpetual":true,
-		"verb":"studying",
-		"desc":"Study the arcane",
-		"require":"state.scrolls>=1",
-		"run":{
-			"stamina":0.2
-		},
-		"effect":{
-			"research":0.55,
-			"arcana":{
-				"skipLocked":true,
-				"value":0.002
-			}
 		}
 	},
 	{

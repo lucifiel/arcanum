@@ -1,4 +1,5 @@
 import Percent from './percent';
+import ModStat from './modStat';
 
 export const ModTest = /^([\+\-]?\d+\.?\d*\b)?(?:([\+\-]?\d+\.?\d*)\%)?$/i;
 
@@ -77,11 +78,13 @@ export default class Mod {
 	}
 
 	/**
-	 * Modify the modifier. Count stays fixed.
+	 * Update the modifier with additional values.
 	 * @param {number|Percent|Object} mod
 	 * @param {number} [amt=1]
 	 */
 	apply( mod, amt=1 ) {
+
+		console.warn('CHANGING MOD: ' + this.id + ' by mod: ' + (mod.id||typeof mod) );
 
 		let typ = typeof mod;
 		if ( typ === 'number') {
@@ -103,15 +106,23 @@ export default class Mod {
 	}
 
 	/**
-	 * Apply modifier numbers to the indicated target.
+	 * Apply this modifier to a given target.
 	 * This is a one-time modify and doesnt use count total.
-	 * @param {*} targ
+	 * @param {Object} obj - owner of the property being modified.
+	 * @param {string} p - target property to which mod is being applied.
 	 * @param {number} amt
-	 * @returns {*} updated value of target.
 	 */
-	applyTo( targ, amt ) {
+	applyTo( obj, p, amt ) {
 
-		if ( typeof targ === 'number') return ( targ + amt*this._bonus )*(1 + amt*this._pct );
+		let targ = obj[p];
+		if ( targ instanceof ModStat ) targ.applyMod( this, amt );
+		else if ( targ instanceof Mod) targ.apply( this, amt );
+		else if ( typeof targ === 'object') {
+
+			targ.value = ( ( Number(targ.value) || 0 ) + amt*this._bonus )*( 1 + amt*this._pct );
+
+		} else if ( typeof targ === 'number' ) obj[p] = ( targ + amt*this._bonus )*(1 + amt*this._pct );
+
 	}
 
 	/**

@@ -142,7 +142,8 @@ export default {
 
 			for( let p in m ) {
 
-				if (  p === 'skipLocked') continue;
+				// add any final value last.
+				if (  p === 'skipLocked' || p === 'value') continue;
 
 				targ = this[p];
 				if ( targ instanceof ModStat || targ instanceof Mod ) {
@@ -162,6 +163,7 @@ export default {
 				}
 
 			}
+			if ( m.value ) this.value += Number(m.value)*amt;
 
 		}
 
@@ -170,8 +172,8 @@ export default {
 	/**
 	 *
 	 * @param {*} mods
-	 * @param {*} amt
-	 * @param {*} targ
+	 * @param {number} amt
+	 * @param {Object} [targ=null]
 	 */
 	applyMods( mods, amt=1, targ=null ) {
 
@@ -183,7 +185,26 @@ export default {
 
 			for( let p in mods ) {
 
-				console.log('subtarg: ' + p );
+				var m = mods[p];
+				if ( m instanceof Mod ) m.applyTo( targ, p, amt );
+
+				else if ( typeof m === 'object' ) {
+
+					// define before recursion since parent ref is lost.
+					let sub = targ[p];
+					if ( sub === undefined || sub === null ) targ[p] = {};
+					this.applyMods( m, amt, sub );
+
+				} else if ( typeof m === 'number' ) {
+
+					let sub = targ[p];
+					if ( sub === undefined || sub === null ) targ[p] = m;
+					else if ( typeof sub === 'number') targ[p] += m*amt;
+					else this.applyMods( m, amt, sub);
+
+				} else console.warn( `UNKNOWN Mod ${p} applied to ${this.id}: ${m}`);
+
+				/*console.log('subtarg: ' + p );
 				var sub = targ[p];
 				if ( sub instanceof ModStat ) {
 					console.log('applying mod to stat: '+ p);
@@ -211,13 +232,16 @@ export default {
 					console.log('create target: ' + p );
 					this.newSub(targ, p, mods[p], amt );
 
-				} else console.warn( this.id + ' unknown mod target: ' + p );
+				} else console.warn( this.id + ' unknown mod target: ' + p );*/
 
 			}
 
 		} else if ( typeof mods === 'number') {
 
-			targ.value = (targ.value || 0 ) + amt*mods;
+			if ( targ instanceof ModStat || targ instanceof Mod ) targ.apply( mods, amt );
+			else if ( typeof targ === 'object') targ.value = (targ.value || 0 ) + amt*mods;
+
+			// nothing can be done if targ is just a number. no parent object.
 
 		} else console.warn( this.id + ' unknown mod type: ' + mods );
 

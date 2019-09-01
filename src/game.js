@@ -205,7 +205,6 @@ export default {
 			if ( stat.locked === false ) {
 
 				if  ( stat.rate.value !== 0 ) this.doItem( stat, stat.rate.value*dt );
-				if ( stat.value > stat.max ) stat.value = stat.max.value;
 
 			}
 
