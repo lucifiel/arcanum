@@ -35,7 +35,7 @@ export default class GameState {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {Object} baseData - base game data.
 	 */
 	constructor( baseData, restore=false ){
@@ -61,7 +61,7 @@ export default class GameState {
 			'mount':null,
 			'bed':null
 		}
-	
+
 		/**
 		 * @property {string} restAction - default resting action.
 		 */
@@ -111,7 +111,7 @@ export default class GameState {
 
 		var cur = gs.slots.home;
 		return state.space.used <=
-			state.space.max.delValue( self.mod.space.max - ( cur ? cur.mod.space.max : 0) );
+			state.space.max.delValue( self.mod.space.max.bonus - ( cur ? cur.mod.space.max.bonus : 0) );
 
 	}
 
@@ -181,7 +181,7 @@ export default class GameState {
 	/**
 	 * Create lists of tagged items.
 	 * @param {Object.<string,Item>} items
-	 * @returns {Object.<string,Item[]>} lists 
+	 * @returns {Object.<string,Item[]>} lists
 	 */
 	makeLists( items ) {
 
@@ -209,9 +209,9 @@ export default class GameState {
 	}
 
 	/**
-	 * 
-	 * @param {Item} it 
-	 * @param {number} slotNum 
+	 *
+	 * @param {Item} it
+	 * @param {number} slotNum
 	 */
 	setQuickSlot( it, slotNum ) {
 
@@ -226,7 +226,7 @@ export default class GameState {
 				let a = this.quickslots.slice();
 				a[ind] = it;
 				this.quickslots = a;
-	
+
 			}
 
 		}
@@ -235,7 +235,7 @@ export default class GameState {
 
 	/**
 	 * Get quickslot item for slot number.
-	 * @param {number} slotNum 
+	 * @param {number} slotNum
 	 * @returns {?Item}
 	 */
 	getQuickSlot( slotNum ) {
@@ -244,7 +244,7 @@ export default class GameState {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {string} tag
 	 * @returns {Item[]|undefined}
 	 */
@@ -269,8 +269,8 @@ export default class GameState {
 	/**
 	 * Add to maximum value of resource.
 	 * Used for implementing testing cheats.
-	 * @param {string} id 
-	 * @param {number} amt 
+	 * @param {string} id
+	 * @param {number} amt
 	 */
 	addMax( id, amt=10) {
 
@@ -291,8 +291,8 @@ export default class GameState {
 	}
 
 	/**
-	 * 
-	 * @param {(it)=>boolean} pred 
+	 *
+	 * @param {(it)=>boolean} pred
 	 */
 	filterItems( pred ) {
 		let a = [];
@@ -315,13 +315,13 @@ export default class GameState {
 			if ( this.items[p].hasTags(tags) ) a.push(this.items[p]);
 		}
 		return a;
-	
+
 	}
-	
+
 	/**
 	 * Assign all items passing the predicate test the given tag.
-	 * @param {Predicate} test 
-	 * @param {string} tag 
+	 * @param {Predicate} test
+	 * @param {string} tag
 	 */
 	tagItems( test, tag ) {
 		let items = this.items;
@@ -332,7 +332,7 @@ export default class GameState {
 
 	/**
 	 * Get an item on an item-id varpath.
-	 * @param {VarPath} v 
+	 * @param {VarPath} v
 	 */
 	getPathItem(v){
 		return v.readVar( this._items );
@@ -350,7 +350,7 @@ export default class GameState {
 
 	/**
 	 * Set slotted item for exclusive items.
-	 * @param {string} id 
+	 * @param {string} id
 	 * @param {?Item} v - item to place in slot, or null.
 	 */
 	setSlot(id,v) {

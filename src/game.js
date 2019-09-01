@@ -123,7 +123,7 @@ export default {
 		for( let p in items ) {
 
 			var it = items[p];
-			if ( !it.locked && !it.disabled && it.value >= 0 ) {
+			if ( !it.locked && !it.disabled && it.value > 0 ) {
 				if ( it.mod ) this.addMod( it.mod, it.value );
 			}
 

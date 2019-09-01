@@ -241,10 +241,6 @@ export default {
 
 			for( let p in sub ) {
 
-				if ( p === 'require' || p === 'need') {
-					sub[p] = this.parseRequire( sub[p] );
-					continue;
-				}
 				if ( p === 'mod') {
 					sub[p] = this.parseMods( sub[p], sub.id );
 					continue;
@@ -253,6 +249,10 @@ export default {
 				var obj = sub[p];
 				var type = typeof obj;
 				if ( type === 'string' ){
+
+					if ( p === 'require' || p === 'need') {
+						sub[p] = this.parseRequire( sub[p] );
+					}
 
 					if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
@@ -304,7 +304,7 @@ export default {
 
 			var val = mods[s];
 			var typ = typeof val;
-			if ( typ === 'number' || typ === 'string' ) {
+			if ( typ === 'number' || (typ === 'string' && ModTest.test(val)) ) {
 
 					val = mods[s] = new Mod(val, id);
 

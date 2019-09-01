@@ -5,7 +5,7 @@
 		"title":"Apprentice",
 		"actname":"Apprenticeship",
 		"actdesc":"Become an apprentice.",
-		"require":"state.research.max>=10",
+		"require":"research",
 		"disable":["cleanstables"],
 		"log":{
 			"name":"Apprentice",

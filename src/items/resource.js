@@ -41,7 +41,6 @@ export default class Resource extends Item {
 
 		if ( this._max == null ) {
 
-			console.log('creating max for: ' + this.id);
 			this._max = new ModStat(v);
 
 		} else {
@@ -69,7 +68,6 @@ export default class Resource extends Item {
 		 */
 		if ( this.unit === null || this.unit === undefined ) this.unit = true;
 
-		//if ( this._max === undefined ) this.max = new ModStat(0);
 		if ( this._rate === null || this.rate === undefined ) this._rate = new ModStat(0);
 
 		this._lastValue = this._value;
@@ -111,7 +109,7 @@ export default class Resource extends Item {
 	 * @returns {boolean} true if resource value is positive.
 	 */
 	positive(){
-		return (this._value > 0 || (this._rate.value>0&&!this.max||this.max.value>0) );
+		return (this._value > 0 || (this._rate.value>0&&(!this.max||this.max.value>0) ) );
 	}
 
 }

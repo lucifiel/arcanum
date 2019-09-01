@@ -22,6 +22,14 @@ export default class Mod {
 
 	}
 
+	toString() {
+		let s = ( this.id ? this.id + ': ' : '') + this.bonus;
+		if ( this._pct !== 0 ) {
+			s += ( this._pct > 0 ? '+' : '' ) + this._pct + '%';
+		}
+		return s;
+	}
+
 	/**
 	 * @property {string} [id=DEFAULT_MOD]
 	 */
