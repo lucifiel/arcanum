@@ -2,7 +2,7 @@
 import Game from '../game';
 
 export default {
-	
+
 	computed:{
 		classes() {
 			return Game.state.classes.filter(v=>!v.disabled&&v.value>=1);
@@ -32,7 +32,7 @@ export default {
 		{{it.name}}
 	</div>
 
-</div>	
+</div>
 </template>
 
 <style scoped>
@@ -40,7 +40,6 @@ export default {
 div.up-list {
 	overflow-y: auto;
 	overflow-x:visible;
-	width: 100%;
 }
 
 </style>

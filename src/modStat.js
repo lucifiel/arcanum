@@ -7,11 +7,11 @@ export default class ModStat {
 
 	toJSON(){
 
+		let o = { base: this._base };
+		let def = this._mods[DEFAULT_MOD];
+		if ( def !== undefined ) o.mods = { [DEFAULT_MOD]:def};
 
-		return {
-			base:this._base,
-			mods:{ [DEFAULT_MOD]:this._mods[DEFAULT_MOD] }
-		};
+		return o;
 
 	}
 
@@ -57,6 +57,7 @@ export default class ModStat {
 
 		for( let p in v ) {
 
+			console.log('restoring mod: ' + p );
 			var mod = v[p];
 			v[p] = (mod instanceof Mod ) ? mod : new Mod( v[p] );
 		}
