@@ -7,10 +7,11 @@ export default class ModStat {
 
 	toJSON(){
 
+
 		return {
 			base:this._base,
-			mods:this._mods
-		}
+			mods:{ DEFAULT_MOD:this._mods[DEFAULT_MOD] }
+		};
 
 	}
 
@@ -19,14 +20,14 @@ export default class ModStat {
 	 * included in the mods list. Use this when the other modifiers
 	 * can be recomputed on load.
 	 */
-	defaultJSON() {
+	/*defaultJSON() {
 
 		return {
 			base:this._base,
 			mods:{ DEFAULT_MOD:this._mods[DEFAULT_MOD] }
 		};
 
-	}
+	}*/
 
 	toString(){
 		return this._base + (this._pct >= 0 ? '+' : '') + (100*this._pct) + '%';

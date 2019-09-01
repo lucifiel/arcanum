@@ -5,14 +5,24 @@ import Resource from "./resource";
  * When the resource is expended, it cannot be renewed
  * except by removing the items which used the resource, or
  * further increasing the maximum resource value.
- * 
+ *
  * Contrast with normal resources like gold, hp, which
  * can be constantly replenished.
  */
 export default class ZeroSum extends Resource {
 
+	toJSON(){
+
+		let v = super.toJSON();
+		v.value = undefined;
+		v.used = this._used;
+
+		return v;
+
+	}
+
 	/**
-	 * Adding value => removing used spaces.
+	 * Adding value => more space left.
 	 * Removing value => increasing space used.
 	 */
 	set value(v){
@@ -22,10 +32,7 @@ export default class ZeroSum extends Resource {
 			this._used = this.max.value - v;
 			super.value = v;
 
-		} else {
-			super.value = v;
 		}
-
 		//console.log( 'setval: ' + (super.value === this._value) );
 
 	}
@@ -37,6 +44,7 @@ export default class ZeroSum extends Resource {
 	}
 
 	get used() { return this._used; }
+	set used(v) { this._used = v; }
 
 	/**
 	 * @property {number} unused - amount of resource still available.
@@ -48,7 +56,7 @@ export default class ZeroSum extends Resource {
 		super(vars);
 
 		this._used = this._used || ( this.max.value - super.value ) || 0;
-	
+
 	}
 
 }
