@@ -6,6 +6,7 @@ export default class Attack {
 
 		return {
 			dmg:this._damage,
+			tohit:this.tohit||undefined,
 			kind:this.kind,
 			id:this.id,
 			dot:this.dot

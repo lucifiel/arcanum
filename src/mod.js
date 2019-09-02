@@ -12,8 +12,9 @@ export default class Mod {
 
 	toJSON(){
 
-		var val = ( this.bonus !== 0 ? this.bonus : '' ) + ( this._pct ?
-			( this._pct > 0 ? '+' : '') + (100*this._pct)  + '%' : '' );
+		var val = this._pct === 0 ? this.bonus : (
+			(this.bonus || '') + (( this._pct > 0 ? '+' : '') + (100*this._pct)  + '%')
+		);
 
 		return {
 			id:this.id,

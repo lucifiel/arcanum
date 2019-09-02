@@ -3,7 +3,7 @@ import ItemsBase from '../itemsBase.js';
 import Progress from '../components/progbar.vue';
 
 export default {
-	
+
 	/**
 	 * @property {boolean} active - true if skill is the active skill.
 	 */
@@ -16,12 +16,12 @@ export default {
 </script>
 
 <template>
-	
+
 	<div class="skill">
 
 		<span class="separate">
 			<span>{{ skill.name }}</span>&nbsp;
-			<span v-if="skill.owned">{{ 'lvl: ' + skill.level }}<button class="train-btn"
+			<span v-if="skill.owned">{{ 'lvl: ' + skill.value }}<button class="train-btn"
 			@click="$emit('train',skill)" :disabled="!this.usable(skill)"
 				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button></span>
 			<span v-else>

@@ -2,7 +2,7 @@
 
 	{
 		"id":"armor1",
-		"name":"minor armor",
+		"name":"sturdy armor",
 		"verb":"infusing armor",
 		"target":"armor",
 		"desc":"infuse an item with magical protection.",
@@ -39,7 +39,7 @@
 			"mana":5
 		},
 		"mod":{
-			"tohit":1
+			"attack.tohit":1
 		}
 	}
 
