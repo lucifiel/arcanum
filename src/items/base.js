@@ -194,6 +194,11 @@ export default {
 
 		if ( typeof mods === 'object') {
 
+			if ( mods instanceof Mod ) {
+				mods.applyTo( targ, 'value', amt );
+				return;
+			}
+
 			for( let p in mods ) {
 
 				var m = mods[p];

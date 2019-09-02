@@ -40,7 +40,7 @@
 	},
 	{
 
-		"id":"broomstick",
+		"id":"magicbroomstick",
 		"name":"magic broomstick",
 		"require":"state.witch>0&&state.crafting>=7&&state.spirit.max>=5",
 		"flavor":"",
