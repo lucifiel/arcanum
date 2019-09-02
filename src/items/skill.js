@@ -37,6 +37,7 @@ export default class Skill extends Action {
 
 	complete() {
 
+		super.complete();
 		if ( this._value > Math.floor(this._max) ) this._value = Math.floor(this._max);
 		this._length += this._length*EXP_RATIO;
 

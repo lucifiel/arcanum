@@ -245,8 +245,6 @@ export default {
 
 			console.log('assigning sub: ' + p + '=' + m[p]);
 
-			var mod = m[p];
-
 			if ( typeof m[p] === 'object' ) {
 				this.subeffect( obj[p], m[p], amt );
 			} else {
@@ -293,7 +291,6 @@ export default {
 	 * @param {string} tag
 	 */
 	addTag( tag ) {
-		console.log( this.id + ' adding tags: ' + tag );
 		if ( this._tags === null || this._tags === undefined) this._tags = [ tag ];
 		else if ( !this._tags.includes(tag) ) this._tags.push(tag);
 	},

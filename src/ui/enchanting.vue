@@ -53,11 +53,14 @@ export default {
 		<div class="flex-row separate">
 
 		<div class="flex-col">
-		<div v-for="it in filtered" :key="it.id">
+		<div v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 
 			{{ it.name }}
-			<button :disabled="!target||!it.canApply(target)||!usable(it)"
-				@mouseenter.capture.stop="dispatch('itemover', $event, it )"
+
+			<button v-if="it.buy&&!it.owned" :disabled="!buyable(it)"
+				@click="dispatch('buy', it)">Unlock</button>
+
+			<button v-else :disabled="!target||!it.canApply(target)||!usable(it)"
 				@click="dispatch( 'enchant', it, target )">Enchant</button>
 
 		</div>

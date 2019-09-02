@@ -99,11 +99,9 @@ export default class Raid {
 	get progress(){ return this.dungeon.progress; }
 	set progress(v){
 
-		this.dungeon.progress=v;
-
-		if ( this.dungeon.progress >= this.dungeon.length ) {
+		if ( v >= this.dungeon.length ) {
 			this.raidDone( this.dungeon );
-		}
+		} else this.dungeon.progress=v;
 
 	}
 
@@ -400,7 +398,6 @@ export default class Raid {
 
 	raidDone() {
 
-		// can go over by cheat codes, or possibly unknown future skip-buffs.
 		this.dungeon.progress = this.dungeon.length;
 		this.dungeon.dirty = true;
 

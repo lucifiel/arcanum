@@ -15,6 +15,8 @@ export default class Wearable {
 		data.template = this.template.id;
 		data.name = this.name;
 
+		data.enchants = this.enchants || undefined;
+
 		if ( this.material ) {
 			if ( !data ) data = {};
 			data.material = this.material.id;
@@ -23,6 +25,12 @@ export default class Wearable {
 		return data ? data : undefined;
 
 	}
+
+	/**
+	 * @property {number} enchants - total level of all enchantments applied.
+	 */
+	get enchants() { return this._enchants || 0; }
+	set enchants(v) { this._enchants = v; }
 
 	get material() { return this._material; }
 	set material(v) { this._material=v;}

@@ -95,21 +95,20 @@ export default {
 		let templates = {};
 
 		let lists = {};
-		let itemList;
 
 		for( let i = filesArr.length-1; i>=0; i-- ) {
 
-			lists[ DataFiles[i] ] = itemList = filesArr[i];
+			var itemList = filesArr[i];
 			//console.log('Setting Default List: ' + DataFiles[i] );
 
 			for( let j = itemList.length-1; j >= 0; j-- ) {
 
 				// copy every list item as a template.
 				templates[ itemList[j].id ] = ( itemList[j] );
-				// transform to list of ids.
-				itemList[j] = itemList[j].id;
 
 			}
+
+			lists[ DataFiles[i] ] = itemList.map(v=>v.id);
 
 		}
 

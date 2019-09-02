@@ -2,6 +2,7 @@ import Inventory from './chars/inventory';
 import Raid from './composites/raid';
 import Item from './items/item';
 import Equip from './chars/equip';
+import Runnable from './composites/runnable';
 
 export default class GameState {
 
@@ -16,7 +17,8 @@ export default class GameState {
 
 			items:( this.items ),
 			quickslots:this.quickslots.map(v=> v ? v.id : null ),
-			curAction: this.curAction ? this.curAction.id : undefined,
+			curAction: this.curAction ?  ( this.curAction instanceof Runnable ?
+				this.curAction : this.curAction.id ) : undefined,
 			slots:slotIds,
 			equip:( this.equip ),
 			raid:( this.raid ),
@@ -152,12 +154,15 @@ export default class GameState {
 		if ( this.curAction ) {
 
 			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
-			if ( this.curAction.type === 'dungeon') {
-				this.curAction = this.raid;
-			} else if ( typeof this.curAction === 'object') {
+			else if ( typeof this.curAction === 'object') {
 
+				this.curAction = new Runnable( this.curAction );
 				if ( typeof this.curAction.revive === 'function' ) this.curAction.revive(this);
 
+			}
+
+			if ( this.curAction.type === 'dungeon') {
+				this.curAction = this.raid;
 			}
 
 		}
@@ -361,6 +366,15 @@ export default class GameState {
 	setSlot(id,v) {
 		if ( v && (v.type === 'wearable' || v.type === 'furniture') ) return;
 		this.slots[id] = v;
+	}
+
+	/**
+	 * Find item in base items, equip, or inventory.
+	 * @param {string} id
+	 */
+	findItem(id) {
+
+		return this.getItem(id) || this.inventory.find(id) || this.equip.find(id);
 	}
 
 	getItem(id) { return this.items[id];}

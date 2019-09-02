@@ -246,10 +246,9 @@ export default {
 
 		} else {
 
+			if ( action.effect) this.applyEffect( action.effect, dt );
 			if ( action.length ) action.progress += dt;
 			action.dirty = true;
-			// ongoing effect.
-			if ( action.effect) this.applyEffect( action.effect, dt );
 
 		}
 
@@ -517,10 +516,9 @@ export default {
 	 */
 	useWith( it, targ ) {
 
-		console.log('Using: ' + it.id );
 		if ( targ === null || targ === undefined ) return;
 
-		console.log('inc value');
+		if ( typeof it.usingWith === 'function') it.usingWith( targ );
 		it.value++;
 
 		if ( it.mod ) targ.applyMods( it.mod, 1 );

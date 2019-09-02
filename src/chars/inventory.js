@@ -27,7 +27,7 @@ export default class Inventory {
 		else this.items = [];
 
 		this.type = this.id = 'inventory';
-		
+
 		//console.log('this max: ' + this.max );
 		this._max = this._max || 0;
 
@@ -73,10 +73,16 @@ export default class Inventory {
 	}
 
 	/**
+	 * Attempt to find item in inventory.
+	 * @param {string} id
+	 */
+	find(id) { return this.items.find(v=>v.id===id); }
+
+	/**
 	 * Remove all items from inventory.
 	 * splice is used for vue reactivity.
 	 */
-	clear() {	
+	clear() {
 		this.items.splice(0, this.items.length);
 	}
 
@@ -85,7 +91,7 @@ export default class Inventory {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {Item} it
 	 */
 	remove( it ){

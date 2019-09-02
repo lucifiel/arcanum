@@ -20,12 +20,9 @@ export default class Dungeon extends Action {
 		this.initEnemies(v);
 	}
 
-	get progress(){return this._exp;}
-	set progress(v){ this._exp =v; }
-
 	/**
-	 * 
-	 * @param {?Object} [vars=null] 
+	 *
+	 * @param {?Object} [vars=null]
 	 */
 	constructor( vars=null ){
 
@@ -57,6 +54,11 @@ export default class Dungeon extends Action {
 		//this.attackTot = this.totalWeights();
 
 	}
+
+	/**
+	 * Don't reset progress, to show dungeon has been completed.
+	 */
+	complete() {}
 
 	initEnemies( enemies ) {
 
@@ -101,7 +103,7 @@ export default class Dungeon extends Action {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	/*totalWeights() {
 

@@ -48,9 +48,11 @@ export default class Runnable {
 	get progress(){ return this._item.progress; }
 	set progress(v) {
 
-		if ( v >= this.item.length ) {
+		if ( v > this.item.length ) {
 			Game.useWith( this.item, this.target );
+			Game.setAction(null);
 		}
+
 		this.item.progress = v;
 
 	}
@@ -67,8 +69,8 @@ export default class Runnable {
 
 	revive( state ) {
 
-		if ( typeof this._item === 'string') this._item = state.getItem(this._item);
-		if ( typeof this._target === 'string') this._target = state.getItem(this._target);
+		if ( typeof this._item === 'string') this._item = state.findItem(this._item);
+		if ( typeof this._target === 'string') this._target = state.findItem(this._target);
 
 	}
 

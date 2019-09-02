@@ -1,5 +1,4 @@
 import Action from './action';
-import Game from '../game';
 
 export default class Enchant extends Action {
 
@@ -14,6 +13,16 @@ export default class Enchant extends Action {
 
 		super(vars);
 
+		this.level = this.level || 0;
+
+	}
+
+	/**
+	 * Called when enchant is being used on target.
+	 * @param {*} it
+	 */
+	usingWith( it ) {
+		it.enchants = (it.enchants || 0) + this.level;
 	}
 
 	/**
@@ -22,13 +31,11 @@ export default class Enchant extends Action {
 	 */
 	canApply( it ) {
 
+		if ( it.enchants + this.level > it.level ) return false;
+
 		let t = this._target;
 		return !t || it.type === t || it.kind === t || it.hasTag(t);
 
-	}
-
-	complete(){
-		Game.doRest();
 	}
 
 }
