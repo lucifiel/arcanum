@@ -1,6 +1,6 @@
 import Range from '../range';
 import Base, {mergeClass} from '../items/base';
-import {tryDamage} from './raid';
+import {tryDamage} from '../composites/raid';
 import ModStat from '../modStat';
 import Dot from './dot';
 import Attack from './attack';
@@ -57,7 +57,7 @@ export default class Char {
 
 		for( let i = v.length-1; i>=0; i-- ) {
 			v[i] = (v[i] instanceof Attack) ? v[i] : new Attack(v[i]);
-			
+
 		}
 
 		this._attacks = v;
@@ -109,7 +109,7 @@ export default class Char {
 
 	/**
 	 * Revive from data after Game state restored.
-	 * @param {GameState} state 
+	 * @param {GameState} state
 	 */
 	revive( state ){
 
@@ -128,7 +128,7 @@ export default class Char {
 
 	/**
 	 * Base item of dot.
-	 * @param {Dot} it 
+	 * @param {Dot} it
 	 */
 	addDot( it ) {
 
@@ -157,7 +157,7 @@ export default class Char {
 				if ( dot.damage ) {
 					tryDamage( dot.damage, dot, dot.source );
 				}
-	
+
 			}
 
 		}
@@ -189,7 +189,7 @@ export default class Char {
 
 	}
 
-	
+
 	removeResist( kind, amt ) {
 		if ( this._resists[kind] ) this._resists[kind] -= amt;
 	}
@@ -210,16 +210,16 @@ export default class Char {
 	}
 
 	/**
-	 * 
-	 * @param {string} kind 
+	 *
+	 * @param {string} kind
 	 */
 	addImmune(kind){
 		this.immunities[kind] = this.immunities[kind] ? this.immunities[kind] + 1 : 1;
 	}
 
 	/**
-	 * 
-	 * @param {string} kind 
+	 *
+	 * @param {string} kind
 	 */
 	removeImmune(kind) {
 		this.immunities[kind] = this.immunities[kind] ? this.immunities[kind] - 1 : 0;

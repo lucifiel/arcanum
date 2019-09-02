@@ -3,7 +3,7 @@ import Resource from "../items/resource";
 import Range from '../range';
 import Item from "../items/item";
 import Game from '../game';
-import { tryDamage } from './raid';
+import { tryDamage } from '../composites/raid';
 
 import Char, { getDelay } from './char';
 
@@ -219,7 +219,7 @@ export default class Player extends Char {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {Dot} dot - dot to add.
 	 */
 	addDot( dot ) {
@@ -252,7 +252,7 @@ export default class Player extends Char {
 
 	/**
 	 * Set primary spell attack.
-	 * @param {Item} s 
+	 * @param {Item} s
 	 */
 	setPrimary( s ) {
 

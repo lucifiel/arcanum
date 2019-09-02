@@ -4,7 +4,7 @@ import Attack from './attack';
 
 import {mergeSafe} from "objecty";
 
- 
+
 export default class Wearable {
 
 	toJSON() {
@@ -94,11 +94,17 @@ export default class Wearable {
 			if ( mat.tohit ) this.applyBonus( this.attack, 'tohit', mat.tohit );
 
 		} else {
-	
+
 		}
 
 	}
 
+	/**
+	 * Bonus applied by material.
+	 * @param {*} obj
+	 * @param {*} prop
+	 * @param {*} amt
+	 */
 	applyBonus( obj, prop, amt ) {
 
 		if ( typeof obj[prop] === 'number') obj[prop] += amt;

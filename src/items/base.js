@@ -204,36 +204,6 @@ export default {
 
 				} else console.warn( `UNKNOWN Mod ${p} applied to ${this.id}: ${m}`);
 
-				/*console.log('subtarg: ' + p );
-				var sub = targ[p];
-				if ( sub instanceof ModStat ) {
-					console.log('applying mod to stat: '+ p);
-					sub.apply( mods[p], amt );
-
-				} else if ( sub instanceof Mod ) {
-					console.log('applying to mod: '+ p);
-					sub.apply( mods[p], amt );
-
-				} else if ( typeof sub === 'object' ) {
-
-					console.log('recursive mod: ' + p );
-					this.applyMods( mods[p], amt, sub );
-
-				} else if ( typeof sub ==='number' ) {
-
-					/// TODO: will this work for updated game data?
-					if( mods[p] instanceof Mod ) targ[p] = mods[p].applyTo( targ[p], amt );
-					else targ[p] += amt*Number(mods[p]);
-
-					console.log('new targ val: ' + targ[p] );
-
-				} else if ( sub === undefined ) {
-
-					console.log('create target: ' + p );
-					this.newSub(targ, p, mods[p], amt );
-
-				} else console.warn( this.id + ' unknown mod target: ' + p );*/
-
 			}
 
 		} else if ( typeof mods === 'number') {

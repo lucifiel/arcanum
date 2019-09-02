@@ -32,7 +32,7 @@
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies."
 	},
 	"flavor":"Why does Master charge so many fees?",
-	"disable":["apprentice","chores"],
+	"disable":["apprentice"],
 	"cost":{
 		"gold":100,
 		"research":100,

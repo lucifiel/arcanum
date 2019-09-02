@@ -9,6 +9,7 @@ import EquipView from './equip.vue';
 import Quickbar from './quickbar.vue';
 import Inventory from './inventory.vue';
 import Bestiary from './bestiary.vue';
+import Enchanting from './enchanting.vue';
 
 import ItemsBase from './itemsBase';
 
@@ -59,6 +60,7 @@ export default {
 		bestiary:Bestiary,
 		spellbook:Spellbook,
 		adventure:Adventure,
+		enchanting:Enchanting,
 		warn:Warn,
 		'vue-menu':Menu
 	},
@@ -95,6 +97,7 @@ export default {
 		this.listen('equip', this.onEquip );
 		this.listen('unequip', this.onUnequip );
 		this.listen('drop', this.onDrop );
+		this.listen('enchant', this.onEnchant );
 
 		this.listen('home', this.onHome );
 
@@ -210,6 +213,14 @@ export default {
 		onDrop(it) { this.game.drop(it); },
 
 		onTake(it) { this.game.take(it); },
+
+		/**
+		 * @param {Enchant} e - enchantment
+		 * @param {Item} targ - enchant target.
+		 */
+		onEnchant( e, targ ) {
+			this.game.enchant( e, targ );
+		},
 
 		onSell(it) {
 			this.game.trySell( it );
@@ -349,6 +360,7 @@ export default {
 
 		<template slot="sect_bestiary"><bestiary /></template>
 
+		<template slot="sect_enchant"><enchanting /></template>
 		</vue-menu>
 
 		<vitals :player="state.player" :state="state" />

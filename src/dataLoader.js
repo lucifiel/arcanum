@@ -9,7 +9,7 @@ import Resource from './items/resource';
 import Skill from './items/skill';
 import Monster from './items/monster';
 
-import VarPath, {IsVarPath}  from './varPath';
+import VarPath  from './varPath';
 import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 import Action from './items/action';
@@ -22,7 +22,7 @@ import Material from './chars/material';
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
 	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons',
-	'materials', 'sections' ];
+	'materials', 'enchants', 'sections' ];
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.

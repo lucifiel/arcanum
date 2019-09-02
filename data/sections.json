@@ -48,7 +48,7 @@
 	},
 	{
 
-		"id":"sect_enchanting",
+		"id":"sect_enchant",
 		"name":"enchanting",
 		"require":"enchanting"
 	},

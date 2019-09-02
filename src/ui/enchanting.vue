@@ -1,12 +1,13 @@
 <script>
 import Game from '../game';
 
-import ItemBase from './itemsBase';
 import Inventory from './inventory.vue';
 import FilterBox from './components/filterbox.vue';
+import ItemsBase from './itemsBase';
 
 export default {
 
+	mixins:[ItemsBase],
 	components:{
 		filterbox:FilterBox,
 		inv:Inventory
@@ -40,7 +41,7 @@ export default {
 </script>
 
 <template>
-	
+
 		<div class="enchants">
 
 		<div @mouseenter.capture.stop="dispatch('itemover', $event, target )">
@@ -51,7 +52,8 @@ export default {
 		<div v-for="it in filtered" :key="it.id">
 
 			{{ it.name }}
-			<button @click="dispatch( 'enchant', it, target )">Enchant</button>
+			<button :disabled="!target||!it.canApply(target)||!usable(it)"
+				@click="dispatch( 'enchant', it, target )">Enchant</button>
 
 		</div>
 

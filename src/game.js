@@ -452,7 +452,8 @@ export default {
 	/**
 	 * Attempt to pay for an item, and if the cost is met, apply it.
 	 * @param {Item} it
-	 * @returns {boolean}
+	 * @returns {boolean} - true if item is used. note that 'buying' an item
+	 * does not actually use it, and returns false.
 	 */
 	tryItem(it) {
 
@@ -462,6 +463,7 @@ export default {
 
 			this.payCost( it.buy );
 			it.owned = true;
+			return false;
 
 		} else {
 
@@ -470,6 +472,20 @@ export default {
 			this.payCost( it.cost );
 			return this.doItem(it);
 		}
+
+	},
+
+	/**
+	 *
+	 * @param {Enchant} e
+	 * @param {Item} targ - enchant target.
+	 */
+	enchant( e, targ ) {
+
+		if ( !this.tryItem(e) ) return;
+
+		if ( e.mod ) targ.applyMods( e.mod, 1 );
+		if ( e.effect ) targ.applyVars( e.effect, 1 );
 
 	},
 

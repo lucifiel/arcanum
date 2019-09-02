@@ -1,5 +1,5 @@
 import Inventory from './chars/inventory';
-import Raid from './chars/raid';
+import Raid from './composites/raid';
 import Item from './items/item';
 import Equip from './chars/equip';
 

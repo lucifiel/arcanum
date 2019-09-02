@@ -1,19 +1,19 @@
 import Events from '../events';
 
 import Game from '../game';
-import Char from './char';
+import Char from '../chars/char';
 import Range from '../range';
-import Dot from './dot';
-import Npc from './npc';
-import Inventory from './inventory';
+import Dot from '../chars/dot';
+import Npc from '../chars/npc';
+import Inventory from '../chars/inventory';
 
 import { EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN,
 		DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT } from '../events';
 
 /**
 * Attempt to damage a target. Made external for use by dots, other code.
-* @param {Char} target 
-* @param {Object} attack 
+* @param {Char} target
+* @param {Object} attack
 */
 export function tryDamage( target, attack, attacker=null ) {
 
@@ -100,7 +100,7 @@ export default class Raid {
 	set progress(v){
 
 		this.dungeon.progress=v;
-		
+
 		if ( this.dungeon.progress >= this.dungeon.length ) {
 			this.raidDone( this.dungeon );
 		}
@@ -152,8 +152,8 @@ export default class Raid {
 	}
 
 	/**
-	 * 
-	 * @param {?Object} [vars=null] 
+	 *
+	 * @param {?Object} [vars=null]
 	 */
 	constructor( vars=null ) {
 
@@ -214,7 +214,7 @@ export default class Raid {
 			}
 
 			for( let i = this._enemies.length-1; i >= 0; i-- ) {
-	
+
 				var e = this._enemies[i];
 				if ( e.alive === false ) { this._enemies.splice(i,1); continue;}
 				var action = e.update(dt);
@@ -228,7 +228,7 @@ export default class Raid {
 
 	/**
 	 * Player-casted spell or action attack.
-	 * @param {Item} it 
+	 * @param {Item} it
 	 */
 	spellAttack( it ) {
 
@@ -244,7 +244,7 @@ export default class Raid {
 	/**
 	 * Attack without weapon.
 	 * @todo replace with something more logical.
-	 * @param {Player} player 
+	 * @param {Player} player
 	 */
 	baseAttack( player ) {
 
@@ -263,7 +263,7 @@ export default class Raid {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {Item} src - attack source. (spell,weapon,etc.)
 	 */
 	playerAttack( src ) {
@@ -281,9 +281,9 @@ export default class Raid {
 	}
 
 	/**
-	 * 
-	 * @param {Char} enemy - enemy attacking. 
-	 * @param {Object|Char} attack - attack object. 
+	 *
+	 * @param {Char} enemy - enemy attacking.
+	 * @param {Object|Char} attack - attack object.
 	 * @param {Char} target - target of attack. ( currently player ).
 	 */
 	enemyAttack( enemy, attack, target ) {
@@ -324,7 +324,7 @@ export default class Raid {
 
 		Events.dispatch( DAMAGE_MISS, attacker.name + ' misses' );
 		return false;
-	
+
 	}
 
 	dodgeRoll( dodge, tohit ) {
@@ -350,7 +350,7 @@ export default class Raid {
 	 * Get next dungeon enemy.
 	 */
 	nextEnemy() {
-		
+
 		var enemy = this.dungeon.getEnemy();
 		if (  Array.isArray(enemy)){
 
