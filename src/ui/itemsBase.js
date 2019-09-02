@@ -113,9 +113,9 @@ export default {
 					if ( sub.skipLocked ) {
 						let refItem = Game.getItem(p);
 						if ( refItem && refItem.locked || refItem.disabled ) continue;
-					} else if ( sub.toString && sub.toString !== Object.toString ) {
+					} else if ( sub.toString && (sub.toString != Object.prototype.toString) ) {
 
-						resuts[subPath] = sub.toString();
+						results[subPath] = sub.toString();
 
 					} else this.effectList( sub, results, subPath );
 

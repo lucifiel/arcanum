@@ -45,7 +45,7 @@ export default {
 		<div class="enchants">
 
 		<div @mouseenter.capture.stop="dispatch('itemover', $event, target )">
-			Target: {{ target.name }}
+			Target: {{ target ? target.name : 'None' }}
 		</div>
 
 		<filterbox v-model="filtered" :items="enchants" min-items="7" />
