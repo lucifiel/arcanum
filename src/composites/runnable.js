@@ -10,9 +10,13 @@ export default class Runnable {
 
 		return {
 			item:this.item ? this.item.id : undefined,
-			target:this.target ? this.target.id : undefined
+			target:this.target ? this.target.id : undefined,
+			type:this.type
 		};
 	}
+
+	get type() { return 'runnable'; }
+	set type(v) {}
 
 	/**
 	 * @property {?Item} target - target of the running item.
@@ -46,6 +50,7 @@ export default class Runnable {
 		this._item.progress=v;
 
 		if ( this.item.progress >= this.item.length ) {
+			Game.useWith( this.item, this.target );
 		}
 
 	}

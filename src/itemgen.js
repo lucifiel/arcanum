@@ -9,7 +9,6 @@ const exclusions = {
 	waist:['metal'],
 	back:['metal','wood']
 
-
 }
 
 /**
@@ -103,7 +102,7 @@ export default class ItemGen {
 
 	/**
 	 * Return a random item of the given level.
-	 * @param {number} [level=0] 
+	 * @param {number} [level=0]
 	 * @param {?string} [kind=null]
 	 * @param {?string|Material} [mat=null] - item material.
 	 */
@@ -188,7 +187,7 @@ export default class ItemGen {
 
 			var matList = this.matsByLevel[max--];
 			if ( !matList) continue;
-		
+
 			var res = randMatch( matList, v=>{
 
 				if ( only && !includesAny(only, v.type, v.kind ) ) return false;
@@ -197,7 +196,7 @@ export default class ItemGen {
 				if ( v.only && !includesAny( v.only, item.type, item.kind ) ) return false;
 				if ( v.exclude && includesAny( v.exclude, item.type, item.kind ) ) return false;
 				return true;
-	
+
 			});
 			if ( res ) return res;
 
@@ -209,8 +208,8 @@ export default class ItemGen {
 
 	/**
 	 * Get a material below or including the given level.
-	 * @param {number} level 
-	 * @param {string} itemKind 
+	 * @param {number} level
+	 * @param {string} itemKind
 	 */
 	getMatBelow( level, itemKind=null ) {
 		return this.getMat( Math.floor( Math.random()*level + 1 ), itemKind );
@@ -220,7 +219,7 @@ export default class ItemGen {
 	 * Get a random material of the highest level available on or below
 	 * the given level.
 	 * @param {number} level - target level of material.
-	 * @param {?string} itemKind 
+	 * @param {?string} itemKind
 	 */
 	getMat( level, itemKind=null ) {
 

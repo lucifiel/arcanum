@@ -119,7 +119,17 @@ export default {
 	set tags(v) {
 
 		if ( typeof v === 'string') this._tags = v.split(',');
-		else this._tags = v;
+		else if ( !v ) this._tags = null;
+		else if ( Array.isArray(v) ) this._tags = v;
+		else if ( typeof v === 'object' ) {
+
+			let a = [];
+			for( let p in v ) {
+				a.push(p);
+			}
+			this._tags = a;
+
+		} else this._tags = null;
 
 	},
 

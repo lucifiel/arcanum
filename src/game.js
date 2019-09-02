@@ -511,6 +511,7 @@ export default {
 
 	/**
 	 * Use an item in conjunction with another item.
+	 * Item is used immediately. No running or costs necessary.
 	 * @param {Item} it
 	 * @param {Item} targ - use target.
 	 */
@@ -530,7 +531,7 @@ export default {
 	 * @param {Item} it
 	 * @param {number} count
 	 */
-	doItem(it, count=1) {
+	doItem( it, count=1 ) {
 
 		if ( it.maxed() ) return false;
 		if ( it.slot) {

@@ -49,20 +49,32 @@ export default {
 		</div>
 
 		<filterbox v-model="filtered" :items="enchants" min-items="7" />
+
+		<div class="flex-row separate">
+
+		<div class="flex-col">
 		<div v-for="it in filtered" :key="it.id">
 
 			{{ it.name }}
 			<button :disabled="!target||!it.canApply(target)||!usable(it)"
+				@mouseenter.capture.stop="dispatch('itemover', $event, it )"
 				@click="dispatch( 'enchant', it, target )">Enchant</button>
 
 		</div>
+		</div>
 
 		<inv selecting=true :inv="state.inventory" v-model="target" />
+		</div>
 
 	</div>
 
 </template>
 
 <style scoped>
+
+div.enchants {
+	display:flex;
+	flex-direction: column;
+}
 
 </style>}
