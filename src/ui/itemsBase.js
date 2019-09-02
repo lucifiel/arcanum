@@ -2,7 +2,7 @@
  * Base view for all item lists.
  */
 import { floor } from 'format';
-import Mod from '../mod';
+import {indexAfter} from '../util';
 
 import Game from '../game';
 
@@ -85,8 +85,8 @@ export default {
 				if ( p === 'skipLocked') continue;
 				else if ( p === 'max' ) {
 
-					let index = propPath.indexOf('mod');
-					if ( index < 0 ) index = propPath.indexOf( 'effect');
+					let index = indexAfter( propPath, 'mod' );
+					if ( index < 0 ) index = indexAfter( propPath, 'effect' );
 
 					if ( index > 0 ) subPath = propPath.slice(0, index) + ' max' + propPath.slice(index);
 					else subPath = 'max ' + propPath;

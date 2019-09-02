@@ -98,8 +98,8 @@ export default class Mod {
 
 		} else if ( typ === 'object') {
 
-			this.bonus += amt*type.bonus || 0;
-			this.pct += amt*type.pct || 0;
+			this.bonus += amt*mod.bonus || 0;
+			this.pct += amt*mod.pct || 0;
 
 		}
 
