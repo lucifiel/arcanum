@@ -517,8 +517,10 @@ export default {
 	 */
 	useWith( it, targ ) {
 
+		console.log('Using: ' + it.id );
 		if ( targ === null || targ === undefined ) return;
 
+		console.log('inc value');
 		it.value++;
 
 		if ( it.mod ) targ.applyMods( it.mod, 1 );
@@ -758,7 +760,6 @@ export default {
 
 				if ( target === undefined ) this.modTag( p, mod[p], amt );
 				else {
-					console.log('adding mod for: ' + p );
 					target.applyMods( mod[p], amt );
 					target.dirty = true;
 				}

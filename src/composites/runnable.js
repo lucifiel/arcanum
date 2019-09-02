@@ -47,11 +47,11 @@ export default class Runnable {
 
 	get progress(){ return this._item.progress; }
 	set progress(v) {
-		this._item.progress=v;
 
-		if ( this.item.progress >= this.item.length ) {
+		if ( v >= this.item.length ) {
 			Game.useWith( this.item, this.target );
 		}
+		this.item.progress = v;
 
 	}
 

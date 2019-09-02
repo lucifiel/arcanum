@@ -33,6 +33,7 @@ export default class ProtoItem extends Item {
 	constructor(vars=null){
 
 		super(vars);
+
 		this.type = 'wearable';
 
 		this.level = this.level || 1;
@@ -40,7 +41,6 @@ export default class ProtoItem extends Item {
 		if ( this.attack ) {
 
 			this.attack.damage = this.attack.damage || this.attack.dmg;
-			if ( !this.attack.tohit ) this.attack.tohit = 1;
 
 		}
 

@@ -119,8 +119,7 @@ export default class ModStat {
 		this._pct += amt*mod.pct;
 		this._bonus += amt*mod.bonus;
 
-		console.log('applying MOD: ' + mod.toString() + ' x' + amt );
-		console.log('new val: ' + this.value );
+		console.log(' MOD: ' + mod.toString() + ' x' + amt );
 
 		let cur = this.mods[ mod.id ];
 		if ( cur === undefined ) {

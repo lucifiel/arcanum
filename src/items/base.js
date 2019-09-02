@@ -112,24 +112,25 @@ export default {
 	valueOf() { return this._value; },
 
 	/**
-	 * @property {string|string[]} tag - tag to distinguish between
+	 * @property {string[]} tags - tag to distinguish between
 	 * item subtypes.
 	 */
 	get tags() { return this._tags;},
 	set tags(v) {
 
-		if ( typeof v === 'string') this._tags = v.split(',');
-		else if ( !v ) this._tags = null;
-		else if ( Array.isArray(v) ) this._tags = v;
+		if ( typeof v === 'string') {
+			this._tags = v.split(',');
+		} else if ( !v ) this._tags = null;
 		else if ( typeof v === 'object' ) {
-
 			let a = [];
 			for( let p in v ) {
-				a.push(p);
+				a.push( v[p] );
 			}
 			this._tags = a;
 
-		} else this._tags = null;
+		} else {
+			this._tags = null;
+		}
 
 	},
 
@@ -292,6 +293,7 @@ export default {
 	 * @param {string} tag
 	 */
 	addTag( tag ) {
+		console.log( this.id + ' adding tags: ' + tag );
 		if ( this._tags === null || this._tags === undefined) this._tags = [ tag ];
 		else if ( !this._tags.includes(tag) ) this._tags.push(tag);
 	},
@@ -329,6 +331,7 @@ export default {
 	 * @param {string} t - tag to test.
 	 * @returns {boolean}
 	 */
-	hasTag( t ) { return this._tags && this._tags.includes(t); }
+	hasTag( t ) {
+		return (this.tags) && this._tags.includes(t); }
 
 }

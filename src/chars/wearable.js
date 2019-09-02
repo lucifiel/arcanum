@@ -62,7 +62,6 @@ export default class Wearable {
 
 		//console.log('this.attack: ' + this.attack );
 		this.type = 'wearable';
-
 	}
 
 	maxed() { return false; }

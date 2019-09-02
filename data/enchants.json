@@ -14,7 +14,7 @@
 		},
 		"length":30,
 		"cost":{
-			"earthgem":1,
+			"earthgem":0,
 			"mana":5
 		},
 		"mod":{
@@ -35,7 +35,7 @@
 		},
 		"length":30,
 		"cost":{
-			"managem":1,
+			"managem":0,
 			"mana":5
 		},
 		"mod":{

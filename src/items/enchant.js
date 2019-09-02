@@ -17,13 +17,13 @@ export default class Enchant extends Action {
 	}
 
 	/**
-	 * Test if enchantment can be applied to target.
-	 * @param {Item} target
+	 * Test if enchantment can be applied to target item.
+	 * @param {Item} it
 	 */
-	canApply( target ) {
+	canApply( it ) {
 
 		let t = this._target;
-		return !t || target.type === t || target.kind === t || target.hasTag(t);
+		return !t || it.type === t || it.kind === t || it.hasTag(t);
 
 	}
 
