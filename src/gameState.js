@@ -140,14 +140,6 @@ export default class GameState {
 			if ( typeof this.slots[p] === 'string') this.slots[p] = this.getItem(this.slots[p] );
 		}
 
-		if ( this.curAction ) {
-
-			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
-			if ( this.curAction.type === 'dungeon') {
-				this.curAction = this.raid;
-			} else if ( typeof this.curAction === 'object') this.curAction.revive(this);
-		}
-
 		if ( this.quickslots ) {
 			this.quickslots = this.quickslots.map( v=>this.getItem(v) );
 		}
@@ -156,6 +148,19 @@ export default class GameState {
 		this.inventory.revive( this );
 
 		this.player.revive(this);
+
+		if ( this.curAction ) {
+
+			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
+			if ( this.curAction.type === 'dungeon') {
+				this.curAction = this.raid;
+			} else if ( typeof this.curAction === 'object') {
+
+				if ( typeof this.curAction.revive === 'function' ) this.curAction.revive(this);
+
+			}
+
+		}
 
 	}
 

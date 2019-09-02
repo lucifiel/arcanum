@@ -18,6 +18,7 @@ import { mergeSafe } from 'objecty';
 import ZeroSum from './items/zerosum';
 import ProtoItem from './items/protoItem';
 import Material from './chars/material';
+import Enchant from './items/enchant';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -223,6 +224,7 @@ export default {
 		gd.actions = this.initItems( dataLists['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
 
+		gd.enchants =this.initItems( dataLists['enchants'], Enchant, null, 'enchant' );
 		gd.sections = this.initItems( dataLists['sections']);
 
 		gd.player = this.items.player = this.initPlayer( dataLists['player'], gd.items.player );
