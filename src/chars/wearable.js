@@ -33,6 +33,12 @@ export default class Wearable {
 	get armor(){ return this._armor; }
 	set armor(v) { this._armor = v; }
 
+	get tohit() { return this._attack ? this._attack.tohit : this.tohit; }
+	set tohit(v) {
+		if ( this._attack ) this._attack.tohit = v;
+		else this.tohit = v;
+	}
+
 	get attack() { return this._attack; }
 	set attack(v) {
 

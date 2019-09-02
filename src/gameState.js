@@ -71,7 +71,7 @@ export default class GameState {
 
 		this.initMaterials( this.materials );
 
-		this.inventory = new Inventory( this.items.inv || baseData.inventory || {max:5} );
+		this.inventory = new Inventory( this.items.inv || baseData.inventory || {max:3} );
 		this.items.inv = this.inventory;
 
 		this.equip = new Equip( baseData.equip );
@@ -145,7 +145,7 @@ export default class GameState {
 			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
 			if ( this.curAction.type === 'dungeon') {
 				this.curAction = this.raid;
-			}
+			} else if ( typeof this.curAction === 'object') this.curAction.revive(this);
 		}
 
 		if ( this.quickslots ) {

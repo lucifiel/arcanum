@@ -108,14 +108,16 @@ export default {
 				}
 
 				if ( typeof sub !== 'object' ) results[subPath] = sub;
-				else if ( sub instanceof Mod ) results[subPath] = sub.toString();
 				else {
 
 					if ( sub.skipLocked ) {
 						let refItem = Game.getItem(p);
 						if ( refItem && refItem.locked || refItem.disabled ) continue;
-					}
-					this.effectList( sub, results, subPath );
+					} else if ( sub.toString && sub.toString !== Object.toString ) {
+
+						resuts[subPath] = sub.toString();
+
+					} else this.effectList( sub, results, subPath );
 
 				}
 

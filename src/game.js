@@ -8,6 +8,7 @@ import Range from './range';
 import ItemGen from './itemgen';
 import TechTree from './techTree';
 import Dot from './chars/dot';
+import Runnable from './composites/runnable';
 
 /**
  * @note these refer to Code-events, not in-game events.
@@ -270,6 +271,10 @@ export default {
 
 	},
 
+	/**
+	 *
+	 * @param {boolean} [resume=false] - resume current action afterwards?
+	 */
 	doRest( resume=false ) {
 
 		this.state.resumeAction = resume===true ? this.state.curAction : null;
@@ -467,7 +472,7 @@ export default {
 
 		} else {
 
-			if ( it.slot && this.state.getSlot(it.slot, it.type) === it )return;
+			if ( it.slot && this.state.getSlot( it.slot, it.type) === it ) return;
 
 			this.payCost( it.cost );
 			return this.doItem(it);
@@ -477,15 +482,46 @@ export default {
 
 	/**
 	 *
-	 * @param {Enchant} e
+	 * @param {Item} it
 	 * @param {Item} targ - enchant target.
 	 */
-	enchant( e, targ ) {
+	tryUseWith( it, targ ) {
 
-		if ( !this.tryItem(e) ) return;
+		if ( targ === null || targ === undefined ) return;
 
-		if ( e.mod ) targ.applyMods( e.mod, 1 );
-		if ( e.effect ) targ.applyVars( e.effect, 1 );
+		if ( it.buy && !it.owned ) {
+
+			this.payCost( it.buy );
+			it.owned = true;
+
+		} else {
+
+			this.payCost( it.cost );
+
+			if ( !it.length ) this.useWith( it, targ );
+			else {
+
+				let act = new Runnable( {item:it,target:targ});
+				this.setAction( act );
+
+			}
+		}
+
+	},
+
+	/**
+	 * Use an item in conjunction with another item.
+	 * @param {Item} it
+	 * @param {Item} targ - use target.
+	 */
+	useWith( it, targ ) {
+
+		if ( targ === null || targ === undefined ) return;
+
+		it.value++;
+
+		if ( it.mod ) targ.applyMods( it.mod, 1 );
+		if ( it.effect ) targ.applyVars( it.effect, 1 );
 
 	},
 

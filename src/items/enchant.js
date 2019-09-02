@@ -1,5 +1,5 @@
 import Action from './action';
-
+import Game from '../game';
 
 export default class Enchant extends Action {
 
@@ -25,6 +25,10 @@ export default class Enchant extends Action {
 		let t = this._target;
 		return !t || target.type === t || target.kind === t || target.hasTag(t);
 
+	}
+
+	complete(){
+		Game.doRest();
 	}
 
 }

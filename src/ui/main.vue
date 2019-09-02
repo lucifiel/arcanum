@@ -219,7 +219,7 @@ export default {
 		 * @param {Item} targ - enchant target.
 		 */
 		onEnchant( e, targ ) {
-			this.game.enchant( e, targ );
+			this.game.tryUseWith( e, targ );
 		},
 
 		onSell(it) {
