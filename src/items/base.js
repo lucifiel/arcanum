@@ -1,7 +1,7 @@
 import {changes, jsonify} from 'objecty';
 import Percent from '../percent';
 import Game from '../game';
-import ModStat from '../modStat';
+import Stat from '../stat';
 import Mod from '../mod';
 
 export function mergeClass( destClass, src ) {
@@ -157,7 +157,7 @@ export default {
 				if (  p === 'skipLocked' || p === 'value') continue;
 
 				targ = this[p];
-				if ( targ instanceof ModStat || targ instanceof Mod ) {
+				if ( targ instanceof Stat || targ instanceof Mod ) {
 					console.log('applying mod to stat: '+ p);
 					targ.apply( m[p], amt );
 				} else if ( typeof m[p] === 'object' ) {
@@ -224,7 +224,7 @@ export default {
 
 		} else if ( typeof mods === 'number') {
 
-			if ( targ instanceof ModStat || targ instanceof Mod ) targ.apply( mods, amt );
+			if ( targ instanceof Stat || targ instanceof Mod ) targ.apply( mods, amt );
 			else if ( typeof targ === 'object') targ.value = (targ.value || 0 ) + amt*mods;
 
 			// nothing can be done if targ is just a number. no parent object.

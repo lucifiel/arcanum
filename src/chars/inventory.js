@@ -1,5 +1,5 @@
 import Wearable from "./wearable";
-import ModStat from "../modStat";
+import Stat from "../stat";
 import Base, {mergeClass} from '../items/base';
 
 export default class Inventory {
@@ -17,7 +17,7 @@ export default class Inventory {
 	}
 
 	get max() { return this._max; }
-	set max(v) { this._max = v instanceof ModStat ? v : new ModStat(v); }
+	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
 
 	constructor(vars=null){
 

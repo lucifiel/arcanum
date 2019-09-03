@@ -1,7 +1,7 @@
 import Range from '../range';
 import Base, {mergeClass} from '../items/base';
 import {tryDamage} from '../composites/raid';
-import ModStat from '../modStat';
+import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';
 import GameState from '../gameState';
@@ -79,7 +79,7 @@ export default class Char {
 	}
 
 	get regen() { return this._regen; }
-	set regen(v) { this._regen = ( v instanceof ModStat ) ? v : new ModStat(v); }
+	set regen(v) { this._regen = ( v instanceof Stat ) ? v : new Stat(v); }
 
 	get alive() { return this.hp > 0; }
 	set alive(v) { if ( !v ) this.hp = 0;}

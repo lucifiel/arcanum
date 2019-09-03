@@ -86,7 +86,7 @@ var vm = new Vue({
 
 		loadSave() {
 
-			let str = window.localStorage.getData( 'gameData');
+			let str = window.localStorage.getItem( 'gameData');
 			if ( !str ) console.log('no data saved.');
 			this.loadData( str );
 

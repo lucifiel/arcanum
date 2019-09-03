@@ -1,5 +1,5 @@
 import { defineExcept } from 'objecty';
-import ModStat from '../modStat';
+import Stat from '../stat';
 import Base, {mergeClass} from './base';
 
 /**
@@ -20,20 +20,20 @@ export default class GData {
 	set disabled(v) { this._disabled = v;}
 
 	/**
-	 * @property {ModStat} max
+	 * @property {Stat} max
 	 */
 	get max() { return this._max; }
 	set max(v) {
 		if ( this._max ) {
 
-			if ( v instanceof ModStat ) this._max = v;
+			if ( v instanceof Stat ) this._max = v;
 			else if ( !isNaN(v) ) this._max.base = v;
 
-		} this._max = v instanceof ModStat ? v : new ModStat(v);
+		} this._max = v instanceof Stat ? v : new Stat(v);
 	}
 
 	/**
-	 * @property {ModStat} rate - rate of stat change in value/second.
+	 * @property {Stat} rate - rate of stat change in value/second.
 	 */
 	get rate() { return this._rate; }
 	set rate(v){
@@ -43,7 +43,7 @@ export default class GData {
 			if ( typeof v === 'object' ) Object.assign( this._rate, v);
 			else this._rate.base = v;
 
-		} else this._rate = ( v instanceof ModStat ) ? v : new ModStat(v);
+		} else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
 
 	}
 

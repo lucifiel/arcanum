@@ -1,4 +1,4 @@
-import ModStat from '../modStat';
+import Stat from '../stat';
 import GData from './gdata';
 
 export default class Resource extends GData {
@@ -33,14 +33,14 @@ export default class Resource extends GData {
 	set delta(v) { this._delta = v; }
 
 	/**
-	 * @property {ModStat} max - maximum resource value.
+	 * @property {Stat} max - maximum resource value.
 	 */
 	get max() { return this._max; }
 	set max(v) {
 
 		if ( this._max == null ) {
 
-			this._max = new ModStat(v);
+			this._max = new Stat(v);
 
 		} else {
 			this._max.base = v;
@@ -63,7 +63,7 @@ export default class Resource extends GData {
 		 */
 		if ( this.unit === null || this.unit === undefined ) this.unit = true;
 
-		if ( this._rate === null || this.rate === undefined ) this._rate = new ModStat(0);
+		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
 
 		this._lastValue = this._value;
 

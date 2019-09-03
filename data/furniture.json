@@ -271,7 +271,7 @@
 		"require":"neophyte",
 		"cost":{
 			"gold":200,
-			"reearch":200,
+			"research":200,
 			"gems":5,
 			"space":2
 		},

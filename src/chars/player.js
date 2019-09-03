@@ -1,4 +1,4 @@
-import ModStat from "../modStat";
+import Stat from "../stat";
 import Resource from "../items/resource";
 import Range from '../range';
 import GData from "../items/gdata";
@@ -131,7 +131,7 @@ export default class Player extends Char {
 
 		this._resists = this._resists || {};
 		for( let p in this._resists ) {
-			this._resists[p] = new ModStat( this._resists[p]);
+			this._resists[p] = new Stat( this._resists[p]);
 		}
 
 		this._statuses = this._statuses || {
@@ -245,7 +245,7 @@ export default class Player extends Char {
 
 	addResist( kind, amt ) {
 
-		if ( !this._resists[kind] ) this._resists[kind] = new ModStat( amt );
+		if ( !this._resists[kind] ) this._resists[kind] = new Stat( amt );
 		else this._resists[kind].base += amt;
 
 	}

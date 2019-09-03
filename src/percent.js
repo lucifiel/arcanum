@@ -19,6 +19,8 @@ export default class Percent {
 		return Math.random() < this.pct;
 	}
 
+	toString() { return (100*this.pct) + '%';}
+
 	constructor( val ) {
 
 		if ( typeof val === 'string') {

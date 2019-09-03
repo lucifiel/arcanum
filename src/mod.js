@@ -1,5 +1,5 @@
 import Percent from './percent';
-import ModStat from './modStat';
+import Stat from './stat';
 
 export const ModTest = /^([\+\-]?\d+\.?\d*\b)?(?:([\+\-]?\d+\.?\d*)\%)?$/i;
 
@@ -116,7 +116,7 @@ export default class Mod {
 	applyTo( obj, p, amt ) {
 
 		let targ = obj[p];
-		if ( targ instanceof ModStat ) targ.applyMod( this, amt );
+		if ( targ instanceof Stat ) targ.applyMod( this, amt );
 		else if ( targ instanceof Mod) targ.apply( this, amt );
 		else if ( typeof targ === 'object') {
 
