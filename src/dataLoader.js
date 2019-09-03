@@ -1,4 +1,4 @@
-import Item from 'items/item';
+import GData from 'items/gdata';
 import Player from './chars/player';
 
 import Range, {RangeTest} from './range';
@@ -36,7 +36,7 @@ const IdTest = /^[A-Za-z_]+\w*$/;
 export default {
 
 	/**
-	 * @property {Object.<string,Object>} templates - default Item templates.
+	 * @property {Object.<string,Object>} templates - default GameData templates.
 	 * item id => default item data.
 	 */
 	templates:null,
@@ -197,12 +197,12 @@ export default {
 
 		gd.resources = this.initItems( dataLists['resources'], Resource );
 
-		gd.upgrades = this.initItems( dataLists['upgrades'], Item, null, 'upgrade' );
+		gd.upgrades = this.initItems( dataLists['upgrades'], GData, null, 'upgrade' );
 
-		gd.homes = this.initItems( dataLists['homes'], Item, 'home', 'home' );
+		gd.homes = this.initItems( dataLists['homes'], GData, 'home', 'home' );
 		gd.homes.forEach( v=>v.slot='home');
 
-		this.initItems( dataLists['furniture'], Item, 'furniture', 'furniture' );
+		this.initItems( dataLists['furniture'], GData, 'furniture', 'furniture' );
 		this.initItems( dataLists['skills'], Skill );
 
 		gd.monsters = this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
@@ -217,8 +217,8 @@ export default {
 
 		gd.materials = this.initItems( dataLists['materials'], Material, 'material', 'material ');
 
-		gd.events = this.initItems( dataLists['events'], Item, null, 'event' );
-		gd.classes = this.initItems( dataLists['classes'], Item, 'class', 'class' );
+		gd.events = this.initItems( dataLists['events'], GData, null, 'event' );
+		gd.classes = this.initItems( dataLists['classes'], GData, 'class', 'class' );
 
 		gd.actions = this.initItems( dataLists['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );
@@ -344,7 +344,7 @@ export default {
 		return new Function( 'state', 'player', 'target', 'return ' + text );
 	},
 
-	initItems( dataList, UseClass=Item, tag=null, type=null ) {
+	initItems( dataList, UseClass=GData, tag=null, type=null ) {
 
 		for( let i = dataList.length-1; i >= 0; i-- ) {
 

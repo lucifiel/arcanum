@@ -1,6 +1,6 @@
 import Inventory from './chars/inventory';
 import Raid from './composites/raid';
-import Item from './items/item';
+import GData from './items/gdata';
 import Equip from './chars/equip';
 import Runnable from './composites/runnable';
 
@@ -67,7 +67,7 @@ export default class GameState {
 		/**
 		 * @property {string} restAction - default resting action.
 		 */
-		this.restAction = this.restAction || this.getItem( 'rest' );
+		this.restAction = this.restAction || this.getData( 'rest' );
 
 		this.quickslots = this.quickslots || [];
 
@@ -130,7 +130,7 @@ export default class GameState {
 
 	revive() {
 
-		if ( typeof this.restAction === 'string') this.restAction = this.getItem( this.restAction );
+		if ( typeof this.restAction === 'string') this.restAction = this.getData( this.restAction );
 
 		/**
 		 * @compatibility
@@ -139,11 +139,11 @@ export default class GameState {
 
 		for( let p in this.slots ) {
 
-			if ( typeof this.slots[p] === 'string') this.slots[p] = this.getItem(this.slots[p] );
+			if ( typeof this.slots[p] === 'string') this.slots[p] = this.getData(this.slots[p] );
 		}
 
 		if ( this.quickslots ) {
-			this.quickslots = this.quickslots.map( v=>this.getItem(v) );
+			this.quickslots = this.quickslots.map( v=>this.getData(v) );
 		}
 
 		this.equip.revive( this );
@@ -153,7 +153,7 @@ export default class GameState {
 
 		if ( this.curAction ) {
 
-			if ( typeof this.curAction === 'string' ) this.curAction = this.getItem( this.curAction );
+			if ( typeof this.curAction === 'string' ) this.curAction = this.getData( this.curAction );
 			else if ( typeof this.curAction === 'object') {
 
 				this.curAction = new Runnable( this.curAction );
@@ -190,8 +190,8 @@ export default class GameState {
 
 	/**
 	 * Create lists of tagged items.
-	 * @param {Object.<string,Item>} items
-	 * @returns {Object.<string,Item[]>} lists
+	 * @param {Object.<string,GData>} items
+	 * @returns {Object.<string,GData[]>} lists
 	 */
 	makeLists( items ) {
 
@@ -220,7 +220,7 @@ export default class GameState {
 
 	/**
 	 *
-	 * @param {Item} it
+	 * @param {GData} it
 	 * @param {number} slotNum
 	 */
 	setQuickSlot( it, slotNum ) {
@@ -246,7 +246,7 @@ export default class GameState {
 	/**
 	 * Get quickslot item for slot number.
 	 * @param {number} slotNum
-	 * @returns {?Item}
+	 * @returns {?GData}
 	 */
 	getQuickSlot( slotNum ) {
 		let ind = slotNum > 0 ? slotNum - 1 : 9;
@@ -256,7 +256,7 @@ export default class GameState {
 	/**
 	 *
 	 * @param {string} tag
-	 * @returns {Item[]|undefined}
+	 * @returns {GData[]|undefined}
 	 */
 	getTagList( tag ) {
 		return this.tagLists[tag];
@@ -285,7 +285,7 @@ export default class GameState {
 	addMax( id, amt=10) {
 
 		console.log('adding max');
-		let it = this.getItem(id);
+		let it = this.getData(id);
 		if ( !it) return;
 
 		it.max += amt;
@@ -293,7 +293,7 @@ export default class GameState {
 
 	fillItem( id ) {
 
-		let it = this.getItem(id);
+		let it = this.getData(id);
 		if ( !it || !it.max ) return;
 
 		it.value = it.max.value;
@@ -316,7 +316,7 @@ export default class GameState {
 	/**
 	 * Return a list of items containing given tags.
 	 * @param {string[]} tags
-	 * @returns {Item[]}
+	 * @returns {GData[]}
 	 */
 	filterByTag( tags ) {
 
@@ -361,7 +361,7 @@ export default class GameState {
 	/**
 	 * Set slotted item for exclusive items.
 	 * @param {string} id
-	 * @param {?Item} v - item to place in slot, or null.
+	 * @param {?GData} v - item to place in slot, or null.
 	 */
 	setSlot(id,v) {
 		if ( v && (v.type === 'wearable' || v.type === 'furniture') ) return;
@@ -372,12 +372,12 @@ export default class GameState {
 	 * Find item in base items, equip, or inventory.
 	 * @param {string} id
 	 */
-	findItem(id) {
+	findData(id) {
 
-		return this.getItem(id) || this.inventory.find(id) || this.equip.find(id);
+		return this.getData(id) || this.inventory.find(id) || this.equip.find(id);
 	}
 
-	getItem(id) { return this.items[id];}
+	getData(id) { return this.items[id];}
 
 	getMaterial(id) { return this.matsById[id]; }
 

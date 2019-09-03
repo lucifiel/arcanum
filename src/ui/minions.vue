@@ -24,11 +24,11 @@ export default {
 
 		totalLore() { return this.animals.value + this.lore.value + this.demonology.value; },
 
-		animals() { return Game.state.getItem('animals');},
+		animals() { return Game.state.getData('animals');},
 
-		lore() { return Game.state.getItem('lore');},
+		lore() { return Game.state.getData('lore');},
 
-		demonology() { return Game.state.getItem('demonology');},
+		demonology() { return Game.state.getData('demonology');},
 
 		items(){
 			return Game.state.monsters.filter( v=>v.value>=1 );

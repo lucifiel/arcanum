@@ -1,7 +1,7 @@
 import ModStat from "../modStat";
 import Resource from "../items/resource";
 import Range from '../range';
-import Item from "../items/item";
+import GData from "../items/gdata";
 import Game from '../game';
 import { tryDamage } from '../composites/raid';
 
@@ -252,7 +252,7 @@ export default class Player extends Char {
 
 	/**
 	 * Set primary spell attack.
-	 * @param {Item} s
+	 * @param {GData} s
 	 */
 	setPrimary( s ) {
 
@@ -268,7 +268,7 @@ export default class Player extends Char {
 		super.revive(state);
 
 		if ( this.weapon && (typeof this.weapon === 'string') ) this.weapon = state.equip.find( this.weapon );
-		this.primary = this.primary && typeof this.primary === 'string' ? state.getItem( this.primary ) : this.primary;
+		this.primary = this.primary && typeof this.primary === 'string' ? state.getData( this.primary ) : this.primary;
 
 	}
 

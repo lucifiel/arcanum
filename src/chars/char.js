@@ -118,7 +118,7 @@ export default class Char {
 		if ( this.template ) {
 
 			console.log('restoring from template');
-			let it = state.getItem( this.template );
+			let it = state.getData( this.template );
 			if ( it ) this.mergeSafe( this, it );
 			else console.warn('template not found: ' + this.template );
 

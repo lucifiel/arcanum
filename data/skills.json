@@ -345,9 +345,10 @@
 	},
 	{
 		"id":"potions",
-		"school":["nature","water"],
+		"school":["water"],
 		"name":"Potions",
-		"require":["cauldron","state.crafting>=5"],
+		"require":"state.crafting>=3&&state.alchemy>=1&&state.herbs>=2",
+		"need":["potsource","workspace"],
 		"run":{
 			"stamina":0.5
 		},
@@ -364,7 +365,7 @@
 		"require":"state.tier0>0&&state.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
 		"run":{
-			"stamina":0.5,
+			"stamina":0.4,
 			"research":1
 		},
 		"result":{

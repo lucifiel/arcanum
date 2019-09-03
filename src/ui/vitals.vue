@@ -28,7 +28,7 @@ export default {
 
 		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
 		resting() { return this.state.curAction === this.state.restAction; },
-		stamina(){ return this.state.getItem('stamina'); }
+		stamina(){ return this.state.getData('stamina'); }
 	}
 
 }
@@ -39,7 +39,7 @@ export default {
 	<div class="vitals">
 		<!-- anything not a table is a headache -->
 		<table>
-		
+
 		<tr><td><button class="small-btn" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
@@ -48,7 +48,7 @@ export default {
 		<tr><td>stamina</td>
 		<td><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,stamina)"/></td></tr>
-		
+
 		<tr><td>hp</td>
 		<td><progbar class="hp" :value="player.hp.value" :max="player.hp.max"
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,player.hp)"/></td></tr>

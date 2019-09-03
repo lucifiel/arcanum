@@ -50,13 +50,13 @@ export default class Dot {
 	}
 
 	revive(state) {
-		if ( this.source && typeof this.source === 'string') this.source = state.getItem( this.source );
+		if ( this.source && typeof this.source === 'string') this.source = state.getData( this.source );
 	}
 
 	/**
 	 * Ticks dt and returns the amount the dot has actually ticked,
 	 * (allowing for seconds-only updates.)
-	 * @param {number} dt 
+	 * @param {number} dt
 	 */
 	tick(dt) {
 

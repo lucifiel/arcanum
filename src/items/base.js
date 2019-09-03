@@ -276,7 +276,7 @@ export default {
 	 * @param {number} amt - times modifier applied.
 	 */
 	newSub( obj, key, mod, amt ) {
-		console.warn('UNIMPLEMENTED: New SubStat: ' + key );
+		console.warn( this.id + ': UNIMPLEMENTED: ' + mod + ' New SubStat: ' + key );
 	},
 
 	/**

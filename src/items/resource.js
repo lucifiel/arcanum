@@ -1,7 +1,7 @@
 import ModStat from '../modStat';
-import Item from './item';
+import GData from './gdata';
 
-export default class Resource extends Item {
+export default class Resource extends GData {
 
 	get require() {
 		return super.require ||

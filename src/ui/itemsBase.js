@@ -48,7 +48,7 @@ export default {
 
 			} else if ( type === 'string') {
 
-				let it = Game.getItem(obj);
+				let it = Game.getData(obj);
 				results[ it ? it.name : obj ] = true;
 
 			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
@@ -71,7 +71,7 @@ export default {
 
 			if ( typeof obj === 'string' ) {
 
-				let it = Game.getItem(obj);
+				let it = Game.getData(obj);
 				results[ it ? it.name : obj ] = true;
 				return;
 			}
@@ -100,7 +100,7 @@ export default {
 				} else {
 
 					// check if sub-prop refers to an item.
-					let refItem = Game.getItem(p);
+					let refItem = Game.getData(p);
 					if ( refItem ) subPath = refItem.name;
 
 					subPath = propPath ? propPath + ' ' + subPath : subPath;
@@ -111,7 +111,7 @@ export default {
 				else {
 
 					if ( sub.skipLocked ) {
-						let refItem = Game.getItem(p);
+						let refItem = Game.getData(p);
 						if ( refItem && refItem.locked || refItem.disabled ) continue;
 					} else if ( sub.toString && (sub.toString != Object.prototype.toString) ) {
 

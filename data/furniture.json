@@ -266,7 +266,7 @@
 	{
 		"id":"enchanttable",
 		"name":"enchanting table",
-		"tags":"workspace",
+		"tags":"workspace,enchantsource",
 		"desc":"Runed table for enchanting",
 		"require":"neophyte",
 		"cost":{

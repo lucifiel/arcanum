@@ -1,6 +1,6 @@
-import Item from './item';
+import GData from './gdata';
 
-export default class Spell extends Item {
+export default class Spell extends GData {
 
 	toJSON(){
 

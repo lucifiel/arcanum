@@ -1,7 +1,7 @@
-import Item from './item';
+import GData from './gdata';
 import Game from '../game';
 
-export default class Action extends Item {
+export default class Action extends GData {
 
 	valueOf(){ return this.locked ? 0 : this._value; }
 

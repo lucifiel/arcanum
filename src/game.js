@@ -1,7 +1,7 @@
 import DataLoader from './dataLoader';
 import VarPath from './varPath';
 import {quickSplice} from './util';
-import Item from './items/item';
+import GData from './items/gdata';
 import Log from './log.js';
 import GameState from './gameState';
 import Range from './range';
@@ -256,7 +256,7 @@ export default {
 
 	/**
 	 * Toggles an action on or off.
-	 * @param {Item} act
+	 * @param {GData} act
 	 * @returns {boolean} - true if action is now current, false otherwise.
 	 */
 	toggleAction(act) {
@@ -336,7 +336,7 @@ export default {
 			return true;
 		}
 
-		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getItem(v);
+		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getData(v);
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
 		return fill.locked || fill.value >= fill.max.value;
 
@@ -344,7 +344,7 @@ export default {
 
 	/**
 	 * Completely disable an item - cannot be purchased/used/etc.
-	 * @param {string|Item|Array} it
+	 * @param {string|GData|Array} it
 	 */
 	disable( it ) {
 
@@ -353,7 +353,7 @@ export default {
 
 			if ( typeof it === 'string' ) {
 
-				let item = this.getItem( it );
+				let item = this.getData( it );
 				if ( !item ) {
 
 					let list = this.state.getTagList(it);
@@ -385,7 +385,7 @@ export default {
 
 	/**
 	 * Attempt to sell one unit of an item.
-	 * @param {Item} it
+	 * @param {GData} it
 	 * @returns {boolean}
 	 */
 	trySell(it) {
@@ -395,12 +395,12 @@ export default {
 		let costObj = it.cost;
 		if ( !isNaN(costObj) ) {
 
-			this.getItem('gold').value += costObj*this.state.sellRate;
+			this.getData('gold').value += costObj*this.state.sellRate;
 
 		} else if ( typeof costObj === 'object' ) {
 
-			if ( costObj.gold ) this.getItem('gold').value += costObj.gold*this.state.sellRate;
-			if ( costObj.space ) this.getItem('space').value += costObj.space;
+			if ( costObj.gold ) this.getData('gold').value += costObj.gold*this.state.sellRate;
+			if ( costObj.space ) this.getData('space').value += costObj.space;
 
 		}
 
@@ -413,7 +413,7 @@ export default {
 
 	/**
 	 * Remove all quantity of an item.
-	 * @param {string|string[]|Item|Item[]} it
+	 * @param {string|string[]|GData|GData[]} it
 	 */
 	removeAll( it ){
 
@@ -426,7 +426,7 @@ export default {
 
 		} else {
 
-			let item = this.getItem( it );
+			let item = this.getData( it );
 			if ( item ) this.remove( it, it.value );
 			else {
 
@@ -441,7 +441,7 @@ export default {
 
 	/**
 	 * Attempt to pay the cost to permanently buy an item.
-	 * @param {Item} it
+	 * @param {GData} it
 	 * @returns {boolean}
 	 */
 	tryBuy(it) {
@@ -455,7 +455,7 @@ export default {
 
 	/**
 	 * Attempt to pay for an item, and if the cost is met, apply it.
-	 * @param {Item} it
+	 * @param {GData} it
 	 * @returns {boolean} - true if item is used. note that 'buying' an item
 	 * does not actually use it, and returns false.
 	 */
@@ -481,8 +481,8 @@ export default {
 
 	/**
 	 *
-	 * @param {Item} it
-	 * @param {Item} targ - enchant target.
+	 * @param {GData} it
+	 * @param {GData} targ - enchant target.
 	 */
 	tryUseWith( it, targ ) {
 
@@ -511,8 +511,8 @@ export default {
 	/**
 	 * Use an item in conjunction with another item.
 	 * Item is used immediately. No running or costs necessary.
-	 * @param {Item} it
-	 * @param {Item} targ - use target.
+	 * @param {GData} it
+	 * @param {GData} targ - use target.
 	 */
 	useWith( it, targ ) {
 
@@ -528,7 +528,7 @@ export default {
 
 	/**
 	 * Get a game item without paying cost.
-	 * @param {Item} it
+	 * @param {GData} it
 	 * @param {number} count
 	 */
 	doItem( it, count=1 ) {
@@ -586,7 +586,7 @@ export default {
 	 */
 	remove( id, amt=1 ){
 
-		let it = typeof id === 'string' ? this.getItem(id) : id;
+		let it = typeof id === 'string' ? this.getData(id) : id;
 
 		if ( !it ) {
 
@@ -600,7 +600,7 @@ export default {
 			if ( this.state.getSlot(it.id) === it ) this.state.setSlot(it.id, null);
 		}
 
-		if ( it.cost && it.cost.space ) this.getItem('space').value += amt*it.cost.space;
+		if ( it.cost && it.cost.space ) this.getData('space').value += amt*it.cost.space;
 
 		it.value -= amt;
 		if ( it.mod ) this.removeMod( it.mod, amt );
@@ -612,7 +612,7 @@ export default {
 
 	/**
 	 * Attempt to unlock an item.
-	 * @param {Item} it
+	 * @param {GData} it
 	 * @returns {boolean} true on success.
 	 */
 	tryUnlock( it ) {
@@ -640,7 +640,7 @@ export default {
 	/**
 	 * Called when an item's modifier to other items changes.
 	 * The item must be subtracted and re-added to ensure mods are correct.
-	 * @param {Item} item
+	 * @param {GData} item
 	 */
 	modChanged( it ) {
 
@@ -653,7 +653,7 @@ export default {
 	/**
 	 * Return the results of a testing object.
 	 * @param {string|function|Object|Array} test - test object.
-	 * @param {?Item} [item=null] - item being used/unlocked.
+	 * @param {?GData} [item=null] - item being used/unlocked.
 	 * @returns {boolean}
 	 */
 	unlockTest( test, item=null ) {
@@ -664,7 +664,7 @@ export default {
 		else if ( type === 'string') {
 
 			// test that another item is unlocked.
-			let it = this.getItem(test);
+			let it = this.getData(test);
 			if ( it === undefined ) {
 
 				// tag test - if any item with the tag is unlocked, test passes.
@@ -693,7 +693,7 @@ export default {
 
 	/**
 	 * Perform the one-time effect of an action, resource, or upgrade.
-	 * @param {Item} effect
+	 * @param {GData} effect
 	 * @param {number} dt - time elapsed.
 	 */
 	applyEffect( effect, dt=1 ) {
@@ -708,7 +708,7 @@ export default {
 			let target, e;
 			for( let p in effect ){
 
-				target = this.getItem(p);
+				target = this.getData(p);
 				e = effect[p];
 
 				if ( target === undefined ) {
@@ -730,7 +730,7 @@ export default {
 
 		} else if ( typeof effect === 'string') {
 
-			let target = this.getItem(effect);
+			let target = this.getData(effect);
 			if ( target !== undefined ) {
 
 				if ( target.type === 'event') this.doEvent( target );
@@ -754,7 +754,7 @@ export default {
 
 			for( let p in mod ) {
 
-				var target = this.getItem( p );
+				var target = this.getData( p );
 
 				if ( target === undefined ) this.modTag( p, mod[p], amt );
 				else {
@@ -840,7 +840,7 @@ export default {
 
 		if ( it.fill ) {
 
-			let t = this.getItem(it.fill);
+			let t = this.getData(it.fill);
 			if ( t && t.maxed() ) return false;
 
 		}
@@ -851,7 +851,7 @@ export default {
 	/**
 	 * Determine if a one-use item can be used. Ongoing/perpetual actions
 	 * test with 'canRun' instead.
-	 * @param {Item} it
+	 * @param {GData} it
 	 */
 	canUse( it ){
 
@@ -865,7 +865,7 @@ export default {
 
 		if ( it.fill ) {
 
-			let t = this.getItem(it.fill);
+			let t = this.getData(it.fill);
 			if ( t && t.maxed() ) return false;
 
 		}
@@ -889,7 +889,7 @@ export default {
 
 			for( let p in cost ) {
 
-				res = this.getItem(p);
+				res = this.getData(p);
 				if ( res ) {
 
 					if ( !isNaN(cost[p]) ) this.remove( res, cost[p]*unit );
@@ -903,7 +903,7 @@ export default {
 		} else if ( typeof cost === 'boolean') return;
 	 	else if ( !isNaN(cost ) ) {
 
-			res = this.getItem('gold');
+			res = this.getData('gold');
 			res.value -= cost*unit;
 			res.dirty = true;
 
@@ -927,7 +927,7 @@ export default {
 
 			for( let p in cost ) {
 
-				res = this.getItem(p);
+				res = this.getData(p);
 				if ( res === undefined || res.value < cost[p]*unit ) return false;
 
 			}
@@ -936,7 +936,7 @@ export default {
 		} else if ( typeof cost === 'boolean') return true;
 		else if (!isNaN(cost) ) {
 
-			res = this.getItem('gold');
+			res = this.getData('gold');
 			if ( !res) console.error('Error: Gold is missing');
 			return res.value >= cost*unit;
 
@@ -1046,13 +1046,13 @@ export default {
 
 	/**
 	 * Decrement lock count on an Item or array of items, etc.
-	 * @param {string|string[]|Item|Item[]} id
+	 * @param {string|string[]|GData|GData[]} id
 	 */
 	unlock( id ) { this.lock(id, -1); },
 
 	/**
 	 * Increment lock counter on item or items.
-	 * @param {string|string[]|Item|Item[]} id
+	 * @param {string|string[]|GData|GData[]} id
 	 */
 	lock(id, amt=1) {
 
@@ -1065,7 +1065,7 @@ export default {
 
 		} else {
 
-			let it = this.getItem(id);
+			let it = this.getData(id);
 			if ( it ) {
 
 				it.locks += amt;
@@ -1107,8 +1107,8 @@ export default {
 	/**
 	 *
 	 * @param {string} id
-	 * @returns {Item|undefined}
+	 * @returns {GData|undefined}
 	 */
-	getItem(id) { return this._items[id]; },
+	getData(id) { return this._items[id]; },
 
 }

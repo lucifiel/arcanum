@@ -23,7 +23,7 @@ export default class Travel {
 
 	revive(state) {
 
-		if ( typeof this._dest === 'string') this.dest = state.getItem(this._dest);
+		if ( typeof this._dest === 'string') this.dest = state.getData(this._dest);
 
 	}
 

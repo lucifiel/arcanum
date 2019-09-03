@@ -186,7 +186,7 @@ export default {
 					if ( key === p ) {
 						if ( e.shiftKey ) this.state.addMax( cheatKeys[p] );
 						else {
-							let it = this.state.getItem( cheatKeys[p] );
+							let it = this.state.getData( cheatKeys[p] );
 							if ( it.locked ) it.locked = false;
 							this.state.fillItem( cheatKeys[p]);
 						}

@@ -59,7 +59,7 @@ export default class ItemGen {
 		let mat = material || data.material;
 		if ( !mat ) mat = this.matForItem( data );
 
-		if ( typeof mat === 'string' ) mat = this.state.getItem( mat );
+		if ( typeof mat === 'string' ) mat = this.state.getData( mat );
 
 		return this.itemClone( data, mat );
 
@@ -75,7 +75,7 @@ export default class ItemGen {
 		if ( amt instanceof Percent && !amt.value ) return null;
 		else if ( amt.value ) amt = amt.value;
 
-		if ( typeof info === 'string' ) {info = this.state.getItem(info);}
+		if ( typeof info === 'string' ) {info = this.state.getData(info);}
 
 		if (!info) {
 			console.log('skipping NULL gen.')
@@ -92,7 +92,7 @@ export default class ItemGen {
 
 		let items = [];
 		for( let p in info ) {
-			var it = this.getLoot( this.state.getItem(p), info[p] );
+			var it = this.getLoot( this.state.getData(p), info[p] );
 			if ( it ) items.push(it );
 		}
 

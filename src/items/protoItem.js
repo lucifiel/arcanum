@@ -1,9 +1,9 @@
-import Item from "./item";
+import GData from "./gdata";
 
 /**
  * Generic prototype for a wearable item.
  */
-export default class ProtoItem extends Item {
+export default class ProtoItem extends GData {
 
 	toJSON() {
 

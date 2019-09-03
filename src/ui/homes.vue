@@ -37,7 +37,7 @@ export default {
 	},
 	computed:{
 
-		space() { return this.state.getItem('space'); },
+		space() { return this.state.getData('space'); },
 
 		curHome() { return this.state.getSlot('home'); },
 

@@ -69,8 +69,8 @@ export default class Runnable {
 
 	revive( state ) {
 
-		if ( typeof this._item === 'string') this._item = state.findItem(this._item);
-		if ( typeof this._target === 'string') this._target = state.findItem(this._target);
+		if ( typeof this._item === 'string') this._item = state.findData(this._item);
+		if ( typeof this._target === 'string') this._target = state.findData(this._target);
 
 	}
 

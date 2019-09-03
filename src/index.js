@@ -73,7 +73,7 @@ var vm = new Vue({
 
 			const file = files[0];
 			if ( !file) return;
-	
+
 			const reader = new FileReader();
 			reader.onload = (e)=>{
 
@@ -86,7 +86,7 @@ var vm = new Vue({
 
 		loadSave() {
 
-			let str = window.localStorage.getItem( 'gameData');
+			let str = window.localStorage.getData( 'gameData');
 			if ( !str ) console.log('no data saved.');
 			this.loadData( str );
 

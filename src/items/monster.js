@@ -1,6 +1,6 @@
-import Item from "./item";
+import GData from "./gdata";
 
-export default class Monster extends Item {
+export default class Monster extends GData {
 
 	constructor(vars=null) {
 

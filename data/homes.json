@@ -88,8 +88,8 @@
 	{
 		"id":"house",
 		"desc":"A modest house in a small town.",
-		"cost":500,
-		"require":"state.tier0>0&&state.arcana.max>=10",
+		"cost":750,
+		"require":"state.tier0>0&&state.arcana.max>=8",
 		"mod":{
 			"space.max":30
 		}
@@ -98,7 +98,7 @@
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
 		"cost":700,
-		"require":"state.tier0&&state.arcana.max>=15",
+		"require":"state.tier0&&state.arcana.max>=12",
 		"mod":{
 			"space.max":25,
 			"gold.rate":0.2,

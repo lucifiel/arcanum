@@ -14,6 +14,7 @@ export default class Enchant extends Action {
 		super(vars);
 
 		this.level = this.level || 0;
+		this.need = this.need || 'enchantsource';
 
 	}
 

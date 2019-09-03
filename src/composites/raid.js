@@ -177,7 +177,7 @@ export default class Raid {
 
 		for( let i = this._enemies.length-1; i>=0; i-- ) this._enemies[i].revive(gameState);
 
-		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getItem(this.dungeon);
+		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getData(this.dungeon);
 
 	}
 
@@ -356,7 +356,7 @@ export default class Raid {
 
 			for( let i = enemy.length-1; i >=0; i-- ) {
 				var e = enemy[i];
-				if ( typeof e === 'string' ) e = Game.getItem(e);
+				if ( typeof e === 'string' ) e = Game.getData(e);
 				this._enemies.push( new Npc( e ) );
 
 				enemyList.push( e.name);
@@ -366,7 +366,7 @@ export default class Raid {
 
 		} else {
 
-			if ( typeof enemy === 'string' ) enemy = Game.getItem( enemy );
+			if ( typeof enemy === 'string' ) enemy = Game.getData( enemy );
 			if ( !enemy) {console.warn( 'Missing Enemy'); return }
 			this._enemies.push( new Npc(enemy ) );
 
@@ -381,7 +381,7 @@ export default class Raid {
 		this.player.timer = this.player.delay;
 
 		if ( enemy.id ) {
-			let tmp = this.state.getItem(enemy.id);
+			let tmp = this.state.getData(enemy.id);
 			if ( tmp ) {
 				tmp.value++;
 			}

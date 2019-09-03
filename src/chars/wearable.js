@@ -73,7 +73,7 @@ export default class Wearable {
 
 		if ( typeof this.material === 'string') this.material = state.getMaterial( this.material );
 
-		if ( typeof this.template === 'string' ) this.template = state.getItem( this.template );
+		if ( typeof this.template === 'string' ) this.template = state.getData( this.template );
 		if ( this.template ) {
 
 			if ( this.armor === null || this.armor === undefined ) this.armor = this.template.armor;
