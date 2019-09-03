@@ -509,7 +509,6 @@
 		"length":10,
 		"verb":"mapping stars",
 		"require":"state.astronomy>=5",
-		"fill":"starcharts",
 		"cost":{
 			"scrolls":1
 		},
@@ -705,7 +704,7 @@
 		"name":"Imbue gem (arcane)",
 		"require":"state.mana.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"mana":5
 		},
 		"effect":{
@@ -717,7 +716,7 @@
 		"name":"Imbue Gem (Fire)",
 		"require":"state.fire.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"fire":5
 		},
 		"effect":{
@@ -729,7 +728,7 @@
 		"name":"imbue gem (air)",
 		"require":"state.air.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"air":5
 		},
 		"effect":{
@@ -741,7 +740,7 @@
 		"name":"imbue stone (earth)",
 		"require":"state.earth.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"earth":5
 		},
 		"effect":{
@@ -753,7 +752,7 @@
 		"name":"Imbue Gem (Water)",
 		"require":"state.water.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"water":5
 		},
 		"effect":{
@@ -765,7 +764,7 @@
 		"name":"imbue gem (light)",
 		"require":"state.light.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"light":5
 		},
 		"effect":{
@@ -777,7 +776,7 @@
 		"name":"Imbue gem (shadow)",
 		"require":"state.shadow.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"shadow":5
 		},
 		"effect":{
@@ -789,7 +788,7 @@
 		"name":"Imbue gem (spirit)",
 		"require":"state.spirit.max>=5&&state.enchanting>2",
 		"cost":{
-			"gem":1,
+			"gems":1,
 			"spirit":5
 		},
 		"effect":{

@@ -11,6 +11,9 @@ export default class Skill extends Action {
 
 	}
 
+	get level() { return this._value; }
+	set level(v) { this._value = v; }
+
 	/**
 	 *
 	 * @param {?Object} [vars=null]
@@ -40,6 +43,7 @@ export default class Skill extends Action {
 		super.complete();
 		if ( this._value > Math.floor(this._max) ) this._value = Math.floor(this._max);
 		this._length += this._length*EXP_RATIO;
+		this.dirty = true;
 
 	}
 

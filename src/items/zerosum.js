@@ -1,4 +1,5 @@
 import Resource from "./resource";
+import Stat from "../stat";
 
 /**
  * A Zero-sum resource starts filled at its maximum value.
@@ -44,7 +45,8 @@ export default class ZeroSum extends Resource {
 	}
 
 	get used() { return this._used; }
-	set used(v) { this._used = v; }
+	set used(v) {
+		this._used = v; }
 
 	/**
 	 * @property {number} unused - amount of resource still available.

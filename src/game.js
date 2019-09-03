@@ -84,13 +84,19 @@ export default {
 
 			this._items = this.state.items;
 
+			//this.initEvents();
+			this.restoreMods();
+
 			techTree = new TechTree( this._items );
 
 			// Code events. Not game events.
 			Events.init(this);
 
-			//this.initEvents();
-			this.restoreMods();
+			for( let p in this._items ) {
+				if ( !this._items[p].locked ) techTree.changed(p);
+			}
+
+
 			this.initTimers();
 
 			this.loaded = true;

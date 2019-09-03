@@ -374,7 +374,7 @@ export default {
 		let res;
 		for( let def of stats ) {
 
-			res = vars[ def.id ] = new Resource( def );
+			res = vars[ def.id ] =  def.zerosum === true ? new ZeroSum(def) : new Resource( def );
 			this.items[def.id] = res;
 
 		}

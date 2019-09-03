@@ -53,7 +53,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist":75,
+			"dist.max":75,
 			"spirit.max":1
 		}
 
@@ -73,7 +73,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist":200,
+			"dist.max":200,
 			"spirit.max":1,
 			"spirit.rate":0.1
 		}
@@ -94,7 +94,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist":100
+			"dist.max":100
 		}
 
 	},
@@ -109,7 +109,7 @@
 			"gold":100
 		},
 		"mod":{
-			"dist":15
+			"dist.max":15
 		}
 
 	},
@@ -125,7 +125,7 @@
 			"gems":2
 		},
 		"mod":{
-			"dist":25
+			"dist.max":25
 		}
 
 	},
@@ -141,7 +141,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist":40
+			"dist.max":40
 		}
 
 	},
@@ -159,7 +159,7 @@
 			"bonedust":20
 		},
 		"mod":{
-			"dist":66
+			"dist.max":66
 		}
 
 	},
@@ -177,7 +177,7 @@
 			"firegem":5
 		},
 		"mod":{
-			"dist":75
+			"dist.max":75
 		}
 
 	},
@@ -193,7 +193,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist":120
+			"dist.max":120
 		}
 
 	},
@@ -207,7 +207,7 @@
 			"research":200
 		},
 		"mod":{
-			"dist":"20%"
+			"dist.max":"20%"
 		}
 
 	},
@@ -217,12 +217,12 @@
 		"name":"travel tent",
 		"require":"naturelore",
 		"desc":"allows you to stay in the wilds longer.",
-		"buy":{
+		"cost":{
 			"gold":100,
 			"research":50
 		},
 		"mod":{
-			"dist":5
+			"dist.max":5
 		}
 
 	},
@@ -234,7 +234,7 @@
 
 		},
 		"mod":{
-			"dist":20
+			"dist.max":20
 		}
 
 	},
