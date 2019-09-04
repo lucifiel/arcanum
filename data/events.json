@@ -83,9 +83,40 @@
 
 	},
 	{
+		"id":"secretfire",
+		"name":"servant of the secret fire",
+		"desc":"",
+		"effect":{
+			"firelore.rate":0.2,
+			"firelore.max":1,
+			"lightlore.rate":0.2,
+			"lightlore.max":1
+		}
+
+	},
+	{
+		"id":"immoral",
+		"desc":"You have taken your first steps on the path of evil. It's a good thing.",
+		"require":"state.evilamt>=2",
+		"effect":{
+			"shadowlore.rate":0.2
+		}
+
+	},
+	{
+		"id":"wicked",
+		"desc":"Your wicked deeds put you on the sure path of evil. A few more steps, and there will be no turning back.",
+		"require":"state.evilamt>=5",
+		"effect":{
+			"shadowlore.max":1,
+			"shadowlore.rate":0.2
+		}
+
+	},
+	{
 		"id":"evil",
-		"name":"wicked",
-		"desc":"You have taken your first step on the path of evil. It's a good thing.",
+		"name":"vile",
+		"desc":"Freed of pitiful notions of right, and morality, the dark arts lie open before you.",
 		"disable":["light","good", "lightlore"],
 		"effect":{
 			"shadow":{

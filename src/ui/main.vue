@@ -312,7 +312,7 @@ export default {
 			<button @click="dispatch('load')">load</button>
 
 			<a class="text-button" id="save-file" href=""
-				download @click="dispatch('save-file',$event)" type="text/json">Get File</a>
+				download @click.self="dispatch('save-file',$event)" type="text/json">Get File</a>
 			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
 			<button id="drop-file" @drop="fileDrop"
 				@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>

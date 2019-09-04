@@ -35,7 +35,7 @@ export default class Enchant extends Action {
 		if ( it.enchants + this.level > it.level ) return false;
 
 		let t = this._target;
-		return !t || it.type === t || it.kind === t || it.hasTag(t);
+		return !t || it.type === t || it.kind === t || it.slot === t || it.hasTag(t);
 
 	}
 

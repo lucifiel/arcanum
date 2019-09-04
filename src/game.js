@@ -229,6 +229,7 @@ export default {
 		if ( !action ) return;
 
 		if ( action.maxed() ) {
+			console.log('ACTION MAXED: ' + action.id );
 			this.setAction(null);
 			return;
 		}

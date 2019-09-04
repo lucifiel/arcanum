@@ -11,8 +11,8 @@ export default class Skill extends Action {
 
 	}
 
-	get level() { return this._value; }
-	set level(v) { this._value = v; }
+	get level() { return this.value; }
+	set level(v) { this.value = v; }
 
 	/**
 	 *
@@ -28,7 +28,7 @@ export default class Skill extends Action {
 
 		this.buy = this.buy || { "sp":1 };
 
-		this._value = this._value || 0;
+		this.value = this._value || 0;
 		this.rate = this.rate || 0.5;
 		this.max = this.max || 5;
 

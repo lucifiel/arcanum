@@ -186,14 +186,16 @@
 		"id":"smcage",
 		"name":"rusty cage",
 		"desc":"A cramped cage for keeping tiny test subjects.",
-		"tags":"cage",
+		"tags":"tagpen",
 		"cost":{
-			"gold":20,
+			"gold":50,
 			"space":1,
-			"research":20
+			"research":100
 		},
 		"flavor":"it doesn't seem very nice.",
 		"mod":{
+			"animals.max":1,
+			"animals.rate":0.1,
 			"evilamt":1
 		}
 
@@ -547,7 +549,9 @@
 		"tags":"stables",
 		"cost":{
 			"space":10,
-			"gold":500
+			"gold":500,
+			"animals.max":1,
+			"animals.rate":0.2
 		}
 
 	},

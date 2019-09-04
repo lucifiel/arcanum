@@ -57,15 +57,21 @@ var vm = new Vue({
 
 		saveFile(e){
 
-			if ( this.lastSave ) URL.revokeObjectURL( this.lastSave );
-
 			try {
-				let json = JSON.stringify( this.state );
+
+				if ( this.lastSave ) URL.revokeObjectURL( this.lastSave );
+
+
+				let json = JSON.stringify( this.game.state );
+
+
 				this.lastSave = new File( [json], 'arcanum.json', {type:"text/json;charset=utf-8"} );
 
 				e.target.href = URL.createObjectURL( this.lastSave );
 
-			} catch(ex) { console.error(ex); }
+			} catch(ex) {
+				console.error(ex);
+			}
 
 		},
 

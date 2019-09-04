@@ -203,8 +203,8 @@
 		"require":"state.enchanting>=5&&state.crafting>=10",
 		"need":"steed",
 		"buy":{
-			"gems":5,
-			"research":200
+			"gems":10,
+			"research":500
 		},
 		"mod":{
 			"dist.max":"20%"
@@ -215,7 +215,7 @@
 
 		"id":"tent",
 		"name":"travel tent",
-		"require":"naturelore",
+		"require":"state.naturelore>=3",
 		"desc":"allows you to stay in the wilds longer.",
 		"cost":{
 			"gold":100,
@@ -228,13 +228,16 @@
 	},
 	{
 		"id":"magictent",
-		"name":"",
-		"desc":"",
+		"name":"casgair's conjured canopy",
+		"desc":"conjure a large tent for long journeys.",
+		"require":"state.lore>=15",
 		"buy":{
-
+			"research":1000,
+			"arcana":1,
+			"gems":10
 		},
 		"mod":{
-			"dist.max":20
+			"dist.max":"25%"
 		}
 
 	},
