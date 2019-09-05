@@ -27,25 +27,10 @@
 	},
 	{
 		"id":"study",
-		"desc":"Intensely study the ways of magic.",
-		"need":"state.scrolls>=1",
-		"cost":{
-			"stamina":0.2
-		},
-		"effect":{
-			"research":0.3,
-			"arcana":{
-				"skipLocked":true,
-				"value":0.001
-			}
-		}
-	},
-	{
-		"id":"read",
 		"perpetual":true,
-		"verb":"reading arcana",
-		"desc":"Read arcane scrolls",
-		"require":"apprentice",
+		"verb":"studying scrolls",
+		"desc":"Study arcane scrolls",
+		"require":"state.scrolls>=1",
 		"run":{
 			"stamina":0.2
 		},

@@ -92,6 +92,7 @@ export default {
 				// displayed path to subitem.
 				var subPath = p;
 				var sub = obj[p];
+				var subRate = rate;
 
 				if ( p === 'skipLocked') continue;
 				else if ( p === 'max' ) {
@@ -106,7 +107,7 @@ export default {
 				else if ( p === 'rate') {
 
 					subPath = propPath;
-					if ( typeof sub !== 'object' ) rate = true;
+					subRate = true;
 
 					let baseItem = propPath.split('.')[0];
 					if ( Game.getData(baseItem) instanceof Skill ) subPath = 'train ' + subPath + ' rate';
@@ -121,7 +122,7 @@ export default {
 
 				}
 
-				if ( typeof sub !== 'object' ) results[subPath] = sub + ( rate ? '/s' : '');
+				if ( typeof sub !== 'object' ) results[subPath] = sub + ( subRate ? '/s' : '');
 				else {
 
 					if ( sub.skipLocked ) {
@@ -132,9 +133,9 @@ export default {
 					}
 					if ( sub.toString && (sub.toString != Object.prototype.toString) ) {
 
-						results[subPath] = sub.toString() + ( rate ? '/s' : '');
+						results[subPath] = sub.toString() + ( subRate ? '/s' : '');
 
-					} else this.effectList( sub, results, subPath, rate );
+					} else this.effectList( sub, results, subPath, subRate );
 
 				}
 
