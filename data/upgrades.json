@@ -276,7 +276,7 @@
 		"max":2,
 		"repeat":true,
 		"cost":5,
-		"flavor":"seems a bit pricey for a bag.",
+		"flavor":"seems a tad pricey for a bag.",
 		"mod":{
 			"gold.max":10
 		}
@@ -289,9 +289,25 @@
 		"max":2,
 		"repeat":true,
 		"cost":300,
-		"flavor":"who sells these bags?!",
+		"flavor":"who prices these bags?!",
 		"mod":{
 			"gems.max":5
+		}
+	},
+
+	{
+		"id":"gembox",
+		"name":"gem box",
+		"desc":"Finely crafted box for storing magic gems.",
+		"require":["tier0","gem"],
+		"max":2,
+		"repeat":true,
+		"cost":{
+			"gems":15,
+			"gold":800
+		},
+		"mod":{
+			"gem.max":1
 		}
 	},
 
@@ -705,6 +721,7 @@
 	{
 		"id":"blackcandle",
 		"name":"Holy Candle",
+		"tags":"candle",
 		"desc":"What flames cast shadows?",
 		"repeat":true,
 		"require":"state.shadow.max>=10&&!state.good",
@@ -860,13 +877,15 @@
 		"cost":{
 			"bones":1,
 			"gems":2,
-			"research":200
+			"research":500
 		},
 		"mod":{
 
-			"shadow.max":1,
+			"shadowlore.max":1,
+			"shadowlore.rate":0.3,
 			"shadow.rate":0.01,
-			"spirit.max":1
+			"spiritlore.max":1,
+			"spiritlore.rate":0.3
 
 		}, "flavor":"I knew him well"
 
@@ -972,7 +991,8 @@
 		},
 		"mod":{
 			"airlore.max":2,
-			"air.rate":0.1
+			"airlore.rate":0.2,
+			"air.rate":0.05
 		}
 	},
 	{
@@ -989,6 +1009,22 @@
 			"crafting.rate":0.1,
 			"alchemy.max":1,
 			"alchemy.rate":0.1
+		}
+
+	},
+	{
+		"id":"mendicant",
+		"desc":"Sacrifice luxury for higher attainments.",
+		"need":"state.evil==0&&state.tier1>0&&state.gold.max>1000&&state.light.max>5",
+		"warn":true,
+		"cost":{
+		},
+		"mod":{
+			"gold.max":"-10%",
+			"spiritlore.max":2,
+			"spiritlore.rate":0.3,
+			"lightlore.max":2,
+			"lightlore.rate":0.3
 		}
 
 	},

@@ -118,6 +118,7 @@ export default {
 			this.section = this.state.sections.find( v=>v.id==='sect_main');
 
 			window.addEventListener('keydown',evt=>{
+				if ( evt.repeat) return;
 				this.keyDown( evt ); evt.stopPropagation(); }, false );
 
 			this.unpause();
@@ -322,11 +323,13 @@ export default {
 			<span class="load-message" v-if="!state">LOADING DATA...</span>
 		</div>
 
-		<div v-if="state" class="game-main">
-
-		<!-- popups -->
+<!-- popups -->
 		<itempopup :item="overItem" :elm="overElm" />
 		<warn ref="warn" @confirmed="onConfirmed" />
+
+		<div v-if="state" class="game-main">
+
+
 
 		<resources :items="state.resources"/>
 

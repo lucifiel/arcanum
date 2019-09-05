@@ -105,63 +105,72 @@
 	{
 
 		"id":"managem",
+		"tags":"gem",
 		"name":"arcane gem",
 		"desc":"Gem infused with arcane energy.",
 		"max":2
 	},
 	{
 		"id":"firegem",
+		"tags":"gem",
 		"name":"fire gem",
 		"desc":"Gem imbued with the essence of fire.",
 		"max":2
 	},
 	{
 		"id":"watergem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"water gem",
 		"desc":"Gem imbued with the essence of water.",
 		"max":2
 	},
 	{
 		"id":"naturegem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"life gem",
 		"desc":"Gem imbued with the essence of life.",
 		"max":2
 	},
 	{
 		"id":"earthgem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"earth gem",
 		"desc":"Gem imbued with the essence of earth.",
 		"max":2
 	},
 	{
 		"id":"airgem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"air gem",
 		"desc":"Gem imbued with the essence of air.",
 		"max":2
 	},
 	{
 		"id":"shadowgem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"shadow gem",
 		"desc":"Gem imbued with the essence of darkness.",
 		"max":2
 	},
 	{
 		"id":"lightgem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"light gem",
 		"desc":"Gem imbued with the essence of light.",
 		"max":2
 	},
 	{
 		"id":"spiritgem",
-		"tags":"reagent",
+		"tags":"gem",
 		"name":"spirit gem",
 		"desc":"Gem imbued with raw spirit.",
+		"max":2
+	},
+	{
+		"id":"bloodgem",
+		"tags":"gem",
+		"name":"blood gem",
+		"desc":"a little magic and a lot of blood",
 		"max":2
 	},
 	{

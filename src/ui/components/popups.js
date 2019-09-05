@@ -16,15 +16,15 @@ export const positionAt = (elm, target) =>{
 	if ( left < window.innerWidth/2 ) {
 
 			//	console.log('left: ' + left);
-		style['left'] = ( left + target.offsetWidth + 40 ) + 'px';
+		style['left'] = ( left + target.offsetWidth + 32 ) + 'px';
 
 		} else {
 
 		//console.log('width: ' + myBox.width + ' , ' + myBox.right );
-		style['left'] = ( left- 240 ) + 'px';
+		style['left'] = ( left- elm.offsetWidth - 32 ) + 'px';
 	}
 
-	if ( rect.top < window.innerHeight-140) style['top'] = ( rect.top ) + 'px';
-	else style.top = (rect.top - 52) + 'px';
+	if ( rect.top < window.innerHeight-elm.offsetHeight ) style['top'] = ( rect.top ) + 'px';
+	else style.top = ( rect.top - elm.offsetHeight ) + 'px';
 
 };

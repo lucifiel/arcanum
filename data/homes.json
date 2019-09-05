@@ -100,6 +100,7 @@
 		"cost":700,
 		"require":"state.tier0&&state.arcana.max>=12",
 		"mod":{
+			"gem.max":1,
 			"space.max":25,
 			"gold.rate":0.2,
 			"gold.max":25,

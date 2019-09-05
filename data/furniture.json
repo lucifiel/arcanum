@@ -218,6 +218,24 @@
 
 	},
 	{
+		"id":"vivarium",
+		"desc":"a glass enclosure for small reptiles, snakes, and frogs.",
+		"tags":"earthsource,tagpen,naturesource",
+		"require":"state.tier0>0&&state.naturelore>=5",
+		"cost":{
+			"space":2,
+			"research":300,
+			"gold":500
+		},
+		"mod":{
+			"research.max":10,
+			"animals.max":1,
+			"animals.rate":0.3,
+			"naturelore.max":1,
+			"naturelore.rate":0.3
+		}
+	},
+	{
 
 		"id":"workbench",
 		"desc":"A small bench for arts and crafts.",
@@ -488,7 +506,7 @@
 	{
 		"id":"campfire",
 		"tags":"firesource",
-		"require":"state.camp>0||state.wagon>0",
+		"require":"outdoors",
 		"cost":{
 			"space":1
 		},
@@ -578,13 +596,15 @@
 		"tags":"shadowsource",
 		"require":"evil",
 		"cost":{
-			"gold":20,
+			"gold":50,
 			"bones":5,
 			"space":1
 		},
 		"mod":{
 			"bones.max":10,
-			"shadow.max":1
+			"shadowlore.max":1,
+			"spiritlore.max":1,
+			"spiritlore.rate":0.3
 		}
 	},
 	{
@@ -593,12 +613,13 @@
 		"tags":"spiritsource",
 		"require":"state.spirit.max>=10",
 		"cost":{
-			"gold":100,
+			"gold":200,
 			"spirit":5,
 			"space":10
 		},
 		"mod":{
-			"spirit.max":2,
+			"spiritgem.max":4,
+			"spiritlore.max":2,
 			"spirit.rate":0.02,
 			"nature.rate":0.01
 		}
@@ -609,10 +630,11 @@
 		"tags":"spiritsource",
 		"require":"state.spirit.max>=5",
 		"cost":{
-			"gold":100,
+			"gold":250,
 			"space":5
 		},
 		"mod":{
+			"spiritgem.max":2,
 			"spirit.max":1,
 			"spirit.rate":0.01
 		}
@@ -630,6 +652,7 @@
 			"space":1
 		},
 		"mod":{
+			"shadowgem.max":2,
 			"shadow.rate":0.01,
 			"shadow.max":1
 		}
@@ -696,6 +719,7 @@
 			"space":1
 		},
 		"mod":{
+			"lightgem.max":2,
 			"light.rate":0.01,
 			"light.max":1
 		}
@@ -755,6 +779,7 @@
 			"space":5
 		},
 		"mod":{
+			"managem.max":2,
 			"alchemy.max":2,
 			"alchemy.rate":0.1,
 			"arcana.rate":0.0001
@@ -772,7 +797,7 @@
 		},
 		"mod":{
 			"codices.max":100,
-			"lore.rate":0.1,
+			"lore.rate":0.2,
 			"research.max":100,
 			"research.rate":0.05
 		}
@@ -800,37 +825,37 @@
 
 	},
 	{
-		"id":"library",
-		"desc":"",
-		"require":"state.codices>=100",
-		"cost":{
-			"gold":500,
-			"research":500,
-			"space":100
-		},
-		"mod":{
-			"codices.max":500,
-			"research.max":100,
-			"research.rate":0.1
-		}
-
-	},
-	{
 		"id":"garden",
 		"desc":"A small garden by your home.",
 		"require":"witch",
 		"cost":{
-			"gold":100,
-			"research":50,
+			"gold":300,
+			"research":500,
 			"space":10
 		},
 		"mod":{
 			"herbalism.rate":0.2,
 			"herbalism.max":3,
 			"nature.max":1,
-			"nature.rate":0.05
+			"nature.rate":0.3
 		}
 
+	},
+	{
+		"id":"latticefence",
+		"name":"lattice fence",
+		"desc":"latticed fence for growing vines",
+		"require":"state.tier0>0&&state.naturelore>=7",
+		"cost":{
+			"gold":200,
+			"research":250,
+			"space":2
+		},
+		"mod":{
+			"herbalism.max":1,
+			"herbalism.rate":0.3,
+			"nature.rate":0.2
+		}
 	},
 	{
 		"id":"pond",
@@ -844,8 +869,9 @@
 		"mod":{
 			"water.rate":0.01,
 			"nature.rate":0.01,
-			"nature.max":1,
-			"water.max":2
+			"naturelore.max":1,
+			"waterlore.max":2,
+			"waterlore.rate":0.3
 		}
 	},
 	{
@@ -917,12 +943,12 @@
 		"require":"state.evil>0&&state.space>=100",
 		"cost":{
 			"space":50,
-			"gold":200,
+			"gold":400,
 			"research":100
 		},
 		"mod":{
 			"dissection.max":3,
-			"dissection.rate":0.1,
+			"dissection.rate":0.4,
 			"shadow.max":5,
 			"shadow.rate":0.1
 		}
@@ -943,6 +969,42 @@
 			"sp.rate":0.0001,
 			"crafting.max":2,
 			"crafting.rate":0.2
+		}
+
+	},
+	{
+		"id":"library",
+		"desc":"",
+		"require":"state.codices>=100",
+		"cost":{
+			"gold":500,
+			"research":500,
+			"space":100
+		},
+		"mod":{
+			"codices.max":500,
+			"research.max":100,
+			"lore.rate":0.5,
+			"research.rate":0.1
+		}
+
+	},
+	{
+		"id":"ziggurat",
+		"desc":"vast mound of earth.",
+		"require":"state.earth>=7&&state.astronomy>=7",
+		"cost":{
+			"gold":300,
+			"research":2000,
+			"space":100
+		},
+		"mod":{
+			"airlore.max":1,
+			"airlore.rate":0.1,
+			"astronomy.max":2,
+			"astronomy.rate":0.2,
+			"earthlore.max":3,
+			"earthlore.rate":0.4
 		}
 
 	},

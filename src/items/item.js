@@ -11,9 +11,16 @@ export default class Item {
 	get consume() { return this._consume; }
 	set consume(v) { this._consume = v;}
 
+	/**
+	 * @property {boolean} stack - whether the item should stack.
+	 */
+	get stack() { return this._stack; }
+	set stack(v) { this._stack = v; }
+
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign( this, vars );
+		if ( this.consume === null || this.consume === undefined ) this.consume = true;
 
 	}
 }

@@ -1101,7 +1101,7 @@
         "attack":{
             "name":"bite",
 			"kind":"pierce",
-			"leech":0.2, 
+			"leech":0.2,
             "dmg":"5~8"
         },"loot":"bat wing"
 
@@ -1378,6 +1378,26 @@
             "kind":"blunt",
             "dmg":"5~9"
         }
+
+	},
+	{
+		"id":"shriekingeel",
+		"name":"shrieking eel",
+        "level":7,
+        "kind":"beast",
+        "biome":"sea",
+        "desc":"oversized eel with bladed teeth and a terrifying screach.",
+        "hp":37,
+        "tohit":20,
+        "defense":20,
+        "attack":{
+            "name":"scream",
+            "kind":"sonic",
+            "dmg":"5~10"
+		},
+		"resists":{
+			"water":25
+		}
 
     },
     {
@@ -2083,7 +2103,7 @@
 		"immune":"poison"
 
 	},
-	
+
     {
 		"id":"hillgiant",
 		"name":"hill giant",

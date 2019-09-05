@@ -22,12 +22,12 @@ export default {
 		</span>
 
 		<div>
-		
+
 		<span class="separate">
 			<span v-if="item.level&&item.type!=='action'">lvl: {{item.level}}</span>
 			<span v-if="item.slot">slot: {{ item.slot }}</span>
 		</span>
-		
+
 			<div v-if="item.dist">distance: {{item.dist}}</div>
 			<div v-if="item.armor">armor: {{ item.armor }}</div>
 			<div class="item-desc" v-if="item.desc">{{ item.desc }}</div>
@@ -37,31 +37,34 @@ export default {
 		<div v-if="item.buy&&!item.owned">
 
 			<hr>
+			<div class="note-text">purchase cost:</div>
 			<div v-for="(v,k) in effectItems(item.buy)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
-			
+
 
 		</div>
 		<div v-if="item.cost">
 
 			<hr>
+			<div class="note-text">cost:</div>
 			<div v-for="(v,k) in effectItems(item.cost)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
-			
+
 
 		</div>
 		<div v-if="item.run">
 
 			<hr>
+			<div class="note-text">progress cost:</div>
 			<div v-for="(v,k) in effectItems(item.run)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
-			
+
 
 		</div>
 		<attack v-if="item.attack" :item="item.attack" />

@@ -552,7 +552,7 @@ export default {
 		}
 		if ( it.exec ) it.exec();
 
-		it.value += count;
+		it.value += it.consume ? -count : count;
 
 		if ( it.title ) this.state.player.title = it.title;
 		if ( it.effect ) this.applyEffect(it.effect);

@@ -51,6 +51,7 @@ export default {
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name }}</td>
 		<template v-if="!selecting">
 			<td><button @click="dispatch('equip',it, inv)">Equip</button></td>
+			<td v-if="it.use"><button @click="dispatch( 'use', it)">Use</button></td>
 			<td v-if="take&&!playerFull"><button @click="onTake(it)">Take</button></td>
 			<td><button @click="drop(it)">Drop</button></td>
 		</template>

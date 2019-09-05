@@ -1,0 +1,22 @@
+[
+
+	{
+		"id":"pot_heal1",
+		"name":"minor healing"
+	},
+	{
+		"id":"pot_stam1",
+		"name":"draught of stamina",
+		"level":1,
+		"buy":{
+
+		},
+		"craft":{
+
+		},
+		"use":"stam1"
+
+	}
+
+
+]

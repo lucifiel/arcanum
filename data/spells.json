@@ -1,6 +1,6 @@
 [
 	{
-		"id":"minorstam",
+		"id":"stam1",
 		"name":"minor fount",
 		"level":1,
 		"require":"water",
@@ -120,7 +120,7 @@
 
 	},
 	{
-		"id":"minormana",
+		"id":"mana1",
 		"name":"minor mana",
 		"school":"mana",
 		"locked":false,
@@ -143,7 +143,7 @@
 
 	},
 	{
-		"id":"lessermana",
+		"id":"mana2",
 		"name":"lesser mana",
 		"school":"mana",
 		"locked":false,
@@ -167,7 +167,7 @@
 
 	},
 	{
-		"id":"magicmana",
+		"id":"mana3",
 		"name":"mana",
 		"school":"mana",
 		"locked":false,
@@ -292,7 +292,7 @@
 	},
 
 	{
-		"id":"minorslow",
+		"id":"slow1",
 		"name":"mud",
 		"desc":"engulfs target in mud",
 		"school":"earth",
@@ -711,7 +711,7 @@
 		}
 	},
 	{
-		"id":"minorspeed",
+		"id":"speed1",
 		"level":3,
 		"name":"dust devil",
 		"desc":"a whirl or wind at your feet",

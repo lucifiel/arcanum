@@ -93,7 +93,7 @@ export default {
 
 			<div class="warn-text"
 			style="text-align:center"
-			v-if="state.items.space.value===0">No space remaining. Sell items or find new Home</div>
+			v-if="state.items.space.value===0">No space remaining. Sell items or find a new Home</div>
 
 		</div>
 

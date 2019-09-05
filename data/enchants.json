@@ -4,7 +4,7 @@
 		"id":"en_armor1",
 		"name":"sturdy armor",
 		"verb":"infusing armor",
-		"target":"armor",
+		"targets":"armor",
 		"desc":"infuse an item with magical protection.",
 		"require":"state.enchanting>=3",
 		"level":1,
@@ -26,7 +26,7 @@
 		"name":"mana",
 		"verb":"enchanting",
 		"adj":"of mana",
-		"target":"ring",
+		"targets":"ring",
 		"desc":"infuse a ring with a mana gem.",
 		"require":"state.enchanting>=1",
 		"level":1,
@@ -48,7 +48,7 @@
 		"name":"mana",
 		"verb":"enchanting",
 		"adj":"of energy",
-		"target":"ring",
+		"targets":"ring",
 		"desc":"link a ring with a mana source.",
 		"require":"state.enchanting>=1",
 		"level":1,
@@ -69,8 +69,8 @@
 		"id":"en_hp1",
 		"name":"life pool",
 		"verb":"enchanting",
-		"adj":"of health",
-		"target":"neck",
+		"adj":"of life",
+		"targets":"neck",
 		"desc":"infuse an amulet with lifeforce.",
 		"require":"state.enchanting>=2",
 		"level":1,
@@ -80,7 +80,7 @@
 		},
 		"length":30,
 		"cost":{
-			"managem":1,
+			"bloodgem":1,
 			"mana":5,
 			"hp":10
 		},
@@ -89,10 +89,33 @@
 		}
 	},
 	{
+		"id":"en_regen1",
+		"name":"regeneration",
+		"verb":"enchanting",
+		"adj":"of regeneration",
+		"targets":"neck",
+		"desc":"infuse an amulet with living blood.",
+		"require":"state.enchanting>=5",
+		"level":2,
+		"buy":{
+			"arcana":1,
+			"research":100
+		},
+		"length":40,
+		"cost":{
+			"bloodgem":1,
+			"mana":5,
+			"hp":10
+		},
+		"mod":{
+			"player.regen":0.1
+		}
+	},
+	{
 		"id":"en_dmg1",
 		"name":"biting edge",
 		"verb":"infusing weapon",
-		"target":"weapon",
+		"targets":"weapon",
 		"desc":"infuse an item with magical protection.",
 		"require":"state.enchanting>=3",
 		"level":1,
@@ -113,7 +136,7 @@
 		"id":"en_tohit1",
 		"name":"keen weapon",
 		"verb":"infusing weapon",
-		"target":"weapon",
+		"targets":"weapon",
 		"desc":"infuse an item with magical protection.",
 		"require":"state.enchanting>=3",
 		"level":1,

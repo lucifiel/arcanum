@@ -6,8 +6,10 @@ export default class Enchant extends Action {
 	 * @property {string} target - target type, name, kind, or tag, to which
 	 * the enchantment can be applied.
 	 */
-	get target(){return this._target;}
-	set target(v){this._target=v;}
+	get targets(){return this._targets;}
+	set targets(v){
+		this._targets = typeof v === 'string' ? v.split(',') : v;
+	}
 
 	constructor(vars){
 
@@ -34,8 +36,8 @@ export default class Enchant extends Action {
 
 		if ( it.enchants + this.level > it.level ) return false;
 
-		let t = this._target;
-		return !t || it.type === t || it.kind === t || it.slot === t || it.hasTag(t);
+		return !this._targets ||
+			this._targets.some(t=> it.type === t || it.kind === t || it.slot === t || it.hasTag(t) );
 
 	}
 

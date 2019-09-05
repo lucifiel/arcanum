@@ -712,6 +712,19 @@
 		}
 	},
 	{
+		"id":"imbuebloodgem",
+		"name":"Coagulate Gem",
+		"require":"state.alchemy>=5&&state.enchanting>=5",
+		"fill":"bloodgem",
+		"cost":{
+			"gems":1,
+			"earth":1,
+			"water":1,
+			"hp":20
+		},
+		"effect":"bloodgem"
+	},
+	{
 		"id":"imbuefiregem",
 		"name":"Imbue Gem (Fire)",
 		"require":"state.fire.max>=5&&state.enchanting>2",
@@ -719,9 +732,7 @@
 			"gems":1,
 			"fire":5
 		},
-		"effect":{
-			"firegem":1
-		}
+		"effect":"firegem"
 	},
 	{
 		"id":"imbueairgem",
@@ -731,9 +742,7 @@
 			"gems":1,
 			"air":5
 		},
-		"effect":{
-			"airgem":1
-		}
+		"effect":"airgem"
 	},
 	{
 		"id":"imbueearthgem",
@@ -743,9 +752,7 @@
 			"gems":1,
 			"earth":5
 		},
-		"effect":{
-			"earthgem":1
-		}
+		"effect":"earthgem"
 	},
 	{
 		"id":"imbuewatergem",
@@ -755,9 +762,7 @@
 			"gems":1,
 			"water":5
 		},
-		"effect":{
-			"watergem":1
-		}
+		"effect":"watergem"
 	},
 	{
 		"id":"imbuelightgem",
@@ -767,9 +772,7 @@
 			"gems":1,
 			"light":5
 		},
-		"effect":{
-			"lightgem":1
-		}
+		"effect":"lightgem"
 	},
 	{
 		"id":"imbueshadowgem",
@@ -779,9 +782,7 @@
 			"gems":1,
 			"shadow":5
 		},
-		"effect":{
-			"shadowgem":1
-		}
+		"effect":"shadowgem"
 	},
 	{
 		"id":"imbuespiritgem",
@@ -791,9 +792,8 @@
 			"gems":1,
 			"spirit":5
 		},
-		"effect":{
-			"spiritgem":1
-		}
+		"effect":"spiritgem"
+
 	},
 	{
 		"id":"sellscroll",

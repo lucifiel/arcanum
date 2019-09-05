@@ -14,7 +14,7 @@
 	{
 		"id":"evt_alcove",
 		"name":"Moving In",
-		"desc":"After taking your savings, your new master grants you a small book under the stairs.",
+		"desc":"After taking your savings, your new master grants you a small nook under the stairs.",
 		"require":"alcove"
 
 	},
@@ -25,6 +25,12 @@
 		"desc":"After your daily castigation, your master mentions the rats in the basement have become a problem. Something about stolen shortswords and building barricades. You had better go down and deal with it.",
 		"require":"state.player.level>0&&(state.apprentice.value>0||state.neophyte.value>0)"
 
+	},
+	{
+		"id":"evt_gobcamp",
+		"name":"Goblins, Goblins!",
+		"require":"state.tier0&&state.player.level>=4",
+		"desc":"A camp of goblins has come to your attention in the vicinity. As an aspiring wizard, convention dictates you test your mettle on their lives."
 	},
 	{
 		"id":"tier0",

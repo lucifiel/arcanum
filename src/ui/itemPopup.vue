@@ -14,13 +14,10 @@ export default {
 	 * @property {boolean} sell - if the pane is a sell-view.
 	 */
 	props:["item", "elm", 'sell'],
-	watch:{
-		elm( newVal, oldVal ){
-
-			if ( newVal != null ) {
-				positionAt( this.$el, newVal );
-			}
-
+	updated() {
+		// waiting for width to change before reposition.
+		if ( this.item ) {
+			positionAt( this.$el, this.elm );
 		}
 	},
 	components:{ item:ItemView }
@@ -30,7 +27,7 @@ export default {
 
 
 <template>
-	
+
 	<div :class="{ 'item-popup':true }" v-show="item!=null">
 		<item class='popup-content' v-if="item" :item="item" />
 	</div>
