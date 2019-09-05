@@ -203,7 +203,7 @@ export default {
 		gd.homes.forEach( v=>v.slot='home');
 
 		this.initItems( dataLists['furniture'], GData, 'furniture', 'furniture' );
-		this.initItems( dataLists['skills'], Skill );
+		gd.skills = this.initItems( dataLists['skills'], Skill );
 
 		gd.monsters = this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
 		this.initItems( dataLists['dungeons'], Dungeon );

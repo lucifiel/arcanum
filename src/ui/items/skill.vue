@@ -39,7 +39,8 @@ export default {
 				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button></span>
 			<span v-else>
 				<button @click="dispatch('buy', skill)"
-					@mouseenter.capture.stop="dispatch('itemover', $event, skill )">Unlock</button>
+					@mouseenter.capture.stop="dispatch('itemover', $event, skill )"
+					:disabled="!this.usable(skill)">Unlock</button>
 			</span>
 		</span>
 

@@ -4,7 +4,7 @@ export default {
 	/**
 	 * @property {object[]} items - items to filter.
 	 * @property {prop} [prop='name'] - target prop of filter test.
-	 * 
+	 *
 	 * @property {number} [minItems=0] - minimum number of items before box is visible.
 	 */
 	props:['value', 'items', 'prop', 'minItems'],
@@ -12,6 +12,11 @@ export default {
 		return {
 			text:'',
 			pprop:this.prop||'name'
+		}
+	},
+	watch:{
+		items(newVal,oldVal){
+			this.findText = this.findText;
 		}
 	},
 	created(){

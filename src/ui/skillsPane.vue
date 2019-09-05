@@ -6,7 +6,7 @@ import SkillView from './items/skill.vue';
 import FilterBox from './components/filterbox.vue';
 
 export default {
-	
+
 	props:['state'],
 	mixins:[ItemBase],
 	components:{
@@ -24,9 +24,12 @@ export default {
 	},
 	computed:{
 
-		skills(){
-			return this.state.filterItems( it=>it.type==='skill' && !this.reslocked(it) );
+		skills() { return this.state.skills; },
+
+		available(){
+			return this.skills.filter(it=> !this.reslocked(it) );
 		}
+
 	},
 	methods:{
 
@@ -42,7 +45,7 @@ export default {
 <template>
 	<div class="skills">
 
-		<filterbox v-model="filtered" :items="skills" min-items="7" />
+		<filterbox v-model="filtered" :items="available" min-items="7" />
 
 		<div class="subs">
 			<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>

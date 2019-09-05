@@ -43,10 +43,10 @@ export default {
 
 		/**
 		 *
-		 * @param {*} it
 		 * @param {*} obj
+		 * @param {boolean} rate - items are rate.
 		 */
-		effectItems(it, obj ) {
+		effectItems( obj, rate=false) {
 
 			let type = typeof obj;
 			let results = {};
@@ -64,7 +64,7 @@ export default {
 			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
 			else if ( type === 'object') {
 
-				this.effectList( obj, results, '', this.runnable(it) );
+				this.effectList( obj, results, '', rate );
 
 			}
 

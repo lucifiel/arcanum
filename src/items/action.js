@@ -21,6 +21,7 @@ export default class Action extends GData {
 	get progress() { return this._exp; }
 	set progress(v){
 
+		if ( v > this._exp && this.maxed()) return;
 		this._exp = v;
 		if ( this.length && v >= this._length ) {
 

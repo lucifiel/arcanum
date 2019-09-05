@@ -321,9 +321,22 @@
 			"stamina":0.4
 		},
 		"effect":{
-			"herbalism.exp":1
+			"herbalism.progress":1
 		},
 		"result":"herbs"
+
+	},
+	{
+
+		"id":"sellherbs",
+		"name":"Sell Herbs",
+		"require":"gatherherbs",
+		"cost":{
+			"herbs":1
+		},
+		"effect":{
+			"gold":2
+		}
 
 	},
 	{
