@@ -170,7 +170,7 @@
 		"name":"magic circle",
 		"desc":"Magic circle",
 		"require":"arcana",
-		"max":2,
+		"max":3,
 		"cost":{
 			"space":1,
 			"research":40,

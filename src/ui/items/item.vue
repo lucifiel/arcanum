@@ -73,9 +73,9 @@ export default {
 			<hr>
 			<div class="note-text">effects:</div>
 
-			<div v-for="(obj,key) in [item.effect,item.mod,item.result]" :key="key">
+			<div v-for="(obj) in ['effect','mod','result']" :key="obj">
 
-				<div v-for="(v,k) in effectItems(obj, runnable(item))" :key="k">
+				<div v-for="(v,k) in effectItems(item[obj], obj==='effect'&&runnable(item))" :key="k">
 
 					<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>

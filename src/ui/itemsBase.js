@@ -125,9 +125,12 @@ export default {
 				else {
 
 					if ( sub.skipLocked ) {
+
 						let refItem = Game.getData(p);
-						if ( refItem && refItem.locked || refItem.disabled ) continue;
-					} else if ( sub.toString && (sub.toString != Object.prototype.toString) ) {
+						if ( refItem && (refItem.locked || refItem.disabled) ) continue;
+
+					}
+					if ( sub.toString && (sub.toString != Object.prototype.toString) ) {
 
 						results[subPath] = sub.toString() + ( rate ? '/s' : '');
 

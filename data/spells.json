@@ -132,12 +132,12 @@
 
 		},
 		"cost":{
-			"mana":1
+			"mana":0.1
 		},
 		"dot":{
 			"duration":30,
 			"effect":{
-				"mana":0.3
+				"mana":0.2
 			}
 		}
 
@@ -156,12 +156,12 @@
 
 		},
 		"cost":{
-			"mana":2
+			"mana":0.3
 		},
 		"dot":{
 			"duration":45,
 			"effect":{
-				"mana":0.5
+				"mana":0.4
 			}
 		}
 
@@ -180,12 +180,12 @@
 
 		},
 		"cost":{
-			"mana":5
+			"mana":1
 		},
 		"dot":{
 			"duration":60,
 			"effect":{
-				"mana":1
+				"mana":0.7
 			}
 		}
 
