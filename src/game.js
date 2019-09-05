@@ -238,7 +238,7 @@ export default {
 
 			if ( !this.canPay( action.run, dt ) ) {
 				//console.log('halting action: ' + action.id );
-				this.haltAction()
+				this.doRest()
 				return;
 			}
 			this.payCost( action.run, dt );
@@ -323,7 +323,7 @@ export default {
 
 		} else {
 
-			this.state.resumeAction = cur;
+			this.state.resumeAction = null;
 			this.state.curAction = this.state.restAction;
 
 		}

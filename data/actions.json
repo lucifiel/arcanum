@@ -121,7 +121,7 @@
 		"id":"spellbook",
 		"actname":"Bind Spellbook",
 		"verb":"binding spells",
-		"require":"state.lore>=2&&state.crafting>=1",
+		"require":"state.lore>=2&&state.crafting>=1&&state.languages>=1",
 		"need":"state.languages>0&&state.crafting>1",
 		"desc":"The portal to true magic.",
 		"length":50,
@@ -312,18 +312,18 @@
 		"name":"gather herbs",
 		"desc":"Gather herbs used in potions and alchemy.",
 		"verb":"gathering herbs",
-		"require":"state.neophyte>0&&state.herbalism>=1&&(state.taggarden+state.outdoors)>0",
+		"require":"state.neophyte>0&&state.herbalism>=1",
+		"need":"taggarden",
 		"length":20,
+		"fill":"herbs",
 		"perpetual":true,
 		"run":{
 			"stamina":0.4
 		},
 		"effect":{
-			"herbalism.exp":0.01
+			"herbalism.exp":1
 		},
-		"result":{
-			"herbs":1
-		}
+		"result":"herbs"
 
 	},
 	{
@@ -532,7 +532,7 @@
 			"stamina":0.5
 		},
 		"effect":{
-			"animals.exp":1
+			"animals.exp":2
 		},
 		"result":{
 			"research.max":5,

@@ -26,7 +26,7 @@
 	"id":"neophyte",
 	"title":"neophyte",
 	"actdesc":"The next step on the twisting stairwell of apprenticeship.",
-	"require":"state.research.max>=70&&state.spellbook.value>0&&state.languages>1",
+	"require":"state.research.max>=50&&state.spellbook.value>0",
 	"log":{
 		"name":"Neophyte",
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry. You have been granted a small allowance to continue your studies."

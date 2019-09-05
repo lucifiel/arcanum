@@ -6,7 +6,7 @@ import AllUpgrades from './allupgrades.vue';
 import SlotPick from './components/slotpick.vue';
 
 export default {
-	
+
 	computed:{
 
 		name:{
@@ -51,14 +51,14 @@ export default {
 	<div class="player-view">
 
 		<table>
-			
+
 		<tr><td>name</td><th>
 			<input type="text" v-model="name"></th></tr>
 		<tr><td>title</td><th> {{ title}}</th></tr>
 		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
 		<tr><td>level</td><th> {{ level }}</th></tr>
 		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>
-		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ sp.current }}</th></tr>
+		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ sp.value.toFixed(2) }}</th></tr>
 
 		<tr><td>mount</td><th><slotpick pick="mount" /></th></tr>
 		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.current }}</th></tr>
@@ -74,7 +74,7 @@ export default {
 
 			<tr><td>defense</td><th>{{ defense }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
-		
+
 			<tr><td>speed</td><th>{{ speed.current }}</th></tr>
 
 			<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.weapon)">
@@ -119,8 +119,7 @@ td {
 
 th {
 	text-align: left;
-	
+
 }
 
 </style>
-

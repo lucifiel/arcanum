@@ -78,12 +78,11 @@ export default {
 
 		<table class="furniture item-table">
 			<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
-		<tr v-for="it in filtered" :key="it.id">
+		<tr v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch('itemover', $event, it )">
 
 			<td class="space">{{ it.cost.space }}</td>
 			<td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
 			<td><button type="button" :disabled="!usable(it)" class="buy-btn"
-				@mouseenter.capture.stop="dispatch('itemover', $event, it )"
 				@click="dispatch('action',it)">Buy</button></td>
 
 			<td><button type="button" :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>

@@ -36,7 +36,7 @@ export default {
 					@click="dispatch('action', it)"
 					@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
-				
+
 				<div>{{ it.name.slice(0,1) }}</div>
 
 				<div class="remove" @click="remove(i)" />
@@ -51,7 +51,7 @@ export default {
 	<div class="quickbar" v-else>
 
 		<p class="use-msg">
-			Roll-over Item and press {Shift} + {Number} to assign quickslot.<br>
+			Roll-over Item and hold {Shift} + {Number} to assign quickslot.<br>
 			Press {Number} again to use quickslot Item.
 		</p>
 

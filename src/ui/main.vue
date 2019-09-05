@@ -196,7 +196,7 @@ export default {
 				}
 				if ( key === 'p') {
 					if ( this.state.curAction && this.state.curAction.length) {
-						this.state.curAction.progress = this.state.curAction.length;
+						this.state.curAction.progress = this.state.curAction.length - 0.01;
 					}
 				}
 			}
@@ -328,8 +328,6 @@ export default {
 		<warn ref="warn" @confirmed="onConfirmed" />
 
 		<div v-if="state" class="game-main">
-
-
 
 		<resources :items="state.resources"/>
 

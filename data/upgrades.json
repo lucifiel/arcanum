@@ -5,7 +5,7 @@
 		"name":"End Apprenticeship",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
 		"warn":true,
-		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=5",
+		"require":"state.neophyte>0&&state.research.max>=100&&state.lore>=4",
 		"repeat":false,
 		"cost":{
 			"research":225,
@@ -19,7 +19,7 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.neophyte>0&&state.research.max>=200&&state.lore>=5",
+		"require":"state.neophyte>0&&state.research.max>=100&&state.lore>=4",
 		"warn":true,
 		"repeat":false,
 		"flavor":"Save heaps of money with the power of evil",

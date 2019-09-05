@@ -5,6 +5,7 @@ import { floor } from 'format';
 import {indexAfter} from '../util';
 
 import Game from '../game';
+import Skill from '../items/skill';
 
 export default {
 
@@ -96,6 +97,9 @@ export default {
 
 					subPath = propPath;
 					if ( typeof sub !== 'object' ) sub = sub + '/s';
+
+					let baseItem = propPath.split('.')[0];
+					if ( Game.getData(baseItem) instanceof Skill ) subPath = 'train ' + subPath + ' rate';
 
 				} else {
 
