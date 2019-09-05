@@ -31,13 +31,22 @@ export default {
 			return it.disabled === true || it.locks > 0 || it.locked !== false;
 		},
 
+		runnable(it) {
+			return it.perpetual || it.length>0;
+		},
+
 		locked(it) {
 
 			return it.disabled === true || it.maxed() || it.locks>0 || it.locked !== false;
 
 		},
 
-		effectItems(obj) {
+		/**
+		 *
+		 * @param {*} it
+		 * @param {*} obj
+		 */
+		effectItems(it, obj ) {
 
 			let type = typeof obj;
 			let results = {};
@@ -55,7 +64,7 @@ export default {
 			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
 			else if ( type === 'object') {
 
-				this.effectList( obj, results );
+				this.effectList( obj, results, '', this.runnable(it) );
 
 			}
 
@@ -67,8 +76,9 @@ export default {
 		 * @param {Object} obj - object whose effects to enumerate.
 		 * @param {Object} results - [name/effect] pairs to display to user.
 		 * @param {string} propPath - prop path from base.
+		 * @param {boolean} rate - whether display is per/s rate.
 		 */
-		effectList( obj, results={}, propPath='' ) {
+		effectList( obj, results={}, propPath='', rate=false ) {
 
 			if ( typeof obj === 'string' ) {
 
@@ -96,7 +106,7 @@ export default {
 				else if ( p === 'rate') {
 
 					subPath = propPath;
-					if ( typeof sub !== 'object' ) sub = sub + '/s';
+					if ( typeof sub !== 'object' ) rate = true;
 
 					let baseItem = propPath.split('.')[0];
 					if ( Game.getData(baseItem) instanceof Skill ) subPath = 'train ' + subPath + ' rate';
@@ -111,7 +121,7 @@ export default {
 
 				}
 
-				if ( typeof sub !== 'object' ) results[subPath] = sub;
+				if ( typeof sub !== 'object' ) results[subPath] = sub + ( rate ? '/s' : '');
 				else {
 
 					if ( sub.skipLocked ) {
@@ -119,9 +129,9 @@ export default {
 						if ( refItem && refItem.locked || refItem.disabled ) continue;
 					} else if ( sub.toString && (sub.toString != Object.prototype.toString) ) {
 
-						results[subPath] = sub.toString();
+						results[subPath] = sub.toString() + ( rate ? '/s' : '');
 
-					} else this.effectList( sub, results, subPath );
+					} else this.effectList( sub, results, subPath, rate );
 
 				}
 

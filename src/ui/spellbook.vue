@@ -45,7 +45,7 @@ export default {
 			}
 
 			return res;
-	
+
 		},
 
 		/**
@@ -87,20 +87,18 @@ export default {
 	<div class="spellbook">
 
 		<table>
-		<tr v-for="s in viewing" :key="s.id">
+		<tr v-for="s in viewing" :key="s.id" @mouseenter.capture.stop="dispatch('itemover', $event, s )">
 
 			<td><button v-if="s.owned&&s.attack" @click="dispatch('primary',s)">
 				{{ state.player.primary===s ? 'Unequip' : 'Primary' }}
 				</button></td>
 			<td>{{ s.name }}</td>
 			<td>
-				
-				<button v-if="s.owned" @click="dispatch('spell', s)" :disabled="!usable(s)"
-					@mouseenter.capture.stop="dispatch('itemover', $event, s )">Cast</button>
 
-				<button v-else @click="dispatch('buy', s)" :disabled="!usable(s)"
-					@mouseenter.capture.stop="dispatch('itemover', $event, s )">Learn</button>
-	
+				<button v-if="s.owned" @click="dispatch('spell', s)" :disabled="!usable(s)">Cast</button>
+
+				<button v-else @click="dispatch('buy', s)" :disabled="!usable(s)">Learn</button>
+
 			</td>
 
 		</tr>
@@ -113,9 +111,9 @@ export default {
 		<div>
 			<label class="level-lbl" :for="elmId('level')">Level</label>
 			<input class="level" :id="elmId('level')" type="number" v-model="minLevel" min=0 size=5>
-		
+
 		</div>
-		
+
 		<div class="checks" v-for="(p,k) in schools" :key="k">
 					<input type="checkbox" :value="k" :id="elmId('chk'+k)" v-model="viewSchools" >
 					<label :for="elmId('chk'+k)">{{ k }}</label>

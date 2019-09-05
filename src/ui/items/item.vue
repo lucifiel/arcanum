@@ -38,7 +38,7 @@ export default {
 
 			<hr>
 			<div class="note-text">purchase cost:</div>
-			<div v-for="(v,k) in effectItems(item.buy)" :key="k">
+			<div v-for="(v,k) in effectItems(item, item.buy)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
@@ -49,7 +49,7 @@ export default {
 
 			<hr>
 			<div class="note-text">cost:</div>
-			<div v-for="(v,k) in effectItems(item.cost)" :key="k">
+			<div v-for="(v,k) in effectItems(item, item.cost)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
@@ -60,7 +60,7 @@ export default {
 
 			<hr>
 			<div class="note-text">progress cost:</div>
-			<div v-for="(v,k) in effectItems(item.run)" :key="k">
+			<div v-for="(v,k) in effectItems(item, item.run)" :key="k">
 				<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
 			</div>
@@ -75,7 +75,7 @@ export default {
 
 			<div v-for="(obj,key) in [item.effect,item.mod,item.result]" :key="key">
 
-				<div v-for="(v,k) in effectItems(obj)" :key="k">
+				<div v-for="(v,k) in effectItems(item, obj)" :key="k">
 
 					<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>

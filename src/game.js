@@ -238,7 +238,7 @@ export default {
 
 			if ( !this.canPay( action.run, dt ) ) {
 				//console.log('halting action: ' + action.id );
-				this.doRest()
+				this.doRest( true )
 				return;
 			}
 			this.payCost( action.run, dt );

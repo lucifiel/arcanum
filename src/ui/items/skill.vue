@@ -11,7 +11,20 @@ export default {
 	mixins:[ItemsBase],
 	components:{
 		bar:Progress
+	},
+	computed:{
+
+		rate(){
+			return this.skill.rate.value.toFixed(1);
+		},
+		exp(){
+			return this.skill.exp.toFixed(0);
+		},
+		length(){
+			return this.skill.length.toFixed(0);
+		}
 	}
+
 }
 </script>
 
@@ -21,7 +34,7 @@ export default {
 
 		<span class="separate">
 			<span>{{ skill.name }}</span>&nbsp;
-			<span v-if="skill.owned">{{ 'lvl: ' + skill.value }}<button class="train-btn"
+			<span v-if="skill.owned">{{ 'lvl: ' + skill.value + '/' + Math.floor(skill.max) }}<button class="train-btn"
 			@click="$emit('train',skill)" :disabled="!this.usable(skill)"
 				@mouseenter.capture.stop="dispatch('itemover', $event, skill )"> {{ active ? 'Stop' : 'Train' }}</button></span>
 			<span v-else>
@@ -34,6 +47,7 @@ export default {
 
 		<bar :value="skill.progress" :max="skill.length" />
 
+			progress: {{ exp + ' / ' + length }}
 		</div>
 
 	</div>

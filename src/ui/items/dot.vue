@@ -40,7 +40,7 @@ export default {
 
 			<div v-for="(obj,key) in [dot.effect,dot.mod,dot.result]" :key="key">
 
-				<div v-for="(v,k) in effectItems(obj)" :key="k">
+				<div v-for="(v,k) in effectItems(dot, obj)" :key="k">
 
 					<span v-if="typeof v === 'boolean'">{{ k }}</span>
 					<span v-else>{{ `${k}: ${v}` }}</span>
