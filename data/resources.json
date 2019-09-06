@@ -20,7 +20,6 @@
 
 		"id":"bones",
 		"desc":"human bones.",
-		"require":"tier0",
 		"max":10
 
 	},
@@ -60,15 +59,15 @@
 		"desc":"bodies for necromatic magic",
 		"max":1,
 		"mod":{
-			"shadow.rate":0.01
+			"shadow.rate":0.001
 		}
 	},
 	{
 		"id":"souls",
 		"desc":"imprisoned souls of living creatures.",
 		"mod":{
-			"shadow.rate":0.01,
-			"spirit.rate":0.01
+			"shadow.rate":0.001,
+			"spirit.rate":0.001
 		},
 		"flavor":"is it wrong?"
 	},
@@ -90,6 +89,7 @@
 		"desc":"A hefty tome of knowledge.",
 		"max":5,
 		"mod":{
+			"research.max":5,
 			"arcana.rate":0.001,
 			"lore.rate":0.1,
 			"lore.max":0.1

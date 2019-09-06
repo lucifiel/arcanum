@@ -3,9 +3,10 @@ import Resource from "../items/resource";
 import Range from '../range';
 import GData from "../items/gdata";
 import Game from '../game';
-import { tryDamage } from '../composites/raid';
+import { tryDamage } from '../composites/combat';
 
 import Char, { getDelay } from './char';
+import Events, { LEVEL_UP } from "../events";
 
 /**
  * @constant {number} EXP_RATE
@@ -239,6 +240,10 @@ export default class Player extends Char {
 
 	}
 
+	/* getResist( kind ) {
+		return this._resists[kind].value / 100;
+	}*/
+
 	removeResist( kind, amt ) {
 		if ( this._resists[kind] ) this._resists[kind].base -= amt;
 	}
@@ -293,6 +298,8 @@ export default class Player extends Char {
 
 		this._exp.value -= this._next;
 		this._next = Math.floor( this._next * ( 1 + EXP_RATE ) );
+
+		Events.dispatch( LEVEL_UP, this );
 
 	}
 

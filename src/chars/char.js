@@ -1,6 +1,6 @@
 import Range from '../range';
 import Base, {mergeClass} from '../items/base';
-import {tryDamage} from '../composites/raid';
+import {tryDamage} from '../composites/combat';
 import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';
@@ -189,6 +189,9 @@ export default class Char {
 
 	}
 
+	getResist(kind) {
+		return (this._resists[kind]||0)/100;
+	}
 
 	removeResist( kind, amt ) {
 		if ( this._resists[kind] ) this._resists[kind] -= amt;

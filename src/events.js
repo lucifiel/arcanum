@@ -7,17 +7,19 @@ const EVT_EVENT = 'event';
 const EVT_UNLOCK = 'unlock';
 const EVT_LOOT = 'loot';
 
+const COMBAT_DONE = 'combat_done';
 const ENEMY_SLAIN = 'slain';
 const PLAYER_SLAIN = 'died';
 const DAMAGE_MISS = 'damage_miss';
 const ENEMY_HIT = 'enemy_hit';
 const PLAYER_HIT = 'player_hit';
+const LEVEL_UP = 'levelup'
 
 export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT,
-	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN };
+	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {
-	
+
 	log:null,
 
 	ready:false,
@@ -32,6 +34,7 @@ export default {
 			events.addListener( EVT_LOOT, this.onLoot, this );
 			events.addListener( EVT_UNLOCK, this.onUnlock, this );
 			events.addListener( EVT_EVENT, this.onEvent, this );
+			events.addListener( LEVEL_UP, this.onLevel, this );
 
 			events.addListener( EVT_COMBAT, this.onCombat, this );
 			events.addListener( ENEMY_SLAIN, this.enemySlain, this );
@@ -45,7 +48,7 @@ export default {
 
 	/**
 	 * Event item event.
-	 * @param {Item} it 
+	 * @param {Item} it
 	 */
 	onEvent( it ) {
 		this.log.log( it.name, it.desc, EVT_EVENT );
@@ -56,6 +59,10 @@ export default {
 	},
 
 	onLoot( loot ) {
+	},
+
+	onLevel( player ) {
+		this.log.log( player.name + ' Level Up!', null, EVT_EVENT );
 	},
 
 	onDied( attacker ) {
@@ -76,16 +83,16 @@ export default {
 	},
 
 	/**
-	 * 
-	 * @param {string} evt 
+	 *
+	 * @param {string} evt
 	 */
 	add( evt, listener, context ) {
 		events.addListener(evt, listener, context );
 	},
 
 	/**
-	 * 
-	 * @param  {...any} params 
+	 *
+	 * @param  {...any} params
 	 */
 	dispatch( ...params ) {
 		events.emit.apply( events, params );

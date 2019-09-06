@@ -25,13 +25,13 @@ export default class Npc extends Char {
 	set damage(v) {
 
 		if ( v && !(v instanceof Range) ) {
-	
+
 			if ( typeof v === 'string' || typeof v === 'object') this._damage = new Range( v );
 			else {
 
 				this._damage = Number( v );
 			}
-	
+
 		} else this._damage = v;
 
 	}
@@ -57,7 +57,7 @@ export default class Npc extends Char {
 	/*update(dt) {
 
 		super.update(dt);
-		
+
 		if ( !this.alive ) return;
 
 		this.timer -= dt;

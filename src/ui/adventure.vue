@@ -7,7 +7,7 @@ import ProgBar from './components/progbar.vue';
 import FilterBox from './components/filterbox.vue';
 
 export default {
-	
+
 	props:['state'],
 	mixins:[ItemBase],
 	data(){
@@ -71,7 +71,7 @@ export default {
 			<span v-if="raiding">Adventuring...<br></span>
 			<div class="outlog">
 			<div v-for="(it,i) in combatLog" :key="i">
-				<span class="log-text">{{ it.text || 'Nothing' }}</span>
+				<span class="log-text">{{ it.text || '' }}</span>
 			</div>
 			</div>
 		</div>
@@ -80,7 +80,7 @@ export default {
 	</div>
 
 </div>
-	
+
 </template>
 
 <style scoped>

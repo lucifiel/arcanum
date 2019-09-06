@@ -3,7 +3,9 @@
 	{
 		"id":"crafting",
 		"need":"workspace",
-		"buy":true,
+		"buy":{
+			"research":20
+		},
 		"run":{
 			"stamina":0.5
 		},
@@ -16,7 +18,9 @@
 		"school":"arcane",
 		"verb":"reading lore",
 		"locked":false,
-		"buy":true,
+		"buy":{
+			"research":20
+		},
 		"run":{
 			"stamina":0.2
 		},
@@ -110,6 +114,9 @@
 		"school":"lore",
 		"require":"lore",
 		"verb":"linguisticizing",
+		"buy":{
+			"research":10
+		},
 		"run":{
 			"stamina":0.2
 		},

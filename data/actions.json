@@ -60,7 +60,7 @@
 	{
 
 		"id":"prestidigitation",
-		"desc":"Why study when you can perform cheap parlor tricks for coin?",
+		"desc":"Why study when you can perform parlor tricks for coin?",
 		"verb":"performing",
 		"require":"spellbook",
 		"length":15,

@@ -29,8 +29,8 @@
 	{
 		"id":"evt_gobcamp",
 		"name":"Goblins, Goblins!",
-		"require":"state.tier0&&state.player.level>=4",
-		"desc":"A camp of goblins has come to your attention in the vicinity. As an aspiring wizard, convention dictates you test your mettle on their lives."
+		"require":"state.tier0&&state.player.level>=4&&state.dist>=25",
+		"desc":"Rumors hint at a camp of goblins in the vicinity. As an aspiring wizard, convention dictates you test your mettle on their lives."
 	},
 	{
 		"id":"tier0",
