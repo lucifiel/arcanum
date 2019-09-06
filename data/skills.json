@@ -54,6 +54,7 @@
 		"id":"conjuration",
 		"school":"arcane",
 		"verb":"conjuring",
+		"desc":"",
 		"require":"state.tier0>0&&state.lore>=7&&state.divination>3",
 		"run":{
 			"stamina":0.2,
@@ -61,8 +62,25 @@
 		},
 		"result":{
 			"research.max":1,
-			"arcana":0.2
+			"arcana":0.2,
+			"sp":0.05
 		},"flavor":"noone knows where things come from; they just appear."
+
+	},
+	{
+		"id":"runelore",
+		"school":"arcane",
+		"verb":"translating",
+		"desc":"study ancient dhrunic runes.",
+		"require":"state.tier1>0&&state.lore>=10&&state.languages>5",
+		"run":{
+			"stamina":0.2
+		},
+		"result":{
+			"research.max":5,
+			"arcana":0.1,
+			"sp":0.05
+		},"flavor":""
 
 	},
 	{

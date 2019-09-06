@@ -402,7 +402,7 @@
 		"id":"sabbat",
 		"name":"witch's sabbath",
 		"desc":"a revelry of demons and witches.",
-		"require":"state.witch>0&&state.demonology>=5&&state.spiritlore>=8",
+		"require":"state.witch>0&&state.demonology>=7&&state.spiritlore>=8",
 		"length":100,
 		"cd":3600,
 		"cost":{
@@ -417,9 +417,9 @@
 			"arcana":0.01,
 			"sp":0.0001,
 			"demonology.max":0.001,
-			"demonology":0.001,
+			"demonology":1,
 			"spiritlore.max":0.001,
-			"spiritelore":0.001
+			"spiritlore":1
 		}
 
 	},
@@ -836,7 +836,7 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"(state.tier0>0&&state.animals>=5&&state.demonology>=3)||state.witch>0",
+		"require":"(state.tier0>0&&state.animals>=5&&state.demonology>=4)||state.witch>0",
 		"repeat":false,
 		"length":100,
 		"cost":{
@@ -846,7 +846,7 @@
 		},
 		"result":{
 			"demonology.max":2,
-			"demonology.rate":0.2,
+			"demonology.rate":"10%",
 			"lore.max":1,
 			"lore.rate":0.2,
 			"planeslore.max":1,

@@ -967,6 +967,19 @@
 	},
 	{
 
+		"id":"chirography",
+		"desc":"improve the efficacy of your scrolls by meticulous attention to penmanship.",
+		"require":"state.lore>10",
+		"cost":{
+			"research":300,
+			"mana":10
+		},
+		"mod":{
+			"scrolls.mod.research.max":0.5
+		}
+	},
+	{
+
 		"id":"magicskull",
 		"name":"magic skull",
 		"require":"state.necromancer>0||state.witch>0",
@@ -1000,8 +1013,8 @@
 		},
 		"mod":{
 			"lore.max":2,
-			"demonology.max":2,
-			"demonology.rate":0.1,
+			"demonology.max":1,
+			"demonology.rate":0.3,
 			"planeslore.max":1
 		}, "flavor":"and they say the blood has to be yours."
 	},
