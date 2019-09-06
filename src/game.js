@@ -556,7 +556,7 @@ export default {
 
 		if ( it.title ) this.state.player.title = it.title;
 		if ( it.effect ) this.applyEffect(it.effect);
-		if ( it.mod ) this.addMod( it.mod, 1 );
+		if ( it.mod ) this.addMod( it.mod, count );
 		if ( it.lock ) this.lock( it.lock );
 		if ( it.dot ) this.state.player.addDot( new Dot(it.dot, it.id, it.name) );
 		if ( it.disable ) this.disable( it.disable );

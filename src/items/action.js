@@ -26,6 +26,7 @@ export default class Action extends GData {
 		if ( this.length && v >= this._length ) {
 
 			this.value++;
+			console.log(this.id+' leve up: ' + v );
 
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.loot ) Game.getLoot( this.loot );

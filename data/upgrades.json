@@ -349,6 +349,7 @@
 		"name":"ghost compiler",
 		"desc":"an invisible spirit binds your scrolls into codicils.",
 		"require":["unseenscribe"],
+		"max":3,
 		"cost":{
 			"arcana":1,
 			"spirit":5,
@@ -366,6 +367,7 @@
 		"name":"bone collector",
 		"require":"state.reanimation>=5&&state.crafting>=7",
 		"desc":"create a gibbering ghoul to scavenge for bones.",
+		"max":3,
 		"cost":{
 			"arcana":1,
 			"shadow":5,
@@ -443,7 +445,7 @@
 		"id":"celestialglobe",
 		"name":"celestial globe",
 		"desc":"a globe of the stars and constellations.",
-		"require":"state.astronomy.max>=9&&state.crafting>=9",
+		"require":"state.astronomy>=9&&state.crafting>=9",
 		"cost":{
 			"arcana":1,
 			"research":200,
@@ -462,7 +464,7 @@
 		"id":"armillarysphere",
 		"name":"armillary sphere",
 		"desc":"a small mechanical model of the known worlds",
-		"require":"state.astronomy.max>=7&&state.crafting>=7",
+		"require":"state.astronomy>=7&&state.crafting>=7",
 		"cost":{
 			"arcana":1,
 			"research":100,

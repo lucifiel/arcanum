@@ -1,4 +1,5 @@
 import Action from './action';
+import Stat from '../stat';
 
 const EXP_RATIO = 0.35;
 
@@ -29,8 +30,8 @@ export default class Skill extends Action {
 		this.buy = this.buy || { "sp":1 };
 
 		this.value = this._value || 0;
-		this.rate = this.rate || 0.5;
-		this.max = this.max || 5;
+		this.rate = this.rate || new Stat(0.5);
+		this.max = this.max || new Stat(5);
 
 	}
 
@@ -40,6 +41,7 @@ export default class Skill extends Action {
 
 	complete() {
 
+		console.log('complete: ' + this.id );
 		super.complete();
 		if ( this._value > Math.floor(this._max) ) this._value = Math.floor(this._max);
 		this._length += this._length*EXP_RATIO;

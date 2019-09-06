@@ -74,6 +74,30 @@
 
 	},
 	{
+		"id":"gloom",
+		"level":2,
+		"require":"state.shadow>=10",
+		"school":"shadow",
+		"desc":"decreases the target's resistance to shadow magic.",
+		"buy":{
+
+			"research":100,
+			"shadowgem":1
+
+		},
+		"cost":{
+			"shadow":2
+		},
+		"attack":{
+			"dot":{
+				"kind":"shadow",
+				"duration":30,
+				"resist.shadow":-10
+			}
+		}
+
+	},
+	{
 		"id":"poisonnettle",
 		"name":"poison nettle",
 		"level":1,

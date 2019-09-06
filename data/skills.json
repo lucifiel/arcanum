@@ -51,6 +51,21 @@
 
 	},
 	{
+		"id":"conjuration",
+		"school":"arcane",
+		"verb":"conjuring",
+		"require":"state.tier0>0&&state.lore>=7&&state.divination>3",
+		"run":{
+			"stamina":0.2,
+			"spirit":0.2
+		},
+		"result":{
+			"research.max":1,
+			"arcana":0.2
+		},"flavor":"noone knows where things come from; they just appear."
+
+	},
+	{
 		"id":"animals",
 		"name":"animal handling",
 		"need":"tagpen",

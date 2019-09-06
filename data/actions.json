@@ -355,7 +355,6 @@
 		"verb":"resting",
 		"locked":false,
 		"perpetual":true,
-		"ignoreStamina":true,
 		"fill":[ "stamina", "hp", "mana" ],
 		"effect":{
 			"mana":{
@@ -372,7 +371,6 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"length":10,
-		"ignoreStamina":true,
 		"need":"state.light>=5&&state.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
@@ -388,7 +386,6 @@
 		"verb":"eating children",
 		"perpetual":true,
 		"length":10,
-		"ignoreStamina":true,
 		"require":"state.evil>0&&state.witch>0",
 		"need":"cauldron",
 		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
