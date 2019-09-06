@@ -43,8 +43,8 @@ export default class Char {
 	get statuses() { return this._statuses; }
 	set statuses(v) { this._statuses = v; }
 
-	get resists() { return this._resists };
-	set resists(v) { this._resists = v; }
+	get resist() { return this._resist };
+	set resist(v) { this._resist = v; }
 
 	get speed() { return this._speed; }
 	set speed(v) {
@@ -90,7 +90,7 @@ export default class Char {
 
 		this.statuses = this.statuses || {};
 		this.immunities = this.immunities || {};
-		this._resists = this._resists || {};
+		this._resist = this._resist || {};
 
 		//console.log( this.id + ' damage: ' + this.damage );
 		//console.log( this.id + ' tohit: ' + this.tohit );
@@ -185,22 +185,22 @@ export default class Char {
 	 */
 	tryResist(kind) {
 
-		return ( this.resists && this.resists[kind] ) ? 100*Math.random() < this.resists[kind] : false;
+		return ( this.resist && this.resist[kind] ) ? 100*Math.random() < this.resist[kind] : false;
 
 	}
 
 	getResist(kind) {
-		return (this._resists[kind]||0)/100;
+		return (this._resist[kind]||0)/100;
 	}
 
 	removeResist( kind, amt ) {
-		if ( this._resists[kind] ) this._resists[kind] -= amt;
+		if ( this._resist[kind] ) this._resist[kind] -= amt;
 	}
 
 	addResist( kind, amt ) {
 
-		if ( !this._resists[kind] ) this._resists[kind] = amt;
-		else this._resists[kind].base += amt;
+		if ( !this._resist[kind] ) this._resist[kind] = amt;
+		else this._resist[kind].base += amt;
 
 	}
 

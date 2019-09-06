@@ -255,7 +255,7 @@
 		"id":"writingdesk",
 		"name":"writing desk",
 		"desc":"A desk for working and scribing.",
-		"require":"neophyte",
+		"require":"scribe",
 		"tags":"workspace",
 		"cost":{
 			"gold":100,
@@ -273,7 +273,7 @@
 		"name":"crafting table",
 		"tags":"workspace",
 		"desc":"Wide table for crafting projects.",
-		"require":"neophyte",
+		"require":"scribe",
 		"cost":{
 			"gold":100,
 			"space":2
@@ -333,7 +333,7 @@
 
 		"id":"pedestal",
 		"desc":"A pedestal for reading magic tomes. Improves study habits.",
-		"require":"neophyte",
+		"require":"scribe",
 		"cost":{
 			"gold":50,
 			"space":1

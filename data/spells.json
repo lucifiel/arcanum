@@ -148,6 +148,7 @@
 		"school":"mana",
 		"locked":false,
 		"level":2,
+		"require":"state.player.level>=3&&state.lore>=5",
 		"buy":{
 
 			"research":30,
@@ -171,6 +172,7 @@
 		"name":"mana",
 		"school":"mana",
 		"locked":false,
+		"require":"state.player.level>=5&&state.lore>=10",
 		"level":5,
 		"buy":{
 
@@ -194,6 +196,7 @@
 
 		"id":"lightregen1",
 		"name":"pulsing light",
+		"require":"light",
 		"school":"light",
 		"desc":"a small pulse of light zips around you, searching for injuries.",
 		"level":1,
@@ -221,6 +224,7 @@
 		"id":"lightregen2",
 		"name":"pulsing light II",
 		"school":"light",
+		"require":"state.player.level>=5&&state.lightlore>=5",
 		"desc":"a small pulse of light zips around you, searching for injuries.",
 		"level":3,
 		"buy":{
@@ -249,6 +253,7 @@
 		"school":"light",
 		"desc":"a small pulse of light zips around you, searching for injuries.",
 		"level":5,
+		"require":"state.player.level>=10&&state.lightlore>=8",
 		"buy":{
 
 			"research":100,
@@ -296,9 +301,7 @@
 		"name":"mud",
 		"desc":"engulfs target in mud",
 		"school":"earth",
-		"require":{
-			"earth.max":5
-		},
+		"require":"state.player.level>=4&&state.earthlore>=5",
 		"level":2,
 		"buy":{
 
@@ -346,10 +349,8 @@
 		"name":"fire bolt",
 		"level":2,
 		"desc":"a small bolt of flame.",
+		"require":"state.player.level>=4&&state.firelore>=2",
 		"school":"fire",
-		"require":{
-			"fire.max":5
-		},
 		"buy":{
 
 			"research":30,
@@ -373,9 +374,7 @@
 		"level":3,
 		"desc":"a bolt of fire with lingerine flame",
 		"school":"fire",
-		"require":{
-			"fire.max":7
-		},
+		"require":"state.player.level>=6&&state.firelore>=5",
 		"buy":{
 
 			"research":100,
@@ -403,9 +402,7 @@
 		"level":2,
 		"desc":"vines lash out from the ground.",
 		"school":"nature",
-		"require":{
-			"nature.max":5
-		},
+		"require":"state.player.level>=4&&state.naturelore>=3",
 		"buy":{
 
 			"research":30,
@@ -428,6 +425,7 @@
 		"id":"proshadow",
 		"name":"protection: shadow",
 		"school":"light",
+		"require":"state.player.level>=4&&state.lightlore>=2",
 		"level":2,
 		"buy":{
 
@@ -442,8 +440,8 @@
 
 			"duration":20,
 			"mod":{
-				"player.resists.shadow":10,
-				"player.resists.undead":10
+				"state.player.resist.shadow":10,
+				"state.player.resist.undead":10
 			}
 
 		}
@@ -455,6 +453,7 @@
 		"name":"protection: fire",
 		"school":"fire",
 		"level":2,
+		"require":"state.player.level>=4&&state.firelore>=2",
 		"buy":{
 
 			"research":25,
@@ -469,7 +468,7 @@
 
 			"duration":20,
 			"mod":{
-				"player.resists.fire":10
+				"state.player.resist.fire":10
 			}
 
 		}
@@ -481,6 +480,7 @@
 		"name":"protection: water",
 		"school":"water",
 		"level":2,
+		"require":"state.player.level>=4&&state.waterlore>=3",
 		"buy":{
 
 			"research":25,
@@ -495,7 +495,7 @@
 
 			"duration":20,
 			"mod":{
-				"player.resists.water":10
+				"state.player.resist.water":10
 			}
 
 		}
@@ -507,6 +507,7 @@
 		"name":"protection: nature",
 		"school":"nature",
 		"level":2,
+		"require":"state.player.level>=4&&state.naturelore>=3",
 		"buy":{
 
 			"research":25,
@@ -520,8 +521,8 @@
 
 			"duration":20,
 			"mod":{
-				"player.resists.nature":10,
-				"player.resists.poison":10
+				"state.player.resist.nature":10,
+				"state.player.resist.poison":10
 			}
 
 		}
@@ -533,9 +534,7 @@
 		"name":"sealing light",
 		"desc":"a seam of light closes your wounds.",
 		"school":"light",
-		"require":{
-			"light.max":5
-		},
+		"require":"state.player.level>=4&&state.lightlore>=4",
 		"buy":{
 
 			"research":30,
@@ -557,9 +556,7 @@
 		"name":"unseen servant",
 		"desc":"an invisible servant manages your affairs.",
 		"school":"air",
-		"require":{
-			"air.max":5
-		},
+		"require":"state.player.level>=4&&state.airlore>=4",
 		"buy":{
 
 			"research":30,
@@ -580,17 +577,15 @@
 	{
 		"id":"insight",
 		"name":"insight",
-		"level":2,
+		"level":3,
 		"desc":"all your studies seem to fall into place.",
 		"flavor":"I know the pieces fit",
 		"school":"light",
-		"require":{
-			"light.max":5
-		},
+		"require":"state.player.level>=5&&state.lightlore>=5",
 		"buy":{
 
-			"research":30,
-			"scrolls":5,
+			"research":100,
+			"codices":1,
 			"lightgem":1
 
 		},
@@ -610,16 +605,14 @@
 	{
 		"id":"darkpromptings",
 		"name":"dark promptings",
-		"level":2,
+		"level":3,
 		"desc":"malevolent voices whisper secrets to your mind.",
+		"require":"state.player.level>=5&&state.shadowlore>=5",
 		"school":"shadow",
-		"require":{
-			"shadow.max":5
-		},
 		"buy":{
 
-			"research":30,
-			"scrolls":5,
+			"research":100,
+			"codices":1,
 			"shadowgem":1
 
 		},
@@ -642,12 +635,10 @@
 		"level":2,
 		"desc":"spirits whisper hidden truths as you study.",
 		"school":"spirit",
-		"require":{
-			"spirit.max":5
-		},
+		"require":"state.player.level>=4&&state.spiritlore>=4",
 		"buy":{
 
-			"research":30,
+			"research":100,
 			"scrolls":5,
 			"spiritgem":1
 
@@ -660,14 +651,15 @@
 			"duration":45,
 			"effect":{
 				"research":1,
-				"sp":0.0001
+				"sp":0.0001,
+				"arcana":0.0001
 			}
 		}
 	},
 	{
 		"id":"venom",
 		"level":3,
-		"require":"nature",
+		"require":"state.player.level>=7&&state.naturelore>=6",
 		"school":"nature",
 		"buy":{
 
@@ -699,7 +691,7 @@
 			"research":75
 		},
 		"cost":{
-
+			"mana":2
 		},
 		"attack":{
 			"dot":{
@@ -754,7 +746,7 @@
 		"dot":{
 			"duration":30,
 			"mod":{
-				"player.defense":1
+				"state.player.defense":1
 			}
 		}
 
@@ -781,7 +773,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"player.defense":2
+				"state.player.defense":2
 			}
 		}
 
@@ -808,7 +800,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"player.defense":5
+				"state.player.defense":5
 			}
 		}
 
@@ -835,7 +827,7 @@
 		"dot":{
 			"duration":90,
 			"mod":{
-				"player.defense":10
+				"state.player.defense":10
 			}
 		}
 
@@ -845,15 +837,13 @@
 		"name":"adamant shell",
 		"desc":"your skin becomes adamant.",
 		"school":"earth",
-		"require":{
-			"earth.max":20
-		},
+		"require":"state.player.level>=15&&state.earthlore>=15",
 		"level":10,
 		"buy":{
 
 			"research":300,
 			"tomes":5,
-			"earthgem":5
+			"earthgem":10
 
 		},
 		"cost":{
@@ -862,7 +852,7 @@
 		"dot":{
 			"duration":120,
 			"mod":{
-				"player.defense":20
+				"state.player.defense":20
 			}
 		}
 

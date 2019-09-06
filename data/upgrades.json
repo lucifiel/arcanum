@@ -33,7 +33,6 @@
 		},
 		"effect":["adept","evil", {
 			"bones":10,
-			"shadow.max":1,
 			"player.exp":10
 		}]
 
@@ -185,7 +184,7 @@
 		"id":"gryffonmount",
 		"name":"gryffon",
 		"desc":"as fleet as it is fearsome.",
-		"require":"stables",
+		"require":["stables","state.magicbeasts>=7"],
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -365,8 +364,8 @@
 	{
 		"id":"bonecollector",
 		"name":"bone collector",
-		"require":"state.reanimation>=5",
-		"desc":"summon a gibbering ghoul to scavenge for bones.",
+		"require":"state.reanimation>=5&&state.crafting>=7",
+		"desc":"create a gibbering ghoul to scavenge for bones.",
 		"cost":{
 			"arcana":1,
 			"shadow":5,
@@ -374,7 +373,7 @@
 		},
 		"mod":{
 			"bones.rate":0.001
-		}
+		},"flavor":"don't ask where it finds them."
 
 	},
 	{
@@ -382,13 +381,14 @@
 		"id":"woodpipe",
 		"name":"wood pipe",
 		"desc":"Finely carved wooden pipe. Ruminate while peering into the sunset or a fire.",
-		"require":"state.scrying>=5",
+		"require":"state.scrying>=5&&state.crafting>=7",
 		"cost":{
 			"gems":5
 		},
 		"mod":{
+			"divination.rate":"5%",
 			"scrying.max":1,
-			"scrying.rate":0.1
+			"scrying.rate":0.2
 		}
 
 	},
@@ -397,15 +397,16 @@
 		"id":"longpipe",
 		"name":"long-stem pipe",
 		"desc":"",
-		"require":"state.scrying>=7",
+		"require":"state.scrying>=7&&state.crafting>=8",
 		"cost":{
 			"spiritgem":5,
 			"research":500,
 			"spirit":5
 		},
 		"mod":{
+			"divination.rate":"10%",
 			"scrying.max":1,
-			"scrying.rate":0.2
+			"scrying.rate":0.3
 		}
 
 	},
@@ -439,6 +440,25 @@
 
 	},
 	{
+		"id":"celestialglobe",
+		"name":"celestial globe",
+		"desc":"a globe of the stars and constellations.",
+		"require":"state.astronomy.max>=9&&state.crafting>=9",
+		"cost":{
+			"arcana":1,
+			"research":200,
+			"gold":200
+		},
+		"mod":{
+			"research.max":10,
+			"divination.max":1,
+			"divination.rate":"20%",
+			"astronomy.max":1,
+			"astronomy.rate":"10%",
+			"starcharts.rate":0.001
+		}
+	},
+	{
 		"id":"armillarysphere",
 		"name":"armillary sphere",
 		"desc":"a small mechanical model of the known worlds",
@@ -449,10 +469,11 @@
 			"gold":200
 		},
 		"mod":{
+			"research.max":10,
 			"planeslore.max":1,
-			"planeslore.rate":0.1,
+			"planeslore.rate":0.3,
 			"astronomy.max":1,
-			"astronomy.rate":0.1,
+			"astronomy.rate":0.3,
 			"starcharts.rate":0.001
 		}
 	},
@@ -521,7 +542,7 @@
 			"languages.max":2,
 			"languages.rate":0.2,
 			"magicbeasts.max":2,
-			"magicbeasts.rate":0.2
+			"magicbeasts.rate":0.3
 		}
 
 	},
@@ -566,36 +587,98 @@
 	{
 
 		"id":"hiddenpockets",
-		"require":"state.magician>0||state.trickster>0",
+		"require":"state.magician>0||state.trickster>0&&state.trickery>0",
 		"cost":{
-			"research":100,
+			"research":200,
 			"arcana":1
 		},
 		"repeat":false,
 		"flavor":"Nothing up my sleeves...",
 		"mod":{
-			"purse.max":5,
-			"pouch.max":5
+			"purse.max":3,
+			"pouch.max":5,
+			"inv.max":1
 		}
 
 	},
 	{
 		"id":"deeppockets",
 		"name":"Deep Pockets",
+		"require":"state.hiddenpockets>0&&state.trickster>0&&state.trickery>=5",
 		"desc":"Lots of money.",
 		"cost":{
 			"arcana":1
 		},
 		"mod":{
-			"pouch.mod.gold.max":10
-		}
+			"pouch.mod.gold.max":5,
+			"purse.mod.gold.max":10,
+			"inv.max":1
+		},
+		"flavor":"There's another coin down here somewhere..."
 	},
 
+	{
+		"id":"wateraffinity",
+		"desc":"water affinity",
+		"require":"state.water>10",
+		"cost":{
+			"research":200,
+			"watergem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.water":5
+		}
+
+	},
+
+	{
+		"id":"fireaffinity",
+		"desc":"fire affinity",
+		"require":"state.fire>10",
+		"cost":{
+			"research":200,
+			"firegem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.fire":5
+		}
+
+	},
+	{
+		"id":"earthaffinity",
+		"desc":"earth affinity",
+		"require":"state.earth>10",
+		"cost":{
+			"research":200,
+			"earthgem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.earth":5
+		}
+
+	},
+	{
+		"id":"airaffinity",
+		"desc":"air affinity",
+		"require":"state.air>10",
+		"cost":{
+			"research":200,
+			"airgem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.air":5
+		}
+
+	},
 	{
 
 		"id":"coinmagic",
 		"name":"coin tricks",
-		"require":"state.magician+state.trickster>0",
+		"require":"(state.magician+state.trickster)>0",
 		"desc":"Manipulate coins to produce more coins.",
 		"cost":{
 			"research":100
@@ -611,10 +694,10 @@
 	{
 		"id":"wishingwells",
 		"name":"Wishing wells",
-		"require":"state.fountain>0&&state.water.max>=10",
+		"require":"state.divination>=3&&state.fountain>0",
 		"cost":{
-			"gold":100,
-			"research":50,
+			"gold":500,
+			"research":400,
 			"water":10
 		},
 		"mod":{
@@ -639,7 +722,19 @@
 
 		"id":"alkahest",
 		"name":"alkahest",
-		"desc":"Universal Solvent"
+		"desc":"Discover the Universal Solvent",
+		"require":"state.alchemy>=15&&state.crafting>=10",
+		"cost":{
+			"research":700,
+			"gold":300,
+			"tomes":1,
+			"gems":15
+		},
+		"mod":{
+			"alchemy.max":2,
+			"alchemy.rate":0.3
+		},"flavor":"anything can be a liquid"
+
 	},
 	{
 
@@ -744,7 +839,7 @@
 			"spirit":5
 		},
 		"mod":{
-			"dust.max":5,
+			"bonedust.max":5,
 			"spiritlore.max":0.25,
 			"spiritlore.rate":0.1
 		}
@@ -755,7 +850,7 @@
 		"name":"crystal ball",
 		"tags":"spiritsource",
 		"desc":"A crystal sphere revealing distant lands.",
-		"require":"tier0",
+		"require":"state.tier0>0&&state.gems>0",
 		"cost":{
 			"gems":3,
 			"research":200
@@ -906,17 +1001,17 @@
 			"demonology.max":2,
 			"demonology.rate":0.1,
 			"planeslore.max":1
-		}, "flavor":"they say the blood has to be yours, however."
+		}, "flavor":"and they say the blood has to be yours."
 	},
 	{
 		"id":"siversgate",
 		"name":"siver's gate",
-		"desc":"siver knew true power only comes at great cost",
+		"desc":"siver knew true power comes only at great cost",
 		"require":"state.lore>=30",
 		"cost":{
 			"research":1000,
-			"shadowgem":10,
-			"spiritgem":10,
+			"shadowgem":15,
+			"spiritgem":15,
 			"arcana":10
 		},
 		"mod":{
@@ -928,8 +1023,9 @@
 			"reanimation.max":2,
 			"lore.max":1,
 			"demonology.max":3,
+			"demonology.rate":0.3,
 			"spiritlore.max":2,
-			"spirit.rate":0.1
+			"spirit.rate":0.3
 		}
 	},
 	{
@@ -947,7 +1043,8 @@
 			"arcana":1
 		},
 		"mod":{
-			"waterlore.max":2,
+			"waterlore.max":1,
+			"waterlore.rate":0.2,
 			"water.rate":0.1
 		}
 
@@ -961,7 +1058,7 @@
 		"flavor":"all you can drink",
 		"require":"state.fire.max>=10",
 		"cost":{
-			"research":200,
+			"research":300,
 			"fire":5,
 			"firegem":1,
 			"arcana":1
@@ -971,8 +1068,9 @@
 				"kind":"fire",
 				"damage":1
 			},
-			"firelore.max":2,
-			"fire.rate":0.1
+			"firelore.max":1,
+			"firelore.rate":0.2,
+			"fire.rate":0.05
 		}
 
 	},
@@ -984,13 +1082,13 @@
 		"flavor":"out of nothing at all",
 		"require":"state.air.max>=5",
 		"cost":{
-			"research":200,
+			"research":300,
 			"air":5,
 			"airgem":1,
 			"arcana":1
 		},
 		"mod":{
-			"airlore.max":2,
+			"airlore.max":1,
 			"airlore.rate":0.2,
 			"air.rate":0.05
 		}
@@ -1013,6 +1111,16 @@
 
 	},
 	{
+		"id":"schematic",
+		"name":"schematic",
+		"desc":" Schematic of Thurn the Artificer",
+		"flavor":"If only you could find an original.",
+		"mod":{
+			"crafting.max":0.1,
+			"crafting.rate":"1%"
+		}
+	},
+	{
 		"id":"mendicant",
 		"desc":"Sacrifice luxury for higher attainments.",
 		"need":"state.evil==0&&state.tier1>0&&state.gold.max>1000&&state.light.max>5",
@@ -1031,14 +1139,14 @@
 	{
 		"id":"alembic",
 		"desc":"essential instrument in alchemical distilling",
-		"require":"tier0",
+		"require":"state.tier0>0&&state.alchemy>=3",
 		"cost":{
 			"gold":150,
 			"research":100
 		},
 		"mod":{
 			"potions.max":1,
-			"potions.rate":0.1
+			"potions.rate":0.2
 		}
 
 	},
@@ -1078,7 +1186,7 @@
 	{
 		"id":"bagoftricks",
 		"name":"bag of tricks",
-		"require":"trickster",
+		"require":"state.trickster>0&&state.crafting>=7",
 		"cost":{
 			"research":100,
 			"codices":1,
@@ -1086,6 +1194,8 @@
 		},
 		"mod":{
 			"gold.max":50,
+			"trickery.max":1,
+			"trickery.rate":0.3,
 			"gold.rate":0.01
 		}
 	},

@@ -95,9 +95,11 @@ export default class GameState {
 		*/
 		this.tagLists = this.makeLists( this.items );
 
+		let count = 0;
 		for( let p in this.items ) {
 
 			var it = this.items[p];
+			count++;
 			if ( !it.hasTag ) {
 				console.warn( this.items[p].id + ' Has no type. Removing.');
 				delete this.items[p];
@@ -106,6 +108,7 @@ export default class GameState {
 			}
 
 		}
+		console.log('item count: ' + count );
 
 	}
 

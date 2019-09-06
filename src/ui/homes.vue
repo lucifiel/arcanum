@@ -76,6 +76,11 @@ export default {
 		<span class="space">Space: {{space.value}} / {{ space.max.value }}</span>
 		</span>
 
+			<div class="warn-text"
+			style="text-align:center"
+			v-if="state.items.space.value===0">No space remaining. Sell items or find a new Home.
+			<span v-if="homesAvail.length>0">If you cannot afford a new home, free space for more chests.</span></div>
+
 		<table class="furniture item-table">
 			<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
 		<tr v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch('itemover', $event, it )">
@@ -89,10 +94,6 @@ export default {
 
 		</tr>
 		</table>
-
-			<div class="warn-text"
-			style="text-align:center"
-			v-if="state.items.space.value===0">No space remaining. Sell items or find a new Home</div>
 
 		</div>
 

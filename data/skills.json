@@ -10,6 +10,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"research.max":1,
 			"sp":0.1
 		}
 	},
@@ -31,6 +32,21 @@
 				"value":1,
 				"max":1
 			}
+		}
+
+	},
+	{
+		"id":"trickery",
+		"school":"arcane",
+		"verb":"reading lore",
+		"require":"state.prestidigitation>15",
+		"run":{
+			"stamina":0.2,
+			"gold":1
+		},
+		"result":{
+			"sp":0.2,
+			"arcana":1
 		}
 
 	},
@@ -174,6 +190,7 @@
 		},
 		"result":{
 			"sp":0.05,
+			"research.max":1,
 			"shadow.max":1,
 			"shadow.rate":0.01
 		}
@@ -207,6 +224,7 @@
 			"stamina":0.4
 		},
 		"result":{
+			"research.max":1,
 			"light.max":1,
 			"light.rate":0.01
 		},
@@ -221,7 +239,7 @@
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.05,
+			"research.max":1,
 			"shadow.max":1,
 			"shadow.rate":0.01
 		}
@@ -237,6 +255,7 @@
 			"stamina":0.4
 		},
 		"result":{
+			"research.max":1,
 			"spirit.max":1,
 			"spirit.rate":0.01
 		}
@@ -252,6 +271,7 @@
 			"hp":0.2
 		},
 		"result":{
+			"research.max":1,
 			"fire.max":1,
 			"fire.rate":0.01
 		},
@@ -266,6 +286,7 @@
 			"stamina":0.4
 		},
 		"result":{
+			"research.max":1,
 			"earth":{
 				"max":1,
 				"rate":0.01
@@ -281,6 +302,7 @@
 			"stamina":0.4
 		},
 		"result":{
+			"research.max":1,
 			"water":{
 				"max":1,
 				"rate":0.01
@@ -297,6 +319,7 @@
 			"stamina":0.3
 		},
 		"result":{
+			"research.max":1,
 			"air":{
 				"max":1,
 				"rate":0.01
@@ -313,6 +336,7 @@
 			"stamina":0.4
 		},
 		"result":{
+			"research.max":1,
 			"nature":{
 				"max":1,
 				"rate":0.01
@@ -331,7 +355,8 @@
 		"result":{
 			"sp":0.1,
 			"arcana.max":0.1,
-			"lore.rate":0.2
+			"lore.rate":0.2,
+			"research.max":1
 		}
 
 	},
@@ -345,7 +370,6 @@
 			"shadow":0.1
 		},
 		"result":{
-			"research.value":1,
 			"shadow.rate":0.01
 		}
 

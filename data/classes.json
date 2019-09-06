@@ -22,29 +22,55 @@
 		}
 
 	},
+	{
+		"id":"scribe",
+		"title":"scribe",
+		"actdesc":"Become your master's personal scribe.",
+		"require":"scribescroll",
+		"log":{
+			"name":"Scribe",
+			"desc":"In return for your services as scribe, you are granted a small allowance for your studies. The position does require of course, some initial fees..."
+		},
+		"disable":["apprentice"],
+		"cost":{
+			"gold":100,
+			"research":100,
+			"arcana":1
+		},
+		"mod":{
+			"arcana.rate":0.0001
+		},
+		"effect":{
+			"research.max":10,
+			"sp":1,
+			"lore.max":1,
+			"gold.rate":0.1,
+			"lore.rate":0.2,
+			"player.exp":10
+		}
+	},
 {
 	"id":"neophyte",
 	"title":"neophyte",
-	"actdesc":"The next step on the twisting stairwell of apprenticeship.",
-	"require":"state.research.max>=50&&state.spellbook.value>0",
+	"actdesc":"The final step on the twisting stairwell of apprenticeship.",
+	"require":"state.research.max>=125&&state.spellbook.value>0",
 	"log":{
 		"name":"Neophyte",
-		"desc":"Your master has decided you are ready to take the next step on the path of wizardry, and grants you a small allowance to continue your studies."
+		"desc":"Your master has decided you are ready to take the next step on the path of wizardry."
 	},
 	"flavor":"Why does Master charge so many fees?",
-	"disable":["apprentice"],
+	"disable":["scribe"],
 	"cost":{
-		"gold":100,
-		"research":100,
+		"gold":150,
+		"research":175,
 		"arcana":3
 	},
-	"mod":{
-		"arcana.rate":0.0001
-	},
 	"effect":{
+		"research.max":10,
+		"arcana.rate":0.0001,
 		"sp":1,
-		"gold.rate":0.1,
-		"lore.max":2,
+		"lore.max":1,
+		"lore.rate":0.2,
 		"player.exp":10
 	}
 },
@@ -64,12 +90,12 @@
 	"actname":"The Prestige",
 	"actdesc":"Pursue the path of pure magic.",
 	"warn":true,
-	"require":"state.tier0>0&&state.research.max>=300&&state.lore>=10",
+	"require":"state.tier0>0&&state.lore>=10",
 	"disable":["adept","witch","druid"],
 	"cost":{
-		"research":400,
-		"arcana":10,
-		"gold":300
+		"research":700,
+		"arcana":12,
+		"gold":500
 	},
 	"effect":{
 		"tier1":true,
@@ -112,9 +138,10 @@
 	"desc":"Witch",
 	"name":"witchcraft",
 	"warn":true,
+	"actname":"The Craft",
 	"actdesc":"Enter into the practice of witchcraft.",
 	"require":"state.tier0>0&&state.animals>=2&&state.herbalism>=3&&state.potions>=3",
-	"flavor":"double, double, toil and trouble",
+	"flavor":"'what is't you do?' 'a deed without a name'",
 	"cost":{
 		"research":350,
 		"gold":200,
@@ -137,9 +164,9 @@
 	"name":"arcane trickster",
 	"title":"arcane trickster",
 	"desc":"Use magic for deceit and trickery.",
-	"disable":[],
+	"disable":["adept"],
 	"buyname":"Path of Trickery",
-	"require":"state.prestidigitation>=50",
+	"require":"state.trickery>=4&&state.tier0>0",
 	"cost":{
 		"research":250,
 		"gems":10,
@@ -150,6 +177,7 @@
 		"tier1":true,
 		"gold.max":10,
 		"research.max":2,
+		"trickery.max":3,
 		"mana.max":2,
 		"chaos.max":3,
 		"chaos.rate":0.1,
@@ -241,12 +269,12 @@
 	"effect":{
 		"tier1":true,
 		"research.max":15,
-		"enchanting.max":5,
+		"enchanting.max":3,
 		"arcana.max":2,
-		"naturelore.max":5,
+		"naturelore.max":2,
 		"mana.max":3,
-		"airlore.max":5,
-		"waterlore.max":5,
+		"airlore.max":3,
+		"waterlore.max":3,
 		"sp":2
 	}
 },
@@ -257,21 +285,47 @@
 	"disable":[],
 	"warn":true,
 	"actdesc":"Become a geomancer.",
-	"require":"state.tier0>0&&state.earthlore>=10",
+	"require":"state.tier1>0&&state.earthlore>=10",
 	"cost":{
-		"research":100,
-		"arcana":1
+		"research":300,
+		"arcana":1,
+		"tomes":5,
+		"earthgem":10
 	},
 	"effect":{
-		"tier1":true,
-		"research.max":15,
-		"earthlore.max":4,
-		"earthlore.rate":0.2,
+		"tier2":true,
+		"earthlore.max":1,
+		"earthlore.rate":"10%",
 		"stamina.max":"10%",
 		"mana.max":2,
 		"sp":2
 	},
 	"flavor":"your empire of dirt"
+},
+{
+	"id":"pyromancer",
+	"title":"pyromancer",
+	"desc":"shaper of fire",
+	"disable":[],
+	"name":"pyromancy",
+	"warn":true,
+	"actdesc":"Become a pyromancer.",
+	"require":"state.tier1>0&&state.firelore>=10",
+	"cost":{
+		"research":300,
+		"arcana":1,
+		"tomes":5,
+		"firegem":10
+	},
+	"effect":{
+		"tier2":true,
+		"firelore.max":1,
+		"firelore.rate":"10%",
+		"dodge.max":"10%",
+		"mana.max":2,
+		"sp":2
+	},
+	"flavor":""
 },
 {
 	"id":"hydromancer",
@@ -281,16 +335,17 @@
 	"name":"hydromancy",
 	"warn":true,
 	"actdesc":"Become a hydromancer.",
-	"require":"state.tier0>0&&state.waterlore>=10",
+	"require":"state.tier1>0&&state.waterlore>=10",
 	"cost":{
-		"research":100,
-		"arcana":1
+		"research":300,
+		"arcana":1,
+		"tomes":5,
+		"watergem":10
 	},
 	"effect":{
-		"tier1":true,
-		"research.max":15,
-		"waterlore.max":4,
-		"waterlore.rate":0.1,
+		"tier2":true,
+		"waterlore.max":1,
+		"waterlore.rate":"10%",
 		"dodge.max":"10%",
 		"mana.max":2,
 		"sp":2
@@ -298,45 +353,77 @@
 	"flavor":""
 },
 {
+	"id":"windmage",
+	"title":"wind mage",
+	"desc":"to walk on the wind",
+	"disable":[],
+	"name":"wind mage",
+	"warn":true,
+	"actdesc":"Become a wind.",
+	"require":"state.tier1>0&&state.airlore>=10",
+	"cost":{
+		"research":300,
+		"arcana":1,
+		"tomes":5,
+		"airgem":10
+	},
+	"effect":{
+		"tier2":true,
+		"airlore.max":1,
+		"airlore.rate":"10%",
+		"dodge.max":"10%",
+		"mana.max":2,
+		"sp":2
+	},
+	"flavor":"there's a storm coming"
+},
+{
 	"id":"evoker",
 	"title":"evoker",
 	"desc":"A wielder of raw magical power.",
 	"disable":[],
 	"effect":{
-		"research.max":5,
-		"arcana.max":1,
-		"mana.max":3,
-		"earthlore.max":3,
-		"earthlore.rate":0.1,
-		"waterlore.max":3,
-		"waterlore.rate":0.1,
-		"firelore.max":3,
-		"firelore.rate":0.1,
+		"tier3":true,
+		"lore.max":1,
+		"mana.max":1,
+		"earthlore.max":2,
+		"earthlore.rate":"10%",
+		"waterlore.max":2,
+		"waterlore.rate":"10%",
+		"firelore.max":2,
+		"firelore.rate":"10%",
 		"sp":1
 	}
 },
 {
 	"id":"stormcaller",
-	"require":"hydromancer",
+	"require":"state.hydromancer>0||state.windmage>0",
 	"cost":{
-
+		"research":1000,
+		"arcana":10,
+		"airgem":10,
+		"watergem":10,
+		"tomes":10
 	},
 	"effect":{
-		"tier2":true,
+		"tier3":true,
 		"sp":1,
+		"lore.max":1,
+		"mana.max":2,
 		"airlore.max":3,
 		"waterlore.max":3,
-		"airlore.rate":0.2,
-		"waterlore.rate":0.2
+		"airlore.rate":"15%",
+		"waterlore.rate":"15%"
 	},
-	"flavor":"there's a storm coming"
+	"flavor":"I am the storm"
 },
 {
 	"id":"elementalist",
 	"title":"elementalist",
-	"desc":"Master of basic elements.",
+	"desc":"Master of elemental forces.",
 	"disable":["adept"],
 	"effect":{
+		"tier1":true,
 		"research.max":5,
 		"elemental.max":5,
 		"elemental.rate":0.2,
@@ -349,6 +436,7 @@
 	"desc":"A diviner.",
 	"disable":["adept"],
 	"effect":{
+		"tier1":true,
 		"research.max":15,
 		"arcana.max":2,
 		"naturelore.max":2,
@@ -362,11 +450,16 @@
 {
 	"id":"mage",
 	"title":"mage",
-	"desc":"a follower of secret cabals.",
+	"desc":"member of an ancient order.",
 	"disable":["adept"],
+	"cost":{
+
+	},
 	"effect":{
+		"tier2":true,
 		"research.max":40,
-		"arcana.max":2,
+		"lore.max":2,
+		"lore.rate":0.4,
 		"mana.max":5,
 		"sp":2
 	}

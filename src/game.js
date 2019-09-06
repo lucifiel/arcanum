@@ -752,10 +752,23 @@ export default {
 	/**
 	 * Test if a mod can be applied without making value
 	 * become negative.
-	 * @param {*} mod
-	 * @param {*} amt
+	 * @param {Array|Object} mod
+	 * @param {number} amt
 	 */
 	canMod( mod, amt ) {
+
+		if ( Array.isArray(mod)  ) for( let m of mod ) if ( !this.canMod(m, amt) ) return false;
+		else if ( typeof mod === 'object' ) {
+
+			for( let p in mod ) {
+
+				var target = this.getData( p );
+				if ( target !== undefined ) return target.canApply( mod[p], amt );
+
+			}
+
+		}
+
 	},
 
 	/**

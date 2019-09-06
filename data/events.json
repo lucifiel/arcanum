@@ -40,7 +40,7 @@
 			"player.exp":15,
 			"innroom":true,
 			"sp":1,
-			"research.max":5
+			"research.max":15
 		}
 
 	},
@@ -125,7 +125,7 @@
 		"desc":"Freed of pitiful notions of right, and morality, the dark arts lie open before you.",
 		"disable":["light","good", "lightlore"],
 		"effect":{
-			"shadow":{
+			"shadowlore":{
 				"max":1,
 				"rate":0.1
 			}

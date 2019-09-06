@@ -73,62 +73,6 @@
 		"locked":false
 	},
 	{
-		"id":"resistarcane",
-		"tags":"resist",
-		"name":"arcane",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistfire",
-		"tags":"resist",
-		"name":"fire",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistcold",
-		"tags":"resist",
-		"name":"cold",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistair",
-		"tags":"resist",
-		"name":"air",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistearth",
-		"tags":"resist",
-		"name":"earth",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistwater",
-		"tags":"resist",
-		"name":"resist water",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistshadow",
-		"tags":"resist",
-		"name":"resist shadow",
-		"max":1,
-		"value":0
-	},
-	{
-		"id":"resistlight",
-		"tags":"resist",
-		"name":"resist light",
-		"max":1,
-		"value":0
-	},
-	{
 		"id":"evilamt",
 		"tags":"Tendency to evil",
 		"value":0

@@ -130,9 +130,9 @@ export default class Player extends Char {
 		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 0;
 
-		this._resists = this._resists || {};
-		for( let p in this._resists ) {
-			this._resists[p] = new Stat( this._resists[p]);
+		this._resist = this._resist || {};
+		for( let p in this._resist ) {
+			this._resist[p] = new Stat( this._resist[p]);
 		}
 
 		this._statuses = this._statuses || {
@@ -241,17 +241,17 @@ export default class Player extends Char {
 	}
 
 	/* getResist( kind ) {
-		return this._resists[kind].value / 100;
+		return this._resist[kind].value / 100;
 	}*/
 
 	removeResist( kind, amt ) {
-		if ( this._resists[kind] ) this._resists[kind].base -= amt;
+		if ( this._resist[kind] ) this._resist[kind].base -= amt;
 	}
 
 	addResist( kind, amt ) {
 
-		if ( !this._resists[kind] ) this._resists[kind] = new Stat( amt );
-		else this._resists[kind].base += amt;
+		if ( !this._resist[kind] ) this._resist[kind] = new Stat( amt );
+		else this._resist[kind].base += amt;
 
 	}
 

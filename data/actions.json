@@ -79,9 +79,9 @@
 
 		"id":"thievery",
 		"name":"arcane thievery",
-		"desc":"Use your arcane powers to cajole, coerce, and cudgel the gold from the pockets of civilians.",
+		"desc":"Use your powers to cajole, coerce, and cudgel gold from the pockets of civilians.",
 		"verb":"thieving",
-		"require":"trickster",
+		"require":"state.trickery>=4",
 		"length":15,
 		"perpetual":true,
 		"run":{
@@ -90,7 +90,11 @@
 		},
 		"effect":{
 			"research":-0.75,
-			"gold":1
+			"gold":1,
+			"trickery":0.5
+		},
+		"result":{
+			"evilamt":0.2
 		}
 
 	},
@@ -98,9 +102,9 @@
 
 		"id":"heist",
 		"name":"arcane thievery",
-		"desc":"Orchestrate a theft of a guarded vault.",
+		"desc":"Orchestrate a theft on a guarded vault.",
 		"verb":"thieving",
-		"require":"trickster",
+		"require":"state.trickster>0&&state.trickery>=5",
 		"length":50,
 		"perpetual":true,
 		"run":{
@@ -108,7 +112,9 @@
 			"mana":0.4
 		},
 		"effect":{
-			"research":-0.8
+			"research":-0.8,
+			"trickery.max":0.003,
+			"trickery":1
 		},
 		"result":{
 			"gems":"4~10",
@@ -139,8 +145,11 @@
 		"run":{
 			"stamina":0.2
 		},
+		"effect":{
+			"lore":0.5
+		},
 		"result":{
-			"research.max":15,
+			"research.max":25,
 			"research.rate":0.07,
 			"arcana.rate":0.0001,
 			"player.exp":10
@@ -237,7 +246,7 @@
 			"stamina":0.2
 		},
 		"result":{
-			"dust":"2~4"
+			"bonedust":"2~4"
 		}
 	},
 	{
@@ -312,7 +321,7 @@
 		"name":"gather herbs",
 		"desc":"Gather herbs used in potions and alchemy.",
 		"verb":"gathering herbs",
-		"require":"state.neophyte>0&&state.herbalism>=1",
+		"require":"state.scribe>0&&state.herbalism>=1",
 		"need":"taggarden",
 		"length":20,
 		"fill":"herbs",
@@ -422,7 +431,7 @@
 		"perpetual":true,
 		"verb":"travelling",
 		"desc":"Travel the wide world.",
-		"require":"state.wagon>0",
+		"require":"state.wagon>0||state.mendicant>0",
 		"run":{
 			"stamina":0.4
 		},
@@ -508,10 +517,13 @@
 			"mana":10
 		},
 		"fill":"tomes",
+		"effect":{
+			"lore.exp":1
+		},
 		"run":{
 			"stamina":0.4
 		},
-		"effect":{
+		"result":{
 			"tomes":1
 		}
 
@@ -548,7 +560,7 @@
 			"animals.exp":2
 		},
 		"result":{
-			"research.max":5,
+			"research.max":10,
 			"animals.max":2,
 			"animals.rate":0.2
 		}
@@ -568,6 +580,7 @@
 			"research":1
 		},
 		"result":{
+			"research.max":10,
 			"languages.max":1,
 			"languages.rate":0.2,
 			"naturelore.max":1,
@@ -589,6 +602,7 @@
 			"research":1
 		},
 		"result":{
+			"research.max":10,
 			"languages.max":1,
 			"languages.rate":0.2,
 			"crafting.max":1,
@@ -610,6 +624,7 @@
 			"research":2
 		},
 		"result":{
+			"research.max":10,
 			"languages.max":2,
 			"languages.rate":0.5,
 			"spiritlore.max":2,
@@ -659,12 +674,13 @@
 			"desc":"you have mapped the physical heavens"
 		},
 		"result":{
+			"research.max":10,
 			"divination":{
 				"max":1,
 				"rate":0.2
 			},
-			"arcana.max":1,
-			"arcana.rate":0.001,
+			"lore.max":1,
+			"lore.rate":0.2,
 			"astronomy":{
 				"max":1,
 				"rate":0.1
