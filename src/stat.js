@@ -144,6 +144,16 @@ export default class Stat {
 	}
 
 	/**
+	 * Test if a mod can be applied to this stat without value becoming
+	 * negative.
+	 * @param {Mod} mod
+	 * @param {number} amt
+	 */
+	canApply( mod, amt ) {
+		return this.delValue( amt*(mod.bonus||0), amt*(mod.pct||0) )>=0;
+	}
+
+	/**
 	 * Get the new stat value if base and percent are changed
 	 * by the given amounts.
 	 * @param {number} delBonus - delta base.

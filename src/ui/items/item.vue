@@ -18,7 +18,7 @@ export default {
 	<span class="item-name">{{item.name}}
 
 			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
-				item.current.toFixed(0) + ( item.max ? (' / ' + item.max) :'' ) }}</span>
+				item.current.toFixed(0) + ( item.max ? (' / ' + Math.floor(item.max.value ) ) :'' ) }}</span>
 		</span>
 
 		<div>

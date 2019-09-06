@@ -750,6 +750,15 @@ export default {
 	},
 
 	/**
+	 * Test if a mod can be applied without making value
+	 * become negative.
+	 * @param {*} mod
+	 * @param {*} amt
+	 */
+	canMod( mod, amt ) {
+	},
+
+	/**
 	 * Apply a mod.
 	 * @param {Array|Object} mod
 	 * @param {number} amt - amount added.
@@ -936,6 +945,10 @@ export default {
 
 				res = this.getData(p);
 				if ( res === undefined || res.value < cost[p]*unit ) return false;
+				let mod = res.mod;
+				if ( mod ) {
+
+				}
 
 			}
 

@@ -644,6 +644,7 @@
 		"desc":"manual of the sun and stars",
 		"actname":"compile almagest",
 		"require":"state.astronomy>=5&&state.tier0>0",
+		"need":"state.research.max>100",
 		"repeat":false,
 		"length":50,
 		"cost":{
