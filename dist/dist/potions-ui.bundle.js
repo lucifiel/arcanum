@@ -1,0 +1,1 @@
+(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[6],{106:function(e,n,t){"use strict";t.r(n);var i=function(){var e=this.$createElement;return(this._self._c||e)("div")};i._withStripped=!0;t(1);var a={},s=t(0),o=Object(s.a)(a,i,[],!1,null,"7ac2a2de",null);o.options.__file="src/ui/potions.vue";n.default=o.exports}}]);

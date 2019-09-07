@@ -3,25 +3,14 @@ import Game from '../game';
 import Menu from './components/menu.vue';
 import ResoucesView from './resources.vue';
 import ActionsView from './actionsView.vue';
-import upgrades from './upgrades.vue';
-import HomeView from './homes.vue';
-import EquipView from './equip.vue';
+import Upgrades from './upgrades.vue';
 import Quickbar from './quickbar.vue';
-import Inventory from './inventory.vue';
-import Bestiary from './bestiary.vue';
-import Enchanting from './enchanting.vue';
-
 import ItemsBase from './itemsBase';
-
 import Warn from './components/warn.vue';
 import Vitals from 'ui/vitals.vue';
-import SkillsPane from './skillsPane.vue';
-import Spellbook from 'ui/spellbook.vue';
 import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
-import PlayerView from './player.vue';
 import LogView from './outlog.vue';
-import Adventure from './adventure.vue';
 
 import { TICK_TIME } from '../game';
 
@@ -46,22 +35,23 @@ export default {
 	components:{
 		resources:ResoucesView,
 		actions:ActionsView,
-		upgrades:upgrades,
+		upgrades:Upgrades,
 		itempopup:ItemPopup,
 		vitals:Vitals,
 		log:LogView,
-		skills:SkillsPane,
-		dots:DotView,
-		equip:EquipView,
-		inventory:Inventory,
-		homes:HomeView,
 		quickbar:Quickbar,
-		player:PlayerView,
-		bestiary:Bestiary,
-		spellbook:Spellbook,
-		adventure:Adventure,
-		enchanting:Enchanting,
+		dots:DotView,
 		warn:Warn,
+		skills:()=> import( /* webpackChunkName: "skills-ui" */ './skillsPane.vue' ),
+		equip:()=>import( /* webpackChunkName: "equip-ui" */ './equip.vue'),
+		inventory:()=> import( /* webpackChunkName: "inv-ui" */ './inventory.vue' ),
+		potions:()=> import( /* webpackChunkName: "potions-ui" */'./potions.vue'),
+		homes:()=>import( /* webpackChunkName: "homes-ui" */ './homes.vue'),
+		player:()=>import( /* webpackChunkName: "player-ui" */'./player.vue'),
+		bestiary:()=>import(/* webpackChunkName: "bestiary-ui" */ './bestiary.vue' ),
+		spellbook:()=>import(/* webpackChunkName: "spells-ui" */ 'ui/spellbook.vue'),
+		adventure:()=>import(/* webpackChunkName: "raid-ui" */ './adventure.vue'),
+		enchanting:()=>import( /* webpackChunkName: "enchant-ui" */'./enchanting.vue' ),
 		'vue-menu':Menu
 	},
 	data(){
@@ -72,7 +62,6 @@ export default {
 			overElm:null,
 			section:null
 		};
-
 
 	},
 	created(){
@@ -98,6 +87,7 @@ export default {
 		this.listen('unequip', this.onUnequip );
 		this.listen('drop', this.onDrop );
 		this.listen('enchant', this.onEnchant );
+		this.listen('brew', this.onBrew );
 
 		this.listen('home', this.onHome );
 
@@ -189,7 +179,7 @@ export default {
 						else {
 							let it = this.state.getData( cheatKeys[p] );
 							if ( it.locked ) it.locked = false;
-							this.state.fillItem( cheatKeys[p]);
+							Game.fillItem( cheatKeys[p]);
 						}
 						break;
 					}
@@ -214,6 +204,8 @@ export default {
 		onDrop(it) { this.game.drop(it); },
 
 		onTake(it) { this.game.take(it); },
+
+		onBrew(it) { this.game.craft(it); },
 
 		/**
 		 * @param {Enchant} e - enchantment
@@ -358,6 +350,8 @@ export default {
 		</template>
 
 		<template slot="sect_spells"><spellbook :state="state" /></template>
+
+		<template slot="sect_potions"><potions /></template>
 
 		<template slot="sect_bestiary"><bestiary /></template>
 

@@ -2,7 +2,8 @@
 
 	{
 		"id":"pot_heal1",
-		"name":"minor healing"
+		"name":"minor healing",
+		"use":"heal1"
 	},
 	{
 		"id":"pot_stam1",
@@ -16,6 +17,17 @@
 		},
 		"use":"stam1"
 
+	},
+	{
+		"id":"hestiabrew",
+		"name":"hestia's homebrew",
+		"dot":{
+
+			"hp":1,
+			"duration":40,
+			"nature":1
+
+		}
 	}
 
 

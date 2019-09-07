@@ -6,7 +6,7 @@ export default {
 	props:['item'],
 	name:'attack',
 	components:{
-		gdata:() => import('./gdata.vue')
+		gdata:() => import( /* webpackChunkName: "gdata-ui" */ './gdata.vue')
 	},
 	computed:{
 

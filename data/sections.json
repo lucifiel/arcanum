@@ -53,6 +53,11 @@
 		"require":"enchanting"
 	},
 	{
+		"id":"sect_potions",
+		"name":"potions",
+		"require":"state.potions>1"
+	},
+	{
 		"id":"sect_minions",
 		"name":"minions",
 		"require":""

@@ -535,6 +535,17 @@ export default {
 
 	},
 
+
+	fillItem( id ) {
+
+		let it = this.getData(id);
+		if ( !it || !it.max ) return;
+
+		let del = it.max.value - it.value;
+		if ( del > 0) this.doItem( it, it.max.value - it.value );
+
+	},
+
 	/**
 	 * Get a game item without paying cost.
 	 * @param {GData} it
@@ -1067,6 +1078,14 @@ export default {
 	take( it ) {
 		console.log('adding: ' + it.id );
 		return this.state.inventory.add(it);
+	},
+
+	/**
+	 * Craft an item by instantiating it.
+	 * @param {*} it
+	 */
+	craft(it) {
+
 	},
 
 	/**

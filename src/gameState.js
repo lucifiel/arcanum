@@ -294,15 +294,6 @@ export default class GameState {
 		it.max += amt;
 	}
 
-	fillItem( id ) {
-
-		let it = this.getData(id);
-		if ( !it || !it.max ) return;
-
-		it.value = it.max.value;
-
-	}
-
 	/**
 	 *
 	 * @param {(it)=>boolean} pred

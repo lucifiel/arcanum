@@ -7,47 +7,37 @@ import ItemsBase from './itemsBase';
 export default {
 
 	mixins:[ItemsBase],
-	components:{
-		filterbox:FilterBox,
-		inv:()=>import( './inventory.vue')
-	},
-	data() {
+	data(){
 
 		return {
 			/**
 			 * @property {Item[]} filtered - filtered search results.
 			 */
-			filtered:null,
-			/**
-			 * @property {Item} target - current enchant target.
-			 */
-			target:null
+			filtered:null
 		}
 	},
+
+	components:{
+		inv:()=>import('./inventory.vue')
+	},
 	beforeCreate(){
-		this.state = Game.state;
+		this.game = Game
+	},
+	methods:{
 	},
 	computed:{
 
-		enchants(){
-			return this.state.filterItems( it=>it.type==='enchant' && !this.locked(it) );
-		}
-	},
-	methods:{
+		potions(){ return []; }
+
 	}
 
 }
 </script>
 
 <template>
+<div class="potions">
 
-		<div class="enchants">
-
-		<div @mouseenter.capture.stop="dispatch('itemover', $event, target )">
-			Target: {{ target ? target.name : 'None' }}
-		</div>
-
-		<filterbox v-model="filtered" :items="enchants" min-items="7" />
+		<filterbox v-model="filtered" :items="potions" min-items="7" />
 
 		<div class="flex-row separate">
 
@@ -60,7 +50,7 @@ export default {
 				@click="dispatch('buy', it)">Unlock</button>
 
 			<button v-else :disabled="!target||!it.canApply(target)||!usable(it)"
-				@click="dispatch( 'enchant', it, target )">Enchant</button>
+				@click="dispatch( 'brew', it, target )">Brew</button>
 
 		</div>
 		</div>
@@ -68,15 +58,10 @@ export default {
 		<inv selecting=true :inv="state.inventory" v-model="target" />
 		</div>
 
-	</div>
-
+</div>
 </template>
+
 
 <style scoped>
 
-div.enchants {
-	display:flex;
-	flex-direction: column;
-}
-
-</style>}
+</style>

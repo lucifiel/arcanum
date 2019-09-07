@@ -603,7 +603,7 @@
 
 	},
 	{
-		"id":"sealwounds",
+		"id":"heal1",
 		"level":2,
 		"name":"sealing light",
 		"desc":"a seam of light closes your wounds.",

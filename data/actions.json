@@ -517,6 +517,20 @@
 
 	},
 	{
+		"id":"sublimate",
+		"name":"sublimate lore",
+		"desc":"internalize a vast amount of existing knowledge.",
+		"require":"state.codices.max>=20",
+		"cost":{
+			"codices":30
+		},
+		"effect":{
+			"research.max":1,
+			"arcana":1
+		}
+
+	},
+	{
 
 		"id":"compiletome",
 		"name":"Compile Tome",
