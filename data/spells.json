@@ -471,14 +471,41 @@
 	},
 	{
 
-		"id":"proshadow",
-		"name":"protection: shadow",
-		"school":"light",
-		"require":"state.player.level>=4&&state.lightlore>=2",
+		"id":"prolight",
+		"name":"protection: light",
+		"school":"shadow",
+		"require":"state.player.level>=4&&state.shadowlore>=3",
 		"level":2,
 		"buy":{
 
-			"research":25,
+			"research":100,
+			"scrolls":10
+
+		},
+		"cost":{
+			"shadow":2
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"state.player.resist.holy":10,
+				"state.player.resist.light":10
+			}
+
+		}
+
+	},
+	{
+
+		"id":"proshadow",
+		"name":"protection: shadow",
+		"school":"light",
+		"require":"state.player.level>=4&&state.lightlore>=3",
+		"level":2,
+		"buy":{
+
+			"research":100,
 			"scrolls":5
 
 		},
@@ -505,9 +532,8 @@
 		"require":"state.player.level>=4&&state.firelore>=2",
 		"buy":{
 
-			"research":25,
-			"scrolls":5,
-			"firegem":1
+			"research":100,
+			"scrolls":10
 
 		},
 		"cost":{
@@ -532,9 +558,8 @@
 		"require":"state.player.level>=4&&state.waterlore>=3",
 		"buy":{
 
-			"research":25,
-			"scrolls":5,
-			"watergem":1
+			"research":100,
+			"scrolls":5
 
 		},
 		"cost":{
@@ -648,6 +673,78 @@
 				"naturelore.rate":0.2,
 				"lightlore.rate":0.2,
 				"languages.rate":0.2
+			}
+		}
+	},
+	{
+		"id":"fireinsight",
+		"name":"fire sense",
+		"desc":"temporarily increase your natural aptitude for fire.",
+		"level":2,
+		"school":"fire",
+		"buy":{
+
+			"research":100,
+			"codices":1,
+			"firegem":1
+
+		},
+		"cost":{
+			"fire":2
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"lore.rate":0.2,
+				"firelore.rate":0.5
+			}
+		}
+	},
+	{
+		"id":"waterinsight",
+		"name":"water sense",
+		"desc":"temporarily increase your natural aptitude for water.",
+		"level":2,
+		"school":"water",
+		"cost":{
+			"water":2
+		},
+		"buy":{
+
+			"research":100,
+			"codices":1,
+			"watergem":1
+
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"lore.rate":0.2,
+				"waterlore.rate":0.5
+			}
+		}
+	},
+	{
+		"id":"airinsight",
+		"name":"wind sense",
+		"desc":"temporarily increase your natural aptitude for air.",
+		"level":2,
+		"school":"air",
+		"cost":{
+			"air":2
+		},
+		"buy":{
+
+			"research":100,
+			"codices":1,
+			"airgem":1
+
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"lore.rate":0.2,
+				"airlore.rate":0.5
 			}
 		}
 	},

@@ -152,9 +152,12 @@
 		"witchcraft":true,
 		"tier1":true,
 		"research.max":10,
-		"naturelore.max":5,
-		"animals.max":3,
-		"potions.max":5,
+		"naturelore.max":1,
+		"naturelore.rate":"10%",
+		"animals.max":1,
+		"animals.rate":"10%",
+		"potions.max":2,
+		"potions.rate":"15%",
 		"spiritlore.max":2,
 		"sp":2
 	}
@@ -177,7 +180,9 @@
 		"tier1":true,
 		"gold.max":10,
 		"research.max":2,
-		"trickery.max":3,
+		"trickery.max":2,
+		"trickery.rate":"10%",
+		"conjuration.max":1,
 		"mana.max":2,
 		"chaos.max":3,
 		"chaos.rate":0.1,
@@ -225,8 +230,8 @@
 		"embalming.max":3,
 		"reanimation.max":1,
 		"shadowlore.max":3,
-		"shadowlore.rate":0.2,
-		"potions.max":5,
+		"shadowlore.rate":"10%",
+		"potions.max":2,
 		"spiritlore.max":3,
 		"spiritlore.rate":0.2,
 		"sp":2
@@ -241,9 +246,9 @@
 		"tier2":true,
 		"research.max":5,
 		"naturelore.max":5,
+		"naturelore.rate":"1+15%",
 		"animals.max":5,
 		"potions.max":1,
-		"naturelore.rate":1,
 		"sp":1
 	}
 },

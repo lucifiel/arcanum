@@ -55,21 +55,47 @@
 
 	},
 	{
+
+		"id":"runestones",
+		"name":"rune stones",
+		"desc":"runes carved on pieces of stone.",
+		"max":10,
+		"mod":{
+			"research.max":0.5,
+			"runes.rate":0.1,
+			"runes.max":0.03
+		}, "flavor":""
+
+	},
+	{
 		"id":"bodies",
 		"desc":"bodies for necromatic magic",
 		"max":1,
 		"mod":{
-			"shadow.rate":0.001
+			"dissection.rate":0.01,
+			"embalming.rate":0.01
 		}
 	},
 	{
 		"id":"souls",
 		"desc":"imprisoned souls of living creatures.",
+		"max":1,
 		"mod":{
 			"shadow.rate":0.001,
-			"spirit.rate":0.001
+			"spirit.rate":0.001,
+			"spiritlore.rate":0.01
 		},
 		"flavor":"is it wrong?"
+	},
+	{
+		"id":"schematic",
+		"name":"schematic",
+		"desc":" Schematic of Thurn the Artificer",
+		"flavor":"If only you could find an original.",
+		"mod":{
+			"crafting.max":0.1,
+			"crafting.rate":"1%"
+		}
 	},
 	{
 		"id":"codices",

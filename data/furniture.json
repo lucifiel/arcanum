@@ -195,7 +195,6 @@
 		"flavor":"it doesn't seem very nice.",
 		"mod":{
 			"animals.max":1,
-			"animals.rate":0.1,
 			"evilamt":1
 		}
 
@@ -567,7 +566,9 @@
 		"tags":"stables",
 		"cost":{
 			"space":10,
-			"gold":500,
+			"gold":500
+		},
+		"mod":{
 			"animals.max":1,
 			"animals.rate":0.2
 		}
@@ -586,7 +587,7 @@
 		"mod":{
 			"magicbeasts.max":2,
 			"magicbeasts.rate":0.4,
-			"animals.rate":0.3
+			"animals.rate":"15%"
 		}
 
 	},

@@ -9,11 +9,12 @@ export default class Action extends GData {
 	set level(v) { this._level = v;}
 
 	/**
-	 * @property {number} exp - alias progress for clarity
-	 * in data files.
+	 * @property {number} exp - alias progress data files.
 	 */
 	get exp() { return this._exp || 0; }
-	set exp(v){ this._exp =v; }
+	set exp(v){
+		this._exp =v;
+	}
 
 	get length() { return this._length; }
 	set length(v) { this._length = v;}
@@ -26,7 +27,6 @@ export default class Action extends GData {
 		if ( this.length && v >= this._length ) {
 
 			this.value++;
-			console.log(this.id+' leve up: ' + v );
 
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.loot ) Game.getLoot( this.loot );

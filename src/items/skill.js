@@ -8,10 +8,17 @@ export default class Skill extends Action {
 	toJSON(){
 
 		let data = super.toJSON();
+
+		// for skills, level is always equal to value.
+		data.level = undefined;
+
 		return data;
 
 	}
 
+	/**
+	 * @deprecated - deprecation intended.
+	 */
 	get level() { return this.value; }
 	set level(v) { this.value = v; }
 

@@ -14,6 +14,8 @@ import Runnable from './composites/runnable';
  * @note these refer to Code-events, not in-game events.
  */
 import Events, {EVT_UNLOCK, EVT_EVENT} from './events';
+import Resource from './items/resource';
+import Skill from './items/skill';
 
 var techTree;
 
@@ -88,13 +90,12 @@ export default {
 			this.restoreMods();
 
 			techTree = new TechTree( this._items );
-
-			// Code events. Not game events.
-			Events.init(this);
-
 			for( let p in this._items ) {
 				if ( !this._items[p].locked ) techTree.changed(p);
 			}
+
+			// Code events. Not game events.
+			Events.init(this);
 
 
 			this.initTimers();
@@ -379,11 +380,12 @@ export default {
 					this.state.setSlot(it.slot, null );
 				}
 
-				if ( it == this.state.curAction ) this.state.curAction = null;
+				if ( it == this.state.curAction ) this.doRest();
 				if ( it == this.state.raid.dungeon ) this.state.raid.setDungeon(null);
 
-				// remove all stat mods.
-				if ( it.mod ) this.removeMod( it.mod, it.value );
+				if ( it instanceof Resource || it instanceof Skill ) {
+					this.remove( it, it.value);
+				} else if ( it.mod ) this.removeMod( it.mod, it.value );
 
 			}
 
@@ -543,7 +545,9 @@ export default {
 		if ( it.maxed() ) return false;
 		if ( it.slot) {
 
+			console.log('setting slot: ' + it.slot );
 			let cur = this.state.getSlot(it.slot, it.type );
+			console.log('cur slot: ' + (cur ? cur.id : 'none'));
 			if ( cur ) {
 				this.remove( cur, 1 );
 			}

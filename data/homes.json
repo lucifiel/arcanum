@@ -203,9 +203,11 @@
 		"require":"state.spirit>=15&&state.arcana>=12",
 		"mod":{
 			"space.max":110,
+			"runes.max":2,
+			"runes.rate":"10%",
 			"spiritlore.max":1,
 			"spiritlore.rate":0.1,
-			"shadow.rate":0.1
+			"lore.rate":"10%"
 		}
 	},
 	{
@@ -241,11 +243,11 @@
 			"gems":10
 		},
 		"mod":{
-			"space.max":55,
+			"space.max":70,
 			"research.rate":-0.7,
-			"waterlore.max":5,
+			"waterlore.max":2,
 			"waterlore.rate":0.2,
-			"naturelore.max":3,
+			"naturelore.max":1,
 			"naturelore.rate":0.1,
 			"lightlore.max":-1,
 			"lightlore.rate":-0.1
@@ -312,7 +314,10 @@
 		"require":"state.arcana>=10",
 		"mod":{
 			"space.max":400,
+			"charms.max":2,
+			"charms.raet":"10%",
 			"spirit.rate":-0.1,
+			"shadowlore.max":-1,
 			"research.rate":-0.5
 		}
 	},
@@ -396,7 +401,9 @@
 			"mana":500
 		},
 		"mod":{
-			"space.max":500
+			"space.max":500,
+			"enchanting.max":2,
+			"enchanting.rate":"10%"
 		}
 	},
 	{
@@ -412,9 +419,9 @@
 		},
 		"mod":{
 			"space.max":500,
-			"water.max":5,
+			"waterlore.max":5,
+			"airlore.max":2,
 			"water.rate":0.1,
-			"air.max":2,
 			"air.rate":0.05
 		}
 	}

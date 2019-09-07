@@ -80,21 +80,16 @@
 		"id":"thievery",
 		"name":"arcane thievery",
 		"desc":"Use your powers to cajole, coerce, and cudgel gold from the pockets of civilians.",
-		"verb":"thieving",
 		"require":"state.trickery>=4",
-		"length":15,
-		"perpetual":true,
-		"run":{
+		"cost":{
 			"stamina":0.22,
 			"mana":0.25
 		},
 		"effect":{
-			"research":-0.75,
-			"gold":1,
-			"trickery":0.5
-		},
-		"result":{
-			"evilamt":0.2
+			"research":-0.5,
+			"gold":0.5,
+			"trickery":0.1,
+			"evilamt":0.01
 		}
 
 	},
@@ -146,13 +141,13 @@
 			"stamina":0.2
 		},
 		"effect":{
-			"lore":0.5
+			"lore.progress":0.5
 		},
 		"result":{
 			"research.max":25,
 			"research.rate":0.07,
 			"arcana.rate":0.0001,
-			"player.exp":10
+			"player.progress":10
 		}
 
 	},
@@ -268,6 +263,28 @@
 
 	},
 	{
+
+		"id":"trapsoul",
+		"name":"trap soul",
+		"verb":"catching souls",
+		"require":"state.spiritlore>=7&&state.tier1>0",
+		"need":"dreamcatcher",
+		"desc":"bind a soul within a spirit gem.",
+		"length":15,
+		"cost":{
+			"spiritgem":1,
+			"research":25
+		},
+		"run":{
+			"stamina":0.3,
+			"spirit":0.3
+		},
+		"result":{
+			"souls.max":1,
+			"souls":1
+		}
+	},
+	{
 		"id":"treatailments",
 		"name":"Treat Ailments",
 		"desc":"Cure customers of magical ailments.",
@@ -292,13 +309,14 @@
 			"mana":1
 		},
 		"effect":{
-			"gold":0.5
+			"gold":0.5,
+			"divination.progress":0.3
 		}
 	},
 	{
 		"id":"hattrick",
 		"name":"hat trick",
-		"require":"state.trickster>0",
+		"require":"state.trickster>0&&state.conjuration>1",
 		"desc":"pull small objects out of thin air.",
 		"cost":{
 			"mana":5,
@@ -320,19 +338,15 @@
 		"id":"gatherherbs",
 		"name":"gather herbs",
 		"desc":"Gather herbs used in potions and alchemy.",
-		"verb":"gathering herbs",
-		"require":"state.scribe>0&&state.herbalism>=1",
+		"require":"state.herbalism>=2",
 		"need":"taggarden",
-		"length":20,
-		"fill":"herbs",
-		"perpetual":true,
-		"run":{
-			"stamina":0.4
+		"cost":{
+			"stamina":0.3
 		},
 		"effect":{
-			"herbalism.progress":1
-		},
-		"result":"herbs"
+			"herbalism.progress":1,
+			"herbs":0.2
+		}
 
 	},
 	{
@@ -417,9 +431,9 @@
 			"arcana":0.01,
 			"sp":0.0001,
 			"demonology.max":0.001,
-			"demonology":1,
+			"demonology.progress":1,
 			"spiritlore.max":0.001,
-			"spiritlore":1
+			"spiritlore.progress":1
 		}
 
 	},
@@ -438,8 +452,8 @@
 				"exp":0.1,
 				"max":0.001
 			},
-			"animals.exp":1,
-			"herbalism.exp":1
+			"animals.progress":1,
+			"herbalism.progress":1
 		}
 	},
 	{
@@ -515,7 +529,7 @@
 		},
 		"fill":"tomes",
 		"effect":{
-			"lore.exp":1
+			"lore.progress":1
 		},
 		"run":{
 			"stamina":0.4
@@ -554,7 +568,7 @@
 			"stamina":0.5
 		},
 		"effect":{
-			"animals.exp":2
+			"animals.progress":2
 		},
 		"result":{
 			"research.max":10,

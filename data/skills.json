@@ -68,16 +68,21 @@
 
 	},
 	{
-		"id":"runelore",
+		"id":"runes",
 		"school":"arcane",
 		"verb":"translating",
 		"desc":"study ancient dhrunic runes.",
-		"require":"state.tier1>0&&state.lore>=10&&state.languages>5",
+		"require":"state.tier1>0&&state.lore>=10&&state.dwarfbook>0",
 		"run":{
-			"stamina":0.2
+			"stamina":0.2,
+			"research":1
 		},
 		"result":{
 			"research.max":5,
+			"languages.rate":0.1,
+			"languages.max":0.2,
+			"lore.rate":0.1,
+			"lore.max":0.2,
 			"arcana":0.1,
 			"sp":0.05
 		},"flavor":""
@@ -107,12 +112,12 @@
 		"run":{
 			"stamina":0.7
 		},
+		"effect":{
+			"naturelore.progress":1
+		},
 		"result":{
 			"sp":0.05,
-			"research":{
-				"max":1,
-				"value":5
-			}
+			"research.max":1
 		}
 
 	},
@@ -122,11 +127,12 @@
 		"run":{
 			"stamina":0.3
 		},
+		"effect":{
+
+		},
 		"result":{
-			"research":{
-				"max":1,
-				"value":5
-			}
+			"sp":0.05,
+			"research.max":1
 		}
 	},
 	{
@@ -191,8 +197,7 @@
 		"result":{
 			"sp":0.05,
 			"research":{
-				"max":1,
-				"value":5
+				"max":1
 			},
 			"hp.max":1
 		}
@@ -403,6 +408,23 @@
 			"shadow":0.1
 		},
 		"result":{
+			"sp":0.01,
+			"shadow.rate":0.01
+		}
+
+	},
+	{
+
+		"id":"necromancy",
+		"require":"state.evil>0&&state.reanimation>=7&&state.souls.max>0",
+		"school":"shadow",
+		"desc":"forbidden death magic.",
+		"run":{
+			"stamina":0.4,
+			"shadow":0.5
+		},
+		"result":{
+			"sp":0.05,
 			"shadow.rate":0.01
 		}
 
