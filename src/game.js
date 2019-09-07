@@ -545,7 +545,7 @@ export default {
 		if ( it.maxed() ) return false;
 		if ( it.slot) {
 
-			console.log('setting slot: ' + it.slot );
+			//console.log('setting slot: ' + it.slot );
 			let cur = this.state.getSlot(it.slot, it.type );
 			console.log('cur slot: ' + (cur ? cur.id : 'none'));
 			if ( cur ) {

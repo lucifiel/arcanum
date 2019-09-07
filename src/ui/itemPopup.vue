@@ -1,7 +1,7 @@
 <script>
 import Game from '../game';
 
-import ItemView from './items/item.vue';
+import ItemView from './items/gdata.vue';
 import {positionAt} from './components/popups.js';
 
 

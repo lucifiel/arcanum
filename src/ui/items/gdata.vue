@@ -4,6 +4,7 @@ import Attack from './attack.vue';
 
 export default {
 	props:['item'],
+	name:"gdata",
 	mixins:[ItemsBase],
 	components:{
 		attack:Attack

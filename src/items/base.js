@@ -158,7 +158,7 @@ export default {
 
 				targ = this[p];
 				if ( targ instanceof Stat || targ instanceof Mod ) {
-					console.log('applying mod to stat: '+ p);
+					//console.log('applying mod to stat: '+ p);
 					targ.apply( m[p], amt );
 				} else if ( typeof m[p] === 'object' ) {
 
