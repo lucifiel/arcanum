@@ -293,8 +293,8 @@ export default class Player extends Char {
 		if ( this._level % 3 === 0 ) this.sp.value++;
 
 		this.tohit++;
-		this.hp.max += 2;
-		this.stamina.max += 1;
+		this.hp.max.base += 2;
+		this.stamina.max.base += 1;
 
 		this._exp.value -= this._next;
 		this._next = Math.floor( this._next * ( 1 + EXP_RATE ) );

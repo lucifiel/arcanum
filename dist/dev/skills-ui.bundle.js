@@ -1,4 +1,4 @@
-(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[0],{
+(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([["skills-ui"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/ui/components/filterbox.vue?vue&type=style&index=0&id=6d0e0bec&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
@@ -29,7 +29,7 @@ eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/c
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.skills[data-v-658f579c] {\\r\\n\\theight:100%;\\r\\n\\tdisplay:flex;\\r\\n\\tflex-flow: column nowrap;\\r\\n\\talign-items: center;\\n}\\ndiv.subs[data-v-658f579c] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-flow: row wrap;\\r\\n\\tmargin: 12px 0px 0px 0px;\\r\\n\\tpadding: 12px 24px;\\r\\n\\twidth: 98%;\\r\\n\\toverflow-y: auto;\\r\\n\\tjustify-content: space-between;\\n}\\ndiv.skill[data-v-658f579c] {\\r\\n\\tmargin-bottom: 20px;\\r\\n\\twidth:40%;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/skillsPane.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.skills[data-v-658f579c] {\\r\\n\\theight:100%;\\r\\n\\tdisplay:flex;\\r\\n\\tflex-flow: column nowrap;\\r\\n\\talign-items: center;\\r\\n\\tpadding: 0px 16px;\\n}\\ndiv.subs[data-v-658f579c] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-flow: row wrap;\\r\\n\\tmargin: 12px 0px 0px 0px;\\r\\n\\tpadding: 12px 24px;\\r\\n\\twidth: 98%;\\r\\n\\toverflow-y: auto;\\r\\n\\tjustify-content: space-between;\\n}\\ndiv.skill[data-v-658f579c] {\\r\\n\\tmargin-bottom: 20px;\\r\\n\\twidth:40%;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/skillsPane.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 

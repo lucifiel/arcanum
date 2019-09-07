@@ -39,11 +39,11 @@ export default class Inventory {
 
 			var it = this.items[i];
 			var type = it.type || it.template || it.protoId;
-			if ( type === 'wearable') {
+			//if ( type === 'wearable') {
 
 				it = this.items[i] = new Wearable(it);
 
-			} else it = this.items[i] = new Item(it);
+			//} else it = this.items[i] = new Item(it);
 
 			it.revive( state );
 

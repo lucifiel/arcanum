@@ -88,6 +88,7 @@ export default {
 		this.listen('drop', this.onDrop );
 		this.listen('enchant', this.onEnchant );
 		this.listen('brew', this.onBrew );
+		this.listen( 'use', this.onUse );
 
 		this.listen('home', this.onHome );
 
@@ -206,6 +207,11 @@ export default {
 		onTake(it) { this.game.take(it); },
 
 		onBrew(it) { this.game.craft(it); },
+
+		/**
+		 * Use instanced item.
+		 */
+		onUse(it) { this.game.use(it); },
 
 		/**
 		 * @param {Enchant} e - enchantment
@@ -410,9 +416,10 @@ div.game-mid {
 	flex-flow: column nowrap;
 	max-height: 100%;
 	height:100%;
-	flex-basis:42%;
+	flex-basis:48%;
+	flex-grow:1;
 	min-width: 320px;
-	margin: 0px 12px 0px 12px;
+	margin: 0px 14px;
 	align-content: space-around;
 }
 
@@ -421,6 +428,7 @@ div.action-list, div.upgrade-list {
 	flex-flow: row wrap;
 	justify-content:left;
 	flex-direction: row;
+	padding:0px 14px;
 	text-transform: capitalize;
 }
 
@@ -435,6 +443,7 @@ div.inv-equip {
 	overflow-y: auto;
 	justify-content: space-between;
 	height:100%;
+	padding: 0px 16px;
 }
 
 

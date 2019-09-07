@@ -10,7 +10,7 @@
 		},
 		"effect":{
 			"gold":0.2
-		}
+		}, "flavor":"it's stable employment"
 	},
 	{
 		"id":"chores",
@@ -615,9 +615,9 @@
 	},
 	{
 		"id":"dwarfbook",
-		"name":"dwarven runebook",
+		"name":"dwarven dirges",
 		"require":"state.languages>=4&&state.tier0>0",
-		"desc":"a compilation of dwarven runes",
+		"desc":"a compilation of gloomy dwarven drinking songs",
 		"length":75,
 		"repeat":false,
 		"cost":{
@@ -632,7 +632,7 @@
 			"languages.rate":0.2,
 			"crafting.max":1,
 			"crafting.rate":0.3
-		}
+		},"flavor":"through dungeons deep and caverns old"
 
 	},
 	{
@@ -681,8 +681,8 @@
 	},
 	{
 		"id":"almagest",
-		"desc":"manual of the sun and stars",
-		"actname":"compile almagest",
+		"desc":"compile a manual of the sun and stars",
+		"actname":"almagest",
 		"require":"state.astronomy>=5&&state.tier0>0",
 		"need":"state.research.max>100",
 		"repeat":false,

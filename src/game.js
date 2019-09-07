@@ -489,6 +489,22 @@ export default {
 	},
 
 	/**
+	 * Use item from inventory.
+	 * @param {*} it
+	 */
+	use( it, targ, inv=null ) {
+
+		if ( it.consume === true ) {
+			it.value--;
+			if ( it.value <= 0 ) ( inv || this.state.inventory ).remove(it);
+		}
+		if ( it.use ) {
+			this.applyEffect( it.use );
+		}
+
+	},
+
+	/**
 	 *
 	 * @param {GData} it
 	 * @param {GData} targ - enchant target.
@@ -520,6 +536,7 @@ export default {
 	/**
 	 * Use an item in conjunction with another item.
 	 * Item is used immediately. No running or costs necessary.
+	 * The item effects/modifiers are applied to the target.
 	 * @param {GData} it
 	 * @param {GData} targ - use target.
 	 */

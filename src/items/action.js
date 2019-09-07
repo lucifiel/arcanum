@@ -28,6 +28,7 @@ export default class Action extends GData {
 
 			this.value++;
 
+			console.log('APPLY ACTION EFFECT: ' +  this.id );
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.loot ) Game.getLoot( this.loot );
 			this.complete();

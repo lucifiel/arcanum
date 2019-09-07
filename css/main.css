@@ -127,6 +127,9 @@ table.item-table tr, table.item-table th {
 .menu-content {
 	margin-top:12px;
 	max-height: 90%;
+	height:100%;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
 }
 
 .menu-items {

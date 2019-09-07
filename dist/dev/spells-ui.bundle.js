@@ -1,4 +1,4 @@
-(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[8],{
+(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([["spells-ui"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/ui/components/filterbox.vue?vue&type=style&index=0&id=6d0e0bec&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
@@ -18,7 +18,7 @@ eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/c
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.spellbook[data-v-6adcb0a2] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-direction: row;\\r\\n\\tjustify-content: space-between;\\n}\\n.spellbook table[data-v-6adcb0a2]{\\r\\n\\tmin-width: 50%;\\n}\\ndiv.filters[data-v-6adcb0a2]{\\r\\n\\tmargin-left: 30px;\\r\\n\\tmargin-top:10px;\\r\\n\\tline-height:30px;\\r\\n\\tfont-size: 1em;\\n}\\n.filters div.checks[data-v-6adcb0a2] {\\r\\n\\tmargin: 8px 0px;\\n}\\n.filters input[type=number][data-v-6adcb0a2] {\\r\\n\\tmargin-left: 8px;\\r\\n\\ttext-decoration: none;\\r\\n\\tline-height:28px;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/spellbook.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.spellbook[data-v-6adcb0a2] {\\r\\n\\tdisplay:flex;\\r\\n\\tpadding: 0px 14px;\\r\\n\\tflex-direction: row;\\r\\n\\tjustify-content: space-between;\\n}\\n.spellbook table[data-v-6adcb0a2]{\\r\\n\\tmin-width: 50%;\\n}\\ndiv.filters[data-v-6adcb0a2]{\\r\\n\\tmargin-left: 30px;\\r\\n\\tmargin-top:10px;\\r\\n\\tline-height:30px;\\r\\n\\tfont-size: 1em;\\n}\\n.filters div.checks[data-v-6adcb0a2] {\\r\\n\\tmargin: 8px 0px;\\n}\\n.filters input[type=number][data-v-6adcb0a2] {\\r\\n\\tmargin-left: 8px;\\r\\n\\ttext-decoration: none;\\r\\n\\tline-height:28px;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/spellbook.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 

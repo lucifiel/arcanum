@@ -97,8 +97,8 @@ export default {
 div.player-view {
 	display:flex;
 	flex-direction: row;
-	width:100%;
 	height:100%;
+	padding: 0px 14px;
 	justify-content: space-between;
 }
 

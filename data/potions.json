@@ -21,12 +21,14 @@
 	{
 		"id":"hestiabrew",
 		"name":"hestia's homebrew",
-		"dot":{
+		"use":{
+			"dot":{
 
-			"hp":1,
-			"duration":40,
-			"nature":1
+				"hp":1,
+				"duration":40,
+				"nature":1
 
+			}
 		}
 	}
 

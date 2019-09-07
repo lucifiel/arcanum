@@ -128,6 +128,7 @@ export default {
 
 div.spellbook {
 	display:flex;
+	padding: 0px 14px;
 	flex-direction: row;
 	justify-content: space-between;
 }

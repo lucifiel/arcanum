@@ -111,9 +111,9 @@ span.space {
 }
 div.home-view {
 	display: flex;
+	padding-left:16px;
 	flex-direction: row;
 	height:100%;
-	width: fit-content;
 }
 
 div.cur-home {
@@ -129,6 +129,7 @@ div.furniture {
 	overflow-y:auto;
 	width:100%;
 	margin-bottom: 4px;
+	padding-right:15px;
 }
 
 table .count, table .space {

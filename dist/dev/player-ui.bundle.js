@@ -1,4 +1,4 @@
-(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[5],{
+(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([["player-ui"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/ui/allupgrades.vue?vue&type=style&index=0&id=71795d16&scoped=true&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************!*\
@@ -18,7 +18,7 @@ eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.player-view[data-v-427c5533] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-direction: row;\\r\\n\\twidth:100%;\\r\\n\\theight:100%;\\r\\n\\tjustify-content: space-between;\\n}\\ninput[type=text][data-v-427c5533] {\\r\\n\\tborder: none;\\r\\n\\tborder-bottom: 1px solid black;\\r\\n\\tmargin: 1px;\\n}\\ntd[data-v-427c5533], th[data-v-427c5533] {\\r\\n\\tpadding: 2px 4px;\\r\\n\\tvertical-align: text-top;\\n}\\ntd[data-v-427c5533] {\\r\\n\\ttext-align:right;\\n}\\nth[data-v-427c5533] {\\r\\n\\ttext-align: left;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/player.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.player-view[data-v-427c5533] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-direction: row;\\r\\n\\theight:100%;\\r\\n\\tpadding: 0px 14px;\\r\\n\\tjustify-content: space-between;\\n}\\ninput[type=text][data-v-427c5533] {\\r\\n\\tborder: none;\\r\\n\\tborder-bottom: 1px solid black;\\r\\n\\tmargin: 1px;\\n}\\ntd[data-v-427c5533], th[data-v-427c5533] {\\r\\n\\tpadding: 2px 4px;\\r\\n\\tvertical-align: text-top;\\n}\\ntd[data-v-427c5533] {\\r\\n\\ttext-align:right;\\n}\\nth[data-v-427c5533] {\\r\\n\\ttext-align: left;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/player.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 

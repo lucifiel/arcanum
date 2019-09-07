@@ -1,4 +1,4 @@
-(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[4],{
+(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([["bestiary-ui"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/ui/bestiary.vue?vue&type=style&index=0&id=223367d6&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\

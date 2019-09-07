@@ -1,4 +1,4 @@
-(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[1],{
+(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([["equip-ui"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/ui/equip.vue?vue&type=style&index=0&id=cdff9964&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************!*\

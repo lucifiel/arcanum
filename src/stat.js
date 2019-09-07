@@ -96,7 +96,7 @@ export default class Stat {
 
 		if ( mod instanceof Mod ) return this.applyMod( mod, amt );
 
-		//console.log('apply default mod: ' + mod );
+		console.log('apply default mod: ' + mod );
 		let cur = this.defaultMod();
 
 		let prevBonus = cur.bonus;

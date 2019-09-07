@@ -61,6 +61,7 @@ div.skills {
 	display:flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	padding: 0px 16px;
 }
 
 

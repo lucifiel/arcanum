@@ -77,6 +77,7 @@ export default {
 div.enchants {
 	display:flex;
 	flex-direction: column;
+	padding:0px 16px;
 }
 
 </style>}
