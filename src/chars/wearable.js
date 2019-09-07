@@ -28,6 +28,11 @@ export default class Wearable {
 	}
 
 	/**
+	 * @property {string} protoId - id of item template used to instance this item.
+	 */
+	get protoId() { return this.template?  this.template.id : this._id; }
+
+	/**
 	 * @property {number} enchants - total level of all enchantments applied.
 	 */
 	get enchants() { return this._enchants || 0; }

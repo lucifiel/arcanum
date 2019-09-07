@@ -211,7 +211,7 @@
 		"potions.max":5,
 		"spiritlore.max":3,
 		"sp":2
-	}
+	}, "flavor":"even the dead have their uses"
 },
 {
 	"id":"necromancer",

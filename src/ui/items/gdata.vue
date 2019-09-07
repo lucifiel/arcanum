@@ -87,7 +87,7 @@ export default {
 
 		</div>
 
-		<span class="note-text" v-if="item.flavor">{{ item.flavor}}</span>
+		<div class="note-text" v-if="item.flavor">{{ item.flavor}}</div>
 </div>
 
 </template>
@@ -95,6 +95,9 @@ export default {
 
 <style scoped>
 
+hr {
+margin-bottom: 4px;
+}
 
 div.item-desc {
 	margin: 5px 0px 10px;

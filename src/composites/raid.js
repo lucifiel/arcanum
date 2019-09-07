@@ -84,7 +84,7 @@ export default class Raid {
 
 		if ( vars ) Object.assign( this, vars);
 
-		this.drops = this.drops || new Inventory();
+		this.drops = this._drops || new Inventory();
 
 		this._combat =  this._combat || new Combat();
 

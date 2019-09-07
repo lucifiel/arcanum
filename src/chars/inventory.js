@@ -1,6 +1,7 @@
 import Wearable from "./wearable";
 import Stat from "../stat";
 import Base, {mergeClass} from '../items/base';
+import Item from "../items/item";
 
 export default class Inventory {
 
@@ -23,8 +24,7 @@ export default class Inventory {
 
 		if ( vars ) Object.assign(this,vars);
 
-		if ( this.items )this.items = this.items.map( v=>new Wearable(v) );
-		else this.items = [];
+		if ( !this.items ) this.items = [];
 
 		this.type = this.id = 'inventory';
 
@@ -34,7 +34,23 @@ export default class Inventory {
 	}
 
 	revive(state){
-		this.items.forEach(v=>v.revive(state));
+
+		for( let i = this.items.length-1; i>= 0; i-- ) {
+
+			var it = this.items[i];
+			var type = it.type || it.template || it.protoId;
+			if ( type === 'wearable') {
+
+				it = this.items[i] = new Wearable(it);
+
+			} else it = this.items[i] = new Item(it);
+
+			it.revive( state );
+
+		}
+
+		// todo: reassign items for Vue reactivity?
+
 	}
 
 	add(it){
@@ -49,7 +65,16 @@ export default class Inventory {
 				this.items.push( sub );
 			}
 
-		} else this.items.push(it);
+		} else {
+
+			if ( it.stack ) {
+				let inst = this.find( it.id, true );
+				if ( inst ) inst.value++;
+				return;
+			}
+			this.items.push(it);
+
+		}
 
 	}
 
@@ -74,9 +99,14 @@ export default class Inventory {
 
 	/**
 	 * Attempt to find item in inventory.
-	 * @param {string} id
+	 * @param {string} id,
+	 * @param {boolean} proto - whether to find any item instanced from the prototype id.
+	 * If false, only an exact id match is returned.
 	 */
-	find(id) { return this.items.find(v=>v.id===id); }
+	find(id, proto=false ) {
+		return proto === true ? this.items.find( v=>v.id===id||v.protoId===id) :
+			this.items.find( v=>v.id===id);
+	}
 
 	/**
 	 * Remove all items from inventory.

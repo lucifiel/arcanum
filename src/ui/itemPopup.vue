@@ -20,7 +20,7 @@ export default {
 			positionAt( this.$el, this.elm );
 		}
 	},
-	components:{ item:ItemView }
+	components:{ gdata:ItemView }
 
 }
 </script>
@@ -29,7 +29,7 @@ export default {
 <template>
 
 	<div :class="{ 'item-popup':true }" v-show="item!=null">
-		<item class='popup-content' v-if="item" :item="item" />
+		<gdata class='popup-content' v-if="item" :item="item" />
 	</div>
 
 </template>

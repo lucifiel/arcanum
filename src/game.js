@@ -1081,10 +1081,27 @@ export default {
 	},
 
 	/**
-	 * Craft an item by instantiating it.
+	 * Craft an item by instantiating it, and add it to player's inventory.
+	 * Note that a crafted item does not use any of its effects or abilities.
 	 * @param {*} it
 	 */
-	craft(it) {
+	craft( it ) {
+
+		if ( !this.canPay( it ) ) return false;
+		this.payCost( it );
+
+		let inst = it.stack ? this.state.inventory.find( it.id, true ) : null;
+		if ( inst ) {
+
+			inst.value++;
+
+		} else {
+
+			inst = this.itemGen.instance( it );
+			if ( inst ) inst.value = 1;
+			this.state.inventory.add( inst );
+
+		}
 
 	},
 
@@ -1095,8 +1112,21 @@ export default {
 	 */
 	getLoot(it, inv=null) {
 
+		inv = inv || this.state.inventory;
+
+		if ( typeof it === 'object' && it.stack ) {
+
+			let inst = inv.find( it.id, true );
+			if ( inst ) {
+				inst.value++;
+				return;
+			}
+
+		}
+
 		let res = this.itemGen.getLoot(it);
-		if ( res !== null && res !== undefined ) ( inv || this.state.inventory ).add( res );
+		if ( res === null || res === undefined ) return;
+		inv.add( res );
 
 	},
 

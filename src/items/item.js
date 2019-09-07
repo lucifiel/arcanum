@@ -1,12 +1,18 @@
 import Base, {mergeClass} from './base';
 
 /**
- * Carryable or equippable item.
+ * Carryable or equippable instanced Item.
+ * An instanced item can be created, destroyed, discarded, etc.
  */
 export default class Item {
 
 	/**
-	 * @property {boolean} consume - whether the item is consumed on use.
+	 * @property {string} protoId - id of item template used to instance this item.
+	 */
+	get protoId() { return this.template?  this.template.id : this._id; }
+
+	/**
+	 * @property {boolean} consume - whether the item is consumed when used.
 	 */
 	get consume() { return this._consume; }
 	set consume(v) { this._consume = v;}

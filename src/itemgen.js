@@ -2,6 +2,7 @@ import Game from './game';
 import Wearable from "./chars/wearable";
 import { sublists, randElm, randMatch, includesAny } from 'objecty';
 import Percent from './percent';
+import Item from './items/item';
 
 const exclusions = {
 
@@ -12,7 +13,7 @@ const exclusions = {
 }
 
 /**
- * Generates random Equipment Items and Weapons from basic item data.
+ * Generates random Equipment from Item data, and instantiates Items from prototypes.
  */
 export default class ItemGen {
 
@@ -37,6 +38,30 @@ export default class ItemGen {
 		this.initList( 'armor', state.armors );
 		this.initList( 'weapon', state.weapons );
 		this.initList( 'equip', state.equip );
+	}
+
+	/**
+	 * Instantiate a prototypical item.
+	 * @param {Object} proto
+	 * @returns {Item|Wearable} the item created, or null on failure.
+	 */
+	instance( proto ) {
+
+		let it;
+
+		if ( proto.type === 'wearable') {
+
+			it = new Wearable( proto );
+
+		} else if ( proto.type === 'item') {
+
+			it = new Item( proto );
+
+		}
+
+		it.id = proto.id + this.state.nextId();
+		return it;
+
 	}
 
 	initMaterials( mats ) {
