@@ -357,7 +357,7 @@ export default class GameState {
 	 * @param {string} type - item type for determining subslot (equip,home,etc)
 	 */
 	getSlot( id, type) {
-		if ( type === 'wearable' || type === 'furniture') return null;
+		if ( type === 'wearable' ) return null;
 		return this.slots[id];
 	}
 
@@ -367,7 +367,7 @@ export default class GameState {
 	 * @param {?GData} v - item to place in slot, or null.
 	 */
 	setSlot(id,v) {
-		if ( v && (v.type === 'wearable' || v.type === 'furniture') ) return;
+		if ( v && (v.type === 'wearable') ) return;
 		this.slots[id] = v;
 	}
 

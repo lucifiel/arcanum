@@ -95,6 +95,7 @@ export default class GData {
 
 		//if ( this.owned) console.log('owned: ' + this.owned + ' id: ' + this.id);
 
+		if ( this.slot ) console.log( this.id + ' slot: ' + this.slot );
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'value', 'buy', 'max', 'cost', 'id', 'name', 'warn', 'effect', 'slot' ]);
 

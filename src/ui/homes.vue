@@ -88,7 +88,7 @@ export default {
 			<td class="space">{{ it.cost.space }}</td>
 			<td class="name">{{ it.name }}</td> <td class="count">{{ it.value || 0 }}</td>
 			<td><button type="button" :disabled="!usable(it)" class="buy-btn"
-				@click="dispatch('action',it)">Buy</button></td>
+				@click="dispatch('upgrade',it)">Buy</button></td>
 
 			<td><button type="button" :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 
