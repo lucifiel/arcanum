@@ -153,6 +153,30 @@
 
 	},
 	{
+		"id":"veldranswreck",
+		"name":"veldran's wreck",
+		"desc":"Off the stormy cliffs of the arag highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
+		"require":"state.water.max>=10",
+		"level":5,
+		"length":20,
+		"run":{
+			"stamina":1
+		},
+		"result":{
+			"gold":"50~75",
+			"gems":10
+		},
+		"enemies":[
+			"eel",
+			"jellyfish",
+			"ghost",
+			"barracuda",
+			"piranha",
+			"electriceel"
+		]
+
+	},
+	{
 		"id":"aragheights",
 		"name":"arag heights",
 		"desc":"barren mountains over arazor",
@@ -223,26 +247,26 @@
 
 	},
 	{
-		"id":"veldranswreck",
-		"name":"veldran's wreck",
-		"desc":"Off the stormy cliffs of the arag highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
-		"require":"state.water.max>=10",
-		"level":5,
-		"length":20,
+		"id":"spidercave",
+		"name":"skittering caverns",
+		"desc":"the only treasures here are were lost by adventurers searching for treasure.",
+		"require":"tier0",
+		"level":7,
 		"run":{
-			"stamina":1
+			"stamina":1.2
 		},
 		"result":{
-			"gold":"50~75",
-			"gems":10
+			"gold":"40~50"
 		},
+		"boss":"spiderqueen",
 		"enemies":[
-			"eel",
-			"jellyfish",
-			"ghost",
-			"barracuda",
-			"piranha",
-			"electriceel"
+			"giantspider",
+			"kobold",
+			"lgspider",
+			"spiderqueen",
+			"lgspider",
+			"direbat",
+			"giantspider"
 		]
 
 	},
@@ -272,15 +296,17 @@
 	{
 		"id":"greatbog",
 		"name":"the great bog",
-		"desc":"",
+		"desc":"for hundreds of miles the great bog spreads across the dark center of Dhrune.",
 		"require":"state.player.dist>=200",
 		"level":11,
 		"run":{
 			"stamina":2
 		},
-		"length":50,
+		"length":100,
 		"result":{
-			"gems":"3~5"
+			"gems":"3~5",
+			"gold":"100~200",
+			"bones":10
 		},
 		"boss":"bogwitch",
 		"enemies":[
@@ -289,6 +315,7 @@
 			"leech",
 			"grimstalk",
 			"stalker",
+			"corpse",
 			"eel",
 			"lesserwyrm",
 			"willowisp",

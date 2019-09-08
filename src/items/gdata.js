@@ -112,6 +112,23 @@ export default class GData {
 	}
 
 	/**
+	 * Perform cost scaling based on current value.
+	 * @param {*} s
+	 */
+	scaleCost( s ) {
+
+		let cost = this.cost;
+		if (!cost) return;
+
+		let type = typeof cost;
+		if ( type === 'string') return;
+		else if ( !isNaN(type)) {
+
+		}
+
+	}
+
+	/**
 	 * Add a requirement to unlock this item.
 	 * @param {string} reqStr
 	 * @param {number} amt

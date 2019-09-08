@@ -298,6 +298,8 @@ export default {
 
 	parseMods( mods, id ) {
 
+		if ( typeof mods === 'string' ) return mods;
+
 		for( let s in mods ){
 			if ( s.includes('.')) this.splitKeyPath( mods, s );
 		}

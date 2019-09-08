@@ -121,7 +121,7 @@
 		"mana.max":1,
 		"mana.rate":0.01,
 		"shadowlore.max":1,
-		"shadowlore.rate":0.01,
+		"shadowlore.rate":0.1,
 		"sp":1
 	}
 },
@@ -139,7 +139,7 @@
 	"cost":{
 		"research":350,
 		"gold":200,
-		"arcana":7
+		"arcana":9
 	},
 	"disable":[],
 	"mod":{
@@ -560,6 +560,7 @@
 	"id":"mage",
 	"title":"mage",
 	"desc":"member of an arcane order.",
+	"require":"state.tier1>0&&state.lore>15",
 	"cost":{
 
 	},

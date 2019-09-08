@@ -396,6 +396,40 @@
 	},
 	{
 
+		"id":"scrollrack",
+		"name":"scroll rack",
+		"repeat":true,
+		"desc":"latticed shelves for easy scroll storage.",
+		"require":"state.scrolls>=20",
+		"cost":{
+			"gold":75,
+			"research":100,
+			"space":1
+		},
+		"mod":{
+			"scrolls.max":15
+		}
+
+	},
+	{
+
+		"id":"bookshelf",
+		"name":"bookshelf",
+		"repeat":true,
+		"desc":"A single bookshelf for your books.",
+		"require":"state.codices>=5&&state.scrolls>=15",
+		"cost":{
+			"gold":100,
+			"space":1
+		},
+		"mod":{
+			"codices.max":5,
+			"scrolls.max":10
+		}
+
+	},
+	{
+
 		"id":"bookcase",
 		"name":"bookcase",
 		"repeat":true,
@@ -408,8 +442,9 @@
 		"mod":{
 			"codices":{
 				"mod.research.max":1,
-				"max":30
-			}
+				"max":20
+			},
+			"tomes.max":1
 		}
 
 	},

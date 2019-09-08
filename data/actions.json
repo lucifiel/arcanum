@@ -96,7 +96,7 @@
 	{
 
 		"id":"heist",
-		"name":"arcane thievery",
+		"name":"magic heist",
 		"desc":"Orchestrate a theft on a guarded vault.",
 		"verb":"thieving",
 		"require":"state.trickster>0&&state.trickery>=5",

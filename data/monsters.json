@@ -561,6 +561,9 @@
 		},
 		"resist":{
 			"shadow":15
+		},
+		"loot":{
+			"bodies":"10%"
 		}
 
     },
@@ -907,6 +910,28 @@
 
 	},
 	{
+		"id":"corpse",
+		"name":"bloated corpse",
+        "level":4,
+        "kind":"undead",
+        "desc":"",
+        "hp":43,
+        "tohit":2,
+		"defense":14,
+        "attack":{
+            "name":"bite",
+            "kind":"physical",
+            "dmg":"4~8"
+		},
+		"resist":{
+			"shadow":20
+		},
+		"loot":{
+			"bodies":1
+		}
+
+    },
+	{
         "id":"ghoul",
         "level":5,
         "kind":"undead",
@@ -1064,8 +1089,8 @@
 
     },
     {
-		"id":"giantspider",
-		"name":"giant spider",
+		"id":"lgspider",
+		"name":"large spider",
         "level":3,
         "kind":"arachnid",
         "evil":1,
@@ -1361,7 +1386,7 @@
         },
         "loot":{ "sulfur dust":10,"potion of cure moderate wounds":10, "potion of cure serious wounds":10}
 
-    },
+	},
     {
 		"id":"greaterzombie",
 		"name":"greater zombie",
@@ -1377,7 +1402,9 @@
             "name":"slam",
             "kind":"blunt",
             "dmg":"5~9"
-        }
+        },"loot":{
+			"bodies":1
+		}
 
 	},
 	{
@@ -1450,7 +1477,27 @@
 			"leech":0.3
         },"loot":{"crocodile tooth":10, "crocodile tears":5}
 
-    },
+	},
+	{
+		"id":"spiderqueen",
+		"name":"spider queen",
+		"kind":"natural",
+		"level":8,
+		"hp":70,
+		"tohit":6,
+		"defense":5,
+		"attack":{
+			"damage":"3~5",
+			"dot":{
+				"duration":30,
+				"kind":"poison",
+				"damage":"3~5"
+			}
+		},
+		"loot":{
+
+		}
+	},
     {
         "id":"ettin",
         "level":10,

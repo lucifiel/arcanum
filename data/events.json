@@ -92,10 +92,25 @@
 	},
 	{
 		"id":"tier4",
-		"name":"Arcane Ascendant",
+		"name":"Supreme Sorcery",
 		"desc":"",
 		"mod":{
 			"player.exp":75,
+			"lore.max":4,
+			"crafting.max":2,
+			"sp":3,
+			"arcanebody.max":1,
+			"occultendure.max":1,
+			"crystalmind.max":1
+		}
+
+	},
+	{
+		"id":"tier5",
+		"name":"Dhrunic Pillar",
+		"desc":"A cornerstone of the mortal world.",
+		"mod":{
+			"player.exp":100,
 			"lore.max":4,
 			"crafting.max":2,
 			"sp":3,

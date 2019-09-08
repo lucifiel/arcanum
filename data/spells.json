@@ -828,6 +828,32 @@
 
 	},
 	{
+		"id":"hex1",
+		"name":"spiteful hex",
+		"level":4,
+		"require":"state.witch>0",
+		"school":"spirit",
+		"buy":{
+
+			"research":300,
+			"codices":10,
+			"spiritgem":1
+
+		},
+		"cost":{
+			"spirit":7
+		},
+		"attack":{
+			"dot":{
+				"id":"hex1",
+				"kind":"hex",
+				"duration":15,
+				"damage":"5~7"
+			}
+		}
+
+	},
+	{
 
 		"id":"jinx",
 		"level":3,

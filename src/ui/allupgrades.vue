@@ -23,13 +23,13 @@ export default {
 <div class="up-list">
 	<div class="div-hr">upgrades</div>
 	<div v-for="it in classes" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name}}
+		{{it.name + (it.value > 1 ? ' x'+Math.floor(it.value) : '') }}
 	</div>
 	<div v-for="it in actions" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name}}
+		{{it.name + (it.value > 1 ? ' x'+Math.floor(it.value) : '') }}
 	</div>
 	<div v-for="it in upgrades" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name}}
+		{{it.name + (it.value > 1 ? ' x'+Math.floor(it.value) : '') }}
 	</div>
 
 </div>

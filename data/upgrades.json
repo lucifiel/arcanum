@@ -570,13 +570,13 @@
 		"id":"dragontongue",
 		"name":"Dragon Tongue",
 		"desc":"Learn the ancient language of dragons.",
-		"require":"state.languages>10&&state.magicbeasts>=5",
+		"require":"state.languages>12&&state.magicbeasts>=5",
 		"cost":{
 			"research":1000
 		},
 		"mod":{
 			"languages.max":2,
-			"languages.rate":0.2,
+			"languages.rate":"10%",
 			"magicbeasts.max":2,
 			"magicbeasts.rate":0.3
 		}
@@ -677,99 +677,6 @@
 		},
 		"flavor":"There's another coin down here somewhere..."
 	},
-
-	{
-		"id":"wateraffinity",
-		"desc":"water affinity",
-		"require":"state.water>10",
-		"cost":{
-			"research":200,
-			"watergem":10,
-			"tomes":1
-		},
-		"mod":{
-			"player.resist.water":5
-		}
-
-	},
-	{
-		"id":"firesign",
-		"name":"fire sign",
-		"require":"state.fireaffinity&&state.fire>14",
-		"lock":["watersign","airsign","earthsign"],
-		"desc":"born under the celestial sign of fire",
-		"cost":{
-			"research":500,
-			"firegem":15,
-			"tomes":3
-		},
-		"mod":{
-			"player.resist.fire":15
-		}
-
-	},
-	{
-		"id":"watersign",
-		"name":"water sign",
-		"require":"state.wateraffinity&&state.water>14",
-		"lock":["firesign","airsign","earthsign"],
-		"desc":"born under the celestial sign of water",
-		"cost":{
-			"research":500,
-			"watergem":15,
-			"tomes":3
-		},
-		"mod":{
-			"player.resist.water":15
-		}
-
-	},
-	{
-		"id":"earthsign",
-		"name":"earth sign",
-		"require":"state.earthaffinity&&state.earth>14",
-		"lock":["watersign","airsign","firesign"],
-		"desc":"born under the celestial sign of earth",
-		"cost":{
-			"research":500,
-			"earthgem":15,
-			"tomes":3
-		},
-		"mod":{
-			"player.resist.earth":15
-		}
-
-	},
-	{
-		"id":"airsign",
-		"name":"wind sign",
-		"require":"state.airaffinity&&state.air>14",
-		"lock":["watersign","firesign","earthsign"],
-		"desc":"born under the celestial sign of wind",
-		"cost":{
-			"research":500,
-			"airgem":15,
-			"tomes":3
-		},
-		"mod":{
-			"player.resist.air":15
-		}
-
-	},
-	{
-		"id":"fireaffinity",
-		"desc":"fire affinity",
-		"require":"state.fire>10",
-		"cost":{
-			"research":200,
-			"firegem":10,
-			"tomes":1
-		},
-		"mod":{
-			"player.resist.fire":5
-		}
-
-	},
 	{
 		"id":"earthaffinity",
 		"desc":"earth affinity",
@@ -795,6 +702,98 @@
 		},
 		"mod":{
 			"player.resist.air":5
+		}
+
+	},
+	{
+		"id":"wateraffinity",
+		"desc":"water affinity",
+		"require":"state.water>10",
+		"cost":{
+			"research":200,
+			"watergem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.water":5
+		}
+
+	},
+	{
+		"id":"firesign",
+		"name":"fire sign",
+		"require":"state.fireaffinity>0&&state.fire>14",
+		"lock":["watersign","airsign","earthsign"],
+		"desc":"born under the celestial sign of fire",
+		"cost":{
+			"research":500,
+			"firegem":15,
+			"tomes":3
+		},
+		"mod":{
+			"player.resist.fire":15
+		}
+
+	},
+	{
+		"id":"watersign",
+		"name":"water sign",
+		"require":"state.wateraffinity>0&&state.water>14",
+		"lock":["firesign","airsign","earthsign"],
+		"desc":"born under the celestial sign of water",
+		"cost":{
+			"research":500,
+			"watergem":15,
+			"tomes":3
+		},
+		"mod":{
+			"player.resist.water":15
+		}
+
+	},
+	{
+		"id":"earthsign",
+		"name":"earth sign",
+		"require":"state.earthaffinity>0&&state.earth>14",
+		"lock":["watersign","airsign","firesign"],
+		"desc":"born under the celestial sign of earth",
+		"cost":{
+			"research":500,
+			"earthgem":15,
+			"tomes":3
+		},
+		"mod":{
+			"player.resist.earth":15
+		}
+
+	},
+	{
+		"id":"airsign",
+		"name":"wind sign",
+		"require":"state.airaffinity>0&&state.air>14",
+		"lock":["watersign","firesign","earthsign"],
+		"desc":"born under the celestial sign of wind",
+		"cost":{
+			"research":500,
+			"airgem":15,
+			"tomes":3
+		},
+		"mod":{
+			"player.resist.air":15
+		}
+
+	},
+	{
+		"id":"fireaffinity",
+		"desc":"fire affinity",
+		"require":"state.fire>10",
+		"cost":{
+			"research":200,
+			"firegem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.fire":5
 		}
 
 	},
@@ -835,6 +834,7 @@
 		"id":"satchel",
 		"desc":"Carry more scrolls.",
 		"require":"state.scrolls>=10",
+		"scale":2,
 		"cost":50,
 		"max":1,
 		"mod":{
@@ -846,7 +846,7 @@
 
 		"id":"alkahest",
 		"name":"alkahest",
-		"desc":"Discover the Universal Solvent",
+		"desc":"Discover a Universal Solvent",
 		"require":"state.alchemy>=15&&state.crafting>=10",
 		"cost":{
 			"research":700,

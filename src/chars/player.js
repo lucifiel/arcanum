@@ -24,13 +24,15 @@ export default class Player extends Char {
 	get title() { return this._title; }
 	set title(v) {
 		this._title =v;
-		if ( !this._titles.includes(v) ) this.titles.push(v);
+		if ( !this.titles.includes(v) ) this.titles.push(v);
 	}
 
 	/**
 	 * @property {string[]} titles
 	 */
-	get titles(){return this._titles;}
+	get titles(){
+		return this._titles || ( this._titles = [] );
+	}
 	set titles(v){
 		this._titles = v;
 	}
