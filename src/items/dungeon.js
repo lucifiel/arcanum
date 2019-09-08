@@ -30,6 +30,8 @@ export default class Dungeon extends Action {
 
 		this.level = this.level !== undefined ? this.level : 1;
 
+		this.type = 'dungeon';
+
 		/**
 		 * @property {number} progress
 		 */
@@ -38,13 +40,12 @@ export default class Dungeon extends Action {
 
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
+		console.log('requir: ' + this.require );
 
 		this.dist = ( this.dist === undefined || this.dist === null ) ? 5*Math.floor( Math.exp(this.level/2) ) : this.dist;
 		//this.addRequire( 'dist', this.dist );
 
 		if ( this.need == null ) this.need = this.distTest;
-
-		this.type = 'dungeon';
 
 		/**
 		 * Total of all enemy weights, used to roll which
@@ -99,7 +100,7 @@ export default class Dungeon extends Action {
 	}
 
 	levelTest(state, self) {
-		return state.player.level >= self.level-1;
+		return state.player.level >= (self.level-1);
 	}
 
 	/**

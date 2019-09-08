@@ -4,13 +4,13 @@ import Game from './game';
  * @const {RegExp} FuncRE - regular expression to find tree relationships
  * in requirement/need functions.
  */
-const FuncRE = /state\.((?:\w|\.)+)/gi;
+const FuncRE = /\b\w+\.((?:\w|\.)+)/gi;
 
 export default class TechTree {
 
 	/**
-	 * 
-	 * @param {Object} [vars=null] 
+	 *
+	 * @param {Object} [vars=null]
 	 */
 	constructor( items ) {
 
@@ -32,7 +32,7 @@ export default class TechTree {
 
 	/**
 	 * Mark all Items which might potentially unlock this item.
-	 * @param {Item} item 
+	 * @param {Item} item
 	 */
 	mapTree( item ) {
 
@@ -61,7 +61,7 @@ export default class TechTree {
 
 	/**
 	 * Mark unlock links from a requirement function.
-	 * @param {Item} item - item being unlocked. 
+	 * @param {Item} item - item being unlocked.
 	 * @param {function} func - function testing if item can be unlocked.
 	 */
 	markFunc( item, func ) {
@@ -82,8 +82,8 @@ export default class TechTree {
 
 	/**
 	 * Map src as an unlocker of item.
-	 * @param {string} src 
-	 * @param {Item} item 
+	 * @param {string} src
+	 * @param {Item} item
 	 */
 	markUnlocker( src, item ) {
 
@@ -107,7 +107,7 @@ export default class TechTree {
 	/**
 	 * Call when some variable of src Item changes.
 	 * Test unlocks on all variables linked by a possible unlock chain.
-	 * @param {string} src 
+	 * @param {string} src
 	 */
 	changed( src ){
 
@@ -119,7 +119,9 @@ export default class TechTree {
 		for( let p in links ) {
 
 			it = this.items[p];
-			if ( it.locked === false || it.disabled === true || Game.tryUnlock(it) ) {
+			if ( !it ) {
+				console.warn('MISSING UNLOCK LINK: ' + p );
+			} else if ( it.locked === false || it.disabled === true || Game.tryUnlock(it) ) {
 
 				// remove unlock link.
 				links[p] = undefined;

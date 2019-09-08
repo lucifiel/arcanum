@@ -11,6 +11,7 @@ import Vitals from 'ui/vitals.vue';
 import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
 import LogView from './outlog.vue';
+import Adventure from './adventure.vue';
 
 import { TICK_TIME } from '../game';
 
@@ -45,12 +46,12 @@ export default {
 		skills:()=> import( /* webpackChunkName: "skills-ui" */ './skillsPane.vue' ),
 		equip:()=>import( /* webpackChunkName: "equip-ui" */ './equip.vue'),
 		inventory:()=> import( /* webpackChunkName: "inv-ui" */ './inventory.vue' ),
-		potions:()=> import( /* webpackChunkName: "potions-ui" */'./potions.vue'),
+		potions:()=> import( /* webpackChunkName: "potions-ui" */ './potions.vue'),
 		homes:()=>import( /* webpackChunkName: "homes-ui" */ './homes.vue'),
 		player:()=>import( /* webpackChunkName: "player-ui" */'./player.vue'),
 		bestiary:()=>import(/* webpackChunkName: "bestiary-ui" */ './bestiary.vue' ),
-		spellbook:()=>import(/* webpackChunkName: "spells-ui" */ 'ui/spellbook.vue'),
-		adventure:()=>import(/* webpackChunkName: "raid-ui" */ './adventure.vue'),
+		spellbook:()=>import( /* webpackChunkName: "spells-ui" */ 'ui/spellbook.vue'),
+		adventure:()=>import( /* webpackChunkName: "raid-ui" */ './adventure.vue'),
 		enchanting:()=>import( /* webpackChunkName: "enchant-ui" */'./enchanting.vue' ),
 		'vue-menu':Menu
 	},

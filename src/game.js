@@ -86,7 +86,6 @@ export default {
 
 			this._items = this.state.items;
 
-			//this.initEvents();
 			this.restoreMods();
 
 			techTree = new TechTree( this._items );
@@ -97,7 +96,6 @@ export default {
 			// Code events. Not game events.
 			Events.init(this);
 
-
 			this.initTimers();
 
 			this.loaded = true;
@@ -107,18 +105,6 @@ export default {
 	},
 
 	save() {
-	},
-
-	initEvents() {
-
-		let evts = this.state.events;
-		for( let i = evts.length-1; i>= 0; i-- ) {
-
-			var e = evts[i];
-			if ( !e.locked && e.value===0 ) this.doEvent(e);
-
-		}
-
 	},
 
 	/**
@@ -697,6 +683,7 @@ export default {
 	 */
 	unlockTest( test, item=null ) {
 
+		//console.log('trying unlock: ' + item.id );
 		let type = typeof test;
 		if ( type === 'function') return test( this._items, item, this.state );
 

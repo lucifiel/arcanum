@@ -89,7 +89,7 @@ export default class GData {
 
 		if ( vars ) Object.assign( this, vars );
 
-		if ( this._locked === undefined ) this._locked = true;
+		if ( this._locked === undefined || this._locked === null ) this.locked = true;
 
 		this._value = this._value || 0;
 
@@ -106,7 +106,7 @@ export default class GData {
 	 */
 	maxed() {
 
-		return this.max ? (this.value >= Math.floor(this.max) ) :
+		return this.max ? (this.value >= Math.floor(this.max.value) ) :
 			(!this.repeat && !this.owned && this._value > 0);
 
 	}

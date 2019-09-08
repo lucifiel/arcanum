@@ -2,9 +2,10 @@
 import Game from '../game';
 import ItemBase from './itemsBase.js';
 
-import Inv from './inventory.vue';
 import ProgBar from './components/progbar.vue';
 import FilterBox from './components/filterbox.vue';
+
+const MAX_ITEMS = 5;
 
 export default {
 
@@ -18,18 +19,17 @@ export default {
 	},
 	beforeCreate(){
 		this.game = Game;
-		this.MAX_ITEMS = 5;
 	},
 	components:{
 		progbar:ProgBar,
 		filterbox:FilterBox,
-		inv:Inv
+		inv:()=>import( /* webpackChunkName: "inv-ui" */ './inventory.vue')
 	},
 	computed:{
 
 		combatLog() {
 			return this.log.items.filter(
-				v=>v.type==='combat' ).slice( -this.MAX_ITEMS );
+				v=>v.type==='combat' ).slice( -MAX_ITEMS );
 		},
 
 		raid() { return this.state.raid; },
@@ -37,7 +37,9 @@ export default {
 		raiding() { return this.state.curAction===this.raid; },
 
 		dungeons(){
-			return this.game.filterItems( it=>it.type==='dungeon'&& !this.locked(it) );
+			return this.state.filterItems(
+				it=>it.type==='dungeon' && !this.locked(it)
+			);
 		}
 
 	}

@@ -1279,7 +1279,7 @@
 		"id":"crucible",
 		"name":"fine crucible",
 		"desc":"resiliant vessel for melting substances",
-		"require":"tier0>0&&alchemy>0",
+		"require":"state.tier0>0&&state.alchemy>0",
 		"cost":{
 			"gold":150
 		},

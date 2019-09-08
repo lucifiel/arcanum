@@ -156,7 +156,6 @@
 		"id":"aragheights",
 		"name":"arag heights",
 		"desc":"barren mountains over arazor",
-		"require":"",
 		"level":6,
 		"run":{
 			"stamina":1
@@ -251,7 +250,6 @@
 		"id":"aragwastes",
 		"name":"arag wastes",
 		"desc":"the arid plain stretching from the heights.",
-		"require":"",
 		"level":8,
 		"run":{
 			"stamina":2

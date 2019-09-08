@@ -85,7 +85,7 @@ export default class Mod {
 	 */
 	apply( mod, amt=1 ) {
 
-		console.warn('CHANGING MOD: ' + this.id + ' by mod: ' + (mod.id||typeof mod) );
+		//console.warn('CHANGING MOD: ' + this.id + ' by mod: ' + (mod.id||typeof mod) );
 
 		let typ = typeof mod;
 		if ( typ === 'number') {

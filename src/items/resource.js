@@ -43,6 +43,7 @@ export default class Resource extends GData {
 			this._max = new Stat(v);
 
 		} else {
+			/** @todo this is too dangerous to keep. */
 			this._max.base = v;
 		}
 

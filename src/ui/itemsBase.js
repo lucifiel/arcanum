@@ -37,7 +37,7 @@ export default {
 
 		locked(it) {
 
-			return it.disabled === true || it.maxed() || it.locks>0 || it.locked !== false;
+			return (it.disabled === true) || it.maxed() || it.locks>0 || (it.locked !== false);
 
 		},
 

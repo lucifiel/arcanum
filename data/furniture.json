@@ -693,7 +693,7 @@
 	{
 		"id":"archive",
 		"desc":"arcane archive",
-		"require":"lore.max>=15",
+		"require":"state.lore.max>=15",
 		"cost":{
 			"gold":400,
 			"research":100,
