@@ -368,7 +368,7 @@
 		"id":"naturelore",
 		"name":"nature lore",
 		"verb":"observing nature",
-		"require":"state.herbalism>=3&&state.animals>=2",
+		"require":"state.herbalism>=3",
 		"run":{
 			"stamina":0.4
 		},

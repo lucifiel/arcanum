@@ -18,8 +18,22 @@ export default class Player extends Char {
 	get level() { return this._level; }
 	set level(v) { this._level=v;}
 
+	/**
+	 * @property {string} title
+	 */
 	get title() { return this._title; }
-	set title(v) { this._title =v;}
+	set title(v) {
+		this._title =v;
+		if ( !this._titles.includes(v) ) this.titles.push(v);
+	}
+
+	/**
+	 * @property {string[]} titles
+	 */
+	get titles(){return this._titles;}
+	set titles(v){
+		this._titles = v;
+	}
 
 	get exp(){ return this._exp; }
 	set exp(v) {
@@ -96,6 +110,8 @@ export default class Player extends Char {
 		data.title = ( this.title );
 		data.name = ( this.name );
 
+		data.titles = this.titles;
+
 		data.next = ( this.next );
 		// attack timer.
 		data.timer = ( this.timer );
@@ -122,6 +138,8 @@ export default class Player extends Char {
 		//if ( vars ) Object.assign( this, vars );
 		this._level = this._level || 0;
 		this._title = this._title || 'waif';
+
+		this.titles = this._titles || [];
 
 		this._next = this._next || 50;
 

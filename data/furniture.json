@@ -186,7 +186,8 @@
 		"id":"smcage",
 		"name":"rusty cage",
 		"desc":"A cramped cage for keeping tiny test subjects.",
-		"tags":"tagpen",
+		"tags":"tagpen,shadowsource",
+		"repeat":true,
 		"cost":{
 			"gold":50,
 			"space":1,
@@ -205,6 +206,7 @@
 		"desc":"a glass enclosure of dirt, insects, and wormy things.",
 		"tags":"earthsource,tagpen",
 		"require":"neophyte",
+		"repeat":true,
 		"cost":{
 			"space":1,
 			"research":40,
@@ -240,6 +242,7 @@
 		"desc":"A small bench for arts and crafts.",
 		"tags":"workspace",
 		"locked":false,
+		"repeat":true,
 		"cost":{
 			"gold":15,
 			"space":1
@@ -256,7 +259,6 @@
 		"desc":"A desk for working and scribing.",
 		"require":"scribe",
 		"tags":"workspace",
-		"repeat":false,
 		"cost":{
 			"gold":100,
 			"space":2
@@ -274,7 +276,6 @@
 		"tags":"workspace",
 		"desc":"Wide table for crafting projects.",
 		"require":"scribe",
-		"repeat":false,
 		"cost":{
 			"gold":100,
 			"space":2
@@ -290,7 +291,6 @@
 		"tags":"workspace,enchantsource",
 		"desc":"Runed table for enchanting",
 		"require":"neophyte",
-		"repeat":false,
 		"cost":{
 			"gold":200,
 			"research":200,
@@ -308,6 +308,7 @@
 		"locked":false,
 		"desc":"Really brightens up the place",
 		"tags":"taggarden",
+		"repeat":true,
 		"cost":{
 			"gold":25,
 			"space":1
@@ -322,6 +323,7 @@
 		"desc":"Perfect for robins.",
 		"tags":"tagpen",
 		"require":"apprentice",
+		"repeat":true,
 		"cost":{
 			"gold":25,
 			"space":1
@@ -350,7 +352,6 @@
 		"id":"loom",
 		"desc":"unlocks the art of weaving",
 		"require":"state.crafting>=5",
-		"repeat":false,
 		"cost":{
 			"gold":50,
 			"research":100,
@@ -450,6 +451,7 @@
 		"name":"brass candelabra",
 		"desc":"Candle holder.",
 		"require":"state.waxcandle>0&&state.gold.max>=200",
+		"repeat":true,
 		"cost":{
 			"space":1,
 			"gold":200
@@ -465,6 +467,7 @@
 		"name":"bone candelabra",
 		"desc":"creepy",
 		"require":"state.necromancer>0||state.witch>0||state.bonemonger>0",
+		"repeat":true,
 		"cost":{
 			"space":1,
 			"bones":10,
@@ -484,6 +487,7 @@
 		"tags":"watersource",
 		"desc":"Basin of water.",
 		"require":"atticbedroom",
+		"repeat":true,
 		"cost":{
 			"gold":50,
 			"space":1
@@ -497,6 +501,7 @@
 		"desc":"Stand of burning hot coals.",
 		"tags":"firesource",
 		"require":"tier0",
+		"repeat":true,
 		"cost":{
 			"gold":150,
 			"space":1
@@ -523,6 +528,7 @@
 		"desc":"Crude measure of time",
 		"require":"tier2",
 		"tags":"timesource",
+		"repeat":true,
 		"cost":{
 			"gold":100,
 			"research":100,
@@ -540,6 +546,7 @@
 		"id":"fireplace",
 		"desc":"A cozy place for cooking food and brewing potions.",
 		"require":"state.space.max>=15",
+		"repeat":true,
 		"cost":{
 			"gold":175,
 			"space":1
@@ -672,7 +679,7 @@
 		"repeat":true,
 		"require":"tier0",
 		"cost":{
-			"gold":200,
+			"gold":300,
 			"space":5
 		},
 		"mod":{
@@ -687,8 +694,9 @@
 		"desc":"A storeroom of arms.",
 		"tags":"armssource",
 		"require":"tier0",
+		"repeat":true,
 		"cost":{
-			"gold":300,
+			"gold":400,
 			"space":10
 		},
 		"mod":{
@@ -754,6 +762,7 @@
 		"id":"casket",
 		"desc":"simple container for preserving bodies.",
 		"require":"state.tier1>0&&state.embalming>=5&&state.crafting>=5",
+		"repeat":true,
 		"cost":{
 			"space":1,
 			"research":100,
@@ -767,6 +776,7 @@
 		"id":"vat",
 		"desc":"grows bodies from raw materials",
 		"require":"state.tier1>0&&state.anatomy>=5&&state.embalming>=5&&state.crafting>=10",
+		"repeat":true,
 		"cost":{
 			"space":2,
 			"research":300,
@@ -1029,7 +1039,9 @@
 			"space":100
 		},
 		"mod":{
-			"shadow.max":1,
+			"bodies.max":20,
+			"bones.max":20,
+			"shadowlore.max":1,
 			"shadow.rate":0.01,
 			"demonology.max":1
 		}

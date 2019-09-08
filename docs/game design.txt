@@ -86,56 +86,6 @@ homes /sanctums / domiciles / base
 
 obscura
 
-title:
-waif
-apprentice
-neophyte
-adept
-
-magician
-dark magician
-bone monger
-
-base?
-mage
-sorcerer
-enchanter
-evoker
-conjurer
-necromancer
-alchemist <->transmuter?
-witch
-medium
-acolyte <-- probably not.
-summoner
-keeper
-artificier
-warden
-trickster
-
-Mid Tier?
-battlemage
-eradicator
-elementalist /elemancy
-fire/water/earth/air mage?
-warlock
-seer
-thaumaturge
-
-High Tier
-lich
-oracle
-dreadlord
-dark lord
-wizard
-high witch
-planeswalker
-doomsayer
-archmage
-archlich
-avatar
-archlock
-high elemental
 
 
 
