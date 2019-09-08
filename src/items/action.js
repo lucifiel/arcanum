@@ -8,12 +8,25 @@ export default class Action extends GData {
 	get level() {return this._level;}
 	set level(v) { this._level = v;}
 
+	get ex(){return this._exp; }
+	set ex(v) { this._exp = v;}
+
 	/**
 	 * @property {number} exp - alias progress data files.
 	 */
 	get exp() { return this._exp || 0; }
 	set exp(v){
-		this._exp =v;
+
+		this._exp = v;
+		if ( Game.loaded && this.length && v >= this._length ) {
+
+			this.value++;
+
+			if ( this.result ) Game.applyEffect( this.result );
+			if ( this.loot ) Game.getLoot( this.loot );
+			this.complete();
+
+		}
 	}
 
 	get length() { return this._length; }

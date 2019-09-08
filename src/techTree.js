@@ -4,7 +4,7 @@ import Game from './game';
  * @const {RegExp} FuncRE - regular expression to find tree relationships
  * in requirement/need functions.
  */
-const FuncRE = /\b\w+\.((?:\w|\.)+)/gi;
+const FuncRE = /[^\.]\b\w+\.((?:\w|\.)+\b)/gi;
 
 export default class TechTree {
 
@@ -73,7 +73,9 @@ export default class TechTree {
 			//var varPath = results[1];
 			//console.log( item.id + 'require: ' + varPath );
 
-			this.markUnlocker( results[1].split('.')[0], item );
+			let sub = results[1].split('.')[0];
+			if ( sub === 'mod' || sub === 'slot' ) continue;
+			this.markUnlocker( sub, item );
 
 		}
 		if ( text.includes('this') ) this.markUnlocker( item.id, item );
@@ -93,7 +95,7 @@ export default class TechTree {
 		if ( it === undefined ) {
 			it = Game.state.getTagList( src );
 			if ( it ) it.forEach( v=>this.markUnlocker(v.id,item) );
-			else console.warn('unlocker not found: ' + src );
+			//else console.warn('unlocker not found: ' + src );
 			return;
 		}
 

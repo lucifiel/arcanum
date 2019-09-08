@@ -419,7 +419,6 @@ div.game-mid {
 	height:100%;
 	flex-basis:48%;
 	flex-grow:1;
-	min-width: 320px;
 	margin: 0px 14px;
 	align-content: space-around;
 }

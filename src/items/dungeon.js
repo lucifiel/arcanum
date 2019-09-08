@@ -35,12 +35,11 @@ export default class Dungeon extends Action {
 		/**
 		 * @property {number} progress
 		 */
-		this.exp = this.exp || 0;
-		this.length = this.length || 100;
+		this._exp = this._exp || 0;
+		this._length = this._length || 100;
 
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
-		console.log('requir: ' + this.require );
 
 		this.dist = ( this.dist === undefined || this.dist === null ) ? 5*Math.floor( Math.exp(this.level/2) ) : this.dist;
 		//this.addRequire( 'dist', this.dist );

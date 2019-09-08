@@ -89,7 +89,7 @@ export default {
 
 div.adventure {
 	display:flex;
-	width: 100%;
+	padding:0px 15px;
 	align-self: flex-start;
 	flex-flow: row nowrap;
 	justify-content: space-around;

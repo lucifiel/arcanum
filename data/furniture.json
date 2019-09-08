@@ -256,6 +256,7 @@
 		"desc":"A desk for working and scribing.",
 		"require":"scribe",
 		"tags":"workspace",
+		"repeat":false,
 		"cost":{
 			"gold":100,
 			"space":2
@@ -273,6 +274,7 @@
 		"tags":"workspace",
 		"desc":"Wide table for crafting projects.",
 		"require":"scribe",
+		"repeat":false,
 		"cost":{
 			"gold":100,
 			"space":2
@@ -288,6 +290,7 @@
 		"tags":"workspace,enchantsource",
 		"desc":"Runed table for enchanting",
 		"require":"neophyte",
+		"repeat":false,
 		"cost":{
 			"gold":200,
 			"research":200,
@@ -347,6 +350,7 @@
 		"id":"loom",
 		"desc":"unlocks the art of weaving",
 		"require":"state.crafting>=5",
+		"repeat":false,
 		"cost":{
 			"gold":50,
 			"research":100,
@@ -596,8 +600,9 @@
 		"desc":"Receptacle for bones.",
 		"tags":"shadowsource",
 		"require":"evil",
+		"repeat":true,
 		"cost":{
-			"gold":50,
+			"gold":300,
 			"bones":5,
 			"space":1
 		},
@@ -635,6 +640,7 @@
 			"space":5
 		},
 		"mod":{
+			"souls.max":1,
 			"spiritgem.max":2,
 			"spirit.max":1,
 			"spirit.rate":0.01
@@ -663,6 +669,7 @@
 		"name":"iron cell",
 		"desc":"A simple, bare cell.",
 		"tags":"prison",
+		"repeat":true,
 		"require":"tier0",
 		"cost":{
 			"gold":200,
@@ -750,7 +757,7 @@
 		"cost":{
 			"space":1,
 			"research":100,
-			"gold":50
+			"gold":75
 		},
 		"mod":{
 			"bodies.max":1
@@ -766,6 +773,8 @@
 			"gold":100
 		},
 		"mod":{
+			"anatomy.rate":0.3,
+			"embalming.rate":0.3,
 			"bodies.rate":0.01,
 			"bodies.max":1
 		}
@@ -808,6 +817,7 @@
 		"id":"orrery",
 		"desc":"a vast mechanical model of existence",
 		"require":"state.codices>=100",
+		"repeat":false,
 		"cost":{
 			"gold":500,
 			"research":500,

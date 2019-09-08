@@ -110,7 +110,7 @@
 
 	},
 	{
-		"id":"tome",
+		"id":"tomes",
 		"name":"Tomes",
 		"desc":"A hefty tome of knowledge.",
 		"max":5,

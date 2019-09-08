@@ -202,7 +202,12 @@ export default {
 		gd.homes = this.initItems( dataLists['homes'], GData, 'home', 'home' );
 		gd.homes.forEach( v=>v.slot='home');
 
-		this.initItems( dataLists['furniture'], GData, 'furniture', 'furniture' );
+		let furniture = this.initItems( dataLists['furniture'], GData, 'furniture', 'furniture' );
+		furniture.forEach( v=>{
+			// furniture can be repeated if not explicitly forbidden.
+			if ( v.max === null || v.max === undefined && v.repeat !== false ) v.repeat = true;
+		});
+
 		gd.skills = this.initItems( dataLists['skills'], Skill );
 
 		gd.monsters = this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );

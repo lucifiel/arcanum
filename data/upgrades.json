@@ -380,7 +380,7 @@
 		"id":"ghostcompiler",
 		"name":"ghost compiler",
 		"desc":"an invisible spirit binds your scrolls into codicils.",
-		"require":["unseenscribe"],
+		"require":"unseenscribe",
 		"max":3,
 		"cost":{
 			"arcana":1,
@@ -538,9 +538,11 @@
 		"id":"fourleaf",
 		"name":"four leaf clover",
 		"desc":"a small but helpful charm.",
+		"require":"state.trickery>=3&&state.herbs>=3",
 		"cost":{
-			"nature":5,
-			"luck":5
+			"herbs":4,
+			"nature":4,
+			"research":100
 		},
 		"mod":{
 			"player.dodge":1
@@ -1311,6 +1313,7 @@
 	{
 		"id":"bagoftricks",
 		"name":"bag of tricks",
+		"tags":"tricksource",
 		"require":"state.trickster>0&&state.crafting>=7",
 		"cost":{
 			"research":100,

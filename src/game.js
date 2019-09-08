@@ -224,7 +224,7 @@ export default {
 		if ( action.run ) {
 
 			if ( !this.canPay( action.run, dt ) ) {
-				//console.log('halting action: ' + action.id );
+				console.log('CANT PAY: ' + action.id );
 				this.doRest( true )
 				return;
 			}
@@ -232,8 +232,9 @@ export default {
 
 		}
 
-		if ( action.fill && this.filled(action.fill ) ) this.haltAction();
-		else if ( action.update ) {
+		if ( action.fill && this.filled(action.fill ) ) {
+			this.haltAction();
+		} else if ( action.update ) {
 
 			action.update(dt);
 			action.dirty = true;
@@ -331,8 +332,9 @@ export default {
 		}
 
 		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getData(v);
+		if (fill === undefined ) return false;
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.locked || fill.value >= fill.max.value;
+		return fill.maxed();
 
 	},
 

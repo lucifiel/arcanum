@@ -141,13 +141,13 @@
 			"stamina":0.2
 		},
 		"effect":{
-			"lore.progress":0.5
+			"lore.exp":0.5
 		},
 		"result":{
 			"research.max":25,
 			"research.rate":0.07,
 			"arcana.rate":0.0001,
-			"player.progress":10
+			"player.exp":10
 		}
 
 	},
@@ -215,9 +215,26 @@
 		},"flavor":"why do they come to me to die?"
 	},
 	{
+		"id":"vileexperiment",
+		"name":"vile experiment",
+		"require":"state.dissection>=5",
+		"need":"shadowsource",
+		"desc":"Experiment on dead and soon-to-be-dead subjects. This is not something a good wizard would do.",
+		"length":20,
+		"run":{
+			"research":5,
+			"stamina":0.5,
+			"shadow":0.2
+		},
+		"result":{
+			"evilamt":2,
+			"bones":"2~4"
+		}
+	},
+	{
 		"id":"dissect",
 		"name":"dissect cadaver",
-		"require":"state.dissection>=5",
+		"require":"state.dissection>=4",
 		"desc":"dissect a body for components. only the best pieces will serve.",
 		"length":10,
 		"cost":{
@@ -225,7 +242,7 @@
 		},
 		"result":{
 			"skull":1,
-			"bones":"2~4"
+			"bones":"1~2"
 		}
 	},
 	{
@@ -310,7 +327,7 @@
 		},
 		"effect":{
 			"gold":0.5,
-			"divination.progress":0.3
+			"divination.exp":0.3
 		}
 	},
 	{
@@ -344,7 +361,7 @@
 			"stamina":0.3
 		},
 		"effect":{
-			"herbalism.progress":1,
+			"herbalism.exp":1,
 			"herbs":0.2
 		}
 
@@ -431,9 +448,9 @@
 			"arcana":0.01,
 			"sp":0.0001,
 			"demonology.max":0.001,
-			"demonology.progress":1,
+			"demonology.exp":1,
 			"spiritlore.max":0.001,
-			"spiritlore.progress":1
+			"spiritlore.exp":1
 		}
 
 	},
@@ -452,8 +469,8 @@
 				"exp":0.1,
 				"max":0.001
 			},
-			"animals.progress":1,
-			"herbalism.progress":1
+			"animals.exp":1,
+			"herbalism.exp":1
 		}
 	},
 	{
@@ -531,29 +548,6 @@
 
 	},
 	{
-
-		"id":"compiletome",
-		"name":"Compile Tome",
-		"require":"state.arcana.max>=10&&state.crafting>=10",
-		"length":20,
-		"cost":{
-			"codices":10,
-			"research":100,
-			"mana":10
-		},
-		"fill":"tomes",
-		"effect":{
-			"lore.progress":1
-		},
-		"run":{
-			"stamina":0.4
-		},
-		"result":{
-			"tomes":1
-		}
-
-	},
-	{
 		"id":"mapstars",
 		"name":"map stars",
 		"length":10,
@@ -582,12 +576,35 @@
 			"stamina":0.5
 		},
 		"effect":{
-			"animals.progress":2
+			"animals.exp":2
 		},
 		"result":{
 			"research.max":10,
 			"animals.max":2,
 			"animals.rate":0.2
+		}
+
+	},
+	{
+
+		"id":"compiletome",
+		"name":"Compile Tome",
+		"require":"state.arcana.max>=10&&state.crafting>=10",
+		"length":20,
+		"cost":{
+			"codices":10,
+			"research":100,
+			"mana":10
+		},
+		"fill":"tomes",
+		"effect":{
+			"lore.exp":1
+		},
+		"run":{
+			"stamina":0.4
+		},
+		"result":{
+			"tomes":1
 		}
 
 	},

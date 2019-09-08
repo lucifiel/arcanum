@@ -113,7 +113,7 @@
 			"stamina":0.7
 		},
 		"effect":{
-			"naturelore.progress":1
+			"naturelore.exp":1
 		},
 		"result":{
 			"sp":0.05,
@@ -236,7 +236,7 @@
 
 		"id":"divination",
 		"desc":"the art of foretelling",
-		"require":["spiritlore.lore>=6", "spiritsource"],
+		"require":["state.spiritlore>=6", "spiritsource"],
 		"school":"spirit",
 		"run":{
 			"stamina":0.4
@@ -285,7 +285,8 @@
 		"id":"spiritlore",
 		"name":"second sight",
 		"desc":"seeing the unseen",
-		"require":["state.lore>=6", "spiritsource"],
+		"require":"state.lore>=6",
+		"need":"spiritsource",
 		"school":"spirit",
 		"run":{
 			"stamina":0.4
