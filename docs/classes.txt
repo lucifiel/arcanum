@@ -32,10 +32,11 @@ elementalist /elemancy
 fire/water/earth/air mage?
 warlock
 seer
-thaumaturge
 
 High Tier
 lich
+
+thaumaturge
 oracle
 dreadlord
 dark lord

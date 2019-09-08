@@ -36,7 +36,7 @@
 		"id":"tier0",
 		"name":"Solitary Magic",
 		"desc":"Some say the study of magic doesn't truly begin until apprenticeship ends. People say a lot of things.",
-		"effect":{
+		"mod":{
 			"player.exp":15,
 			"innroom":true,
 			"sp":1,
@@ -49,11 +49,12 @@
 		"name":"Profressional Magick",
 		"desc":"Every province has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
 		"disable":["treatailments","prestidigitation"],
-		"lock":["battlemage","alchemist","enchanter","witch","magician","darkmagician"],
-		"effect":{
+		"lock":["battlemage","alchemist","enchanter","witch","magician","darkmagician","adept"],
+		"mod":{
 			"player.exp":15,
 			"lore.max":1,
 			"sp":1,
+			"crafting.max":1,
 			"arcanebody.max":1,
 			"occultendure.max":1,
 			"crystalmind.max":1
@@ -62,12 +63,42 @@
 	},
 	{
 		"id":"tier2",
-		"name":"Magical Mastery",
+		"name":"Arcane Ascendant",
 		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
-		"effect":{
+		"mod":{
 			"player.exp":25,
 			"lore.max":2,
 			"sp":2,
+			"arcanebody.max":1,
+			"occultendure.max":1,
+			"crystalmind.max":1
+		}
+
+	},
+	{
+		"id":"tier3",
+		"name":"Magical Mastery",
+		"desc":"",
+		"mod":{
+			"player.exp":50,
+			"lore.max":3,
+			"crafting.max":2,
+			"sp":3,
+			"arcanebody.max":1,
+			"occultendure.max":1,
+			"crystalmind.max":1
+		}
+
+	},
+	{
+		"id":"tier4",
+		"name":"Arcane Ascendant",
+		"desc":"",
+		"mod":{
+			"player.exp":75,
+			"lore.max":4,
+			"crafting.max":2,
+			"sp":3,
 			"arcanebody.max":1,
 			"occultendure.max":1,
 			"crystalmind.max":1

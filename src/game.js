@@ -117,8 +117,10 @@ export default {
 		for( let p in items ) {
 
 			var it = items[p];
-			if ( !it.locked && !it.disabled && it.value > 0 ) {
+			if ( !it.locked && it.value > 0 && !it.disabled ) {
+
 				if ( it.mod ) this.addMod( it.mod, it.value );
+
 			}
 
 		}
@@ -373,6 +375,7 @@ export default {
 
 				if ( it instanceof Resource || it instanceof Skill ) {
 					this.remove( it, it.value);
+
 				} else if ( it.mod ) this.removeMod( it.mod, it.value );
 
 			}

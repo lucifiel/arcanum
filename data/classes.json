@@ -15,7 +15,7 @@
 			"research":10,
 			"gold":20
 		},
-		"effect":{
+		"mod":{
 			"research.max":10,
 			"player.exp":5,
 			"sp":1
@@ -31,16 +31,13 @@
 			"name":"Scribe",
 			"desc":"In return for your services as scribe, you are granted a small allowance for your studies. The position does require of course, some initial fees..."
 		},
-		"disable":["apprentice"],
 		"cost":{
 			"gold":100,
 			"research":100,
 			"arcana":1
 		},
 		"mod":{
-			"arcana.rate":0.0001
-		},
-		"effect":{
+			"arcana.rate":0.0001,
 			"research.max":10,
 			"sp":1,
 			"lore.max":1,
@@ -59,13 +56,12 @@
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry."
 	},
 	"flavor":"Why does Master charge so many fees?",
-	"disable":["scribe"],
 	"cost":{
 		"gold":150,
 		"research":175,
 		"arcana":3
 	},
-	"effect":{
+	"mod":{
 		"research.max":10,
 		"arcana.rate":0.0001,
 		"sp":1,
@@ -79,8 +75,8 @@
 	"name":"Adept",
 	"title":"adept",
 	"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-	"disable":["neophyte", "study","errands","leavemaster","slaymaster", "pestcontrol"],
-	"effect":"tier0"
+	"disable":["study","errands","leavemaster","slaymaster", "pestcontrol"],
+	"mod":"tier0"
 },
 
 {
@@ -91,13 +87,12 @@
 	"actdesc":"Pursue the path of pure magic.",
 	"warn":true,
 	"require":"state.tier0>0&&state.lore>=10",
-	"disable":["adept","witch","druid"],
 	"cost":{
 		"research":700,
 		"arcana":12,
 		"gold":500
 	},
-	"effect":{
+	"mod":{
 		"tier1":true,
 		"research.max":20,
 		"lore.max":1,
@@ -112,14 +107,13 @@
 	"title":"dark magician",
 	"desc":"A devotee of black magic.",
 	"require":"evil",
-	"disable":["witch","druid","magician"],
 	"cost":{
 		"research":400,
 		"arcana":10,
 		"gold":300,
 		"bones":10
 	},
-	"effect":{
+	"mod":{
 		"tier1":true,
 		"research.max":20,
 		"demonology.max":2,
@@ -148,7 +142,7 @@
 		"arcana":7
 	},
 	"disable":[],
-	"effect":{
+	"mod":{
 		"witchcraft":true,
 		"tier1":true,
 		"research.max":10,
@@ -167,7 +161,6 @@
 	"name":"arcane trickster",
 	"title":"arcane trickster",
 	"desc":"Use magic for deceit and trickery.",
-	"disable":["adept"],
 	"buyname":"Path of Trickery",
 	"require":"state.trickery>=4&&state.tier0>0",
 	"cost":{
@@ -176,7 +169,7 @@
 		"gold":300,
 		"arcana":5
 	},
-	"effect":{
+	"mod":{
 		"tier1":true,
 		"gold.max":10,
 		"research.max":2,
@@ -202,7 +195,7 @@
 		"bonedust":10,
 		"arcana":7
 	},
-	"effect":{
+	"mod":{
 		"tier1":true,
 		"research.max":10,
 		"embalming.max":3,
@@ -224,7 +217,7 @@
 		"bodies":50,
 		"arcana":10
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"research.max":50,
 		"embalming.max":3,
@@ -238,17 +231,42 @@
 	}
 },
 {
+
+	"id":"battlemage",
+	"name":"battle mage",
+	"title":"Battlemage",
+	"actdesc":"Pursue the path of battle.",
+	"warn":true,
+	"require":"state.player.level>=10&&state.lore>=8&&state.armory>0",
+	"cost":{
+		"research":250,
+		"arcana":3,
+		"gold":400
+	},
+	"mod":{
+		"tier1":true,
+		"research.max":-50,
+		"mana.max":1,
+		"mana.rate":0.1,
+		"firelore.max":2,
+		"firelore.rate":0.1,
+		"earthlore.max":1,
+		"sp":1
+	}
+
+},
+{
 	"id":"dreadlord",
 	"title":"dreadlord",
 	"desc":"harbinger of destruction",
-	"require":"state.tier1>0&&state.evil>0&&state.hp>=30",
+	"require":"state.tier1>0&&state.evil>0&&state.hp>=30&&state.player.level>=20",
 	"cost":{
 		"research":1000,
 		"bones":100,
 		"bodies":50,
 		"arcana":10
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"player.tohit":"10%",
 		"hp.max":"10%",
@@ -266,9 +284,25 @@
 		"souls":50,
 		"arcana":10
 	},
-	"effect":{
-		"demonology.max":2,
-		"tier2":true
+	"mod":{
+		"tier2":true,
+		"demonology.max":2
+	}
+
+},
+{
+	"id":"archlock",
+	"title":"archlock",
+	"desc":"master of demons and demonic magic",
+	"require":"state.tier2>0&&state.evil>0&&state.demonology>=15",
+	"cost":{
+		"research":1000,
+		"souls":50,
+		"arcana":15
+	},
+	"mod":{
+		"tier3":true,
+		"demonology.max":2
 	}
 
 },
@@ -277,12 +311,12 @@
 	"title":"druid",
 	"desc":"druid",
 	"require":"state.tier1>0&&state.naturelore>=15",
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"research.max":5,
-		"naturelore.max":5,
+		"naturelore.max":3,
 		"naturelore.rate":"1+15%",
-		"animals.max":5,
+		"animals.max":3,
 		"potions.max":1,
 		"sp":1
 	}
@@ -292,11 +326,12 @@
 	"title":"alchemist",
 	"desc":"alchemist",
 	"disable":[],
-	"effect":{
-		"tier1":true,
+	"mod":{
+		"tier2":true,
 		"research.max":20,
-		"potions.max":5,
-		"alchemy.max":5,
+		"crafting.max":2,
+		"potions.max":3,
+		"alchemy.max":3,
 		"arcana.max":2,
 		"sp":3
 	}
@@ -306,15 +341,15 @@
 	"title":"enchanter",
 	"desc":"A master of charms and enchantments.",
 	"disable":[],
-	"effect":{
-		"tier1":true,
+	"mod":{
+		"tier2":true,
 		"research.max":15,
 		"enchanting.max":3,
 		"arcana.max":2,
 		"naturelore.max":2,
 		"mana.max":3,
-		"airlore.max":3,
-		"waterlore.max":3,
+		"airlore.max":2,
+		"waterlore.max":2,
 		"sp":2
 	}
 },
@@ -332,7 +367,7 @@
 		"tomes":5,
 		"earthgem":10
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"earthlore.max":1,
 		"earthlore.rate":"10%",
@@ -357,7 +392,7 @@
 		"tomes":5,
 		"firegem":10
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"firelore.max":1,
 		"firelore.rate":"10%",
@@ -382,7 +417,7 @@
 		"tomes":5,
 		"watergem":10
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"waterlore.max":1,
 		"waterlore.rate":"10%",
@@ -407,7 +442,7 @@
 		"tomes":5,
 		"airgem":10
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"airlore.max":1,
 		"airlore.rate":"10%",
@@ -422,7 +457,7 @@
 	"title":"evoker",
 	"desc":"A wielder of raw magical power.",
 	"disable":[],
-	"effect":{
+	"mod":{
 		"tier3":true,
 		"lore.max":1,
 		"mana.max":1,
@@ -445,7 +480,7 @@
 		"watergem":10,
 		"tomes":10
 	},
-	"effect":{
+	"mod":{
 		"tier3":true,
 		"sp":1,
 		"lore.max":1,
@@ -461,10 +496,30 @@
 	"id":"elementalist",
 	"title":"elementalist",
 	"desc":"Master of elemental forces.",
-	"effect":{
+	"mod":{
 		"tier1":true,
 		"research.max":5,
-		"elemental.max":5,
+		"elemental.max":2,
+		"elemental.rate":0.2,
+		"sp":1
+	}
+},
+{
+	"id":"highelemental",
+	"title":"high elemental",
+	"desc":"Lord of the elements",
+	"require":"state.tier2>0&&state.airlore>9&&state.firelore>9&&state.waterlore>9&&state.earthlore>9",
+	"cost":{
+		"tomes":10,
+		"airgem":10,
+		"firegem":10,
+		"earthgem":10,
+		"watergem":10
+	},
+	"mod":{
+		"tier3":true,
+		"research.max":5,
+		"elemental.max":2,
 		"elemental.rate":0.2,
 		"sp":1
 	}
@@ -474,7 +529,7 @@
 	"title":"oracle",
 	"desc":"A diviner.",
 	"require":"state.tier0>0&&state.spiritlore>=5&&state.divination>=5",
-	"effect":{
+	"mod":{
 		"tier1":true,
 		"research.max":15,
 		"lore.max":2,
@@ -490,7 +545,7 @@
 	"id":"seer",
 	"title":"oracle",
 	"desc":"A diviner.",
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"lore.max":2,
 		"mana.max":3,
@@ -504,12 +559,11 @@
 {
 	"id":"mage",
 	"title":"mage",
-	"desc":"member of an ancient order.",
-	"disable":["adept"],
+	"desc":"member of an arcane order.",
 	"cost":{
 
 	},
-	"effect":{
+	"mod":{
 		"tier2":true,
 		"research.max":40,
 		"lore.max":2,
@@ -518,31 +572,22 @@
 		"sp":2
 	}
 },
-
 {
-
-	"id":"battlemage",
-	"name":"battle mage",
-	"title":"Battlemage",
-	"actdesc":"Pursue the path of battle.",
-	"warn":true,
-	"require":"state.player.level>=10&&state.lore>=8&&state.armory>0",
+	"id":"thaumaturge",
+	"title":"thaumaturge",
+	"desc":"a crafter of wonders",
 	"cost":{
-		"research":250,
-		"arcana":3,
-		"gold":400
-	},
-	"effect":{
-		"research.max":-50,
-		"tier1":true,
-		"mana.max":1,
-		"mana.rate":0.1,
-		"firelore.max":2,
-		"firelore.rate":0.1,
-		"earthlore.max":1,
-		"sp":1
-	}
 
+	},
+	"mod":{
+		"tier3":true,
+		"spiritlore.max":2,
+		"divination.max":3,
+		"lore.max":2,
+		"lore.rate":0.4,
+		"mana.max":5,
+		"sp":2
+	}
 }
 
 ]

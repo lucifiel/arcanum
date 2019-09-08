@@ -302,6 +302,7 @@
 		"id":"firelore",
 		"name":"pyromancy",
 		"desc":"the investigation of fire",
+		"tags":"elemental",
 		"need":"firesource",
 		"run":{
 			"stamina":0.4,
@@ -319,6 +320,7 @@
 		"id":"earthlore",
 		"name":"minerology",
 		"need":"earthsource",
+		"tags":"elemental",
 		"run":{
 			"stamina":0.4
 		},
@@ -334,6 +336,7 @@
 		"id":"waterlore",
 		"name":"water lore",
 		"verb":"the study of water",
+		"tags":"elemental",
 		"need":"watersource",
 		"run":{
 			"stamina":0.4
@@ -351,6 +354,7 @@
 		"id":"airlore",
 		"name":"air lore",
 		"verb":"the study of air",
+		"tags":"elemental",
 		"need":"airsource",
 		"run":{
 			"stamina":0.3
