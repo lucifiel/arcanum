@@ -86,6 +86,7 @@ export default {
 
 	<div class="spellbook">
 
+		<div class="spell-table">
 		<table>
 		<tr v-for="s in viewing" :key="s.id" @mouseenter.capture.stop="dispatch('itemover', $event, s )">
 
@@ -103,6 +104,7 @@ export default {
 
 		</tr>
 		</table>
+		</div>
 
 		<div class="filters">
 
@@ -129,12 +131,15 @@ export default {
 div.spellbook {
 	display:flex;
 	padding: 0px 14px;
+	height:100%;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.spellbook table{
-	min-width: 50%;
+.spell-table {
+	min-width: 55%;
+	height:100%;
+	overflow-y: auto;
 }
 
 

@@ -653,6 +653,7 @@
 	},
 	{
 		"id":"carddeck",
+		"name":"card deck",
 		"desc":"a simple deck of cards",
 		"require":"state.prestidigitation>0",
 		"tags":"tricksource",
