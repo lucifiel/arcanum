@@ -439,7 +439,7 @@
 		"desc":"A rough but sturdy bookcase.",
 		"require":"state.codices>=10",
 		"cost":{
-			"gold":100,
+			"gold":200,
 			"space":2
 		},
 		"mod":{

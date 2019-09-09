@@ -24,6 +24,8 @@ export default {
 	},
 	computed:{
 
+		sp() { return this.state.getData('sp'); },
+
 		skills() { return this.state.skills; },
 
 		available(){
@@ -45,7 +47,7 @@ export default {
 <template>
 	<div class="skills">
 
-		<filterbox v-model="filtered" :items="available" min-items="7" />
+		<span class="separate"><filterbox v-model="filtered" :items="available" min-items="7" /><span style="align-self:center">Skill Points: {{ sp.value.toFixed(2) }}</span></span>
 
 		<div class="subs">
 			<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
@@ -55,6 +57,10 @@ export default {
 </template>
 
 <style scoped>
+
+.separate {
+	width:70%;
+}
 
 div.skills {
 	height:100%;

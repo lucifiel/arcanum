@@ -195,13 +195,17 @@ export default {
 		if ( typeof mods === 'object') {
 
 			if ( mods instanceof Mod ) {
+				console.log( this.id + ': applying mods is mod object.')
 				mods.applyTo( targ, 'value', amt );
 				return;
 			}
 
+			if ( mods.mod ) this.changeMod( mods.mod, amt );
+
 			for( let p in mods ) {
 
 				var m = mods[p];
+
 				if ( m instanceof Mod ) m.applyTo( targ, p, amt );
 
 				else if ( typeof m === 'object' ) {
