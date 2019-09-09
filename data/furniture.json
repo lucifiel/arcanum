@@ -33,7 +33,7 @@
 		"id":"ornatechest",
 		"name":"ornate chest",
 		"desc":"Treasure chest.",
-		"require":"state.gold.max>=400",
+		"require":"state.gold.max>=500",
 		"repeat":true,
 		"cost":{
 			"gold":350,
@@ -188,6 +188,7 @@
 		"name":"rusty cage",
 		"desc":"A cramped cage for keeping tiny test subjects.",
 		"tags":"tagpen,shadowsource",
+		"require":"neophyte",
 		"repeat":true,
 		"cost":{
 			"gold":50,
@@ -197,6 +198,7 @@
 		"flavor":"it doesn't seem very nice.",
 		"mod":{
 			"animals.max":1,
+			"shadowlore.max":1,
 			"evilamt":1
 		}
 

@@ -36,10 +36,12 @@
 		"id":"tier0",
 		"name":"Solitary Magic",
 		"desc":"Some say the study of magic doesn't truly begin until apprenticeship ends. People say a lot of things.",
-		"mod":{
-			"player.exp":15,
+		"effect":{
 			"innroom":true,
 			"sp":1,
+			"player.exp":15
+		},
+		"mod":{
 			"research.max":15
 		}
 
@@ -50,10 +52,12 @@
 		"desc":"Every province has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
 		"disable":["treatailments","prestidigitation"],
 		"lock":["battlemage","alchemist","enchanter","witch","magician","darkmagician","adept"],
-		"mod":{
-			"player.exp":15,
-			"lore.max":1,
+		"effect":{
 			"sp":1,
+			"player.exp":15
+		},
+		"mod":{
+			"lore.max":1,
 			"crafting.max":1,
 			"arcanebody.max":1,
 			"occultendure.max":1,
@@ -65,10 +69,11 @@
 		"id":"tier2",
 		"name":"Arcane Ascendant",
 		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
+		"effect":{
+			"player.exp":25
+		},
 		"mod":{
-			"player.exp":25,
 			"lore.max":2,
-			"sp":2,
 			"arcanebody.max":1,
 			"occultendure.max":1,
 			"crystalmind.max":1
@@ -79,11 +84,13 @@
 		"id":"tier3",
 		"name":"Magical Mastery",
 		"desc":"",
+		"effect":{
+			"sp":2,
+			"player.exp":50
+		},
 		"mod":{
-			"player.exp":50,
 			"lore.max":3,
 			"crafting.max":2,
-			"sp":3,
 			"arcanebody.max":1,
 			"occultendure.max":1,
 			"crystalmind.max":1
@@ -94,11 +101,13 @@
 		"id":"tier4",
 		"name":"Supreme Sorcery",
 		"desc":"",
+		"effect":{
+			"sp":2,
+			"player.exp":75
+		},
 		"mod":{
-			"player.exp":75,
 			"lore.max":4,
 			"crafting.max":2,
-			"sp":3,
 			"arcanebody.max":1,
 			"occultendure.max":1,
 			"crystalmind.max":1
@@ -109,11 +118,13 @@
 		"id":"tier5",
 		"name":"Dhrunic Pillar",
 		"desc":"A cornerstone of the mortal world.",
+		"effect":{
+			"sp":2,
+			"player.exp":100
+		},
 		"mod":{
-			"player.exp":100,
 			"lore.max":4,
 			"crafting.max":2,
-			"sp":3,
 			"arcanebody.max":1,
 			"occultendure.max":1,
 			"crystalmind.max":1
