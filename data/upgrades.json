@@ -32,7 +32,7 @@
 			"desc":"Your master was a fool. A quick murder in the dark put an end to their petty demands, and frees you to pursue your own grander designs."
 		},
 		"effect":["adept","evil", {
-			"bones":10,
+			"bodies":1,
 			"player.exp":10
 		}]
 

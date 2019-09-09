@@ -67,7 +67,7 @@
 		"desc":"small wooden bed.",
 		"tags":"bed",
 		"slot":"bed",
-		"require":"neophyte",
+		"require":"state.stamina>=15",
 		"cost":{
 			"gold":40,
 			"space":2
@@ -82,7 +82,7 @@
 		"desc":"four post bed",
 		"tags":"bed",
 		"slot":"bed",
-		"require":"tier0",
+		"require":"state.stamina>=30",
 		"cost":{
 			"gold":150,
 			"space":4
@@ -418,7 +418,7 @@
 		"name":"bookshelf",
 		"repeat":true,
 		"desc":"A single bookshelf for your books.",
-		"require":"state.codices>=5&&state.scrolls>=15",
+		"require":"state.codices>=5&&state.scrolls.max>=15",
 		"cost":{
 			"gold":100,
 			"space":1
@@ -452,9 +452,9 @@
 	{
 		"id":"casement",
 		"name":"casement window",
-		"tags":"lightsource",
+		"tags":"lightsource,airsource",
 		"desc":"A simple window to let in light and air.",
-		"require":"state.space>10",
+		"require":"state.space>=10",
 		"cost":{
 			"gold":100,
 			"space":1
@@ -468,8 +468,9 @@
 	{
 		"id":"latticewindow",
 		"name":"lattice window",
+		"tags":"lightsource,airsource",
 		"desc":"An elegant latticed portal.",
-		"require":"tier0",
+		"require":"state.space>=15",
 		"cost":{
 			"gold":300,
 			"space":1
@@ -781,7 +782,7 @@
 		"name":"blood fountain",
 		"desc":"Fountain of blood",
 		"tags":"shadowsource",
-		"require":"evil",
+		"require":"state.evil>0&&state.shadowlore>=3",
 		"cost":{
 			"gold":300,
 			"shadow":20,

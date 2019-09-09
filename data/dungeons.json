@@ -71,7 +71,7 @@
 		},
 		"log":{
 			"name":"Pests Clear",
-			"desc":"With the basement cleared, your master will have more room to stash all the gold you've been earning."
+			"desc":"With the basement cleared your master will have more room to stash all the gold you've been earning."
 		},
 		"boss":"ratking",
 		"enemies":[

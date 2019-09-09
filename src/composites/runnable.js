@@ -45,15 +45,15 @@ export default class Runnable {
 	get run() { return this.item ? this.item.run : null; }
 	get effect() { return this.item ? this.item.effect : null; }
 
-	get progress(){ return this._item.progress; }
-	set progress(v) {
+	get exp(){ return this._item.exp; }
+	set exp(v) {
 
 		if ( v > this.item.length ) {
 			Game.useWith( this.item, this.target );
 			Game.setAction(null);
 		}
 
-		this.item.progress = v;
+		this.item.exp = v;
 
 	}
 

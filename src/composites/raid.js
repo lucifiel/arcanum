@@ -23,12 +23,12 @@ export default class Raid {
 	get cost() { return this.dungeon ? this.dungeon.cost : null; }
 	get run() { return this.dungeon ? this.dungeon.run : null; }
 
-	get progress(){ return this.dungeon ? this.dungeon.progress : 0; }
-	set progress(v){
+	get exp(){ return this.dungeon ? this.dungeon.exp : 0; }
+	set exp(v){
 
 		if ( v >= this.dungeon.length ) {
 			this.raidDone( this.dungeon );
-		} else this.dungeon.progress=v;
+		} else this.dungeon.exp=v;
 
 	}
 
@@ -64,7 +64,7 @@ export default class Raid {
 		this._drops = (v instanceof Inventory ) ? v : new Inventory(v);
 	}
 
-	get complete() { return this.progress === this.length; }
+	get complete() { return this.exp === this.length; }
 
 	toJSON() {
 
@@ -156,12 +156,12 @@ export default class Raid {
 	}
 
 	combatDone() {
-		this.progress += 1;
+		this.exp += 1;
 	}
 
 	raidDone() {
 
-		this.dungeon.progress = this.dungeon.length;
+		this.dungeon.exp = this.dungeon.length;
 		this.dungeon.dirty = true;
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot, this.drops );
@@ -186,7 +186,7 @@ export default class Raid {
 				this.drops.clear();
 			}
 
-			if ( d.progress >= d.length ) d.progress = 0;
+			if ( d.exp >= d.length ) d.exp = 0;
 		}
 
 		this.dungeon = d;

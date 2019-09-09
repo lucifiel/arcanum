@@ -226,7 +226,7 @@ export default {
 		if ( action.run ) {
 
 			if ( !this.canPay( action.run, dt ) ) {
-				console.log('CANT PAY: ' + action.id );
+				//console.log('CANT PAY: ' + action.id );
 				this.doRest( true )
 				return;
 			}
@@ -244,7 +244,7 @@ export default {
 		} else {
 
 			if ( action.effect) this.applyEffect( action.effect, dt );
-			if ( action.length ) action.progress += dt;
+			if ( action.length ) action.exp += dt;
 			action.dirty = true;
 
 		}
@@ -283,9 +283,8 @@ export default {
 		/**
 		 * Cost to begin action.
 		 */
-		if ( act && act.cost && (act.progress === 0) ) {
+		if ( act && act.cost && (act.exp === 0) ) {
 
-			//console.log('PAY ACTION: ' + act.progress );
 			this.payCost( act.cost);
 
 		}
@@ -894,7 +893,7 @@ export default {
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
 
 		// cost only paid at _start_ of runnable action.
-		if ( it.cost && (it.progress === 0) && !this.canPay(it.cost) ) return false;
+		if ( it.cost && (it.exp === 0) && !this.canPay(it.cost) ) return false;
 
 		if ( it.fill ) {
 

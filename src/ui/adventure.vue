@@ -59,7 +59,7 @@ export default {
 	<div class="dungeon" v-for="d in filtered" :key="d.id">
 
 		<span>{{ d.name }}</span>
-		<span class="bar"><progbar :value="d.progress" :max="d.length" /></span>
+		<span class="bar"><progbar :value="d.exp" :max="d.length" /></span>
 		<span><button class="raid-btn" :disabled="!game.canRun(d)"
 			@click="dispatch( 'raid', d, !raiding || (raid.dungeon !== d) )"
 			@mouseenter.capture.stop="dispatch('itemover', $event, d )">

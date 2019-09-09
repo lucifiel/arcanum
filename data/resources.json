@@ -28,7 +28,6 @@
 		"id":"bonedust",
 		"name":"bone dust",
 		"desc":"The dust of human bones.",
-		"require":"tier0",
 		"max":10
 	},
 	{
@@ -125,7 +124,6 @@
 	{
 		"id":"gems",
 		"desc":"Various fine gemstones.",
-		"require":"tier0",
 		"max":5
 	},
 	{
@@ -285,7 +283,7 @@
 		"name":"shadow",
 		"tags":"manas",
 		"unit":false,
-		"require":"state.evil>0||state.shadowlore>0",
+		"require":"shadowlore",
 		"desc":"Shadow mana",
 		"max":0
 	},

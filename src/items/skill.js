@@ -43,7 +43,7 @@ export default class Skill extends Action {
 	}
 
 	update( dt) {
-		this.progress += dt*this._rate;
+		this.exp += dt*this._rate;
 	}
 
 	complete() {

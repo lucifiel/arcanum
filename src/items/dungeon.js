@@ -81,11 +81,11 @@ export default class Dungeon extends Action {
 
 			if ( typeof this.boss === 'string') {
 
-				if ( this.progress === this.length-1) return this.boss;
+				if ( this.exp === this.length-1) return this.boss;
 
 			} else {
 
-				if ( this.boss.hasOwnProperty( (this.progress+1) ) ) return this.boss[this.progress+1];
+				if ( this.boss.hasOwnProperty( (this.exp+1) ) ) return this.boss[this.exp+1];
 			}
 
 		}

@@ -3,6 +3,12 @@ import Game from '../game';
 
 export default {
 
+	methods:{
+
+		count(it){
+			return it.value > 1 ? ( ' (' + Math.floor(it.value) + ')' ) : '';
+		}
+	},
 	computed:{
 		classes() {
 			return Game.state.classes.filter(v=>!v.disabled&&v.value>=1);
@@ -23,13 +29,13 @@ export default {
 <div class="up-list">
 	<div class="div-hr">upgrades</div>
 	<div v-for="it in classes" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name + (it.value > 1 ? ' x'+Math.floor(it.value) : '') }}
+		{{it.name + count(it) }}
 	</div>
 	<div v-for="it in actions" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name + (it.value > 1 ? ' x'+Math.floor(it.value) : '') }}
+		{{it.name + count(it) }}
 	</div>
 	<div v-for="it in upgrades" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name + (it.value > 1 ? ' x'+Math.floor(it.value) : '') }}
+		{{it.name + count(it) }}
 	</div>
 
 </div>

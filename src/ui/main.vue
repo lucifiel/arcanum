@@ -189,7 +189,7 @@ export default {
 				}
 				if ( key === 'p') {
 					if ( this.state.curAction && this.state.curAction.length) {
-						this.state.curAction.progress = this.state.curAction.length - 0.01;
+						this.state.curAction.exp = this.state.curAction.length - 0.01;
 					}
 				}
 			}

@@ -494,14 +494,13 @@
 	},
 	{
 		"id":"mysticism",
-		"require":"state.lore>=7",
-		"desc":"ability to feel the flux and flow of arcane energies.",
+		"require":"state.lore>=8",
+		"desc":"an ability to sense the flow and flux of arcane energies.",
 		"run":{
 			"stamina":0.5
 		},
 		"result":{
-			"sp":0.05,
-			"research.max":1,
+			"arcana.rate":0.001,
 			"manas.rate":0.02
 		}
 	},

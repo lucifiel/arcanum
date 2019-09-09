@@ -46,7 +46,7 @@ export default {
 
 		<div v-if="skill.owned">
 
-		<bar :value="skill.progress" :max="skill.length" />
+		<bar :value="skill.exp" :max="skill.length" />
 
 			progress: {{ exp + ' / ' + length }}
 		</div>

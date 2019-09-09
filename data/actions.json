@@ -611,7 +611,7 @@
 	{
 		"id":"sylvansyllabary",
 		"name":"sylvan syllabary",
-		"require":"state.languages>=4&&state.tier0>0",
+		"require":"state.languages>=5&&state.tier0>0",
 		"desc":"a book of elvish symbols",
 		"length":75,
 		"repeat":false,
@@ -633,7 +633,7 @@
 	{
 		"id":"dwarfbook",
 		"name":"dwarven dirges",
-		"require":"state.languages>=4&&state.tier0>0",
+		"require":"state.languages>=5&&state.tier0>0",
 		"desc":"a compilation of gloomy dwarven drinking songs",
 		"length":75,
 		"repeat":false,
@@ -763,7 +763,7 @@
 	{
 		"id":"sellgem",
 		"name":"Sell Gem",
-		"require":"gems",
+		"require":"state.gems>0",
 		"cost":{
 			"gems":1
 		},
