@@ -19,11 +19,12 @@ import ZeroSum from './items/zerosum';
 import ProtoItem from './items/protoItem';
 import Material from './chars/material';
 import Enchant from './items/enchant';
+import Item from './items/item';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
 	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons',
-	'materials', 'enchants', 'sections' ];
+	'materials', 'enchants', 'sections', 'potions' ];
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -214,6 +215,10 @@ export default {
 		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem );
 		gd.weapons.forEach(v=>v.kind='weapon');
 
+		gd.potions = this.initItems( dataLists['potions'], Item, 'potion', 'potion' );
+		let potTest = this.levelTestFunc('potions');
+		gd.potions.forEach(v=>v.require = v.require || potTest );
+
 		gd.materials = this.initItems( dataLists['materials'], Material, 'material', 'material ');
 
 		gd.events = this.initItems( dataLists['events'], GData, null, 'event' );
@@ -316,6 +321,17 @@ export default {
 		}
 		return mods;
 
+	},
+
+	/**
+	 * Create a testing function that accepts when
+	 * the level of the given data item exceeds the level
+	 * of the item to be unlocked.
+	 * @param {string} unlocker - name of item that unlocks the item.
+	 * @returns {function}
+	 */
+	levelTestFunc( unlocker ) {
+		return (state,self)=>{ state.getData(unlocker).level >= self.level; };
 	},
 
 	/**

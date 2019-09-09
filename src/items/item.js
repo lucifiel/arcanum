@@ -29,6 +29,16 @@ export default class Item {
 		if ( this.consume === null || this.consume === undefined ) this.consume = true;
 
 	}
+
+	maxed(){
+		return (this.repeat === false &&this.value>0) || ( this.max && this.value >= this.max );
+	}
+
+	/**
+	 * does nothing.
+	 */
+	revive(){}
+
 }
 
 mergeClass( Item, Base );

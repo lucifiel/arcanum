@@ -2,6 +2,13 @@
 
 	{
 		"id":"pot_heal1",
+		"buy":{
+			"gold":25,
+			"research":50
+		},
+		"cost":{
+			"herbs":5
+		},
 		"name":"minor healing",
 		"use":"heal1"
 	},
@@ -10,10 +17,11 @@
 		"name":"draught of stamina",
 		"level":1,
 		"buy":{
-
+			"gold":25,
+			"research":50
 		},
-		"craft":{
-
+		"cost":{
+			"herbs":5
 		},
 		"use":"stam1"
 
@@ -21,6 +29,12 @@
 	{
 		"id":"hestiabrew",
 		"name":"hestia's homebrew",
+		"require":"witch",
+		"level":3,
+		"buy":{
+			"gold":25,
+			"research":150
+		},
 		"use":{
 			"dot":{
 

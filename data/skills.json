@@ -469,8 +469,8 @@
 	},
 	{
 		"id":"alchemy",
-		"school":["elemental"],
-		"require":"alembic",
+		"school":"elemental",
+		"require":"state.herbalism>=3",
 		"run":{
 			"stamina":0.5
 		},

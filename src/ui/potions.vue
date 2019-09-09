@@ -18,7 +18,8 @@ export default {
 	},
 
 	components:{
-		inv:()=>import('./inventory.vue')
+		inv:()=>import('./inventory.vue'),
+		filterbox:FilterBox
 	},
 	beforeCreate(){
 		this.game = Game
@@ -27,7 +28,7 @@ export default {
 	},
 	computed:{
 
-		potions(){ return []; }
+		potions(){ return Game.state.potions; }
 
 	}
 
@@ -49,13 +50,12 @@ export default {
 			<button v-if="it.buy&&!it.owned" :disabled="!buyable(it)"
 				@click="dispatch('buy', it)">Unlock</button>
 
-			<button v-else :disabled="!target||!it.canApply(target)||!usable(it)"
-				@click="dispatch( 'brew', it, target )">Brew</button>
+			<button v-else :disabled="!usable(it)"
+				@click="dispatch( 'brew', it )">Brew</button>
 
 		</div>
 		</div>
 
-		<inv selecting=true :inv="state.inventory" v-model="target" />
 		</div>
 
 </div>
@@ -63,5 +63,11 @@ export default {
 
 
 <style scoped>
+
+div.potions {
+	padding: 0px 16px;
+	height:100%;
+	overflow-y:auto;
+}
 
 </style>

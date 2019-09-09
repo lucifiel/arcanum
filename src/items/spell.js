@@ -26,7 +26,7 @@ export default class Spell extends GData {
 		if ( !this.owned ) {
 
 			if ( !this.buy ) this.buy = {};
-			if ( !this.buy.arcana ) this.buy.arcana = this.level;
+			if ( !this.buy.arcana && this.level > 1 ) this.buy.arcana = this.level - 1;
 
 		}
 

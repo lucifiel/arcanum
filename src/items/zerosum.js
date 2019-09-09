@@ -22,6 +22,8 @@ export default class ZeroSum extends Resource {
 
 	}
 
+	valueOf() { return this.value; }
+
 	/**
 	 * Adding value => more space left.
 	 * Removing value => increasing space used.
