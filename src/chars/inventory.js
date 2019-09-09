@@ -37,15 +37,24 @@ export default class Inventory {
 		for( let i = this.items.length-1; i>= 0; i-- ) {
 
 			var it = this.items[i];
-			var type = it.type || it.template || it.protoId;
+
+			var orig = it.template;
+			if ( typeof orig === 'string') orig = state.getData( orig );
+			if ( !orig) {
+				console.warn('inv. bad item type: ' + it.id + ' -> ' + it.template );
+				continue;
+			}
+			it.template = orig;
+
+			var type = orig.type;
 			if ( type == null ) {
-
 				console.warn( 'Unknown Item type: '+ it.type + ' -> ' + it.template + ' -> ' + it.protoId );
-
 			}
 
+			console.log('revive type: ' + type );
 			if ( type === 'wearable') {
 
+				console.log('reviving wearable');
 				it = this.items[i] = new Wearable(it);
 
 			} else {
