@@ -219,7 +219,7 @@
 	{
 
 		"id":"embalming",
-		"require":"state.dissection>=5",
+		"require":"state.dissection>=3",
 		"school":"shadow",
 		"run":{
 			"stamina":0.5
@@ -254,7 +254,7 @@
 		"id":"lightlore",
 		"name":"lumenology",
 		"desc":"study of pure light",
-		"require":"prism",
+		"require":"lightsource",
 		"run":{
 			"stamina":0.4
 		},
@@ -268,8 +268,9 @@
 	},
 	{
 		"id":"shadowlore",
-		"require":"state.dissection>=5",
+		"require":"state.dissection>=4",
 		"school":"shadow",
+		"need":"shadowsource",
 		"run":{
 			"stamina":0.5
 		},
@@ -334,7 +335,8 @@
 	{
 		"id":"waterlore",
 		"name":"water lore",
-		"verb":"the study of water",
+		"desc":"the study of water",
+		"verb":"studying water",
 		"tags":"elemental",
 		"need":"watersource",
 		"run":{
@@ -352,7 +354,8 @@
 	{
 		"id":"airlore",
 		"name":"air lore",
-		"verb":"the study of air",
+		"desc":"the study of air",
+		"verb":"studying air",
 		"tags":"elemental",
 		"need":"airsource",
 		"run":{

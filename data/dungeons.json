@@ -327,6 +327,29 @@
 
 	},
 	{
+		"id":"elementrift",
+		"name":"elemental rift",
+		"desc":"a tear in the fabric of reality leads to a land of raw elements.",
+		"require":"state.planeslore>=7",
+		"level":12,
+		"run":{
+			"stamina":2
+		},
+		"length":50,
+		"result":{
+			"gems":"3~5"
+		},
+		"boss":"lightningelemental",
+		"enemies":[
+			"fireelemental",
+			"iceelemental",
+			"earthelemental",
+			"airelemental",
+			"lightningelemental"
+		]
+
+	},
+	{
 		"id":"desillagrotto",
 		"name":"desilla's grotto",
 		"desc":"",

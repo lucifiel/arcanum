@@ -36,6 +36,7 @@
 		"id":"tier0",
 		"name":"Solitary Magic",
 		"desc":"Some say the study of magic doesn't truly begin until apprenticeship ends. People say a lot of things.",
+		"disable":["study","chores","errands","leavemaster","slaymaster", "pestcontrol"],
 		"effect":{
 			"innroom":true,
 			"sp":1,
@@ -85,7 +86,7 @@
 		"name":"Magical Mastery",
 		"desc":"",
 		"effect":{
-			"sp":2,
+			"sp":1,
 			"player.exp":50
 		},
 		"mod":{
@@ -102,7 +103,7 @@
 		"name":"Supreme Sorcery",
 		"desc":"",
 		"effect":{
-			"sp":2,
+			"sp":1,
 			"player.exp":75
 		},
 		"mod":{
@@ -119,7 +120,7 @@
 		"name":"Dhrunic Pillar",
 		"desc":"A cornerstone of the mortal world.",
 		"effect":{
-			"sp":2,
+			"sp":1,
 			"player.exp":100
 		},
 		"mod":{

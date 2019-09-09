@@ -75,7 +75,6 @@
 	"name":"Adept",
 	"title":"adept",
 	"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
-	"disable":["study","errands","leavemaster","slaymaster", "pestcontrol"],
 	"effect":"tier0"
 },
 
@@ -210,8 +209,8 @@
 	},
 	"mod":{
 		"research.max":10,
-		"embalming.max":3,
-		"reanimation.max":1,
+		"embalming.max":1,
+		"reanimation.max":2,
 		"shadowlore.max":3,
 		"potions.max":5,
 		"spiritlore.max":3
@@ -234,7 +233,7 @@
 	},
 	"mod":{
 		"research.max":50,
-		"embalming.max":3,
+		"embalming.max":2,
 		"reanimation.max":1,
 		"shadowlore.max":3,
 		"shadowlore.rate":"10%",

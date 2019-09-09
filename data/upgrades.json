@@ -639,10 +639,21 @@
 	},
 	{
 		"id":"carddeck",
-		"desc":"just a simple deck of cards",
+		"desc":"a simple deck of cards",
+		"require":"state.prestidigitation>0",
 		"tags":"tricksource",
 		"cost":{
-			"gold":30
+			"gold":50
+		}
+	},
+	{
+		"id":"threesidecoin",
+		"name":"three-sided coin",
+		"desc":"a simple deck of cards",
+		"require":"state.prestidigitation>10",
+		"tags":"tricksource",
+		"cost":{
+			"gold":300
 		}
 	},
 	{
@@ -1121,6 +1132,20 @@
 
 		}, "flavor":"I knew him well"
 
+	},
+	{
+		"id":"voidtouch",
+		"name":"touching the void",
+		"require":"state.planeslore>=20",
+		"cost":{
+
+		},
+		"mod":{
+
+		},
+		"effect":{
+
+		}
 	},
 	{
 		"id":"demonicpact",

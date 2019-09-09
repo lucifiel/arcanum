@@ -88,7 +88,7 @@
 	{
 		"id":"house",
 		"desc":"A modest house in a small town.",
-		"cost":750,
+		"cost":900,
 		"require":"state.tier0>0&&state.arcana.max>=8",
 		"mod":{
 			"space.max":30
@@ -97,7 +97,7 @@
 	{
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
-		"cost":700,
+		"cost":750,
 		"require":"state.tier0&&state.arcana.max>=12",
 		"mod":{
 			"gem.max":1,
@@ -111,7 +111,7 @@
 	{
 		"id":"inn",
 		"desc":"A quiet inn for hosting wayfarers.",
-		"cost":1000,
+		"cost":2000,
 		"require":"state.tier0&&state.languages>=7",
 		"mod":{
 			"space.max":50,
@@ -124,7 +124,7 @@
 	{
 		"id":"lodge",
 		"desc":"A rugged lodge in the woods.",
-		"cost":700,
+		"cost":800,
 		"require":"state.tier0>0&&state.naturelore>=7",
 		"mod":{
 			"space.max":30,
@@ -136,7 +136,7 @@
 		"id":"gabledhouse",
 		"name":"gabled mansion",
 		"desc":"A spacious house with many gabled windows.",
-		"cost":1500,
+		"cost":2000,
 		"require":"state.tier1>0&&state.arcana>=10",
 		"mod":{
 			"space.max":65
@@ -146,7 +146,7 @@
 		"id":"halftimber",
 		"name":"half-timber house",
 		"desc":"A vast home of rustic design",
-		"cost":1500,
+		"cost":2750,
 		"require":"state.tier1>0&&state.arcana>=10",
 		"mod":{
 			"space.max":75
@@ -155,7 +155,7 @@
 	{
 		"id":"cave",
 		"desc":"A primitive dwelling well-suited to particular areas of study. Others less so.",
-		"require":"tier0",
+		"require":"state.tier0>0&&(state.shadow+state.earth+state.nature)>0",
 		"cost":150,
 		"mod":{
 			"space.max":25,
@@ -165,28 +165,30 @@
 			"shadowlore.max":1,
 			"shadowlore.rate":0.1,
 			"light.max":-2,
-			"light.rate":-1
+			"light.rate":-0.2
 		},
 		"lock":["latticewindow"]
 
 	},
 	{
 		"id":"pavilion",
-		"desc":"An airy, elegant structure on a wide field.",
-		"cost":1000,
+		"desc":"An airy, elegant structure on an open field.",
+		"cost":1250,
 		"require":"oracle",
 		"mod":{
 			"space.max":40,
 			"light.rate":0.1,
 			"air.rate":0.1,
-			"mana.rate":0.1
+			"mana.rate":0.1,
+			"shadow.max":-1,
+			"shadow.rate":-0.3
 		}
 	},
 	{
 		"id":"hauntedmanse",
 		"name":"haunted manse",
 		"desc":"legends of this mansion speak of ghosts and horrors",
-		"cost":2000,
+		"cost":2500,
 		"require":"state.spirit>=10&&state.arcana>=10",
 		"mod":{
 			"space.max":75,
@@ -213,7 +215,7 @@
 	{
 		"id":"tower",
 		"desc":"A stone tower in which to conduct your arcane investigations.",
-		"cost":1500,
+		"cost":2500,
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":55,
@@ -224,7 +226,7 @@
 	{
 		"id":"lighthouse",
 		"desc":"A lighted tower on the shore of the ocean.",
-		"cost":1500,
+		"cost":3000,
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":80,
@@ -239,7 +241,7 @@
 		"desc":"A secret cavern behind a waterfall.",
 		"require":"state.water>=15&&state.naturelore>=10",
 		"cost":{
-			"gold":500,
+			"gold":1000,
 			"gems":10
 		},
 		"mod":{
@@ -258,7 +260,7 @@
 	{
 		"id":"citadel",
 		"desc":"A stronghold to defend you from the petty forces of the world.",
-		"cost":3000,
+		"cost":5000,
 		"require":"state.magician>0&&state.arcana>=20",
 		"mod":{
 			"space.max":200,

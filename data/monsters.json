@@ -1685,7 +1685,9 @@
             "name":"pound",
             "kind":"blunt",
             "dmg":"8~12"
-		},"loot":{"raw earth":5},
+		},"loot":{
+			"earthgem":"5%"
+		},
 		"immune":"earth"
 
     },
@@ -1703,7 +1705,7 @@
             "kind":"slash",
             "dmg":"5~12"
         },
-		"loot":{"air essence":10},
+		"loot":{"airgem":"5%"},
 		"immune":"air"
 
     },
@@ -1831,7 +1833,7 @@
             "name":"ice shard",
             "kind":"cold",
             "dmg":"8~15"
-		},"loot":{"ice essence":10},
+		},"loot":{"watergem":"5%"},
 		"immune":"water,air"
 
 	},
@@ -2008,7 +2010,7 @@
             "name":"flame",
             "kind":"fire",
             "dmg":"14~20"
-		},"loot":{"Fire Essence":10},
+		},"loot":{"firegem":"5%"},
 		"immune":"fire,light"
 
 	},
@@ -2091,16 +2093,21 @@
 		"id":"lightningelemental",
         "name":"lightning elemental",
         "level":10,
-        "desc":"All your hairs feel prickly.",
+        "flavor":"All your hairs feel prickly.",
         "kind":"elemental",
         "tohit":14,
         "hp":28,
         "defense":63,
         "attack":{
             "name":"lightning",
-            "kind":"electric",
+            "kind":"light",
             "dmg":"23~42"
-        },"immune":"light,fire"
+		},"immune":"light,fire",
+		"loot":{
+			"airgem":"1%",
+			"firegem":"1%",
+			"lightgem":"4%"
+		}
 
     },
     {
@@ -2617,7 +2624,7 @@
             "name":"lava slam",
             "kind":"fire",
             "dmg":"25~50"
-		}, "loot":{"raw iron":15, "raw stone":10, "fire essence":10},
+		}, "loot":{"firegem":"15%","earthgem":"10%"},
 		"immune":"fire"
     },
 	{
