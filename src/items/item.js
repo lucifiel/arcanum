@@ -1,4 +1,5 @@
 import Base, {mergeClass} from './base';
+import { mergeSafe} from 'objecty';
 
 /**
  * Carryable or equippable instanced Item.
@@ -12,6 +13,7 @@ export default class Item {
 
 		data.id = this.id;
 		data.template = this.template.id;
+		data.value = this.value;
 
 		return data ? data : undefined;
 
@@ -55,7 +57,7 @@ export default class Item {
 		if ( typeof this.template ==='string' ) this.template = state.getData( this.template );
 		if ( this.template ) {
 			console.log('reviving: ' + this.template.name );
-			Object.assign( this, this.template );
+			mergeSafe( this, this.template);
 		}
 
 	}

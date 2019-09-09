@@ -19,6 +19,7 @@ export default {
 	},
 	methods:{
 
+		count(it) { return it.value > 1 ? ' (' + Math.floor(it.value) + ')': ''; },
 		drop( it ){
 			this.inv.remove(it);
 		},
@@ -48,7 +49,7 @@ export default {
 	<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + inv.max.value + ' Used' }}</div>
 <table class="inv item-table">
 	<tr v-for="it in filtered" :key="it.id">
-		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name }}</td>
+		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name + count(it) }}</td>
 		<template v-if="!selecting">
 			<td v-if="it.equippable"><button @click="dispatch('equip',it, inv)">Equip</button></td>
 			<td v-if="it.use"><button @click="dispatch( 'use', it)">Use</button></td>
