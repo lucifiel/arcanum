@@ -28,7 +28,7 @@ export default {
 	},
 	computed:{
 
-		potions(){ return Game.state.potions; }
+		potions(){ return Game.state.potions.filter(v=>!this.locked(v)); }
 
 	}
 
