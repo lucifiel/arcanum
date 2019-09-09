@@ -1,5 +1,6 @@
 <script>
 import ItemsBase from '../itemsBase.js';
+import InfoBlock from './info-block.vue';
 import Attack from './attack.vue';
 
 export default {
@@ -7,6 +8,7 @@ export default {
 	name:"gdata",
 	mixins:[ItemsBase],
 	components:{
+		info:InfoBlock,
 		attack:Attack
 	}
 }
@@ -35,57 +37,20 @@ export default {
 
 		</div>
 
-		<div v-if="item.buy&&!item.owned">
+		<info v-if="item.buy&&!item.owned" :info="item.buy" title="purchase cost" />
+		<info v-if="item.cost" :info="item.cost" title="cost" />
+		<info v-if="item.run" :info="item.run" title="progress cost" rate="true" />
 
-			<hr>
-			<div class="note-text">purchase cost:</div>
-			<div v-for="(v,k) in effectItems( item.buy)" :key="k">
-				<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-			</div>
-
-
-		</div>
-		<div v-if="item.cost">
-
-			<hr>
-			<div class="note-text">cost:</div>
-			<div v-for="(v,k) in effectItems( item.cost)" :key="k">
-				<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-			</div>
-
-
-		</div>
-		<div v-if="item.run">
-
-			<hr>
-			<div class="note-text">progress cost:</div>
-			<div v-for="(v,k) in effectItems( item.run, true)" :key="k">
-				<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-			</div>
-
-
-		</div>
 		<attack v-if="item.attack" :item="item.attack" />
-		<div v-if="item.effect||item.mod||item.result">
 
-			<hr>
-			<div class="note-text">effects:</div>
+		<div v-if="item.effect||item.mod||item.result" class="note-text"><hr>effects:</div>
+		<info v-if="item.effect" :info="item.effect" :rate="runnable(item)" />
+		<info v-if="item.mod" :info="item.mod" />
+		<info v-if="item.result" :info="item.result" />
 
-			<div v-for="(obj) in ['effect','mod','result']" :key="obj">
-
-				<div v-for="(v,k) in effectItems(item[obj], obj==='effect'&&runnable(item))" :key="k">
-
-					<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-
-				</div>
-
-			</div>
-
-		</div>
+		<div v-if="item.lock||item.disable" class="note-text"><hr>locks:</div>
+		<info v-if="item.lock" :info="item.lock" />
+		<info v-if="item.disable" :info="item.disable" />
 
 		<div class="note-text" v-if="item.flavor">{{ item.flavor}}</div>
 </div>
