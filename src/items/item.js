@@ -6,6 +6,17 @@ import Base, {mergeClass} from './base';
  */
 export default class Item {
 
+	toJSON() {
+
+		let data = this.excludeJSON() || {};
+
+		data.id = this.id;
+		data.template = this.template.id;
+
+		return data ? data : undefined;
+
+	}
+
 	/**
 	 * @property {string} protoId - id of item template used to instance this item.
 	 */
@@ -28,16 +39,26 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 		if ( this.consume === null || this.consume === undefined ) this.consume = true;
 
+		if ( this.stack !== false ) this.stack = true;
 	}
 
 	maxed(){
-		return (this.repeat === false &&this.value>0) || ( this.max && this.value >= this.max );
+		return (this.stack === false &&this.value>0) || ( this.max && this.value >= this.max );
 	}
 
 	/**
 	 * does nothing.
 	 */
-	revive(){}
+	revive( state ){
+
+		console.log('template: ' + this.template);
+		if ( typeof this.template ==='string' ) this.template = state.getData( this.template );
+		if ( this.template ) {
+			console.log('reviving: ' + this.template.name );
+			Object.assign( this, this.template );
+		}
+
+	}
 
 }
 

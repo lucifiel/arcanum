@@ -6,6 +6,7 @@
 			"gold":25,
 			"research":50
 		},
+		"level":1,
 		"cost":{
 			"herbs":5
 		},

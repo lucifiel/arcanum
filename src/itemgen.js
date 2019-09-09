@@ -53,11 +53,16 @@ export default class ItemGen {
 
 			it = new Wearable( proto );
 
+		} else if ( proto.type === 'potion' ) {
+
+			it = new Item(proto);
+
 		} else if ( proto.type === 'item') {
 
 			it = new Item( proto );
-
 		}
+
+		if ( it === undefined ) return null;
 
 		it.id = proto.id + this.state.nextId();
 		return it;

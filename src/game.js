@@ -446,7 +446,7 @@ export default {
 	 */
 	tryBuy(it) {
 
-		if ( !this.canPay(it.buy) ) return false;
+		if ( this.canPay(it.buy) === false ) return false;
 		this.payCost( it.buy );
 
 		it.owned = true;
@@ -876,10 +876,11 @@ export default {
 	 */
 	canBuy(it) {
 
-		if ( it.owned || it.disabled || it.locked || it.maxed() || it.locks > 0 ) return false;
-		if ( it.buy && !this.canPay(it.buy) ) return false;
+		if ( it.disabled || it.locked || it.locks > 0 ) return false;
+		if ( it.buy && this.canPay(it.buy) ) return true;
 
-		return true;
+
+		return !it.maxed();
 
 	},
 
@@ -987,10 +988,12 @@ export default {
 
 				res = this.getData(p);
 				if ( res === undefined || res.value < cost[p]*unit ) return false;
-				let mod = res.mod;
+
+				// @todo: recursive mod test.
+				/*let mod = res.mod;
 				if ( mod ) {
 
-				}
+				}*/
 
 			}
 
@@ -1101,17 +1104,19 @@ export default {
 	 */
 	craft( it ) {
 
-		if ( !this.canPay( it ) ) return false;
-		this.payCost( it );
+		if ( !this.canPay( it.cost ) ) return false;
+		this.payCost( it.cost );
 
 		let inst = it.stack ? this.state.inventory.find( it.id, true ) : null;
 		if ( inst ) {
 
+			console.log('stack exists: ' + inst.value);
 			inst.value++;
 
 		} else {
 
 			inst = this.itemGen.instance( it );
+			console.log('createing item: ' + inst.id );
 			if ( inst ) inst.value = 1;
 			this.state.inventory.add( inst );
 

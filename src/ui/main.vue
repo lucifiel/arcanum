@@ -16,6 +16,7 @@ import Adventure from './adventure.vue';
 import { TICK_TIME } from '../game';
 
 const cheatKeys = {
+	b:'herbs',
 	g:'gold',
 	s:'scrolls',
 	e:'exp',

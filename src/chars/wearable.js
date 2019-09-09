@@ -27,6 +27,8 @@ export default class Wearable {
 
 	}
 
+	get equippable() { return true; }
+
 	/**
 	 * @property {string} protoId - id of item template used to instance this item.
 	 */

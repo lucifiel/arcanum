@@ -20,6 +20,7 @@ import ProtoItem from './items/protoItem';
 import Material from './chars/material';
 import Enchant from './items/enchant';
 import Item from './items/item';
+import Potion from './items/potion';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -215,9 +216,7 @@ export default {
 		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem );
 		gd.weapons.forEach(v=>v.kind='weapon');
 
-		gd.potions = this.initItems( dataLists['potions'], Item, 'potion', 'potion' );
-		let potTest = this.levelTestFunc('potions');
-		gd.potions.forEach(v=>v.require = v.require || potTest );
+		gd.potions = this.initItems( dataLists['potions'], Potion, 'potion', 'potion' );
 
 		gd.materials = this.initItems( dataLists['materials'], Material, 'material', 'material ');
 
@@ -327,11 +326,13 @@ export default {
 	 * Create a testing function that accepts when
 	 * the level of the given data item exceeds the level
 	 * of the item to be unlocked.
+	 * @todo: doesn't work. unlock test too abstract to detect in code.
 	 * @param {string} unlocker - name of item that unlocks the item.
 	 * @returns {function}
 	 */
 	levelTestFunc( unlocker ) {
-		return (state,self)=>{ state.getData(unlocker).level >= self.level; };
+		return (state,self)=>{
+			state[unlocker].level >= self.level; };
 	},
 
 	/**
