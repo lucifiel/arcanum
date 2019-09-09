@@ -162,7 +162,8 @@ export default {
 
 		this.doCurrent( dt );
 
-		this.doResources(dt);
+		this.doResources(dt, this.state.resources);
+		this.doResources( dt, this.state.playerStats );
 
 		if ( this.timers ) {
 
@@ -191,16 +192,16 @@ export default {
 	 * Frame update of all resources.
 	 * @param {number} dt - elapsed time.
 	 */
-	doResources( dt ) {
+	doResources( dt, stats ) {
 
-		let stats = this.state.resources;
 		let len = stats.length, stat;
 		for( let i = len-1; i >= 0; i-- ) {
 
 			stat = stats[i];
 			if ( stat.locked === false ) {
 
-				if  ( stat.rate.value !== 0 ) this.doItem( stat, stat.rate.value*dt );
+				if  ( stat.rate.value !== 0 ) { this.doItem( stat, stat.rate.value*dt );
+				}
 
 			}
 

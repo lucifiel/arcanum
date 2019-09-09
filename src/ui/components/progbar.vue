@@ -4,7 +4,9 @@ export default {
 	props:['value', 'max', 'label'],
 	computed:{
 		width(){
-			return (100*(this.value/this.max)) + '%;'
+			let val = 100*(this.value/this.max);
+			if ( val > 100 ) val = 100;
+			return val + '%;'
 		}
 	}
 

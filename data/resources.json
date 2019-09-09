@@ -25,6 +25,13 @@
 	},
 	{
 
+		"id":"skull",
+		"desc":"human skull.",
+		"max":5
+
+	},
+	{
+
 		"id":"bonedust",
 		"name":"bone dust",
 		"desc":"The dust of human bones.",
@@ -208,8 +215,7 @@
 
 		"id":"herbs",
 		"desc":"Special plants for potions and alchemy.",
-		"max":10,
-		"require":"herbalism"
+		"max":10
 	},
 	{
 		"id":"sulphur",

@@ -244,6 +244,26 @@ export default class Player extends Char {
 	}
 
 	/**
+	 * @returns {Resource[]} - list of all resources defined by Player.
+	 */
+	getResources() {
+
+		let res =[];
+
+		for( let p in this ) {
+
+			var obj = this[p];
+			if ( obj !== null && typeof obj === 'object' && obj.type === 'resource') res.push(obj);
+
+		}
+
+		console.log('player resources: ' + res.length );
+
+		return res;
+
+	}
+
+	/**
 	 *
 	 * @param {Dot} dot - dot to add.
 	 */

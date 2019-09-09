@@ -50,7 +50,7 @@
 	"id":"neophyte",
 	"title":"neophyte",
 	"actdesc":"The final step on the twisting stairwell of apprenticeship.",
-	"require":"state.research.max>=125&&state.spellbook.value>0",
+	"require":"state.scribe>0&&state.research.max>=125&&state.spellbook.value>0",
 	"log":{
 		"name":"Neophyte",
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry."
@@ -74,7 +74,7 @@
 	"id":"adept",
 	"name":"Adept",
 	"title":"adept",
-	"desc":"It's time to continue the path of the arcane alone. You had better find a new place to stay.",
+	"desc":"Your master behind you, you set off into the world alone. You had better find a new place to stay.",
 	"effect":"tier0"
 },
 
@@ -260,7 +260,6 @@
 		"sp":1
 	},
 	"mod":{
-		"tier1":true,
 		"research.max":-50,
 		"mana.max":1,
 		"mana.rate":0.1,

@@ -94,7 +94,7 @@ export default class Stat {
 	 */
 	apply( mod, amt=1 ) {
 
-		if ( mod instanceof Mod ) return this.applyMod( mod, amt );
+		if ( mod instanceof Mod ) return this.addMod( mod, amt );
 
 		//console.log('apply default mod: ' + mod );
 		let cur = this.defaultMod();
@@ -102,7 +102,7 @@ export default class Stat {
 		let prevBonus = cur.bonus;
 		let prevPct = cur.pct;
 
-		cur.apply( mod, amt );
+		cur.add( mod, amt );
 
 		// save and update change.
 		this._bonus += cur.bonus - prevBonus;
@@ -115,7 +115,7 @@ export default class Stat {
 	 * @param {Mod} mod
 	 * @param {number} amt - amount by which mod increased.
 	 */
-	applyMod( mod, amt ) {
+	addMod( mod, amt ) {
 
 		this._pct += amt*mod.pct;
 		this._bonus += amt*mod.bonus;

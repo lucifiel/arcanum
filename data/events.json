@@ -52,7 +52,7 @@
 		"name":"Profressional Magick",
 		"desc":"Every province has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
 		"disable":["treatailments","prestidigitation"],
-		"lock":["battlemage","alchemist","enchanter","witch","magician","darkmagician","adept"],
+		"lock":["bonemonger", "battlemage","alchemist","enchanter","witch","magician","darkmagician","adept"],
 		"effect":{
 			"sp":1,
 			"player.exp":15
@@ -70,6 +70,7 @@
 		"id":"tier2",
 		"name":"Arcane Ascendant",
 		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
+		"lock":[],
 		"effect":{
 			"player.exp":25
 		},

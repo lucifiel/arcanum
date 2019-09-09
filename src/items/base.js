@@ -285,10 +285,12 @@ export default {
 
 	/**
 	 * Modify a mod applied by the Item.
-	 * @param {Object} mod
+	 * @param {Object|Mod|number} mod
 	 * @param {number} amt - percent of change applied to modifier.
 	 */
 	changeMod( mod, amt ) {
+
+		console.log( this.id + ': adding mod amt: ' + amt );
 
 		// apply change to modifier for existing item amount.
 		Game.addMod( mod, amt*this.value );

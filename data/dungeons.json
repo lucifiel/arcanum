@@ -110,6 +110,32 @@
 
 	},
 	{
+		"id":"treffilwoods",
+		"name":"treffil woods",
+		"desc":"these enchanted woods are not particularly dangerous.",
+		"dist":17,
+		"level":4,
+		"length":20,
+		"run":{
+			"stamina":1
+		},
+		"result":{
+			"herbs":"3~7",
+			"gems":"0~2"
+		},
+		"boss":"gobchief",
+		"enemies":[
+			"goblin",
+			"gardengnome",
+			"wombat",
+			"slime",
+			"hobgoblin",
+			"ranger",
+			"elf",
+			"slinger"
+		],"loot":{"max":4}
+	},
+	{
 		"id":"goblincamp",
 		"name":"goblin camp",
 		"desc":"the pesky creatures are everywhere.",
@@ -129,7 +155,7 @@
 			"goblin",
 			"goblin",
 			"gobpriest"
-		],"loot":{"max":5}
+		],"loot":{"max":3}
 
 	},
 	{
@@ -245,7 +271,7 @@
 			"orc",
 			"orc",
 			"orcpriest"
-		]
+		], "flavor":"lok'tar!"
 
 	},
 	{

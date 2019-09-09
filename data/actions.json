@@ -737,7 +737,7 @@
 	{
 		"id":"buygem",
 		"name":"Purchase Gem",
-		"require":"gems",
+		"require":"state.tier0>0&&state.gold>100",
 		"cost":100,
 		"fill":"gems",
 		"effect":{

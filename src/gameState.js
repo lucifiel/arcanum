@@ -89,6 +89,9 @@ export default class GameState {
 
 		if ( restore ) this.revive();
 
+		/** @todo: messy bug fix. */
+		this.playerStats = this.player.getResources();
+
 		/**
 		 * @property {Object.<string,Item[]>} tagLists - tag to array of items with tag.
 		 * makes upgrading/referencing by tag easier.

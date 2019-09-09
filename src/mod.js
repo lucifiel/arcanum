@@ -27,7 +27,7 @@ export default class Mod {
 	toString() {
 		let s = this.bonus !== 0 ? this.bonus : '';
 		if ( this._pct !== 0 ) {
-			s += ( this._pct > 0 ? '+' : '' ) + this._pct + '%';
+			s += ( this._pct > 0 ? '+' : '' ) + (100*this._pct) + '%';
 		}
 		return s;
 	}
@@ -79,11 +79,46 @@ export default class Mod {
 	}
 
 	/**
+	 * Apply a modifier to this modifier.
+	 * @todo: Can't safely apply a pct mod to a mod without adding support for recursive mods.
+	 * Otherwise the pct+/- is based on the current value of the mod, so won't be constant when
+	 * added/removed.
+	 * @param {*} mod
+	 * @param {*} amt
+	 */
+	applySelf( mod, amt=1) {
+
+		let typ = typeof mod;
+		if ( typ === 'number') {
+
+			this.bonus += amt*mod;
+
+		} else if ( mod instanceof Percent ) {
+
+			this.bonus *= ( 1+ amt*mod.pct );
+			this.pct *= (1+ amt*mod.pct);
+
+		} else if ( typ === 'object') {
+
+			console.log( 'apply: ' +  mod.toString() );
+			this.bonus += amt*mod.bonus || 0;
+
+			if ( mod.pct ) {
+				let pctMod = 1 + amt*( mod.pct );
+				this.bonus += pctMod;
+				this.pct *= pctMod;
+			}
+
+		}
+
+	}
+
+	/**
 	 * Update the modifier with additional values.
 	 * @param {number|Percent|Object} mod
 	 * @param {number} [amt=1]
 	 */
-	apply( mod, amt=1 ) {
+	add( mod, amt=1 ) {
 
 		//console.warn('CHANGING MOD: ' + this.id + ' by mod: ' + (mod.id||typeof mod) );
 
@@ -116,8 +151,8 @@ export default class Mod {
 	applyTo( obj, p, amt ) {
 
 		let targ = obj[p];
-		if ( targ instanceof Stat ) targ.applyMod( this, amt );
-		else if ( targ instanceof Mod) targ.apply( this, amt );
+		if ( targ instanceof Stat ) targ.addMod( this, amt );
+		else if ( targ instanceof Mod) targ.applySelf( this, amt );
 		else if ( typeof targ === 'object') {
 
 			targ.value = ( ( Number(targ.value) || 0 ) + amt*this._bonus )*( 1 + amt*this._pct );

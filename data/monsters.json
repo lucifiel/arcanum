@@ -489,7 +489,8 @@
 		"damage":"7~9",
 		"loot":{
 			"cap":"20%",
-			"boots":"10%"
+			"boots":"10%",
+			"gold":"5~7"
 		},"flavor":"you remind me of the babe"
 	},
 	{
@@ -527,7 +528,7 @@
             "kind":"pierce",
             "dmg":"1~4"
         }, "biome":["mountains","hills","swamp"],
-        "loot":{"potion of cure minor wounds":3}
+        "loot":{"gold":"0~1"}
 
     },
     {
@@ -542,7 +543,7 @@
             "name":"spear",
             "kind":"pierce",
             "dmg":"3~6"
-        }, "loot":{"potion of cure light wounds":3}
+        }, "loot":{"gold":"2~4"}
 
     },
     {
@@ -581,7 +582,11 @@
             "name":"dagger",
             "kind":"pierce",
             "dmg":"2~5"
-        },"biome":"town", "loot":{"potion of cure light wounds":3}
+        },"biome":"town", "loot":{
+			"dagger":"10%",
+			"gold":"3~5",
+			"cloak":"3%"
+		}
 
     },
     {
@@ -597,7 +602,11 @@
             "name":"bow",
             "kind":"pierce",
             "dmg":"1~6"
-        }, "loot":{"potion of cure light wounds":5}
+        }, "loot":{
+			"ring":"2%",
+			"cloak":"3%",
+			"belt":"3%"
+		}
 
     },
     {
@@ -726,7 +735,7 @@
             "name":"longbow",
             "kind":"pierce",
             "dmg":"3~6"
-        }, "loot":{"potion of cure light wounds":10 }
+        }, "loot":{"max":5 }
 
     },
     {
@@ -757,7 +766,10 @@
             "name":"short sword",
             "kind":"slash",
             "dmg":"4~7"
-        }
+        },"loot":{
+			"gold":"4~8",
+			"max":5
+		}
 
 	},
 	{
@@ -797,7 +809,10 @@
             "name":"short sword",
             "kind":"slash",
             "dmg":"5~9"
-        }
+        },"loot":{
+			"max":5,
+			"gold":"5~10"
+		}
 
     },
     {

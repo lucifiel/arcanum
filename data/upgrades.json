@@ -98,6 +98,20 @@
 
 	},
 	{
+		"id":"mule",
+		"desc":"it won't go very far.",
+		"require":"state.player.level>=4||state.animals>=2",
+		"slot":"mount",
+		"tags":"steed",
+		"buy":{
+			"gold":100
+		},
+		"mod":{
+			"dist.max":10
+		}
+
+	},
+	{
 		"id":"oldnag",
 		"name":"old nag",
 		"desc":"this horse has seen better days.",
@@ -105,7 +119,7 @@
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
-			"gold":100
+			"gold":200
 		},
 		"mod":{
 			"dist.max":15
@@ -136,7 +150,7 @@
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
-			"gold":700,
+			"gold":900,
 			"gems":5
 		},
 		"mod":{
@@ -229,7 +243,7 @@
 		"id":"magictent",
 		"name":"casgair's conjured canopy",
 		"desc":"conjure a large tent for long journeys.",
-		"require":"state.lore>=15",
+		"require":"state.lore>=15&&state.conjuration>=5&&state.research.max>=800",
 		"buy":{
 			"research":1000,
 			"arcana":1,
@@ -828,7 +842,7 @@
 	{
 		"id":"wishingwells",
 		"name":"Wishing wells",
-		"require":"state.divination>=3&&state.fountain>0",
+		"require":"state.divination>=4&&state.fountain>0",
 		"cost":{
 			"gold":500,
 			"research":400,
@@ -1012,21 +1026,6 @@
 		}
 	},
 	{
-		"id":"pot",
-		"name":"Cooking Pot",
-		"desc":"standard cooking pot.",
-		"tags":"potsource",
-		"need":"fireplace",
-		"flavor":"boil things, mash things, stick 'em in a stew.",
-		"cost":{
-			"gold":25
-		},
-		"mod":{
-			"rest.effect.stamina":0.1
-		}
-
-	},
-	{
 		"id":"thirdeye",
 		"name":"third eye",
 		"require":"state.scrying>=5&&spirit.max>=7",
@@ -1118,7 +1117,7 @@
 		"require":"state.necromancer>0||state.witch>0",
 		"desc":"An ordinary human skull, infused with necromantic magicks.",
 		"cost":{
-			"bones":1,
+			"skull":1,
 			"gems":2,
 			"research":500
 		},
@@ -1318,12 +1317,27 @@
 
 	},
 	{
+		"id":"pot",
+		"name":"Cooking Pot",
+		"desc":"standard cooking pot.",
+		"tags":"potsource",
+		"need":"fireplace",
+		"flavor":"boil things, mash things, stick 'em in a stew.",
+		"cost":{
+			"gold":25
+		},
+		"mod":{
+			"rest.effect.stamina":0.1
+		}
+
+	},
+	{
 		"id":"cauldron",
 		"name":"Cauldron",
 		"desc":"Like a cooking pot, but larger.",
 		"tags":"potsource",
 		"require":["tier0","fireplace"],
-		"lock":"pot",
+		"disable":"pot",
 		"cost":{
 			"gold":150
 		},
@@ -1406,6 +1420,19 @@
 		},
 		"mod":{
 			"space.max":"25%"
+		}
+	},
+	{
+		"id":"oracularinsight",
+		"name":"oracular insight",
+		"require":"oracle",
+		"desc":"You can see things before they happen",
+		"cost":{
+			"research":300,
+			"tomes":1
+		},
+		"mod":{
+			"player.dodge":1
 		}
 	}
 

@@ -25,7 +25,7 @@
 	{
 
 		"id":"innroom",
-		"name":"Lodging at Inn",
+		"name":"Lodge at Inn",
 		"desc":"Rented room of a local Inn",
 		"require":"tier0",
 		"disable":["alcove","atticbedroom"],
@@ -270,7 +270,7 @@
 	},
 	{
 		"id":"academy",
-		"desc":"A austere house of learning",
+		"desc":"austere house of learning",
 		"cost":{
 			"gold":10000,
 			"research":500
@@ -299,7 +299,8 @@
 		"desc":"a seedling of Yggdrasil is a tree to rival mountains.",
 		"tags":"outdoors",
 		"cost":{
-
+			"gems":30,
+			"herbs":10
 		},
 		"require":"state.nature>=10&&state.arcana>=10",
 		"mod":{
@@ -311,13 +312,13 @@
 	},
 	{
 		"id":"palace",
-		"desc":"A luxurious, spawling estate to advance your studies in maximum comfort.",
+		"desc":"luxurious, spawling estate to advance your studies in maximum comfort.",
 		"cost":10000,
 		"require":"state.arcana>=10",
 		"mod":{
 			"space.max":400,
 			"charms.max":2,
-			"charms.raet":"10%",
+			"charms.rate":"10%",
 			"spirit.rate":-0.1,
 			"shadowlore.max":-1,
 			"research.rate":-0.5

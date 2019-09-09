@@ -490,7 +490,7 @@
 		"name":"brass candelabra",
 		"desc":"Candle holder.",
 		"require":"state.waxcandle>0&&state.gold.max>=200",
-		"repeat":true,
+		"repeat":false,
 		"cost":{
 			"space":1,
 			"gold":200
@@ -506,7 +506,7 @@
 		"name":"bone candelabra",
 		"desc":"creepy",
 		"require":"state.necromancer>0||state.witch>0||state.bonemonger>0",
-		"repeat":true,
+		"repeat":false,
 		"cost":{
 			"space":1,
 			"bones":10,
