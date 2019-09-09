@@ -864,7 +864,7 @@
 
 		"id":"prism",
 		"desc":"A small crystal for performing optical experiments.",
-		"require":"state.research.max>=50",
+		"require":"neophyte",
 		"tags":"lightsource",
 		"cost":{
 			"gold":50,

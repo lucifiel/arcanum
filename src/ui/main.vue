@@ -60,6 +60,7 @@ export default {
 		return {
 			state:null,
 			overItem:null,
+			overTitle:null,
 			overElm:null,
 			section:null
 		};
@@ -226,8 +227,9 @@ export default {
 			this.game.trySell( it );
 		},
 
-		itemOver(evt, it) {
+		itemOver(evt, it, title) {
 			this.overItem = it;
+			this.overTitle = title;
 			this.overElm = evt.currentTarget;
 		},
 
@@ -323,7 +325,7 @@ export default {
 		</div>
 
 <!-- popups -->
-		<itempopup :item="overItem" :elm="overElm" />
+		<itempopup :item="overItem" :elm="overElm" :title="overTitle" />
 		<warn ref="warn" @confirmed="onConfirmed" />
 
 		<div v-if="state" class="game-main">

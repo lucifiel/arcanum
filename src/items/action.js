@@ -1,5 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
+import Events from '../events';
 
 export default class Action extends GData {
 
@@ -22,6 +23,7 @@ export default class Action extends GData {
 
 			this.value++;
 
+			if ( this.log ) Game.doLog( this.log );
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.loot ) Game.getLoot( this.loot );
 			this.complete();

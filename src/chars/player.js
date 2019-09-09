@@ -208,6 +208,10 @@ export default class Player extends Char {
 
 	}
 
+	addTitle( title ){
+		if ( !this._titles.includes(title) ) this._titles.push(title);
+	}
+
 	/**
 	 * Perform update effects.
 	 * @param {number} dt - elapsed time.

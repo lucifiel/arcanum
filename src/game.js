@@ -564,7 +564,6 @@ export default {
 		if ( it.maxed() ) return false;
 		if ( it.slot) {
 
-			//console.log('setting slot: ' + it.slot );
 			let cur = this.state.getSlot(it.slot, it.type );
 			console.log('cur slot: ' + (cur ? cur.id : 'none'));
 			if ( cur ) {
@@ -608,6 +607,10 @@ export default {
 
 		Events.dispatch( EVT_EVENT, evt );
 
+	},
+
+	doLog( logItem ) {
+		Events.dispatch( EVT_EVENT, logItem );
 	},
 
 	/**
@@ -743,7 +746,8 @@ export default {
 				e = effect[p];
 
 				if ( target === undefined ) {
-					this.applyToTag( p, e, dt );
+					if ( p === 'title') this.state.player.addTitle( effect[p]);
+					else this.applyToTag( p, e, dt );
 				} else {
 					if ( target.type === 'event' ) this.doEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
@@ -810,6 +814,7 @@ export default {
 				var target = this.getData( p );
 
 				if ( target === undefined ) this.modTag( p, mod[p], amt );
+				else if ( mod[p] === true ) this.doItem( target, 1 );
 				else {
 					target.applyMods( mod[p], amt );
 					target.dirty = true;

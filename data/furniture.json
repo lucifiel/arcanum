@@ -177,7 +177,8 @@
 			"mana":5
 		},
 		"mod":{
-			"research.max":5,
+			"research.max":10,
+			"research.rate":0.01,
 			"arcana.rate":0.0001
 		}
 	},

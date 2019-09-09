@@ -54,7 +54,7 @@ export default {
 
 		<tr><td>name</td><th>
 			<input type="text" v-model="name"></th></tr>
-		<tr><td>title</td><th> {{ title}}</th></tr>
+		<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.titles, 'Titles')"><td>title</td><th> {{ title}}</th></tr>
 		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
 		<tr><td>level</td><th> {{ level }}</th></tr>
 		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>

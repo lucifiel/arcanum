@@ -170,8 +170,6 @@ export default {
 	 */
 	mergeDefaults( templates, saveItems={} ) {
 
-		//console.log('Merging Template Data');
-
 		// NOTE: This requires that properties are never actually deleted from items,
 		// though they can be set to null.
 		for( let p in templates ) {

@@ -53,6 +53,7 @@
 		"id":"pestcontrol",
 		"name":"Leaky Cellar",
 		"require":"evt_pestcontrol",
+		"repeat":false,
 		"level":3,
 		"length":25,
 		"dist":0,
@@ -62,13 +63,14 @@
 		"result":{
 			"sp":1,
 			"gold":"15~20",
-			"player.exp":10
+			"player.exp":10,
+			"title":"Master of the Cellar"
 		},
 		"loot":{
 			"max":4
 		},
 		"log":{
-			"name":"Pests Cleared",
+			"name":"Pests Clear",
 			"desc":"With the basement cleared, your master will have more room to stash all the gold you've been earning."
 		},
 		"boss":"ratking",

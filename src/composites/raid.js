@@ -166,7 +166,7 @@ export default class Raid {
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot, this.drops );
 
-		if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
+		//if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
 
 		this.player.exp += (this.dungeon.level)*( 15 + this.dungeon.length );
 		this.dungeon = null;
