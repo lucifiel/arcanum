@@ -184,7 +184,7 @@
 		"id":"veldranswreck",
 		"name":"veldran's wreck",
 		"desc":"Off the stormy cliffs of the arag highlands, a mass of cracked spars marks the resting place of the largest ship ever sailed by man.",
-		"require":"state.water.max>=10",
+		"require":"g.water.max>=10",
 		"level":5,
 		"length":20,
 		"run":{
@@ -231,7 +231,7 @@
 		"id":"hauntedmanor",
 		"name":"haunted manor",
 		"desc":"",
-		"require":"state.spirit.max>=15",
+		"require":"g.spirit.max>=15",
 		"level":6,
 		"run":{
 			"stamina":1
@@ -325,7 +325,7 @@
 		"id":"greatbog",
 		"name":"the great bog",
 		"desc":"for hundreds of miles the great bog spreads across the dark center of Dhrune.",
-		"require":"state.player.dist>=200",
+		"require":"g.player.dist>=200",
 		"level":11,
 		"run":{
 			"stamina":2
@@ -356,7 +356,7 @@
 		"id":"elementrift",
 		"name":"elemental rift",
 		"desc":"a tear in the fabric of reality leads to a land of raw elements.",
-		"require":"state.planeslore>=7",
+		"require":"g.planeslore>=7",
 		"level":12,
 		"run":{
 			"stamina":2
@@ -379,7 +379,7 @@
 		"id":"desillagrotto",
 		"name":"desilla's grotto",
 		"desc":"",
-		"require":"state.player.dist>=500",
+		"require":"g.player.dist>=500",
 		"level":14,
 		"run":{
 			"stamina":2
@@ -400,7 +400,7 @@
 		"id":"holyhouse",
 		"name":"house of the holy",
 		"desc":"",
-		"require":"state.planeslore.max>=30",
+		"require":"g.planeslore.max>=30",
 		"level":17,
 		"length":50,
 		"run":{

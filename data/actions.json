@@ -30,7 +30,7 @@
 		"perpetual":true,
 		"verb":"studying scrolls",
 		"desc":"Study arcane scrolls",
-		"require":"state.scrolls>=1",
+		"require":"g.scrolls>=1",
 		"run":{
 			"stamina":0.2
 		},
@@ -80,7 +80,7 @@
 		"id":"thievery",
 		"name":"arcane thievery",
 		"desc":"Use your powers to cajole, coerce, and cudgel gold from the pockets of civilians.",
-		"require":"state.trickery>=4",
+		"require":"g.trickery>=4",
 		"cost":{
 			"stamina":0.22,
 			"mana":0.25
@@ -99,7 +99,7 @@
 		"name":"magic heist",
 		"desc":"Orchestrate a theft on a guarded vault.",
 		"verb":"thieving",
-		"require":"state.trickster>0&&state.trickery>=5",
+		"require":"g.trickster>0&&g.trickery>=5",
 		"length":50,
 		"perpetual":true,
 		"run":{
@@ -122,8 +122,8 @@
 		"id":"spellbook",
 		"actname":"Bind Spellbook",
 		"verb":"binding spells",
-		"require":"state.lore>=2&&state.crafting>=1&&state.languages>=1",
-		"need":"state.languages>0&&state.crafting>1",
+		"require":"g.lore>=2&&g.crafting>=1&&g.languages>=1",
+		"need":"g.languages>0&&g.crafting>1",
 		"desc":"The portal to true magic.",
 		"length":50,
 		"repeat":false,
@@ -174,7 +174,7 @@
 		"name":"Spin Gold",
 		"desc":"Spin straw into gold",
 		"verb":"spinning",
-		"require":"state.weaving>=5&&state.loom>0&&state.enchanting>=3",
+		"require":"g.weaving>=5&&g.loom>0&&g.enchanting>=3",
 		"perpetual":true,
 		"length":10,
 		"run":{
@@ -204,7 +204,7 @@
 	{
 		"id":"murder",
 		"desc":"an incidental necessity to the advancement of magic",
-		"require":"state.anatomy>=5&&state.shadowlore>=5&&state.dissection>=5",
+		"require":"g.anatomy>=5&&g.shadowlore>=5&&g.dissection>=5",
 		"length":10,
 		"run":{
 			"stamina":1
@@ -217,7 +217,7 @@
 	{
 		"id":"vileexperiment",
 		"name":"vile experiment",
-		"require":"state.dissection>=5",
+		"require":"g.dissection>=5",
 		"need":"shadowsource",
 		"desc":"Experiment on dead and soon-to-be-dead subjects. This is not something a good wizard would do.",
 		"length":20,
@@ -234,7 +234,7 @@
 	{
 		"id":"dissect",
 		"name":"dissect cadaver",
-		"require":"state.dissection>=4",
+		"require":"g.dissection>=4",
 		"desc":"dissect a body for components. only the best pieces will serve.",
 		"length":10,
 		"cost":{
@@ -249,7 +249,7 @@
 		"id":"grindbones",
 		"name":"grind bones",
 		"desc":"grind bones into dust",
-		"require":"state.dissection>=3",
+		"require":"g.dissection>=3",
 		"length":10,
 		"cost":{
 			"bones":1
@@ -284,7 +284,7 @@
 		"id":"trapsoul",
 		"name":"trap soul",
 		"verb":"catching souls",
-		"require":"state.spiritlore>=7&&state.tier1>0",
+		"require":"g.spiritlore>=7&&g.tier1>0",
 		"need":"dreamcatcher",
 		"desc":"bind a soul within a spirit gem.",
 		"length":15,
@@ -306,7 +306,7 @@
 		"name":"Treat Ailments",
 		"desc":"Cure customers of magical ailments.",
 		"verb":"treating locals",
-		"require":"state.neophyte>0&&state.anatomy>=3",
+		"require":"g.neophyte>0&&g.anatomy>=3",
 		"cost":{
 			"stamina":0.2
 		},
@@ -319,7 +319,7 @@
 		"id":"readpalms",
 		"name":"Read Palms",
 		"verb":"reading palms",
-		"require":"state.divination>=5||state.trickster>0",
+		"require":"g.divination>=5||g.trickster>0",
 		"desc":"read palms for a small fee.",
 		"cost":{
 			"stamina":0.3,
@@ -333,7 +333,7 @@
 	{
 		"id":"hattrick",
 		"name":"hat trick",
-		"require":"state.trickster>0&&state.conjuration>1",
+		"require":"g.trickster>0&&g.conjuration>1",
 		"desc":"pull small objects out of thin air.",
 		"cost":{
 			"mana":5,
@@ -355,7 +355,7 @@
 		"id":"gatherherbs",
 		"name":"gather herbs",
 		"desc":"Gather herbs used in potions and alchemy.",
-		"require":"state.herbalism>=2",
+		"require":"g.herbalism>=2",
 		"need":"taggarden",
 		"cost":{
 			"stamina":0.3
@@ -402,7 +402,7 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"length":10,
-		"need":"state.light>=5&&state.evil<=0",
+		"need":"g.light>=5&&g.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
 			"mana":0.5,
@@ -417,7 +417,7 @@
 		"verb":"eating children",
 		"perpetual":true,
 		"length":10,
-		"require":"state.evil>0&&state.witch>0",
+		"require":"g.evil>0&&g.witch>0",
 		"need":"cauldron",
 		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
 		"effect":{
@@ -433,7 +433,7 @@
 		"id":"sabbat",
 		"name":"witch's sabbath",
 		"desc":"a revelry of demons and witches.",
-		"require":"state.witch>0&&state.demonology>=7&&state.spiritlore>=8",
+		"require":"g.witch>0&&g.demonology>=7&&g.spiritlore>=8",
 		"length":100,
 		"cd":3600,
 		"cost":{
@@ -459,7 +459,7 @@
 		"perpetual":true,
 		"verb":"travelling",
 		"desc":"Travel the wide world.",
-		"require":"state.wagon>0||state.mendicant>0",
+		"require":"g.wagon>0||g.mendicant>0",
 		"run":{
 			"stamina":0.4
 		},
@@ -494,7 +494,7 @@
 	{
 		"id":"buyscroll",
 		"name":"Buy scroll",
-		"require":"state.gold>=10",
+		"require":"g.gold>=10",
 		"cost":{
 			"gold":10
 		},
@@ -507,7 +507,7 @@
 	{
 		"id":"scribescroll",
 		"name":"Scribe Scroll",
-		"require":"state.crafting>=1&&state.mana>0",
+		"require":"g.crafting>=1&&g.mana>0",
 		"cost":{
 			"research":10,
 			"mana":1
@@ -521,7 +521,7 @@
 
 		"id":"bindcodex",
 		"name":"Bind Codex",
-		"require":"state.research.max>=30&&state.crafting>=2",
+		"require":"g.research.max>=30&&g.crafting>=2",
 		"cost":{
 			"scrolls":10,
 			"research":20,
@@ -537,7 +537,7 @@
 		"id":"sublimate",
 		"name":"sublimate lore",
 		"desc":"internalize a vast amount of existing knowledge.",
-		"require":"state.codices.max>=20",
+		"require":"g.codices.max>=20",
 		"cost":{
 			"codices":30
 		},
@@ -552,7 +552,7 @@
 		"name":"map stars",
 		"length":10,
 		"verb":"mapping stars",
-		"require":"state.astronomy>=5",
+		"require":"g.astronomy>=5",
 		"cost":{
 			"scrolls":1
 		},
@@ -565,7 +565,7 @@
 		"id":"bestiary",
 		"actname":"compile bestiary",
 		"verb":"researching beasts",
-		"require":"state.animals>=3",
+		"require":"g.animals>=3",
 		"length":50,
 		"desc":"compendium of magical creatures",
 		"repeat":false,
@@ -589,7 +589,7 @@
 
 		"id":"compiletome",
 		"name":"Compile Tome",
-		"require":"state.arcana.max>=10&&state.crafting>=10",
+		"require":"g.lore.max>=9&&g.crafting>=7",
 		"length":20,
 		"cost":{
 			"codices":10,
@@ -611,7 +611,7 @@
 	{
 		"id":"sylvansyllabary",
 		"name":"sylvan syllabary",
-		"require":"state.languages>=5&&state.tier0>0",
+		"require":"g.languages>=5&&g.tier0>0",
 		"desc":"a book of elvish symbols",
 		"length":75,
 		"repeat":false,
@@ -633,7 +633,7 @@
 	{
 		"id":"dwarfbook",
 		"name":"dwarven dirges",
-		"require":"state.languages>=5&&state.tier0>0",
+		"require":"g.languages>=5&&g.tier0>0",
 		"desc":"a compilation of gloomy dwarven drinking songs",
 		"length":75,
 		"repeat":false,
@@ -655,8 +655,8 @@
 	{
 		"id":"lemurlexicon",
 		"name":"lemurian lexicon",
-		"require":"state.languages>=7&&state.tier0>0",
-		"desc":"interprets the strange whisperings of spirits",
+		"require":"g.languages>=7&&g.tier0>0",
+		"desc":"interpret the strange whisperings of spirits",
 		"length":50,
 		"repeat":false,
 		"cost":{
@@ -677,7 +677,7 @@
 	{
 		"id":"demondict",
 		"name":"demonic dictionary",
-		"require":"state.languages>=10&&state.tier1>0",
+		"require":"g.languages>=10&&g.tier1>0",
 		"desc":"a compiliation of obscure demonic languages",
 		"length":75,
 		"repeat":false,
@@ -700,8 +700,8 @@
 		"id":"almagest",
 		"desc":"compile a manual of the sun and stars",
 		"actname":"almagest",
-		"require":"state.astronomy>=5&&state.tier0>0",
-		"need":"state.research.max>100",
+		"require":"g.astronomy>=5&&g.tier0>0",
+		"need":"g.research.max>100",
 		"repeat":false,
 		"length":50,
 		"cost":{
@@ -737,7 +737,7 @@
 	{
 		"id":"buygem",
 		"name":"Purchase Gem",
-		"require":"state.tier0>0&&state.gold>100",
+		"require":"g.tier0>0&&g.gold>100",
 		"cost":100,
 		"fill":"gems",
 		"effect":{
@@ -748,7 +748,7 @@
 		"id":"craftgem",
 		"name":"Craft Gem",
 		"desc":"Craft a gem from raw minerals.",
-		"require":"state.crafting>=7&&state.alchemy>=5",
+		"require":"g.crafting>=7&&g.alchemy>=5",
 		"length":10,
 		"fill":"gems",
 		"run":{
@@ -763,7 +763,7 @@
 	{
 		"id":"sellgem",
 		"name":"Sell Gem",
-		"require":"state.gems>0",
+		"require":"g.gems>0",
 		"cost":{
 			"gems":1
 		},
@@ -774,7 +774,7 @@
 	{
 		"id":"imbuemanagem",
 		"name":"Imbue gem (arcane)",
-		"require":"state.mana.max>=5&&state.enchanting>2",
+		"require":"g.mana.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"mana":5
@@ -786,7 +786,7 @@
 	{
 		"id":"imbuebloodgem",
 		"name":"Coagulate Gem",
-		"require":"state.alchemy>=5&&state.enchanting>=5",
+		"require":"g.alchemy>=5&&g.enchanting>=5",
 		"fill":"bloodgem",
 		"cost":{
 			"gems":1,
@@ -799,7 +799,7 @@
 	{
 		"id":"imbuefiregem",
 		"name":"Imbue Gem (Fire)",
-		"require":"state.fire.max>=5&&state.enchanting>2",
+		"require":"g.fire.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"fire":5
@@ -809,7 +809,7 @@
 	{
 		"id":"imbueairgem",
 		"name":"imbue gem (air)",
-		"require":"state.air.max>=5&&state.enchanting>2",
+		"require":"g.air.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"air":5
@@ -819,7 +819,7 @@
 	{
 		"id":"imbueearthgem",
 		"name":"imbue stone (earth)",
-		"require":"state.earth.max>=5&&state.enchanting>2",
+		"require":"g.earth.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"earth":5
@@ -829,7 +829,7 @@
 	{
 		"id":"imbuewatergem",
 		"name":"Imbue Gem (Water)",
-		"require":"state.water.max>=5&&state.enchanting>2",
+		"require":"g.water.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"water":5
@@ -839,7 +839,7 @@
 	{
 		"id":"imbuelightgem",
 		"name":"imbue gem (light)",
-		"require":"state.light.max>=5&&state.enchanting>2",
+		"require":"g.light.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"light":5
@@ -849,7 +849,7 @@
 	{
 		"id":"imbueshadowgem",
 		"name":"Imbue gem (shadow)",
-		"require":"state.shadow.max>=5&&state.enchanting>2",
+		"require":"g.shadow.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"shadow":5
@@ -859,7 +859,7 @@
 	{
 		"id":"imbuespiritgem",
 		"name":"Imbue gem (spirit)",
-		"require":"state.spirit.max>=5&&state.enchanting>2",
+		"require":"g.spirit.max>=5&&g.enchanting>2",
 		"cost":{
 			"gems":1,
 			"spirit":5
@@ -870,7 +870,7 @@
 	{
 		"id":"sellscroll",
 		"name":"Sell Scroll",
-		"require":"state.scribescroll&&state.scrolls>=5",
+		"require":"g.scribescroll&&g.scrolls>=5",
 		"cost":{
 			"scrolls":1
 		},
@@ -881,7 +881,7 @@
 	{
 		"id":"summonfamiliar",
 		"name":"Summon Familiar",
-		"require":"(state.tier0>0&&state.animals>=5&&state.demonology>=4)||state.witch>0",
+		"require":"(g.tier0>0&&g.animals>=5&&g.demonology>=4)||g.witch>0",
 		"repeat":false,
 		"length":100,
 		"cost":{

@@ -100,7 +100,7 @@ export default class Mod {
 
 		} else if ( typ === 'object') {
 
-			console.log( 'apply: ' +  mod.toString() );
+			//console.log( 'apply: ' +  mod.toString() );
 			this.bonus += amt*mod.bonus || 0;
 
 			if ( mod.pct ) {

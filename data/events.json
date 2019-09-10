@@ -23,13 +23,13 @@
 		"id":"evt_pestcontrol",
 		"name":"Pest Control",
 		"desc":"After your daily castigation, your master mentions the rats in the basement have become a problem. Something about stolen shortswords and building barricades. You had better go down and deal with it.",
-		"require":"state.player.level>0&&(state.apprentice.value>0||state.neophyte.value>0)"
+		"require":"g.player.level>0&&(g.apprentice.value>0||g.neophyte.value>0)"
 
 	},
 	{
 		"id":"evt_gobcamp",
 		"name":"Goblins, Goblins!",
-		"require":"state.tier0&&state.player.level>=4&&state.dist>=25",
+		"require":"g.tier0&&g.player.level>=4&&g.dist>=25",
 		"desc":"Rumors hint at a camp of goblins in the vicinity. As an aspiring wizard, convention dictates you test your mettle on their lives."
 	},
 	{
@@ -162,7 +162,7 @@
 	{
 		"id":"immoral",
 		"desc":"You have taken your first steps on the path of evil. It's a good thing.",
-		"require":"state.evilamt>=2",
+		"require":"g.evilamt>=2",
 		"effect":{
 			"shadowlore.rate":0.2
 		}
@@ -171,7 +171,7 @@
 	{
 		"id":"wicked",
 		"desc":"Your wicked deeds put you on the sure path of evil. A few more steps, and there will be no turning back.",
-		"require":"state.evilamt>=5",
+		"require":"g.evilamt>=5",
 		"effect":{
 			"shadowlore.max":1,
 			"shadowlore.rate":0.2

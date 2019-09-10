@@ -240,7 +240,7 @@
 		"tags":"manas",
 		"desc":"raw magical energy",
 		"unit":false,
-		"require":"state.arcana>=1",
+		"require":"g.arcana>=1",
 		"name":"mana",
 		"max":5
 	},

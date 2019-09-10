@@ -190,7 +190,7 @@ export default {
 
 		targ = targ || this;
 
-		console.log('applying: ' + mods );
+		//console.log('applying: ' + mods );
 
 		if ( typeof mods === 'object') {
 

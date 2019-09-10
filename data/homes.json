@@ -48,7 +48,7 @@
 
 		"id":"camp",
 		"desc":"A wild camp and its environs.",
-		"require":"state.tier0>0&&state.naturelore>=5",
+		"require":"g.tier0>0&&g.naturelore>=5",
 		"tags":"outdoors",
 		"cost":75,
 		"mod":{
@@ -64,7 +64,7 @@
 		"id":"wagon",
 		"name":"tinker's wagon",
 		"desc":"wheeled carriage for a nomadic lifestyle.",
-		"require":"state.tier0>0&&state.naturelore>=5",
+		"require":"g.tier0>0&&g.naturelore>=5",
 		"tags":"outdoors",
 		"cost":150,
 		"mod":{
@@ -89,7 +89,7 @@
 		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":900,
-		"require":"state.tier0>0&&state.arcana.max>=8",
+		"require":"g.tier0>0&&g.arcana.max>=8",
 		"mod":{
 			"space.max":30
 		}
@@ -98,7 +98,7 @@
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
 		"cost":750,
-		"require":"state.tier0&&state.arcana.max>=12",
+		"require":"g.tier0&&g.arcana.max>=12",
 		"mod":{
 			"gem.max":1,
 			"space.max":25,
@@ -112,7 +112,7 @@
 		"id":"inn",
 		"desc":"A quiet inn for hosting wayfarers.",
 		"cost":2000,
-		"require":"state.tier0&&state.languages>=7",
+		"require":"g.tier0&&g.languages>=7",
 		"mod":{
 			"space.max":50,
 			"research.rate":-0.5,
@@ -125,7 +125,7 @@
 		"id":"lodge",
 		"desc":"A rugged lodge in the woods.",
 		"cost":800,
-		"require":"state.tier0>0&&state.naturelore>=7",
+		"require":"g.tier0>0&&g.naturelore>=7",
 		"mod":{
 			"space.max":30,
 			"nature.max":1,
@@ -137,7 +137,7 @@
 		"name":"gabled mansion",
 		"desc":"A spacious house with many gabled windows.",
 		"cost":2000,
-		"require":"state.tier1>0&&state.arcana>=10",
+		"require":"g.tier1>0&&g.arcana>=10",
 		"mod":{
 			"space.max":65
 		}
@@ -147,7 +147,7 @@
 		"name":"half-timber house",
 		"desc":"A vast home of rustic design",
 		"cost":2750,
-		"require":"state.tier1>0&&state.arcana>=10",
+		"require":"g.tier1>0&&g.arcana>=10",
 		"mod":{
 			"space.max":75
 		}
@@ -155,7 +155,7 @@
 	{
 		"id":"cave",
 		"desc":"A primitive dwelling well-suited to particular areas of study. Others less so.",
-		"require":"state.tier0>0&&(state.shadow+state.earth+state.nature)>0",
+		"require":"g.tier0>0&&(g.shadow+g.earth+g.nature)>0",
 		"cost":150,
 		"mod":{
 			"space.max":25,
@@ -189,7 +189,7 @@
 		"name":"haunted manse",
 		"desc":"legends of this mansion speak of ghosts and horrors",
 		"cost":2500,
-		"require":"state.spirit>=10&&state.arcana>=10",
+		"require":"g.spirit>=10&&g.arcana>=10",
 		"mod":{
 			"space.max":75,
 			"spiritlore.max":1,
@@ -202,7 +202,7 @@
 		"name":"ancient ruins",
 		"desc":"A rambling fortress of crumbled stone.",
 		"cost":5000,
-		"require":"state.spirit>=15&&state.arcana>=12",
+		"require":"g.spirit>=15&&g.arcana>=12",
 		"mod":{
 			"space.max":110,
 			"runes.max":2,
@@ -216,7 +216,7 @@
 		"id":"tower",
 		"desc":"A stone tower in which to conduct your arcane investigations.",
 		"cost":2500,
-		"require":"state.magician>0&&state.arcana>=20",
+		"require":"g.magician>0&&g.arcana>=20",
 		"mod":{
 			"space.max":55,
 			"airlore.max":1,
@@ -227,7 +227,7 @@
 		"id":"lighthouse",
 		"desc":"A lighted tower on the shore of the ocean.",
 		"cost":3000,
-		"require":"state.magician>0&&state.arcana>=20",
+		"require":"g.magician>0&&g.arcana>=20",
 		"mod":{
 			"space.max":80,
 			"waterlore.max":3,
@@ -239,7 +239,7 @@
 	{
 		"id":"cataract",
 		"desc":"A secret cavern behind a waterfall.",
-		"require":"state.water>=15&&state.naturelore>=10",
+		"require":"g.water>=15&&g.naturelore>=10",
 		"cost":{
 			"gold":1000,
 			"gems":10
@@ -261,7 +261,7 @@
 		"id":"citadel",
 		"desc":"A stronghold to defend you from the petty forces of the world.",
 		"cost":5000,
-		"require":"state.magician>0&&state.arcana>=20",
+		"require":"g.magician>0&&g.arcana>=20",
 		"mod":{
 			"space.max":200,
 			"nature.max":-1,
@@ -275,7 +275,7 @@
 			"gold":10000,
 			"research":500
 		},
-		"require":"state.research>=400&&state.magician>0",
+		"require":"g.research>=400&&g.magician>0",
 		"mod":{
 			"space.max":300,
 			"research.max":50,
@@ -286,7 +286,7 @@
 		"id":"temple",
 		"desc":"Sanctum of meditation and insight.",
 		"cost":10000,
-		"require":"state.arcana>=100",
+		"require":"g.arcana>=100",
 		"mod":{
 			"space.max":200,
 			"shadow.max":-3,
@@ -302,7 +302,7 @@
 			"gems":30,
 			"herbs":10
 		},
-		"require":"state.nature>=10&&state.arcana>=10",
+		"require":"g.nature>=10&&g.arcana>=10",
 		"mod":{
 			"space.max":300,
 			"nature.max":2,
@@ -314,7 +314,7 @@
 		"id":"palace",
 		"desc":"luxurious, spawling estate to advance your studies in maximum comfort.",
 		"cost":10000,
-		"require":"state.arcana>=10",
+		"require":"g.arcana>=10",
 		"mod":{
 			"space.max":400,
 			"charms.max":2,
@@ -327,7 +327,7 @@
 	{
 		"id":"castle",
 		"desc":"A vast and practical fortress, for the magic user with enemies.",
-		"require":"state.arcana>=10",
+		"require":"g.arcana>=10",
 		"cost":10000,
 		"mod":{
 			"space.max":400,
@@ -351,7 +351,7 @@
 		"id":"volcano",
 		"name":"volcanic lair",
 		"desc":"Stark lair carved into a mountain of fire",
-		"require":"state.fire>=20",
+		"require":"g.fire>=20",
 		"cost":{
 			"research":500,
 			"gold":3000,
@@ -373,7 +373,7 @@
 	{
 		"id":"cavern",
 		"desc":"A wide and yawning cavern, deep beneath the earth",
-		"require":"state.tier0>0&&state.earthlore>=5",
+		"require":"g.tier0>0&&g.earthlore>=5",
 		"cost":{
 			"research":500,
 			"gold":3000,
@@ -397,7 +397,7 @@
 		"name":"Enchanted Grove",
 		"desc":"Enchanted Grove",
 		"tags":"outdoors",
-		"require":"state.enchanter>0||state.druid>0",
+		"require":"g.enchanter>0||g.druid>0",
 		"cost":{
 			"gold":5000,
 			"research":500,
@@ -414,7 +414,7 @@
 		"name":"Shrouded Isle",
 		"tags":"outdoors",
 		"desc":"A lonely isle at sea",
-		"require":"state.enchanter>0||state.druid>0",
+		"require":"g.enchanter>0||g.druid>0",
 		"cost":{
 			"gold":5000,
 			"gems":50,

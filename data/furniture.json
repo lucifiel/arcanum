@@ -3,7 +3,7 @@
 		"id":"smchest",
 		"name":"small chest",
 		"desc":"A small wooden chest.",
-		"require":"state.gold.max>=50",
+		"require":"g.gold.max>=50",
 		"repeat":true,
 		"cost":{
 			"gold":40,
@@ -18,7 +18,7 @@
 		"id":"ironchest",
 		"name":"iron chest",
 		"desc":"Treasure chest.",
-		"require":"state.gold.max>=125",
+		"require":"g.gold.max>=125",
 		"repeat":true,
 		"cost":{
 			"gold":125,
@@ -33,7 +33,7 @@
 		"id":"ornatechest",
 		"name":"ornate chest",
 		"desc":"Treasure chest.",
-		"require":"state.gold.max>=500",
+		"require":"g.gold.max>=500",
 		"repeat":true,
 		"cost":{
 			"gold":350,
@@ -67,7 +67,7 @@
 		"desc":"small wooden bed.",
 		"tags":"bed",
 		"slot":"bed",
-		"require":"state.stamina>=15",
+		"require":"g.stamina>=15",
 		"cost":{
 			"gold":40,
 			"space":2
@@ -82,7 +82,7 @@
 		"desc":"four post bed",
 		"tags":"bed",
 		"slot":"bed",
-		"require":"state.stamina>=30",
+		"require":"g.stamina>=30",
 		"cost":{
 			"gold":150,
 			"space":4
@@ -103,7 +103,7 @@
 		"name":"burning coals",
 		"desc":"bed of burning coals",
 		"slot":"bed",
-		"require":"state.fire>=10",
+		"require":"g.fire>=10",
 		"cost":{
 			"fire":10,
 			"space":2
@@ -122,7 +122,7 @@
 		"id":"cache",
 		"name":"Buried cache",
 		"desc":"A cache of treasure buried in the ground, protected by enchantment.",
-		"need":"state.outdoors>0&&state.enchanting>0",
+		"need":"g.outdoors>0&&g.enchanting>0",
 		"max":3,
 		"cost":{
 			"space":1,
@@ -138,7 +138,7 @@
 	{
 		"id":"vault",
 		"desc":"A safe space for treasure.",
-		"require":"state.space>=25",
+		"require":"g.space>=25",
 		"repeat":true,
 		"cost":{
 			"gold":500,
@@ -153,7 +153,7 @@
 		"id":"treasureroom",
 		"name":"treasure room",
 		"desc":"A large room for accumulated treasures.",
-		"require":"state.space>=50",
+		"require":"g.space>=50",
 		"repeat":true,
 		"cost":{
 			"gold":1000,
@@ -225,7 +225,7 @@
 		"id":"vivarium",
 		"desc":"a glass enclosure for small reptiles, snakes, and frogs.",
 		"tags":"earthsource,tagpen,naturesource",
-		"require":"state.tier0>0&&state.naturelore>=5",
+		"require":"g.tier0>0&&g.naturelore>=5",
 		"cost":{
 			"space":2,
 			"research":300,
@@ -354,7 +354,7 @@
 
 		"id":"loom",
 		"desc":"unlocks the art of weaving",
-		"require":"state.crafting>=5",
+		"require":"g.crafting>=5",
 		"cost":{
 			"gold":50,
 			"research":100,
@@ -403,7 +403,7 @@
 		"name":"scroll rack",
 		"repeat":true,
 		"desc":"latticed shelves for easy scroll storage.",
-		"require":"state.scrolls>=20",
+		"require":"g.scrolls>=20",
 		"cost":{
 			"gold":75,
 			"research":100,
@@ -420,7 +420,7 @@
 		"name":"bookshelf",
 		"repeat":true,
 		"desc":"A single bookshelf for your books.",
-		"require":"state.codices>=5&&state.scrolls.max>=15",
+		"require":"g.codices>=5&&g.scrolls.max>=15",
 		"cost":{
 			"gold":100,
 			"space":1
@@ -437,7 +437,7 @@
 		"name":"bookcase",
 		"repeat":true,
 		"desc":"A rough but sturdy bookcase.",
-		"require":"state.codices>=10",
+		"require":"g.codices>=10",
 		"cost":{
 			"gold":200,
 			"space":2
@@ -456,7 +456,7 @@
 		"name":"casement window",
 		"tags":"lightsource,airsource",
 		"desc":"A simple window to let in light and air.",
-		"require":"state.space>=10",
+		"require":"g.space>=10",
 		"cost":{
 			"gold":100,
 			"space":1
@@ -472,7 +472,7 @@
 		"name":"lattice window",
 		"tags":"lightsource,airsource",
 		"desc":"An elegant latticed portal.",
-		"require":"state.space>=15",
+		"require":"g.space>=15",
 		"cost":{
 			"gold":300,
 			"space":1
@@ -489,7 +489,7 @@
 		"id":"brasscandelabra",
 		"name":"brass candelabra",
 		"desc":"Candle holder.",
-		"require":"state.waxcandle>0&&state.gold.max>=200",
+		"require":"g.waxcandle>0&&g.gold.max>=200",
 		"repeat":false,
 		"cost":{
 			"space":1,
@@ -505,7 +505,7 @@
 		"id":"bonecandelabra",
 		"name":"bone candelabra",
 		"desc":"creepy",
-		"require":"state.necromancer>0||state.witch>0||state.bonemonger>0",
+		"require":"g.necromancer>0||g.witch>0||g.bonemonger>0",
 		"repeat":false,
 		"cost":{
 			"space":1,
@@ -584,7 +584,7 @@
 	{
 		"id":"fireplace",
 		"desc":"A cozy place for cooking food and brewing potions.",
-		"require":"state.space.max>=15",
+		"require":"g.space.max>=15",
 		"repeat":true,
 		"cost":{
 			"gold":175,
@@ -599,7 +599,7 @@
 		"id":"fountain",
 		"desc":"Water Fountain",
 		"tags":"watersource",
-		"require":"state.space>20",
+		"require":"g.space>20",
 		"cost":{
 			"gold":500,
 			"space":5
@@ -612,7 +612,7 @@
 	{
 		"id":"smstables",
 		"name":"stables",
-		"require":"state.tier0>0&&state.animals>=7",
+		"require":"g.tier0>0&&g.animals>=7",
 		"tags":"stables",
 		"cost":{
 			"space":10,
@@ -626,7 +626,7 @@
 	},
 	{
 		"id":"menagerie",
-		"require":"state.tier1>0&&state.animals>=10&&state.magicbeasts>=5",
+		"require":"g.tier1>0&&g.animals>=10&&g.magicbeasts>=5",
 		"tags":"stables",
 		"cost":{
 			"space":20,
@@ -663,7 +663,7 @@
 		"id":"cairn",
 		"desc":"Mystic rock-pile",
 		"tags":"spiritsource",
-		"require":"state.spirit.max>=10",
+		"require":"g.spirit.max>=10",
 		"cost":{
 			"gold":200,
 			"spirit":5,
@@ -680,7 +680,7 @@
 		"id":"reliquary",
 		"desc":"Saferoom for ancient sources of magic.",
 		"tags":"spiritsource",
-		"require":"state.spirit.max>=5",
+		"require":"g.spirit.max>=5",
 		"cost":{
 			"gold":250,
 			"space":5
@@ -747,7 +747,7 @@
 	{
 		"id":"archive",
 		"desc":"arcane archive",
-		"require":"state.lore.max>=15",
+		"require":"g.lore.max>=15",
 		"cost":{
 			"gold":400,
 			"research":100,
@@ -784,7 +784,7 @@
 		"name":"blood fountain",
 		"desc":"Fountain of blood",
 		"tags":"shadowsource",
-		"require":"state.evil>0&&state.shadowlore>=3",
+		"require":"g.evil>0&&g.shadowlore>=3",
 		"cost":{
 			"gold":300,
 			"shadow":20,
@@ -800,7 +800,7 @@
 	{
 		"id":"casket",
 		"desc":"simple container for preserving bodies.",
-		"require":"state.tier1>0&&state.embalming>=5&&state.crafting>=5",
+		"require":"g.tier1>0&&g.embalming>=5&&g.crafting>=5",
 		"repeat":true,
 		"cost":{
 			"space":1,
@@ -814,7 +814,7 @@
 	{
 		"id":"vat",
 		"desc":"grows bodies from raw materials",
-		"require":"state.tier1>0&&state.anatomy>=5&&state.embalming>=5&&state.crafting>=10",
+		"require":"g.tier1>0&&g.anatomy>=5&&g.embalming>=5&&g.crafting>=10",
 		"repeat":true,
 		"cost":{
 			"space":2,
@@ -831,7 +831,7 @@
 	{
 		"id":"portaalchemica",
 		"name":"porta alchemica",
-		"require":"state.alchemy>=5&&state.planeslore>=5&&state.crafting>=10",
+		"require":"g.alchemy>=5&&g.planeslore>=5&&g.crafting>=10",
 		"desc":"a monument inscribed with alchemical runes",
 		"cost":{
 			"gems":20,
@@ -848,7 +848,7 @@
 		"id":"studyroom",
 		"name":"study",
 		"desc":"A place for reading and research",
-		"require":"state.codices>=100",
+		"require":"g.codices>=100",
 		"cost":{
 			"gold":200,
 			"research":100,
@@ -865,7 +865,7 @@
 	{
 		"id":"orrery",
 		"desc":"a vast mechanical model of existence",
-		"require":"state.codices>=100",
+		"require":"g.codices>=100",
 		"repeat":false,
 		"cost":{
 			"gold":500,
@@ -905,7 +905,7 @@
 		"id":"latticefence",
 		"name":"lattice fence",
 		"desc":"latticed fence for growing vines",
-		"require":"state.tier0>0&&state.naturelore>=7",
+		"require":"g.tier0>0&&g.naturelore>=7",
 		"cost":{
 			"gold":200,
 			"research":250,
@@ -921,7 +921,7 @@
 		"id":"pond",
 		"desc":"Pond",
 		"tags":"watersource",
-		"require":"state.space>50",
+		"require":"g.space>50",
 		"cost":{
 			"gold":500,
 			"space":25
@@ -939,7 +939,7 @@
 		"id":"sandgarden",
 		"name":"sand garden",
 		"desc":"rocks and sand form patterns of intricate design.",
-		"require":"state.earth.max>=5&&state.space>=50",
+		"require":"g.earth.max>=5&&g.space>=50",
 		"cost":{
 			"space":20,
 			"gold":100,
@@ -956,7 +956,7 @@
 		"id":"lakeoffire",
 		"name":"lake of fire",
 		"desc":"A lake of burning fire.",
-		"require":"state.fire.max>=10&&state.space>=100",
+		"require":"g.fire.max>=10&&g.space>=100",
 		"cost":{
 			"space":20,
 			"fire":10,
@@ -976,7 +976,7 @@
 		"id":"bottomlesspit",
 		"name":"bottomless pit",
 		"desc":"An endless hole in the ground.",
-		"require":"state.planeslore>=5&&state.space>=20",
+		"require":"g.planeslore>=5&&g.space>=20",
 		"cost":{
 			"space":5,
 			"gems":10,
@@ -1000,7 +1000,7 @@
 		"id":"torturechamber",
 		"name":"torture chamber",
 		"desc":"A room for inquisitions and research.",
-		"require":"state.evil>0&&state.space>=100",
+		"require":"g.evil>0&&g.space>=100",
 		"cost":{
 			"space":50,
 			"gold":400,
@@ -1019,7 +1019,7 @@
 		"id":"workshop",
 		"tags":"workspace",
 		"desc":"A space suitable for crafting items.",
-		"require":"state.space>=50",
+		"require":"g.space>=50",
 		"cost":{
 			"space":50,
 			"gold":500,
@@ -1035,7 +1035,7 @@
 	{
 		"id":"library",
 		"desc":"",
-		"require":"state.codices>=100",
+		"require":"g.codices>=100",
 		"cost":{
 			"gold":500,
 			"research":500,
@@ -1052,7 +1052,7 @@
 	{
 		"id":"ziggurat",
 		"desc":"vast mound of earth.",
-		"require":"state.earth>=7&&state.astronomy>=7",
+		"require":"g.earth>=7&&g.astronomy>=7",
 		"cost":{
 			"gold":300,
 			"research":2000,

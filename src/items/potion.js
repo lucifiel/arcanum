@@ -15,8 +15,8 @@ export default class Potion extends GData {
 
 	}
 
-	unlockTest( state, self) {
-		return state.herbalism.level >=self.level;
+	unlockTest( g, i) {
+		return g.herbalism.level >=i.level;
 	}
 
 }

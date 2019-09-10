@@ -74,6 +74,7 @@
 	},
 	{
 		"id":"evilamt",
+		"name":"evil",
 		"tags":"Tendency to evil",
 		"value":0
 	}

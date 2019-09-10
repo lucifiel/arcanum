@@ -5,7 +5,7 @@
 		"name":"End Apprenticeship",
 		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
 		"warn":true,
-		"require":"state.neophyte>0&&state.research.max>=100&&state.lore>=4",
+		"require":"g.neophyte>0&&g.research.max>=100&&g.lore>=4",
 		"repeat":false,
 		"cost":{
 			"research":225,
@@ -19,7 +19,7 @@
 		"id":"slaymaster",
 		"name":"Slay Master",
 		"desc":"Murder your master in their sleep.",
-		"require":"state.neophyte>0&&state.research.max>=100&&state.lore>=4",
+		"require":"g.neophyte>0&&g.research.max>=100&&g.lore>=4",
 		"warn":true,
 		"repeat":false,
 		"flavor":"Save heaps of money with the power of evil",
@@ -41,7 +41,7 @@
 
 		"id":"magicbroomstick",
 		"name":"magic broomstick",
-		"require":"state.witch>0&&state.crafting>=7&&state.spirit.max>=5",
+		"require":"g.witch>0&&g.crafting>=7&&g.spirit.max>=5",
 		"flavor":"",
 		"slot":"mount",
 		"buy":{
@@ -61,7 +61,7 @@
 
 		"id":"ebonwoodbroomstick",
 		"name":"ebonwood broomstick",
-		"require":"state.witch>0&&state.crafting>=15&&state.spirit.max>=10",
+		"require":"g.witch>0&&g.crafting>=15&&g.spirit.max>=10",
 		"flavor":"",
 		"slot":"mount",
 		"buy":{
@@ -82,7 +82,7 @@
 
 		"id":"flyingcarpet",
 		"name":"flying carpet",
-		"require":"state.weaving>=5&&state.airlore>=10",
+		"require":"g.weaving>=5&&g.airlore>=10",
 		"flavor":"a whole new world",
 		"slot":"mount",
 		"buy":{
@@ -100,7 +100,7 @@
 	{
 		"id":"mule",
 		"desc":"it won't go very far.",
-		"require":"state.player.level>=4||state.animals>=2",
+		"require":"g.player.level>=4||g.animals>=2",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -115,7 +115,7 @@
 		"id":"oldnag",
 		"name":"old nag",
 		"desc":"this horse has seen better days.",
-		"require":"state.animals>=3",
+		"require":"g.animals>=3",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -162,7 +162,7 @@
 		"id":"skelcharger",
 		"name":"skeletal charger",
 		"desc":"it neither breathes nor tires.",
-		"require":"state.stables>0&&state.reanimation>=5",
+		"require":"g.stables>0&&g.reanimation>=5",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -180,7 +180,7 @@
 		"id":"firecharger",
 		"name":"fire charger",
 		"desc":"hooves of flame leave lines of fire in the ground",
-		"require":"state.stables>0&&state.firelore>5&&state.magicbeasts>=5",
+		"require":"g.stables>0&&g.firelore>5&&g.magicbeasts>=5",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -198,7 +198,7 @@
 		"id":"gryffonmount",
 		"name":"gryffon",
 		"desc":"as fleet as it is fearsome.",
-		"require":["stables","state.magicbeasts>=7"],
+		"require":["stables","g.magicbeasts>=7"],
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -213,7 +213,7 @@
 	{
 		"id":"magichorseshoe",
 		"name":"Magic Horseshoes",
-		"require":"state.enchanting>=5&&state.crafting>=10",
+		"require":"g.enchanting>=5&&g.crafting>=10",
 		"need":"steed",
 		"buy":{
 			"gems":10,
@@ -228,7 +228,7 @@
 
 		"id":"tent",
 		"name":"travel tent",
-		"require":"state.naturelore>=3",
+		"require":"g.naturelore>=3",
 		"desc":"allows you to stay in the wilds longer.",
 		"cost":{
 			"gold":100,
@@ -243,7 +243,7 @@
 		"id":"magictent",
 		"name":"casgair's conjured canopy",
 		"desc":"conjure a large tent for long journeys.",
-		"require":"state.lore>=15&&state.conjuration>=5&&state.research.max>=800",
+		"require":"g.lore>=15&&g.conjuration>=5&&g.research.max>=800",
 		"buy":{
 			"research":1000,
 			"arcana":1,
@@ -271,7 +271,7 @@
 		"id":"mortar",
 		"name":"Mortar and Pestle",
 		"desc":"Useful for grinding herbs & fine ingredients.",
-		"require":"state.herbalism>=2&&state.herbs>=5",
+		"require":"g.herbalism>=2&&g.herbs>=5",
 		"cost":{
 			"gold":40,
 			"research":10
@@ -285,7 +285,7 @@
 	{
 		"id":"pouch",
 		"desc":"Keep your money safe.",
-		"require":"state.gold>=5",
+		"require":"g.gold>=5",
 		"max":2,
 		"repeat":true,
 		"cost":5,
@@ -298,7 +298,7 @@
 		"id":"gembag",
 		"name":"velvet bag",
 		"desc":"Small bag keeps gems safe without scratching.",
-		"require":"state.gems>=5",
+		"require":"g.gems>=5",
 		"max":2,
 		"repeat":true,
 		"cost":300,
@@ -328,7 +328,7 @@
 		"id":"herbbag",
 		"name":"herb pouch",
 		"desc":"bag for holding herbs",
-		"require":"state.herbalism>=4",
+		"require":"g.herbalism>=4",
 		"max":1,
 		"cost":{
 			"gold":100,
@@ -344,7 +344,7 @@
 		"id":"runebag",
 		"name":"rune pouch",
 		"desc":"pouch for holding runes",
-		"require":"state.runes>=5",
+		"require":"g.runes>=5",
 		"max":1,
 		"cost":{
 			"gems":10,
@@ -360,7 +360,7 @@
 		"id":"orb",
 		"name":"arcane orb",
 		"desc":"Stores magical energy.",
-		"require":"state.mana.max>=10&&state.crafting>=7",
+		"require":"g.mana.max>=10&&g.crafting>=7",
 		"max":2,
 		"cost":{
 			"gems":5,
@@ -411,7 +411,7 @@
 	{
 		"id":"bonecollector",
 		"name":"bone collector",
-		"require":"state.reanimation>=5&&state.crafting>=7",
+		"require":"g.reanimation>=5&&g.crafting>=7",
 		"desc":"create a gibbering ghoul to scavenge for bones.",
 		"max":3,
 		"cost":{
@@ -429,7 +429,7 @@
 		"id":"woodpipe",
 		"name":"wood pipe",
 		"desc":"Finely carved wooden pipe. Ruminate while peering into the sunset or a fire.",
-		"require":"state.scrying>=5&&state.crafting>=7",
+		"require":"g.scrying>=5&&g.crafting>=7",
 		"cost":{
 			"gems":5
 		},
@@ -445,7 +445,7 @@
 		"id":"longpipe",
 		"name":"long-stem pipe",
 		"desc":"",
-		"require":"state.scrying>=7&&state.crafting>=8",
+		"require":"g.scrying>=7&&g.crafting>=8",
 		"cost":{
 			"spiritgem":5,
 			"research":500,
@@ -461,7 +461,7 @@
 	{
 		"id":"pendulum",
 		"tags":"timesource",
-		"require":"state.lore>=20",
+		"require":"g.lore>=20",
 		"cost":{
 			"gems":1,
 			"research":200
@@ -475,7 +475,7 @@
 		"id":"metronome",
 		"desc":"focus of temporal synchronicity",
 		"tags":"timesource",
-		"require":"state.crafting>=10&&state.tempus.max>=1",
+		"require":"g.crafting>=10&&g.tempus.max>=1",
 		"cost":{
 			"gold":50,
 			"research":300,
@@ -491,7 +491,7 @@
 		"id":"celestialglobe",
 		"name":"celestial globe",
 		"desc":"a globe of the stars and constellations.",
-		"require":"state.astronomy>=9&&state.crafting>=9",
+		"require":"g.astronomy>=9&&g.crafting>=9",
 		"cost":{
 			"arcana":1,
 			"research":200,
@@ -510,7 +510,7 @@
 		"id":"armillarysphere",
 		"name":"armillary sphere",
 		"desc":"a small mechanical model of the known worlds",
-		"require":"state.astronomy>=7&&state.crafting>=7",
+		"require":"g.astronomy>=7&&g.crafting>=7",
 		"cost":{
 			"arcana":1,
 			"research":100,
@@ -552,7 +552,7 @@
 		"id":"fourleaf",
 		"name":"four leaf clover",
 		"desc":"a small but helpful charm.",
-		"require":"state.trickery>=3&&state.herbs>=3",
+		"require":"g.trickery>=3&&g.herbs>=3",
 		"cost":{
 			"herbs":4,
 			"nature":4,
@@ -567,7 +567,7 @@
 		"id":"speakbirds",
 		"name":"Speak to Birds",
 		"desc":"Learn the secret languages of birds.",
-		"require":"state.languages>0&&state.animals>2&&state.birdcage>1&&state.nature>0",
+		"require":"g.languages>0&&g.animals>2&&g.birdcage>1&&g.nature>0",
 		"cost":{
 			"research":250,
 			"nature":1
@@ -584,7 +584,7 @@
 		"id":"dragontongue",
 		"name":"Dragon Tongue",
 		"desc":"Learn the ancient language of dragons.",
-		"require":"state.languages>12&&state.magicbeasts>=5",
+		"require":"g.languages>12&&g.magicbeasts>=5",
 		"cost":{
 			"research":1000
 		},
@@ -599,7 +599,7 @@
 	{
 		"id":"purse",
 		"desc":"Common way to carry coins.",
-		"require":"state.gold>=20",
+		"require":"g.gold>=20",
 		"max":2,
 		"cost":15,
 		"mod":{
@@ -610,7 +610,7 @@
 
 		"id":"transfusions",
 		"desc":"Learn to perform life-force transfusions",
-		"require":"state.anatomy>=5&&state.tier0>0",
+		"require":"g.anatomy>=5&&g.tier0>0",
 		"cost":{
 			"research":100,
 			"arcana":1
@@ -622,7 +622,7 @@
 		"id":"manatrans",
 		"name":"Energy Transfusion",
 		"desc":"Transfusions now draw magical energy from bodies.",
-		"require":"state.anatomy>=7&&state.lore>=8&&state.transfusions>0",
+		"require":"g.anatomy>=7&&g.lore>=8&&g.transfusions>0",
 		"cost":{
 			"research":400,
 			"arcana":1
@@ -637,7 +637,7 @@
 	{
 
 		"id":"hiddenpockets",
-		"require":"state.magician>0||state.trickster>0&&state.trickery>0",
+		"require":"g.magician>0||g.trickster>0&&g.trickery>0",
 		"cost":{
 			"research":200,
 			"arcana":1
@@ -655,7 +655,7 @@
 		"id":"carddeck",
 		"name":"card deck",
 		"desc":"a simple deck of cards",
-		"require":"state.prestidigitation>0",
+		"require":"g.prestidigitation>0",
 		"tags":"tricksource",
 		"cost":{
 			"gold":50
@@ -665,7 +665,7 @@
 		"id":"threesidecoin",
 		"name":"three-sided coin",
 		"desc":"a simple deck of cards",
-		"require":"state.prestidigitation>10",
+		"require":"g.prestidigitation>10",
 		"tags":"tricksource",
 		"cost":{
 			"gold":300
@@ -674,7 +674,7 @@
 	{
 		"id":"bagofholding",
 		"name":"bag of holding",
-		"require":"state.lore>10&&state.conjuration>7",
+		"require":"g.lore>10&&g.conjuration>7",
 		"max":1,
 		"cost":{
 			"gold":500,
@@ -691,7 +691,7 @@
 	{
 		"id":"deeppockets",
 		"name":"Deep Pockets",
-		"require":"state.hiddenpockets>0&&state.trickster>0&&state.conjuration>2",
+		"require":"g.hiddenpockets>0&&g.trickster>0&&g.conjuration>2",
 		"desc":"Lots of money.",
 		"cost":{
 			"arcana":1
@@ -706,7 +706,7 @@
 	{
 		"id":"earthaffinity",
 		"desc":"earth affinity",
-		"require":"state.earth>10",
+		"require":"g.earth>10",
 		"cost":{
 			"research":200,
 			"earthgem":10,
@@ -720,7 +720,7 @@
 	{
 		"id":"airaffinity",
 		"desc":"air affinity",
-		"require":"state.air>10",
+		"require":"g.air>10",
 		"cost":{
 			"research":200,
 			"airgem":10,
@@ -734,7 +734,7 @@
 	{
 		"id":"wateraffinity",
 		"desc":"water affinity",
-		"require":"state.water>10",
+		"require":"g.water>10",
 		"cost":{
 			"research":200,
 			"watergem":10,
@@ -748,7 +748,7 @@
 	{
 		"id":"firesign",
 		"name":"fire sign",
-		"require":"state.fireaffinity>0&&state.fire>14",
+		"require":"g.fireaffinity>0&&g.fire>14",
 		"lock":["watersign","airsign","earthsign"],
 		"desc":"born under the celestial sign of fire",
 		"cost":{
@@ -764,7 +764,7 @@
 	{
 		"id":"watersign",
 		"name":"water sign",
-		"require":"state.wateraffinity>0&&state.water>14",
+		"require":"g.wateraffinity>0&&g.water>14",
 		"lock":["firesign","airsign","earthsign"],
 		"desc":"born under the celestial sign of water",
 		"cost":{
@@ -780,7 +780,7 @@
 	{
 		"id":"earthsign",
 		"name":"earth sign",
-		"require":"state.earthaffinity>0&&state.earth>14",
+		"require":"g.earthaffinity>0&&g.earth>14",
 		"lock":["watersign","airsign","firesign"],
 		"desc":"born under the celestial sign of earth",
 		"cost":{
@@ -796,7 +796,7 @@
 	{
 		"id":"airsign",
 		"name":"wind sign",
-		"require":"state.airaffinity>0&&state.air>14",
+		"require":"g.airaffinity>0&&g.air>14",
 		"lock":["watersign","firesign","earthsign"],
 		"desc":"born under the celestial sign of wind",
 		"cost":{
@@ -812,7 +812,7 @@
 	{
 		"id":"fireaffinity",
 		"desc":"fire affinity",
-		"require":"state.fire>10",
+		"require":"g.fire>10",
 		"cost":{
 			"research":200,
 			"firegem":10,
@@ -827,7 +827,7 @@
 
 		"id":"coinmagic",
 		"name":"coin tricks",
-		"require":"(state.magician+state.trickster)>0",
+		"require":"(g.magician+g.trickster)>0",
 		"desc":"Manipulate coins to produce more coins.",
 		"cost":{
 			"research":100
@@ -843,7 +843,7 @@
 	{
 		"id":"wishingwells",
 		"name":"Wishing wells",
-		"require":"state.divination>=4&&state.fountain>0",
+		"require":"g.divination>=4&&g.fountain>0",
 		"cost":{
 			"gold":500,
 			"research":400,
@@ -859,7 +859,7 @@
 
 		"id":"satchel",
 		"desc":"Carry more scrolls.",
-		"require":"state.scrolls>=10",
+		"require":"g.scrolls>=10",
 		"scale":2,
 		"cost":50,
 		"max":1,
@@ -873,7 +873,7 @@
 		"id":"alkahest",
 		"name":"alkahest",
 		"desc":"Discover a Universal Solvent",
-		"require":"state.alchemy>=15&&state.crafting>=10",
+		"require":"g.alchemy>=15&&g.crafting>=10",
 		"cost":{
 			"research":700,
 			"gold":300,
@@ -907,7 +907,7 @@
 		"name":"windchime",
 		"tags":"airsource",
 		"desc":"Focus of air magic.",
-		"require":"state.space>10",
+		"require":"g.space>10",
 		"cost":{
 			"gems":10,
 			"research":100
@@ -924,7 +924,7 @@
 		"name":"dream catcher",
 		"desc":"you might not like what you catch.",
 		"tags":"spiritsource",
-		"require":"state.spirit>0&&state.crafting>=5",
+		"require":"g.spirit>0&&g.crafting>=5",
 		"cost":{
 			"gold":50,
 			"research":50,
@@ -942,7 +942,7 @@
 		"desc":"A warm glowing candle.",
 		"max":2,
 		"flavor":"Spare a little candle, save some light for me.",
-		"require":"state.mana.max>=50",
+		"require":"g.mana.max>=50",
 		"cost":35,
 		"mod":{
 			"fire.max":0.04,
@@ -955,7 +955,7 @@
 		"tags":"candle",
 		"desc":"White glowing candle",
 		"max":2,
-		"require":"!state.evil&&state.light.max>=10",
+		"require":"!g.evil&&g.light.max>=10",
 		"flavor":"It is better to light one candle than to curse the darkness.",
 		"cost":75,
 		"mod":{
@@ -969,7 +969,7 @@
 		"tags":"candle",
 		"desc":"What flames cast shadows?",
 		"repeat":true,
-		"require":"state.shadow.max>=10&&!state.good",
+		"require":"g.shadow.max>=10&&!g.good",
 		"flavor":"darkness, darkness.",
 		"cost":75,
 		"mod":{
@@ -981,7 +981,7 @@
 
 		"id":"urn",
 		"desc":"receptacle for dust",
-		"require":"state.crafting>=5&&state.spirit>4",
+		"require":"g.crafting>=5&&g.spirit>4",
 		"max":3,
 		"cost":{
 			"gold":300,
@@ -1000,7 +1000,7 @@
 		"name":"crystal ball",
 		"tags":"spiritsource",
 		"desc":"A crystal sphere revealing distant lands.",
-		"require":"state.tier0>0&&state.gems>0",
+		"require":"g.tier0>0&&g.gems>0",
 		"cost":{
 			"gems":3,
 			"research":200
@@ -1029,7 +1029,7 @@
 	{
 		"id":"thirdeye",
 		"name":"third eye",
-		"require":"state.scrying>=5&&spirit.max>=7",
+		"require":"g.scrying>=5&&spirit.max>=7",
 		"desc":"See without seeing.",
 		"cost":{
 			"spirit":5,
@@ -1051,7 +1051,7 @@
 		"name":"crystal mind",
 		"max":3,
 		"desc":"expend your research to enhance your mental fortitude.",
-		"require":"state.lore>=7&&state.tier0>0",
+		"require":"g.lore>=7&&g.tier0>0",
 		"cost":{
 			"research.max":25,
 			"research":25,
@@ -1069,7 +1069,7 @@
 		"name":"arcane body",
 		"max":3,
 		"desc":"expend your research to enhance your durability.",
-		"require":"state.lore>=7&&state.tier0>0",
+		"require":"g.lore>=7&&g.tier0>0",
 		"cost":{
 			"research.max":25,
 			"research":25,
@@ -1086,7 +1086,7 @@
 		"name":"occult endurance",
 		"max":3,
 		"desc":"expend your research to discover new sources of stamina.",
-		"require":"state.lore>=7&&state.tier0>0",
+		"require":"g.lore>=7&&g.tier0>0",
 		"cost":{
 			"research.max":25,
 			"research":25,
@@ -1102,7 +1102,7 @@
 
 		"id":"chirography",
 		"desc":"improve the efficacy of your scrolls by meticulous attention to penmanship.",
-		"require":"state.lore>10",
+		"require":"g.lore>10",
 		"cost":{
 			"research":300,
 			"mana":10
@@ -1115,7 +1115,7 @@
 
 		"id":"magicskull",
 		"name":"magic skull",
-		"require":"state.necromancer>0||state.witch>0",
+		"require":"g.necromancer>0||g.witch>0",
 		"desc":"An ordinary human skull, infused with necromantic magicks.",
 		"cost":{
 			"skull":1,
@@ -1136,7 +1136,7 @@
 	{
 		"id":"voidtouch",
 		"name":"touching the void",
-		"require":"state.planeslore>=20",
+		"require":"g.planeslore>=20",
 		"cost":{
 
 		},
@@ -1150,7 +1150,7 @@
 	{
 		"id":"demonicpact",
 		"name":"demonic pact",
-		"require":"state.demonology>4",
+		"require":"g.demonology>4",
 		"desc":"A deal with a demon, sealed in blood. The knowledge offered is worth twice the price.",
 		"cost":{
 			"research":300,
@@ -1169,7 +1169,7 @@
 		"id":"siversgate",
 		"name":"siver's gate",
 		"desc":"siver knew true power comes only at great cost",
-		"require":"state.lore>=30",
+		"require":"g.lore>=30",
 		"cost":{
 			"research":1000,
 			"shadowgem":15,
@@ -1197,7 +1197,7 @@
 		"tags":"watersource",
 		"desc":"unlimited source of water.",
 		"flavor":"all you can drink",
-		"require":"state.water.max>=10",
+		"require":"g.water.max>=10",
 		"cost":{
 			"research":200,
 			"watergem":1,
@@ -1218,7 +1218,7 @@
 		"tags":"firesource",
 		"desc":"your body is a source fire.",
 		"flavor":"all you can drink",
-		"require":"state.fire.max>=10",
+		"require":"g.fire.max>=10",
 		"cost":{
 			"research":300,
 			"fire":5,
@@ -1242,7 +1242,7 @@
 		"tags":"airsupply",
 		"desc":"an unending supply of air.",
 		"flavor":"out of nothing at all",
-		"require":"state.air.max>=5",
+		"require":"g.air.max>=5",
 		"cost":{
 			"research":300,
 			"air":5,
@@ -1259,7 +1259,7 @@
 		"id":"bellows",
 		"name":"ceaseless bellows",
 		"desc":"these bellows run on their own.",
-		"require":"state.crafting>=7&&state.air>0",
+		"require":"g.crafting>=7&&g.air>0",
 		"cost":{
 			"gold":250,
 			"research":300
@@ -1275,7 +1275,7 @@
 	{
 		"id":"mendicant",
 		"desc":"Sacrifice luxury for higher attainments.",
-		"need":"state.evil==0&&state.tier1>0&&state.gold.max>1000&&state.light.max>5",
+		"need":"g.evil==0&&g.tier1>0&&g.gold.max>1000&&g.light.max>5",
 		"warn":true,
 		"cost":{
 		},
@@ -1291,7 +1291,7 @@
 	{
 		"id":"alembic",
 		"desc":"essential instrument in alchemical distilling",
-		"require":"state.tier0>0&&state.alchemy>=3",
+		"require":"g.tier0>0&&g.alchemy>=3",
 		"cost":{
 			"gold":150,
 			"research":100
@@ -1306,7 +1306,7 @@
 		"id":"crucible",
 		"name":"fine crucible",
 		"desc":"resiliant vessel for melting substances",
-		"require":"state.tier0>0&&state.alchemy>0",
+		"require":"g.tier0>0&&g.alchemy>0",
 		"cost":{
 			"gold":150
 		},
@@ -1354,7 +1354,7 @@
 		"id":"bagoftricks",
 		"name":"bag of tricks",
 		"tags":"tricksource",
-		"require":"state.trickster>0&&state.crafting>=7",
+		"require":"g.trickster>0&&g.crafting>=7",
 		"cost":{
 			"research":100,
 			"codices":1,
@@ -1413,7 +1413,7 @@
 	{
 		"id":"basement",
 		"desc":"install a basement beneath your home",
-		"require":"state.tier1>0&&state.earthlore>=3",
+		"require":"g.tier1>0&&g.earthlore>=3",
 		"max":1,
 		"cost":{
 			"gold":200,

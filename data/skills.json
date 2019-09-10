@@ -39,7 +39,7 @@
 		"id":"trickery",
 		"school":"arcane",
 		"verb":"reading lore",
-		"require":"state.prestidigitation>15",
+		"require":"g.prestidigitation>15",
 		"run":{
 			"stamina":0.2,
 			"gold":1
@@ -55,7 +55,7 @@
 		"school":"arcane",
 		"verb":"conjuring",
 		"desc":"",
-		"require":"state.tier0>0&&state.lore>=7&&state.divination>3",
+		"require":"g.tier0>0&&g.lore>=7&&g.divination>3",
 		"run":{
 			"stamina":0.2,
 			"spirit":0.2
@@ -72,7 +72,7 @@
 		"school":"arcane",
 		"verb":"translating",
 		"desc":"study ancient dhrunic runes.",
-		"require":"state.tier1>0&&state.lore>=10&&state.dwarfbook>0",
+		"require":"g.tier1>0&&g.lore>=10&&g.dwarfbook>0",
 		"run":{
 			"stamina":0.2,
 			"research":1
@@ -107,7 +107,7 @@
 	{
 		"id":"magicbeasts",
 		"name":"magic beasts",
-		"require":"state.animals>=7&&state.naturelore>=5",
+		"require":"g.animals>=7&&g.naturelore>=5",
 		"desc":"",
 		"run":{
 			"stamina":0.7
@@ -123,7 +123,7 @@
 	},
 	{
 		"id":"charms",
-		"require":"state.enchanting>=5&&state.lore>=10",
+		"require":"g.enchanting>=5&&g.lore>=10",
 		"run":{
 			"stamina":0.3
 		},
@@ -188,7 +188,7 @@
 	{
 
 		"id":"anatomy",
-		"require":"state.neophyte>=0&&state.lore>=6",
+		"require":"g.neophyte>=0&&g.lore>=6",
 		"school":["nature","shadow","light"],
 		"desc":"the study of physical form.",
 		"run":{
@@ -204,7 +204,7 @@
 	{
 
 		"id":"dissection",
-		"need":"state.anatomy>=3",
+		"need":"g.anatomy>=3",
 		"school":"shadow",
 		"run":{
 			"stamina":0.5
@@ -219,7 +219,7 @@
 	{
 
 		"id":"embalming",
-		"require":"state.dissection>=3",
+		"require":"g.dissection>=3",
 		"school":"shadow",
 		"run":{
 			"stamina":0.5
@@ -235,7 +235,7 @@
 
 		"id":"divination",
 		"desc":"the art of foretelling",
-		"require":["state.spiritlore>=6||state.mysticism>=6", "spiritsource"],
+		"require":["g.spiritlore>=6||g.mysticism>=6", "spiritsource"],
 		"school":"spirit",
 		"run":{
 			"stamina":0.4
@@ -268,7 +268,7 @@
 	},
 	{
 		"id":"shadowlore",
-		"require":"state.dissection>=4",
+		"require":"g.dissection>=4",
 		"school":"shadow",
 		"need":"shadowsource",
 		"run":{
@@ -285,7 +285,7 @@
 		"id":"spiritlore",
 		"name":"second sight",
 		"desc":"seeing the unseen",
-		"require":"state.lore>=6",
+		"require":"g.lore>=6",
 		"need":"spiritsource",
 		"school":"spirit",
 		"run":{
@@ -374,7 +374,7 @@
 		"id":"naturelore",
 		"name":"nature lore",
 		"verb":"observing nature",
-		"require":"state.herbalism>=3",
+		"require":"g.herbalism>=3",
 		"run":{
 			"stamina":0.4
 		},
@@ -406,14 +406,14 @@
 	{
 
 		"id":"reanimation",
-		"require":"state.evil>0&&state.embalming>=3",
+		"require":"g.evil>0&&g.embalming>=3",
 		"school":["shadow"],
 		"run":{
 			"stamina":0.5,
 			"shadow":0.1
 		},
 		"result":{
-			"sp":0.01,
+			"sp":0.05,
 			"shadow.rate":0.01
 		}
 
@@ -421,7 +421,7 @@
 	{
 
 		"id":"necromancy",
-		"require":"state.evil>0&&state.reanimation>=7&&state.souls.max>0",
+		"require":"g.evil>0&&g.reanimation>=7&&g.souls.max>0",
 		"school":"shadow",
 		"desc":"forbidden death magic.",
 		"run":{
@@ -438,7 +438,7 @@
 		"id":"potions",
 		"school":["water"],
 		"name":"Potions",
-		"require":"state.crafting>=3&&state.alchemy>=1&&state.herbs>=2",
+		"require":"g.crafting>=3&&g.alchemy>=1&&g.herbs>=2",
 		"need":["potsource","workspace"],
 		"run":{
 			"stamina":0.5
@@ -453,7 +453,7 @@
 	},
 	{
 		"id":"enchanting",
-		"require":"state.tier0>0&&state.lore>=7",
+		"require":"g.tier0>0&&g.lore>=7",
 		"desc":"imbue mundane objects with magic properties.",
 		"run":{
 			"stamina":0.4,
@@ -470,7 +470,7 @@
 	{
 		"id":"alchemy",
 		"school":"elemental",
-		"require":"state.herbalism>=3",
+		"require":"g.herbalism>=3",
 		"run":{
 			"stamina":0.5
 		},
@@ -497,7 +497,7 @@
 	},
 	{
 		"id":"mysticism",
-		"require":"state.lore>=8",
+		"require":"g.lore>=8",
 		"desc":"an ability to sense the flow and flux of arcane energies.",
 		"run":{
 			"stamina":0.5
@@ -511,7 +511,7 @@
 
 		"id":"planeslore",
 		"name":"planes lore",
-		"require":"state.astronomy>=5&&state.tier1>0",
+		"require":"g.astronomy>=5&&g.tier1>0",
 		"run":{
 			"stamina":0.7,
 			"research":1,
@@ -525,7 +525,7 @@
 	},
 	{
 		"id":"chronomancy",
-		"require":"state.timesource>0&&state.tier2>0",
+		"require":"g.timesource>0&&g.tier2>0",
 		"run":{
 			"stamina":0.3,
 			"research":1,
@@ -539,7 +539,7 @@
 	},
 	{
 		"id":"scrying",
-		"require":"state.divination>5",
+		"require":"g.divination>5",
 		"run":{
 			"stamina":0.5
 		},

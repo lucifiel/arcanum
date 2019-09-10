@@ -33,7 +33,7 @@
 	{
 		"id":"sect_spells",
 		"name":"spellbook",
-		"require":"state.spellbook.value>0"
+		"require":"g.spellbook.value>0"
 
 	},
 	{
@@ -55,7 +55,7 @@
 	{
 		"id":"sect_potions",
 		"name":"potions",
-		"require":"state.potions>1"
+		"require":"g.potions>1"
 	},
 	{
 		"id":"sect_minions",

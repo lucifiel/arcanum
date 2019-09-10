@@ -94,12 +94,12 @@ export default class Dungeon extends Action {
 
 	}
 
-	distTest( state, self) {
-		return state.dist >= self.dist;
+	distTest( g, self) {
+		return g.dist >= self.dist;
 	}
 
-	levelTest(state, self) {
-		return state.player.level >= (self.level-1);
+	levelTest(g, self) {
+		return g.player.level >= (self.level-1);
 	}
 
 	/**

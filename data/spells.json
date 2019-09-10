@@ -52,7 +52,7 @@
 		"id":"blast",
 		"name":"blasting curse",
 		"level":3,
-		"require":"state.shadow>=8&&state.evil>0",
+		"require":"g.shadow>=8&&g.evil>0",
 		"school":"shadow",
 		"buy":{
 
@@ -76,7 +76,7 @@
 	{
 		"id":"gloom",
 		"level":2,
-		"require":"state.shadow>=10",
+		"require":"g.shadow>=10",
 		"school":"shadow",
 		"desc":"decreases the target's resistance to shadow magic.",
 		"buy":{
@@ -197,7 +197,7 @@
 		"school":"mana",
 		"locked":false,
 		"level":2,
-		"require":"state.player.level>=3&&state.lore>=5",
+		"require":"g.player.level>=3&&g.lore>=5",
 		"buy":{
 
 			"research":30,
@@ -221,7 +221,7 @@
 		"name":"mana",
 		"school":"mana",
 		"locked":false,
-		"require":"state.player.level>=5&&state.lore>=10",
+		"require":"g.player.level>=5&&g.lore>=10",
 		"level":5,
 		"buy":{
 
@@ -273,7 +273,7 @@
 		"id":"lightregen2",
 		"name":"pulsing light II",
 		"school":"light",
-		"require":"state.player.level>=5&&state.lightlore>=5",
+		"require":"g.player.level>=5&&g.lightlore>=5",
 		"desc":"a small pulse of light zips around you, searching for injuries.",
 		"level":3,
 		"buy":{
@@ -302,7 +302,7 @@
 		"school":"light",
 		"desc":"a small pulse of light zips around you, searching for injuries.",
 		"level":5,
-		"require":"state.player.level>=10&&state.lightlore>=8",
+		"require":"g.player.level>=10&&g.lightlore>=8",
 		"buy":{
 
 			"research":100,
@@ -350,7 +350,7 @@
 		"name":"mud",
 		"desc":"engulfs target in mud",
 		"school":"earth",
-		"require":"state.player.level>=4&&state.earthlore>=5",
+		"require":"g.player.level>=4&&g.earthlore>=5",
 		"level":2,
 		"buy":{
 
@@ -398,7 +398,7 @@
 		"name":"fire bolt",
 		"level":2,
 		"desc":"a small bolt of flame.",
-		"require":"state.player.level>=4&&state.firelore>=2",
+		"require":"g.player.level>=4&&g.firelore>=2",
 		"school":"fire",
 		"buy":{
 
@@ -423,7 +423,7 @@
 		"level":3,
 		"desc":"a bolt of fire with lingerine flame",
 		"school":"fire",
-		"require":"state.player.level>=6&&state.firelore>=5",
+		"require":"g.player.level>=6&&g.firelore>=5",
 		"buy":{
 
 			"research":100,
@@ -471,7 +471,7 @@
 		"level":2,
 		"desc":"vines lash out from the ground.",
 		"school":"nature",
-		"require":"state.player.level>=4&&state.naturelore>=3",
+		"require":"g.player.level>=4&&g.naturelore>=3",
 		"buy":{
 
 			"research":50,
@@ -494,7 +494,7 @@
 		"id":"prolight",
 		"name":"protection: light",
 		"school":"shadow",
-		"require":"state.player.level>=4&&state.shadowlore>=3",
+		"require":"g.player.level>=4&&g.shadowlore>=3",
 		"level":2,
 		"buy":{
 
@@ -509,8 +509,8 @@
 
 			"duration":20,
 			"mod":{
-				"state.player.resist.holy":10,
-				"state.player.resist.light":10
+				"g.player.resist.holy":10,
+				"g.player.resist.light":10
 			}
 
 		}
@@ -521,7 +521,7 @@
 		"id":"proshadow",
 		"name":"protection: shadow",
 		"school":"light",
-		"require":"state.player.level>=4&&state.lightlore>=3",
+		"require":"g.player.level>=4&&g.lightlore>=3",
 		"level":2,
 		"buy":{
 
@@ -536,8 +536,8 @@
 
 			"duration":20,
 			"mod":{
-				"state.player.resist.shadow":10,
-				"state.player.resist.undead":10
+				"g.player.resist.shadow":10,
+				"g.player.resist.undead":10
 			}
 
 		}
@@ -549,7 +549,7 @@
 		"name":"protection: fire",
 		"school":"fire",
 		"level":2,
-		"require":"state.player.level>=4&&state.firelore>=2",
+		"require":"g.player.level>=4&&g.firelore>=2",
 		"buy":{
 
 			"research":100,
@@ -563,7 +563,7 @@
 
 			"duration":20,
 			"mod":{
-				"state.player.resist.fire":10
+				"g.player.resist.fire":10
 			}
 
 		}
@@ -575,7 +575,7 @@
 		"name":"protection: water",
 		"school":"water",
 		"level":2,
-		"require":"state.player.level>=4&&state.waterlore>=3",
+		"require":"g.player.level>=4&&g.waterlore>=3",
 		"buy":{
 
 			"research":100,
@@ -589,7 +589,7 @@
 
 			"duration":20,
 			"mod":{
-				"state.player.resist.water":10
+				"g.player.resist.water":10
 			}
 
 		}
@@ -601,7 +601,7 @@
 		"name":"protection: nature",
 		"school":"nature",
 		"level":2,
-		"require":"state.player.level>=4&&state.naturelore>=3",
+		"require":"g.player.level>=4&&g.naturelore>=3",
 		"buy":{
 
 			"research":25,
@@ -615,8 +615,8 @@
 
 			"duration":20,
 			"mod":{
-				"state.player.resist.nature":10,
-				"state.player.resist.poison":10
+				"g.player.resist.nature":10,
+				"g.player.resist.poison":10
 			}
 
 		}
@@ -628,7 +628,7 @@
 		"name":"sealing light",
 		"desc":"a seam of light closes your wounds.",
 		"school":"light",
-		"require":"state.player.level>=4&&state.lightlore>=4",
+		"require":"g.player.level>=4&&g.lightlore>=4",
 		"buy":{
 
 			"research":30,
@@ -650,7 +650,7 @@
 		"name":"unseen servant",
 		"desc":"an invisible servant manages your affairs.",
 		"school":"air",
-		"require":"state.player.level>=4&&state.airlore>=4",
+		"require":"g.player.level>=4&&g.airlore>=4",
 		"buy":{
 
 			"research":30,
@@ -675,7 +675,7 @@
 		"desc":"all your studies seem to fall into place.",
 		"flavor":"I know the pieces fit",
 		"school":"light",
-		"require":"state.player.level>=5&&state.lightlore>=5",
+		"require":"g.player.level>=5&&g.lightlore>=5",
 		"buy":{
 
 			"research":100,
@@ -773,7 +773,7 @@
 		"name":"dark promptings",
 		"level":3,
 		"desc":"malevolent voices whisper secrets to your mind.",
-		"require":"state.player.level>=5&&state.shadowlore>=5",
+		"require":"g.player.level>=5&&g.shadowlore>=5",
 		"school":"shadow",
 		"buy":{
 
@@ -801,7 +801,7 @@
 		"level":2,
 		"desc":"spirits whisper hidden truths as you study.",
 		"school":"spirit",
-		"require":"state.player.level>=4&&state.spiritlore>=4",
+		"require":"g.player.level>=4&&g.spiritlore>=4",
 		"buy":{
 
 			"research":100,
@@ -825,7 +825,7 @@
 	{
 		"id":"venom",
 		"level":3,
-		"require":"state.player.level>=7&&state.naturelore>=6",
+		"require":"g.player.level>=7&&g.naturelore>=6",
 		"school":"nature",
 		"buy":{
 
@@ -851,7 +851,7 @@
 		"id":"hex1",
 		"name":"spiteful hex",
 		"level":4,
-		"require":"state.witch>0",
+		"require":"g.witch>0",
 		"school":"spirit",
 		"buy":{
 
@@ -938,7 +938,7 @@
 		"dot":{
 			"duration":30,
 			"mod":{
-				"state.player.defense":1
+				"g.player.defense":1
 			}
 		}
 
@@ -1029,7 +1029,7 @@
 		"name":"adamant shell",
 		"desc":"your skin becomes adamant.",
 		"school":"earth",
-		"require":"state.player.level>=15&&state.earthlore>=15",
+		"require":"g.player.level>=15&&g.earthlore>=15",
 		"level":10,
 		"buy":{
 

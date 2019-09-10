@@ -6,7 +6,7 @@
 		"verb":"infusing armor",
 		"targets":"armor",
 		"desc":"infuse an item with magical protection.",
-		"require":"state.enchanting>=3",
+		"require":"g.enchanting>=3",
 		"level":1,
 		"buy":{
 			"arcana":1,
@@ -28,7 +28,7 @@
 		"adj":"of mana",
 		"targets":"ring",
 		"desc":"infuse a ring with a mana gem.",
-		"require":"state.enchanting>=1",
+		"require":"g.enchanting>=1",
 		"level":1,
 		"buy":{
 			"arcana":1,
@@ -50,7 +50,7 @@
 		"adj":"of energy",
 		"targets":"ring",
 		"desc":"link a ring with a mana source.",
-		"require":"state.enchanting>=1",
+		"require":"g.enchanting>=1",
 		"level":1,
 		"buy":{
 			"arcana":1,
@@ -72,7 +72,7 @@
 		"adj":"of life",
 		"targets":"neck",
 		"desc":"infuse an amulet with lifeforce.",
-		"require":"state.enchanting>=2",
+		"require":"g.enchanting>=2",
 		"level":1,
 		"buy":{
 			"arcana":1,
@@ -95,7 +95,7 @@
 		"adj":"of regeneration",
 		"targets":"neck",
 		"desc":"infuse an amulet with living blood.",
-		"require":"state.enchanting>=5",
+		"require":"g.enchanting>=5",
 		"level":2,
 		"buy":{
 			"arcana":1,
@@ -117,7 +117,7 @@
 		"verb":"infusing weapon",
 		"targets":"weapon",
 		"desc":"infuse an item with magical protection.",
-		"require":"state.enchanting>=3",
+		"require":"g.enchanting>=3",
 		"level":1,
 		"buy":{
 			"arcana":1,
@@ -138,7 +138,7 @@
 		"verb":"infusing weapon",
 		"targets":"weapon",
 		"desc":"infuse an item with magical protection.",
-		"require":"state.enchanting>=3",
+		"require":"g.enchanting>=3",
 		"level":1,
 		"buy":{
 			"arcana":1,

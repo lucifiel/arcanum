@@ -331,8 +331,8 @@ export default {
 	 * @returns {function}
 	 */
 	levelTestFunc( unlocker ) {
-		return (state,self)=>{
-			state[unlocker].level >= self.level; };
+		return (g,i)=>{
+			g[unlocker].level >= i.level; };
 	},
 
 	/**
@@ -340,7 +340,7 @@ export default {
 	 * @param {string} text - function text.
 	 */
 	makeTestFunc( text ) {
-		return new Function( "state", 'return ' + text );
+		return new Function( "g", 'return ' + text );
 	},
 
 	/**
@@ -351,7 +351,7 @@ export default {
 	 * @param {*} text
 	 */
 	makeEffectFunc( text ) {
-		return new Function( 'state', 'target', 'dt', text );
+		return new Function( 'g', 'target', 'dt', text );
 	},
 
 	/**

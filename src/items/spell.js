@@ -38,8 +38,8 @@ export default class Spell extends GData {
 	 * Default require function for spells.
 	 * @param {GameState} state
 	 */
-	spellRequire( state, self ) {
-		return state.player.level >= self.level;
+	spellRequire( g, self ) {
+		return g.player.level >= self.level;
 	}
 
 };

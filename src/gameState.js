@@ -115,11 +115,17 @@ export default class GameState {
 
 	}
 
-	homeTest( state, self, gs ) {
+	/**
+	 *
+	 * @param {Object.<string,Items>} g - all game data.
+	 * @param {GData} i - item being tested.
+	 * @param {*} gs
+	 */
+	homeTest( g, i, gs ) {
 
 		var cur = gs.slots.home;
-		return state.space.used <=
-			state.space.max.delValue( self.mod.space.max.bonus - ( cur ? cur.mod.space.max.bonus : 0) );
+		return g.space.used <=
+			g.space.max.delValue( i.mod.space.max.bonus - ( cur ? cur.mod.space.max.bonus : 0) );
 
 	}
 

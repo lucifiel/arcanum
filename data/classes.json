@@ -50,7 +50,7 @@
 	"id":"neophyte",
 	"title":"neophyte",
 	"actdesc":"The final step on the twisting stairwell of apprenticeship.",
-	"require":"state.scribe>0&&state.research.max>=125&&state.spellbook.value>0",
+	"require":"g.scribe>0&&g.research.max>=125&&g.spellbook.value>0",
 	"log":{
 		"name":"Neophyte",
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry."
@@ -86,7 +86,7 @@
 	"actname":"The Prestige",
 	"actdesc":"Pursue the path of pure magic.",
 	"warn":true,
-	"require":"state.tier0>0&&state.lore>=10",
+	"require":"g.tier0>0&&g.lore>=10",
 	"cost":{
 		"research":700,
 		"arcana":12,
@@ -137,7 +137,7 @@
 	"tags":"t_tier1",
 	"title":"reanimator",
 	"desc":"Create and ressurect living materials.",
-	"require":"state.tier0>0&&state.evil>0",
+	"require":"g.tier0>0&&g.reanimation>2",
 	"cost":{
 		"research":300,
 		"bones":10,
@@ -167,7 +167,7 @@
 	"warn":true,
 	"actname":"The Craft",
 	"actdesc":"Enter into the practice of witchcraft.",
-	"require":"state.tier0>0&&state.animals>=2&&state.herbalism>=3&&state.potions>=3",
+	"require":"g.tier0>0&&g.animals>=2&&g.herbalism>=3&&g.potions>=3",
 	"flavor":"'what is't you do?' 'a deed without a name'",
 	"cost":{
 		"research":350,
@@ -198,7 +198,7 @@
 	"desc":"Use magic for deceit and trickery.",
 	"buyname":"Path of Trickery",
 	"tags":"t_tier1",
-	"require":"state.trickery>=4&&state.tier0>0",
+	"require":"g.trickery>=4&&g.tier0>0",
 	"cost":{
 		"research":250,
 		"gems":10,
@@ -227,7 +227,7 @@
 	"title":"bone monger",
 	"tags":"t_tier2",
 	"desc":"extend your life with the spare parts of the dead.",
-	"require":"state.reanimator>0&&state.evil>0",
+	"require":"g.tier1>0&&g.reanimator>=1&&g.evil>0",
 	"cost":{
 		"research":300,
 		"bones":10,
@@ -252,7 +252,7 @@
 	"title":"necromancer",
 	"tags":"t_tier3",
 	"desc":"master of death magic",
-	"require":"state.tier2>0&&state.evil>0&&state.shadowlore>=7",
+	"require":"g.tier2>0&&g.evil>0&&g.shadowlore>=7",
 	"cost":{
 		"research":1000,
 		"bones":100,
@@ -282,7 +282,7 @@
 	"tags":"t_tier2",
 	"actdesc":"Pursue the path of battle.",
 	"warn":true,
-	"require":"state.tier1>0&&state.player.level>=10&&state.armory>0",
+	"require":"g.tier1>0&&g.player.level>=10&&g.armory>0",
 	"cost":{
 		"research":250,
 		"arcana":3,
@@ -307,7 +307,7 @@
 	"title":"dreadlord",
 	"desc":"harbinger of destruction",
 	"tags":"t_tier2",
-	"require":"state.tier1>0&&state.evil>0&&state.hp>=30&&state.player.level>=20",
+	"require":"g.tier1>0&&g.evil>0&&g.hp>=30&&g.player.level>=20",
 	"cost":{
 		"research":1000,
 		"bones":100,
@@ -330,7 +330,7 @@
 	"title":"warlock",
 	"tags":"t_tier2",
 	"desc":"master of demons and demonic magic",
-	"require":"state.tier1>0&&state.evil>0&&state.demonology>=7",
+	"require":"g.tier1>0&&g.evil>0&&g.demonology>=7",
 	"cost":{
 		"research":1000,
 		"souls":50,
@@ -350,7 +350,7 @@
 	"title":"archlock",
 	"desc":"master of demons and demonic magic",
 	"tags":"t_tier3",
-	"require":"state.tier2>0&&state.evil>0&&state.demonology>=15",
+	"require":"g.tier2>0&&g.evil>0&&g.demonology>=15",
 	"cost":{
 		"research":1000,
 		"souls":50,
@@ -367,7 +367,7 @@
 	"title":"druid",
 	"desc":"druid",
 	"tags":"t_tier2",
-	"require":"state.tier1>0&&state.naturelore>=15",
+	"require":"g.tier1>0&&g.naturelore>=15",
 	"effect":{
 		"tier2":true,
 		"sp":1
@@ -426,7 +426,7 @@
 	"disable":[],
 	"warn":true,
 	"actdesc":"Become a geomancer.",
-	"require":"state.tier1>0&&state.earthlore>=10",
+	"require":"g.tier1>0&&g.earthlore>=10",
 	"cost":{
 		"research":300,
 		"arcana":1,
@@ -454,7 +454,7 @@
 	"name":"pyromancy",
 	"warn":true,
 	"actdesc":"Become a pyromancer.",
-	"require":"state.tier1>0&&state.firelore>=10",
+	"require":"g.tier1>0&&g.firelore>=10",
 	"cost":{
 		"research":300,
 		"arcana":1,
@@ -482,7 +482,7 @@
 	"name":"hydromancy",
 	"warn":true,
 	"actdesc":"Become a hydromancer.",
-	"require":"state.tier1>0&&state.waterlore>=10",
+	"require":"g.tier1>0&&g.waterlore>=10",
 	"cost":{
 		"research":300,
 		"arcana":1,
@@ -510,7 +510,7 @@
 	"name":"wind mage",
 	"warn":true,
 	"actdesc":"Become a wind.",
-	"require":"state.tier1>0&&state.airlore>=10",
+	"require":"g.tier1>0&&g.airlore>=10",
 	"cost":{
 		"research":300,
 		"arcana":1,
@@ -552,7 +552,7 @@
 },
 {
 	"id":"stormcaller",
-	"require":"state.hydromancer>0||state.windmage>0",
+	"require":"g.hydromancer>0||g.windmage>0",
 	"tags":"t_tier3",
 	"cost":{
 		"research":1000,
@@ -579,7 +579,7 @@
 	"id":"elementalist",
 	"title":"elementalist",
 	"desc":"Master of elemental forces.",
-	"require":"state.tier0>0&&state.airlore>2&&state.firelore>2&&state.earthlore>2&&state.waterlore>2",
+	"require":"g.tier0>0&&g.airlore>2&&g.firelore>2&&g.earthlore>2&&g.waterlore>2",
 	"tags":"t_tier1",
 	"effect":{
 		"tier1":true,
@@ -596,7 +596,7 @@
 	"title":"high elemental",
 	"tags":"t_tier4",
 	"desc":"Lord of the elements",
-	"require":"state.tier4>0&&state.airlore>9&&state.firelore>9&&state.waterlore>9&&state.earthlore>9",
+	"require":"g.tier4>0&&g.airlore>9&&g.firelore>9&&g.waterlore>9&&g.earthlore>9",
 	"cost":{
 		"tomes":10,
 		"airgem":10,
@@ -619,7 +619,7 @@
 	"title":"oracle",
 	"tags":"t_tier1",
 	"desc":"A diviner.",
-	"require":"state.tier0>0&&state.spiritlore>=5&&state.divination>=5",
+	"require":"g.tier0>0&&g.spiritlore>=5&&g.divination>=5",
 	"effect":{
 		"tier1":true,
 		"sp":2
@@ -657,7 +657,7 @@
 	"title":"mage",
 	"desc":"member of an arcane order.",
 	"tags":"t_tier2",
-	"require":"state.tier1>0&&state.lore>15",
+	"require":"g.tier1>0&&g.lore>15",
 	"cost":{
 
 	},
@@ -697,7 +697,7 @@
 	"title":"wizard",
 	"desc":"raw magic power",
 	"tags":"t_tier4",
-	"require":"state.tier3>0&&state.lore>20",
+	"require":"g.tier3>0&&g.lore>20",
 	"cost":{
 
 	},
