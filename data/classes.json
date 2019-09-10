@@ -282,7 +282,7 @@
 	"tags":"t_tier2",
 	"actdesc":"Pursue the path of battle.",
 	"warn":true,
-	"require":"state.tier1>0state.player.level>=10&&state.armory>0",
+	"require":"state.tier1>0&&state.player.level>=10&&state.armory>0",
 	"cost":{
 		"research":250,
 		"arcana":3,
@@ -676,12 +676,12 @@
 	"id":"thaumaturge",
 	"title":"thaumaturge",
 	"desc":"a crafter of wonders",
-	"tags":"t_tier3",
+	"tags":"t_tier4",
 	"cost":{
 
 	},
 	"effect":{
-		"tier3":true,
+		"tier4":true,
 		"sp":2
 	},
 	"mod":{
@@ -707,7 +707,8 @@
 	},
 	"mod":{
 		"research.max":40,
-		"lore.max":2,
+		"languages.max":2,
+		"lore.max":3,
 		"lore.rate":0.4,
 		"mana.max":3
 	}

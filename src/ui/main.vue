@@ -12,28 +12,19 @@ import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
 import LogView from './outlog.vue';
 import Adventure from './adventure.vue';
+import Cheats from '../cheats';
 
 import { TICK_TIME } from '../game';
 
-const cheatKeys = {
-	b:'herbs',
-	g:'gold',
-	s:'scrolls',
-	e:'exp',
-	t:'stamina',
-	h:"hp",
-	k:'sp',
-	m:'mana',
-	c:'codices',
-	a:'arcana',
-	r:'research'
-}
+console.log('DIST? ' + __DIST );
+console.log('cheats: ' + Cheats.cheatKeys );
+
 /**
  * @listens [sell,itemover,itemout]
  */
 export default {
 
-	mixins:[ItemsBase],
+	mixins:__DIST ? [ItemsBase] : [ItemsBase,Cheats],
 	components:{
 		resources:ResoucesView,
 		actions:ActionsView,
@@ -174,25 +165,6 @@ export default {
 					if ( it) this.game.tryItem( it );
 				}
 
-			} else {
-
-				let key = e.key.toLowerCase();
-				for( let p in cheatKeys ) {
-					if ( key === p ) {
-						if ( e.shiftKey ) this.state.addMax( cheatKeys[p] );
-						else {
-							let it = this.state.getData( cheatKeys[p] );
-							if ( it.locked ) it.locked = false;
-							Game.fillItem( cheatKeys[p]);
-						}
-						break;
-					}
-				}
-				if ( key === 'p') {
-					if ( this.state.curAction && this.state.curAction.length) {
-						this.state.curAction.exp = this.state.curAction.length - 0.01;
-					}
-				}
 			}
 
 		},

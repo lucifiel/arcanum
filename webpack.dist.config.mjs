@@ -1,5 +1,6 @@
 const path = require('path');
 const VueLoader = require('vue-loader/lib/plugin');
+const webpack = require('webpack');
 
 module.exports = {
 
@@ -20,7 +21,11 @@ module.exports = {
 			}
 		],
 	},
-	plugins: [new VueLoader()],
+	plugins: [new VueLoader(),
+	new webpack.DefinePlugin({
+		__DIST:true,
+		__VERSION:1
+	})],
 	output: {
 
 		path: path.resolve(__dirname, "dist"),
