@@ -1,6 +1,33 @@
 [
 
 	{
+		"id":"pot_poisonward",
+		"name":"poison ward",
+		"level":1,
+		"buy":{
+			"gold":25,
+			"research":50
+		},
+		"cost":{
+			"herbs":10
+		},
+		"use":"poisonward"
+	},
+	{
+		"id":"pot_mana1",
+		"name":"draught of mana",
+		"buy":{
+			"gold":25,
+			"research":50
+		},
+		"cost":{
+			"herbs":10
+		},
+		"use":{
+			"mana":5
+		}
+	},
+	{
 		"id":"pot_heal1",
 		"buy":{
 			"gold":25,
@@ -8,7 +35,7 @@
 		},
 		"level":1,
 		"cost":{
-			"herbs":5
+			"herbs":10
 		},
 		"name":"minor healing",
 		"use":"heal1"
@@ -22,9 +49,11 @@
 			"research":50
 		},
 		"cost":{
-			"herbs":5
+			"herbs":10
 		},
-		"use":"stam1"
+		"use":{
+			"stamina":10
+		}
 
 	},
 	{
@@ -35,6 +64,9 @@
 		"buy":{
 			"gold":25,
 			"research":150
+		},
+		"cost":{
+			"herbs":20
 		},
 		"use":{
 			"dot":{

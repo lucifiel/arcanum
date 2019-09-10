@@ -361,7 +361,7 @@
 			"stamina":0.3
 		},
 		"effect":{
-			"herbalism.exp":1,
+			"herbalism.exp":0.5,
 			"herbs":0.2
 		}
 

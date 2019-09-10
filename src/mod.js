@@ -151,13 +151,20 @@ export default class Mod {
 	applyTo( obj, p, amt ) {
 
 		let targ = obj[p];
+
 		if ( targ instanceof Stat ) targ.addMod( this, amt );
 		else if ( targ instanceof Mod) targ.applySelf( this, amt );
-		else if ( typeof targ === 'object') {
+		else if ( targ === null || targ === undefined ){
+
+			obj[p] = this.bonus;
+
+		} else if ( typeof targ === 'object') {
 
 			targ.value = ( ( Number(targ.value) || 0 ) + amt*this._bonus )*( 1 + amt*this._pct );
 
-		} else if ( typeof targ === 'number' ) obj[p] = ( targ + amt*this._bonus )*(1 + amt*this._pct );
+		} else if ( typeof targ === 'number' ) {
+			obj[p] = ( targ + amt*this._bonus )*(1 + amt*this._pct );
+		}
 
 	}
 

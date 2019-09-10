@@ -490,6 +490,7 @@ export default {
 			if ( it.value <= 0 ) ( inv || this.state.inventory ).remove(it);
 		}
 		if ( it.use ) {
+			if ( it.use.dot ) this.state.player.addDot( new Dot( it.use.dot, it.id, it.name) );
 			this.applyEffect( it.use );
 		}
 
@@ -746,7 +747,7 @@ export default {
 				e = effect[p];
 
 				if ( target === undefined ) {
-					if ( p === 'title') this.state.player.addTitle( effect[p]);
+					if ( p === 'title') this.state.player.addTitle( e );
 					else this.applyToTag( p, e, dt );
 				} else {
 					if ( target.type === 'event' ) this.doEvent( target );
@@ -1116,7 +1117,6 @@ export default {
 		} else {
 
 			inst = this.itemGen.instance( it );
-			console.log('createing item: ' + inst.id );
 			if ( inst ) inst.value = 1;
 			this.state.inventory.add( inst );
 

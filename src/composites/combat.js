@@ -36,7 +36,7 @@ export function tryDamage(target, attack, attacker = null) {
 
 		let resist = target.getResist(attack.kind);
 		if (resist > 0) {
-			console.log('resist: ' + resist);
+
 			dmg *= (1 - resist);
 		}
 

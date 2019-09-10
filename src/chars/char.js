@@ -190,6 +190,12 @@ export default class Char {
 	}
 
 	getResist(kind) {
+
+		let res = this._resist[kind];
+		if ( kind === 'poison') {
+			console.log('resist: ' + res );
+		}
+
 		return (this._resist[kind]||0)/100;
 	}
 

@@ -446,6 +446,26 @@
 
 	},
 	{
+		"id":"poisonward",
+		"name":"poison ward",
+		"level":2,
+		"school":"nature",
+		"desc":"reduce the efficacy of common venoms",
+		"buy":{
+			"research":50,
+			"scrolls":10
+		},
+		"cost":{
+			"nature":3
+		},
+		"dot":{
+			"duration":30,
+			"mod":{
+				"player.resist.poison":20
+			}
+		}
+	},
+	{
 		"id":"vinewhip",
 		"name":"vine whip",
 		"level":2,
@@ -454,7 +474,7 @@
 		"require":"state.player.level>=4&&state.naturelore>=3",
 		"buy":{
 
-			"research":30,
+			"research":50,
 			"scrolls":5,
 			"naturegem":1
 
@@ -945,7 +965,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"state.player.defense":2
+				"player.defense":2
 			}
 		}
 
@@ -972,7 +992,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"state.player.defense":5
+				"player.defense":5
 			}
 		}
 
@@ -999,7 +1019,7 @@
 		"dot":{
 			"duration":90,
 			"mod":{
-				"state.player.defense":10
+				"player.defense":10
 			}
 		}
 
@@ -1024,7 +1044,7 @@
 		"dot":{
 			"duration":120,
 			"mod":{
-				"state.player.defense":20
+				"player.defense":20
 			}
 		}
 

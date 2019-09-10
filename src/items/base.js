@@ -166,7 +166,7 @@ export default {
 					this.subeffect( this[p], m[p], amt );
 
 				} else if ( this[p] !== undefined ) {
-					//console.log('adding: ' + p );
+					console.log('adding: ' + p );
 					this[p] += Number(m[p])*amt;
 				} else {
 					console.log('NEW SUB: ' + p );
@@ -190,7 +190,7 @@ export default {
 
 		targ = targ || this;
 
-		//console.log('applying: ' + mods );
+		console.log('applying: ' + mods );
 
 		if ( typeof mods === 'object') {
 
@@ -212,8 +212,13 @@ export default {
 
 					// define before recursion since parent ref is lost.
 					let sub = targ[p];
-					if ( sub === undefined || sub === null ) targ[p] = {};
-					this.applyMods( m, amt, sub );
+					if ( sub === undefined || sub === null ) {
+
+						console.log( p + ' MOD UNDEFIEND: ' + m );
+						for( let c in m ) console.log(c);
+						targ[p] = m.value ? m.value : {};
+
+					} else this.applyMods( m, amt, sub );
 
 				} else if ( typeof m === 'number' ) {
 
@@ -222,14 +227,19 @@ export default {
 					else if ( typeof sub === 'number') targ[p] += m*amt;
 					else this.applyMods( m, amt, sub);
 
-				} else console.warn( `UNKNOWN Mod ${p} applied to ${this.id}: ${m}`);
+				} else {
+					console.warn( `UNKNOWN Mod ${p} applied to ${this.id}: ${m}`);
+				}
 
 			}
 
 		} else if ( typeof mods === 'number') {
 
 			if ( targ instanceof Stat || targ instanceof Mod ) targ.apply( mods, amt );
-			else if ( typeof targ === 'object') targ.value = (targ.value || 0 ) + amt*mods;
+			else if ( typeof targ === 'object') {
+				console.log('targ is object');
+				targ.value = (targ.value || 0 ) + amt*mods;
+			}
 
 			// nothing can be done if targ is just a number. no parent object.
 
