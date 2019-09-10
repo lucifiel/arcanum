@@ -81,6 +81,7 @@
 {
 	"id":"magician",
 	"title":"magician",
+	"tags":"t_tier1",
 	"desc":"Magic in its purest form.",
 	"actname":"The Prestige",
 	"actdesc":"Pursue the path of pure magic.",
@@ -106,6 +107,7 @@
 {
 	"id":"darkmagician",
 	"title":"dark magician",
+	"tags":"t_tier1",
 	"desc":"A devotee of black magic.",
 	"require":"evil",
 	"cost":{
@@ -131,8 +133,35 @@
 },
 
 {
+	"id":"reanimator",
+	"tags":"t_tier1",
+	"title":"reanimator",
+	"desc":"Create and ressurect living materials.",
+	"require":"state.tier0>0&&state.evil>0",
+	"cost":{
+		"research":300,
+		"bones":10,
+		"bonedust":10,
+		"arcana":7
+	},
+	"effect":{
+		"tier1":true,
+		"sp":2
+	},
+	"mod":{
+		"research.max":10,
+		"embalming.max":1,
+		"reanimation.max":3,
+		"shadowlore.max":2,
+		"potions.max":3,
+		"spiritlore.max":2
+	}, "flavor":"even the dead have their uses"
+},
+
+{
 	"id":"witch",
 	"title":"witch",
+	"tags":"t_tier1",
 	"desc":"Witch",
 	"name":"witchcraft",
 	"warn":true,
@@ -168,6 +197,7 @@
 	"title":"arcane trickster",
 	"desc":"Use magic for deceit and trickery.",
 	"buyname":"Path of Trickery",
+	"tags":"t_tier1",
 	"require":"state.trickery>=4&&state.tier0>0",
 	"cost":{
 		"research":250,
@@ -195,8 +225,9 @@
 {
 	"id":"bonemonger",
 	"title":"bone monger",
-	"desc":"A collector and re-animator of bones.",
-	"require":"state.tier0>0&&state.evil>0",
+	"tags":"t_tier2",
+	"desc":"extend your life with the spare parts of the dead.",
+	"require":"state.reanimator>0&&state.evil>0",
 	"cost":{
 		"research":300,
 		"bones":10,
@@ -204,7 +235,7 @@
 		"arcana":7
 	},
 	"effect":{
-		"tier1":true,
+		"tier2":true,
 		"sp":2
 	},
 	"mod":{
@@ -212,15 +243,16 @@
 		"embalming.max":1,
 		"reanimation.max":2,
 		"shadowlore.max":3,
-		"potions.max":5,
-		"spiritlore.max":3
+		"potions.max":2,
+		"spiritlore.max":2
 	}, "flavor":"even the dead have their uses"
 },
 {
 	"id":"necromancer",
 	"title":"necromancer",
+	"tags":"t_tier3",
 	"desc":"master of death magic",
-	"require":"state.tier1>0&&state.evil>0&&state.shadowlore>=7",
+	"require":"state.tier2>0&&state.evil>0&&state.shadowlore>=7",
 	"cost":{
 		"research":1000,
 		"bones":100,
@@ -228,7 +260,7 @@
 		"arcana":10
 	},
 	"effect":{
-		"tier2":true,
+		"tier3":true,
 		"sp":2
 	},
 	"mod":{
@@ -247,16 +279,17 @@
 	"id":"battlemage",
 	"name":"battle mage",
 	"title":"Battlemage",
+	"tags":"t_tier2",
 	"actdesc":"Pursue the path of battle.",
 	"warn":true,
-	"require":"state.player.level>=10&&state.lore>=8&&state.armory>0",
+	"require":"state.tier1>0state.player.level>=10&&state.armory>0",
 	"cost":{
 		"research":250,
 		"arcana":3,
 		"gold":400
 	},
 	"effect":{
-		"tier1":true,
+		"tier2":true,
 		"sp":1
 	},
 	"mod":{
@@ -273,6 +306,7 @@
 	"id":"dreadlord",
 	"title":"dreadlord",
 	"desc":"harbinger of destruction",
+	"tags":"t_tier2",
 	"require":"state.tier1>0&&state.evil>0&&state.hp>=30&&state.player.level>=20",
 	"cost":{
 		"research":1000,
@@ -294,6 +328,7 @@
 {
 	"id":"warlock",
 	"title":"warlock",
+	"tags":"t_tier2",
 	"desc":"master of demons and demonic magic",
 	"require":"state.tier1>0&&state.evil>0&&state.demonology>=7",
 	"cost":{
@@ -314,6 +349,7 @@
 	"id":"archlock",
 	"title":"archlock",
 	"desc":"master of demons and demonic magic",
+	"tags":"t_tier3",
 	"require":"state.tier2>0&&state.evil>0&&state.demonology>=15",
 	"cost":{
 		"research":1000,
@@ -330,6 +366,7 @@
 	"id":"druid",
 	"title":"druid",
 	"desc":"druid",
+	"tags":"t_tier2",
 	"require":"state.tier1>0&&state.naturelore>=15",
 	"effect":{
 		"tier2":true,
@@ -347,6 +384,7 @@
 	"id":"alchemist",
 	"title":"alchemist",
 	"desc":"alchemist",
+	"tags":"t_tier2",
 	"disable":[],
 	"effect":{
 		"tier2":true,
@@ -364,6 +402,7 @@
 	"id":"enchanter",
 	"title":"enchanter",
 	"desc":"A master of charms and enchantments.",
+	"tags":"t_tier2",
 	"disable":[],
 	"effect":{
 		"tier2":true,
@@ -383,6 +422,7 @@
 	"id":"geomancer",
 	"title":"geomancer",
 	"desc":"lord of rocks.",
+	"tags":"t_tier2",
 	"disable":[],
 	"warn":true,
 	"actdesc":"Become a geomancer.",
@@ -409,6 +449,7 @@
 	"id":"pyromancer",
 	"title":"pyromancer",
 	"desc":"shaper of fire",
+	"tags":"t_tier2",
 	"disable":[],
 	"name":"pyromancy",
 	"warn":true,
@@ -436,6 +477,7 @@
 	"id":"hydromancer",
 	"title":"hydromancer",
 	"desc":"master of water",
+	"tags":"t_tier2",
 	"disable":[],
 	"name":"hydromancy",
 	"warn":true,
@@ -463,6 +505,7 @@
 	"id":"windmage",
 	"title":"wind mage",
 	"desc":"to walk on the wind",
+	"tags":"t_tier2",
 	"disable":[],
 	"name":"wind mage",
 	"warn":true,
@@ -490,6 +533,7 @@
 	"id":"sorcerer",
 	"title":"sorcerer",
 	"desc":"A wielder of raw magical power.",
+	"tags":"t_tier3",
 	"disable":[],
 	"effect":{
 		"tier3":true,
@@ -509,6 +553,7 @@
 {
 	"id":"stormcaller",
 	"require":"state.hydromancer>0||state.windmage>0",
+	"tags":"t_tier3",
 	"cost":{
 		"research":1000,
 		"arcana":10,
@@ -534,6 +579,8 @@
 	"id":"elementalist",
 	"title":"elementalist",
 	"desc":"Master of elemental forces.",
+	"require":"state.tier0>0&&state.airlore>2&&state.firelore>2&&state.earthlore>2&&state.waterlore>2",
+	"tags":"t_tier1",
 	"effect":{
 		"tier1":true,
 		"sp":1
@@ -547,8 +594,9 @@
 {
 	"id":"highelemental",
 	"title":"high elemental",
+	"tags":"t_tier4",
 	"desc":"Lord of the elements",
-	"require":"state.tier2>0&&state.airlore>9&&state.firelore>9&&state.waterlore>9&&state.earthlore>9",
+	"require":"state.tier4>0&&state.airlore>9&&state.firelore>9&&state.waterlore>9&&state.earthlore>9",
 	"cost":{
 		"tomes":10,
 		"airgem":10,
@@ -569,6 +617,7 @@
 {
 	"id":"oracle",
 	"title":"oracle",
+	"tags":"t_tier1",
 	"desc":"A diviner.",
 	"require":"state.tier0>0&&state.spiritlore>=5&&state.divination>=5",
 	"effect":{
@@ -589,6 +638,7 @@
 	"id":"seer",
 	"title":"oracle",
 	"desc":"A diviner.",
+	"tags":"t_tier2",
 	"effect":{
 		"tier2":true,
 		"sp":2
@@ -606,6 +656,7 @@
 	"id":"mage",
 	"title":"mage",
 	"desc":"member of an arcane order.",
+	"tags":"t_tier2",
 	"require":"state.tier1>0&&state.lore>15",
 	"cost":{
 
@@ -625,6 +676,7 @@
 	"id":"thaumaturge",
 	"title":"thaumaturge",
 	"desc":"a crafter of wonders",
+	"tags":"t_tier3",
 	"cost":{
 
 	},
@@ -635,6 +687,26 @@
 	"mod":{
 		"spiritlore.max":2,
 		"divination.max":3,
+		"lore.max":2,
+		"lore.rate":0.4,
+		"mana.max":3
+	}
+},
+{
+	"id":"wizard",
+	"title":"wizard",
+	"desc":"raw magic power",
+	"tags":"t_tier4",
+	"require":"state.tier3>0&&state.lore>20",
+	"cost":{
+
+	},
+	"effect":{
+		"tier4":true,
+		"sp":2
+	},
+	"mod":{
+		"research.max":40,
 		"lore.max":2,
 		"lore.rate":0.4,
 		"mana.max":3

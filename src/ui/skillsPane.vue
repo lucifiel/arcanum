@@ -64,10 +64,10 @@ export default {
 
 div.skills {
 	height:100%;
+	width:100%;
 	display:flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	padding: 0px 16px;
 }
 
 
@@ -75,8 +75,7 @@ div.subs {
 	display:flex;
 	flex-flow: row wrap;
 	margin: 12px 0px 0px 0px;
-	padding: 12px 24px;
-	width: 98%;
+	padding: 12px 8px;
 	overflow-y: auto;
 	justify-content: space-between;
 }
