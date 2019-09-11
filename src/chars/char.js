@@ -1,4 +1,3 @@
-import Range from '../range';
 import Base, {mergeClass} from '../items/base';
 import {tryDamage} from '../composites/combat';
 import Stat from '../stat';
@@ -87,6 +86,8 @@ export default class Char {
 	constructor( vars ){
 
 		if ( vars ) Object.assign( this, vars );
+
+		this.type = 'npc';
 
 		this.statuses = this.statuses || {};
 		this.immunities = this.immunities || {};

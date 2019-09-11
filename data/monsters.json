@@ -722,7 +722,22 @@
 			"water":20
 		}
 
-    },
+	},
+	{
+		"id":"icewalker",
+		"desc":"they say those who die on the cold heights search the passes for mortals to join them.",
+		"level":4,
+		"kind":"undead",
+		"immune":["cold"],
+		"hp":28,
+		"defense":14,
+		"speed":3,
+        "attack":{
+            "name":"frozen claws",
+            "kind":"cold",
+            "dmg":"3~6"
+        }, "loot":{"max":4 }
+	},
     {
         "id":"ranger",
         "level":5,
@@ -1003,6 +1018,26 @@
 			"nature":20
 		}
 
+	},
+	{
+		"id":"snowleopard",
+		"name":"snow leopard",
+        "level":5,
+        "kind":"beast",
+        "desc":"",
+        "hp":17,
+		"defense":18,
+		"speed":9,
+        "attack":{
+            "name":"claws",
+            "kind":"cold",
+            "dmg":"4~7"
+		}, "resist":{
+			"cold":20,
+			"water":10
+		},
+		"loot":{}
+
     },
     {
         "id":"minotaur",
@@ -1195,7 +1230,7 @@
             "kind":"slash",
             "dmg":"3~9"
         },
-		"loot":{"wight pus":40},
+		"loot":{},
 		"resist":{
 			"shadow":10
 		}
@@ -1331,6 +1366,8 @@
 		},
 		"resist":{
 			"arcane":30
+		},"loot":{
+			"sword":1
 		}
 
 	},
@@ -1347,7 +1384,7 @@
             "name":"claws",
             "kind":"slash",
             "dmg":"5~14"
-        }, "loot":["bear claw"]
+        }, "loot":[]
 
     },
     {
@@ -1455,6 +1492,21 @@
             "dmg":"5~15"
         }
 
+	},
+	{
+        "id":"frixie",
+        "level":7,
+        "desc":"A nasty fey of cold disposition.",
+        "hp":35,
+        "tohit":10,
+		"defense":17,
+		"speed":12,
+        "attack":{
+            "name":"frost bolt",
+            "kind":"cold",
+            "dmg":"4~17"
+        }
+
     },
     {
 		"id":"claygolem",
@@ -1531,25 +1583,6 @@
         }
 
     },
-    {
-        "id":"yeti",
-        "biome":"mountains",
-        "kind":"giant",
-        "level":10,
-        "desc":"You ain't seen nothing yeti.",
-        "hp":60,
-        "tohit":11,
-        "defense":25,
-        "attack":{
-            "name":"claws",
-            "kind":"slash",
-            "dmg":"8~12"
-		},
-		"resist":{
-			"earth":20
-		}
-
-	},
 	{
         "id":"shark",
         "level":9,
@@ -1855,7 +1888,7 @@
 	{
         "id":"roc",
         "level":8,
-        "desc":"An avian of mythic repute.",
+        "desc":"An avian terror of mythic repute.",
         "tohit":7,
         "kind":"magic beast",
         "hp":41,
@@ -2011,7 +2044,7 @@
 			"spirit":30
 		}
 
-    },
+	},
     {
 		"id":"fireelemental",
         "name":"fire elemental",
@@ -2101,6 +2134,25 @@
 		"resist":{
 			"physical":20,
 			"light":20
+		}
+
+	},
+	{
+        "id":"yeti",
+        "biome":"mountains",
+        "kind":"giant",
+        "level":10,
+        "desc":"You ain't seen nothing yeti.",
+        "hp":60,
+        "tohit":11,
+        "defense":25,
+        "attack":{
+            "name":"claws",
+            "kind":"slash",
+            "dmg":"8~12"
+		},
+		"resist":{
+			"earth":20
 		}
 
 	},
@@ -2832,13 +2884,32 @@
             "name":"death touch",
             "kind":"shadow",
             "dmg":"80~120"
-        }, "loot":{ "potion of critical agony":15}
+        }, "loot":{}
 
-    },
+	},
+	{
+		"id":"gorborung",
+		"name":"The Gorborung",
+		"level":33,
+		"unique":true,
+        "evil":100,
+        "kind":"outsider",
+        "desc":"The gargantuan entity in the depths of Mr. Gorbu has never been seen by mortal eyes.",
+        "hp":1200,
+		"tohit":33,
+		"regen":30,
+        "defense":200,
+        "attack":{
+			"name":"gorboring",
+            "kind":"sonic",
+            "dmg":"120~320"
+        }
+	},
     {
         "id":"cthulhu",
         "level":30,
-        "evil":100,
+		"evil":100,
+		"unique":true,
         "kind":"outsider",
         "desc":"In his house at R'lyeh dead Cthulhu waits dreaming.",
         "hp":1000,
@@ -2856,6 +2927,7 @@
 		"id":"ouroboros",
 		"level":34,
 		"kind":"diety",
+		"unique":true,
 		"desc":"The serpent that grips the earth in its scales",
 		"hp":1300,
 		"tohit":30,

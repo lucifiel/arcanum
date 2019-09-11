@@ -3,6 +3,7 @@ import Raid from './composites/raid';
 import GData from './items/gdata';
 import Equip from './chars/equip';
 import Runnable from './composites/runnable';
+import Minions from './chars/minions';
 
 export default class GameState {
 
@@ -75,6 +76,11 @@ export default class GameState {
 
 		this.inventory = new Inventory( this.items.inv || baseData.inventory || {max:3} );
 		this.items.inv = this.inventory;
+
+		/**
+		 * @property {Minions} minions
+		 */
+		this.minions = this.items.minions = new Minions( this.items.minions || null );
 
 		this.equip = new Equip( baseData.equip );
 

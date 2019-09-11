@@ -1,7 +1,7 @@
 import Mod, {DEFAULT_MOD} from "./mod";
 
 /**
- * Stat with a list of modifications.
+ * Stat with a list of modifiers.
  */
 export default class Stat {
 
@@ -33,6 +33,9 @@ export default class Stat {
 		return this._base + (this._pct >= 0 ? '+' : '') + (100*this._pct) + '%';
 	}
 
+	/**
+	 * @property {number} value
+	 */
 	get value() { return (this._base + this._bonus)*( 1 + this._pct ); }
 	valueOf() { return (this._base + this._bonus)*( 1 + this._pct ); }
 
@@ -135,6 +138,7 @@ export default class Stat {
 	 * Get or create the default stat modifier.
 	 * The modifier count begins and stays at '1' because only its
 	 * bonuses and percents change.
+	 * @returns {Mod}
 	 */
 	defaultMod(){
 

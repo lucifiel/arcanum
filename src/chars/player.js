@@ -7,6 +7,7 @@ import { tryDamage } from '../composites/combat';
 
 import Char, { getDelay } from './char';
 import Events, { LEVEL_UP } from "../events";
+import Minions from "./minions";
 
 /**
  * @constant {number} EXP_RATE
@@ -93,6 +94,12 @@ export default class Player extends Char {
 
 	}
 
+	/**
+	 * @property {Minons} minions
+	 */
+	//get minions() { return this._minions; }
+	//set minions(v) { this._minions = v instanceof Minions ? v : new Minions(v); }
+
 	get mount() { return this._mount; }
 	set mount(v) {
 		this._mount = v;
@@ -101,6 +108,7 @@ export default class Player extends Char {
 	/**
 	 * NOTE: Elements that are themselves Items are not encoded,
 	 * since they are encoded in the Item array.
+	 * @return {object}
 	 */
 	toJSON() {
 

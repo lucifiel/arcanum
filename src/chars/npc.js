@@ -36,6 +36,12 @@ export default class Npc extends Char {
 
 	}
 
+	/**
+	 * @property {boolean} active - whether minion is active in combat.
+	 */
+	get active() { return this._active; }
+	set active(v) { this._active = v; }
+
 	constructor(vars) {
 
 		super( vars instanceof Monster ? cloneClass(vars) : vars );

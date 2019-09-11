@@ -301,7 +301,7 @@
 	{
 		"id":"aragwastes",
 		"name":"arag wastes",
-		"desc":"the arid plain stretching from the heights.",
+		"desc":"an arid plain stretching from the arag heights.",
 		"level":8,
 		"run":{
 			"stamina":2
@@ -322,13 +322,46 @@
 
 	},
 	{
+		"id":"mtgorborung",
+		"name":"mount gorborung",
+		"desc":"the largest mountain of the world. many journey over its passes; just don't go inside.",
+		"level":9,
+		"length":50,
+		"run":{
+			"stamina":5
+		},
+		"result":{
+			"watergem":"20%",
+			"gems":"3~5"
+		},
+		"enemies":[
+			"yeti",
+			"wolf",
+			"stonegolem",
+			"airelemental",
+			"icewalker",
+			"harpy",
+			"wolf",
+			"doppelganger",
+			"iceelemental",
+			"wight",
+			"wraith",
+			"frixie",
+			"frixie",
+			"ogre",
+			"cavetroll",
+			"snowleopard",
+			"snowleopard"
+		]
+	},
+	{
 		"id":"greatbog",
 		"name":"the great bog",
 		"desc":"for hundreds of miles the great bog spreads across the dark center of Dhrune.",
 		"require":"g.player.dist>=200",
 		"level":11,
 		"run":{
-			"stamina":2
+			"stamina":3
 		},
 		"length":100,
 		"result":{
@@ -359,7 +392,7 @@
 		"require":"g.planeslore>=7",
 		"level":12,
 		"run":{
-			"stamina":2
+			"stamina":4
 		},
 		"length":50,
 		"result":{
@@ -378,7 +411,7 @@
 	{
 		"id":"desillagrotto",
 		"name":"desilla's grotto",
-		"desc":"",
+		"desc":"in all the world, the most enjoyable place to die.",
 		"require":"g.player.dist>=500",
 		"level":14,
 		"run":{
@@ -386,14 +419,16 @@
 		},
 		"length":50,
 		"result":{
-			"gems":"3~5"
+			"gems":"3~5",
+			"gold":"50~100"
 		},
-		"boss":"bogwitch",
 		"enemies":[
 			"stalker",
+			"incubus",
+			"imp",
 			"willowisp",
 			"succubus"
-		]
+		],"flavor":"desilla was known for only two things; her ruthlessness, and her entertainments."
 
 	},
 	{

@@ -31,7 +31,11 @@ export default {
 		demonology() { return Game.state.getData('demonology');},
 
 		items(){
-			return Game.state.monsters.filter( v=>v.value>=1 );
+			return Game.state.minions.filter( v=>v.value>=1 );
+		},
+
+		toggleActive(b){
+
 		}
 
 	},
@@ -49,11 +53,13 @@ export default {
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
 	<table class="minions">
-		<tr><th>Creature</th><th>Owned</th><th class="num-align">Hp</th></tr>
-		<tr v-for="b in filtered" :key="b.id">
-			<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
+		<tr><th>Creature</th><th>Owned</th><th class="num-align">Hp</th><th>active</th></tr>
+		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
+			<th>{{ b.name }}</th>
 			<td class="num-align">{{ b.value }}</td>
 			<td class="num-align">{{ toNum(b.hp) }}</td>
+			<td><button @click="toggleActive(b)">{{ b.active ? 'Rest' : 'Activate' }}</button>
+			<td><button @click="dismiss(b)">{{ 'Dismiss'}}</button>
 		</tr>
 	</table>
 

@@ -2,6 +2,7 @@ import Wearable from "./wearable";
 import Stat from "../stat";
 import Base, {mergeClass} from '../items/base';
 import Item from "../items/item";
+import Npc from "./npc";
 
 export default class Inventory {
 
@@ -57,6 +58,8 @@ export default class Inventory {
 				console.log('reviving wearable');
 				it = this.items[i] = new Wearable(it);
 
+			} else if ( type === 'npc') {
+				it = this.items[i] = new Npc(it);
 			} else {
 				it = this.items[i] = new Item(it);
 			}

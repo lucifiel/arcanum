@@ -1,6 +1,7 @@
 import Npc from "./npc";
+import Inventory from "./inventory";
 
-export default class Minions {
+export default class Minions extends Inventory {
 
 	get minions() { return this._minions; }
 	set minions(v) {
@@ -13,9 +14,15 @@ export default class Minions {
 
 	}
 
+	/**
+	 * @property {string[]}
+	 */
+	get active() { return this._active; }
+	set active(v) { this._active = v; }
+
 	constructor(vars=null){
 
-		if ( vars ) Object.assign( this, vars );
+		super(vars);
 
 	}
 
