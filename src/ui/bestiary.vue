@@ -15,9 +15,6 @@ export default {
 	components:{
 		filterbox:FilterBox
 	},
-	beforeCreate(){
-		this.game = Game;
-	},
 	methods:{
 
 		showHp(m) {

@@ -13,6 +13,8 @@ export default class Npc extends Char {
 
 		let data = super.toJSON();
 		data.id = this.id;
+		data.template = this.template.id;
+		data.cost = undefined;
 
 		return data;
 
@@ -58,11 +60,13 @@ export default class Npc extends Char {
 
 		this.dodge = this.dodge || 0;
 
+		this.active = this.active === undefined || this.active === null ? false : this.active;
+
 		if ( typeof this.hp === 'string' || typeof this.hp === 'object') this.hp = new Range(this.hp);
 		if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 		this.tohit = this.tohit || 0;
-		this._maxHp = this._maxHp || this._hp;
+		this.maxHp = this._maxHp || this._hp;
 
 		if ( this.dmg && (this.damage===null||this.damage===undefined) ) this.damage = this.dmg;
 

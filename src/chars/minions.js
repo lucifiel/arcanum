@@ -14,7 +14,7 @@ export default class Minions extends Inventory {
 
 		if ( !this.max ) this.max = 0;
 
-		this._active = this._active || [];
+		this._active = [];
 
 	}
 
@@ -59,6 +59,7 @@ export default class Minions extends Inventory {
 
 		super.remove(m);
 
+		console.log('removing miinon: ' + m.id );
 		let ind = this.active.indexOf(m);
 		if ( ind>=0)this.active.splice(ind,1);
 

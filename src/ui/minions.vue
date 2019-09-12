@@ -34,7 +34,7 @@ export default {
 
 		toNum(v) {
 			if ( v === undefined ) return 0;
-			return ( (v && typeof v === 'object') ? v.value : v ).toFixed(0);
+			return ( (v && typeof v === 'object') ? v.value : v ).toFixed(1);
 		}
 
 	}
@@ -56,7 +56,7 @@ export default {
 		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
 			<th>{{ b.name }}</th>
 			<td class="num-align">{{ b.value }}</td>
-			<td class="num-align">{{ toNum(b.hp) }} / {{ b.maxHp }}</td>
+			<td class="num-align">{{ toNum(b.hp) }} / {{ toNum( b.maxHp ) }}</td>
 			<td><button @click="toggleActive(b)" :disabled="inRaid">{{ b.active === true ? 'Rest' : 'Activate' }}</button></td>
 			<td><confirm @confirm="dismiss(b)">{{ 'Dismiss'}}</confirm></td>
 		</tr>

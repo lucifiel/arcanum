@@ -124,7 +124,6 @@ export default class Combat {
 		if (vars) Object.assign(this, vars);
 
 		this._enemies = this._enemies || [];
-		this._allies = this._allies || [];
 
 	}
 
@@ -165,7 +164,10 @@ export default class Combat {
 		for( let i = this._allies.length-1; i >= 0; i-- ) {
 
 			e = this._allies[i];
-			if ( e.alive === false ) { this._allies.splice(i,1); continue;}
+			if ( e.alive === false ) {
+				this.charDied( e );
+				continue;
+			}
 			action = e.update(dt);
 			if ( action ) this.allyAttack( e, action );
 
@@ -189,6 +191,8 @@ export default class Combat {
 
 		let len = this._allies.length;
 
+		console.log('allies: ' + len );
+
 		for( let i = 0; i < len; i++ ) {
 			if ( this._allies[i].alive ) return this._allies[i];
 		}
@@ -206,7 +210,7 @@ export default class Combat {
 
 			Events.dispatch(EVT_COMBAT, null, this.player.name + ' casts ' + it.name + ' at the darkness.' );
 
-		} else this.allyAttack( it );
+		} else this.allyAttack( this.player, it );
 
 	}
 
@@ -216,7 +220,7 @@ export default class Combat {
 	 */
 	allyAttack( attacker, src ) {
 
-		let atk = src ? src.attack : attacker.attack;
+		let atk = src ? (src.attack||src) : attacker.attack;
 
 		let e = this.enemies[0];
 
@@ -322,6 +326,7 @@ export default class Combat {
 
 	charDied( char, attacker ) {
 
+		console.log('char died: ' + char.id );
 		if ( char === this.player ) this.playerDied();
 		else Game.state.minions.died( char );
 

@@ -44,6 +44,8 @@ export default class ItemGen {
 	npc( proto ) {
 
 		let it = new Npc( proto );
+		it.value = 1;
+		it.name = proto.name;
 		it.id = proto.id + this.state.nextId();
 		return it;
 

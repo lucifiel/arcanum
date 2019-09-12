@@ -120,14 +120,13 @@ export default class Char {
 
 		for( let i = this.dots.length-1; i>=0; i--) this.dots[i].revive(state);
 
+
 		if ( this.template ) {
 
-			console.log('restoring from template');
 			let it = state.getData( this.template );
 			if ( it ) mergeSafe( this, it );
 
-			console.log('loaded hp: ' + it.hp );
-			if ( this.hp instanceof Range ) this.hp = this.hp.value;
+			//if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 		}
 
@@ -162,7 +161,7 @@ export default class Char {
 					this.dots.splice( i, 1);
 				}
 				if ( dot.damage ) {
-					tryDamage( dot.damage, dot, dot.source );
+					tryDamage( this, dot, dot.source );
 				}
 
 			}
