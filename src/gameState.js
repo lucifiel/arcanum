@@ -91,9 +91,9 @@ export default class GameState {
 		this.sellRate = this.sellRate || 0.5;
 
 		this.raid = new Raid( baseData.raid );
-		this.raid.revive( this );
 
 		if ( restore ) this.revive();
+		this.raid.revive( this );
 
 		/** @todo: messy bug fix. */
 		this.playerStats = this.player.getResources();
@@ -151,12 +151,11 @@ export default class GameState {
 		if ( typeof this.restAction === 'string') this.restAction = this.getData( this.restAction );
 
 		/**
-		 * @compatibility
+		 * @deprecated
 		 */
 		if ( this.curHome ) this.slots['home'] = this.curHome;
 
 		for( let p in this.slots ) {
-
 			if ( typeof this.slots[p] === 'string') this.slots[p] = this.getData(this.slots[p] );
 		}
 
@@ -166,7 +165,7 @@ export default class GameState {
 
 		this.equip.revive( this );
 		this.inventory.revive( this );
-
+		this.minions.revive(this);
 		this.player.revive(this);
 
 		if ( this.curAction ) {

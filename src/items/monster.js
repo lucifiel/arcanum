@@ -1,12 +1,29 @@
 import GData from "./gdata";
+import Stat from "../stat";
+
+const defaults = {
+
+	level:1,
+	buy:(it)=>new Stat(200*( it.level||1) ),
+	locked:false
+
+};
 
 export default class Monster extends GData {
 
+	get defaults() { return defaults; }
+
+	toJSON() {
+		if ( this.value > 0 ) return { value:this.value};
+		else return undefined;
+	}
+
 	constructor(vars=null) {
 
-		super(vars);
+		super(vars, defaults );
 
-		this.level = this.level || 1;
+		this.type = 'monster';
+
 		this.hp = this.hp || (2*this.level);
 		this.speed = this.speed || this.level;
 		this.tohit = this.tohit || this.level;
@@ -14,5 +31,7 @@ export default class Monster extends GData {
 								? this.level : this.defense;
 
 	}
+
+	maxed() { return false; }
 
 }

@@ -7,7 +7,6 @@ import { tryDamage } from '../composites/combat';
 
 import Char, { getDelay } from './char';
 import Events, { LEVEL_UP } from "../events";
-import Minions from "./minions";
 
 /**
  * @constant {number} EXP_RATE

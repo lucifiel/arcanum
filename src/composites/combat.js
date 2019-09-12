@@ -9,6 +9,7 @@ import {
 	EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT
 } from '../events';
+import Monster from '../items/monster';
 
 /**
 * Attempt to damage a target. Made external for use by dots, other code.
@@ -99,7 +100,14 @@ export default class Combat {
 	get enemies() { return this._enemies; }
 	set enemies(v) {
 
-		for (let i = v.length - 1; i >= 0; i--) if ( !( v[i] instanceof Npc ) ) v[i] = new Npc( v[i] );
+		for (let i = v.length - 1; i >= 0; i--) {
+
+			var obj = v[i];
+			if ( obj instanceof Monster ) v[i] = Game.itemGen.npc( obj);
+			else if (!(obj instanceof Npc) ) v[i] = new Npc( v[i] );
+
+		}
+
 		this._enemies = v;
 	}
 
@@ -126,7 +134,8 @@ export default class Combat {
 		this.player = state.player;
 
 		for( let i = this._enemies.length-1; i>=0; i-- ) this._enemies[i].revive(state);
-		for( let i = this._allies.length-1; i >= 0; i-- ) this._allies[i].revive(state);
+
+		this.allies = state.minions.active;
 
 	}
 
@@ -167,10 +176,23 @@ export default class Combat {
 			e = this._enemies[i];
 			if ( e.alive === false ) { this._enemies.splice(i,1); continue;}
 			action = e.update(dt);
-			if ( action ) this.enemyAttack( e, action, this.player );
+			if ( action ) this.enemyAttack( e, action, this.nextAlly() );
 
 		}
 
+	}
+
+	/**
+	 * @returns {Npc} next target of an enemy attack
+	 */
+	nextAlly() {
+
+		let len = this._allies.length;
+
+		for( let i = 0; i < len; i++ ) {
+			if ( this._allies[i].alive ) return this._allies[i];
+		}
+		return this.player;
 	}
 
 	/**
@@ -301,6 +323,7 @@ export default class Combat {
 	charDied( char, attacker ) {
 
 		if ( char === this.player ) this.playerDied();
+		else Game.state.minions.died( char );
 
 	}
 

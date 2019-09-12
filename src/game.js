@@ -16,6 +16,8 @@ import Runnable from './composites/runnable';
 import Events, {EVT_UNLOCK, EVT_EVENT} from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
+import Stat from './stat';
+import Npc from './chars/npc';
 
 var techTree;
 
@@ -449,6 +451,16 @@ export default {
 		if ( this.canPay(it.buy) === false ) return false;
 		this.payCost( it.buy );
 
+		/**
+		 * create monster and add to inventory.
+		 * @todo this is hacky.
+		 */
+		if ( it.type === 'monster' ) {
+
+			this.state.minions.add( this.itemGen.npc(it) );
+
+		}
+
 		it.owned = true;
 
 	},
@@ -878,6 +890,7 @@ export default {
 	canBuy(it) {
 
 		if ( it.disabled || it.locked || it.locks > 0 ) return false;
+
 		if ( it.buy && !this.canPay(it.buy) ) return false;
 
 		return !it.maxed();
@@ -946,6 +959,12 @@ export default {
 		let res;
 		if ( typeof cost === 'object' ){
 
+			if ( cost instanceof Stat ) {
+				var g = this.getData('gold');
+				g.value -= cost.value*unit;
+				g.dirty = true;
+			}
+
 			for( let p in cost ) {
 
 				res = this.getData(p);
@@ -983,6 +1002,8 @@ export default {
 		let res;
 
 		if ( typeof cost === 'object' ){
+
+			if ( cost instanceof Stat ) { return this.getData('gold').value >= cost.value*unit; }
 
 			for( let p in cost ) {
 

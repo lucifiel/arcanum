@@ -9,7 +9,7 @@ export default class Inventory {
 	/**
 	 * @property {number} length - items in inventory.
 	 */
-	get length() { return this.items.length; }
+	get count() { return this.items.length; }
 
 	toJSON(){
 		return {
@@ -19,7 +19,9 @@ export default class Inventory {
 	}
 
 	get max() { return this._max; }
-	set max(v) { this._max = v instanceof Stat ? v : new Stat(v); }
+	set max(v) {
+		this._max = v instanceof Stat ? v : new Stat(v);
+	}
 
 	constructor(vars=null){
 
@@ -58,9 +60,10 @@ export default class Inventory {
 				console.log('reviving wearable');
 				it = this.items[i] = new Wearable(it);
 
-			} else if ( type === 'npc') {
+			} else if ( type === 'monster') {
 				it = this.items[i] = new Npc(it);
 			} else {
+				console.log('default revive: ' + it.id );
 				it = this.items[i] = new Item(it);
 			}
 
@@ -116,6 +119,14 @@ export default class Inventory {
 	full(){
 		//console.log('full: ' + ( this.max >0 && this.items.length >= this.max));
 		return this.max >0 && this.items.length >= this.max;
+	}
+
+	/**
+	 * Filter inventory items.
+	 * @param {*} p
+	 */
+	filter(p) {
+		return this.items.filter(p);
 	}
 
 	/**

@@ -10,37 +10,33 @@ export default {
 			filtered:null
 		};
 	},
-	beforeCreate(){
-		this.game = Game;
-	},
-	methods:{
-
-		toNum(v) {
-			return ( typeof v === 'object' ? v.value : v ).toFixed(0);
-		}
-
+	components:{
+		filterbox:FilterBox
 	},
 	computed:{
 
-		totalLore() { return this.animals.value + this.lore.value + this.demonology.value; },
+		inRaid() { return Game.state.curAction === Game.state.raid },
 
-		animals() { return Game.state.getData('animals');},
+		minions(){ return Game.state.minions; },
 
-		lore() { return Game.state.getData('lore');},
-
-		demonology() { return Game.state.getData('demonology');},
-
-		items(){
-			return Game.state.minions.filter( v=>v.value>=1 );
-		},
-
-		toggleActive(b){
-
-		}
+		items(){ return Game.state.minions.filter( v=>v.value>=1 ); },
 
 	},
-	components:{
-		filterbox:FilterBox
+	methods:{
+
+		toggleActive(b) {
+			this.minions.setActive( b, !b.active );
+		},
+
+		dismiss(b){
+			this.minions.remove(b);
+		},
+
+		toNum(v) {
+			if ( v === undefined ) return 0;
+			return ( (v && typeof v === 'object') ? v.value : v ).toFixed(0);
+		}
+
 	}
 
 }
@@ -48,26 +44,40 @@ export default {
 
 <template>
 
-<div>
+<div class="bestiary">
 
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
+	<span v-if="inRaid" class="warn-text">Cannot change active minions while adventuring</span>
+	<div>{{ minions.count + ' / ' + minions.max + ' Used' }}</div>
+	<div class="char-list">
 	<table class="minions">
 		<tr><th>Creature</th><th>Owned</th><th class="num-align">Hp</th><th>active</th></tr>
 		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
 			<th>{{ b.name }}</th>
 			<td class="num-align">{{ b.value }}</td>
-			<td class="num-align">{{ toNum(b.hp) }}</td>
-			<td><button @click="toggleActive(b)">{{ b.active ? 'Rest' : 'Activate' }}</button>
-			<td><button @click="dismiss(b)">{{ 'Dismiss'}}</button>
+			<td class="num-align">{{ toNum(b.hp) }} / {{ b.maxHp }}</td>
+			<td><button @click="toggleActive(b)" :disabled="inRaid">{{ b.active === true ? 'Rest' : 'Activate' }}</button></td>
+			<td><confirm @confirm="dismiss(b)">{{ 'Dismiss'}}</confirm></td>
 		</tr>
 	</table>
+	</div>
 
 </div>
 
 </template>
 
 <style scoped>
+
+.bestiary {
+	padding-left:16px;
+	height:100%;
+}
+
+.char-list {
+	height:85%;
+	overflow-y:auto;
+}
 
 table {
 	border-spacing: 4px 0px;

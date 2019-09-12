@@ -98,7 +98,7 @@ div.player-view {
 	display:flex;
 	flex-direction: row;
 	height:100%;
-	padding: 0px 14px;
+	padding-left:14px;
 	justify-content: space-between;
 }
 

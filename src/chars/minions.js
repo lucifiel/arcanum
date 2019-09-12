@@ -1,18 +1,6 @@
-import Npc from "./npc";
 import Inventory from "./inventory";
 
 export default class Minions extends Inventory {
-
-	get minions() { return this._minions; }
-	set minions(v) {
-
-		for( let i = v.length-1; i>=0; i-- ) {
-			v[i] = v[i] instanceof Npc ? v[i] : new Npc(v[i]);
-		}
-
-		this._minions = v;
-
-	}
 
 	/**
 	 * @property {string[]}
@@ -24,24 +12,60 @@ export default class Minions extends Inventory {
 
 		super(vars);
 
+		if ( !this.max ) this.max = 0;
+
+		this._active = this._active || [];
+
 	}
 
-	add( m ) {
+	/**
+	 * Get list of Minions by id.
+	 * @param {string[]} ids
+	 */
+	getList( ids ) {
+		return this.items.filter( v=>ids.includes(v.id) );
+	}
 
-		this.minions.push(m);
+	setActive( b, active=true ) {
+
+		b.active = active;
+
+		if ( active === true ) {
+
+			if ( !this.active.includes(b) )this.active.push(b);
+
+		} else {
+
+			let ind = this.active.indexOf(b);
+			if ( ind >= 0 ) this.active.splice(ind,1);
+
+		}
+
+	}
+
+	revive( state ) {
+
+		super.revive(state);
+
+		for( let p in this.items ) {
+
+			var m = this.items[p];
+			if ( m.active ) this._active.push(m);
+		}
 
 	}
 
 	remove( m ) {
 
-		let ind = this.minions.indexOf( m );
-		if ( ind >= 0 ) {
-			this.minions.splice(ind,1);
-		}
+		super.remove(m);
+
+		let ind = this.active.indexOf(m);
+		if ( ind>=0)this.active.splice(ind,1);
 
 	}
 
-	died() {
+	died( m ) {
+		this.remove(m);
 	}
 
 }

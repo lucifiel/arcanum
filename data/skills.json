@@ -283,7 +283,7 @@
 	{
 
 		"id":"spiritlore",
-		"name":"second sight",
+		"name":"spirit lore",
 		"desc":"seeing the unseen",
 		"require":"g.lore>=6",
 		"need":"spiritsource",

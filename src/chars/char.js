@@ -1,9 +1,11 @@
 import Base, {mergeClass} from '../items/base';
+import { mergeSafe, changes, jsonify } from 'objecty';
 import {tryDamage} from '../composites/combat';
 import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';
 import GameState from '../gameState';
+import Range from '../range';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -15,7 +17,7 @@ export function getDelay(s) {
 
 export default class Char {
 
-	toJSON(){
+	/*toJSON(){
 
 		let data = {}
 
@@ -26,9 +28,11 @@ export default class Char {
 
 		}
 
+		data.current = undefined;
+
 		return data;
 
-	}
+	}*/
 
 	get statuses() { return this._statuses; }
 	set statuses(v) { this._statuses = v; }
@@ -120,8 +124,10 @@ export default class Char {
 
 			console.log('restoring from template');
 			let it = state.getData( this.template );
-			if ( it ) this.mergeSafe( this, it );
-			else console.warn('template not found: ' + this.template );
+			if ( it ) mergeSafe( this, it );
+
+			console.log('loaded hp: ' + it.hp );
+			if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 		}
 

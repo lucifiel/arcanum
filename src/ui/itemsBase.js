@@ -6,6 +6,7 @@ import {indexAfter} from '../util';
 
 import Game from '../game';
 import Skill from '../items/skill';
+import Stat from '../stat';
 
 export default {
 
@@ -64,7 +65,8 @@ export default {
 			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
 			else if ( type === 'object') {
 
-				this.effectList( obj, results, '', rate );
+				if ( obj instanceof Stat ) results.gold = obj.value;
+				else this.effectList( obj, results, '', rate );
 
 			}
 

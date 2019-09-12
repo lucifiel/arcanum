@@ -44,6 +44,7 @@ export default {
 <style scoped>
 
 div.up-list {
+	padding-right:14px;
 	overflow-y: auto;
 	overflow-x:visible;
 }

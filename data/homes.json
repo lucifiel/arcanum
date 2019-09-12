@@ -82,6 +82,7 @@
 		"require":"tier0",
 		"cost":325,
 		"mod":{
+			"minions.max":1,
 			"space.max":20
 		}
 	},
@@ -91,6 +92,7 @@
 		"cost":900,
 		"require":"g.tier0>0&&g.arcana.max>=8",
 		"mod":{
+			"minions.max":3,
 			"space.max":30
 		}
 	},
@@ -100,6 +102,7 @@
 		"cost":750,
 		"require":"g.tier0&&g.arcana.max>=12",
 		"mod":{
+			"minions.max":1,
 			"gem.max":1,
 			"space.max":25,
 			"gold.rate":0.2,
@@ -114,6 +117,7 @@
 		"cost":2000,
 		"require":"g.tier0&&g.languages>=7",
 		"mod":{
+			"minions.max":5,
 			"space.max":50,
 			"research.rate":-0.5,
 			"gold.max":40,
@@ -127,6 +131,7 @@
 		"cost":800,
 		"require":"g.tier0>0&&g.naturelore>=7",
 		"mod":{
+			"minions.max":7,
 			"space.max":30,
 			"nature.max":1,
 			"nature.rate":0.1
@@ -139,6 +144,7 @@
 		"cost":2000,
 		"require":"g.tier1>0&&g.arcana>=10",
 		"mod":{
+			"minions.max":10,
 			"space.max":65
 		}
 	},
@@ -149,6 +155,7 @@
 		"cost":2750,
 		"require":"g.tier1>0&&g.arcana>=10",
 		"mod":{
+			"minions.max":12,
 			"space.max":75
 		}
 	},
@@ -158,6 +165,7 @@
 		"require":"g.tier0>0&&(g.shadow+g.earth+g.nature)>0",
 		"cost":150,
 		"mod":{
+			"minions.max":2,
 			"space.max":25,
 			"research.rate":-0.5,
 			"earth.max":2,
@@ -176,6 +184,7 @@
 		"cost":1250,
 		"require":"oracle",
 		"mod":{
+			"minions.max":3,
 			"space.max":40,
 			"light.rate":0.1,
 			"air.rate":0.1,
@@ -204,6 +213,7 @@
 		"cost":5000,
 		"require":"g.spirit>=15&&g.arcana>=12",
 		"mod":{
+			"minions.max":10,
 			"space.max":110,
 			"runes.max":2,
 			"runes.rate":"10%",
@@ -218,6 +228,7 @@
 		"cost":2500,
 		"require":"g.magician>0&&g.arcana>=20",
 		"mod":{
+			"minions.max":5,
 			"space.max":55,
 			"airlore.max":1,
 			"airlore.rate":0.1
@@ -229,6 +240,7 @@
 		"cost":3000,
 		"require":"g.magician>0&&g.arcana>=20",
 		"mod":{
+			"minions.max":5,
 			"space.max":80,
 			"waterlore.max":3,
 			"waterlore.rate":0.1,
@@ -245,6 +257,7 @@
 			"gems":10
 		},
 		"mod":{
+			"minions.max":4,
 			"space.max":70,
 			"research.rate":-0.7,
 			"waterlore.max":2,
@@ -263,6 +276,7 @@
 		"cost":5000,
 		"require":"g.magician>0&&g.arcana>=20",
 		"mod":{
+			"minions.max":15,
 			"space.max":200,
 			"nature.max":-1,
 			"nature.rate":-0.1
@@ -277,6 +291,7 @@
 		},
 		"require":"g.research>=400&&g.magician>0",
 		"mod":{
+			"minions.max":20,
 			"space.max":300,
 			"research.max":50,
 			"research.rate":0.4
@@ -288,6 +303,7 @@
 		"cost":10000,
 		"require":"g.arcana>=100",
 		"mod":{
+			"minions.max":10,
 			"space.max":200,
 			"shadow.max":-3,
 			"shadow.rate":-0.5
@@ -304,6 +320,7 @@
 		},
 		"require":"g.nature>=10&&g.arcana>=10",
 		"mod":{
+			"minions.max":10,
 			"space.max":300,
 			"nature.max":2,
 			"air.max":1,
@@ -316,6 +333,7 @@
 		"cost":10000,
 		"require":"g.arcana>=10",
 		"mod":{
+			"minions.max":20,
 			"space.max":400,
 			"charms.max":2,
 			"charms.rate":"10%",
@@ -330,6 +348,7 @@
 		"require":"g.arcana>=10",
 		"cost":10000,
 		"mod":{
+			"minions.max":20,
 			"space.max":400,
 			"earth.max":1,
 			"earth.rate":0.1
@@ -342,6 +361,7 @@
 		"require":"enchanter",
 		"cost":3000,
 		"mod":{
+			"minions.max":20,
 			"space.max":350,
 			"water.max":3,
 			"water.rate":0.1
@@ -358,6 +378,7 @@
 			"firegem":2
 		},
 		"mod":{
+			"minions.max":20,
 			"space.max":200,
 			"research.rate":-0.5,
 			"fire.max":4,
@@ -380,6 +401,7 @@
 			"earthgem":2
 		},
 		"mod":{
+			"minions.max":20,
 			"space.max":200,
 			"research.rate":-0.5,
 			"earth.max":4,
@@ -404,6 +426,7 @@
 			"mana":500
 		},
 		"mod":{
+			"minions.max":20,
 			"space.max":500,
 			"enchanting.max":2,
 			"enchanting.rate":"10%"
@@ -421,6 +444,7 @@
 			"mana":500
 		},
 		"mod":{
+			"minions.max":25,
 			"space.max":500,
 			"waterlore.max":5,
 			"airlore.max":2,

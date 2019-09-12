@@ -3,6 +3,7 @@ import Events, { ENEMY_SLAIN } from '../events';
 import Game from '../game';
 import Inventory from '../chars/inventory';
 import Combat from './combat';
+import game from '../game';
 
 
 /**
@@ -70,7 +71,6 @@ export default class Raid {
 
 		return {
 			dungeon:this.dungeon ? this.dungeon.id : undefined,
-			allies:this.allies,
 			drops:this.drops
 		}
 
@@ -107,6 +107,8 @@ export default class Raid {
 		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getData(this.dungeon);
 
 		this._combat.revive( gameState );
+
+		this.allies = gameState.minions.active;
 
 	}
 

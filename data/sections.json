@@ -44,7 +44,7 @@
 	{
 		"id":"sect_bestiary",
 		"name":"bestiary",
-		"require":"bestiary"
+		"require":"g.bestiary>0||g.lore>=11"
 	},
 	{
 
@@ -60,7 +60,7 @@
 	{
 		"id":"sect_minions",
 		"name":"minions",
-		"require":""
+		"require":"g.minions.count>0"
 	}
 
 ]

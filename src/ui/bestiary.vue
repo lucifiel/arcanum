@@ -1,10 +1,12 @@
 <script>
 import Game from '../game';
-
+import ItemBase from './itemsBase';
+import Range from '../range';
 import FilterBox from './components/filterbox.vue';
 
 export default {
 
+	mixins:[ItemBase],
 	data(){
 		return {
 			filtered:null
@@ -23,11 +25,14 @@ export default {
 		},
 
 		toNum(v) {
-			return ( typeof v === 'object' ? v.value : v ).toFixed(0);
+			return ( typeof v === 'object' ?
+				( v instanceof Range ? v.max : v.value ) : v ).toFixed(0);
 		}
 
 	},
 	computed:{
+
+		minions(){return Game.state.minions; },
 
 		totalLore() { return this.animals.value + this.lore.value + this.demonology.value; },
 
@@ -48,18 +53,21 @@ export default {
 
 <template>
 
-<div>
+<div class="bestiary">
 
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
+	<div class="char-list">
 	<table class="bestiary">
 		<tr><th>Creature</th><th>Slain</th><th class="num-align">Hp</th></tr>
-		<tr v-for="b in filtered" :key="b.id">
-			<th @mouseenter.capture.stop="dispatch('itemover',$event,b)">{{ b.name }}</th>
+		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
+			<th>{{ b.name }}</th>
 			<td class="num-align">{{ b.value }}</td>
 			<td class="num-align">{{ showHp(b) ? toNum(b.hp) : '??' }}</td>
+			<td><button @click="dispatch('buy',b)" :disabled="b.unique||!buyable(b)||minions.freeSpace()==0">Buy</button></td>
 		</tr>
 	</table>
+	</div>
 
 </div>
 
@@ -67,12 +75,20 @@ export default {
 
 <style scoped>
 
+.bestiary {
+	height:100%;
+}
+
+.char-list {
+	height:85%;
+	overflow-y:auto;
+}
+
 table {
 	border-spacing: 4px 0px;
 	border-collapse: collapse;
 	row-gap: 4px;
 	column-gap: 10px;
-
 }
 
 tr:first-child th {

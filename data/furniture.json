@@ -456,7 +456,7 @@
 		"name":"casement window",
 		"tags":"lightsource,airsource",
 		"desc":"A simple window to let in light and air.",
-		"require":"g.space>=10",
+		"require":"g.space.max>=10",
 		"cost":{
 			"gold":100,
 			"space":1

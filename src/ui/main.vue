@@ -16,9 +16,6 @@ import Cheats from '../cheats';
 
 import { TICK_TIME } from '../game';
 
-console.log('DIST? ' + __DIST );
-console.log('cheats: ' + Cheats.cheatKeys );
-
 /**
  * @listens [sell,itemover,itemout]
  */
@@ -45,6 +42,7 @@ export default {
 		spellbook:()=>import( /* webpackChunkName: "spells-ui" */ 'ui/spellbook.vue'),
 		adventure:()=>import( /* webpackChunkName: "raid-ui" */ './adventure.vue'),
 		enchanting:()=>import( /* webpackChunkName: "enchant-ui" */'./enchanting.vue' ),
+		minions:()=>import( /* webpackChunkName: "minions-ui" */ './minions.vue' ),
 		'vue-menu':Menu
 	},
 	data(){
@@ -336,6 +334,7 @@ export default {
 		<template slot="sect_potions"><potions /></template>
 
 		<template slot="sect_bestiary"><bestiary /></template>
+		<template slot="sect_minions"><minions /></template>
 
 		<template slot="sect_enchant"><enchanting /></template>
 		</vue-menu>

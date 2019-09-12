@@ -2,22 +2,32 @@ import Char from './char';
 import Monster from '../items/monster';
 import { cloneClass  } from 'objecty'
 import Range from '../range';
+import Stat from '../stat';
 
 /**
  * Class for specific Enemies/Minions in game.
  */
 export default class Npc extends Char {
 
+	toJSON() {
+
+		let data = super.toJSON();
+		data.id = this.id;
+
+		return data;
+
+	}
+
 	get maxHp() { return this._maxHp; }
 	set maxHp(v) {
-		this._maxHp = v;
+		this._maxHp = v instanceof Stat ? v : new Stat(v);
 	}
 
 	get hp() { return this._hp; }
 	set hp(v) {
 
-		if ( this._maxHp && v > this._maxHp ) v = this._maxHp;
-		this._hp = v;
+		if ( this._maxHp && v > this._maxHp ) this._hp = this._maxHp.value;
+		else this._hp = v;
 
 	}
 
@@ -45,8 +55,6 @@ export default class Npc extends Char {
 	constructor(vars) {
 
 		super( vars instanceof Monster ? cloneClass(vars) : vars );
-
-		this.template = vars.id;
 
 		this.dodge = this.dodge || 0;
 

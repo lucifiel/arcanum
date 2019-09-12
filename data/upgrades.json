@@ -907,7 +907,7 @@
 		"name":"windchime",
 		"tags":"airsource",
 		"desc":"Focus of air magic.",
-		"require":"g.space>10",
+		"require":"g.space.max>10",
 		"cost":{
 			"gems":10,
 			"research":100

@@ -1,4 +1,4 @@
-import { defineExcept } from 'objecty';
+import { defineExcept, clone } from 'objecty';
 import Stat from '../stat';
 import Base, {mergeClass} from './base';
 
@@ -85,9 +85,10 @@ export default class GData {
 	 *
 	 * @param {?Object} [vars=null]
 	 */
-	constructor( vars=null ){
+	constructor( vars=null, defaults=null ){
 
 		if ( vars ) Object.assign( this, vars );
+		if ( defaults ) this.setDefaults( defaults );
 
 		if ( this._locked === undefined || this._locked === null ) this.locked = true;
 
@@ -98,6 +99,26 @@ export default class GData {
 		//if ( this.slot ) console.log( this.id + ' slot: ' + this.slot );
 		defineExcept( this, null,
 			['require', 'rate', 'need', 'value', 'buy', 'max', 'cost', 'id', 'name', 'warn', 'effect', 'slot' ]);
+
+	}
+
+	setDefaults( defaults ) {
+
+		var obj;
+
+		for( let p in defaults ) {
+
+			var cur = this[p];
+			if ( cur === undefined || cur === null ) {
+
+				obj = defaults[p];
+				if ( typeof obj === 'function' ) this[p] = obj( this );
+				else if ( typeof obj === 'object' ) this[p] = clone( obj );
+				else this[p] = obj;
+
+			}
+
+		}
 
 	}
 

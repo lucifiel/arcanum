@@ -3,6 +3,7 @@ import Wearable from "./chars/wearable";
 import { sublists, randElm, randMatch, includesAny } from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
+import Npc from './chars/npc';
 
 const exclusions = {
 
@@ -38,6 +39,14 @@ export default class ItemGen {
 		this.initList( 'armor', state.armors );
 		this.initList( 'weapon', state.weapons );
 		this.initList( 'equip', state.equip );
+	}
+
+	npc( proto ) {
+
+		let it = new Npc( proto );
+		it.id = proto.id + this.state.nextId();
+		return it;
+
 	}
 
 	/**
