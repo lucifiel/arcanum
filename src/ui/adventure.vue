@@ -4,6 +4,7 @@ import ItemBase from './itemsBase.js';
 
 import ProgBar from './components/progbar.vue';
 import FilterBox from './components/filterbox.vue';
+import Combat from './items/combat.vue';
 
 const MAX_ITEMS = 5;
 
@@ -21,6 +22,7 @@ export default {
 		this.game = Game;
 	},
 	components:{
+		combat:Combat,
 		progbar:ProgBar,
 		filterbox:FilterBox,
 		inv:()=>import( /* webpackChunkName: "inv-ui" */ './inventory.vue')
@@ -31,6 +33,8 @@ export default {
 			return this.log.items.filter(
 				v=>v.type==='combat' ).slice( -MAX_ITEMS );
 		},
+
+		cur() { return this.state.raid.dungeon },
 
 		raid() { return this.state.raid; },
 
@@ -52,23 +56,32 @@ export default {
 
 <div class="adventure">
 
-	<div class="dungeon-list">
+		<div class="flex-row">
+		<div class="dungeon-list" v-if="raiding">
+			<span>{{ cur.name }}</span>
+			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
+			<span><button class="raid-btn"
+				@click="dispatch( 'raid', cur, false )"
+				@mouseenter.capture.stop="dispatch('itemover', $event, cur )">
+				Stop</button></span>
+		</div>
+		<div class="dungeon-list" v-else>
 
 		<filterbox v-model="filtered" :items="dungeons" min-items="8" />
 
-	<div class="dungeon" v-for="d in filtered" :key="d.id">
+		<div class="dungeon" v-for="d in filtered" :key="d.id">
 
-		<span>{{ d.name }}</span>
-		<span class="bar"><progbar :value="d.exp" :max="d.length" /></span>
-		<span><button class="raid-btn" :disabled="!game.canRun(d)"
-			@click="dispatch( 'raid', d, !raiding || (raid.dungeon !== d) )"
-			@mouseenter.capture.stop="dispatch('itemover', $event, d )">
-			{{ raiding && (raid.dungeon === d) ? 'Stop' : 'Enter' }}</button></span>
+			<span>{{ d.name }}</span>
+			<span class="bar"><progbar :value="d.exp" :max="d.length" /></span>
+			<span><button class="raid-btn" :disabled="!game.canRun(d)"
+				@click="dispatch( 'raid', d, true )"
+				@mouseenter.capture.stop="dispatch('itemover', $event, d )">
+				Enter</button></span>
 
-	</div>
-	</div>
+			</div>
 
-	<div>
+		</div>
+
 		<div class="log">
 			<span v-if="raiding">Adventuring...<br></span>
 			<div class="outlog">
@@ -78,8 +91,11 @@ export default {
 			</div>
 		</div>
 
-		<inv :inv="raid.drops" take="true" />
-	</div>
+		</div>
+
+	<combat v-if="raiding" :combat="raid.combat" />
+
+	<inv :inv="raid.drops" take="true" />
 
 </div>
 
@@ -87,12 +103,15 @@ export default {
 
 <style scoped>
 
+.flex-row {
+	margin: 0px 0px 12px 0px;
+}
+
 div.adventure {
 	display:flex;
 	padding:0px 15px;
 	align-self: flex-start;
-	flex-flow: row nowrap;
-	justify-content: space-around;
+	flex-flow: column nowrap;
 }
 
 div.log {

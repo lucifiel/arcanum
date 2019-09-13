@@ -388,6 +388,7 @@
 	{
 		"id":"ratking",
 		"name":"Rat King",
+		"unique":true,
 		"kind":"natural",
 		"level":3,
 		"hp":10,
@@ -810,38 +811,18 @@
 		}
 
     },
-	{
-		"id":"banditlord",
-		"name":"bandit lord",
-        "level":6,
-        "kind":"humanoid",
-        "evil":7,
-        "desc":"Wants to steal your stuff.",
-        "hp":25,
-        "defense":17,
-        "tohit":8,
-        "attack":{
-            "name":"short sword",
-            "kind":"slash",
-            "dmg":"5~9"
-        },"loot":{
-			"max":5,
-			"gold":"5~10"
-		}
-
-    },
     {
 		"id":"orcwarrior",
 		"name":"orc warrior",
         "level":5,
         "desc":"",
         "hp":25,
-        "defense":18,
+        "defense":15,
         "tohit":2,
         "attack":{
             "name":"orc hammer",
             "kind":"blunt",
-            "dmg":"3~7"
+            "dmg":"2~7"
         }
 
     },
@@ -856,7 +837,7 @@
         "attack":{
             "name":"dagger",
             "kind":"pierce",
-            "dmg":"4~7"
+            "dmg":"3~6"
         }, "loot":{"potion of cure light wounds":10}
 
 	},
@@ -958,6 +939,26 @@
 		},
 		"loot":{
 			"bodies":1
+		}
+
+	},
+	{
+		"id":"banditlord",
+		"name":"bandit lord",
+        "level":6,
+        "kind":"humanoid",
+        "evil":7,
+        "desc":"Wants to steal your stuff.",
+        "hp":25,
+        "defense":17,
+        "tohit":8,
+        "attack":{
+            "name":"short sword",
+            "kind":"slash",
+            "dmg":"5~9"
+        },"loot":{
+			"max":5,
+			"gold":"5~10"
 		}
 
     },

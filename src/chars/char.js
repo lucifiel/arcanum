@@ -126,6 +126,7 @@ export default class Char {
 			let it = state.getData( this.template );
 			if ( it ) mergeSafe( this, it );
 
+			if ( !this._name ) this._name = it.name;
 			//if ( this.hp instanceof Range ) this.hp = this.hp.value;
 
 		}
