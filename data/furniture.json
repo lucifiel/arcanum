@@ -599,7 +599,7 @@
 		"id":"fountain",
 		"desc":"Water Fountain",
 		"tags":"watersource",
-		"require":"g.space>20",
+		"require":"g.space.max>20",
 		"cost":{
 			"gold":500,
 			"space":5

@@ -72,6 +72,10 @@ export default class Npc extends Char {
 
 	}
 
+	rest(dt) {
+		this.hp += 0.01*this.maxHp.value*dt;
+	}
+
 	/*update(dt) {
 
 		super.update(dt);

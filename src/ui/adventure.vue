@@ -56,7 +56,7 @@ export default {
 
 <div class="adventure">
 
-		<div class="flex-row">
+		<div class="separate">
 		<div class="dungeon-list" v-if="raiding">
 			<span>{{ cur.name }}</span>
 			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
@@ -103,8 +103,9 @@ export default {
 
 <style scoped>
 
-.flex-row {
-	margin: 0px 0px 12px 0px;
+.separate {
+	margin-bottom: 14px;
+	min-height:160px;
 }
 
 div.adventure {
@@ -115,7 +116,6 @@ div.adventure {
 }
 
 div.log {
-	width:100%;
 	margin: 0px 0px 10px 10px;
 }
 

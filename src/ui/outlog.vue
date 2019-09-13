@@ -38,21 +38,21 @@ export default {
 
 
 <template>
-	
+
 	<div class="log-view">
 
 			<div class="top-span">
-				<button type="button" class="inline small-btn" @click="clearLog">Clear</button>
+				<button type="button" class="inline btn-sm" @click="clearLog">Clear</button>
 				<span class="checks">
-					
+
 				<span v-for="p in LogTypes" :key="p">
 					<input type="checkbox" :value="p" :id="elmId(p)" v-model="filter" >
 					<label :for="elmId(p)">{{ p }}</label>
 				</span>
 				</span>
-				
+
 			</div>
-		
+
 
 			<div class="outlog">
 			<div class="log-item" v-for="(it,i) in visItems" :key="i">

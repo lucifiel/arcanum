@@ -1,5 +1,6 @@
 body {
 	font-family: 'Open Sans', sans-serif;
+	background: rgb(250, 250, 250);
 }
 
 ul {
@@ -7,15 +8,22 @@ ul {
 	padding: 2px;
 }
 
-input[type="button"], button, .text-button {
-
-	background-color: rgb(226, 224, 224);
+input[type="button"], button, .text-button, .btn-sm {
+	background-color: rgb(231, 229, 229);
 	border: 1pt solid darkgray;
 	border-radius: 2px;
 	padding: 4px;
 	text-align: center;
 	margin: 4px;
 
+}
+
+input[type="button"]:enabled:active, button:enabled:active, .hilite {
+	background-color: rgb(121, 121, 121);
+}
+
+input[type="button"]:hover, button:hover {
+	background-color: rgb(194, 194, 194);
 }
 
 .num-align {
@@ -32,10 +40,6 @@ div.div-hr {
 .text-button:link, .text-button:visited {
 	color: #111111;
 	text-decoration: none;
-}
-
-input[type="button"]:enabled:active, button:enabled:active, .hilite {
-	background-color: rgb( 100, 100,100);
 }
 
 .inline {
@@ -151,7 +155,7 @@ div.outlog {
 	flex-direction: column-reverse;
 }
 
-button.small-btn {
+button.btn-sm {
 	padding:3px 8px;
 }
 

@@ -128,7 +128,8 @@ export default class GData {
 	maxed() {
 
 		return this.max ? (this.value >= Math.floor(this.max.value) ) :
-			( this.repeat !== true && this._value > 0 &&
+			( this.repeat !== true &&
+				this._value > 0 &&
 				(!this.buy || this.owned===true) );
 
 	}

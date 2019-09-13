@@ -186,7 +186,7 @@
 		"dot":{
 			"duration":30,
 			"effect":{
-				"mana":0.2
+				"mana":0.25
 			}
 		}
 
@@ -211,7 +211,7 @@
 		"dot":{
 			"duration":45,
 			"effect":{
-				"mana":0.4
+				"mana":0.45
 			}
 		}
 
@@ -236,7 +236,7 @@
 		"dot":{
 			"duration":60,
 			"effect":{
-				"mana":0.7
+				"mana":0.75
 			}
 		}
 

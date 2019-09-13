@@ -40,7 +40,7 @@ export default {
 		<!-- anything not a table is a headache -->
 		<table>
 
-		<tr><td><button class="small-btn" @click="dispatch('rest')"
+		<tr><td><button class="btn-sm" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
 			<td>{{ actionStr() }}</td></tr>

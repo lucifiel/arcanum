@@ -132,6 +132,7 @@
 		},
 		"result":{
 			"sp":0.05,
+			"minions.max":"10%",
 			"research.max":1
 		}
 	},
@@ -503,6 +504,7 @@
 			"stamina":0.5
 		},
 		"result":{
+			"mana.max":0.5,
 			"arcana.rate":0.001,
 			"manas.rate":0.02
 		}

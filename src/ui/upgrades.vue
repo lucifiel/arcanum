@@ -26,7 +26,7 @@ export default {
 <template>
 <div class="upgrade-list">
 
-	<span :class="{'action-btn':true, locked:!buyable(it) }" v-for="it in items" :key="it.id"
+	<span :class="{'action-btn':true, locked:it.owned||!buyable(it) }" v-for="it in items" :key="it.id"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 
 	<button

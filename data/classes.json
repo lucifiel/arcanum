@@ -89,7 +89,7 @@
 	"require":"g.tier0>0&&g.lore>=10",
 	"cost":{
 		"research":700,
-		"arcana":12,
+		"arcana":11,
 		"gold":500
 	},
 	"effect":{
@@ -99,6 +99,8 @@
 	"mod":{
 		"research.max":20,
 		"lore.max":1,
+		"astronomy.max":1,
+		"languages.max":1,
 		"arcana.rate":0.001,
 		"mana.max":2,
 		"mana.rate":0.02
@@ -149,6 +151,7 @@
 		"sp":2
 	},
 	"mod":{
+		"mana.max":1,
 		"research.max":10,
 		"embalming.max":1,
 		"reanimation.max":3,

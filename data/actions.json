@@ -210,7 +210,7 @@
 			"stamina":1
 		},
 		"result":{
-			"evil":true,
+			"evilamt":10,
 			"bodies":1
 		},"flavor":"why do they come to me to die?"
 	},
@@ -677,7 +677,7 @@
 	{
 		"id":"demondict",
 		"name":"demonic dictionary",
-		"require":"g.languages>=10&&g.tier1>0",
+		"require":"g.languages>=10&&g.demonology>0&&g.tier1>0",
 		"desc":"a compiliation of obscure demonic languages",
 		"length":75,
 		"repeat":false,
@@ -693,6 +693,26 @@
 			"languages.rate":0.4,
 			"demonology.max":2,
 			"demonology.rate":0.2
+		}
+
+	},
+	{
+		"id":"unendingtome",
+		"name":"unending tome",
+		"require":"g.languages>=8&&g.tier1>0",
+		"desc":"some books have no end",
+		"length":50,
+		"repeat":false,
+		"cost":{
+			"codices":30,
+			"mana":10,
+			"gems":5
+		},
+		"run":{
+			"research":2
+		},
+		"result":{
+			"codices.rate":0.001
 		}
 
 	},
@@ -757,7 +777,7 @@
 		},
 		"result":{
 			"gems":1,
-			"crafting.max":0.001
+			"crafting.max":0.01
 		}
 	},
 	{

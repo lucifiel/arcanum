@@ -161,6 +161,7 @@ export default {
 		this.lastUpdate = time;
 
 		this.state.player.update(dt);
+		this.state.minions.update(dt);
 
 		this.doCurrent( dt );
 
@@ -406,6 +407,7 @@ export default {
 
 		}
 
+		if ( it.slot && this.state.getSlot(it.slot) === it ) this.state.setSlot(it.slot,null);
 		it.value -= 1;
 		if ( it.mod ) this.removeMod( it.mod, 1 );
 
@@ -643,7 +645,7 @@ export default {
 		}
 
 		if ( it.slot ) {
-			if ( this.state.getSlot(it.id) === it ) this.state.setSlot(it.id, null);
+			if ( this.state.getSlot(it.slot) === it ) this.state.setSlot(it.slot, null);
 		}
 
 		if ( it.cost && it.cost.space ) this.getData('space').value += amt*it.cost.space;

@@ -61,7 +61,7 @@ export default {
 			<th>{{ b.name }}</th>
 			<td class="num-align">{{ b.value }}</td>
 			<td class="num-align">{{ showHp(b) ? toNum(b.hp) : '??' }}</td>
-			<td><button @click="dispatch('buy',b)" :disabled="b.unique||!buyable(b)||minions.freeSpace()==0">Buy</button></td>
+			<td><button @click="dispatch('buy',b)" :disabled="b.unique||!buyable(b)||minions.freeSpace()==0||b.value<10">Buy</button></td>
 		</tr>
 	</table>
 	</div>

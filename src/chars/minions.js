@@ -18,6 +18,15 @@ export default class Minions extends Inventory {
 
 	}
 
+	update(dt) {
+
+		for( let i = this.items.length-1; i>= 0; i-- ) {
+
+			if ( this.items[i].active === false ) this.items[i].rest(dt);
+		}
+
+	}
+
 	/**
 	 * Get list of Minions by id.
 	 * @param {string[]} ids

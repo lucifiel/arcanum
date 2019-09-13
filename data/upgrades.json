@@ -541,8 +541,10 @@
 			"sp":1
 		},
 		"mod":{
+			"codices.rate":0.001,
+			"demonology.max":1,
 			"research.max":10,
-			"potions.max":5,
+			"potions.max":2,
 			"potions.rate":0.1,
 			"spirit.rate":0.1
 		}
@@ -1097,6 +1099,19 @@
 			"stamina.rate":0.1
 		}
 
+	},
+	{
+		"id":"infusedbody",
+		"name":"infused body",
+		"desc":"increases the effectiveness of arcane body",
+		"max":1,
+		"require":"g.tier2>0&&g.player.level>=15",
+		"cost":{
+			"tomes":5,
+			"mana":10
+		},"mod":{
+			"arcanebody.mod.hp.max":2
+		}
 	},
 	{
 
