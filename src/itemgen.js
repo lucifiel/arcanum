@@ -113,10 +113,18 @@ export default class ItemGen {
 	 */
 	getLoot( info, amt=1 ) {
 
-		if ( amt instanceof Percent && !amt.value ) return null;
-		else if ( amt.value ) amt = amt.value;
+		if ( amt instanceof Percent ) {
 
-		if ( typeof info === 'string' ) {info = this.state.getData(info);}
+			if ( !amt.value ) return null;
+			amt = 1;
+
+		} else if ( amt.value ) amt = amt.value;
+
+		if ( Array.isArray(info) ) return info.map( this.getLoot, this );
+
+		if ( typeof info === 'string' ) {
+			info = this.state.getData(info);
+		}
 
 		if (!info) {
 			console.log('skipping NULL gen.')
@@ -124,8 +132,9 @@ export default class ItemGen {
 		}
 
 		if ( info.type === 'wearable') return this.fromData( info );
+
+		/** @todo: THIS IS BAD */
 		else if ( info.type != null ) Game.doItem( info, amt );
-		else if ( Array.isArray(info) ) return info.map( this.getLoot, this );
 
 		if ( info.pct && (100*Math.random() > info.pct) ) return null;
 		if ( info.level ) return this.fromLevel( info.level, info.kind, info.material );
@@ -139,6 +148,13 @@ export default class ItemGen {
 
 		return items;
 
+	}
+
+	/**
+	 * Get loot which is a basic game data item.
+	 * @param {GData} item
+	 */
+	getDataLoot( item ){
 	}
 
 	/**

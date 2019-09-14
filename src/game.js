@@ -344,7 +344,7 @@ export default {
 
 		}
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.blocked() || fill.maxed();
+		return fill.maxed();
 
 	},
 
@@ -373,6 +373,8 @@ export default {
 			if ( it ) {
 
 				it.disabled = true;
+
+				console.log( 'DISABLE: ' + it.id );
 
 				if ( it.slot && this.state.getSlot(it.slot, it.type) === it ) {
 					this.state.setSlot(it.slot, null );

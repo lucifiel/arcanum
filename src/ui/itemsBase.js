@@ -46,10 +46,10 @@ export default {
 		 * Convert tag strings into viewable format.
 		 * @param {*} t
 		 */
-		prepTags( t ) {
+		stripTags( t ) {
 
 			if ( Array.isArray(t) ) {
-
+				return t.map( this.stripTags, this );
 			}
 
 			if ( typeof t === 'string' ) {
@@ -81,7 +81,7 @@ export default {
 			} else if ( type === 'string') {
 
 				let it = Game.getData(obj);
-				results[ it ? it.name : obj ] = true;
+				results[ it ? it.name : this.stripTags(obj) ] = true;
 
 			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
 			else if ( type === 'function' ) {}
@@ -107,7 +107,7 @@ export default {
 			if ( typeof obj === 'string' ) {
 
 				let it = Game.getData(obj);
-				results[ it ? it.name : obj ] = true;
+				results[ it ? it.name : this.stripTags(obj) ] = true;
 				return;
 			}
 

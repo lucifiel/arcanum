@@ -2,7 +2,7 @@ console.log('cheats export');
 
 var cheats;
 
-if ( __DIST ) {
+if ( false ) {
 	cheats = {};
 
 } else {

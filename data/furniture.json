@@ -187,7 +187,7 @@
 		"id":"smcage",
 		"name":"rusty cage",
 		"desc":"A cramped cage for keeping tiny test subjects.",
-		"tags":"tagpen,shadowsource",
+		"tags":"t_pets,shadowsource",
 		"require":"neophyte",
 		"repeat":true,
 		"cost":{
@@ -207,7 +207,7 @@
 
 		"id":"terrarium",
 		"desc":"a glass enclosure of dirt, insects, and wormy things.",
-		"tags":"earthsource,tagpen",
+		"tags":"earthsource,t_pets",
 		"require":"neophyte",
 		"repeat":true,
 		"cost":{
@@ -224,7 +224,7 @@
 	{
 		"id":"vivarium",
 		"desc":"a glass enclosure for small reptiles, snakes, and frogs.",
-		"tags":"earthsource,tagpen,naturesource",
+		"tags":"earthsource,t_pets,naturesource",
 		"require":"g.tier0>0&&g.naturelore>=5",
 		"cost":{
 			"space":2,
@@ -324,7 +324,7 @@
 	{
 		"id":"birdcage",
 		"desc":"Perfect for robins.",
-		"tags":"tagpen",
+		"tags":"t_pets",
 		"require":"apprentice",
 		"repeat":true,
 		"cost":{

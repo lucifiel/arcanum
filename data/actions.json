@@ -263,17 +263,16 @@
 	},
 	{
 		"id":"embalm",
-		"name":"embalm dead",
+		"name":"funerary rites",
 		"verb":"embalming",
-		"desc":"nobles often pay to have their relatives preserved.",
+		"desc":"oversee the funerary rites of merchants and nobles.",
 		"require":"g.embalming>=5&&g.tier0>0",
 		"perpetual":true,
 		"length":25,
-		"cd":15,
 		"run":{
 
 			"stamina":1,
-			"shadow":0.12
+			"shadow":1
 
 		},"effect":{
 			"gold":2

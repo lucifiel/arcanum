@@ -17,11 +17,17 @@ import Cheats from '../cheats';
 import { TICK_TIME } from '../game';
 
 /**
+ * @var {number} SAVE_TIME  - time in seconds between auto-saves.
+ */
+const SAVE_TIME = 30;
+
+/**
  * @listens [sell,itemover,itemout]
  */
 export default {
 
-	mixins:__DIST ? [ItemsBase] : [ItemsBase,Cheats],
+	//mixins:__DIST ? [ItemsBase] : [ItemsBase,Cheats],\
+	mixins:[ItemsBase,Cheats],
 	components:{
 		resources:ResoucesView,
 		actions:ActionsView,
@@ -136,13 +142,25 @@ export default {
 				this.runner = null;
 				clearInterval( int );
 			}
+			if ( this.saver ) {
+				let int = this.saver;
+				this.saver = null;
+				clearInterval( int );
+			}
 
 		},
 		unpause() {
 
-			if ( this.game.loaded && !this.runner ) {
-				this.game.lastUpdate = Date.now();
-				this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
+			if ( this.game.loaded ) {
+
+				if ( !this.runenr ) {
+					this.game.lastUpdate = Date.now();
+					this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
+				}
+				if ( !this.saver ) {
+					this.saver = setInterval( ()=>this.dispatch('save'), 1000*SAVE_TIME );
+				}
+
 			}
 
 		},
@@ -276,6 +294,8 @@ export default {
 	<div class="full" @mouseover.capture.stop="dispatch('itemout')">
 
 		<div class="top-bar">
+
+			<span class="load-opts">
 			<button @click="dispatch('save')">save</button>
 			<button @click="dispatch('load')">load</button>
 
@@ -285,9 +305,12 @@ export default {
 			<button id="drop-file" @drop="fileDrop"
 				@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
 
-			<confirm @confirm="dispatch('reset')">reset</confirm>
+				<confirm @confirm="dispatch('reset')">reset</confirm>
+				<span class="load-message" v-if="!state">LOADING DATA...</span>
+			</span>
+
 			<dots v-if="state" :dots="state.player.dots" />
-			<span class="load-message" v-if="!state">LOADING DATA...</span>
+			<span class="link-bar"><a href="./changelog.txt" target="_blank">Changes</a></span>
 		</div>
 
 <!-- popups -->
@@ -354,6 +377,25 @@ export default {
 	border: 1.75px dashed rgb(117, 117, 117);
 }
 
+div.top-bar {
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	max-width:100%;
+	margin:0px 14px;
+}
+
+.link-bar {
+	display:flex;
+	flex-flow: row-reverse nowrap;
+	color: rgb(22, 22, 22);
+	font-size: 0.90em;
+}
+
+.link-bar a {
+	color: rgb(22, 22, 22);
+}
+
 div.full {
 	display:flex;
 	flex-direction: column;
@@ -366,11 +408,6 @@ div.full {
 
 span.load-message {
 	padding: 8px 8px 2px;
-}
-
-div.top-bar {
-	display:flex;
-	width:100%;
 }
 
 div.game-main {

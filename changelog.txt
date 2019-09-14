@@ -2,7 +2,19 @@
 
 FEATURES:
 
+Added a link to this changelog.
+
 Added Apprentice level classes: Herbalist, Falconer
+
+Planeslore increases max travel distance.
+
+Scrying increases max travel distance.
+
+Auto-save enabled.
+
+Cheat-keys re-enabled for the time being.
+
+
 
 BUGFIX:
 

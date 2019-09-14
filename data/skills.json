@@ -38,7 +38,7 @@
 	{
 		"id":"trickery",
 		"school":"arcane",
-		"verb":"reading lore",
+		"verb":"scheming",
 		"require":"g.prestidigitation>15",
 		"run":{
 			"stamina":0.2,
@@ -91,7 +91,7 @@
 	{
 		"id":"animals",
 		"name":"animal handling",
-		"need":"tagpen",
+		"need":"t_pets",
 		"run":{
 			"stamina":0.5
 		},
@@ -553,7 +553,7 @@
 		"result":{
 			"mana.max":0.2,
 			"research.max":1,
-			"lore.rate":0.15,
+			"dist.max":"1%",
 			"arcana.max":0.2
 		}
 	}

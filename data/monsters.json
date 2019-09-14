@@ -52,6 +52,7 @@
             "kind":"slash",
             "dmg":"1~2"
         }, "loot":{
+			"scrolls":"80%",
 			"spear":"20%",
 			"gloves":"10%",
 			"cap":"10%"
@@ -141,7 +142,9 @@
             "kind":"arcane",
             "dmg":"2~4"
         },"biome":["town","plains","hills"],
-		"loot":{ "potion of cure light wounds":5, "potion of cure minor wounds":5 },
+		"loot":{
+			"scrolls":1,
+			"boots":"15%" },
 		"resist":{
 			"arcane":5
 		}
