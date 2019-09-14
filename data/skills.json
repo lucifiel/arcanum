@@ -520,6 +520,7 @@
 			"mana":0.1
 		},
 		"result":{
+			"dist.max":"5%",
 			"arcana.max":1,
 			"research.max":1
 		}

@@ -41,8 +41,10 @@ export default class Dungeon extends Action {
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
 
-		this.dist = ( this.dist === undefined || this.dist === null ) ? 5*Math.floor( Math.exp(this.level/2) ) : this.dist;
+		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.floor( 5*Math.exp( 0.4*this.level ) ) : this.dist;
 		//this.addRequire( 'dist', this.dist );
+
+		//console.log(this.id + ' dist: ' + this.dist );
 
 		if ( this.need == null ) this.need = this.distTest;
 

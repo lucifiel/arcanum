@@ -72,7 +72,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":200,
+			"dist.max":250,
 			"spirit.max":1,
 			"spirit.rate":0.1
 		}
@@ -93,7 +93,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":100
+			"dist.max":200
 		}
 
 	},
@@ -122,7 +122,7 @@
 			"gold":200
 		},
 		"mod":{
-			"dist.max":15
+			"dist.max":25
 		}
 
 	},
@@ -138,7 +138,7 @@
 			"gems":2
 		},
 		"mod":{
-			"dist.max":25
+			"dist.max":50
 		}
 
 	},
@@ -154,7 +154,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":40
+			"dist.max":75
 		}
 
 	},
@@ -168,11 +168,11 @@
 		"buy":{
 			"gold":400,
 			"bones":10,
-			"shadow":5,
+			"shadowgem":2,
 			"bonedust":20
 		},
 		"mod":{
-			"dist.max":66
+			"dist.max":166
 		}
 
 	},
@@ -190,7 +190,7 @@
 			"firegem":5
 		},
 		"mod":{
-			"dist.max":75
+			"dist.max":175
 		}
 
 	},
@@ -206,7 +206,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":120
+			"dist.max":225
 		}
 
 	},
@@ -1031,6 +1031,7 @@
 	{
 		"id":"thirdeye",
 		"name":"third eye",
+		"tags":"spiritsource",
 		"require":"g.scrying>=5&&spirit.max>=7",
 		"desc":"See without seeing.",
 		"cost":{

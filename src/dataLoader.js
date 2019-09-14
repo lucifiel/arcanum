@@ -306,12 +306,15 @@ export default {
 			if ( s.includes('.')) this.splitKeyPath( mods, s );
 		}
 
+		if ( id === 'trapsoul') console.log('mod for trap: ' + mods );
+
 		for( let s in mods ) {
 
 			var val = mods[s];
 			var typ = typeof val;
 			if ( typ === 'number' || (typ === 'string' && ModTest.test(val)) ) {
 
+				if ( id === 'trapsoul') console.log('mod for trap: ' + val );
 					val = mods[s] = new Mod(val, id);
 
 			} else if ( val instanceof Mod ) continue;
@@ -407,12 +410,15 @@ export default {
 	 * part of the variable path.
 	 * This is done to allow object props to represent variable paths
 	 * without changing all the code to use Maps (with VarPath keys) and not Objects.
-	 * @param {Object} obj
+	 * @param {Object} obj - object containing the key to expand.
 	 * @param {string} prop
 	 */
 	splitKeyPath( obj, prop ) {
 
 		let val = obj[prop];
+
+		if ( prop === 'spirit.max') console.log('expanding key: ' + prop );
+
 		delete obj[prop];
 
 		let keys = prop.split('.');
@@ -422,7 +428,11 @@ export default {
 		// stops before length-1 since last assign goes to val.
 		for( let i = 0; i < max; i++ ) {
 
-			obj = obj[ keys[i] ] = typeof obj[ [keys[i]]] === 'object' ? obj[ keys[i] ] : {};
+			var cur = obj[ keys[i] ];
+			if ( cur === null || cur === undefined ) cur = {};
+			else if ( typeof cur !== 'object') cur = { value:cur };
+
+			obj = obj[ keys[i] ] = cur;
 
 		}
 

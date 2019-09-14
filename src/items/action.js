@@ -26,6 +26,7 @@ export default class Action extends GData {
 			if ( this.log ) Game.doLog( this.log );
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.loot ) Game.getLoot( this.loot );
+			if ( this.exec ) this.exec();
 			this.complete();
 
 		}
@@ -69,13 +70,15 @@ export default class Action extends GData {
 	canUse() {
 		if ( this.maxed() ) return false;
 		if ( this.cd > 0 && this.timer > 0 ) return false;
+		return true;
 	}
 
 	exec() {
 		if ( this.timer > 0 ) return false;
 		if ( this.cd ) {
+
 			Game.addTimer( this );
-			this.timer = cd;
+			this.timer = this.cd;
 		}
 
 	}
@@ -89,15 +92,21 @@ export default class Action extends GData {
 
 		if ( this.timer > 0 ) {
 
+			//console.log('timer: ' + this.timer );
 			this.timer -= dt;
-			if ( this.timer > 0 ) return true;
-			this.timer = 0;
+			if ( this.timer > 0 ) return false;
+			else {
+				this.timer = 0;
+				return true;
+			}
 
 		}
 		return false;
 
 	}
 
-	complete() { this._exp = 0;}
+	complete() {
+		this._exp = 0;
+	}
 
 }

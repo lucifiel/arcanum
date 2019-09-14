@@ -151,10 +151,11 @@ export default {
 
 			let targ = null;
 
+			if ( m.max ) this.max.apply( m.max, amt );
 			for( let p in m ) {
 
 				// add any final value last.
-				if (  p === 'skipLocked' || p === 'value') continue;
+				if (  p === 'skipLocked' || p === 'max') continue;
 
 				targ = this[p];
 				if ( targ instanceof Stat || targ instanceof Mod ) {
@@ -166,7 +167,7 @@ export default {
 					this.subeffect( this[p], m[p], amt );
 
 				} else if ( this[p] !== undefined ) {
-					console.log('adding: ' + p );
+					//console.log('adding: ' + p );
 					this[p] += Number(m[p])*amt;
 				} else {
 					console.log('NEW SUB: ' + p );
@@ -174,7 +175,6 @@ export default {
 				}
 
 			}
-			if ( m.value ) this.value += Number(m.value)*amt;
 
 		}
 
@@ -204,6 +204,7 @@ export default {
 
 			for( let p in mods ) {
 
+				if ( p === 'max' )continue;
 				var m = mods[p];
 
 				if ( m instanceof Mod ) m.applyTo( targ, p, amt );

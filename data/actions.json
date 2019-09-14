@@ -262,6 +262,25 @@
 		}
 	},
 	{
+		"id":"embalm",
+		"name":"embalm dead",
+		"verb":"embalming",
+		"desc":"nobles often pay to have their relatives preserved.",
+		"require":"g.embalming>=5&&g.tier0>0",
+		"perpetual":true,
+		"length":25,
+		"cd":15,
+		"run":{
+
+			"stamina":1,
+			"shadow":0.12
+
+		},"effect":{
+			"gold":2
+		}
+
+	},
+	{
 
 		"id":"paidseance",
 		"name":"Hold Seance",
@@ -699,19 +718,20 @@
 	{
 		"id":"unendingtome",
 		"name":"unending tome",
-		"require":"g.languages>=8&&g.tier1>0",
+		"require":"g.languages>=9&&g.tier1>0",
 		"desc":"some books have no end",
 		"length":50,
 		"repeat":false,
 		"cost":{
 			"codices":30,
 			"mana":10,
-			"gems":5
+			"gems":10
 		},
 		"run":{
 			"research":2
 		},
 		"result":{
+			"lore.max":1,
 			"codices.rate":0.001
 		}
 

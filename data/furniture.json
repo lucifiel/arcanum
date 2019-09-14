@@ -538,7 +538,7 @@
 	{
 		"id":"brazier",
 		"desc":"Stand of burning hot coals.",
-		"tags":"firesource",
+		"tags":"firesource,spiritsource",
 		"require":"tier0",
 		"repeat":true,
 		"cost":{
@@ -584,6 +584,7 @@
 	{
 		"id":"fireplace",
 		"desc":"A cozy place for cooking food and brewing potions.",
+		"tags":"firesource",
 		"require":"g.space.max>=15",
 		"repeat":true,
 		"cost":{
@@ -644,7 +645,7 @@
 	{
 		"id":"ossuary",
 		"desc":"Receptacle for bones.",
-		"tags":"shadowsource",
+		"tags":"shadowsource,spiritsource",
 		"require":"evil",
 		"repeat":true,
 		"cost":{
@@ -887,6 +888,7 @@
 	{
 		"id":"garden",
 		"desc":"A small garden by your home.",
+		"tags":"naturesource,taggarden",
 		"require":"witch",
 		"cost":{
 			"gold":300,
@@ -956,6 +958,7 @@
 		"id":"lakeoffire",
 		"name":"lake of fire",
 		"desc":"A lake of burning fire.",
+		"tags":"firesource",
 		"require":"g.fire.max>=10&&g.space>=100",
 		"cost":{
 			"space":20,

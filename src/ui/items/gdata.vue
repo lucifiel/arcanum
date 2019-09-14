@@ -37,6 +37,7 @@ export default {
 
 		</div>
 
+		<info v-if="item.need" :info="item.need" title="need" />
 		<info v-if="item.buy&&!item.owned" :info="item.buy" title="purchase cost" />
 		<info v-if="item.cost" :info="item.cost" title="cost" />
 		<info v-if="item.run" :info="item.run" title="progress cost" rate="true" />

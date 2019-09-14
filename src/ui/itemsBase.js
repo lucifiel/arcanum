@@ -43,6 +43,27 @@ export default {
 		},
 
 		/**
+		 * Convert tag strings into viewable format.
+		 * @param {*} t
+		 */
+		prepTags( t ) {
+
+			if ( Array.isArray(t) ) {
+
+			}
+
+			if ( typeof t === 'string' ) {
+
+				if ( t.substring(0,2) === 't_' ) t = t.slice(2);
+				else if ( t.substring(0,3) === 'tag') t = t.slice(3);
+
+			}
+
+			return t;
+
+		},
+
+		/**
 		 *
 		 * @param {*} obj
 		 * @param {boolean} rate - items are rate.
@@ -63,6 +84,7 @@ export default {
 				results[ it ? it.name : obj ] = true;
 
 			} else if ( Array.isArray(obj) ) obj.forEach(v=>this.effectList(v,results));
+			else if ( type === 'function' ) {}
 			else if ( type === 'object') {
 
 				if ( obj instanceof Stat ) results.gold = obj.value;
@@ -125,6 +147,7 @@ export default {
 				}
 
 				if ( typeof sub !== 'object' ) results[subPath] = sub + ( subRate ? '/s' : '');
+				else if ( typeof sub === 'function' ) {}
 				else {
 
 					if ( sub.skipLocked ) {

@@ -172,7 +172,7 @@ export default {
 
 			for( let i = this.timers.length-1; i>= 0; i-- ) {
 
-				if ( this.timers[i].tick() ) quickSplice( this.timers, i );
+				if ( this.timers[i].tick(dt) ) quickSplice( this.timers, i );
 
 			}
 
@@ -221,7 +221,7 @@ export default {
 		let action = this.state.curAction;
 		if ( !action ) return;
 
-		if ( action.maxed() ) {
+		if ( !action.canUse() ) {
 			console.log('ACTION MAXED: ' + action.id );
 			this.setAction(null);
 			return;
@@ -1116,7 +1116,7 @@ export default {
 	 * @param {*} it
 	 */
 	take( it ) {
-		console.log('adding: ' + it.id );
+		//console.log('adding: ' + it.id );
 		return this.state.inventory.add(it);
 	},
 
