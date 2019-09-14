@@ -405,9 +405,9 @@
 		"verb":"resting",
 		"locked":false,
 		"perpetual":true,
-		"fill":[ "stamina", "hp", "mana" ],
+		"fill":[ "stamina", "hp", "manas" ],
 		"effect":{
-			"mana":{
+			"manas":{
 				"skipLocked":true,
 				"value":0.5
 			},

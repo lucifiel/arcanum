@@ -123,6 +123,13 @@ export default class GData {
 	}
 
 	/**
+	 * shorthand for locked||disabled||locks>0
+	 */
+	blocked() {
+		return this.locked || this.disabled || this.locks>0;
+	}
+
+	/**
 	 * @returns {boolean} true if an unlocked item is at maximum value.
 	 */
 	maxed() {

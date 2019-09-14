@@ -325,7 +325,7 @@ export default {
 
 	/**
 	 * Tests if a named resource has been filled to max.
-	 * @param {Resource|Resource[]} v
+	 * @param {Item|Item[]} v
 	 */
 	filled( v ) {
 
@@ -337,9 +337,14 @@ export default {
 		}
 
 		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getData(v);
-		if (fill === undefined ) return false;
+		if (fill === undefined ) {
+
+			fill = this.state.getTagList( v );
+			return fill === undefined ? true : this.filled(fill);
+
+		}
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.maxed();
+		return fill.blocked() || fill.maxed();
 
 	},
 
