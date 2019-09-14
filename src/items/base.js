@@ -136,45 +136,41 @@ export default {
 
 	/**
 	 *
-	 * @param {Object} m - effect/mod description.
+	 * @param {Object} mods - effect/mod description.
 	 * @param {number} amt - factor of base amount added
 	 * ( fractions of full amount due to tick time. )
 	 */
-	applyVars( m, amt=1 ) {
+	applyVars( mods, amt=1 ) {
 
-		let typ = typeof m;
+		if ( typeof mods === 'number') { this.value += mods*amt; }
+		else if ( typeof mods === 'object' ) {
 
-		if ( typ === 'number') { this.value += m*amt; }
-		else if ( typ === 'object' ) {
+			if ( mods.mod ) this.changeMod( mods.mod, amt );
 
-			if ( m.mod ) this.changeMod( m.mod, amt );
-
-			let targ = null;
-
-			if ( m.max ) this.max.apply( m.max, amt );
-			for( let p in m ) {
+			for( let p in mods ) {
 
 				// add any final value last.
-				if (  p === 'skipLocked' || p === 'max') continue;
+				if (  p === 'skipLocked' || p === 'value') continue;
 
-				targ = this[p];
+				var targ = this[p];
 				if ( targ instanceof Stat || targ instanceof Mod ) {
 					//console.log('applying mod to stat: '+ p);
-					targ.apply( m[p], amt );
-				} else if ( typeof m[p] === 'object' ) {
+					targ.apply( mods[p], amt );
+				} else if ( typeof mods[p] === 'object' ) {
 
 					console.log('subassign: ' + p)
-					this.subeffect( this[p], m[p], amt );
+					this.subeffect( this[p], mods[p], amt );
 
 				} else if ( this[p] !== undefined ) {
-					//console.log('adding: ' + p );
-					this[p] += Number(m[p])*amt;
+					console.log('adding: ' + p );
+					this[p] += Number(mods[p])*amt;
 				} else {
 					console.log('NEW SUB: ' + p );
-					this.newSub( p, m[p] )
+					this.newSub( p, mods[p] )
 				}
 
 			}
+			if ( mods.value ) this.value += Number(mods.value)*amt;
 
 		}
 
@@ -190,49 +186,13 @@ export default {
 
 		targ = targ || this;
 
-		//console.log('applying: ' + mods );
+		if ( mods instanceof Mod ) {
 
-		if ( typeof mods === 'object') {
+			mods.applyTo( targ, 'value', amt );
 
-			if ( mods instanceof Mod ) {
-				console.log( this.id + ': applying mods is mod object.')
-				mods.applyTo( targ, 'value', amt );
-				return;
-			}
+		} else if ( typeof mods === 'object') {
 
-			if ( mods.mod ) this.changeMod( mods.mod, amt );
-
-			for( let p in mods ) {
-
-				if ( p === 'max' )continue;
-				var m = mods[p];
-
-				if ( m instanceof Mod ) m.applyTo( targ, p, amt );
-
-				else if ( typeof m === 'object' ) {
-
-					// define before recursion since parent ref is lost.
-					let sub = targ[p];
-					if ( sub === undefined || sub === null ) {
-
-						console.log( p + ' MOD UNDEFIEND: ' + m );
-						for( let c in m ) console.log(c);
-						targ[p] = m.value ? m.value : {};
-
-					} else this.applyMods( m, amt, sub );
-
-				} else if ( typeof m === 'number' ) {
-
-					let sub = targ[p];
-					if ( sub === undefined || sub === null ) targ[p] = m;
-					else if ( typeof sub === 'number') targ[p] += m*amt;
-					else this.applyMods( m, amt, sub);
-
-				} else {
-					console.warn( `UNKNOWN Mod ${p} applied to ${this.id}: ${m}`);
-				}
-
-			}
+			this.applyObj( mods, amt, targ );
 
 		} else if ( typeof mods === 'number') {
 
@@ -246,6 +206,52 @@ export default {
 
 		} else console.warn( this.id + ' unknown mod type: ' + mods );
 
+	},
+
+	/**
+	 * Apply a mod when the mod is an object.
+	 * @param {Object} mod
+	 * @param {number} amt - percent of mod added.
+	 * @param {Object} targ - target of mods.
+	 */
+	applyObj( mods, amt, targ ) {
+
+		if ( mods.mod ) this.changeMod( mods.mod, amt );
+
+		for( let p in mods ) {
+
+			var m = mods[p];
+			var sub = targ[p];
+
+			if ( m instanceof Mod ) m.applyTo( targ, p, amt );
+			else if ( sub === undefined || sub === null ) {
+
+				console.log( mods + '[' + p + ']:' + m + ' -> mod target undefined' );
+				targ[p] = ( typeof m === 'number') ? m*amt : ( m.value || 0)*amt;
+
+			} else if ( typeof m === 'object' ) {
+
+				this.applyObj( m, amt, sub );
+
+			} else if ( typeof m === 'number' ) {
+
+				if ( typeof sub === 'number') targ[p] += m*amt;
+				else this.applyMods( m, amt, sub);
+
+			} else {
+				console.warn( `UNKNOWN Mod applied to ${this.id}: ${p}:${m}`);
+			}
+
+		}
+
+	},
+
+	/**
+	 * Get the value of an object, or a default value.
+	 * @param {Object|number} obj
+	 * @param {*} def
+	 */
+	getValue( obj, def=0 ) {
 	},
 
 	/**

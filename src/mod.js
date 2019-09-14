@@ -56,6 +56,7 @@ export default class Mod {
 	get bonus() { return this._bonus; }
 	set bonus(v) { this._bonus = v; }
 
+	get value() { return this.bonus; }
 	set value(v) {
 
 		if ( typeof v ==='string' ){

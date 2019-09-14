@@ -417,8 +417,6 @@ export default {
 
 		let val = obj[prop];
 
-		if ( prop === 'spirit.max') console.log('expanding key: ' + prop );
-
 		delete obj[prop];
 
 		let keys = prop.split('.');
