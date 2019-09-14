@@ -1,5 +1,5 @@
 import DataLoader from './dataLoader';
-import VarPath from './varPath';
+//import VarPath from './varPath';
 import {quickSplice} from './util';
 import GData from './items/gdata';
 import Log from './log.js';
@@ -336,7 +336,7 @@ export default {
 			return true;
 		}
 
-		let fill = v instanceof VarPath ? this.getPathItem( v ) : this.getData(v);
+		let fill = this.getData(v);
 		if (fill === undefined ) {
 
 			fill = this.state.getTagList( v );
@@ -490,10 +490,18 @@ export default {
 
 		} else {
 
-			if ( it.slot && this.state.getSlot( it.slot, it.type) === it ) return;
+			if ( it.perpetual || it.length > 0 ) {
 
-			this.payCost( it.cost );
-			return this.doItem(it);
+				this.setAction(it);
+
+			} else {
+
+				if ( it.slot && this.state.getSlot( it.slot, it.type) === it ) return;
+
+				this.payCost( it.cost );
+				return this.doItem(it);
+			}
+
 		}
 
 	},
@@ -1226,14 +1234,6 @@ export default {
 			if ( pred( items[p] ) ) a.push( items[p] );
 		}
 		return a;
-	},
-
-	/**
-	 * Get an item on an item-id varpath.
-	 * @param {VarPath} v
-	 */
-	getPathItem(v){
-		return v.readVar( this._items );
 	},
 
 	/**

@@ -36,6 +36,8 @@ export default class Raid {
 	percent() { return this.dungeon ? this.dungeon.percent() : 0; }
 	maxed() { return this.dungeon.maxed(); }
 
+	canUse() { return !this.dungeon.maxed(); }
+
 	/**
 	 * @property {number} length - length of dungeon in progress.
 	 */

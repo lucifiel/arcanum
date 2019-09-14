@@ -59,6 +59,7 @@ export default class Runnable {
 
 	percent() { return this.item.percent(); }
 	maxed() { return this.item.maxed(); }
+	canUse() { return this.item.canUse(); }
 
 	get length() { return this._item.length || 0; }
 	constructor( vars=null) {

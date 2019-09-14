@@ -352,9 +352,9 @@ export default class GameState {
 	 * Get an item on an item-id varpath.
 	 * @param {VarPath} v
 	 */
-	getPathItem(v){
+	/*getPathItem(v){
 		return v.readVar( this._items );
-	}
+	}*/
 
 	/**
 	 * Get item in named slot.

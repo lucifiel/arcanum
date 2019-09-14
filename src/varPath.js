@@ -6,7 +6,7 @@ export const PathRegEx = /^(?:[A-Za-z_]+\w*)+(?:\.[A-Za-z_]+\w*)*$/;
 /**
 * Test if a string represents a variable path.
 * @param {string} s string to test.
-* @returns {bool} whether the string could represent a variable path. 
+* @returns {bool} whether the string could represent a variable path.
 */
 export function IsVarPath(s) {
 	return PathRegEx.test(s)
@@ -26,11 +26,12 @@ export default class VarPath {
 	set parts(v) { this._parts = v; }
 
 	/**
-	 * 
-	 * @param {string} s - path to a variable. 
+	 *
+	 * @param {string} s - path to a variable.
 	 */
 	constructor(s) {
 
+		console.log('var path: ' + s );
 		this._parts = s.split('.');
 
 	}
@@ -69,7 +70,7 @@ export default class VarPath {
 	 * @returns {number|undefined|NaN} - Numeric value stored at the variable path, or defaultVal.
 	 */
 	readNum( obj, defaultVal=0 ) {
-		
+
 		let varPath = this._parts;
 
 		if ( !varPath) return undefined;
@@ -99,7 +100,7 @@ export default class VarPath {
 		let varPath = this._parts;
 
 		if ( !varPath) return undefined;
-	
+
 		let len = varPath.length;
 
 		for (let i = 0; i < len; i++) {

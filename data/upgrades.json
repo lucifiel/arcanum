@@ -198,7 +198,8 @@
 		"id":"gryffonmount",
 		"name":"gryffon",
 		"desc":"as fleet as it is fearsome.",
-		"require":["stables","g.magicbeasts>=7"],
+		"require":"g.magicbeasts>=7",
+		"need":"stables",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -666,12 +667,16 @@
 	{
 		"id":"threesidecoin",
 		"name":"three-sided coin",
-		"desc":"a simple deck of cards",
+		"desc":"you create your own luck",
 		"require":"g.prestidigitation>10",
 		"tags":"tricksource",
 		"cost":{
 			"gold":300
+		},"mod":{
+			"trickery.max":1,
+			"trickery.rate":0.3
 		}
+
 	},
 	{
 		"id":"bagofholding",

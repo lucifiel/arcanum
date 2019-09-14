@@ -23,6 +23,45 @@
 
 	},
 	{
+		"id":"falconer",
+		"title":"falconer",
+		"actdesc":"Tend your master's owls and falcons.",
+		"require":"g.animals>0",
+		"cost":{
+			"gold":100,
+			"research":100,
+			"arcana":1
+		},
+		"effect":{
+			"sp":1.5,
+			"lore.max":1,
+			"gold.rate":0.08,
+			"animals.rate":0.2,
+			"nature.rate":0.1,
+			"player.exp":10
+		}
+	},
+	{
+		"id":"herbalist",
+		"title":"herbalist",
+		"actdesc":"Become your master's personal herbalist.",
+		"require":"g.herbalism>0",
+		"cost":{
+			"gold":100,
+			"research":100,
+			"arcana":1
+		},
+		"effect":{
+			"research.max":10,
+			"sp":1.5,
+			"lore.max":1,
+			"gold.rate":0.08,
+			"herbalism.rate":0.2,
+			"alchemy.rate":0.1,
+			"player.exp":10
+		}
+	},
+	{
 		"id":"scribe",
 		"title":"scribe",
 		"actdesc":"Become your master's personal scribe.",
@@ -38,9 +77,8 @@
 		},
 		"effect":{
 			"arcana.rate":0.0001,
-			"research.max":10,
+			"research.max":5,
 			"sp":1,
-			"lore.max":1,
 			"gold.rate":0.1,
 			"lore.rate":0.2,
 			"player.exp":10
@@ -50,7 +88,7 @@
 	"id":"neophyte",
 	"title":"neophyte",
 	"actdesc":"The final step on the twisting stairwell of apprenticeship.",
-	"require":"g.scribe>0&&g.research.max>=125&&g.spellbook.value>0",
+	"require":"(g.scribe>0||g.herbalist>0||g.tender>0)&&g.research.max>=125&&g.spellbook.value>0",
 	"log":{
 		"name":"Neophyte",
 		"desc":"Your master has decided you are ready to take the next step on the path of wizardry."

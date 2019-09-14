@@ -9,7 +9,7 @@ import Resource from './items/resource';
 import Skill from './items/skill';
 import Monster from './items/monster';
 
-import VarPath  from './varPath';
+//import VarPath  from './varPath';
 import Dungeon from './items/dungeon.js';
 import Spell from './items/spell.js';
 import Action from './items/action';
@@ -248,15 +248,16 @@ export default {
 				if ( p === 'mod') {
 					sub[p] = this.parseMods( sub[p], sub.id );
 					continue;
+				} else if ( p === 'require' || p === 'need' ) {
+
+					sub[p] = this.parseRequire( sub[p] );
+
+					continue;
 				}
 
 				var obj = sub[p];
 				var type = typeof obj;
 				if ( type === 'string' ){
-
-					if ( p === 'require' || p === 'need') {
-						sub[p] = this.parseRequire( sub[p] );
-					}
 
 					if ( PercentTest.test(obj) ) sub[p] = new Percent(obj);
 					else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
@@ -277,7 +278,7 @@ export default {
 
 			if ( RangeTest.test(sub) ) return new Range(sub);
 			else if ( PercentTest.test(sub)) return new Percent(sub);
-			else if ( sub.includes('.') ) return new VarPath( sub );
+			//else if ( sub.includes('.') ) return new VarPath( sub );
 
 		}
 
@@ -292,9 +293,14 @@ export default {
 	parseRequire( sub ){
 
 		// REQUIRE
-		if ( sub === null || sub === undefined || sub === false || sub === '') return null;
-		if ( typeof sub === 'string' && !IdTest.test(sub )) return this.makeTestFunc( sub );
-		else return this.parseSub( sub );
+		if ( sub === null || sub === undefined || sub === false || sub === '') return undefined;
+		if ( Array.isArray(sub) ) {
+
+			for( let i = sub.length-1; i>= 0; i-- )sub[i] = this.parseRequire( sub[i] );
+
+		} else if ( typeof sub === 'string' && !IdTest.test(sub )) return this.makeTestFunc( sub );
+
+		return sub;
 
 	},
 
@@ -343,6 +349,7 @@ export default {
 	 * @param {string} text - function text.
 	 */
 	makeTestFunc( text ) {
+
 		return new Function( "g", 'return ' + text );
 	},
 

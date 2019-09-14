@@ -1,0 +1,24 @@
+9/14:
+
+FEATURES:
+
+Added Apprentice level classes: Herbalist, Falconer
+
+BUGFIX:
+
+Show disabled skill rollovers in Chrome.
+
+Fix Quickslot Runnable Action bug.
+
+
+9/5/2019:
+
+FEATURES:
+
+Staggered more of the early unlocks.
+
+Added skills
+
+List of all titles earned.
+
+New dungeons.

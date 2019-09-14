@@ -167,6 +167,10 @@ export default {
 
 		},
 
+		onAction( action ) {
+			this.game.tryItem( action );
+		},
+
 		onEquip( it, inv ) { this.game.equip( it,inv ); },
 
 		onUnequip(slot, it){ this.game.unequip(slot, it) },
@@ -230,15 +234,6 @@ export default {
 		onConfirmed(it) { this.game.tryItem(it); },
 
 		onSpell( spell ) { this.game.tryItem(spell); },
-
-		onAction( action ) {
-
-			if ( action.perpetual || action.length > 0 ) {
-
-				this.game.setAction(action);
-
-			} else this.game.tryItem( action );
-		},
 
 		/**
 		 * Buy a spell or item without casting/using the item or its mods.

@@ -217,9 +217,9 @@
 	{
 		"id":"vileexperiment",
 		"name":"vile experiment",
-		"require":"g.dissection>=5",
+		"require":"g.dissection>=5&&g.shadowlore>0",
 		"need":"shadowsource",
-		"desc":"Experiment on dead and soon-to-be-dead subjects. This is not something a good wizard would do.",
+		"desc":"Experiment on dead or soon-to-be-dead subjects. This is not something a good wizard would do.",
 		"length":20,
 		"run":{
 			"research":5,
