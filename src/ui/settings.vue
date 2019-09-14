@@ -1,5 +1,5 @@
 <script>
-import Settings from './settings';
+import Settings from '../settings';
 
 export default {
 
@@ -10,9 +10,16 @@ export default {
 		};
 	},
 	created() {
-		this.listen('open-settings', this.show )
+		this.listen('open-settings', this.show );
+		Settings.load();
 	},
 	methods:{
+
+		close() {
+			Settings.save();
+			console.log('close this.');
+			this.closed = true;
+		},
 
 		show() {
 			this.closed = false;
@@ -40,7 +47,7 @@ export default {
 <div :class="['settings', 'popup', closed ? 'hide' : '']">
 
 	<label :for="elmId('auto-save')">auto-save</label>
-	<input type="checkbox" :id="elmId('auto-save')" v-bind="autoSave">
+	<input type="checkbox" :id="elmId('auto-save')" v-model="autoSave">
 	<button @click="close">close</button>
 
 </div>

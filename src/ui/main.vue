@@ -10,8 +10,14 @@ import Warn from './components/warn.vue';
 import Vitals from 'ui/vitals.vue';
 import DotView from './dotView.vue';
 import ItemPopup from './itemPopup.vue';
+import TopBar from './top-bar.vue';
+import SettingsUI from './settings.vue';
+
+
 import LogView from './outlog.vue';
 import Adventure from './adventure.vue';
+
+import Settings from '../settings';
 import Cheats from '../cheats';
 
 import { TICK_TIME } from '../game';
@@ -38,6 +44,8 @@ export default {
 		quickbar:Quickbar,
 		dots:DotView,
 		warn:Warn,
+		'top-bar':TopBar,
+		settings:SettingsUI,
 		skills:()=> import( /* webpackChunkName: "skills-ui" */ './skillsPane.vue' ),
 		equip:()=>import( /* webpackChunkName: "equip-ui" */ './equip.vue'),
 		inventory:()=> import( /* webpackChunkName: "inv-ui" */ './inventory.vue' ),
@@ -70,6 +78,7 @@ export default {
 		this.game = Game;
 
 		this.listen('game-loaded', this.gameLoaded );
+		this.listen('setting', this.onSetting );
 
 		this.listen( 'sell', this.onSell );
 		this.listen( 'take', this.onTake );
@@ -114,25 +123,31 @@ export default {
 
 		},
 
-		fileDrop(e){
-			e.stopPropagation();
-			e.preventDefault();
+		onSetting( setting, val ) {
 
-			e.target.classList.remove('hilite');
-
-			const dt = e.dataTransfer;
-			this.dispatch('load-file', dt.files);
+			if ( setting === 'autoSave' ) {
+				if ( val ) this.startAutoSave();
+				else this.stopAutoSave();
+			}
 
 		},
-		fileDrag(e){
-			e.stopPropagation();
-			e.preventDefault();
-			e.currentTarget.classList.add('hilite');
+
+		stopAutoSave() {
+			if ( this.saver ) {
+				console.log('STOP AUTOSAVE');
+				let int = this.saver;
+				this.saver = null;
+				clearInterval( int );
+			}
 		},
-		dragOut(e){
-			e.stopPropagation();
-			e.preventDefault();
-			e.currentTarget.classList.remove('hilite');
+
+		startAutoSave() {
+
+			if ( Settings.vars.autoSave && !this.saver ) {
+				console.log('START AUTOSAVE');
+				this.saver = setInterval( ()=>this.dispatch('save'), 1000*SAVE_TIME );
+			}
+
 		},
 
 		pause() {
@@ -142,11 +157,8 @@ export default {
 				this.runner = null;
 				clearInterval( int );
 			}
-			if ( this.saver ) {
-				let int = this.saver;
-				this.saver = null;
-				clearInterval( int );
-			}
+			this.stopAutoSave();
+
 
 		},
 		unpause() {
@@ -157,11 +169,9 @@ export default {
 					this.game.lastUpdate = Date.now();
 					this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
 				}
-				if ( !this.saver ) {
-					this.saver = setInterval( ()=>this.dispatch('save'), 1000*SAVE_TIME );
-				}
 
 			}
+			this.startAutoSave();
 
 		},
 
@@ -183,10 +193,6 @@ export default {
 
 			}
 
-		},
-
-		onAction( action ) {
-			this.game.tryItem( action );
 		},
 
 		onEquip( it, inv ) { this.game.equip( it,inv ); },
@@ -237,10 +243,14 @@ export default {
 			this.game.toggleAction( this.state.restAction );
 		},
 
+		onAction( action ) { this.game.tryItem( action ); },
+
 		/**
 		 * Attempt to buy new house.
 		 */
 		onHome(it) { this.game.tryItem(it); },
+		onConfirmed(it) { this.game.tryItem(it); },
+		onSpell( spell ) { this.game.tryItem(spell); },
 
 		onUpgrade(upgrade) {
 
@@ -248,10 +258,6 @@ export default {
 			else this.game.tryItem(upgrade);
 
 		},
-
-		onConfirmed(it) { this.game.tryItem(it); },
-
-		onSpell( spell ) { this.game.tryItem(spell); },
 
 		/**
 		 * Buy a spell or item without casting/using the item or its mods.
@@ -293,29 +299,17 @@ export default {
 
 	<div class="full" @mouseover.capture.stop="dispatch('itemout')">
 
-		<div class="top-bar">
-
-			<span class="load-opts">
-			<button @click="dispatch('save')">save</button>
-			<button @click="dispatch('load')">load</button>
-
-			<a class="text-button" id="save-file" href=""
-				download @click.self="dispatch('save-file',$event)" type="text/json">Get File</a>
-			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
-			<button id="drop-file" @drop="fileDrop"
-				@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
-
-				<confirm @confirm="dispatch('reset')">reset</confirm>
-				<span class="load-message" v-if="!state">LOADING DATA...</span>
-			</span>
-
+		<top-bar>
+			<template slot="center">
+			<span class="load-message" v-if="!state">LOADING DATA...</span>
 			<dots v-if="state" :dots="state.player.dots" />
-			<span class="link-bar"><a href="./changelog.txt" target="_blank">Changes</a></span>
-		</div>
+			</template>
+		</top-bar>
 
 <!-- popups -->
 		<itempopup :item="overItem" :elm="overElm" :title="overTitle" />
 		<warn ref="warn" @confirmed="onConfirmed" />
+		<settings />
 
 		<div v-if="state" class="game-main">
 

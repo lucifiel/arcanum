@@ -1,6 +1,30 @@
-
 <script>
 export default {
+
+	methods:{
+
+		fileDrop(e){
+			e.stopPropagation();
+			e.preventDefault();
+
+			e.target.classList.remove('hilite');
+
+			const dt = e.dataTransfer;
+			this.dispatch('load-file', dt.files);
+
+		},
+		fileDrag(e){
+			e.stopPropagation();
+			e.preventDefault();
+			e.currentTarget.classList.add('hilite');
+		},
+		dragOut(e){
+			e.stopPropagation();
+			e.preventDefault();
+			e.currentTarget.classList.remove('hilite');
+		},
+
+	}
 
 }
 </script>
@@ -9,6 +33,7 @@ export default {
 
 	<div class="top-bar">
 
+		<span>
 		<span class="load-opts">
 		<button @click="dispatch('save')">save</button>
 		<button @click="dispatch('load')">load</button>
@@ -20,11 +45,17 @@ export default {
 			@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
 
 			<confirm @confirm="dispatch('reset')">reset</confirm>
-			<span class="load-message" v-if="!state">LOADING DATA...</span>
+
 		</span>
 
-		<dots v-if="state" :dots="state.player.dots" />
-		<span class="link-bar"><a href="./changelog.txt" target="_blank">Changes</a></span>
+		<slot name="center"></slot>
+		</span>
+
+		<span class="link-bar">
+			<button class="text-button" @click="dispatch('open-settings')">&#9881;</button>
+			<a href="./changelog.txt" target="_blank">Changes</a>
+		</span>
+
 	</div>
 
 
