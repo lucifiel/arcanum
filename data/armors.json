@@ -1,7 +1,7 @@
 [
     { "id":"gloves", "armor":1, "slot":"hands", "cost":20 },
     { "id":"boots", "armor":1, "slot":"feet", "cost":20 },
-	
+
 	{ "id":"hat", "armor":0, "slot":"head", "cost":10 },
     { "id":"cap", "armor":1, "slot":"head", "cost":15, "level":1 },
     { "id":"helm", "armor":2, "slot":"head", "cost":30, "level":3 },
@@ -29,8 +29,8 @@
     { "id":"collar", "armor":0, "slot":"neck", "cost":30 },
     { "id":"amulet", "armor":0, "slot":"neck", "cost":500 },
     { "id":"necklace", "armor":0, "slot":"neck", "cost":50 },
-    { "id":"band", "armor":0, "slot":"fingers", "cost":50 },
-    { "id":"loop", "armor":0, "slot":"fingers", "cost":10 },
-    { "id":"ring", "armor":0, "slot":"fingers", "cost":100 }
+    { "id":"band", "armor":0, "slot":"fingers", "kind":"ring", "cost":50 },
+    { "id":"loop", "armor":0, "slot":"fingers","kind":"ring", "cost":10 },
+    { "id":"ring", "armor":0, "slot":"fingers", "kind":"ring", "cost":100 }
 
 ]

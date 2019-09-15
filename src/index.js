@@ -43,7 +43,10 @@ var vm = new Vue({
 		this.listen('load-file', this.loadFile );
 		this.listen('load', this.loadSave );
 		this.listen('reset', this.reset );
+
 		this.listen('save', this.save );
+		this.listen('autosave', this.autosave );
+
 		this.listen( 'setting', this.onSetting );
 
 		this.loadSave();
@@ -115,6 +118,16 @@ var vm = new Vue({
 			let obj = text ? JSON.parse( text ) : null;
 			this.game.load( obj ).then( this.gameLoaded );
 
+		},
+
+		/**
+		 * No console output.
+		 */
+		autosave(){
+
+			let store = window.localStorage;
+			let json = JSON.stringify( this.game.state );
+			store.setItem( 'gameData', json );
 		},
 
 		save() {

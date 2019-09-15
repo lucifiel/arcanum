@@ -616,7 +616,7 @@ export default {
 		if ( it.log ) Events.dispatch( EVT_EVENT, it.log );
 
 		if ( it.attack ) {
-			if ( it.type !== 'wearable' && this.state.curAction === this.state.raid )
+			if ( (it.type !== 'wearable' && it.type !== 'weapon') && this.state.curAction === this.state.raid )
 				this.state.raid.spellAttack( it );
 		}
 
@@ -1070,6 +1070,7 @@ export default {
 
 		if ( !this.canEquip(it) ) return false;
 
+		console.log('erquip weap:' + it.id  + ' it.type: ' + it.type + ' it.kind: ' + it.kind );
 		let res = this.state.equip.equip( it );
 		if ( !res) return;
 

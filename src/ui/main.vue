@@ -145,7 +145,7 @@ export default {
 
 			if ( Settings.vars.autoSave && !this.saver ) {
 				console.log('START AUTOSAVE');
-				this.saver = setInterval( ()=>this.dispatch('save'), 1000*SAVE_TIME );
+				this.saver = setInterval( ()=>this.dispatch('autosave'), 1000*SAVE_TIME );
 			}
 
 		},

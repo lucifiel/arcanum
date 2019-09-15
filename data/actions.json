@@ -931,7 +931,7 @@
 	},
 	{
 		"id":"grind",
-		"locked":true,
+		"require":"g.research.max<0",
 		"desc":"experiment with magic to expand your research.",
 		"cost":{
 			"mana":0.15

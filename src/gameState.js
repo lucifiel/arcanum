@@ -305,7 +305,7 @@ export default class GameState {
 		let it = this.getData(id);
 		if ( !it) return;
 
-		it.max += amt;
+		it.max.base += amt;
 	}
 
 	/**
@@ -362,7 +362,7 @@ export default class GameState {
 	 * @param {string} type - item type for determining subslot (equip,home,etc)
 	 */
 	getSlot( id, type) {
-		if ( type === 'wearable' ) return null;
+		if ( type === 'wearable' || type === 'armor' || type ==='weapon' ) return null;
 		return this.slots[id];
 	}
 

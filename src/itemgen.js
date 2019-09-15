@@ -60,7 +60,7 @@ export default class ItemGen {
 
 		let it;
 
-		if ( proto.type === 'wearable') {
+		if ( proto.type === 'armor' || proto.type === 'weapon' || proto.type === 'wearable' ) {
 
 			it = new Wearable( proto );
 

@@ -223,13 +223,15 @@ export default {
 			var m = mods[p];
 			var sub = targ[p];
 
+			if ( sub === undefined || sub === null ) {
+
+				console.log( mods + '["' + p + '"]:' + m + ' -> mod target undefined' );
+				sub = targ[p] = ( typeof m === 'number') ? 0 : {};
+
+			}
+
 			if ( m instanceof Mod ) m.applyTo( targ, p, amt );
-			else if ( sub === undefined || sub === null ) {
-
-				console.log( mods + '[' + p + ']:' + m + ' -> mod target undefined' );
-				targ[p] = ( typeof m === 'number') ? m*amt : ( m.value || 0)*amt;
-
-			} else if ( typeof m === 'object' ) {
+			else if ( typeof m === 'object' ) {
 
 				this.applyObj( m, amt, sub );
 

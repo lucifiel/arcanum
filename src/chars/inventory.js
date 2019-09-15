@@ -55,7 +55,7 @@ export default class Inventory {
 			}
 
 			console.log('revive type: ' + type );
-			if ( type === 'wearable') {
+			if ( type === 'armor' || type === 'weapon' || type === 'wearable') {
 
 				console.log('reviving wearable');
 				it = this.items[i] = new Wearable(it);

@@ -34,7 +34,7 @@ export default class ProtoItem extends GData {
 
 		super(vars);
 
-		this.type = 'wearable';
+		this.type = this.type || 'wearable';
 
 		this.level = this.level || 1;
 		this.kind = this.kind || 'equip';

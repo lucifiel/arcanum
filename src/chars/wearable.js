@@ -71,7 +71,7 @@ export default class Wearable {
 		if( vars ) Object.assign( this, vars);
 
 		//console.log('this.attack: ' + this.attack );
-		this.type = 'wearable';
+		this.type = this.type || 'wearable';
 	}
 
 	maxed() { return false; }
@@ -88,7 +88,10 @@ export default class Wearable {
 
 			if ( this.attack === null || this.attack === undefined ) this.attack = this.template.attack;
 
+			this.type = this.template.type || this.type;
+
 			mergeSafe( this, this.template );
+			console.log('LOAD KIND: ' + this.kind );
 
 		} else console.log('wearable template not found: ' + this.template );
 
@@ -130,7 +133,7 @@ export default class Wearable {
 	equip( player ) {
 
 		if ( this.armor ) player.defense += this.armor;
-		if ( this.kind === 'weapon' ) player.weapon = this;
+		if ( this.type === 'weapon' ) player.weapon = this;
 
 	}
 

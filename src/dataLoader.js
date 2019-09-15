@@ -211,10 +211,10 @@ export default {
 		this.initItems( dataLists['spells'], Spell );
 
 		gd.armors = this.initItems( dataLists['armors'], ProtoItem );
-		gd.armors.forEach( v=>v.kind = 'armor' );
+		gd.armors.forEach( v=>v.type = 'armor' );
 
 		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem );
-		gd.weapons.forEach(v=>v.kind='weapon');
+		gd.weapons.forEach(v=>v.type='weapon');
 
 		gd.potions = this.initItems( dataLists['potions'], Potion, 'potion', 'potion' );
 

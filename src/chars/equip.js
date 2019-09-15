@@ -78,8 +78,8 @@ export default class Equip extends SlotGroup {
 	}
 
 	/**
-	 * 
-	 * @param {Item} it 
+	 *
+	 * @param {Item} it
 	 */
 	remove( it, slot=null ) {
 		return ( it.type === 'weapon') ? this.removeWeap(it) : super.remove(it,slot);
@@ -99,34 +99,34 @@ export default class Equip extends SlotGroup {
 	 */
 	replaceCount(it) {
 
-		let space = (it.kind==='weapon') ?
+		let space = (it.type==='weapon') ?
 			this.freeSpace( 'right' ) + this.freeSpace('left') : this.freeSpace(it.slot);
-	
+
 		return Math.max( ( it.numslots || 1 ) - space, 0 );
 
 	}
 
 	/**
-	 * 
-	 * @param {Armor|Weapon} it 
-	 * @param {string} slot 
+	 *
+	 * @param {Armor|Weapon} it
+	 * @param {string} slot
 	 * @returns {boolean|Wearable|Wearable[]}
 	 */
 	equip( it, slot=null ) {
 
-		if ( it.kind === 'weapon' ) return this.equipWeap(it);
+		if ( it.type === 'weapon' ) return this.equipWeap(it);
 
 		slot = slot || it.slot;
 		if( slot === null || !this.slots.hasOwnProperty(slot)) return false;
-		
+
 		let cur = this.slots[slot];
 		return cur.equip(it);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {*} it
-	 * @returns {Item|Item[]|true} 
+	 * @returns {Item|Item[]|true}
 	 */
 	equipWeap( it ) {
 

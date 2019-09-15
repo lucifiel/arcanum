@@ -282,13 +282,14 @@ export default class Combat {
 	setEnemies( enemy ) {
 
 		var enemies = [];
+		var e;
 
 		if (  Array.isArray(enemy)){
 
 			let enemyList = [];
 
 			for( let i = enemy.length-1; i >=0; i-- ) {
-				var e = enemy[i];
+				e = enemy[i];
 				if ( typeof e === 'string' ) e = Game.getData(e);
 				enemies.push( e );
 
@@ -299,11 +300,12 @@ export default class Combat {
 
 		} else {
 
-			if ( typeof enemy === 'string' ) enemy = Game.getData( enemy );
-			if ( !enemy) {console.warn( 'Missing Enemy'); return }
-			enemies.push( enemy );
+			e = typeof enemy === 'string' ? Game.getData(enemy) : enemy;
+			if ( !e) {console.warn( 'Missing Enemy: ' + enemy ); return }
 
-			Events.dispatch( EVT_COMBAT, enemy.name + ' Encountered' );
+			enemies.push( e );
+
+			Events.dispatch( EVT_COMBAT, e.name + ' Encountered' );
 		}
 
 		this.enemies = enemies;
