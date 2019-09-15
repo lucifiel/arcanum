@@ -164,7 +164,7 @@
 			"mana":0.1
 		},
 		"effect":{
-			"gold":1
+			"gold":1.5
 		}
 
 	},
@@ -926,6 +926,18 @@
 		},
 		"effect":{
 			"curAction.exp":0.2
+		}
+
+	},
+	{
+		"id":"grind",
+		"locked":true,
+		"desc":"experiment with magic to expand your research.",
+		"cost":{
+			"mana":0.15
+		},
+		"effect":{
+			"research.max":0.05
 		}
 
 	},

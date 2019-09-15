@@ -293,7 +293,7 @@
 		"name":"enchanting table",
 		"tags":"workspace,enchantsource",
 		"desc":"Runed table for enchanting",
-		"require":"neophyte",
+		"require":"enchanting",
 		"cost":{
 			"gold":200,
 			"research":200,
@@ -384,7 +384,7 @@
 	},
 	{
 		"id":"telescope",
-		"require":"adept",
+		"require":"astronomy",
 		"tags":"starsource",
 		"cost":{
 			"gold":400,
@@ -716,9 +716,9 @@
 		"id":"ironcell",
 		"name":"iron cell",
 		"desc":"A simple, bare cell.",
-		"tags":"prison",
+		"tags":"prison,shadowsource",
 		"repeat":true,
-		"require":"tier0",
+		"require":"g.tier0>0&&g.space>=20",
 		"cost":{
 			"gold":300,
 			"space":5
@@ -734,7 +734,7 @@
 		"id":"armory",
 		"desc":"A storeroom of arms.",
 		"tags":"armssource",
-		"require":"tier0",
+		"require":"g.tier0>0&&g.player.defense>=10",
 		"repeat":true,
 		"cost":{
 			"gold":400,

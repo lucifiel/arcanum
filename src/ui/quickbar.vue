@@ -15,6 +15,14 @@ export default {
 
 			if ( ind >= 0) this.$set( this.slots, ind, undefined );
 
+		},
+
+		abbr(it){
+
+			let s = it.name;
+			let ind = s.indexOf(' ');
+			if ( ind >= 0 && ind < s.length ) return s[0] + s[ind+1];
+			return s.slice(0,2);
 		}
 
 	},
@@ -37,7 +45,7 @@ export default {
 					@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
 
-				<div>{{ it.name.slice(0,2) }}</div>
+				<div>{{ abbr(it) }}</div>
 
 				<div class="remove" @click="remove(i)" />
 				<div v-if="it.school" class="bgfill" >&nbsp;</div>

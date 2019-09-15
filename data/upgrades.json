@@ -1085,7 +1085,7 @@
 		"id":"thirdeye",
 		"name":"third eye",
 		"tags":"spiritsource",
-		"require":"g.scrying>=5&&spirit.max>=7",
+		"require":"g.scrying>=5&&g.spirit.max>=7",
 		"desc":"See without seeing.",
 		"cost":{
 			"spirit":5,

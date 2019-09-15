@@ -80,7 +80,7 @@
 		"id":"cottage",
 		"desc":"Cozy and quaint.",
 		"require":"tier0",
-		"cost":325,
+		"cost":400,
 		"mod":{
 			"minions.max":1,
 			"space.max":20
@@ -99,7 +99,7 @@
 	{
 		"id":"shop",
 		"desc":"A small shop in a bustling city.",
-		"cost":750,
+		"cost":850,
 		"require":"g.tier0&&g.arcana.max>=12",
 		"mod":{
 			"minions.max":1,
@@ -128,7 +128,7 @@
 	{
 		"id":"lodge",
 		"desc":"A rugged lodge in the woods.",
-		"cost":800,
+		"cost":950,
 		"require":"g.tier0>0&&g.naturelore>=7",
 		"mod":{
 			"minions.max":7,

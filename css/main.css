@@ -26,6 +26,14 @@ input[type="button"], button, .text-button {
 	border-color: rgb(100,100,100);
 	color:#D7DADC;
 }
+.darkmode input[type="button"]:hover, .darkmode button:hover {
+	background-color: rgb(95, 95, 95);
+}
+
+.darkmode input[type="button"]:disabled, .darkmode button:disabled, .darkmode .text-button:disabled {
+	color: grey;
+	background-color: rgb(7, 7, 7);
+}
 
 input[type="button"]:enabled:active, button:enabled:active, .hilite {
 	background-color: rgb(121, 121, 121);
