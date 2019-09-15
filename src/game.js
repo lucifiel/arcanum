@@ -1113,7 +1113,10 @@ export default {
 				v.unequip(this.state.player);
 				this.remove(v);
 			});
-			else res.unequip(this.state.player);
+			else {
+				res.unequip(this.state.player);
+				this.remove(res);
+			}
 
 		} else console.log('no reuslt');
 

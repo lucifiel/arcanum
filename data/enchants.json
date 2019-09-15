@@ -44,7 +44,7 @@
 		}
 	},
 	{
-		"id":"en_mana1",
+		"id":"en_manaregen1",
 		"name":"mana",
 		"verb":"enchanting",
 		"adj":"of energy",

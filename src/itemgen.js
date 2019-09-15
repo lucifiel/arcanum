@@ -131,14 +131,16 @@ export default class ItemGen {
 			return null;
 		}
 
-		if ( info.type === 'wearable') return this.fromData( info );
+		if ( info.type === 'wearable'
+			|| info.type === 'weapon'
+			|| info.type ==='armor') return this.fromData( info );
 
 		/** @todo: THIS IS BAD */
 		else if ( info.type != null ) Game.doItem( info, amt );
 
 		if ( info.pct && (100*Math.random() > info.pct) ) return null;
-		if ( info.level ) return this.fromLevel( info.level, info.kind, info.material );
-		else if ( info.max ) return this.randBelow( info.max, info.kind, info.material );
+		if ( info.level ) return this.fromLevel( info.level, info.type, info.material );
+		else if ( info.max ) return this.randBelow( info.max, info.type, info.material );
 
 		let items = [];
 		for( let p in info ) {
@@ -186,25 +188,25 @@ export default class ItemGen {
 	/**
 	 * Get random item of given level or below.
 	 * @param {number} [maxLevel=1] - maximum level of item to return.
-	 * @param {?string} [kind=null] - kind of item to generate.
+	 * @param {?string} [type=null] - kind of item to generate.
 	 * @param {?string|Material} [mat=null] - item material.
 	 * @returns {Wearable|null}
 	 */
-	randBelow( maxLevel=1, kind=null, mat=null ){
+	randBelow( maxLevel=1, type=null, mat=null ){
 
 		maxLevel = Math.floor( Math.random()*(maxLevel+1) );
 		do {
-			var it = this.fromLevel( maxLevel, kind, mat );
+			var it = this.fromLevel( maxLevel, type, mat );
 
 		} while ( !it && --maxLevel >= 0 );
 
 		return it;
 	}
 
-	initList( kind, list ) {
+	initList( type, list ) {
 
 		if ( !list ) {
-			console.warn( 'list: ' + kind + ' undefined.');
+			console.warn( 'list: ' + type + ' undefined.');
 			return;
 		}
 		/**
@@ -223,8 +225,8 @@ export default class ItemGen {
 
 		}
 
-		this.byKind[kind] = list || [];
-		this.byLevel[ kind ] = byLevel;
+		this.byKind[type] = list || [];
+		this.byLevel[ type ] = byLevel;
 
 	}
 

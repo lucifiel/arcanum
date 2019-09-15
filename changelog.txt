@@ -10,6 +10,16 @@ Display maximum furniture values.
 
 Experimental Skill focus ability.
 
+Added Grind Action for when Research goes negative.
+
+
+BUGFIX:
+
+Some ring-enchant bug fixes.
+
+Thirdeye upgrade bug fix.
+
+
 
 9/14:
 

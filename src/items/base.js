@@ -1,4 +1,4 @@
-import {changes, jsonify} from 'objecty';
+import {changes, jsonify, cloneClass } from 'objecty';
 import Percent from '../percent';
 import Game from '../game';
 import Stat from '../stat';
@@ -226,11 +226,10 @@ export default {
 			if ( sub === undefined || sub === null ) {
 
 				console.log( mods + '["' + p + '"]:' + m + ' -> mod target undefined' );
-				sub = targ[p] = ( typeof m === 'number') ? 0 : {};
 
-			}
+				sub = targ[p] = ( typeof m === 'number') ? m*amt : cloneClass( m );
 
-			if ( m instanceof Mod ) m.applyTo( targ, p, amt );
+			} else if ( m instanceof Mod ) m.applyTo( targ, p, amt );
 			else if ( typeof m === 'object' ) {
 
 				this.applyObj( m, amt, sub );

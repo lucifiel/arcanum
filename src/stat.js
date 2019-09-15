@@ -37,6 +37,7 @@ export default class Stat {
 	 * @property {number} value
 	 */
 	get value() { return (this._base + this._bonus)*( 1 + this._pct ); }
+
 	valueOf() { return (this._base + this._bonus)*( 1 + this._pct ); }
 
 	get base() { return this._base; }

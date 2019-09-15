@@ -157,7 +157,7 @@ export default class Mod {
 		else if ( targ instanceof Mod) targ.applySelf( this, amt );
 		else if ( targ === null || targ === undefined ){
 
-			obj[p] = this.bonus;
+			obj[p] = new Mod( amt*this.bonus );
 
 		} else if ( typeof targ === 'object') {
 
