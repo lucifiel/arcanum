@@ -16,8 +16,14 @@ export default {
 		if (!this.closed) center(this.$el);
 	},
 	created() {
+
 		this.listen('open-settings', this.show );
 		Settings.load();
+
+		for( let p in Settings.vars ) {
+			this.dispatch('setting', p, Settings.vars[p] );
+		}
+
 	},
 	methods:{
 
@@ -41,7 +47,17 @@ export default {
 				Settings.vars.autoSave = v;
 				this.dispatch('setting', 'autoSave', v );
 			}
+		},
+		darkMode:{
+			get(){
+				return Settings.vars.darkMode;
+			},
+			set(v){
+				Settings.vars.darkMode = v;
+				this.dispatch('setting', 'darkMode', v );
+			}
 		}
+
 	}
 
 }
@@ -51,8 +67,16 @@ export default {
 
 <div :class="['settings', 'popup', closed ? 'hide' : '']">
 
+	<div>
 	<label :for="elmId('auto-save')">auto-save</label>
 	<input type="checkbox" :id="elmId('auto-save')" v-model="autoSave">
+	</div>
+
+	<div>
+	<label :for="elmId('dark-mode')">dark mode</label>
+	<input type="checkbox" :id="elmId('dark-mode')" v-model="darkMode">
+	</div>
+
 	<button class="close" @click="close">close</button>
 
 </div>
@@ -60,6 +84,20 @@ export default {
 </template>
 
 <style scoped>
+
+.settings {
+	height:auto;
+	min-height:200px;
+	min-width:300px;
+	max-width:440px;
+	position: absolute;
+	z-index:10000;
+	top:120px;
+	background:inherit;
+	border: 1.5px solid rgb( 100, 100,100);
+	border-radius: 0.20rem;
+	padding: 12px;
+}
 
 button.close {
 	position:absolute;
@@ -70,20 +108,6 @@ button.close {
 
 .hide {
 	display:none;
-}
-
-.popup {
-	height:auto;
-	min-height:200px;
-	min-width:300px;
-	max-width:440px;
-	position: absolute;
-	z-index:10000;
-	top:120px;
-	background:white;
-	border: 1.5px solid rgb( 100, 100,100);
-	border-radius: 0.20rem;
-	padding: 12px;
 }
 
 </style>

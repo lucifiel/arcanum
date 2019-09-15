@@ -729,7 +729,7 @@ export default {
 
 			// test that another item is unlocked.
 			let it = this.getData(test);
-			if ( it === undefined ) {
+			if ( it === undefined || it === null ) {
 
 				// tag test - if any item with the tag is unlocked, test passes.
 				it = this.state.getTagList(test);
@@ -775,7 +775,7 @@ export default {
 				target = this.getData(p);
 				e = effect[p];
 
-				if ( target === undefined ) {
+				if ( target === undefined || target === null ) {
 					if ( p === 'title') this.state.player.addTitle( e );
 					else this.applyToTag( p, e, dt );
 				} else {
@@ -1243,6 +1243,6 @@ export default {
 	 * @param {string} id
 	 * @returns {GData|undefined}
 	 */
-	getData(id) { return this._items[id]; },
+	getData(id) { return this._items[id] || this.state[id]; },
 
 }

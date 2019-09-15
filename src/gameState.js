@@ -385,7 +385,9 @@ export default class GameState {
 		return this.getData(id) || this.inventory.find(id) || this.equip.find(id);
 	}
 
-	getData(id) { return this.items[id];}
+	getData(id) {
+		return this.items[id] || this[id];
+	}
 
 	getMaterial(id) { return this.matsById[id]; }
 

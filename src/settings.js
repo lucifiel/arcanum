@@ -6,7 +6,8 @@ export default {
 	vars: {
 
 		autoSave:true,
-		saveTime:30
+		saveTime:30,
+		darkMode:false
 
 	},
 

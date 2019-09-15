@@ -54,7 +54,6 @@ div.popup {
 	left:50%;
 	top:20%;
 	align-self: center;
-	background:white;
 	padding:12px;
 	border: 1.5px solid rgb( 100, 100,100);
 	border-radius: 0.20rem;

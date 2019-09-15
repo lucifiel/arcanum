@@ -26,6 +26,7 @@ export default {
 	},
 	computed:{
 
+		focus() { return this.state.getData('focus'); },
 		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
 		resting() { return this.state.curAction === this.state.restAction; },
 		stamina(){ return this.state.getData('stamina'); }
@@ -43,7 +44,11 @@ export default {
 		<tr><td><button class="btn-sm" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
-			<td>{{ actionStr() }}</td></tr>
+			<td class="separate">{{ actionStr() }}
+
+			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )"
+				:disabled="!usable(focus)"
+				@click="dispatch('action', focus)">Focus</button></td></tr>
 
 		<tr><td>stamina</td>
 		<td><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"

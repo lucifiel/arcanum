@@ -350,7 +350,7 @@ export default {
 	 */
 	makeTestFunc( text ) {
 
-		return new Function( "g", 'return ' + text );
+		return new Function( "g", 'i', 's', 'return ' + text );
 	},
 
 	/**
@@ -361,7 +361,7 @@ export default {
 	 * @param {*} text
 	 */
 	makeEffectFunc( text ) {
-		return new Function( 'g', 'target', 'dt', text );
+		return new Function( 'g', 't', 'dt', text );
 	},
 
 	/**

@@ -79,6 +79,7 @@
 			"arcana":1
 		},
 		"effect":{
+			"lore.max":1.5,
 			"evt_helper":true,
 			"arcana.rate":0.0001,
 			"research.max":10,

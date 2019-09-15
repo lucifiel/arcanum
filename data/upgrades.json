@@ -3,7 +3,7 @@
 	{
 		"id":"leavemaster",
 		"name":"End Apprenticeship",
-		"desc":"Purchase freedom from your apprenticeship. You will become an independent wizard.",
+		"desc":"Purchase freedom from your apprenticeship. You will become an independent practitioner of magic.",
 		"warn":true,
 		"require":"g.neophyte>0&&g.research.max>=100&&g.lore>=4",
 		"repeat":false,
@@ -191,6 +191,40 @@
 		},
 		"mod":{
 			"dist.max":175
+		}
+
+	},
+	{
+		"id":"firechariot",
+		"name":"chariot of fire",
+		"desc":"",
+		"require":"g.firelore>30||g.lightlore>=30",
+		"slot":"mount",
+		"buy":{
+			"research":1000,
+			"arcana":5,
+			"lightgem":5,
+			"firegem":5
+		},
+		"mod":{
+			"dist.max":500
+		},"flavor":"bring me my chariot of fire"
+
+	},
+	{
+		"id":"pegasusmount",
+		"name":"pegasus",
+		"desc":"a winged horse",
+		"require":"g.lightlore>=20",
+		"need":"stables",
+		"slot":"mount",
+		"tags":"steed",
+		"buy":{
+			"gold":2000,
+			"gems":5
+		},
+		"mod":{
+			"dist.max":200
 		}
 
 	},
@@ -564,6 +598,20 @@
 		"mod":{
 			"player.dodge":1
 		}
+
+	},
+	{
+
+		"id":"restless",
+		"name":"restless nights",
+		"desc":"continue working even while idle",
+		"require":"g.lore>2",
+		"cost":{
+			"research":100
+		},
+		"mod":{
+			"gold.rate":0.1
+		},"flavor":"a good apprentice knows there are 30 hours to the day."
 
 	},
 	{
@@ -1062,7 +1110,6 @@
 		"require":"g.lore>=7&&g.tier0>0",
 		"cost":{
 			"research.max":25,
-			"research":25,
 			"mana":5
 		},
 		"mod":{
@@ -1080,7 +1127,6 @@
 		"require":"g.lore>=7&&g.tier0>0",
 		"cost":{
 			"research.max":25,
-			"research":25,
 			"mana":5
 		},
 		"mod":{
@@ -1097,7 +1143,6 @@
 		"require":"g.lore>=7&&g.tier0>0",
 		"cost":{
 			"research.max":25,
-			"research":25,
 			"mana":5
 		},
 		"mod":{
@@ -1412,6 +1457,18 @@
 		"mod":{
 			"cellar.mod.space.max":5
 		}
+	},
+	{
+		"id":"siegeperilous",
+		"name":"siege perilous",
+		"desc":"the seat of destiny",
+		"cost":{
+
+		},
+		"mod":{
+
+		}
+
 	},
 	{
 

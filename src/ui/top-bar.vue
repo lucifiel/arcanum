@@ -33,7 +33,6 @@ export default {
 
 	<div class="top-bar">
 
-		<span>
 		<span class="load-opts">
 		<button @click="dispatch('save')">save</button>
 		<button @click="dispatch('load')">load</button>
@@ -46,9 +45,8 @@ export default {
 
 			<confirm @confirm="dispatch('reset')">reset</confirm>
 
-		</span>
+		<span class="inline"><slot name="center"></slot></span>
 
-		<slot name="center"></slot>
 		</span>
 
 		<span class="link-bar">
@@ -82,14 +80,12 @@ div.top-bar {
 .link-bar {
 	display:flex;
 	flex-flow: row-reverse nowrap;
-	color: rgb(22, 22, 22);
 	font-size: 0.90em;
 }
 
 .link-bar a {
 	margin:0px 10px 4px;
 	align-self:center;
-	color: rgb(22, 22, 22);
 }
 
 span.load-message {

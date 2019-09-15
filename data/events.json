@@ -71,7 +71,6 @@
 			"player.exp":15
 		},
 		"mod":{
-			"lore.max":1,
 			"crafting.max":1,
 			"arcanebody.max":1,
 			"occultendure.max":1,

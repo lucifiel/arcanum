@@ -1,6 +1,15 @@
+9/15:
+
+FEATURES:
+
+Rudimentary Dark Mode.
+
+
 9/14:
 
 FEATURES:
+
+Rudimentary Settings Pane
 
 Added a link to this changelog.
 

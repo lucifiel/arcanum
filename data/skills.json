@@ -500,7 +500,7 @@
 	{
 		"id":"mysticism",
 		"require":"g.lore>=8",
-		"desc":"an ability to sense the flow and flux of arcane energies.",
+		"desc":"the ability to sense the flow and flux of arcane energies.",
 		"run":{
 			"stamina":0.5
 		},
@@ -515,6 +515,7 @@
 		"id":"planeslore",
 		"name":"planes lore",
 		"require":"g.astronomy>=5&&g.tier1>0",
+		"desc":"farther than the stars and closer than your fingertips",
 		"run":{
 			"stamina":0.7,
 			"research":1,
@@ -524,7 +525,7 @@
 			"dist.max":"5%",
 			"arcana.max":1,
 			"research.max":1
-		}
+		}, "flavor":"there is no safe distance"
 
 	},
 	{

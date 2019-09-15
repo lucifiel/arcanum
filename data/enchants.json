@@ -85,7 +85,7 @@
 			"hp":10
 		},
 		"mod":{
-			"mod.hp":1
+			"mod.hp":2
 		}
 	},
 	{
@@ -108,7 +108,7 @@
 			"hp":10
 		},
 		"mod":{
-			"player.regen":0.1
+			"player.regen":0.2
 		}
 	},
 	{

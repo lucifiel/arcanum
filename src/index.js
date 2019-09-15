@@ -44,6 +44,7 @@ var vm = new Vue({
 		this.listen('load', this.loadSave );
 		this.listen('reset', this.reset );
 		this.listen('save', this.save );
+		this.listen( 'setting', this.onSetting );
 
 		this.loadSave();
 
@@ -53,6 +54,15 @@ var vm = new Vue({
 		gameLoaded() {
 			console.log('gameLoaded()');
 			this.dispatch( 'game-loaded' );
+		},
+
+		onSetting( setting, v ) {
+
+			if ( setting === 'darkMode') {
+				if ( v ) document.body.classList.add( 'darkmode');
+				else document.body.classList.remove( 'darkmode');
+			}
+
 		},
 
 		saveFile(e){

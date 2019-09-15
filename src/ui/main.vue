@@ -366,6 +366,7 @@ export default {
 
 div.full {
 	display:flex;
+	background:inherit;
 	flex-direction: column;
 	min-width:500px;
 	width: 98vw;
@@ -379,17 +380,20 @@ div.game-main {
 	max-height: 85vh;
 	flex-direction: row;
 	flex-grow: 1;
+	margin-top:16px;
 	justify-content: space-between;
 }
 
 div.game-mid {
 	display:flex;
 	flex-flow: column nowrap;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
 	max-height: 100%;
 	height:100%;
 	flex-basis:48%;
 	flex-grow:1;
-	margin: 0px 14px;
+	margin: 0px 10px;
 	align-content: space-around;
 }
 
@@ -398,13 +402,16 @@ div.action-list, div.upgrade-list {
 	flex-flow: row wrap;
 	justify-content:left;
 	flex-direction: row;
-	padding:0px 14px;
+	padding:0px 6px;
 	text-transform: capitalize;
 }
 
-div.resource-list, div.upgrade-list {
-	margin: 20px 2px 2px;
+div.resource-list, div.upgrade-list, div.action-list {
+	margin: 0px 2px 2px 18px;
+}
 
+div.upgrade-list {
+	margin-top:10px;
 }
 
 div.inv-equip {

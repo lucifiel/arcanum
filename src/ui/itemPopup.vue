@@ -30,7 +30,7 @@ export default {
 
 <template>
 
-	<div :class="{ 'item-popup':true }" v-show="item!=null">
+	<div class="item-popup" v-show="item!=null">
 		<div class="popup-content">
 		<div v-if="title" class="pop-title">{{ title }}</div>
 		<template v-if="Array.isArray(item)">
@@ -64,7 +64,7 @@ div.pop-title {
 	position: absolute;
 	z-index:10000;
 	top:0;
-	background:white;
+	background:inherit;
 	border: 1.5px solid rgb( 100, 100,100);
 	border-radius: 0.20rem;
 }

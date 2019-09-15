@@ -202,7 +202,10 @@
 		"tags":"gem",
 		"name":"blood gem",
 		"desc":"a little magic and a lot of blood",
-		"max":2
+		"max":2,
+		"mod":{
+			"hp.max":1
+		}
 	},
 	{
 		"id":"ichor",

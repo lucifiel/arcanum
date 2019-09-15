@@ -3,12 +3,13 @@ body {
 	background: rgb(250, 250, 250);
 }
 
-ul {
-	list-style-type: none;
-	padding: 2px;
+body.darkmode {
+
+	background:#181818;
+	color: #D7DADC;
 }
 
-input[type="button"], button, .text-button, .btn-sm {
+input[type="button"], button, .text-button {
 	background-color: rgb(231, 229, 229);
 	border: 1pt solid darkgray;
 	border-radius: 2px;
@@ -18,6 +19,14 @@ input[type="button"], button, .text-button, .btn-sm {
 
 }
 
+.darkmode input[type="button"],
+.darkmode button,
+.darkmode .text-button {
+	background-color:#181818;
+	border-color: rgb(100,100,100);
+	color:#D7DADC;
+}
+
 input[type="button"]:enabled:active, button:enabled:active, .hilite {
 	background-color: rgb(121, 121, 121);
 }
@@ -25,6 +34,12 @@ input[type="button"]:enabled:active, button:enabled:active, .hilite {
 input[type="button"]:hover, button:hover {
 	background-color: rgb(194, 194, 194);
 }
+
+ul {
+	list-style-type: none;
+	padding: 2px;
+}
+
 
 .num-align {
 	text-align: right;
@@ -36,10 +51,18 @@ div.div-hr {
 	padding-bottom:2px;
 }
 
+a {
+	color:inherit;
+}
 
 .text-button:link, .text-button:visited {
-	color: #111111;
+	color: inherit;
 	text-decoration: none;
+}
+
+.darkmode .text-button,
+.darkmode .text-button:visited {
+	color:inherit;
 }
 
 .inline {
@@ -67,10 +90,6 @@ div.div-hr {
 .running {
 	border: 2px dashed #202020;
 	padding: 1px;
-}
-
-.runnable button {
-	background: #fdc679;
 }
 
 div.homes-view {
@@ -132,13 +151,11 @@ table.item-table tr, table.item-table th {
 	margin-top:12px;
 	max-height: 90%;
 	height:100%;
-	border-left: 1px solid grey;
-	border-right: 1px solid grey;
 }
 
 .menu-items {
 	display:flex;
-	margin: 6px 10px;
+	margin: 0px 10px 2px;
 	flex-flow: row wrap;
 	justify-content: center;
 }
@@ -172,6 +189,18 @@ div.bgfill {
 
 div.hp .fill, div.hp .bgfill {
 	background:#ac0404;
+}
+
+.darkmode .bgfill {
+	opacity: 0.8;
+}
+
+.runnable button {
+	background: #fdc679;
+}
+
+.darkmode .runnable button {
+	background: #b37723;
 }
 
 /*div.arcane .fill, div.arcane.bgfill {
