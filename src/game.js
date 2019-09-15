@@ -120,11 +120,12 @@ export default {
 
 			var it = items[p];
 			if ( !it.locked && it.value > 0 && !it.disabled ) {
-
 				if ( it.mod ) this.addMod( it.mod, it.value );
-
 			}
 
+		}
+		for( let e of this.state.equip ) {
+			if ( e.mod ) this.addMod( e.mod, 1 );
 		}
 
 	},
@@ -834,7 +835,7 @@ export default {
 	 * @param {Array|Object} mod
 	 * @param {number} amt - amount added.
 	 */
-	addMod( mod, amt ) {
+	addMod( mod, amt=1 ) {
 
 		if ( Array.isArray(mod)  ) for( let m of mod ) this.addMod(m, amt);
 		else if ( typeof mod === 'object' ) {
@@ -896,7 +897,7 @@ export default {
 	 * @param {Object} mod
 	 * @param {number} amt
 	 */
-	removeMod( mod, amt ) {
+	removeMod( mod, amt=1 ) {
 		this.addMod( mod, -amt);
 	},
 
@@ -1082,18 +1083,18 @@ export default {
 
 					if ( typeof v === 'boolean') return;
 					v.unequip(this.state.player);
-					this.remove(v);
+					if ( v.mod ) this.removeMod( v.mod );
 
 				});
 			else {
 				res.unequip( this.state.player );
-				this.remove( res );
+				if ( res.mod ) this.removeMod( res.mod );
 			}
 			this.state.inventory.add(res);
 
 		}
-
-		this.doItem(it);
+		if ( it.mod) this.addMod(it.mod);
+		//this.doItem(it);
 		it.equip( this.state.player );
 
 
@@ -1111,11 +1112,13 @@ export default {
 
 			if (  Array.isArray(res) ) res.forEach(v=>{
 				v.unequip(this.state.player);
-				this.remove(v);
+				if ( v.mod ) this.removeMod( v.mod );
+				//this.remove(v);
 			});
 			else {
 				res.unequip(this.state.player);
-				this.remove(res);
+				if ( res.mod ) this.removeMod( res.mod );
+				//this.remove(res);
 			}
 
 		} else console.log('no reuslt');

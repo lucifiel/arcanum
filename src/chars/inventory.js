@@ -54,10 +54,8 @@ export default class Inventory {
 				console.warn( 'Unknown Item type: '+ it.type + ' -> ' + it.template + ' -> ' + it.protoId );
 			}
 
-			console.log('revive type: ' + type );
 			if ( type === 'armor' || type === 'weapon' || type === 'wearable') {
 
-				console.log('reviving wearable');
 				it = this.items[i] = new Wearable(it);
 
 			} else if ( type === 'monster') {

@@ -3,9 +3,13 @@ import Range from "../range";
 import Attack from './attack';
 
 import {mergeSafe} from "objecty";
+import Mod from '../mod';
 
 
 export default class Wearable {
+
+	get value() { return 1;}
+	set value(v) {}
 
 	toJSON() {
 
@@ -17,6 +21,7 @@ export default class Wearable {
 		data.attack = this.attack || undefined;
 
 		data.enchants = this.enchants || undefined;
+		if ( this.mod ) data.mod = this.mod;
 
 		if ( this.material ) {
 			if ( !data ) data = {};
@@ -27,6 +32,7 @@ export default class Wearable {
 
 	}
 
+	get unique() { return true; }
 	get equippable() { return true; }
 
 	/**
@@ -66,6 +72,11 @@ export default class Wearable {
 	get kind() { return this._kind; }
 	set kind(v) { this._kind = v; }
 
+	/*get mod() { return this._mod; }
+	set mod(v) {
+		this._mod = this.convertMods(v);
+	}*/
+
 	constructor(vars=null){
 
 		if( vars ) Object.assign( this, vars);
@@ -91,7 +102,6 @@ export default class Wearable {
 			this.type = this.template.type || this.type;
 
 			mergeSafe( this, this.template );
-			console.log('LOAD KIND: ' + this.kind );
 
 		} else console.log('wearable template not found: ' + this.template );
 
@@ -141,6 +151,35 @@ export default class Wearable {
 
 		if ( this.armor ) player.defense -= this.armor;
 		if ( player.weapon == this ) player.weapon = null;
+
+	}
+
+	convertMods(v) {
+
+		let t = typeof v;
+		if ( v instanceof Mod ) {
+			console.log('ALREADY MOD: ' + v );
+			return v;
+		}
+
+		console.log('CONVERTING MOD: ' + this.id );
+		if ( t === 'object') {
+
+			if ( v.id ) {
+				console.log('creating mod: ' );
+				for( let p in v ) console.log( p + ' -> ' + v[p]);
+				return new Mod( v );
+			} else {
+
+				for( let p in v ) {
+					v[p] = this.convertMods( v[p] );
+				}
+
+			}
+
+		} else if ( t === 'string' || t==='number') return new Mod(v, this.id);
+
+		return v;
 
 	}
 

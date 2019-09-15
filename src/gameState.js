@@ -165,6 +165,7 @@ export default class GameState {
 
 		this.equip.revive( this );
 		this.inventory.revive( this );
+
 		this.minions.revive(this);
 		this.player.revive(this);
 

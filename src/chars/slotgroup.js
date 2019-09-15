@@ -34,7 +34,7 @@ export default class SlotGroup {
 
 	/**
 	 * Find equipment item by id.
-	 * @param {string} id 
+	 * @param {string} id
 	 * @returns {Item|null}
 	 */
 	find( id ) {
@@ -49,7 +49,7 @@ export default class SlotGroup {
 
 	/**
 	 * Get item or items in a named slot.
-	 * @param {string} slot 
+	 * @param {string} slot
 	 * @returns {?Item|Item[]}
 	 */
 	get( slot ) {
@@ -69,8 +69,8 @@ export default class SlotGroup {
 	}
 
 	/**
-	 * 
-	 * @param {Item} it 
+	 *
+	 * @param {Item} it
 	 */
 	remove( it, slot=null ) {
 
@@ -92,16 +92,16 @@ export default class SlotGroup {
 	}
 
 	/**
-	 * 
-	 * @param {Armor|Weapon} it 
-	 * @param {string} slot 
+	 *
+	 * @param {Armor|Weapon} it
+	 * @param {string} slot
 	 * @returns {boolean|Wearable|Wearable[]}
 	 */
 	setSlot( it, slot=null ) {
 
 		slot = slot || it.slot;
 		if( slot === null || !this.slots.hasOwnProperty(slot)) return false;
-		
+
 		let cur = this.slots[slot];
 		return cur.equip(it);
 	}
@@ -113,11 +113,19 @@ export default class SlotGroup {
 		for( let k in this.slots ) yield k;
 	}
 
-	* items() {
+	*[Symbol.iterator]() {
 
 		for( let k in this.slots ) {
-			var it = this.slots[k];
-			if ( it ) yield it;
+
+			var it = this.slots[k].item;
+			if ( Array.isArray(it) ) {
+
+				for( let i = it.length-1; i>= 0; i-- ) {
+					if ( it[i]) yield it[i];
+				}
+
+			} else if (it ) yield it;
+
 		}
 
 	}

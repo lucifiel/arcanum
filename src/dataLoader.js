@@ -312,19 +312,20 @@ export default {
 			if ( s.includes('.')) this.splitKeyPath( mods, s );
 		}
 
-		if ( id === 'trapsoul') console.log('mod for trap: ' + mods );
-
 		for( let s in mods ) {
 
 			var val = mods[s];
 			var typ = typeof val;
 			if ( typ === 'number' || (typ === 'string' && ModTest.test(val)) ) {
 
-				if ( id === 'trapsoul') console.log('mod for trap: ' + val );
-					val = mods[s] = new Mod(val, id);
+				val = mods[s] = new Mod(val, id);
 
 			} else if ( val instanceof Mod ) continue;
-			else if ( typ === 'object') this.parseMods( val, id );
+			else if ( typ === 'object') {
+
+				if ( val.id ) mods[s] = new Mod( val );
+				else this.parseMods( val, id );
+			}
 
 		}
 		return mods;

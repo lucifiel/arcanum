@@ -117,9 +117,9 @@ export default class Stat {
 	/**
 	 * Add a modifier to the stat.
 	 * @param {Mod} mod
-	 * @param {number} amt - amount by which mod increased.
+	 * @param {number} [amt=1] - amount by which mod increased.
 	 */
-	addMod( mod, amt ) {
+	addMod( mod, amt=1 ) {
 
 		this._pct += amt*mod.pct;
 		this._bonus += amt*mod.bonus;

@@ -16,6 +16,8 @@ export default class Mod {
 			(this.bonus || '') + (( this._pct > 0 ? '+' : '') + (100*this._pct)  + '%')
 		);
 
+		console.log('mod save val: ' + val );
+
 		return {
 			id:this.id,
 			value:val,
@@ -59,6 +61,8 @@ export default class Mod {
 	get value() { return this.bonus; }
 	set value(v) {
 
+		//console.log('assinging to mod: ' + this.id + ' val: ' + v );
+
 		if ( typeof v ==='string' ){
 
 			let res = ModTest.exec( v);
@@ -68,15 +72,43 @@ export default class Mod {
 				//res.forEach((v,i)=>console.log('reg['+i+']: ' + v ));
 				this.bonus = Number(res[1]) || 0;
 				this.pct = Number(res[2])/100 || 0;
-			} else console.log('no mod regex: ' + v );
+
+				console.log( this.id + 'mod regex: ' + this.bonus + ' + ' + this.pct );
+			} else console.log( this.id + ' no mod regex: ' + v );
 
 
 		} else if ( v instanceof Percent ) {
 
 			this.pct = v.value;
 
-		} else if ( !isNaN(v) ) this.bonus = v;
+		} else if ( !isNaN(v) ) {
 
+			this.bonus = v;
+		}
+
+	}
+
+	/**
+	 *
+	 * @param {?Object} [vars=null]
+	 */
+	constructor( vars=null, id=null ){
+
+		if ( typeof vars === 'number') this._bonus = vars;
+		else if ( typeof vars === 'string') this.value = vars;
+		else if ( vars ) Object.assign( this, vars );
+
+		this._count = this._count || 0;
+		this._bonus = this._bonus || 0;
+		this._pct = this._pct || 0;
+
+		this.id = this.id || id || DEFAULT_MOD;
+
+		//console.log(this.id + ' mod created: ' + this.bonus + ' +' +this.pct+'%');
+	}
+
+	clone() {
+		return new Mod({bonus:this._bonus, pct:this._pct, count:1}, this.id );
 	}
 
 	/**
@@ -167,25 +199,6 @@ export default class Mod {
 			obj[p] = ( targ + amt*this._bonus )*(1 + amt*this._pct );
 		}
 
-	}
-
-	/**
-	 *
-	 * @param {?Object} [vars=null]
-	 */
-	constructor( vars=null, id=null ){
-
-		if ( typeof vars === 'number') this._bonus = vars;
-		else if ( typeof vars === 'string') this.value = vars;
-		else if ( vars ) Object.assign( this, vars );
-
-		this._count = this._count || 0;
-		this._bonus = this._bonus || 0;
-		this._pct = this._pct || 0;
-
-		this.id = this.id || id || DEFAULT_MOD;
-
-		//console.log(this.id + ' mod created: ' + this.bonus + ' +' +this.pct+'%');
 	}
 
 }
