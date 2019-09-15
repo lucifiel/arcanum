@@ -364,32 +364,6 @@ export default {
 
 <style scoped>
 
-#save-file {
-	text-decoration: none;
-}
-#drop-file {
-	border: 1.75px dashed rgb(117, 117, 117);
-}
-
-div.top-bar {
-	display:flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
-	max-width:100%;
-	margin:0px 14px;
-}
-
-.link-bar {
-	display:flex;
-	flex-flow: row-reverse nowrap;
-	color: rgb(22, 22, 22);
-	font-size: 0.90em;
-}
-
-.link-bar a {
-	color: rgb(22, 22, 22);
-}
-
 div.full {
 	display:flex;
 	flex-direction: column;
@@ -398,10 +372,6 @@ div.full {
 	max-height:100vh;
 	height:100vh;
 	margin: 0px;
-}
-
-span.load-message {
-	padding: 8px 8px 2px;
 }
 
 div.game-main {

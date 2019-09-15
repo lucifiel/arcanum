@@ -75,7 +75,8 @@ div.top-bar {
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	max-width:100%;
-	margin:0px 14px;
+	padding: 0px 14px 4px;
+	border-bottom: 1px solid rgb(216, 216, 216);
 }
 
 .link-bar {
@@ -86,7 +87,13 @@ div.top-bar {
 }
 
 .link-bar a {
+	margin:0px 10px 4px;
+	align-self:center;
 	color: rgb(22, 22, 22);
+}
+
+span.load-message {
+	padding: 8px 8px 2px;
 }
 
 </style>

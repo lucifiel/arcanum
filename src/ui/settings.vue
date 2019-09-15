@@ -1,6 +1,8 @@
 <script>
 import Settings from '../settings';
 
+import { center } from './components/popups';
+
 export default {
 
 	data(){
@@ -8,6 +10,10 @@ export default {
 		return {
 			closed:true
 		};
+	},
+	updated() {
+
+		if (!this.closed) center(this.$el);
 	},
 	created() {
 		this.listen('open-settings', this.show );
@@ -17,7 +23,6 @@ export default {
 
 		close() {
 			Settings.save();
-			console.log('close this.');
 			this.closed = true;
 		},
 
@@ -48,7 +53,7 @@ export default {
 
 	<label :for="elmId('auto-save')">auto-save</label>
 	<input type="checkbox" :id="elmId('auto-save')" v-model="autoSave">
-	<button @click="close">close</button>
+	<button class="close" @click="close">close</button>
 
 </div>
 
@@ -56,18 +61,25 @@ export default {
 
 <style scoped>
 
+button.close {
+	position:absolute;
+	bottom: 10px;
+	right:10px;
+}
+
+
 .hide {
 	display:none;
 }
 
 .popup {
 	height:auto;
-	min-height:100px;
-	min-width:200px;
-	max-width:240px;
+	min-height:200px;
+	min-width:300px;
+	max-width:440px;
 	position: absolute;
 	z-index:10000;
-	top:0;
+	top:120px;
 	background:white;
 	border: 1.5px solid rgb( 100, 100,100);
 	border-radius: 0.20rem;
