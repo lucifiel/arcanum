@@ -26,22 +26,19 @@ Storage max+upgrades
 
 ERRORS:
 
-Spending codices doesn't cost research.
-
-ongoing actions should stop if 'need' requirements not met.
+Quickslot Dungeon - allows infinite completion?
 
 
 MINOR:
 
-fix rollovers itemover etc.
+ongoing actions should stop if 'need' requirements not met.
 
-popup positioning improvements.
+fix rollovers itemover etc.
 
 more armor drop variations.
 
 assign custom rest action.
 
-mod->max itempopup fix.
 
 UI display spell attacks
 
@@ -55,10 +52,6 @@ player stronger vs monsters same level.
 UI TWEAKS:
 
 Combat log/drops alignment.
-
-itempopup flavortext more spacing.
-
-itempopup offscreen popup.
 
 Clear button/rest button redesign
 

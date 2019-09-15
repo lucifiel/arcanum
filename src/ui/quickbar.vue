@@ -37,7 +37,7 @@ export default {
 					@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
 
-				<div>{{ it.name.slice(0,1) }}</div>
+				<div>{{ it.name.slice(0,2) }}</div>
 
 				<div class="remove" @click="remove(i)" />
 				<div v-if="it.school" class="bgfill" >&nbsp;</div>
@@ -79,6 +79,7 @@ div.quickbar {
 }
 
 div.quickslot {
+	z-index: 100;
 	min-width: 52px;
 	min-height:52px;
 	text-transform: capitalize;

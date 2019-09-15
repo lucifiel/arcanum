@@ -5,7 +5,7 @@ body {
 
 body.darkmode {
 
-	background:#181818;
+	background:#1a1a1a;
 	color: #D7DADC;
 }
 
@@ -40,6 +40,11 @@ ul {
 	padding: 2px;
 }
 
+.flex-right {
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+}
 
 .num-align {
 	text-align: right;
@@ -90,6 +95,10 @@ a {
 .running {
 	border: 2px dashed #202020;
 	padding: 1px;
+}
+
+.darkmode .running {
+	border-color: rgb(100,100,100);
 }
 
 div.homes-view {

@@ -346,6 +346,7 @@
 			"space":1
 		},
 		"mod":{
+			"research.max":10,
 			"study.effect.research":0.1
 		}
 
@@ -437,7 +438,7 @@
 		"name":"bookcase",
 		"repeat":true,
 		"desc":"A rough but sturdy bookcase.",
-		"require":"g.codices>=10",
+		"require":"g.codices>=20",
 		"cost":{
 			"gold":200,
 			"space":2

@@ -4,6 +4,12 @@ FEATURES:
 
 Rudimentary Dark Mode.
 
+Some basic Resource / Skill train rates displayed.
+
+Display maximum furniture values.
+
+Experimental Skill focus ability.
+
 
 9/14:
 

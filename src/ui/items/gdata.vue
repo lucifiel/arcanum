@@ -18,13 +18,18 @@ export default {
 <template>
 
 <div class="item-info">
-	<span class="item-name">{{item.name}}
+	<span class="separate">
+		<span class="item-name">{{item.name}}</span>
 
-			<span v-if="item.type==='resource'">&nbsp;&nbsp;&nbsp;{{
+			<span v-if="item.type==='resource'">{{
 				item.current.toFixed(0) + ( item.max ? (' / ' + Math.floor(item.max.value ) ) :'' ) }}</span>
-		</span>
+			<span v-else-if="item.type==='furniture'">max: {{
+				item.max ? Math.floor(item.max.value ) : ( (item.repeat) ? '&infin;' : 1) }}</span>
 
+	</span>
+		<span class="flex-right" v-if="item.rate&&item.rate.value!=0">{{ item.rate.value.toPrecision(2) }} /s</span>
 		<div>
+
 
 		<span class="separate">
 			<span v-if="item.level&&item.type!=='action'">lvl: {{item.level}}</span>

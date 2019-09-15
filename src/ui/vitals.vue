@@ -46,8 +46,8 @@ export default {
 			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
 			<td class="separate">{{ actionStr() }}
 
-			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )"
-				:disabled="!usable(focus)"
+			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
+				v-if="usable(focus)"
 				@click="dispatch('action', focus)">Focus</button></td></tr>
 
 		<tr><td>stamina</td>

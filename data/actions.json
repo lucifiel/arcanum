@@ -919,7 +919,7 @@
 	},
 	{
 		"id":"focus",
-		"desc":"quicken a task with magic energy.",
+		"desc":"quicken your skills with magic energy.",
 		"need":"s.curAction&&s.curAction.type==='skill'",
 		"cost":{
 			"mana":0.1
