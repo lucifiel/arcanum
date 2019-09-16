@@ -13,11 +13,10 @@ import Runnable from './composites/runnable';
 /**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT} from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ACTION_DONE } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
-import Npc from './chars/npc';
 
 var techTree;
 
@@ -81,6 +80,9 @@ export default {
 
 		this.loaded = false;
 
+		// Code events. Not game events.
+		Events.init(this);
+
 		return this.loader = DataLoader.loadGame( saveData ).then( allData=>{
 
 			this.state = new GameState( allData, saveData );
@@ -95,8 +97,8 @@ export default {
 				if ( !this._items[p].locked ) techTree.changed(p);
 			}
 
-			// Code events. Not game events.
-			Events.init(this);
+			Events.add( ACTION_DONE, this.actionDone, this );
+
 
 			this.initTimers();
 
@@ -256,6 +258,13 @@ export default {
 
 	},
 
+	actionDone( act ) {
+
+		if ( this.canPay( act.cost ) ) this.setAction( act );
+		else this.setAction(null);
+
+	},
+
 	/**
 	 * Toggles an action on or off.
 	 * @param {GData} act
@@ -394,30 +403,46 @@ export default {
 		}
 	},
 
+	sellPrice( it ) {
+
+		let sellObj = it.sell || it.cost || (5*it.level) || 5;
+
+		if ( typeof sellObj === 'object' ) {
+			sellObj = sellObj.gold || it.level || 1;
+		}
+		return Math.ceil( sellObj*this.state.sellRate );
+
+
+	},
+
 	/**
 	 * Attempt to sell one unit of an item.
 	 * @param {GData} it
 	 * @returns {boolean}
 	 */
-	trySell(it) {
+	trySell( it, inv ) {
 
 		if ( it.value < 1 ) return false;
 
-		let costObj = it.cost;
-		if ( !isNaN(costObj) ) {
+		let sellObj = it.sell || it.cost;
+		let goldPrice = this.sellPrice(it);
 
-			this.getData('gold').value += costObj*this.state.sellRate;
-
-		} else if ( typeof costObj === 'object' ) {
-
-			if ( costObj.gold ) this.getData('gold').value += costObj.gold*this.state.sellRate;
-			if ( costObj.space ) this.getData('space').value += costObj.space;
-
+		if ( sellObj && typeof sellObj === 'object' ) {
+			if ( sellObj.space ) this.getData('space').value += sellObj.space;
 		}
+		this.getData('gold').value += goldPrice;
 
 		if ( it.slot && this.state.getSlot(it.slot) === it ) this.state.setSlot(it.slot,null);
 		it.value -= 1;
-		if ( it.mod ) this.removeMod( it.mod, 1 );
+
+		if ( it.instance ) {
+
+			if ( inv ) inv.remove( it );
+		} else {
+
+			if ( it.mod ) this.removeMod( it.mod, 1 );
+
+		}
 
 		return true;
 

@@ -147,8 +147,10 @@ export default class Raid {
 		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
 		attacker.timer =attacker.delay;
 
-		if ( enemy.id ) {
-			let tmp = this.state.getData(enemy.id);
+		console.log('enemy died');
+		if ( enemy.template && enemy.template.id ) {
+
+			let tmp = this.state.getData(enemy.template.id );
 			if ( tmp ) {
 				tmp.value++;
 			}
@@ -192,10 +194,13 @@ export default class Raid {
 				this.drops.clear();
 			}
 
-			if ( d.exp >= d.length ) d.exp = 0;
+			if ( d.exp >= d.length ) {
+				d.exp = 0;
+			}
 		}
 
 		this.dungeon = d;
+		if ( this.combat.complete ) this.nextCombat();
 
 	}
 

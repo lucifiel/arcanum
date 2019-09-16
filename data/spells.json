@@ -797,6 +797,29 @@
 		}
 	},
 	{
+		"id":"wildgrowth",
+		"name":"wild growth",
+		"level":1,
+		"desc":"herbs sprout more quickly from the earth.",
+		"school":"nature",
+		"require":"g.herbalism>=3",
+		"buy":{
+
+			"research":50,
+			"scrolls":5
+
+		},
+		"cost":{
+			"nature":2
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"herbs.rate":0.25
+			}
+		}
+	},
+	{
 		"id":"whisper",
 		"level":2,
 		"desc":"spirits whisper hidden truths as you study.",

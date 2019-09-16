@@ -72,8 +72,8 @@ export default {
 
 <style scoped>
 
-.bestiary {
-	height:100%;
+div.bestiary {
+display:flex;
 }
 
 .char-list {

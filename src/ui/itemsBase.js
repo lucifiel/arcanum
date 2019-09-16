@@ -48,9 +48,7 @@ export default {
 		 */
 		stripTags( t ) {
 
-			if ( Array.isArray(t) ) {
-				return t.map( this.stripTags, this );
-			}
+			if ( Array.isArray(t) ) { return t.map( this.stripTags, this ); }
 
 			if ( typeof t === 'string' ) {
 
@@ -66,7 +64,7 @@ export default {
 		/**
 		 *
 		 * @param {*} obj
-		 * @param {boolean} rate - items are rate.
+		 * @param {boolean} rate - items represent /sec rates.
 		 */
 		effectItems( obj, rate=false) {
 

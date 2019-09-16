@@ -1,5 +1,5 @@
 import Emitter from 'eventemitter3';
-
+import {uppercase} from './util';
 const events = new Emitter();
 
 const EVT_COMBAT = 'combat';
@@ -15,35 +15,36 @@ const ENEMY_HIT = 'enemy_hit';
 const PLAYER_HIT = 'player_hit';
 const LEVEL_UP = 'levelup'
 
-export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT,
+
+/**
+ * Dispatched when a running action completes.
+ */
+const ACTION_DONE = 'action_done';
+
+export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {
 
 	log:null,
 
-	ready:false,
-
 	init( game ) {
 
 		this.log = game.log;
 		this.game = game;
 
-		if ( !this.ready ) {
+		events.removeAllListeners();
 
 			events.addListener( EVT_LOOT, this.onLoot, this );
 			events.addListener( EVT_UNLOCK, this.onUnlock, this );
 			events.addListener( EVT_EVENT, this.onEvent, this );
 			events.addListener( LEVEL_UP, this.onLevel, this );
+			events.addListener( ACTION_DONE, this.actionDone, this );
 
 			events.addListener( EVT_COMBAT, this.onCombat, this );
 			events.addListener( ENEMY_SLAIN, this.enemySlain, this );
 			events.addListener( PLAYER_SLAIN, this.onDied, this );
 			events.addListener( DAMAGE_MISS, this.onMiss, this );
-
-			this.ready = true;
-		}
-
 	},
 
 	/**
@@ -55,10 +56,13 @@ export default {
 	},
 
 	onUnlock( it ) {
-		this.log.log( 'Unlocked: ' + it.name, null, EVT_UNLOCK );
+		this.log.log( uppercase(it.type) + ' Unlocked: ' + it.name, null, EVT_UNLOCK );
 	},
 
 	onLoot( loot ) {
+	},
+
+	actionDone(it){
 	},
 
 	onLevel( player ) {

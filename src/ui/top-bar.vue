@@ -45,7 +45,7 @@ export default {
 
 			<confirm @confirm="dispatch('reset')">reset</confirm>
 
-		<span class="inline"><slot name="center"></slot></span>
+		<span class="items"><slot name="center"></slot></span>
 
 		</span>
 
@@ -68,10 +68,22 @@ export default {
 	border: 1.75px dashed rgb(117, 117, 117);
 }
 
+.top-bar .items {
+	display:flex;
+	margin-left:20px;
+}
+
+.load-opts {
+	display:flex;
+}
+
 div.top-bar {
 	display:flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
+	align-items: center;
+	align-content: center;
+	min-height:52px;
 	max-width:100%;
 	padding: 0px 14px 4px;
 	border-bottom: 1px solid rgb(216, 216, 216);

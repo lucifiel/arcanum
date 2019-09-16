@@ -34,6 +34,8 @@ export default {
 
 	},
 	computed:{
+
+		playerInv(){ return this.inv === Game.state.inventory; },
 		playerFull(){
 			return Game.state.inventory.full();
 		}
@@ -48,13 +50,20 @@ export default {
 	<filterbox v-model="filtered" :items="inv.items" min-items="10" />
 	<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + inv.max.value + ' Used' }}</div>
 <table class="inv item-table">
+
 	<tr v-for="it in filtered" :key="it.id">
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name + count(it) }}</td>
+
+
 		<template v-if="!selecting">
+
 			<td v-if="it.equippable"><button @click="dispatch('equip',it, inv)">Equip</button></td>
 			<td v-if="it.use"><button @click="dispatch( 'use', it)">Use</button></td>
 			<td v-if="take&&!playerFull"><button @click="onTake(it)">Take</button></td>
-			<td><button @click="drop(it)">Drop</button></td>
+
+			<td><button @click="dispatch('sell',it,inv)">Sell</button>
+				<!--<button v-else @click="drop(it)">Drop</button>--></td>
+
 		</template>
 		<template v-else>
 			<td><button @click="$emit('input', it)">Select</button></td>

@@ -2,14 +2,21 @@
 
 FEATURES:
 
+Added Item/Weapon Selling.
+
 Increased maximum number of herb bags.
 
+Unlocks include Unlock-type.
 
 BUGFIX:
+
+Dungeons no longer advance when exit/re-entering.
 
 You are now notified that you are losing money when moving into an Inn.
 
 Now possible to scroll the available Homes list.
+
+Fixed Infinite Free actions bug.
 
 
 9/15:

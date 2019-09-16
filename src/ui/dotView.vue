@@ -3,7 +3,7 @@ import { seconds } from '../format.js';
 import ItemBase from 'ui/itemsBase';
 
 export default {
-	
+
 	props:['dots'],
 	mixins:[ItemBase],
 	beforeCreate(){
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-	
+
 	<div class="dot-view">
 
 		<div :class="['dot',d.kind]" v-for="d in dots" :key="d.id"
@@ -40,6 +40,7 @@ export default {
 	}
 
 	div.dot {
+		max-height:40px;
 		margin:0px 2px;
 		text-align: center;
 		padding:4px;

@@ -28,7 +28,7 @@ input[type="button"], button, .text-button {
 	border-color: rgb(100,100,100);
 	color:#D7DADC;
 }
-.darkmode input[type="button"]:hover, .darkmode button:hover {
+.darkmode input[type="button"]:hover, .darkmode button:hover, .darkmode .text-button:hover {
 	background-color: rgb(95, 95, 95);
 }
 
@@ -41,8 +41,24 @@ input[type="button"]:enabled:active, button:enabled:active, .hilite {
 	background-color: rgb(121, 121, 121);
 }
 
-input[type="button"]:hover, button:hover {
+input[type="button"]:hover, button:hover, .text-button:hover {
 	background-color: rgb(194, 194, 194);
+}
+
+.runnable button {
+	background: #fdc679;
+}
+
+.runnable button:hover {
+	background:#Dba659;
+}
+
+.darkmode .runnable button {
+	background: #b37723;
+}
+
+.darkmode .runnable button:hover {
+	background:rgb(197, 150, 79)
 }
 
 ul {
@@ -188,11 +204,6 @@ table.item-table tr, table.item-table th {
 	justify-content: center;
 }
 
-div.outlog {
-	display:flex;
-	flex-direction: column-reverse;
-}
-
 button.btn-sm {
 	padding:3px 8px;
 }
@@ -214,14 +225,6 @@ div.hp .fill, div.hp .bgfill {
 
 .darkmode .bgfill {
 	opacity: 0.8;
-}
-
-.runnable button {
-	background: #fdc679;
-}
-
-.darkmode .runnable button {
-	background: #b37723;
 }
 
 /*div.arcane .fill, div.arcane.bgfill {

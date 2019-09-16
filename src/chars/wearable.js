@@ -32,7 +32,7 @@ export default class Wearable {
 
 	}
 
-	get unique() { return true; }
+	get instance() { return true; }
 	get equippable() { return true; }
 
 	/**

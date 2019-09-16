@@ -1,6 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
-import Events from '../events';
+import Events, { ACTION_DONE } from '../events';
 
 export default class Action extends GData {
 
@@ -27,6 +27,8 @@ export default class Action extends GData {
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.mod ) Game.addMod( this.mod );
 			if ( this.loot ) Game.getLoot( this.loot );
+
+			Events.dispatch( ACTION_DONE, this );
 			if ( this.exec ) this.exec();
 			this.complete();
 

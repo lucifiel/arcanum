@@ -222,9 +222,7 @@ export default {
 			this.game.tryUseWith( e, targ );
 		},
 
-		onSell(it) {
-			this.game.trySell( it );
-		},
+		onSell( it, inv) { this.game.trySell( it, inv ); },
 
 		itemOver(evt, it, title) {
 			this.overItem = it;
@@ -369,15 +367,14 @@ div.full {
 	background:inherit;
 	flex-direction: column;
 	min-width:500px;
-	width: 98vw;
 	max-height:100vh;
 	height:100vh;
-	margin: 0px;
+	margin: 0px 8px;
 }
 
 div.game-main {
 	display:flex;
-	max-height: 85vh;
+	max-height: calc( 100vh - 150px);
 	flex-direction: row;
 	flex-grow: 1;
 	margin-top:16px;

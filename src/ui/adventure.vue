@@ -57,7 +57,8 @@ export default {
 <div class="adventure">
 
 		<div class="separate">
-		<div class="dungeon-list" v-if="raiding">
+
+		<div class="active-dungeon" v-if="raiding">
 			<span>{{ cur.name }}</span>
 			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
 			<span><button class="raid-btn"
@@ -115,20 +116,30 @@ div.adventure {
 	flex-flow: column nowrap;
 }
 
-div.log {
-	margin: 0px 0px 10px 10px;
+.adventure .log {
+	flex-basis:48%;
+	flex-grow:1;
+	margin: 0px 0px 10px 20px;
+}
+
+.active-dungeon {
+	display:flex;
+	flex-basis:40%;
+	min-width:222px;
+	flex-direction:column;
+
 }
 
 div.dungeon-list {
 	display:flex;
-	width: 55%;
+	flex-basis:50%;
 	min-width:222px;
 	flex-direction:column;
 }
 
 div.dungeon {
 	display:flex;
-	width:100%;
+	flex-basis: 40%;
 	justify-content: space-between;
 	align-items: center;
 	flex-flow: row nowrap;

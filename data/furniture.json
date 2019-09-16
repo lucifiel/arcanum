@@ -322,6 +322,23 @@
 
 	},
 	{
+		"id":"creepingvine",
+		"name":"creeping vine",
+		"desc":"a quickly growing plant",
+		"tags":"taggarden",
+		"require":"g.herbalism>=4",
+		"repeat":true,
+		"cost":{
+			"gold":75,
+			"space":1
+		},
+		"mod":{
+			"herbalism.max":1,
+			"herbs.rate":0.2
+		}
+
+	},
+	{
 		"id":"birdcage",
 		"desc":"Perfect for robins.",
 		"tags":"t_pets",
@@ -897,6 +914,7 @@
 			"space":10
 		},
 		"mod":{
+			"herbs.rate":1,
 			"herbalism.rate":0.2,
 			"herbalism.max":3,
 			"nature.max":1,

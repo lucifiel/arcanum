@@ -79,11 +79,12 @@ div.quickbar {
 
 	display:flex;
 	cursor:pointer;
+	flex-basis: 72px;
 	width:100%;
 	flex-direction: row;
 	justify-self: flex-end;
-	bottom: 8px;
-	left: 8px;
+	z-index: 50;
+	margin: 8px 0px;
 }
 
 div.quickslot {

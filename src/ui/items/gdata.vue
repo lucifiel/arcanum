@@ -1,4 +1,6 @@
 <script>
+import Game from '../../game';
+
 import ItemsBase from '../itemsBase.js';
 import InfoBlock from './info-block.vue';
 import Attack from './attack.vue';
@@ -10,7 +12,13 @@ export default {
 	components:{
 		info:InfoBlock,
 		attack:Attack
+	},
+	methods:{
+		sellPrice(it){
+			return Game.sellPrice(it);
+		}
 	}
+
 }
 </script>
 
@@ -45,6 +53,7 @@ export default {
 		<info v-if="item.need" :info="item.need" title="need" />
 		<info v-if="item.buy&&!item.owned" :info="item.buy" title="purchase cost" />
 		<info v-if="item.cost" :info="item.cost" title="cost" />
+		<info v-if="item.sell||item.instance||item.type==='furniture'" :info="sellPrice(item)" title="sell" />
 		<info v-if="item.run" :info="item.run" title="progress cost" rate="true" />
 
 		<attack v-if="item.attack" :item="item.attack" />

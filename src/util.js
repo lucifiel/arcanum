@@ -1,3 +1,7 @@
+export const uppercase = (s) => {
+	return s.length > 1 ? s[0].toUpperCase() + s.slice(1) : s[0].toUpperCase();
+}
+
 export const quickSplice = ( a, i ) => {
 
 	a[i] = a[ a.length-1 ];

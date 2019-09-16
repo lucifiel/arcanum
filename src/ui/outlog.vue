@@ -28,7 +28,17 @@ export default {
 	computed:{
 
 		visItems(){
-			return this.items.filter(v=>!v.type || this.filter.includes(v.type));
+
+			let all = this.items;
+			let a = [];
+
+			for( let i = this.items.length-1; i>=0; i-- ) {
+
+				var it = all[i];
+				if ( !it.type || this.filter.includes(it.type) ) a.push(it);
+			}
+			return a;
+
 		}
 
 	}
@@ -69,15 +79,24 @@ export default {
 
 <style scoped>
 
+div.outlog {
+	display:flex;
+	flex-flow: column nowrap;
+	overflow-y:auto;
+	max-height: 82vh;
+}
+
 div.log-view {
+	display:flex;
+	flex-flow: column nowrap;
 	margin-left: 8px;
-	flex-direction: column;
-	overflow-y: auto;
 	flex-basis:20%;
 	max-width: 250px;
+	max-height: inherit;
 }
 
 div.top-span {
+	max-height:64px;
 	display:flex;
 	flex-flow: row nowrap;
 	margin: 2px 8px 5px;

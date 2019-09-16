@@ -4,13 +4,12 @@ optional dot stacking
 
 Display Weapon/Dot stats
 
-BREVIARY ERROR: subassign: obj is undefined.
-addMod
-applyVars
-subassign
-(outdated research effect, but test null anyway.)
 
 GAME:
+
+To-do list (in game)
+
+Multiple actions at once (non-conflicting)
 
 Alchemy&Potions
 
