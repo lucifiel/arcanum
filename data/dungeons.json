@@ -413,7 +413,7 @@
 		"name":"desilla's grotto",
 		"desc":"in all the world, the most enjoyable place to die.",
 		"require":"g.player.dist>=500",
-		"level":14,
+		"level":13,
 		"run":{
 			"stamina":2
 		},
@@ -422,13 +422,15 @@
 			"gems":"3~5",
 			"gold":"50~100"
 		},
+		"boss":"desillaconcubine",
 		"enemies":[
+
 			"stalker",
 			"incubus",
 			"imp",
 			"willowisp",
 			"succubus"
-		],"flavor":"desilla was known for only two things; her ruthlessness, and her entertainments."
+		],"flavor":"desilla was known for two things; her ruthlessness, and her entertainments."
 
 	},
 	{

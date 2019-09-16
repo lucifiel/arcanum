@@ -1829,7 +1829,9 @@
             "name":"death touch",
             "kind":"drain",
             "dmg":"5~8"
-		},"loot":{"spectral essence":5},
+		},"loot":{
+			"soul":"10%"
+		},
 		"resist":{
 			"spirit":20,
 			"shadow":10
@@ -1920,7 +1922,8 @@
             "name":"seduction",
             "kind":"sexy",
             "dmg":"5~12"
-        }, "loot":{"sulfur dust":10, "potion of moderate agony":10}
+		}, "loot":{"sulfur":10
+		}
 
     },
     {
@@ -1935,7 +1938,9 @@
             "name":"stare",
             "kind":"magic",
             "dmg":"20~32"
-        },"loot":{"medusa head":5, "potion of light agony":5, "potion of cure light wounds":5}
+        },"loot":{
+
+		}
 
 	},
 	{
@@ -2027,7 +2032,9 @@
 				"dmg":"3~7",
 				"duration":5
 			}
-        }, "loot":{"potion of cure light wounds":20}
+        }, "loot":{
+
+		}
 
     },
     {
@@ -2043,7 +2050,9 @@
             "name":"chill touch",
             "kind":"drain",
             "dmg":"8~15"
-		}, "loot":{"spectral essence":10},
+		}, "loot":{
+			"soul":"15%"
+		},
 		"resist":{
 			"spirit":30
 		}
@@ -2284,6 +2293,23 @@
         }, "loot":{"vampire fang":10, "potion of major agony":10}
 
 	},
+	{
+		"id":"desillaconcubine",
+		"name":"desilla's concubine",
+        "level":11,
+        "evil":27,
+        "desc":"A devoted follower of the sorceress Desilla.",
+        "hp":90,
+        "tohit":20,
+        "defense":50,
+        "attack":{
+            "name":"claws",
+            "dmg":"12~22"
+        }, "loot":{
+			"max":11
+		}
+
+    },
 	{
 		"id":"firegolem",
         "name":"fire golem",

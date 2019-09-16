@@ -110,8 +110,10 @@ span.space {
 	margin: 0px 18px;
 }
 div.home-view {
+	overflow-y:auto;
 	display: flex;
 	padding-left:16px;
+	padding-right:15px;
 	flex-direction: row;
 	height:100%;
 }
@@ -126,10 +128,7 @@ div.nospace {
 }
 
 div.furniture {
-	overflow-y:auto;
-	width:100%;
 	margin-bottom: 4px;
-	padding-right:15px;
 }
 
 table .count, table .space {

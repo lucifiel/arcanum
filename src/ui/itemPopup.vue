@@ -64,6 +64,7 @@ div.pop-title {
 	position: absolute;
 	z-index:10000;
 	top:0;
+	opacity: 0.9;
 	background:inherit;
 	border: 1.5px solid rgb( 100, 100,100);
 	border-radius: 0.20rem;

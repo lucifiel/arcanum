@@ -28,6 +28,10 @@
 		"name":"Lodge at Inn",
 		"desc":"Rented room of a local Inn",
 		"require":"tier0",
+		"log":{
+			"name":"Rented Room",
+			"desc":"You are now living at a local inn, losing precious coins to pay the rent."
+		},
 		"disable":["alcove","atticbedroom"],
 		"mod":{
 			"space.max":10,

@@ -1,6 +1,8 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	background: rgb(250, 250, 250);
+	overflow: hidden;
+	margin: 0;
 }
 
 body.darkmode {
@@ -84,8 +86,15 @@ a {
 
 .action-btn {
 	display:inline-block;
-	margin: 4px;
 	text-transform: capitalize;
+	margin: 4px;
+	border: 2px solid transparent;
+	padding: 1px;
+}
+
+.running {
+	border: 2px dashed #202020;
+	padding: 1px;
 }
 
 .wrapped-btn {
@@ -98,11 +107,6 @@ a {
 
 .item-name {
 	text-transform: capitalize;
-}
-
-.running {
-	border: 2px dashed #202020;
-	padding: 1px;
 }
 
 .darkmode .running {

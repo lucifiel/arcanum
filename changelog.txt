@@ -1,3 +1,17 @@
+9/16
+
+FEATURES:
+
+Increased maximum number of herb bags.
+
+
+BUGFIX:
+
+You are now notified that you are losing money when moving into an Inn.
+
+Now possible to scroll the available Homes list.
+
+
 9/15:
 
 FEATURES:
@@ -22,7 +36,7 @@ Some ring-enchant bug fixes.
 
 Thirdeye upgrade bug fix.
 
-
+Some of the css fixes recommended by pettankon. more to come.
 
 9/14:
 

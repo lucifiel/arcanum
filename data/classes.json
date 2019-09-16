@@ -704,7 +704,7 @@
 	"tags":"t_tier2",
 	"require":"g.tier1>0&&g.lore>15",
 	"cost":{
-
+		"research":700
 	},
 	"effect":{
 		"tier2":true,
@@ -721,9 +721,10 @@
 	"id":"thaumaturge",
 	"title":"thaumaturge",
 	"desc":"a crafter of wonders",
+	"require":"g.tier3>0&&g.spirit>=15&&g.divination>=15",
 	"tags":"t_tier4",
 	"cost":{
-
+		"research":1500
 	},
 	"effect":{
 		"tier4":true,
@@ -742,9 +743,9 @@
 	"title":"wizard",
 	"desc":"raw magic power",
 	"tags":"t_tier4",
-	"require":"g.tier3>0&&g.lore>20",
+	"require":"g.tier3>0&&g.lore>=30",
 	"cost":{
-
+		"research":1500
 	},
 	"effect":{
 		"tier4":true,

@@ -57,7 +57,7 @@ export default {
 			<div class="outlog">
 			<div class="log-item" v-for="(it,i) in visItems" :key="i">
 
-				<span v-if="it.title" class="log-title">{{ it.title }}</span><br>
+				<span v-if="it.title" class="log-title">{{ it.title }}</span>
 				<span class="log-text">{{ it.text }}</span>
 
 			</div>
