@@ -172,7 +172,9 @@ export default class Raid {
 
 		//if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
 
-		this.player.exp += (this.dungeon.level)*( 15 + this.dungeon.length );
+		var del = Math.max( 1 + this.player.level - this.dungeon.level, 1 );
+
+		this.player.exp +=	(this.dungeon.level)*( 15 + this.dungeon.length )/( 0.8*del );
 		this.dungeon = null;
 
 		Game.doRest();

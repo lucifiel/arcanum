@@ -25,6 +25,7 @@ export default class Enchant extends Action {
 	 * @param {*} it
 	 */
 	usingWith( it ) {
+		if ( this.adj ) it.name += ' ' + this.adj;
 		it.enchants = (it.enchants || 0) + this.level;
 	}
 

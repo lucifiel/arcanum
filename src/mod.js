@@ -16,7 +16,7 @@ export default class Mod {
 			(this.bonus || '') + (( this._pct > 0 ? '+' : '') + (100*this._pct)  + '%')
 		);
 
-		console.log('mod save val: ' + val );
+		//console.log('mod save val: ' + val );
 
 		return {
 			id:this.id,

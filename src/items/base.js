@@ -308,6 +308,7 @@ export default {
 	 */
 	changeMod( mod, amt ) {
 
+		if ( this.equippable ) return;
 		console.log( this.id + ': adding mod amt: ' + amt );
 
 		// apply change to modifier for existing item amount.

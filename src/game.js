@@ -569,6 +569,8 @@ export default {
 		if ( typeof it.usingWith === 'function') it.usingWith( targ );
 		it.value++;
 
+		console.log('USING: ' + it.id  + ' with ' + targ.id );
+
 		if ( it.mod ) targ.applyMods( it.mod, 1 );
 		if ( it.effect ) targ.applyVars( it.effect, 1 );
 

@@ -38,6 +38,7 @@
 	{
 		"id":"hut",
 		"desc":"A remote hut in the woods.",
+		"disable":"innroom",
 		"require":"tier0",
 		"cost":150,
 		"mod":{
@@ -50,6 +51,7 @@
 		"desc":"A wild camp and its environs.",
 		"require":"g.tier0>0&&g.naturelore>=5",
 		"tags":"outdoors",
+		"disable":"innroom",
 		"cost":75,
 		"mod":{
 			"space.max":12,
@@ -80,6 +82,7 @@
 		"id":"cottage",
 		"desc":"Cozy and quaint.",
 		"require":"tier0",
+		"disable":"innroom",
 		"cost":400,
 		"mod":{
 			"minions.max":1,
@@ -90,6 +93,7 @@
 		"id":"house",
 		"desc":"A modest house in a small town.",
 		"cost":900,
+		"disable":"innroom",
 		"require":"g.tier0>0&&g.arcana.max>=8",
 		"mod":{
 			"minions.max":3,

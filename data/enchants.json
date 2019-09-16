@@ -44,8 +44,8 @@
 		}
 	},
 	{
-		"id":"en_manaregen1",
-		"name":"mana",
+		"id":"en_energy1",
+		"name":"energy",
 		"verb":"enchanting",
 		"adj":"of energy",
 		"targets":"ring",

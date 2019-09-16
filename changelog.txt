@@ -2,6 +2,9 @@
 
 FEATURES:
 
+Reduced the effectiveness of grinding low-level dungeons for leveling.
+Feature? Sure?
+
 Rudimentary Dark Mode.
 
 Some basic Resource / Skill train rates displayed.
