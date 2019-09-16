@@ -67,7 +67,8 @@ export default class Dungeon extends Action {
 		for( let i = enemies.length-1; i>= 0; i-- ) {
 
 			var e = enemies[i];
-			if ( e instanceof Object ) enemies[i] = new Monster(e);
+			if ( Array.isArray(e) ) this.initEnemies( e );
+			else if ( e instanceof Object ) enemies[i] = new Monster(e);
 
 		}
 

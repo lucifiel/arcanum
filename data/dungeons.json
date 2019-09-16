@@ -15,7 +15,7 @@
 			"max":1
 		},
 		"enemies":[
-
+			["newt","newt","newt"],
 			"lgmouse",
 			"bigstone",
 			"stingybee",
@@ -40,6 +40,7 @@
 		},
 		"enemies":[
 
+			["stingybee","stingybee"],
 			"lgrat",
 			"smbox",
 			"gremlin",
@@ -75,6 +76,7 @@
 		},
 		"boss":"ratking",
 		"enemies":[
+			["lgmouse","lgmouse"],
 			"lgrat",
 			"badexperiment",
 			"ratskeleton",
@@ -102,7 +104,8 @@
 			"warthog",
 			"kobold",
 			"smbox",
-			"twik-man",
+			["bat","bat","bat"],
+			["twik-man","twik-man"],
 			"bigstone",
 			"hawk"
 
@@ -125,7 +128,7 @@
 		},
 		"boss":"gobchief",
 		"enemies":[
-			"goblin",
+			["goblin","goblin"],
 			"gardengnome",
 			"wombat",
 			"slime",
@@ -149,7 +152,7 @@
 		},
 		"boss":"gobchief",
 		"enemies":[
-			"goblin",
+			["goblin","goblin"],
 			"gobwarrior",
 			"gobwarrior",
 			"goblin",
@@ -174,6 +177,7 @@
 		"enemies":[
 			"cutpurse",
 			"bandit",
+			["bat","bat","bat","bat"],
 			"cutpurse",
 			"bandit",
 			"cutpurse"
@@ -218,6 +222,7 @@
 		},
 		"enemies":[
 			"lgbird",
+			["kobold","kobold","kobold"],
 			"orc",
 			"bandit",
 			"wolf",
@@ -315,6 +320,7 @@
 			"orc",
 			"bandit",
 			"wolf",
+			"bugbear",
 			"hawk",
 			"goblin",
 			"coyote"
@@ -346,6 +352,7 @@
 			"iceelemental",
 			"wight",
 			"wraith",
+			"bugbear",
 			"frixie",
 			"frixie",
 			"ogre",
@@ -409,6 +416,31 @@
 
 	},
 	{
+		"id":"veldransstorehouse",
+		"name":"veldran's storehouse",
+		"desc":"Veldran never did manage to carve a kingdom from the wreck of bodias' reign. But he did accrue a sizeable hoard.",
+		"level":12,
+		"run":{
+			"stamina":1.5
+		},
+		"length":30,
+		"result":{
+			"gems":"5~7",
+			"gold":"100~200"
+		},
+		"enemies":[
+			"claygolem",
+			"hobgoblin",
+			"masterswordsman",
+			"stonegolem",
+			"slime",
+			"banditlord",
+			"magicmirror",
+			"woodgolem"
+		]
+
+	},
+	{
 		"id":"desillagrotto",
 		"name":"desilla's grotto",
 		"desc":"in all the world, the most enjoyable place to die.",
@@ -420,12 +452,14 @@
 		"length":50,
 		"result":{
 			"gems":"3~5",
-			"gold":"50~100"
+			"gold":"50~100",
+			"ichor":1
 		},
 		"boss":"desillaconcubine",
 		"enemies":[
-
+			"grimstalk",
 			"stalker",
+			["elf","elf","elf"],
 			"incubus",
 			"imp",
 			"willowisp",
@@ -434,9 +468,9 @@
 
 	},
 	{
-		"id":"holyhouse",
-		"name":"house of the holy",
-		"desc":"",
+		"id":"holyhall",
+		"name":"hall of the holy",
+		"desc":"Various divine spirits watch over the world. And the greatest have their halls and kingdoms.",
 		"require":"g.planeslore.max>=30",
 		"level":17,
 		"length":50,
@@ -444,6 +478,7 @@
 			"stamina":1
 		},
 		"result":{
+			"evilamt":10,
 			"gold":"150~275"
 		},
 		"enemies":[

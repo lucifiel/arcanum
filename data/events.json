@@ -65,7 +65,7 @@
 		"name":"Profressional Magick",
 		"desc":"Every province has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
 		"disable":["treatailments","prestidigitation"],
-		"lock":["bonemonger", "battlemage","alchemist","enchanter","witch","magician","darkmagician","adept"],
+		"lock":["t_tier1", "t_tier0"],
 		"effect":{
 			"sp":1,
 			"player.exp":15
@@ -82,7 +82,7 @@
 		"id":"tier2",
 		"name":"Arcane Ascendant",
 		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
-		"lock":[],
+		"lock":["t_tier1","t_tier2"],
 		"effect":{
 			"player.exp":25
 		},
@@ -98,6 +98,7 @@
 		"id":"tier3",
 		"name":"Magical Mastery",
 		"desc":"",
+		"lock":["t_tier2","t_tier3"],
 		"effect":{
 			"sp":1,
 			"player.exp":50
@@ -115,6 +116,7 @@
 		"id":"tier4",
 		"name":"Supreme Sorcery",
 		"desc":"",
+		"lock":["t_tier3","t_tier4"],
 		"effect":{
 			"sp":1,
 			"player.exp":75
@@ -132,6 +134,7 @@
 		"id":"tier5",
 		"name":"Dhrunic Pillar",
 		"desc":"A cornerstone of the mortal world.",
+		"lock":["t_tier4","t_tier5"],
 		"effect":{
 			"sp":1,
 			"player.exp":100
@@ -147,15 +150,35 @@
 	},
 	{
 
+		"id":"decent",
+		"require":"g.virtue>10&&g.evilamt<5",
+		"desc":"You are turning out to be an upstanding spellcaster.",
+		"effect":{
+			"light.rate":0.1
+		}
+
+	},
+	{
+
+		"id":"respectable",
+		"require":"g.virtue>25&&g.evilamt<5",
+		"desc":"You have become a respected personage in the magical world.",
+		"effect":{
+			"light.rate":0.1
+		}
+
+	},
+	{
+
 		"id":"good",
 		"name":"virtuous",
-		"disable":["shadow","evil"],
-		"desc":"You have become virtuous",
+		"disable":["shadow","evil", "shadowlore"],
+		"require":"g.virtue>50&&g.evil==0",
+		"desc":"Your actions have shown you to be a virtuous wizard.",
 		"effect":{
-			"light":{
-				"max":1,
-				"rate":0.1
-			}
+			"light.max":1,
+			"lightlore.rate":0.1,
+			"lightlore.max":1
 		}
 
 	},
@@ -174,7 +197,7 @@
 	{
 		"id":"immoral",
 		"desc":"You have taken your first steps on the path of evil. It's a good thing.",
-		"require":"g.evilamt>=2",
+		"require":"g.evilamt>=5",
 		"effect":{
 			"shadowlore.rate":0.2
 		}
@@ -183,7 +206,7 @@
 	{
 		"id":"wicked",
 		"desc":"Your wicked deeds put you on the sure path of evil. A few more steps, and there will be no turning back.",
-		"require":"g.evilamt>=5",
+		"require":"g.evilamt>=25",
 		"effect":{
 			"shadowlore.max":1,
 			"shadowlore.rate":0.2
@@ -194,8 +217,10 @@
 		"id":"evil",
 		"name":"vile",
 		"desc":"Freed of pitiful notions of right, and morality, the dark arts lie open before you.",
+		"require":"g.good==0&&g.evilamt>50",
 		"disable":["light","good", "lightlore"],
 		"effect":{
+			"shadow.max":1,
 			"shadowlore":{
 				"max":1,
 				"rate":0.1

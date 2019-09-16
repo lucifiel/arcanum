@@ -73,9 +73,14 @@
 		"locked":false
 	},
 	{
+		"id":"virtue",
+		"tags":"Tendency to good",
+		"value":0
+	},
+	{
 		"id":"evilamt",
 		"name":"evil",
-		"tags":"Tendency to evil",
+		"desc":"Tendency to evil",
 		"value":0
 	}
 ]

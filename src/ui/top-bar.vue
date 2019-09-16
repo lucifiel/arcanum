@@ -38,7 +38,7 @@ export default {
 		<button @click="dispatch('load')">load</button>
 
 		<a class="text-button" id="save-file" href=""
-				download @click.self="dispatch('save-file',$event)" type="text/json">Get File</a>
+				download @click.self="dispatch('save-file',$event)" type="text/json">get file</a>
 			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
 		<button id="drop-file" @drop="fileDrop"
 			@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
@@ -51,7 +51,10 @@ export default {
 
 		<span class="link-bar">
 			<button class="text-button" @click="dispatch('open-settings')">&#9881;</button>
-			<a href="./changelog.txt" target="_blank">Changes</a>
+			<a href="https://discord.gg/n5XUKE9" target="_blank">discord</a>
+			<a href="https://www.paypal.me/lerpinglemur" target="_blank">donate</a>
+			<a href="https://www.reddit.com/r/wizrobe/" target="_blank">feedback</a>
+			<a href="./changelog.txt" target="_blank">changes</a>
 		</span>
 
 	</div>

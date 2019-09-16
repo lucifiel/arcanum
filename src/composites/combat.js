@@ -286,17 +286,13 @@ export default class Combat {
 
 		if (  Array.isArray(enemy)){
 
-			let enemyList = [];
-
 			for( let i = enemy.length-1; i >=0; i-- ) {
 				e = enemy[i];
 				if ( typeof e === 'string' ) e = Game.getData(e);
 				enemies.push( e );
 
-				enemyList.push( e.name);
 			}
 
-			Events.dispatch( EVT_COMBAT, enemyList.join(',') + ' Encountered' );
 
 		} else {
 
@@ -305,8 +301,9 @@ export default class Combat {
 
 			enemies.push( e );
 
-			Events.dispatch( EVT_COMBAT, e.name + ' Encountered' );
 		}
+
+		Events.dispatch( EVT_COMBAT, enemies[0].name + ' Encountered' );
 
 		this.enemies = enemies;
 

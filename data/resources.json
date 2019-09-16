@@ -210,7 +210,7 @@
 	{
 		"id":"ichor",
 		"tags":"reagent",
-		"desc":"The blood of gods.",
+		"desc":"The blood of gods. No current use.",
 		"favor":"the secret courtesy that courses like ichor",
 		"max":5
 	},
@@ -317,21 +317,21 @@
 		"id":"tempus",
 		"tags":"manas",
 		"unit":false,
-		"desc":"Time incarnate",
+		"desc":"Time incarnate. No current use.",
 		"max":0
 	},
 	{
 		"id":"chaos",
 		"tags":"manas",
 		"unit":false,
-		"desc":"Chaos incarnate",
+		"desc":"Chaos incarnate. No current use.",
 		"max":0
 	},
 	{
 		"id":"void",
 		"tags":"manas",
 		"unit":false,
-		"desc":"nothingness",
+		"desc":"nothingness. No current use.",
 		"flavor":"",
 		"max":0
 	}

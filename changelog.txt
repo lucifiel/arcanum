@@ -2,13 +2,24 @@
 
 FEATURES:
 
+Added Upgrade: Autonomic Mending
+
+Added Virtue actions/events
+
 Added Item/Weapon Selling.
+
+Increased Max gemboxes
 
 Increased maximum number of herb bags.
 
 Unlocks include Unlock-type.
 
 BUGFIX:
+
+Repaired many of the path-class unlocks.
+
+Fixed some Multiple-Classes from same tier being allowed. This may make the game
+more difficult.
 
 Dungeons no longer advance when exit/re-entering.
 

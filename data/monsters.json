@@ -1841,7 +1841,6 @@
 	{
 		"id":"magicmirror",
 		"name":"magic mirror",
-		"desc":"It's more fire than bird.",
         "level":7,
         "tohit":7,
         "kind":"construct",

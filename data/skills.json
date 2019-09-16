@@ -531,6 +531,7 @@
 	{
 		"id":"chronomancy",
 		"require":"g.timesource>0&&g.tier2>0",
+		"desc":"Not yet Implemented",
 		"run":{
 			"stamina":0.3,
 			"research":1,

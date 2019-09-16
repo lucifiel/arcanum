@@ -309,8 +309,9 @@
 		"id":"temple",
 		"desc":"Sanctum of meditation and insight.",
 		"cost":10000,
-		"require":"g.arcana>=100",
+		"require":"g.arcana>=100&&g.virtue>10",
 		"mod":{
+			"virtue":2,
 			"minions.max":10,
 			"space.max":200,
 			"shadow.max":-3,

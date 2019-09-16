@@ -153,7 +153,7 @@
 	"title":"dark magician",
 	"tags":"t_tier1",
 	"desc":"A devotee of black magic.",
-	"require":"evil",
+	"require":"g.tier0>0&&(g.evilamt>=10||g.evil>0)",
 	"cost":{
 		"research":400,
 		"arcana":10,
@@ -165,7 +165,7 @@
 		"sp":1
 	},
 	"mod":{
-
+		"evilamt":5,
 		"research.max":20,
 		"demonology.max":2,
 		"lore.max":1,
@@ -284,6 +284,7 @@
 		"sp":2
 	},
 	"mod":{
+		"evilamt":10,
 		"research.max":10,
 		"embalming.max":1,
 		"reanimation.max":2,
@@ -297,7 +298,7 @@
 	"title":"necromancer",
 	"tags":"t_tier3",
 	"desc":"master of death magic",
-	"require":"g.tier2>0&&g.evil>0&&g.shadowlore>=7",
+	"require":"g.tier2>0&&g.evil>0&&g.shadowlore>=15",
 	"cost":{
 		"research":1000,
 		"bones":100,
@@ -395,7 +396,7 @@
 	"title":"archlock",
 	"desc":"master of demons and demonic magic",
 	"tags":"t_tier3",
-	"require":"g.tier2>0&&g.evil>0&&g.demonology>=15",
+	"require":"g.warlock>0&&g.demonology>=15",
 	"cost":{
 		"research":1000,
 		"souls":50,
@@ -447,6 +448,7 @@
 	"id":"enchanter",
 	"title":"enchanter",
 	"desc":"A master of charms and enchantments.",
+	"require":"g.tier1&&g.enchanting>=6&&g.charms>=3",
 	"tags":"t_tier2",
 	"disable":[],
 	"effect":{
@@ -578,6 +580,7 @@
 	"id":"sorcerer",
 	"title":"sorcerer",
 	"desc":"A wielder of raw magical power.",
+	"require":"g.tier2>0&&(g.earthlore>=20||g.waterlore>=20||g.airlore>=20||g.firelore>=20)",
 	"tags":"t_tier3",
 	"disable":[],
 	"effect":{
@@ -670,6 +673,7 @@
 		"sp":2
 	},
 	"mod":{
+		"virtue":1,
 		"research.max":15,
 		"lore.max":2,
 		"scrying.max":2,
@@ -683,12 +687,14 @@
 	"id":"seer",
 	"title":"oracle",
 	"desc":"A diviner.",
+	"require":"g.tier1>0&&g.divination>=10",
 	"tags":"t_tier2",
 	"effect":{
 		"tier2":true,
 		"sp":2
 	},
 	"mod":{
+		"virtue":5,
 		"lore.max":2,
 		"mana.max":3,
 		"divination.max":2,
@@ -702,7 +708,7 @@
 	"title":"mage",
 	"desc":"member of an arcane order.",
 	"tags":"t_tier2",
-	"require":"g.tier1>0&&g.lore>15",
+	"require":"g.tier1>0&&g.lore>20",
 	"cost":{
 		"research":700
 	},

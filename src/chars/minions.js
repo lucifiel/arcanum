@@ -12,6 +12,8 @@ export default class Minions extends Inventory {
 
 		super(vars);
 
+		this.type = this.id = "minions";
+
 		if ( !this.max ) this.max = 0;
 
 		this._active = [];

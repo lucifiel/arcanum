@@ -348,7 +348,7 @@
 		"name":"gem box",
 		"desc":"Finely crafted box for storing magic gems.",
 		"require":["tier0","gem"],
-		"max":2,
+		"max":5,
 		"repeat":true,
 		"cost":{
 			"gems":15,
@@ -1278,6 +1278,22 @@
 
 	},
 	{
+		"id":"autonomicmending",
+		"name":"autonomic mending",
+		"require":"g.anatomy>=5&&g.tier0>0",
+		"desc":"train your body to heal on its own.",
+		"max":1,
+		"cost":{
+			"research":300,
+			"mana":10,
+			"bloodgem":5,
+			"codices":5
+		},
+		"mod":{
+			"hp.rate":0.5
+		},"flavor":"i've had worse"
+	},
+	{
 
 		"id":"innerfire",
 		"name":"inner fire",
@@ -1346,6 +1362,7 @@
 		"cost":{
 		},
 		"mod":{
+			"virtue":2,
 			"gold.max":"-10%",
 			"spiritlore.max":2,
 			"spiritlore.rate":0.3,

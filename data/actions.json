@@ -9,6 +9,7 @@
 			"stamina":0.08
 		},
 		"effect":{
+			"virtue":0.1,
 			"gold":0.2
 		}, "flavor":"it's stable employment"
 	},
@@ -22,6 +23,7 @@
 			"stamina":0.17
 		},
 		"effect":{
+			"virtue":0.1,
 			"gold":0.3
 		}
 	},
@@ -53,6 +55,7 @@
 			"stamina":0.2
 		},
 		"effect":{
+			"virtue":0.1,
 			"gold":0.5
 		}
 
@@ -89,7 +92,8 @@
 			"research":-0.5,
 			"gold":0.5,
 			"trickery":0.1,
-			"evilamt":0.01
+			"evilamt":0.01,
+			"virtue":-0.01
 		}
 
 	},
@@ -112,6 +116,7 @@
 			"trickery":1
 		},
 		"result":{
+			"virtue":-1,
 			"gems":"4~10",
 			"gold":200
 		}
@@ -179,7 +184,7 @@
 		"length":10,
 		"run":{
 			"stamina":0.4,
-			"mana":0.1
+			"mana":0.3
 		},
 		"effect":{
 			"gold":2
@@ -227,7 +232,7 @@
 			"shadow":0.2
 		},
 		"result":{
-			"evilamt":2,
+			"evilamt":1,
 			"bones":"2~4"
 		}
 	},
@@ -329,6 +334,7 @@
 			"stamina":0.2
 		},
 		"effect":{
+			"virtue":0.1,
 			"gold":0.4
 		}
 
@@ -423,6 +429,7 @@
 		"need":"g.light>=5&&g.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
+			"virtue":1,
 			"mana":0.5,
 			"hp":1,
 			"light":0.05
@@ -435,10 +442,12 @@
 		"verb":"eating children",
 		"perpetual":true,
 		"length":10,
-		"require":"g.evil>0&&g.witch>0",
+		"require":"g.evilamt>0&&g.witch>0",
 		"need":"cauldron",
+		"desc":"how could you!?!",
 		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
 		"effect":{
+			"evilamt":1,
 			"mana":0.5,
 			"shadow":0.2,
 			"spirit":0.2,
@@ -949,7 +958,7 @@
 			"spiritlore.max":1,
 			"shadow.rate":"10%",
 			"spirit.rate":"5%",
-			"player.regen":1
+			"hp.rate":1
 		}
 
 	},
@@ -978,7 +987,7 @@
 			"spiritlore.max":1,
 			"shadow.rate":"10%",
 			"spirit.rate":"5%",
-			"player.regen":1
+			"hp.rate":1
 		}
 
 	},
