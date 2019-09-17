@@ -377,20 +377,18 @@ div.game-main {
 	max-height: calc( 100vh - 150px);
 	flex-direction: row;
 	flex-grow: 1;
-	margin-top:16px;
 	justify-content: space-between;
 }
 
 div.game-mid {
 	display:flex;
 	flex-flow: column nowrap;
-	border-left: 1px solid grey;
-	border-right: 1px solid grey;
+	border-left: 1px solid var(--separator-color); border-right: 1px solid var(--separator-color);
 	max-height: 100%;
 	height:100%;
 	flex-basis:48%;
 	flex-grow:1;
-	margin: 0px 10px;
+	margin: 0px 8px;
 	align-content: space-around;
 }
 
@@ -419,6 +417,8 @@ div.inv-equip {
 	height:100%;
 	padding: 0px 16px;
 }
-
+div.bot-bar {
+	border-top: 1px solid var(--separator-color); padding: 4px;
+}
 
 </style>

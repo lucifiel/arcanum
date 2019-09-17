@@ -87,6 +87,7 @@ div.outlog {
 }
 
 div.log-view {
+	border-left:1px solid var(--separator-color);
 	display:flex;
 	flex-flow: column nowrap;
 	margin-left: 8px;

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Main from 'ui/main.vue';
 import Confirm from 'ui/components/confirm.vue';
 import Game from './game';
+import Events from './events';
 
 /**
  * Global dispatch.
@@ -16,13 +17,16 @@ Vue.mixin({
 	},
 	methods: {
 
-		dispatch( ...args ) {
+		listen:Events.listen,
+		dispatch:Events.dispatch,
+
+		/*dispatch( ...args ) {
 			dispatch.$emit.apply( dispatch, args );
 		},
 
 		listen( evt, func ) {
 			dispatch.$on( evt, func );
-		},
+		},*/
 
 		// get id for html element.
 		elmId(name) { return name + this._uid; }

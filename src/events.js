@@ -1,8 +1,12 @@
 import Emitter from 'eventemitter3';
 import {uppercase} from './util';
+
 const events = new Emitter();
 
 const EVT_COMBAT = 'combat';
+/**
+ * Generic game event.
+ */
 const EVT_EVENT = 'event';
 const EVT_UNLOCK = 'unlock';
 const EVT_LOOT = 'loot';
@@ -33,7 +37,7 @@ export default {
 		this.log = game.log;
 		this.game = game;
 
-		events.removeAllListeners();
+		this.clearGameEvents();
 
 			events.addListener( EVT_LOOT, this.onLoot, this );
 			events.addListener( EVT_UNLOCK, this.onUnlock, this );
@@ -45,6 +49,25 @@ export default {
 			events.addListener( ENEMY_SLAIN, this.enemySlain, this );
 			events.addListener( PLAYER_SLAIN, this.onDied, this );
 			events.addListener( DAMAGE_MISS, this.onMiss, this );
+	},
+
+	clearGameEvents() {
+
+		events.removeAllListeners( EVT_COMBAT );
+		events.removeAllListeners( EVT_LOOT );
+		events.removeAllListeners( EVT_UNLOCK );
+		events.removeAllListeners( EVT_EVENT );
+		events.removeAllListeners( LEVEL_UP );
+		events.removeAllListeners( ACTION_DONE );
+
+		events.removeAllListeners( EVT_COMBAT );
+		events.removeAllListeners( ENEMY_SLAIN );
+		events.removeAllListeners( PLAYER_SLAIN );
+		events.removeAllListeners( DAMAGE_MISS );
+		events.removeAllListeners( COMBAT_DONE );
+		events.removeAllListeners( PLAYER_HIT );
+		events.removeAllListeners( ENEMY_HIT );
+
 	},
 
 	/**
@@ -92,6 +115,16 @@ export default {
 	 */
 	add( evt, listener, context ) {
 		events.addListener(evt, listener, context );
+	},
+
+	/**
+	 * @alias add() for Vue switch-out.
+	 * @param {*} evt
+	 * @param {*} f
+	 * @param {*} context
+	 */
+	listen(evt, f, context) {
+		events.addListener(evt,f,context);
 	},
 
 	/**

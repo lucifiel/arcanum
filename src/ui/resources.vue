@@ -2,14 +2,14 @@
 import ItemsBase from './itemsBase.js';
 
 export default {
-	
+
 	props:['items'],
 	mixins:[ItemsBase],
 
 	computed:{
 		displayed(){
 			return this.items.filter( v=>!v.hasTag('manas')&&v.id!=='space')
-		}		
+		}
 	}
 
 }
@@ -23,7 +23,7 @@ export default {
 			@mouseenter.capture.stop="dispatch('itemover',$event,it)">
 
 			<td>{{ it.name }}</td>
-			<td>{{ floor( it.value ) + ( it.max && it.max.value>0 ? '/' + floor(it.max.value) : '' )}}</td>
+			<td class="num-align">{{ floor( it.value ) + ( it.max && it.max.value>0 ? '/' + floor(it.max.value) : '' )}}</td>
 			<!--<td>{{ it.delta != 0 ? '&nbsp;(' + it.delta.toFixed(2) + '/t )' : ''}}</td>-->
 
 		</tr>

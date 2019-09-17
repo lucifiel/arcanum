@@ -109,6 +109,7 @@ div.remove {
 	margin: 0px;
 	padding: 0px;
 	background:white;
+	opacity:0.65;
 	z-index: 10;
 	min-height:12px;
 	min-width: 12px;

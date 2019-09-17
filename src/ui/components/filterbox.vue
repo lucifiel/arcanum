@@ -58,6 +58,9 @@ export default {
 
 
 <style scoped>
+label {
+	margin-right:8px;
+}
 div.filter-box {
 	font-size: 105%;
 	vertical-align: middle;

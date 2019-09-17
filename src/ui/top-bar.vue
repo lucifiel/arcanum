@@ -80,6 +80,15 @@ export default {
 	display:flex;
 }
 
+.load-opts button {
+	min-height:29px;
+	height:29px;
+	max-height:29px;
+}
+.load-opts .text-button {
+	max-height:21px;
+}
+
 div.top-bar {
 	display:flex;
 	flex-flow: row nowrap;
@@ -89,7 +98,7 @@ div.top-bar {
 	min-height:52px;
 	max-width:100%;
 	padding: 0px 14px 4px;
-	border-bottom: 1px solid rgb(216, 216, 216);
+	border-bottom: 1px solid var(--separator-color);
 }
 
 .link-bar {

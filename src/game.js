@@ -25,6 +25,11 @@ var techTree;
  */
 export const TICK_TIME = 200;
 
+/**
+ * @constant {number} EVT_TIME - time for checking randomized events.
+ */
+export const EVT_TIME = 1000;
+
 export default {
 
 	toJSON() {
@@ -52,6 +57,12 @@ export default {
 	log:new Log(),
 
 	timers:[],
+
+	/**
+	 * @property {GEvent[]} randoms - unlocked random events
+	 * that can proc.
+	 */
+	randoms:[],
 
 	/**
 	 *
@@ -151,6 +162,12 @@ export default {
 
 	},
 
+	pause() {
+	},
+
+	unpause() {
+	},
+
 	/**
 	 * Frame update.
 	 */
@@ -174,9 +191,7 @@ export default {
 		if ( this.timers ) {
 
 			for( let i = this.timers.length-1; i>= 0; i-- ) {
-
 				if ( this.timers[i].tick(dt) ) quickSplice( this.timers, i );
-
 			}
 
 		}
@@ -657,13 +672,17 @@ export default {
 	 *
 	 * @param {Object} evt
 	 */
-	doEvent( evt ) {
+	unlockEvent( evt ) {
 
-		if ( !this.doItem(evt) ) return false;
+		// randomized event.
+		if ( evt.rand ) {
+		} else {
 
-		evt.locked = false;
+			if ( !this.doItem(evt) ) return false;
+			evt.locked = false;
+			Events.dispatch( EVT_EVENT, evt );
 
-		Events.dispatch( EVT_EVENT, evt );
+		}
 
 	},
 
@@ -714,7 +733,7 @@ export default {
 
 		else if ( !it.require || this.unlockTest(it.require,it) ) {
 
-			if ( it.type === 'event') this.doEvent( it );
+			if ( it.type === 'event') this.unlockEvent( it );
 			else {
 				it.locked = false;
 				it.dirty = true;
@@ -807,7 +826,7 @@ export default {
 					if ( p === 'title') this.state.player.addTitle( e );
 					else this.applyToTag( p, e, dt );
 				} else {
-					if ( target.type === 'event' ) this.doEvent( target );
+					if ( target.type === 'event' ) this.unlockEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
 					else if ( e instanceof Range ) this.doItem( target, e.value );
 					else if ( typeof e === 'boolean') {
@@ -826,7 +845,7 @@ export default {
 			let target = this.getData(effect);
 			if ( target !== undefined ) {
 
-				if ( target.type === 'event') this.doEvent( target );
+				if ( target.type === 'event') this.unlockEvent( target );
 				else this.doItem( target, dt );
 
 			}
