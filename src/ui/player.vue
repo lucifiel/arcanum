@@ -21,6 +21,7 @@ export default {
 		level() {return this.player.level; },
 		hp() {return this.player.hp; },
 		defense() {return this.player.defense; },
+		dodge(){ return this.player.dodge.value },
 		tohit() {return this.player.tohit; },
 		exp() {return this.floor( this.player.exp.value ); },
 		next() {return this.floor( this.player.next ); },
@@ -73,6 +74,7 @@ export default {
 			{{ floor( stamina.value ) }} / {{ floor(stamina.max.value )}}</th></tr>
 
 			<tr><td>defense</td><th>{{ defense }}</th></tr>
+			<tr><td>dodge</td><th>{{ dodge }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
 			<tr><td>speed</td><th>{{ speed.current }}</th></tr>

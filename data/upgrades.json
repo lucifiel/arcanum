@@ -1523,7 +1523,7 @@
 		"id":"oracularinsight",
 		"name":"oracular insight",
 		"require":"oracle",
-		"desc":"You can see things before they happen",
+		"desc":"You see things before they happen",
 		"cost":{
 			"research":300,
 			"tomes":1
