@@ -85,7 +85,7 @@
 			"hp":10
 		},
 		"mod":{
-			"mod.hp":2
+			"mod.hp.max":4
 		}
 	},
 	{
@@ -108,7 +108,7 @@
 			"hp":10
 		},
 		"mod":{
-			"player.regen":0.2
+			"mod.player.regen":0.2
 		}
 	},
 	{
@@ -130,6 +130,29 @@
 		},
 		"mod":{
 			"attack.damage":1
+		}
+	},
+	{
+		"id":"en_speed1",
+		"name":"quick boots",
+		"verb":"infusing shoes",
+		"targets":"feet",
+		"desc":"imbue an item with inherent speed",
+		"require":"g.enchanting>=5",
+		"level":3,
+		"buy":{
+			"arcana":3,
+			"research":200
+		},
+		"length":30,
+		"cost":{
+			"airgem":1,
+			"watergem":1,
+			"mana":5
+		},
+		"mod":{
+			"mod.speed.max":1,
+			"mod.speed":1
 		}
 	},
 	{

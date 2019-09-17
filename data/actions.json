@@ -215,7 +215,7 @@
 			"stamina":1
 		},
 		"result":{
-			"evilamt":10,
+			"evilamt":5,
 			"bodies":1
 		},"flavor":"why do they come to me to die?"
 	},
@@ -720,6 +720,26 @@
 			"languages.rate":0.4,
 			"demonology.max":2,
 			"demonology.rate":0.2
+		}
+
+	},
+	{
+		"id":"coporisfabrica",
+		"name":"coporis fabrica",
+		"require":"g.player.level>=8&&g.anatomy>=5",
+		"desc":"a manual of the human body",
+		"length":40,
+		"repeat":false,
+		"cost":{
+			"codices":10
+		},
+		"run":{
+			"research":2
+		},
+		"result":{
+			"research.max":10,
+			"anatomy.max":3,
+			"anatomy.rate":0.2
 		}
 
 	},

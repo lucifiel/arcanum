@@ -2,6 +2,8 @@
 
 FEATURES:
 
+Multiple-enemy groups in some dungeons.
+
 Added Upgrade: Autonomic Mending
 
 Added Virtue actions/events

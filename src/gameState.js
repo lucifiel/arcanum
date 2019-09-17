@@ -12,6 +12,7 @@ export default class GameState {
 		let slotIds = {};
 		for( let p in this.slots ) {
 			if ( this.slots[p] ) slotIds[p] = this.slots[p].id;
+			else slotIds[p] = null;
 		}
 
 		let data = {

@@ -3,8 +3,8 @@
 	{
 		"id":"evt_intro",
 		"name":"Prologue",
-		"desc":"An idle waif with no prospects to speak of...",
-		"locked":false
+		"require":"hp",
+		"desc":"An idle waif with no prospects to speak of..."
 	},
 	{
 		"id":"evt_scroll",

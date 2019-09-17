@@ -11,14 +11,24 @@ body.darkmode {
 	color: #D7DADC;
 }
 
-input[type="button"], button, .text-button {
+input[type="button"], button, div.text-button {
 	background-color: rgb(231, 229, 229);
 	border: 1pt solid darkgray;
 	border-radius: 2px;
 	padding: 4px;
-	text-align: center;
 	margin: 4px;
+	text-align: center;
 
+}
+div.text-button {
+	display:flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	font-size: 0.9em;
+}
+.text-button a {
+	margin:0px;
+	padding:0px;
 }
 
 .darkmode input[type="button"],
