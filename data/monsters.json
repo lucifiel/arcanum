@@ -17,6 +17,20 @@
 
 	},
 	{
+        "id":"wisp",
+        "level":1,
+        "kind":"spirit",
+        "desc":"a ghostly wisp of air.",
+        "hp":"0.5~1",
+        "defense":1,
+        "attack":{
+            "name":"shiver",
+            "kind":"shadow",
+            "dmg":"0~1"
+        }
+
+	},
+	{
         "id":"gremlin",
         "level":1,
         "kind":"goblinoid",

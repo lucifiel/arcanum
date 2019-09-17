@@ -373,6 +373,36 @@
 
 	},
 	{
+		"id":"mk_spirit",
+		"name":"call spirit",
+		"school":"spirit",
+		"level":1,
+		"buy":{
+			"research":30,
+			"scrolls":5
+		},
+		"cost":{
+			"spirit":5
+		},
+		"effect":"wisp"
+	},
+	{
+		"id":"mk_zombie",
+		"name":"raise zombie",
+		"school":"shadow",
+		"level":2,
+		"buy":{
+			"research":30,
+			"scrolls":5,
+			"shadowgem":1
+		},
+		"cost":{
+			"shadow":7
+		},
+		"effect":"zombie"
+
+	},
+	{
 		"id":"firedart",
 		"name":"fire dart",
 		"level":1,

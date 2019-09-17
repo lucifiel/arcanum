@@ -13,6 +13,8 @@ export default class Monster extends GData {
 
 	get defaults() { return defaults; }
 
+	get isProto() {return true; }
+
 	toJSON() {
 		if ( this.value > 0 ) return { value:this.value};
 		else return undefined;

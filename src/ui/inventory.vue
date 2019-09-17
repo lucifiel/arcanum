@@ -78,7 +78,6 @@ export default {
 <style scoped>
 
 .inv {
-	margin-left: 48px;
 	margin-right:12px;
 	width:auto;
 }

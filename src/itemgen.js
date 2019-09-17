@@ -71,7 +71,8 @@ export default class ItemGen {
 		} else if ( proto.type === 'item') {
 
 			it = new Item( proto );
-		}
+
+		} else if ( proto.type === 'monster') return this.npc(proto);
 
 		if ( it === undefined ) return null;
 

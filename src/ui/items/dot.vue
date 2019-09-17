@@ -1,12 +1,16 @@
 <script>
 
 import Range from '../../range';
+import ItemsBase from '../itemsBase';
 
+import InfoBlock from './info-block.vue';
 export default {
 
 	props:['dot'],
 	name:'dot',
+	mixins:[ItemsBase],
 	components:{
+		info:InfoBlock
 	},
 	computed:{
 
@@ -36,21 +40,14 @@ export default {
 		<div v-if="dot.kind"><span>kind: </span><span>{{dot.kind}}</span></div>
 	</div>
 
-	<div v-if="dot.effect||dot.mod||dot.result">
+			<div v-if="dot.effect||dot.mod">
 
 			<hr>
-			<div class="note-text">effects:</div>
 
-			<div v-for="(obj,key) in [dot.effect,dot.mod,dot.result]" :key="key">
+			<div v-if="dot.effect||dot.mod" class="note-text">effects:</div>
+			<info v-if="dot.effect" :info="dot.effect" runnable="true" />
+			<info v-if="dot.mod" :info="dot.mod" />
 
-				<div v-for="(v,k) in effectItems(dot, k==='effect')" :key="k">
-
-					<span v-if="typeof v === 'boolean'">{{ k }}</span>
-					<span v-else>{{ `${k}: ${v}` }}</span>
-
-				</div>
-
-			</div>
 
 		</div>
 

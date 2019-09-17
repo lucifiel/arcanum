@@ -274,6 +274,7 @@ export default {
 
 	actionDone( act ) {
 
+		console.log('ACTION DONE: ' + act.id);
 		if ( this.canPay( act.cost ) ) this.setAction( act );
 		else this.setAction(null);
 
@@ -312,7 +313,6 @@ export default {
 		 * Cost to begin action.
 		 */
 		if ( act && act.cost && (act.exp === 0) ) {
-
 			this.payCost( act.cost);
 
 		}
@@ -500,15 +500,7 @@ export default {
 		if ( this.canPay(it.buy) === false ) return false;
 		this.payCost( it.buy );
 
-		/**
-		 * create monster and add to inventory.
-		 * @todo this is hacky.
-		 */
-		if ( it.type === 'monster' ) {
-
-			this.state.minions.add( this.itemGen.npc(it) );
-
-		}
+		if ( it.isProto ) this.create( it );
 
 		it.owned = true;
 
@@ -532,7 +524,7 @@ export default {
 
 		} else {
 
-			if ( it.crafter ) {
+			if ( it.isProto ) {
 
 				this.craft(it );
 
@@ -552,8 +544,8 @@ export default {
 
 	},
 
-		/**
-	 * Craft an item by instantiating it, and add it to player's inventory.
+	/**
+	 * Craft an item by paying its cost, then instantiating it.
 	 * Note that a crafted item does not use any of its effects or abilities.
 	 * @param {*} it
 	 */
@@ -562,19 +554,42 @@ export default {
 		if ( !this.canPay( it.cost ) ) return false;
 		this.payCost( it.cost );
 
-		let inst = it.stack ? this.state.inventory.find( it.id, true ) : null;
-		if ( inst ) {
+		this.create( it );
 
-			console.log('stack exists: ' + inst.value);
-			inst.value++;
+	},
+
+	/**
+	 * Create an item whose cost has been met ( or been provided by an effect )
+	 * @param {*} it
+	 */
+	create( it) {
+
+		/**
+		 * create monster and add to inventory.
+		 * @todo this is hacky.
+		*/
+		if ( it.type === 'monster' ) {
+
+			this.state.minions.add( this.itemGen.npc(it) );
 
 		} else {
 
-			inst = this.itemGen.instance( it );
-			if ( inst ) inst.value = 1;
-			this.state.inventory.add( inst );
+			let inst = it.stack ? this.state.inventory.find( it.id, true ) : null;
+			if ( inst ) {
+
+				console.log('stack exists: ' + inst.value);
+				inst.value++;
+
+			} else {
+
+				inst = this.itemGen.instance( it );
+				if ( inst ) inst.value = 1;
+				this.state.inventory.add( inst );
+
+			}
 
 		}
+
 
 	},
 
@@ -664,6 +679,11 @@ export default {
 	doItem( it, count=1 ) {
 
 		if ( it.maxed() ) return false;
+		if ( it.isProto ) {
+			console.log('CREATING PROTO');
+			return this.create(it);
+		}
+
 		if ( it.slot) {
 
 			let cur = this.state.getSlot(it.slot, it.type );
@@ -865,7 +885,7 @@ export default {
 					else if ( e instanceof Range ) this.doItem( target, e.value );
 					else if ( typeof e === 'boolean') {
 
-						target.locked = e;
+						target.locked = !e;
 						this.doItem( target );
 
 					} else target.applyVars(e,dt);

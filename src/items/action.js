@@ -28,9 +28,10 @@ export default class Action extends GData {
 			if ( this.mod ) Game.addMod( this.mod );
 			if ( this.loot ) Game.getLoot( this.loot );
 
-			Events.dispatch( ACTION_DONE, this );
 			if ( this.exec ) this.exec();
 			this.complete();
+
+			Events.dispatch( ACTION_DONE, this );
 
 		}
 	}
@@ -38,6 +39,9 @@ export default class Action extends GData {
 	get length() { return this._length; }
 	set length(v) { this._length = v;}
 
+	/**
+	 * @deprecated
+	 */
 	get progress() { return this._exp; }
 	set progress(v){
 
@@ -47,7 +51,6 @@ export default class Action extends GData {
 
 			this.value++;
 
-			console.log('APPLY ACTION EFFECT: ' +  this.id );
 			if ( this.result ) Game.applyEffect( this.result );
 			if ( this.loot ) Game.getLoot( this.loot );
 			this.complete();

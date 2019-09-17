@@ -56,7 +56,8 @@ export default {
 
 <div class="adventure">
 
-		<div class="separate">
+
+		<div v-if="raiding">
 
 		<div class="active-dungeon" v-if="raiding">
 			<span>{{ cur.name }}</span>
@@ -66,11 +67,16 @@ export default {
 				@mouseenter.capture.stop="dispatch('itemover', $event, cur )">
 				Stop</button></span>
 		</div>
-		<div class="dungeon-list" v-else>
 
-		<filterbox v-model="filtered" :items="dungeons" min-items="8" />
+		<combat v-if="raiding" :combat="raid.combat" />
 
-		<div class="dungeon" v-for="d in filtered" :key="d.id">
+		</div>
+
+
+		<!--<filterbox v-model="filtered" :items="dungeons" min-items="8" />-->
+
+		<div class="dungeons" v-else>
+		<div class="dungeon" v-for="d in dungeons" :key="d.id">
 
 			<span>{{ d.name }}</span>
 			<span class="bar"><progbar :value="d.exp" :max="d.length" /></span>
@@ -80,9 +86,11 @@ export default {
 				Enter</button></span>
 
 			</div>
-
 		</div>
 
+	<div class="raid-bottom">
+
+		<inv class="inv" :inv="raid.drops" take="true" />
 		<div class="log">
 			<span v-if="raiding">Adventuring...<br></span>
 			<div class="outlog">
@@ -92,11 +100,7 @@ export default {
 			</div>
 		</div>
 
-		</div>
-
-	<combat v-if="raiding" :combat="raid.combat" />
-
-	<inv :inv="raid.drops" take="true" />
+	</div>
 
 </div>
 
@@ -115,7 +119,27 @@ div.adventure {
 	align-self: flex-start;
 	flex-flow: column nowrap;
 	height:100%;
+}
+
+div.dungeons {
+	display:flex;
+	height:100%;
+	flex-flow: row wrap;
+	justify-content: space-between;
 	overflow-y: auto;
+	padding-bottom: 32px;
+	border-bottom: 1px solid var(--separator-color);
+
+}
+
+div.raid-bottom {
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	padding-top:8px;
+	height:100%;
+	width:100%;
+	overflow-y:auto;
 }
 
 .adventure .log {
@@ -130,13 +154,6 @@ div.adventure {
 	min-width:222px;
 	flex-direction:column;
 
-}
-
-div.dungeon-list {
-	display:flex;
-	flex-basis:50%;
-	min-width:222px;
-	flex-direction:column;
 }
 
 div.dungeon {
