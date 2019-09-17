@@ -1,12 +1,14 @@
 <script>
 import Range from '../../range';
+import Dot from './dot.vue';
 
 export default {
 
 	props:['item'],
 	name:'attack',
 	components:{
-		gdata:() => import( /* webpackChunkName: "gdata-ui" */ './gdata.vue')
+		gdata:() => import( /* webpackChunkName: "gdata-ui" */ './gdata.vue'),
+		dot:Dot
 	},
 	computed:{
 
@@ -36,7 +38,7 @@ export default {
 	<div v-if="item.hands>1">Two Handed</div>
 	<div class="damage" v-if="damage!==null">damage: {{ damage }}</div>
 	<div>kind: {{ item.kind }}</div>
-	<gdata v-if="item.dot" :item="item.dot" />
+	<dot v-if="item.dot" :dot="item.dot" />
 
 </div>
 

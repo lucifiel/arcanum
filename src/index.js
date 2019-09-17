@@ -7,11 +7,10 @@ import Events from './events';
 /**
  * Global dispatch.
  */
-var dispatch = new Vue();
+//var dispatch = new Vue();
 
 Vue.mixin({
 
-	dispatch:dispatch,
 	components:{
 		confirm:Confirm
 	},
@@ -61,6 +60,7 @@ var vm = new Vue({
 		gameLoaded() {
 			console.log('gameLoaded()');
 			this.dispatch( 'game-loaded' );
+			this.dispatch('unpause');
 		},
 
 		onSetting( setting, v ) {

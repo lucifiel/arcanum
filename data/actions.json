@@ -507,7 +507,7 @@
 		"desc":"Pace your home as you comtemplate the arcane.",
 		"require":"adept",
 		"run":{
-			"stamina":0.2
+			"stamina":0.4
 		},
 		"effect":{
 			"research":1.75,

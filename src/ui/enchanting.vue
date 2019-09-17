@@ -79,6 +79,8 @@ div.enchants {
 	display:flex;
 	flex-direction: column;
 	padding:0px 16px;
+	overflow-y:auto;
+	height:100%;
 }
 
 </style>}

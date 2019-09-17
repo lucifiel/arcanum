@@ -103,6 +103,8 @@ export default {
 		this.listen( 'buy', this.onBuy );
 
 		this.listen('pause', this.pause );
+		this.listen('unpause', this.unpause );
+
 		// primary attack.
 		this.listen( 'primary', this.onPrimary);
 
@@ -118,8 +120,6 @@ export default {
 			window.addEventListener('keydown',evt=>{
 				if ( evt.repeat) return;
 				this.keyDown( evt ); evt.stopPropagation(); }, false );
-
-			this.unpause();
 
 		},
 
@@ -165,7 +165,7 @@ export default {
 
 			if ( this.game.loaded ) {
 
-				if ( !this.runenr ) {
+				if ( !this.runner ) {
 					this.game.lastUpdate = Date.now();
 					this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
 				}
@@ -316,9 +316,12 @@ export default {
 		<vue-menu class="game-mid" :items="menuItems" v-model="section">
 
 		<template slot="sect_main">
+
+		<div class="main-actions">
 		<actions class="action-list" :items="state.actions" />
 		<upgrades class="upgrade-list" :items="state.upgrades" />
 		<upgrades class="upgrade-list" :items="state.classes" />
+		</div>
 
 		</template>
 
@@ -392,6 +395,11 @@ div.game-mid {
 	align-content: space-around;
 }
 
+div.game-mid div.main-actions {
+	overflow-y: auto;
+	height:100%;
+}
+
 div.action-list, div.upgrade-list {
 	display:flex;
 	flex-flow: row wrap;
@@ -418,6 +426,7 @@ div.inv-equip {
 	padding: 0px 16px;
 }
 div.bot-bar {
+	background:inherit;
 	border-top: 1px solid var(--separator-color); padding: 4px;
 }
 

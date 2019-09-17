@@ -1,5 +1,5 @@
 import Game from '../game';
-import {quickSplice} from './util';
+import {quickSplice} from '../util';
 
 /**
  * Tracks running/perpetual actions.

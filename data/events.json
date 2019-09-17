@@ -81,7 +81,7 @@
 	{
 		"id":"tier2",
 		"name":"Arcane Ascendant",
-		"desc":"The majority of dabblers, and peddlars of the arcane never reach such heights as this.",
+		"desc":"The majority of arcane dabblers never reach such heights as this.",
 		"lock":["t_tier1","t_tier2"],
 		"effect":{
 			"player.exp":25

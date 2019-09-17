@@ -114,6 +114,8 @@ div.adventure {
 	padding:0px 15px;
 	align-self: flex-start;
 	flex-flow: column nowrap;
+	height:100%;
+	overflow-y: auto;
 }
 
 .adventure .log {

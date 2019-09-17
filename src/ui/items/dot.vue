@@ -1,7 +1,5 @@
 <script>
 
-import Attack from './attack.vue';
-
 import Range from '../../range';
 
 export default {
@@ -9,7 +7,6 @@ export default {
 	props:['dot'],
 	name:'dot',
 	components:{
-		attack:Attack
 	},
 	computed:{
 
@@ -31,7 +28,13 @@ export default {
 
 <div class="dot">
 
-	<attack v-if="dot.attack" :item="dot.attack" />
+	<hr>
+	<div class="note-text">dot:</div>
+	<div>
+		<div><span>duration: </span><span>{{ dot.duration || 'infinity' }}</span></div>
+		<div v-if="dot.damage"><span>dmg: </span><span>{{damage}}</span></div>
+		<div v-if="dot.kind"><span>kind: </span><span>{{dot.kind}}</span></div>
+	</div>
 
 	<div v-if="dot.effect||dot.mod||dot.result">
 

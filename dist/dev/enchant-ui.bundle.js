@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.enchants[data-v-33b50a3b] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-direction: column;\\r\\n\\tpadding:0px 16px;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/enchanting.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"\\ndiv.enchants[data-v-33b50a3b] {\\r\\n\\tdisplay:flex;\\r\\n\\tflex-direction: column;\\r\\n\\tpadding:0px 16px;\\r\\n\\toverflow-y:auto;\\r\\n\\theight:100%;\\n}\\r\\n\\r\\n\", \"\"]);\n\n\n//# sourceURL=webpack://%5Bname%5D/./src/ui/enchanting.vue?./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 

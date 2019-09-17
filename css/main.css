@@ -12,6 +12,7 @@
 :root body.darkmode {
 	--button-text-color: #FFF;
 	--action-button-border-color: #FFF;
+	--separator-color: #555;
 }
 
 body {

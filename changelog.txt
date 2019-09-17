@@ -1,3 +1,12 @@
+9/17
+
+FEATURES:
+
+UI-Improvements in progress with help from /u/incremental_games
+(ongoing)
+
+Display damage dot effects in popup.
+
 9/16
 
 FEATURES:

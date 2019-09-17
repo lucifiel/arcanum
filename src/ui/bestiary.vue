@@ -74,10 +74,13 @@ export default {
 
 div.bestiary {
 display:flex;
+height:100%;
+width:100%;
 }
 
 .char-list {
 	height:85%;
+	width:100%;
 	overflow-y:auto;
 }
 

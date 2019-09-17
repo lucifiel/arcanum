@@ -11,6 +11,11 @@ import Dot from './chars/dot';
 import Runnable from './composites/runnable';
 
 /**
+ * @module Randoms - randomized events.
+ */
+import Randoms from './modules/randoms.js';
+
+/**
  * @note these refer to Code-events, not in-game events.
  */
 import Events, {EVT_UNLOCK, EVT_EVENT, ACTION_DONE } from './events';
@@ -57,12 +62,6 @@ export default {
 	log:new Log(),
 
 	timers:[],
-
-	/**
-	 * @property {GEvent[]} randoms - unlocked random events
-	 * that can proc.
-	 */
-	randoms:[],
 
 	/**
 	 *
@@ -676,14 +675,19 @@ export default {
 
 		// randomized event.
 		if ( evt.rand ) {
-		} else {
 
-			if ( !this.doItem(evt) ) return false;
-			evt.locked = false;
-			Events.dispatch( EVT_EVENT, evt );
+		} else this.doEvent(evt);
 
-		}
+	},
 
+	/**
+	 * Trigger an event. (Randomized events are also triggered.)
+	 * @param {*} evt
+	 */
+	doEvent(evt){
+		if ( !this.doItem(evt) ) return false;
+		evt.locked = false;
+		Events.dispatch( EVT_EVENT, evt );
 	},
 
 	doLog( logItem ) {

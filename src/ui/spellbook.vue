@@ -132,9 +132,14 @@ div.spellbook {
 	display:flex;
 	padding: 8px 14px;
 	flex-direction: column;
+	height:100%;
 }
 
-.spell-table { order: 2; padding: 4px }
+.spell-table {
+	order: 2; padding: 4px;
+	overflow-y: auto;
+	height:100%;
+}
 .spell-table table { display: flex; flex-flow: row wrap; justify-content: space-between; }
 .spell-table table tr { display:flex; flex-basis: 48%; }
 .spell-table table tr td:nth-child(1), .spell-table table tr td:nth-child(3) {
