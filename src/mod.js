@@ -73,7 +73,8 @@ export default class Mod {
 				this.bonus = Number(res[1]) || 0;
 				this.pct = Number(res[2])/100 || 0;
 
-				console.log( this.id + 'mod regex: ' + this.bonus + ' + ' + this.pct );
+				//console.log( this.id + 'mod regex: ' + this.bonus + ' + ' + this.pct );
+
 			} else console.log( this.id + ' no mod regex: ' + v );
 
 

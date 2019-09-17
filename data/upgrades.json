@@ -250,7 +250,7 @@
 		"name":"Magic Horseshoes",
 		"require":"g.enchanting>=5&&g.crafting>=10",
 		"need":"steed",
-		"buy":{
+		"cost":{
 			"gems":10,
 			"research":500
 		},
@@ -279,7 +279,7 @@
 		"name":"casgair's conjured canopy",
 		"desc":"conjure a large tent for long journeys.",
 		"require":"g.lore>=15&&g.conjuration>=5&&g.research.max>=800",
-		"buy":{
+		"cost":{
 			"research":1000,
 			"arcana":1,
 			"gems":10
@@ -355,7 +355,8 @@
 			"gold":800
 		},
 		"mod":{
-			"gem.max":1
+			"gem.max":2,
+			"gems.max":3
 		}
 	},
 

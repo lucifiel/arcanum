@@ -303,7 +303,7 @@ export default class Combat {
 
 		}
 
-		Events.dispatch( EVT_COMBAT, enemies[0].name + ' Encountered' );
+		if ( enemies.length>0) Events.dispatch( EVT_COMBAT, enemies[0].name + ' Encountered' );
 
 		this.enemies = enemies;
 

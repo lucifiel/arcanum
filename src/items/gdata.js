@@ -94,6 +94,7 @@ export default class GData {
 
 		this._value = this._value || 0;
 
+		if ( this.owned && !this.buy && !this.value ) this._value = 1;
 		//if ( this.owned) console.log('owned: ' + this.owned + ' id: ' + this.id);
 
 		//if ( this.slot ) console.log( this.id + ' slot: ' + this.slot );

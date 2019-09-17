@@ -891,7 +891,7 @@
 	{
 		"id":"orrery",
 		"desc":"a vast mechanical model of existence",
-		"require":"g.codices>=100",
+		"require":"g.codices>=100&&g.astronomy>7",
 		"repeat":false,
 		"cost":{
 			"gold":500,
@@ -1005,7 +1005,7 @@
 		"id":"bottomlesspit",
 		"name":"bottomless pit",
 		"desc":"An endless hole in the ground.",
-		"require":"g.planeslore>=5&&g.space>=20",
+		"require":"g.planeslore>=5&&g.space>=20&&g.tier3>0",
 		"cost":{
 			"space":5,
 			"gems":10,
@@ -1081,7 +1081,7 @@
 	{
 		"id":"ziggurat",
 		"desc":"vast mound of earth.",
-		"require":"g.earth>=7&&g.astronomy>=7",
+		"require":"tier4",
 		"cost":{
 			"gold":300,
 			"research":2000,
@@ -1101,7 +1101,7 @@
 		"id":"dungeon",
 		"desc":"A vast complex to lock away hazardous experiments, deadly creatures, and all those who displease you.",
 		"tags":"prison",
-		"require":"tier2",
+		"require":"tier3",
 		"cost":{
 			"gold":1000,
 			"space":100

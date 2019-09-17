@@ -7,6 +7,12 @@ UI-Improvements in progress with help from /u/incremental_games
 
 Display damage dot effects in popup.
 
+
+BUGFIX:
+
+Fixed bug preventing Travel Tent and Magichorseshoe from working.
+
+
 9/16
 
 FEATURES:
@@ -24,6 +30,7 @@ Increased Max gemboxes
 Increased maximum number of herb bags.
 
 Unlocks include Unlock-type.
+
 
 BUGFIX:
 

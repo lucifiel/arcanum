@@ -532,7 +532,11 @@ export default {
 
 		} else {
 
-			if ( it.perpetual || it.length > 0 ) {
+			if ( it.crafter ) {
+
+				this.craft(it );
+
+			} else if ( it.perpetual || it.length > 0 ) {
 
 				this.setAction(it);
 
@@ -543,6 +547,32 @@ export default {
 				this.payCost( it.cost );
 				return this.doItem(it);
 			}
+
+		}
+
+	},
+
+		/**
+	 * Craft an item by instantiating it, and add it to player's inventory.
+	 * Note that a crafted item does not use any of its effects or abilities.
+	 * @param {*} it
+	 */
+	craft( it ) {
+
+		if ( !this.canPay( it.cost ) ) return false;
+		this.payCost( it.cost );
+
+		let inst = it.stack ? this.state.inventory.find( it.id, true ) : null;
+		if ( inst ) {
+
+			console.log('stack exists: ' + inst.value);
+			inst.value++;
+
+		} else {
+
+			inst = this.itemGen.instance( it );
+			if ( inst ) inst.value = 1;
+			this.state.inventory.add( inst );
 
 		}
 
@@ -1190,32 +1220,6 @@ export default {
 	take( it ) {
 		//console.log('adding: ' + it.id );
 		return this.state.inventory.add(it);
-	},
-
-	/**
-	 * Craft an item by instantiating it, and add it to player's inventory.
-	 * Note that a crafted item does not use any of its effects or abilities.
-	 * @param {*} it
-	 */
-	craft( it ) {
-
-		if ( !this.canPay( it.cost ) ) return false;
-		this.payCost( it.cost );
-
-		let inst = it.stack ? this.state.inventory.find( it.id, true ) : null;
-		if ( inst ) {
-
-			console.log('stack exists: ' + inst.value);
-			inst.value++;
-
-		} else {
-
-			inst = this.itemGen.instance( it );
-			if ( inst ) inst.value = 1;
-			this.state.inventory.add( inst );
-
-		}
-
 	},
 
 	/**

@@ -1,17 +1,26 @@
 import GData from "./gdata";
 
+const defaults = {
+
+	level:1,
+	repeat:true,
+	stack:true
+
+};
+
 /**
  * This is actually only the prototype for a potion.
  * Individual potions are instanced from this data.
  */
 export default class Potion extends GData {
 
-	constructor(vars=null) {
+	get crafter() { return true; }
 
-		super(vars);
-		this.level = this.level || 1;
+	constructor(vars=null ) {
+
+		super(vars, defaults );
+
 		this.require = this.require||this.unlockTest;
-		if ( this.stack !== false ) this.stack = true;
 
 	}
 

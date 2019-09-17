@@ -781,7 +781,7 @@
 		},
 		"log":{
 			"name":"almagest",
-			"desc":"you have mapped the physical heavens"
+			"desc":"your first map of the heavens is complete."
 		},
 		"result":{
 			"research.max":10,
