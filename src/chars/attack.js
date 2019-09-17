@@ -7,11 +7,18 @@ export default class Attack {
 		return {
 			dmg:this._damage,
 			tohit:this.tohit||undefined,
+			bonus:this.bonus||undefined,
 			kind:this.kind,
 			id:this.id,
 			dot:this.dot
 		};
 
+	}
+
+	get bonus() { return this._bonus; }
+	set bonus(v) {
+		/** @todo mod apply bug. **/
+		this._bonus = ( typeof v === 'object') ? v.value || 0 : v;
 	}
 
 	set dmg(v) { this.damage = v; }
@@ -30,8 +37,18 @@ export default class Attack {
 		if ( vars ) Object.assign(this,vars);
 
 		this.damage = this.damage || 0;
+		this.bonus = this.bonus || 0;
+
 		this.tohit = this.tohit || 0;
 
 	}
+
+	getDamage() {
+
+		return this.bonus +
+		( ( typeof this._damage === 'number') ? this._damage : this._damage.value );
+
+	}
+
 
 }

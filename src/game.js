@@ -274,9 +274,10 @@ export default {
 
 	actionDone( act ) {
 
-		console.log('ACTION DONE: ' + act.id);
-		if ( this.canPay( act.cost ) ) this.setAction( act );
-		else this.setAction(null);
+		if ( this.state.curAction === act ) {
+			if ( this.canPay( act.cost ) ) this.setAction( act );
+			else this.setAction(null);
+		}
 
 	},
 

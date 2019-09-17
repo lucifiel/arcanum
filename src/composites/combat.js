@@ -31,7 +31,7 @@ export function tryDamage(target, attack, attacker = null) {
 	if (attack.damage) {
 
 		// add optional base damage from attacker.
-		let dmg = getDamage(attack.damage) +
+		let dmg = attack.getDamage() +
 			((attacker && (attacker !== attack) && attacker.damage) ?
 				getDamage(attacker.damage) : 0);
 
@@ -69,7 +69,7 @@ export function applyDamage(target, attack, attacker = null) {
 
 /**
 * Convert damage object to raw damage value.
-* @param {number|function|Range} dmg /
+* @param {number|function|Range|Attack} dmg /
 */
 export function getDamage(dmg) {
 
@@ -154,7 +154,7 @@ export default class Combat {
 			// attempt to use primary item attack first.
 			if ( !this.player.primary || !Game.tryItem( this.player.primary )) {
 
-				this.allyAttack( this.player, this.player.weapon||this.player.baseAttack );
+				this.allyAttack( this.player, this.player.weapon||this.player.baseWeapon );
 
 			}
 

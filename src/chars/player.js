@@ -7,6 +7,7 @@ import { tryDamage } from '../composites/combat';
 
 import Char, { getDelay } from './char';
 import Events, { LEVEL_UP } from "../events";
+import Attack from "./attack";
 
 /**
  * @constant {number} EXP_RATE
@@ -75,7 +76,7 @@ export default class Player extends Char {
 	get weapon() { return this._weapon; }
 	set weapon(v) {
 		this._weapon = v;
-		if ( !v ) this._weapon = this.baseAttack;
+		if ( !v ) this._weapon = this.baseWeapon;
 	}
 
 	/**
@@ -189,15 +190,15 @@ export default class Player extends Char {
 		this.bonuses = this.bonuses || {
 		}
 
-		this.baseAttack = this.baseAttack || {
+		this.baseWeapon = this.baseWeapon || {
 
-			id:'baseAttack',
+			id:'baseWeapon',
 			name:'fists',
-			attack:{
+			attack:new Attack({
 				tohit:1,
 				kind:'blunt',
 				damage:new Range(0,1)
-			}
+			})
 
 		};
 
@@ -209,7 +210,7 @@ export default class Player extends Char {
 		 * @property {Item} primary - primary attack.
 		 */
 		this.primary = this.primary || null;
-		this.weapon = this.weapon || this.baseAttack;
+		this.weapon = this.weapon || this.baseWeapon;
 
 		this._name = this._name || 'wizrobe';
 

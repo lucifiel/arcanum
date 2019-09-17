@@ -76,6 +76,15 @@ export default class Npc extends Char {
 		this.hp += 0.01*this.maxHp.value*dt;
 	}
 
+	/**
+	 * @returns {number} the damage from a single attack by npc.
+	 */
+	getDamage() {
+		return this.attack ? this.attack.getDamage() : (
+			(typeof this._damage === 'number') ? this._damage : this._damage.value
+		);
+	}
+
 	/*update(dt) {
 
 		super.update(dt);

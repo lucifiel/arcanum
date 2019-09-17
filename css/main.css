@@ -31,13 +31,14 @@ body.darkmode {
 input[type="button"], button, div.text-button {
 	background-color: rgb(231, 229, 229);
 	border-radius: 2px;
+	border: 1px solid #0006;
 	padding: 4px;
 	margin: 4px;
 	text-align: center;
 
 }
-button { color: var(--button-text-color); border: 1px solid #0006; }
-button { outline: none; }
+
+
 
 div.text-button {
 	display:flex;

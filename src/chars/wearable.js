@@ -62,6 +62,8 @@ export default class Wearable {
 
 			this._attack = v instanceof Attack ? v : new Attack(v);
 
+			console.log(this.id + ' attack: ' + this._attack );
+
 		} else this._attack = null;
 
 	}

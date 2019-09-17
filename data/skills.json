@@ -504,7 +504,7 @@
 		"run":{
 			"stamina":0.5
 		},
-		"result":{
+		"mod":{
 			"mana.max":0.5,
 			"arcana.rate":0.001,
 			"manas.rate":0.02
@@ -521,7 +521,7 @@
 			"research":1,
 			"mana":0.1
 		},
-		"result":{
+		"mod":{
 			"dist.max":"5%",
 			"arcana.max":1,
 			"research.max":1
@@ -537,7 +537,7 @@
 			"research":1,
 			"mana":1
 		},
-		"result":{
+		"mod":{
 			"tempus.max":1,
 			"tempus.rate":0.01
 		}
@@ -552,7 +552,7 @@
 		"effect":{
 			"arcana":0.001
 		},
-		"result":{
+		"mod":{
 			"mana.max":0.2,
 			"research.max":1,
 			"dist.max":"1%",

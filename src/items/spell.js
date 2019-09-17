@@ -1,4 +1,5 @@
 import GData from './gdata';
+import Attack from '../chars/attack';
 
 export default class Spell extends GData {
 
@@ -29,6 +30,7 @@ export default class Spell extends GData {
 			if ( !this.buy.arcana && this.level > 1 ) this.buy.arcana = this.level - 1;
 
 		}
+		if ( this.attack && !(this.attack instanceof Attack) ) this.attack = new Attack(this.attack);
 
 		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;
 

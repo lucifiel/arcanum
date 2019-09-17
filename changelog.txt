@@ -2,6 +2,8 @@
 
 FEATURES:
 
+Added summoning spells.
+
 UI-Improvements in progress with help from /u/incremental_games
 (ongoing)
 
@@ -11,6 +13,15 @@ Display damage dot effects in popup.
 BUGFIX:
 
 Fixed bug preventing Travel Tent and Magichorseshoe from working.
+
+Fixed Adventure UI overlaps.
+
+Fixed brew-from-quickbar potion bug.
+
+
+EXISTING BUGS:
+
+Enchantments are known to be buggy. sowwee.
 
 
 9/16

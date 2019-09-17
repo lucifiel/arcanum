@@ -17,9 +17,9 @@ export default class Range {
 	}
 
 	/**
-	 * 
-	 * @param {Object|number|string} min 
-	 * @param {?number} max 
+	 *
+	 * @param {Object|number|string} min
+	 * @param {?number} max
 	 */
 	constructor(min=0, max=undefined) {
 
@@ -45,7 +45,7 @@ export default class Range {
 
 	/**
 	 * Add amount to range.
-	 * @param {number|Range} amt 
+	 * @param {number|Range} amt
 	 */
 	add( amt ) {
 
