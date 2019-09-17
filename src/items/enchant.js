@@ -27,8 +27,11 @@ export default class Enchant extends Action {
 	usingWith( it ) {
 
 		console.log('ENCHANTING: ' + it.id );
-		if ( this.adj ) it.name += ' ' + this.adj;
-		else it.name = 'Enchanted ' + it.name;
+		if ( this.adj && !it.name.includes(this.adj) ) {
+
+			it.name += ' ' + this.adj;
+
+		} else if ( !it.name.includes('Enchanted') ) it.name = 'Enchanted ' + it.name;
 
 		it.enchants = (it.enchants || 0) + this.level;
 

@@ -28,6 +28,15 @@ export default class Dot {
 
 	}
 
+	/**
+	 * Get a damage value for the dot.
+	 */
+	getDamage() {
+
+		return (typeof this._damage === 'number') ? this._damage : this._damage.value;
+
+	}
+
 	constructor( vars, source, name ){
 
 		Object.assign( this, vars );

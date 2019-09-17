@@ -115,6 +115,7 @@
 		"id":"en_dmg1",
 		"name":"biting edge",
 		"verb":"infusing weapon",
+		"adj":"of biting",
 		"targets":"weapon",
 		"desc":"infuse an item with magical protection.",
 		"require":"g.enchanting>=3",
