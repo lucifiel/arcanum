@@ -40,7 +40,9 @@ export default {
 		demonology() { return Game.state.getData('demonology');},
 
 		items(){
-			return Game.state.monsters.filter( v=>v.value>=1 );
+			return Game.state.monsters.filter( v=>v.value>=1 ).sort(
+				(a,b)=>a.level - b.level
+			);
 		}
 
 	}
@@ -56,9 +58,10 @@ export default {
 
 	<div class="char-list">
 	<table class="bestiary">
-		<tr><th>Creature</th><th>Slain</th><th class="num-align">Hp</th></tr>
+		<tr><th>Creature</th><th>Level</th><th>Slain</th><th class="num-align">Hp</th></tr>
 		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
 			<th>{{ b.name }}</th>
+			<td class="num-align">{{ b.level }}</td>
 			<td class="num-align">{{ b.value }}</td>
 			<td class="num-align">{{ showHp(b) ? toNum(b.hp) : '??' }}</td>
 			<td><button @click="dispatch('buy',b)" :disabled="b.unique||!buyable(b)||minions.freeSpace()==0||b.value<10">Buy</button></td>

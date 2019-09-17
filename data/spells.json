@@ -247,7 +247,7 @@
 		"name":"pulsing light",
 		"require":"light",
 		"school":"light",
-		"desc":"a small pulse of light zips around you, searching for injuries.",
+		"desc":"a small pulse of light zips around you, mending injuries.",
 		"level":1,
 		"buy":{
 
@@ -260,7 +260,7 @@
 		},
 		"dot":{
 
-			"duration":30,
+			"duration":45,
 			"effect":{
 				"hp":1.1
 			}
@@ -274,7 +274,7 @@
 		"name":"pulsing light II",
 		"school":"light",
 		"require":"g.player.level>=5&&g.lightlore>=5",
-		"desc":"a small pulse of light zips around you, searching for injuries.",
+		"desc":"a small pulse of light zips around you, mending injuries.",
 		"level":3,
 		"buy":{
 
@@ -287,7 +287,7 @@
 		},
 		"dot":{
 
-			"duration":45,
+			"duration":60,
 			"effect":{
 				"hp":2
 			}
@@ -300,7 +300,7 @@
 		"id":"lightregen3",
 		"name":"pulsing light III",
 		"school":"light",
-		"desc":"a small pulse of light zips around you, searching for injuries.",
+		"desc":"a small pulse of light zips around you, mending injuries.",
 		"level":5,
 		"require":"g.player.level>=10&&g.lightlore>=8",
 		"buy":{
@@ -315,7 +315,7 @@
 		},
 		"dot":{
 
-			"duration":60,
+			"duration":120,
 			"effect":{
 				"hp":3
 			}

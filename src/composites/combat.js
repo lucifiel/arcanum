@@ -191,7 +191,7 @@ export default class Combat {
 
 		let len = this._allies.length;
 
-		console.log('allies: ' + len );
+		//console.log('allies: ' + len );
 
 		for( let i = 0; i < len; i++ ) {
 			if ( this._allies[i].alive ) return this._allies[i];

@@ -46,7 +46,9 @@ export default {
 		},
 
 		furniture(){
-			return Game.filterItems( it=>this.state.typeCost(it.cost, 'space')>0);
+			return Game.filterItems( it=>this.state.typeCost(it.cost, 'space')>0).sort(
+				(a,b)=> a.name < b.name ? -1 : 1
+			);
 		},
 		viewable() { return this.furniture.filter( it=>!this.reslocked(it)); }
 
