@@ -46,7 +46,7 @@ export default {
 
 		<div v-if="skill.owned">
 
-		<bar :value="skill.exp" :max="skill.length" />
+		<bar :value="skill.exp" :max="skill.length" hide-stats=true />
 
 			progress: {{ exp + ' / ' + length }}
 		</div>

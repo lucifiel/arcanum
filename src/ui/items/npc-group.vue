@@ -28,7 +28,7 @@ export default {
 		<prog v-if="player" class="hp" :label="player.name"
 		:value="player.hp.value" :max="player.hp.max.value" /></div>
 	<div v-for="p in npcs" :key="p.id">
-		<prog class="hp" :label="p.name" :value="p.hp" :max="p.maxHp" />
+		<prog class="hp" :label="p.name" :value="p.hp" :max="p.maxHp.value" />
 	</div>
 
 </div>

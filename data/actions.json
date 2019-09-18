@@ -840,6 +840,20 @@
 		}
 	},
 	{
+		"id":"imbuelifegem",
+		"name":"Imbue lifegem",
+		"require":"g.naturelore>=6",
+		"fill":"naturegem",
+		"cost":{
+			"herbs":10,
+			"gems":1,
+			"nature":5
+		},
+		"effect":{
+			"naturegem":1
+		}
+	},
+	{
 		"id":"imbuemanagem",
 		"name":"Imbue gem (arcane)",
 		"require":"g.mana.max>=5&&g.enchanting>2",
@@ -855,7 +869,7 @@
 	{
 		"id":"imbuebloodgem",
 		"name":"Coagulate Gem",
-		"require":"g.alchemy>=5&&g.enchanting>=5",
+		"require":"g.alchemy>=5&&g.anatomy>=5",
 		"fill":"bloodgem",
 		"cost":{
 			"gems":1,

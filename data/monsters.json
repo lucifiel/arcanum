@@ -2913,13 +2913,31 @@
         },"immune":"light"
 	},
 	{
+        "id":"cthulhu",
+        "level":25,
+		"evil":30,
+		"unique":true,
+        "kind":"outsider",
+        "desc":"In his house at R'lyeh dead Cthulhu waits dreaming.",
+        "hp":550,
+		"tohit":25,
+		"regen":20,
+        "defense":150,
+        "attack":{
+			"name":"Madness",
+			"leech":0.25,
+            "kind":"psychic",
+            "dmg":"50~75"
+        }
+	},
+	{
 		"id":"ancientlich",
 		"name":"ancient lich",
         "level":25,
         "kind":"undead",
         "evil":30,
         "desc":"Not one lich in a hundred live to reach such heights.",
-        "hp":400,
+        "hp":550,
 		"tohit":27,
 		"regen":25,
         "defense":95,
@@ -2946,24 +2964,6 @@
 			"name":"gorboring",
             "kind":"sonic",
             "dmg":"120~320"
-        }
-	},
-    {
-        "id":"cthulhu",
-        "level":30,
-		"evil":100,
-		"unique":true,
-        "kind":"outsider",
-        "desc":"In his house at R'lyeh dead Cthulhu waits dreaming.",
-        "hp":1000,
-		"tohit":30,
-		"regen":30,
-        "defense":175,
-        "attack":{
-			"name":"Madness",
-			"leech":0.25,
-            "kind":"psychic",
-            "dmg":"100~300"
         }
 	},
 	{

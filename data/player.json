@@ -74,12 +74,14 @@
 	},
 	{
 		"id":"virtue",
+		"hidden":"true",
 		"tags":"Tendency to good",
 		"value":0
 	},
 	{
 		"id":"evilamt",
 		"name":"evil",
+		"hidden":true,
 		"desc":"Tendency to evil",
 		"value":0
 	}

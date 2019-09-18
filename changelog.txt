@@ -2,7 +2,11 @@
 
 FEATURES:
 
+Increased dark bolt damage. Added deathbolt spell.
+
 Added summoning spells.
+
+Minions can now be summoned into combat.
 
 UI-Improvements in progress with help from /u/incremental_games
 (ongoing)
@@ -12,12 +16,17 @@ Display damage dot effects in popup.
 
 BUGFIX:
 
+Fixed some combat damage bugs.
+
+Player dodge displayed in player ui.
+
 Fixed bug preventing Travel Tent and Magichorseshoe from working.
 
 Fixed Adventure UI overlaps.
 
 Fixed brew-from-quickbar potion bug.
 
+Fixed bug preventing minions from unlocking without refresh.
 
 EXISTING BUGS:
 

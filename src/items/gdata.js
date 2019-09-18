@@ -1,6 +1,7 @@
 import { defineExcept, clone } from 'objecty';
 import Stat from '../stat';
 import Base, {mergeClass} from './base';
+import { arrayMerge } from '../util/util';
 
 /**
  * @typedef {Object} Effect
@@ -160,12 +161,24 @@ export default class GData {
 	}
 
 	/**
+	 * Add a requirement for unlocking this data.
+	 * @param {string|string[]} item
+	 */
+	addRequire( item ) {
+
+		if ( !this.require ) {
+			this.require = item;
+		} else this.require = arrayMerge( this.require, item );
+
+	}
+
+	/**
 	 * Add a requirement to unlock this item.
 	 * @param {string} reqStr
 	 * @param {number} amt
 	 * @param {'require'|'need'} type - requirement to set.
 	 */
-	addRequire( reqStr, amt, type='require' ){
+	/*addRequire( reqStr, amt, type='require' ){
 
 		let cur = this[type];
 		if ( !cur) {
@@ -183,7 +196,7 @@ export default class GData {
 			this[type] = [ cur, {[reqStr]:amt} ];
 		}
 
-	}
+	}*/
 
 }
 

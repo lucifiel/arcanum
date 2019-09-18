@@ -64,11 +64,36 @@
 			"shadow":3
 		},
 		"attack":{
-			"damage":"2~4",
+			"damage":"4~7",
 			"dot":{
 				"kind":"shadow",
 				"duration":10,
 				"damage":0.7
+			}
+		}
+
+	},
+	{
+		"id":"deathbolt",
+		"name":"death bolt",
+		"level":5,
+		"require":"shadow",
+		"school":"shadow",
+		"buy":{
+
+			"research":100,
+			"codices":10
+
+		},
+		"cost":{
+			"shadow":5
+		},
+		"attack":{
+			"damage":"5~10",
+			"dot":{
+				"kind":"shadow",
+				"duration":30,
+				"damage":1
 			}
 		}
 

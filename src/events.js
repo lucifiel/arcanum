@@ -1,5 +1,5 @@
 import Emitter from 'eventemitter3';
-import {uppercase} from './util';
+import {uppercase} from './util/util';
 
 const events = new Emitter();
 
@@ -75,10 +75,12 @@ export default {
 	 * @param {Item} it
 	 */
 	onEvent( it ) {
+		if ( it.hidden) return;
 		this.log.log( it.name, it.desc, EVT_EVENT );
 	},
 
 	onUnlock( it ) {
+		if ( it.hidden) return;
 		this.log.log( uppercase(it.type) + ' Unlocked: ' + it.name, null, EVT_UNLOCK );
 	},
 

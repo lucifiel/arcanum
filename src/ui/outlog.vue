@@ -109,13 +109,20 @@ div.top-span {
 span.checks {
 	display:flex;
 	flex-flow: row wrap;
+	align-items: flex-start;
 }
 
-div.log-item {
+.checks span { flex-basis: 50%; }
+
+.log-view div.log-item {
+	padding: 4px; margin: 1px 0; border-bottom: 1px dotted #DDD;
+}
+
+/*div.log-item {
 	display:flex;
 	flex-direction: column;
 	margin: 8px 0px;
-}
+}*/
 
 .log-title {
 	font-weight: bold;

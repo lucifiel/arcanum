@@ -43,6 +43,11 @@ export default class TechTree {
 
 	}
 
+	/**
+	 * Mark the links that unlock item.
+	 * @param {*} item
+	 * @param {*} need
+	 */
 	markLinks( item, need ) {
 
 		let type = typeof need;
@@ -68,6 +73,7 @@ export default class TechTree {
 
 		let text = func.toString();
 		let results;
+
 		while ( results = FuncRE.exec( text )) {
 
 			//var varPath = results[1];

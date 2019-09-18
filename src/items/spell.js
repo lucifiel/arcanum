@@ -33,15 +33,16 @@ export default class Spell extends GData {
 		if ( this.attack && !(this.attack instanceof Attack) ) this.attack = new Attack(this.attack);
 
 		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;
+		if ( this.school ) this.addRequire( this.school );
 
 	}
 
 	/**
 	 * Default require function for spells.
-	 * @param {GameState} state
+	 * @param {Object} g - items
 	 */
 	spellRequire( g, self ) {
-		return g.player.level >= self.level;
+		return ( g.player.level >= 2*self.level );
 	}
 
 };

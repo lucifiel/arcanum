@@ -94,12 +94,6 @@ export default class Player extends Char {
 
 	}
 
-	/**
-	 * @property {Minons} minions
-	 */
-	//get minions() { return this._minions; }
-	//set minions(v) { this._minions = v instanceof Minions ? v : new Minions(v); }
-
 	get mount() { return this._mount; }
 	set mount(v) {
 		this._mount = v;

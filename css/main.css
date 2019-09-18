@@ -8,6 +8,8 @@
 	--quiet-text-color: #888;
 	--very-quiet-text-color: #AAA;
 	--separator-color: #d8d8d8;
+	--progbar-dark-text:#000;
+	--progbar-light-text:#555;
 }
 :root body.darkmode {
 	--button-text-color: #FFF;
@@ -277,7 +279,7 @@ div.water .fill, div.water .bgfill {
 	background:#0479c2;
 }
 div.air .fill, div.air .bgfill {
-	background:#efefef;
+	background:#e9e4e4;
 }
 
 div.earth .fill, div.earth .bgfill {
@@ -305,5 +307,5 @@ div.tempus .fill, div.tempus .bgfill {
 	background:#c27304;
 }
 div.void .fill, div.void .bgfill {
-	background:#1f1e1d;
+	background:#373737;
 }

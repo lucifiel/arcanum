@@ -1,6 +1,6 @@
 import DataLoader from './dataLoader';
 //import VarPath from './varPath';
-import {quickSplice} from './util';
+import {quickSplice} from './util/util';
 import GData from './items/gdata';
 import Log from './log.js';
 import GameState from './gameState';
@@ -562,8 +562,9 @@ export default {
 	/**
 	 * Create an item whose cost has been met ( or been provided by an effect )
 	 * @param {*} it
+	 * @param {boolean} active - whether the created item can be activated.
 	 */
-	create( it) {
+	create( it, active ) {
 
 		/**
 		 * create monster and add to inventory.
@@ -571,7 +572,9 @@ export default {
 		*/
 		if ( it.type === 'monster' ) {
 
-			this.state.minions.add( this.itemGen.npc(it) );
+			let m = this.itemGen.npc(it);
+			if ( active ) m.active = true;
+			this.state.minions.add( m );
 
 		} else {
 
@@ -682,7 +685,7 @@ export default {
 		if ( it.maxed() ) return false;
 		if ( it.isProto ) {
 			console.log('CREATING PROTO');
-			return this.create(it);
+			return this.create(it, true );
 		}
 
 		if ( it.slot) {

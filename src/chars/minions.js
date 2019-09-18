@@ -29,6 +29,13 @@ export default class Minions extends Inventory {
 
 	}
 
+	add(m ) {
+
+		super.add(m);
+		if ( m.active ) this.active.push(m);
+
+	}
+
 	/**
 	 * Get list of Minions by id.
 	 * @param {string[]} ids

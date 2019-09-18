@@ -55,11 +55,11 @@ export default {
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,stamina)"/></td></tr>
 
 		<tr><td>hp</td>
-		<td><progbar class="hp" :value="player.hp.value" :max="player.hp.max"
+		<td><progbar class="hp" :value="player.hp.value" :max="player.hp.max.value"
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,player.hp)"/></td></tr>
 
 		<tr v-for="it in manaList" :key="it.key"><td>{{it.name}}</td>
-		<td><progbar :value="it.value" :class="it.id" :max="it.max"
+		<td><progbar :value="it.value" :class="it.id" :max="it.max.value"
 			@mouseenter.native.capture.stop="dispatch('itemover',$event,it)"/></td></tr>
 
 		</table>

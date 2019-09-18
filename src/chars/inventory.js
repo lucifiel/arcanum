@@ -11,6 +11,8 @@ export default class Inventory {
 	 */
 	get count() { return this.items.length; }
 
+	valueOf() { return this.items.length; }
+
 	toJSON(){
 		return {
 			items:(this.items),
@@ -97,6 +99,7 @@ export default class Inventory {
 			this.items.push(it);
 
 		}
+		this.dirty = true;
 
 	}
 

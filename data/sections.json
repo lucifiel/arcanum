@@ -60,7 +60,7 @@
 	{
 		"id":"sect_minions",
 		"name":"minions",
-		"require":"g.minions.count>0"
+		"require":"g.minions>0"
 	}
 
 ]

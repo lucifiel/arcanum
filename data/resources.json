@@ -159,8 +159,9 @@
 		"id":"naturegem",
 		"tags":"gem",
 		"name":"life gem",
-		"desc":"Gem imbued with the essence of life.",
-		"max":2
+		"desc":"physical essence of life.",
+		"max":2,
+		"flavor":"the force from the beginning"
 	},
 	{
 		"id":"earthgem",
