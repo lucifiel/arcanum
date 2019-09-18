@@ -48,7 +48,7 @@ export default {
 <template>
 <div>
 	<filterbox v-model="filtered" :items="inv.items" min-items="10" />
-	<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + inv.max.value + ' Used' }}</div>
+	<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + Math.floor(inv.max.value ) + ' Used' }}</div>
 <table class="inv item-table">
 
 	<tr v-for="it in filtered" :key="it.id">

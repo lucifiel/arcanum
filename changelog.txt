@@ -1,3 +1,27 @@
+9/18
+
+FEATURES:
+
+Support for multi-target attacks
+
+Some multi-target attack spells.
+
+
+BUGFIX:
+
+Max inventory and Minions formatting.
+
+Percentile loots now function correctly.
+
+
+BUGS:
+
+Speed boosts still bugged.
+
+Dungeons on Quickbar are broken.
+
+
+
 9/17
 
 FEATURES:

@@ -49,7 +49,7 @@ export default {
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
 	<span v-if="inRaid" class="warn-text">Cannot change active minions while adventuring</span>
-	<div>{{ minions.count + ' / ' + minions.max + ' Used' }}</div>
+	<div>{{ minions.count + ' / ' + Math.floor(minions.max) + ' Used' }}</div>
 	<div class="char-list">
 	<table class="minions">
 		<tr><th>Creature</th><th class="num-align">Hp</th><th>active</th></tr>

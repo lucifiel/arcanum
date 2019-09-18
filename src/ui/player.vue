@@ -77,7 +77,7 @@ export default {
 			<tr><td>dodge</td><th>{{ dodge }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
-			<tr><td>speed</td><th>{{ speed.current }}</th></tr>
+			<tr><td>speed</td><th>{{ speed.value.toFixed(2) }}</th></tr>
 
 			<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.weapon)">
 				<td>weapon</td><th>{{ player.weapon ? player.weapon.name : 'None' }}</th></tr>

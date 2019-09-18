@@ -1255,6 +1255,7 @@ export default {
 
 		inv = inv || this.state.inventory;
 
+		/** @todo this won't work right */
 		if ( typeof it === 'object' && it.stack ) {
 
 			let inst = inv.find( it.id, true );

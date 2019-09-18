@@ -58,6 +58,7 @@ export default class Char {
 	set dots(v) {
 
 		for( let i = v.length-1; i >= 0; i-- ) {
+			console.log('CREATING DOT');
 			v[i] = new Dot(v[i]);
 		}
 		this._dots =v;

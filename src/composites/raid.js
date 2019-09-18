@@ -52,12 +52,6 @@ export default class Raid {
 	set enemies(v) { if ( this.combat ) this.combat.enemies = v; }
 
 	/**
-	 * @property {Npc[]} allies - creatures fighting for player.
-	 */
-	get allies() { return this._allies; }
-	set allies(v) { this._allies=v; }
-
-	/**
 	 * @property {Inventory} drops - items dropped in current dungeon.
 	 * can be taken by player.
 	 */
@@ -108,8 +102,6 @@ export default class Raid {
 		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getData(this.dungeon);
 
 		this._combat.revive( gameState );
-
-		this.allies = gameState.minions.active;
 
 	}
 
@@ -185,7 +177,7 @@ export default class Raid {
 	setDungeon( d ) {
 
 		this.player.timer = this.player.delay;
-		this.minions.resetActives();
+		this.state.minions.resetActives();
 
 		if ( d != null ) {
 

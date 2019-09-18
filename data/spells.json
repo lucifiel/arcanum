@@ -391,6 +391,29 @@
 	},
 
 	{
+		"id":"prismaticspray",
+		"name":"prismatic spray",
+		"level":1,
+		"school":"mana",
+		"locked":false,
+		"buy":{
+
+			"research":100,
+			"scrolls":10
+
+		},
+		"cost":{
+			"mana":1
+		},
+		"attack":{
+			"targets":"all",
+			"damage":"0.5~1",
+			"kind":"arcane",
+			"tohit":1
+		}
+	},
+
+	{
 		"id":"slow1",
 		"name":"mud",
 		"desc":"engulfs target in mud",

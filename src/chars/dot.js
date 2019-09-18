@@ -1,4 +1,5 @@
 import Range from "../range";
+import Mod from "../mod";
 
 export default class Dot {
 
@@ -10,6 +11,7 @@ export default class Dot {
 			kind:this.kind || undefined,
 			name:this.name || undefined,
 			dmg:this.damage || undefined,
+			mod:this.mod||undefined,
 			acc:this.acc,
 			duration:this.duration,
 			source:this.source ? this.source.id : undefined
@@ -41,11 +43,11 @@ export default class Dot {
 
 		Object.assign( this, vars );
 
+		this.source = this.source || source || null;
+
 		this.name = name || this.name || ( source ? source.name : '' );
 		this.id = this.id || this.name || (source ? source.id || source.name : '');
 		///console.log('DOT ID: ' + this.id );
-
-		this.source = this.source || null;
 
 		/**
 		 * @property {boolean} stack - ability of dot to stack.
@@ -54,12 +56,29 @@ export default class Dot {
 		/**
 		 * @private {number} acc - integer accumulator
 		 */
-		this.acc = 0;
+		this.acc = this.acc || 0;
+
+	}
+
+	reviveMod( m ){
+
+		if ( typeof m === 'object' && !(m instanceof Mod) ) {
+
+			if ( m.id ) return new Mod(m);
+
+			for( let p in m ) {
+				m[p] = this.reviveMod( m[p] );
+			}
+
+		}
+		return m;
 
 	}
 
 	revive(state) {
 		if ( this.source && typeof this.source === 'string') this.source = state.getData( this.source );
+
+		if ( this.mod ) this.mod = this.reviveMod(this.mod);
 	}
 
 	/**

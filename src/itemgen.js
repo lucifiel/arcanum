@@ -137,7 +137,10 @@ export default class ItemGen {
 			|| info.type ==='armor') return this.fromData( info );
 
 		/** @todo: THIS IS BAD */
-		else if ( info.type != null ) Game.doItem( info, amt );
+		else if ( info.type && !info.isProto ) {
+			Game.doItem( info, amt );
+			return;
+		}
 
 		if ( info.pct && (100*Math.random() > info.pct) ) return null;
 		if ( info.level ) return this.fromLevel( info.level, info.type, info.material );

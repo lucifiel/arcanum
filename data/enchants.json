@@ -152,8 +152,7 @@
 			"mana":5
 		},
 		"mod":{
-			"mod.speed.max":1,
-			"mod.speed":1
+			"speed":1
 		}
 	},
 	{

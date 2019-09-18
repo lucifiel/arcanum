@@ -59,7 +59,6 @@
 		"id":"speed",
 		"desc":"Movement speed",
 		"value":1,
-		"max":1,
 		"unit":false,
 		"locked":false
 	},

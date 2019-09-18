@@ -148,6 +148,7 @@
 			"stamina":1
 		},
 		"result":{
+			"title":"goblin slayer",
 			"gold":"20~30"
 		},
 		"boss":"gobchief",
@@ -196,6 +197,7 @@
 		},
 		"result":{
 			"gold":"50~75",
+			"watergem":"50%",
 			"gems":10
 		},
 		"enemies":[
@@ -338,7 +340,8 @@
 		},
 		"result":{
 			"title":"mountaineer",
-			"watergem":"20%",
+			"watergem":"25%",
+			"airgem":"10%",
 			"gems":"3~5"
 		},
 		"enemies":[
