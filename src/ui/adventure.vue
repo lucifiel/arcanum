@@ -123,6 +123,7 @@ div.adventure {
 
 div.dungeons {
 	display:flex;
+	align-items:flex-start;
 	height:100%;
 	flex-flow: row wrap;
 	justify-content: space-between;

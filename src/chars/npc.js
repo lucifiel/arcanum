@@ -5,6 +5,11 @@ import Range from '../range';
 import Stat from '../stat';
 
 /**
+ * @const {number} ALLY - team constant for allies.
+ */
+export const ALLY = 1;
+
+/**
  * Class for specific Enemies/Minions in game.
  */
 export default class Npc extends Char {
@@ -15,6 +20,7 @@ export default class Npc extends Char {
 		data.id = this.id;
 		data.template = this.template.id;
 		data.cost = undefined;
+		data.team = this.team||undefined;
 
 		return data;
 
@@ -47,6 +53,12 @@ export default class Npc extends Char {
 		} else this._damage = v;
 
 	}
+
+	/**
+	 * @property {number} team - side in combat.
+	 */
+	get team() { return this._team; }
+	set team(v) { this._team=v;}
 
 	/**
 	 * @property {boolean} active - whether minion is active in combat.

@@ -62,9 +62,11 @@
 		},
 		"result":{
 			"research.max":1,
+			"summoning.max":0.2,
+			"summoning.rate":0.1,
 			"arcana":0.2,
 			"sp":0.05
-		},"flavor":"noone knows where things come from; they just appear."
+		},"flavor":"who knows where things come from? they just appear."
 
 	},
 	{
@@ -229,6 +231,20 @@
 			"sp":0.05,
 			"research.max":1,
 			"shadow.rate":0.01
+		}
+
+	},
+	{
+
+		"id":"summoning",
+		"require":"g.tier1>0",
+		"school":"arcane",
+		"run":{
+			"stamina":0.7
+		},
+		"result":{
+			"research.max":5,
+			"minions.max":0.5
 		}
 
 	},

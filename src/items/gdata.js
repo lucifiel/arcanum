@@ -168,7 +168,12 @@ export default class GData {
 
 		if ( !this.require ) {
 			this.require = item;
-		} else this.require = arrayMerge( this.require, item );
+		} else {
+
+			if ( this.require === item ||
+				(Array.isArray(this.require) && this.require.includes(item)) ) return;
+			this.require = arrayMerge( this.require, item );
+		}
 
 	}
 

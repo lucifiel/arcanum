@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN } from '../events';
+import Events, { ENEMY_SLAIN, ALLY_SLAIN } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';

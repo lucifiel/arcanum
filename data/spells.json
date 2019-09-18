@@ -148,9 +148,8 @@
 	},
 	{
 		"id":"whirl1",
-		"name":"whirling step I",
+		"name":"whirling step",
 		"level":1,
-		"require":"air",
 		"school":"air",
 		"buy":{
 
@@ -162,7 +161,7 @@
 			"air":1
 		},
 		"dot":{
-			"duration":30,
+			"duration":45,
 			"mod":{
 				"dodge":1
 			}
@@ -170,10 +169,9 @@
 
 	},
 	{
-		"id":"whirl1",
-		"name":"whirling step I",
+		"id":"whirl2",
+		"name":"whirling step II",
 		"level":3,
-		"require":"air",
 		"school":"air",
 		"buy":{
 
@@ -185,11 +183,33 @@
 			"air":5
 		},
 		"dot":{
-			"duration":45,
+			"duration":60,
 			"mod":{
-				"dodge":2
-			},
-			"speed":0.1
+				"dodge":2,
+				"speed":0.3
+			}
+		}
+
+	},
+	{
+		"id":"whirl3",
+		"name":"whirling step",
+		"level":5,
+		"school":"air",
+		"buy":{
+
+			"codices":20
+
+		},
+		"cost":{
+			"air":4
+		},
+		"dot":{
+			"duration":80,
+			"mod":{
+				"dodge":5,
+				"speed":0.55
+			}
 		}
 
 	},
@@ -234,7 +254,7 @@
 			"mana":0.3
 		},
 		"dot":{
-			"duration":45,
+			"duration":60,
 			"effect":{
 				"mana":0.45
 			}
@@ -259,9 +279,9 @@
 			"mana":1
 		},
 		"dot":{
-			"duration":60,
+			"duration":120,
 			"effect":{
-				"mana":0.75
+				"mana":0.8
 			}
 		}
 
@@ -342,7 +362,7 @@
 
 			"duration":120,
 			"effect":{
-				"hp":3
+				"hp":5
 			}
 
 		}
@@ -538,10 +558,38 @@
 			"nature":3
 		},
 		"attack":{
-			"damage":"2~4",
+			"damage":"3~5",
 			"tohit":3,
 			"kind":"nature"
 		}
+
+	},
+	{
+		"id":"mk_hobgoblin",
+		"name":"summon hobgoblin",
+		"level":4,
+		"buy":{
+			"research":100,
+			"tomes":1
+		},
+		"cost":{
+			"mana":7
+		},
+		"effect":"hobgoblin"
+	},
+	{
+		"id":"mk_raven",
+		"name":"summon raven",
+		"school":"nature",
+		"level":3,
+		"buy":{
+			"research":50,
+			"scrolls":25
+		},
+		"cost":{
+			"nature":4
+		},
+		"effect":"raven"
 
 	},
 	{
@@ -564,8 +612,8 @@
 
 			"duration":20,
 			"mod":{
-				"g.player.resist.holy":10,
-				"g.player.resist.light":10
+				"player.resist.holy":10,
+				"player.resist.light":10
 			}
 
 		}
@@ -591,8 +639,8 @@
 
 			"duration":20,
 			"mod":{
-				"g.player.resist.shadow":10,
-				"g.player.resist.undead":10
+				"player.resist.shadow":10,
+				"player.resist.undead":10
 			}
 
 		}
@@ -618,7 +666,7 @@
 
 			"duration":20,
 			"mod":{
-				"g.player.resist.fire":10
+				"player.resist.fire":10
 			}
 
 		}
@@ -644,7 +692,8 @@
 
 			"duration":20,
 			"mod":{
-				"g.player.resist.water":10
+				"player.resist.water":10,
+				"player.resist.cold":10
 			}
 
 		}
@@ -670,8 +719,8 @@
 
 			"duration":20,
 			"mod":{
-				"g.player.resist.nature":10,
-				"g.player.resist.poison":10
+				"player.resist.nature":10,
+				"player.resist.poison":10
 			}
 
 		}
@@ -695,7 +744,7 @@
 			"light":5
 		},
 		"effect":{
-			"hp":8
+			"hp":20
 		}
 	},
 
@@ -919,7 +968,7 @@
 			"dot":{
 				"id":"venom",
 				"kind":"poison",
-				"duration":15,
+				"duration":30,
 				"damage":"2~4"
 			}
 		}
@@ -954,7 +1003,7 @@
 	{
 
 		"id":"jinx",
-		"level":3,
+		"level":2,
 		"require":"trickster",
 		"desc":"curse an enemy with a streak of bad luck.",
 		"buy":{
@@ -976,7 +1025,7 @@
 		"id":"speed1",
 		"level":3,
 		"name":"dust devil",
-		"desc":"a whirl or wind at your feet",
+		"desc":"a whirl of wind at your feet",
 		"school":"air",
 		"require":{
 			"air.max":5
@@ -994,7 +1043,29 @@
 		"dot":{
 			"duration":20,
 			"mod":{
-				"speed":0.5
+				"speed":1
+			}
+		}
+	},
+	{
+
+		"id":"massjinx",
+		"level":4,
+		"require":"trickster",
+		"desc":"curse all enemies with a streak of bad luck.",
+		"buy":{
+			"codices":10
+		},
+		"cost":{
+			"mana":3
+		},
+		"attack":{
+			"targets":"all",
+			"dot":{
+				"id":"jinx",
+				"kind":"curse",
+				"duration":30,
+				"tohit":-5
 			}
 		}
 	},
@@ -1016,10 +1087,30 @@
 		"dot":{
 			"duration":30,
 			"mod":{
-				"g.player.defense":1
+				"player.defense":2
 			}
 		}
 
+	},
+	{
+		"id":"heal2",
+		"level":4,
+		"name":"sealing light II",
+		"desc":"a seam of light closes your wounds.",
+		"school":"light",
+		"buy":{
+
+			"research":75,
+			"codices":10,
+			"lightgem":1
+
+		},
+		"cost":{
+			"light":5
+		},
+		"effect":{
+			"hp":75
+		}
 	},
 	{
 		"id":"stoneskin",
@@ -1043,7 +1134,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"player.defense":2
+				"player.defense":5
 			}
 		}
 
@@ -1070,7 +1161,7 @@
 		"dot":{
 			"duration":45,
 			"mod":{
-				"player.defense":5
+				"player.defense":10
 			}
 		}
 
@@ -1097,7 +1188,7 @@
 		"dot":{
 			"duration":90,
 			"mod":{
-				"player.defense":10
+				"player.defense":25
 			}
 		}
 
@@ -1122,7 +1213,59 @@
 		"dot":{
 			"duration":120,
 			"mod":{
-				"player.defense":20
+				"player.defense":50
+			}
+		}
+
+	},
+	{
+
+		"id":"immunefire1",
+		"name":"quenchingsphere",
+		"school":"water",
+		"level":5,
+		"require":"g.player.level>=10&&g.waterlore>=15",
+		"desc":"temporarily negate all fire damage",
+		"buy":{
+
+			"research":100,
+			"tomes":1
+
+		},
+		"cost":{
+			"water":5
+		},
+		"dot":{
+
+			"duration":20,
+			"mod":{
+				"player.immunities.fire":1
+			}
+
+		}
+
+	},
+	{
+		"id":"venom2",
+		"level":5,
+		"name":"venom II",
+		"school":"nature",
+		"buy":{
+
+			"research":100,
+			"tomes":1,
+			"naturegem":1
+
+		},
+		"cost":{
+			"nature":5
+		},
+		"attack":{
+			"dot":{
+				"id":"venom",
+				"kind":"poison",
+				"duration":30,
+				"damage":"7~10"
 			}
 		}
 

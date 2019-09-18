@@ -2,7 +2,9 @@
 
 FEATURES:
 
-Increased dark bolt damage. Added deathbolt spell.
+Added tier2 summoner class.
+
+More spells. Increases to many existing spell powers.
 
 Added summoning spells.
 
@@ -30,7 +32,11 @@ Fixed bug preventing minions from unlocking without refresh.
 
 EXISTING BUGS:
 
-Enchantments are known to be buggy. sowwee.
+Dots do not always restore properly on reload.
+
+Speed buffs not applying correctly.
+
+Some Enchantments are known to be buggy.
 
 
 9/16

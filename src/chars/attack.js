@@ -15,6 +15,12 @@ export default class Attack {
 
 	}
 
+	/**
+	 * @property {'all'|'self'|'allies'} targets - target of attack.
+	 */
+	get targets() { return this._targets; }
+	set targets(v) { this._targets=v;}
+
 	get bonus() { return this._bonus; }
 	set bonus(v) {
 		/** @todo mod apply bug. **/

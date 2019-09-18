@@ -387,7 +387,32 @@
 		"sp":1
 	},
 	"mod":{
+		"anatomy.max":3,
+		"shadowlore.max":2,
 		"demonology.max":3
+	}
+
+},
+{
+	"id":"summoner",
+	"title":"summoner",
+	"tags":"t_tier2",
+	"desc":"even alone, a summoner is never without an army.",
+	"require":"g.minions>4&&g.tier1>0&&g.lore>=20",
+	"cost":{
+		"research":1000,
+		"arcana":10
+	},
+	"effect":{
+		"tier2":true,
+		"sp":1
+	},
+	"mod":{
+		"minions.max":1,
+		"charms.max":1,
+		"lore.max":2,
+		"mana.max":2,
+		"summoning.max":4
 	}
 
 },

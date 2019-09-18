@@ -1,4 +1,6 @@
 import Inventory from "./inventory";
+import { ALLY } from "./npc";
+import Events, { ALLY_DIED } from '../events';
 
 export default class Minions extends Inventory {
 
@@ -33,6 +35,7 @@ export default class Minions extends Inventory {
 
 		super.add(m);
 		if ( m.active ) this.active.push(m);
+		m.team = ALLY;
 
 	}
 
@@ -69,7 +72,13 @@ export default class Minions extends Inventory {
 
 			var m = this.items[p];
 			if ( m.active ) this._active.push(m);
+
+			/** @compatibiltiy */
+			m.team = ALLY;
+
 		}
+
+		Events.add( ALLY_DIED, this.died, this );
 
 	}
 

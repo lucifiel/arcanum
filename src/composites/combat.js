@@ -1,14 +1,13 @@
-import Events from '../events';
-
 import Game from '../game';
 import Range from '../range';
 import Dot from '../chars/dot';
-import Npc from '../chars/npc';
+import Npc, { ALLY } from '../chars/npc';
 
-import {
-	EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN,
+import Events, {
+	EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN, ALLY_DIED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT
 } from '../events';
+
 import Monster from '../items/monster';
 
 /**
@@ -222,13 +221,13 @@ export default class Combat {
 
 		let atk = src ? (src.attack||src) : attacker.attack;
 
-		let e = this.enemies[0];
+		if ( atk.targets === 'all') {
 
-		if ( this.tryHit( attacker, e, atk ) ) {
+			for( let i = this.enemies.length-1; i>= 0; i-- ) {
+				this.doAttack(attacker, atk, this.enemies[i]);
+			}
 
-			if ( tryDamage( e, atk, attacker ) ) if ( e.hp <= 0 ) this.enemyDied( e, attacker );
-
-		}
+		} else this.doAttack( attacker, atk, this.enemies[0] );
 
 	}
 
@@ -249,6 +248,20 @@ export default class Combat {
 
 			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
 
+		}
+
+	}
+
+	/**
+	 *
+	 * @param {Char} attacker
+	 * @param {Attack} atk
+	 * @param {Char} targ
+	 */
+	doAttack( attacker, atk, targ ) {
+
+		if ( this.tryHit( attacker, targ, atk ) ) {
+			if ( tryDamage( targ, atk, attacker ) ) if ( targ.hp <= 0 ) this.charDied( targ, attacker );
 		}
 
 	}
@@ -312,9 +325,7 @@ export default class Combat {
 	/**
 	 * Clear the current combat encounter.
 	 */
-	clear() {
-		this._enemies = [];
-	}
+	clear() { this._enemies = []; }
 
 	dodgeRoll( dodge, tohit ) {
 
@@ -327,12 +338,12 @@ export default class Combat {
 
 		console.log('char died: ' + char.id );
 		if ( char === this.player ) this.playerDied();
-		else Game.state.minions.died( char );
+		else if ( char.team === ALLY ) {
 
-	}
+			Events.dispatch( ALLY_DIED, char );
 
-	enemyDied( char, attacker ) {
-		Events.dispatch( ENEMY_SLAIN, char, attacker );
+		} else Events.dispatch( ENEMY_SLAIN, char, attacker );
+
 	}
 
 	playerDied() {

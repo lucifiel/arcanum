@@ -291,6 +291,17 @@
 
 	},
 	{
+		"id":"raven",
+		"name":"raven",
+		"kind":"natural",
+		"level":2,
+		"hp":3,
+		"speed":4,
+		"tohit":4,
+		"defense":3,
+		"damage":"1~2"
+	},
+	{
         "id":"wombat",
         "level":2,
         "kind":"beast",
@@ -513,7 +524,7 @@
 	},
 	{
 		"id":"warg",
-		"kind":"humanoid",
+		"kind":"beast",
 		"level":6,
 		"hp":15,
 		"tohit":7,
@@ -845,7 +856,8 @@
     },
     {
         "id":"hobgoblin",
-        "level":5,
+		"level":5,
+		"kind":"goblin",
         "desc":"",
         "evil":7,
         "hp":24,
@@ -855,7 +867,7 @@
             "name":"dagger",
             "kind":"pierce",
             "dmg":"3~6"
-        }, "loot":{"potion of cure light wounds":10}
+        }, "loot":{}
 
 	},
 	{
@@ -1215,6 +1227,20 @@
 			"light":50,
 			"fire":10
 		}
+	},
+	{
+        "id":"vrrek",
+        "level":5,
+        "kind":"humanoid",
+        "tohit":5,
+        "hp":22,
+		"defense":18,
+        "attack":{
+            "name":"talons",
+            "kind":"slash",
+            "dmg":"3~6"
+        },"flavor":"vrrek is what most of their words sound like"
+
 	},
 	{
 		"id":"direwolf",

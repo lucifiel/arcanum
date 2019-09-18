@@ -13,6 +13,7 @@ const EVT_LOOT = 'loot';
 
 const COMBAT_DONE = 'combat_done';
 const ENEMY_SLAIN = 'slain';
+const ALLY_DIED = 'ally_died';
 const PLAYER_SLAIN = 'died';
 const DAMAGE_MISS = 'damage_miss';
 const ENEMY_HIT = 'enemy_hit';
@@ -25,7 +26,7 @@ const LEVEL_UP = 'levelup'
  */
 const ACTION_DONE = 'action_done';
 
-export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE,
+export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE, ALLY_DIED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {
@@ -67,6 +68,7 @@ export default {
 		events.removeAllListeners( COMBAT_DONE );
 		events.removeAllListeners( PLAYER_HIT );
 		events.removeAllListeners( ENEMY_HIT );
+		events.removeAllListeners( ALLY_DIED );
 
 	},
 
