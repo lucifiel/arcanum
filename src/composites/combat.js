@@ -177,25 +177,10 @@ export default class Combat {
 			e = this._enemies[i];
 			if ( e.alive === false ) { this._enemies.splice(i,1); continue;}
 			action = e.update(dt);
-			if ( action ) this.enemyAttack( e, action, this.nextAlly() );
+			if ( action ) this.enemyAttack( e, action );
 
 		}
 
-	}
-
-	/**
-	 * @returns {Npc} next target of an enemy attack
-	 */
-	nextAlly() {
-
-		let len = this._allies.length;
-
-		//console.log('allies: ' + len );
-
-		for( let i = 0; i < len; i++ ) {
-			if ( this._allies[i].alive ) return this._allies[i];
-		}
-		return this.player;
 	}
 
 	/**
@@ -233,23 +218,38 @@ export default class Combat {
 
 	/**
 	 *
-	 * @param {Char} enemy - enemy attacking.
+	 * @param {Char} attacker - enemy attacking.
 	 * @param {Object|Char} attack - attack object.
-	 * @param {Char} target - target of attack. ( currently player ).
 	 */
-	enemyAttack( enemy, attack, target ) {
+	enemyAttack( attacker, attack ) {
 
 		if ( Array.isArray(attack) ) {
-			attack.forEach(v=>this.enemyAttack(enemy,v,target), this);
+			attack.forEach(v=>this.enemyAttack(attacker,v), this);
 			return;
 		}
 
-		if ( this.tryHit( enemy, target, attack ) ) {
+		if ( attack.targets === 'all' ) {
 
-			if ( tryDamage( target, attack, enemy ) ) if ( target.hp <= 0 ) this.charDied( target );
+			this._allies.forEach(v=>this.doAttack(attacker, attack, v) );
+			this.doAttack( attacker, attack, this.player );
 
+		} else this.doAttack( attacker, attack, this.nextAlly() );
+
+	}
+
+	/**
+	 * @returns {Npc} next target of an enemy attack
+	 */
+	nextAlly() {
+
+		let len = this._allies.length;
+
+		//console.log('allies: ' + len );
+
+		for( let i = 0; i < len; i++ ) {
+			if ( this._allies[i].alive ) return this._allies[i];
 		}
-
+		return this.player;
 	}
 
 	/**
@@ -305,7 +305,6 @@ export default class Combat {
 				enemies.push( e );
 
 			}
-
 
 		} else {
 

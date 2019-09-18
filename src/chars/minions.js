@@ -49,6 +49,8 @@ export default class Minions extends Inventory {
 
 	setActive( b, active=true ) {
 
+		if ( b.died ) return;
+
 		b.active = active;
 
 		if ( active === true ) {
@@ -93,7 +95,9 @@ export default class Minions extends Inventory {
 	}
 
 	died( m ) {
-		this.remove(m);
+		m.active = false;
+		m.died = true;
+		//this.remove(m);
 	}
 
 }

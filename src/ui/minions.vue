@@ -52,12 +52,16 @@ export default {
 	<div>{{ minions.count + ' / ' + minions.max + ' Used' }}</div>
 	<div class="char-list">
 	<table class="minions">
-		<tr><th>Creature</th><th>Owned</th><th class="num-align">Hp</th><th>active</th></tr>
+		<tr><th>Creature</th><th class="num-align">Hp</th><th>active</th></tr>
 		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
 			<th>{{ b.name }}</th>
-			<td class="num-align">{{ b.value }}</td>
 			<td class="num-align">{{ toNum(b.hp) }} / {{ toNum( b.maxHp ) }}</td>
-			<td><button @click="toggleActive(b)" :disabled="inRaid">{{ b.active === true ? 'Rest' : 'Activate' }}</button></td>
+
+			<td v-if="b.died">Dead</td>
+			<td v-else>
+				<button @click="toggleActive(b)" :disabled="inRaid">{{ b.active === true ? 'Rest' : 'Activate' }}</button>
+			</td>
+
 			<td><confirm @confirm="dismiss(b)">{{ 'Dismiss'}}</confirm></td>
 		</tr>
 	</table>
