@@ -154,6 +154,10 @@ export default class Inventory {
 		this.items.splice(ind,1);
 	}
 
+	removeAll(){
+		return this.items.splice(0, this.items.length);
+	}
+
 	/**
 	 *
 	 * @param {Item} it

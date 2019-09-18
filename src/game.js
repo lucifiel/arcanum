@@ -452,7 +452,7 @@ export default {
 		if ( it.slot && this.state.getSlot(it.slot) === it ) this.state.setSlot(it.slot,null);
 
 		it.value -= count;
-		if ( it.instance ) {
+		if ( inv && it.instance ) {
 
 			console.log('remainig: ' + it.value );
 			if ( !it.stack || it.value <= 0 ) inv.remove( it );

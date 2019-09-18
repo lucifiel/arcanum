@@ -6,6 +6,10 @@ Support for multi-target attacks
 
 Some multi-target attack spells.
 
+Sell All button in Inventories.
+
+individual items sell-all option.
+
 
 BUGFIX:
 

@@ -19,6 +19,15 @@ export default {
 	},
 	methods:{
 
+		sellAll(){
+
+			let items = this.inv.removeAll();
+			for( let i = items.length-1; i>=0; i-- ){
+				this.dispatch( 'sell', items[i], null, items[i].value);
+			}
+
+		},
+
 		count(it) { return it.value > 1 ? ' (' + Math.floor(it.value) + ')': ''; },
 		drop( it ){
 			this.inv.remove(it);
@@ -48,7 +57,11 @@ export default {
 <template>
 <div>
 	<filterbox v-model="filtered" :items="inv.items" min-items="10" />
-	<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + Math.floor(inv.max.value ) + ' Used' }}</div>
+
+	<div class="flex-row">
+		<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + Math.floor(inv.max.value ) + ' Used' }}</div>
+		<button v-if="inv.count>0" @click="sellAll">Sell All</button>
+	</div>
 <table class="inv item-table">
 
 	<tr v-for="it in filtered" :key="it.id">
@@ -79,7 +92,16 @@ export default {
 
 <style scoped>
 
+.flex-row {
+	align-items:center;
+	justify-content: flex-start;
+}
+.flex-row div {
+	margin-right: 12px;
+}
+
 .inv {
+	margin-top:4px;
 	margin-right:12px;
 	width:auto;
 }
