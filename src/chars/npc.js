@@ -21,7 +21,7 @@ export default class Npc extends Char {
 		data.template = this.template.id;
 		data.cost = undefined;
 		data.team = this.team||undefined;
-		data.died = this.died||undefined;
+		//data.died = this.died||undefined;
 
 		return data;
 
@@ -66,9 +66,6 @@ export default class Npc extends Char {
 	 */
 	get active() { return this._active; }
 	set active(v) { this._active = v; }
-
-	get died() { return this._died; }
-	set died(v) { this._died = v; }
 
 	constructor(vars) {
 

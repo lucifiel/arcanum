@@ -17,23 +17,6 @@ export function getDelay(s) {
 
 export default class Char {
 
-	/*toJSON(){
-
-		let data = {}
-
-		for( let k in this ) {
-
-			if ( k[0] === '_' ) continue;
-			data[k] = this[k];
-
-		}
-
-		data.current = undefined;
-
-		return data;
-
-	}*/
-
 	get statuses() { return this._statuses; }
 	set statuses(v) { this._statuses = v; }
 
@@ -84,8 +67,11 @@ export default class Char {
 	get regen() { return this._regen; }
 	set regen(v) { this._regen = ( v instanceof Stat ) ? v : new Stat(v); }
 
+	/*get died() { return this._died; }
+	set died(v) { this._died = v; }*/
+
 	get alive() { return this.hp > 0; }
-	set alive(v) { if ( !v ) this.hp = 0;}
+	set alive(v) {}
 
 	constructor( vars ){
 

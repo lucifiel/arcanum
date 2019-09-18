@@ -1,9 +1,8 @@
-import Events, { ENEMY_SLAIN, ALLY_SLAIN } from '../events';
+import Events, { ENEMY_SLAIN } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
 import Combat from './combat';
-import game from '../game';
 
 
 /**
@@ -186,6 +185,7 @@ export default class Raid {
 	setDungeon( d ) {
 
 		this.player.timer = this.player.delay;
+		this.minions.resetActives();
 
 		if ( d != null ) {
 

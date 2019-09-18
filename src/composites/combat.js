@@ -87,8 +87,7 @@ export default class Combat {
 	toJSON() {
 
 		return {
-			enemies: this._enemies,
-			allies: this.allies,
+			enemies: this._enemies
 		}
 
 	}
@@ -164,7 +163,7 @@ export default class Combat {
 
 			e = this._allies[i];
 			if ( e.alive === false ) {
-				this.charDied( e );
+				//this.charDied( e );
 				continue;
 			}
 			action = e.update(dt);

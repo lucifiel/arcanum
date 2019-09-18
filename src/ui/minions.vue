@@ -57,7 +57,7 @@ export default {
 			<th>{{ b.name }}</th>
 			<td class="num-align">{{ toNum(b.hp) }} / {{ toNum( b.maxHp ) }}</td>
 
-			<td v-if="b.died">Dead</td>
+			<td v-if="!b.alive">Dead</td>
 			<td v-else>
 				<button @click="toggleActive(b)" :disabled="inRaid">{{ b.active === true ? 'Rest' : 'Activate' }}</button>
 			</td>

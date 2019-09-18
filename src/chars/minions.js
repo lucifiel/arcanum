@@ -49,7 +49,7 @@ export default class Minions extends Inventory {
 
 	setActive( b, active=true ) {
 
-		if ( b.died ) return;
+		if ( !b.alive ) return;
 
 		b.active = active;
 
@@ -84,6 +84,18 @@ export default class Minions extends Inventory {
 
 	}
 
+	/**
+	 * Reset the active list for any minions that have died,
+	 * gone inactive, etc.
+	 */
+	resetActives() {
+
+		for( let i = this.active.length-1; i>=0; i-- ) {
+			if ( !this.active[i].active ) this.active.splice(i, 1 );
+		}
+
+	}
+
 	remove( m ) {
 
 		super.remove(m);
@@ -96,7 +108,6 @@ export default class Minions extends Inventory {
 
 	died( m ) {
 		m.active = false;
-		m.died = true;
 		//this.remove(m);
 	}
 
