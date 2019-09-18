@@ -1,8 +1,22 @@
 import Inventory from "./inventory";
 import { ALLY } from "./npc";
 import Events, { ALLY_DIED } from '../events';
+import Stat from "../stat";
 
 export default class Minions extends Inventory {
+
+	/**
+	 * @property {Stat} allies - level max allies taken into battle.
+	 */
+	get maxAllies() { return this._maxAllies; }
+	set maxAllies(v) {
+		this._maxAllies = v instanceof Stat ? v : new Stat(v);
+	}
+
+	/**
+	 * @property {number} allyTotal - sum of all allies levels.
+	 */
+	get allyTotal() { return this._allyTotal; }
 
 	/**
 	 * @property {string[]}
@@ -26,7 +40,9 @@ export default class Minions extends Inventory {
 
 		for( let i = this.items.length-1; i>= 0; i-- ) {
 
-			if ( this.items[i].active === false ) this.items[i].rest(dt);
+			var it = this.items[i];
+			if ( it.active === false && it.alive ) it.rest(dt);
+
 		}
 
 	}
@@ -34,8 +50,13 @@ export default class Minions extends Inventory {
 	add(m ) {
 
 		super.add(m);
-		if ( m.active ) this.active.push(m);
+
 		m.team = ALLY;
+
+		if ( m.active ) {
+			this.setActive(m)
+		}
+
 
 	}
 
@@ -51,18 +72,29 @@ export default class Minions extends Inventory {
 
 		if ( !b.alive ) return;
 
-		b.active = active;
-
 		if ( active === true ) {
 
-			if ( !this.active.includes(b) )this.active.push(b);
+			if ( b.level + this.allyTotal > this.maxAllies ) return false;
+			if ( !this.active.includes(b) ) {
+
+				this.allyTotal += b.level;
+				this.active.push(b);
+
+			}
 
 		} else {
 
 			let ind = this.active.indexOf(b);
-			if ( ind >= 0 ) this.active.splice(ind,1);
+			if ( ind >= 0 ) {
+
+				this.allyTotal -= b.level;
+				this.active.splice(ind,1);
+
+			}
 
 		}
+
+		b.active = active;
 
 	}
 
@@ -70,15 +102,28 @@ export default class Minions extends Inventory {
 
 		super.revive(state);
 
+		if ( this.maxAllies === null ) {
+			this.maxAllies = Math.floor( state.player.level / 5 );
+		}
+
+		let max = this.maxAllies.value;
+
 		for( let p in this.items ) {
 
 			var m = this.items[p];
-			if ( m.active ) this._active.push(m);
+			if ( m.active && m.level <= max ) {
+
+				max -= m.level;
+				this._active.push(m);
+
+			}
 
 			/** @compatibiltiy */
 			m.team = ALLY;
 
 		}
+
+		this.allyTotal = this.maxAllies.value - max;
 
 		Events.add( ALLY_DIED, this.died, this );
 
@@ -91,7 +136,11 @@ export default class Minions extends Inventory {
 	resetActives() {
 
 		for( let i = this.active.length-1; i>=0; i-- ) {
-			if ( !this.active[i].active ) this.active.splice(i, 1 );
+
+			if ( !this.active[i].active ) {
+				this.setActive( this.active[i], false );
+			}
+
 		}
 
 	}
@@ -100,15 +149,15 @@ export default class Minions extends Inventory {
 
 		super.remove(m);
 
-		console.log('removing miinon: ' + m.id );
-		let ind = this.active.indexOf(m);
-		if ( ind>=0)this.active.splice(ind,1);
+		console.log('removing minion: ' + m.id );
+		this.setActive( m, false );
 
 	}
 
 	died( m ) {
+
 		m.active = false;
-		//this.remove(m);
+
 	}
 
 }

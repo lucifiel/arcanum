@@ -93,7 +93,7 @@ export default class GameState {
 
 		this.raid = new Raid( baseData.raid );
 
-		if ( restore ) this.revive();
+		this.revive();
 		this.raid.revive( this );
 
 		/** @todo: messy bug fix. */

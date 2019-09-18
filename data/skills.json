@@ -118,8 +118,11 @@
 			"naturelore.exp":1
 		},
 		"result":{
-			"sp":0.05,
-			"research.max":1
+			"sp":0.05
+		},
+		"mod":{
+			"minions.maxAllies":0.25,
+			"research.max":5
 		}
 
 	},
@@ -129,13 +132,12 @@
 		"run":{
 			"stamina":0.3
 		},
-		"effect":{
-
-		},
 		"result":{
-			"sp":0.05,
+			"sp":0.05
+		},"mod":{
+			"research.max":1,
 			"minions.max":"10%",
-			"research.max":1
+			"minions.maxAllies":1
 		}
 	},
 	{
@@ -242,7 +244,8 @@
 		"run":{
 			"stamina":0.7
 		},
-		"result":{
+		"mod":{
+			"minions.maxAllies":1,
 			"research.max":5,
 			"minions.max":0.5
 		}
@@ -431,8 +434,11 @@
 			"shadow":0.1
 		},
 		"result":{
-			"sp":0.05,
-			"shadow.rate":0.01
+			"sp":0.05
+		},
+		"mod":{
+			"shadow.rate":0.01,
+			"minions.maxAllies":0.2
 		}
 
 	},

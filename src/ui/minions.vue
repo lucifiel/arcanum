@@ -19,10 +19,14 @@ export default {
 
 		minions(){ return Game.state.minions; },
 
-		items(){ return Game.state.minions.filter( v=>v.value>=1 ); },
+		items(){ return this.minions.filter( v=>v.value>=1 ); },
 
 	},
 	methods:{
+
+		levelCap(b){
+			return b.level + minions.allyTotal > minions.maxAllies;
+		},
 
 		toggleActive(b) {
 			this.minions.setActive( b, !b.active );
@@ -50,6 +54,7 @@ export default {
 
 	<span v-if="inRaid" class="warn-text">Cannot change active minions while adventuring</span>
 	<div>{{ minions.count + ' / ' + Math.floor(minions.max) + ' Used' }}</div>
+	<div><span>Total Ally Levels: {{ minions.allyTotal + ' / ' + Math.floor( minions.maxAllies.value ) }}</span></div>
 	<div class="char-list">
 	<table class="minions">
 		<tr><th>Creature</th><th class="num-align">Hp</th><th>active</th></tr>
@@ -59,7 +64,7 @@ export default {
 
 			<td v-if="!b.alive">Dead</td>
 			<td v-else>
-				<button @click="toggleActive(b)" :disabled="inRaid">{{ b.active === true ? 'Rest' : 'Activate' }}</button>
+				<button @click="toggleActive(b)" :disabled="inRaid||levelCap(b)">{{ b.active === true ? 'Rest' : 'Activate' }}</button>
 			</td>
 
 			<td><confirm @confirm="dismiss(b)">{{ 'Dismiss'}}</confirm></td>

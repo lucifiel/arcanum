@@ -337,6 +337,7 @@ export default class Player extends Char {
 
 		this.dirty = true;
 		if ( this._level % 3 === 0 ) this.sp.value++;
+		if ( this._level % 5 === 0 ) Game.getData('minions').maxAllies.value++;
 
 		this.tohit++;
 		this.hp.max.base += 2;
