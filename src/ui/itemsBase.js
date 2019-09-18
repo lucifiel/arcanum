@@ -29,6 +29,11 @@ export default {
 		buyable(it) { return Game.canBuy(it)},
 
 		reslocked( it ) {
+			if ( it.id === 'potions') {
+				console.log('dis: ' + it.disabled);
+				console.log('locks: ' + it.locks );
+				console.log('loced: ' + it.locked);
+			}
 			return it.disabled === true || it.locks > 0 || it.locked !== false;
 		},
 

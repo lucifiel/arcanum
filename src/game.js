@@ -435,27 +435,31 @@ export default {
 	 * @param {GData} it
 	 * @returns {boolean}
 	 */
-	trySell( it, inv ) {
+	trySell( it, inv, count=1 ) {
 
-		if ( it.value < 1 ) return false;
+		if ( it.value < 1 && !it.instance ) { return false; }
+
+		if ( count > it.value ) count = it.value;
 
 		let sellObj = it.sell || it.cost;
-		let goldPrice = this.sellPrice(it);
+		let goldPrice = count*this.sellPrice(it);
 
 		if ( sellObj && typeof sellObj === 'object' ) {
-			if ( sellObj.space ) this.getData('space').value += sellObj.space;
+			if ( sellObj.space ) this.getData('space').value += count*sellObj.space;
 		}
 		this.getData('gold').value += goldPrice;
 
 		if ( it.slot && this.state.getSlot(it.slot) === it ) this.state.setSlot(it.slot,null);
-		it.value -= 1;
 
+		it.value -= count;
 		if ( it.instance ) {
 
-			if ( inv ) inv.remove( it );
+			console.log('remainig: ' + it.value );
+			if ( !it.stack || it.value <= 0 ) inv.remove( it );
+
 		} else {
 
-			if ( it.mod ) this.removeMod( it.mod, 1 );
+			if ( it.mod ) this.removeMod( it.mod, count );
 
 		}
 
@@ -514,6 +518,8 @@ export default {
 	 * does not actually use it, and returns false.
 	 */
 	tryItem(it) {
+
+		if ( it.type ==='dungeon') return this.startRaid(it);
 
 		if ( !this.canUse(it) ) return false;
 

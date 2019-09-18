@@ -476,6 +476,7 @@
 	"require":"g.tier1&&g.enchanting>=6&&g.charms>=3",
 	"tags":"t_tier2",
 	"disable":[],
+	"warn":true,
 	"effect":{
 		"tier2":true,
 		"sp":2

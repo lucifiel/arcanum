@@ -222,6 +222,7 @@ export default {
 
 		gd.events = this.initItems( dataLists['events'], GData, null, 'event' );
 		gd.classes = this.initItems( dataLists['classes'], GData, 'class', 'class' );
+		gd.classes.forEach(v=>{v.warn=true;});
 
 		gd.actions = this.initItems( dataLists['actions'], Action, null, 'action' );
 		gd.actions.forEach( v=>v.repeat = (v.repeat!==undefined ) ? v.repeat : true );

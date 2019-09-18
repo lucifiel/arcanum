@@ -44,8 +44,10 @@ export default {
 
 		<div class="enchants">
 
-		<div @mouseenter.capture.stop="dispatch('itemover', $event, target )">
+		<div><div @mouseenter.capture.stop="dispatch('itemover', $event, target )">
 			Target: {{ target ? target.name : 'None' }}
+		</div>
+		<span class="note-text">Items can only be enchanted with enchantments of equal or lower level.</span>
 		</div>
 
 		<filterbox v-model="filtered" :items="enchants" min-items="7" />

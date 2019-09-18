@@ -9,17 +9,16 @@ Some multi-target attack spells.
 
 BUGFIX:
 
+Raiding from quickbar no longer auto-completes dungeon.
+
 Max inventory and Minions formatting.
 
 Percentile loots now function correctly.
 
+Speed boosts should be safe now.
+
 
 BUGS:
-
-Speed boosts still bugged.
-
-Dungeons on Quickbar are broken.
-
 
 
 9/17

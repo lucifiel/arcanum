@@ -454,10 +454,8 @@
 	},
 	{
 		"id":"potions",
-		"school":["water"],
-		"name":"Potions",
-		"require":"g.crafting>=3&&g.alchemy>=1&&g.herbs>=2",
-		"need":["potsource","workspace"],
+		"require":"g.crafting>=3&&g.alchemy>=1&&g.herbalism>=2",
+		"need":["workspace","potsource"],
 		"run":{
 			"stamina":0.5
 		},

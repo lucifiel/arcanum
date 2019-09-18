@@ -222,7 +222,7 @@ export default {
 			this.game.tryUseWith( e, targ );
 		},
 
-		onSell( it, inv) { this.game.trySell( it, inv ); },
+		onSell( it, inv, count ) { this.game.trySell( it, inv, count ); },
 
 		itemOver(evt, it, title) {
 			this.overItem = it;

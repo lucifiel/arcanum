@@ -61,7 +61,9 @@ export default {
 			<td v-if="it.use"><button @click="dispatch( 'use', it)">Use</button></td>
 			<td v-if="take&&!playerFull"><button @click="onTake(it)">Take</button></td>
 
-			<td><button @click="dispatch('sell',it,inv)" @mouseenter.capture.stop="dispatch('itemover',$event,it)">Sell</button>
+			<td>
+			<button @click="dispatch('sell',it,inv)" @mouseenter.capture.stop="dispatch('itemover',$event,it)">Sell</button>
+			<button v-if="it.value>1" @click="dispatch('sell',it,inv, it.value)" @mouseenter.capture.stop="dispatch('itemover',$event,it)">Sell All</button>
 				<!--<button v-else @click="drop(it)">Drop</button>--></td>
 
 		</template>

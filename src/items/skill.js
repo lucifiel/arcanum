@@ -36,7 +36,7 @@ export default class Skill extends Action {
 
 		this.buy = this.buy || { "sp":1 };
 
-		this.value = this._value || 0;
+		if ( !this.value) this.value = 0;
 		this.rate = this.rate || new Stat(0.5);
 		this.max = this.max || new Stat(5);
 

@@ -55,7 +55,7 @@
 	{
 		"id":"sect_potions",
 		"name":"potions",
-		"require":"g.potions>1"
+		"require":"g.potions>0"
 	},
 	{
 		"id":"sect_minions",

@@ -19,6 +19,8 @@ export default class Item {
 
 	}
 
+	get instance() { return true; }
+
 	/**
 	 * @property {string} protoId - id of item template used to instance this item.
 	 */

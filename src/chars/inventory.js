@@ -164,6 +164,7 @@ export default class Inventory {
 		if ( ind < 0 ) return;
 		this.items.splice( ind, 1 );
 
+
 	}
 
 }

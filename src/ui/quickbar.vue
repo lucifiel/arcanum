@@ -17,6 +17,9 @@ export default {
 
 		},
 
+		clicked(it) {
+		},
+
 		abbr(it){
 
 			let s = it.name;
