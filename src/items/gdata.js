@@ -25,12 +25,13 @@ export default class GData {
 	 */
 	get max() { return this._max; }
 	set max(v) {
+
 		if ( this._max ) {
 
 			if ( v instanceof Stat ) this._max = v;
 			else if ( !isNaN(v) ) this._max.base = v;
 
-		} this._max = v instanceof Stat ? v : new Stat(v);
+		} else this._max = v instanceof Stat ? v : new Stat(v);
 	}
 
 	/**
@@ -95,6 +96,9 @@ export default class GData {
 
 		this._value = this._value || 0;
 
+		if ( vars.nomax ) {
+			this._max = null;
+		}
 		if ( this.owned && !this.buy && !this.value ) this._value = 1;
 		//if ( this.owned) console.log('owned: ' + this.owned + ' id: ' + this.id);
 
