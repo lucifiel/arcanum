@@ -17,6 +17,10 @@ individual items sell-all option.
 
 BUGFIX:
 
+Fixed Actions giving skill exp to Maxed Skills.
+
+UI-improvements as always.
+
 Raiding from quickbar no longer auto-completes dungeon.
 
 Max inventory and Minions formatting.

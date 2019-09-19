@@ -53,8 +53,10 @@ export default {
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
 	<span v-if="inRaid" class="warn-text">Cannot change active minions while adventuring</span>
-	<div>{{ minions.count + ' / ' + Math.floor(minions.max) + ' Used' }}</div>
-	<div><span>Total Ally Levels: {{ minions.allyTotal + ' / ' + Math.floor( minions.maxAllies.value ) }}</span></div>
+	<div class="minion-title">
+		<span>{{ minions.count + ' / ' + Math.floor(minions.max) + ' Used' }}</span>
+		<span>Allies Power: {{ minions.allyTotal + ' / ' + Math.floor( minions.maxAllies.value ) }}</span></div>
+
 	<div class="char-list">
 	<table class="minions">
 		<tr><th>Creature</th><th class="num-align">Hp</th><th>active</th></tr>
@@ -78,7 +80,13 @@ export default {
 
 <style scoped>
 
-.bestiary {
+div.bestiary .minion-title {
+	display:flex;
+	width: 380px;
+	justify-content: space-between;
+}
+
+div.bestiary {
 	padding-left:16px;
 	height:100%;
 }

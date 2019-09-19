@@ -71,13 +71,26 @@ export default {
 	border: 1.75px dashed rgb(117, 117, 117);
 }
 
+div.top-bar {
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	justify-items: flex-start;
+	align-items: center;
+	align-content: center;
+	min-height:52px;
+	max-width:100%;
+	padding: 0px 14px 4px;
+	border-bottom: 1px solid var(--separator-color);
+}
+
+
 .top-bar .items {
 	display:flex;
 	margin-left:20px;
 }
 
 .load-opts {
-	width: 100%;
 	display:flex;
 }
 
@@ -90,21 +103,10 @@ export default {
 	max-height:21px;
 }
 
-div.top-bar {
-	display:flex;
-	flex-flow: row nowrap;
-	justify-content: flex-start;
-	align-items: center;
-	align-content: center;
-	min-height:52px;
-	max-width:100%;
-	padding: 0px 14px 4px;
-	border-bottom: 1px solid var(--separator-color);
-}
-
 .link-bar {
-	justify-self: flex-start;
+	justify-self: flex-end;
 	display:flex;
+	flex-grow: 1;
 	flex-flow: row-reverse nowrap;
 	font-size: 0.90em;
 }
