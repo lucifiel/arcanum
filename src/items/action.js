@@ -1,6 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
-import Events, { ACTION_DONE } from '../events';
+import Events, { ACTION_DONE, ACT_LEVELED } from '../events';
 
 export default class Action extends GData {
 
@@ -11,6 +11,16 @@ export default class Action extends GData {
 
 	get ex(){return this._exp; }
 	set ex(v) { this._exp = v;}
+
+	get value() {
+		return super.value;
+	}
+	set value(v){
+
+		super.value = v;
+		console.log('act value: ' + v);
+		this.complete();
+	}
 
 	/**
 	 * @property {number} exp - alias progress data files.
@@ -112,7 +122,22 @@ export default class Action extends GData {
 	}
 
 	complete() {
+
+		if ( this.at ) {
+
+			console.log('action complete: ' + this.value );
+			let cur = this.at[this.value];
+			if ( cur ) {
+
+				Events.dispatch( ACT_LEVELED, this );
+				this.applyMods( cur );
+
+			}
+
+		}
+
 		this._exp = 0;
+
 	}
 
 }

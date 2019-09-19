@@ -686,10 +686,7 @@ export default {
 	doItem( it, count=1 ) {
 
 		if ( it.maxed() ) return false;
-		if ( it.isProto ) {
-			console.log('CREATING PROTO');
-			return this.create(it, true );
-		}
+		if ( it.isProto ) return this.create(it, true );
 
 		if ( it.slot) {
 
@@ -703,6 +700,7 @@ export default {
 		}
 		if ( it.exec ) it.exec();
 
+		console.log( it.id + '  val: ' + it.value );
 		it.value += it.consume ? -count : count;
 
 		if ( it.title ) this.state.player.title = it.title;

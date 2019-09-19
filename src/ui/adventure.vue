@@ -56,16 +56,16 @@ export default {
 
 <div class="adventure">
 
-
 		<div v-if="raiding">
 
 		<div class="active-dungeon" v-if="raiding">
-			<span>{{ cur.name }}</span>
-			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
-			<span><button class="raid-btn"
+			<span class="active-title"><span>{{ cur.name }}</div><button class="raid-btn"
 				@click="dispatch( 'raid', cur, false )"
 				@mouseenter.capture.stop="dispatch('itemover', $event, cur )">
-				Stop</button></span>
+				Flee</button></span>
+
+			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
+
 		</div>
 
 			<combat class="combat" v-if="raiding" :combat="raid.combat" />
@@ -114,6 +114,15 @@ export default {
 
 .combat {
 	overflow-y: auto;
+}
+
+div.adventure .active-title {
+	display:flex;
+	min-width: 400px;
+}
+
+div.adventure .active-title > span {
+	margin-right:16px;
 }
 
 .separate {

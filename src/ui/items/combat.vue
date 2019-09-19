@@ -19,8 +19,8 @@ export default {
 
 <div class="combat">
 
-	<npc-group class="group" :npcs="combat.enemies" label="enemies" />
 	<npc-group class="group" :player="player" :npcs="combat.allies" label="allies" />
+	<npc-group class="group" :npcs="combat.enemies" label="enemies" />
 
 </div>
 
@@ -30,7 +30,6 @@ export default {
 
 .combat {
 	display:flex;
-	flex-flow: row-reverse nowrap;
 	justify-content: space-between;
 	width:98%;
 }

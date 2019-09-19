@@ -25,13 +25,17 @@ const LEVEL_UP = 'levelup'
 const EXIT_RAID = 'leftraid';
 
 const ACT_CHANGED = 'actchanged';
+const ACT_LEVELED = 'actleveled';
 
 /**
  * Dispatched when a running action completes.
  */
 const ACTION_DONE = 'action_done';
 
-export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE, ALLY_DIED, EXIT_RAID, ACT_CHANGED,
+export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE, ALLY_DIED, EXIT_RAID,
+
+	ACT_CHANGED, ACT_LEVELED,
+
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {
@@ -50,6 +54,7 @@ export default {
 			events.addListener( EVT_EVENT, this.onEvent, this );
 			events.addListener( LEVEL_UP, this.onLevel, this );
 			events.addListener( ACTION_DONE, this.actionDone, this );
+			events.addListener( ACT_LEVELED, this.actionLeveled, this );
 
 			events.addListener( EVT_COMBAT, this.onCombat, this );
 			events.addListener( ENEMY_SLAIN, this.enemySlain, this );
@@ -64,7 +69,10 @@ export default {
 		events.removeAllListeners( EVT_UNLOCK );
 		events.removeAllListeners( EVT_EVENT );
 		events.removeAllListeners( LEVEL_UP );
+
 		events.removeAllListeners( ACTION_DONE );
+		events.removeAllListeners( ACT_CHANGED );
+		events.removeAllListeners( ACT_LEVELED );
 
 		events.removeAllListeners( EVT_COMBAT );
 		events.removeAllListeners( ENEMY_SLAIN );
@@ -95,6 +103,10 @@ export default {
 	},
 
 	actionDone(it){
+	},
+
+	actionLevelled(it) {
+		this.log( it.name + ' Level Up', null, EVT_UNLOCK );
 	},
 
 	onLevel( player ) {

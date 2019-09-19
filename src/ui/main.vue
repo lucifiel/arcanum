@@ -241,7 +241,10 @@ export default {
 			this.game.toggleAction( this.state.restAction );
 		},
 
-		onAction( action ) { this.game.tryItem( action ); },
+		onAction( action ) {
+
+			this.game.tryItem( action );
+		},
 
 		/**
 		 * Attempt to buy new house.

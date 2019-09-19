@@ -8,6 +8,11 @@
 		"cost":{
 			"stamina":0.08
 		},
+		"at":{
+			"5":{
+				"effect.gold":10
+			}
+		},
 		"effect":{
 			"virtue":0.1,
 			"gold":0.2
@@ -19,6 +24,11 @@
 		"desc":"standard apprentice work.",
 		"verb":"working",
 		"require":"apprentice",
+		"at":{
+			"50":{
+				"effect.gold":0.2
+			}
+		},
 		"cost":{
 			"stamina":0.17
 		},
@@ -164,6 +174,13 @@
 		"verb":"servicing",
 		"require":"adept",
 		"perpetual":true,
+		"at":{
+
+			"25":{ "effect.gold":0.2 },
+			"100":{ "effect.gold":0.5 },
+			"250":{ "effect.gold":1 }
+
+		},
 		"run":{
 			"stamina":0.25,
 			"mana":0.1

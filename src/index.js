@@ -19,14 +19,6 @@ Vue.mixin({
 		listen:Events.listen,
 		dispatch:Events.dispatch,
 
-		/*dispatch( ...args ) {
-			dispatch.$emit.apply( dispatch, args );
-		},
-
-		listen( evt, func ) {
-			dispatch.$on( evt, func );
-		},*/
-
 		// get id for html element.
 		elmId(name) { return name + this._uid; }
 
@@ -70,7 +62,7 @@ var vm = new Vue({
 				if ( v ) document.body.classList.add( 'darkmode');
 				else document.body.classList.remove( 'darkmode');
 
-			} else if ( setting === 'compactMode') {
+			} else if ( setting === 'compactMode' ) {
 
 				if ( v ) document.body.classList.add( 'compact');
 				else document.body.classList.remove( 'compact');

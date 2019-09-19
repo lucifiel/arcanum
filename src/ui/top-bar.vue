@@ -80,6 +80,7 @@ div.top-bar {
 	align-content: center;
 	min-height:52px;
 	max-width:100%;
+	overflow:hidden;
 	padding: 0px 14px 4px;
 	border-bottom: 1px solid var(--separator-color);
 }
