@@ -56,16 +56,23 @@ export default class Skill extends Action {
 	}
 
 	update( dt) {
+
 		this.exp += dt*this._rate;
+		if ( this.exp > this.length ) {
+			this.complete();
+		}
+
 	}
 
-	complete() {
+	exec() {
 
-		console.log('complete: ' + this.id );
-		super.complete();
-		if ( this._value > Math.floor(this._max) ) this._value = Math.floor(this._max);
+		if ( this.value > Math.floor(this._max) ) this.value = Math.floor(this.max);
 		this._length += this._length*EXP_RATIO;
+
 		this.dirty = true;
+
+		super.exec();
+
 
 	}
 

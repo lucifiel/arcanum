@@ -59,10 +59,12 @@ export default {
 		<div v-if="raiding">
 
 		<div class="active-dungeon" v-if="raiding">
-			<span class="active-title"><span>{{ cur.name }}</div><button class="raid-btn"
+			<span class="active-title">
+				<span>{{ cur.name }}</span><button class="raid-btn"
 				@click="dispatch( 'raid', cur, false )"
 				@mouseenter.capture.stop="dispatch('itemover', $event, cur )">
-				Flee</button></span>
+				Flee</button>
+			</span>
 
 			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
 

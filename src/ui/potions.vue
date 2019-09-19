@@ -18,7 +18,7 @@ export default {
 	},
 
 	components:{
-		inv:()=>import('./inventory.vue'),
+		inv:()=>import( /* webpackChunkName: "inv-ui" */ './inventory.vue'),
 		filterbox:FilterBox
 	},
 	beforeCreate(){

@@ -46,16 +46,7 @@ export default class Runnable {
 	get effect() { return this.item ? this.item.effect : null; }
 
 	get exp(){ return this._item.exp; }
-	set exp(v) {
-
-		if ( v > this.item.length ) {
-			Game.useWith( this.item, this.target );
-			Game.setAction(null);
-		}
-
-		this.item.exp = v;
-
-	}
+	set exp(v) { this.item.exp = v; }
 
 	percent() { return this.item.percent(); }
 	maxed() { return this.item.maxed(); }
@@ -65,6 +56,17 @@ export default class Runnable {
 	constructor( vars=null) {
 
 		if (vars) Object.assign( this, vars);
+
+	}
+
+	update(dt){
+
+		this.exp += dt;
+
+		if ( this.exp > this.item.length ) {
+			Game.useWith( this.item, this.target );
+			Game.setAction(null);
+		}
 
 	}
 

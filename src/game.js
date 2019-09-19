@@ -13,7 +13,7 @@ import Runnable from './composites/runnable';
 /**
  * @module Randoms - randomized events.
  */
-import Randoms from './modules/randoms.js';
+import Randoms from './modules/randoms';
 
 /**
  * @note these refer to Code-events, not in-game events.
@@ -260,12 +260,7 @@ export default {
 		} else if ( action.update ) {
 
 			action.update(dt);
-			action.dirty = true;
-
-		} else {
-
 			if ( action.effect) this.applyEffect( action.effect, dt );
-			if ( action.length ) action.exp += dt;
 			action.dirty = true;
 
 		}
@@ -700,7 +695,6 @@ export default {
 		}
 		if ( it.exec ) it.exec();
 
-		console.log( it.id + '  val: ' + it.value );
 		it.value += it.consume ? -count : count;
 
 		if ( it.title ) this.state.player.title = it.title;

@@ -1,4 +1,4 @@
-import GData from 'items/gdata';
+import GData from './items/gdata';
 import Player from './chars/player';
 
 import Range, {RangeTest} from './range';

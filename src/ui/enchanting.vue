@@ -9,7 +9,7 @@ export default {
 	mixins:[ItemsBase],
 	components:{
 		filterbox:FilterBox,
-		inv:()=>import( './inventory.vue')
+		inv:()=>import( /* webpackChunkName: "inv-ui" */ './inventory.vue')
 	},
 	data() {
 

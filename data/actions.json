@@ -8,11 +8,6 @@
 		"cost":{
 			"stamina":0.08
 		},
-		"at":{
-			"5":{
-				"effect.gold":10
-			}
-		},
 		"effect":{
 			"virtue":0.1,
 			"gold":0.2
@@ -26,7 +21,10 @@
 		"require":"apprentice",
 		"at":{
 			"50":{
-				"effect.gold":0.2
+				"effect.gold":0.1
+			},
+			"250":{
+				"effect.gold":0.1
 			}
 		},
 		"cost":{
@@ -60,7 +58,15 @@
 		"desc":"standard apprentice work.",
 		"verb":"running errands",
 		"require":"apprentice",
-		"perpetual":true,
+		"length":10,
+		"at":{
+			"10":{
+				"effect.gold":0.1
+			},
+			"100":{
+				"effect.gold":0.1
+			}
+		},
 		"run":{
 			"stamina":0.2
 		},

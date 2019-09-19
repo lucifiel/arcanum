@@ -57,11 +57,6 @@ export default class Dungeon extends Action {
 
 	}
 
-	/**
-	 * Don't reset progress, to show dungeon has been completed.
-	 */
-	complete() {}
-
 	initEnemies( enemies ) {
 
 		for( let i = enemies.length-1; i>= 0; i-- ) {

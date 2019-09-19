@@ -35,6 +35,8 @@ export default class Enchant extends Action {
 
 		it.enchants = (it.enchants || 0) + this.level;
 
+		this.exec();
+
 	}
 
 	/**

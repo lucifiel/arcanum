@@ -12,7 +12,7 @@ module.exports = {
 
 			rules:[
 				{
-					test:/\.vue$/,
+					test:/\.vue$/i,
 					loader:'vue-loader'
 				},
 				{
@@ -36,8 +36,8 @@ module.exports = {
 	},
 	resolve:{
 		modules:[
+			"node_modules",
 			path.resolve( __dirname, "src"),
-			"node_modules"
 		],
 
 		alias:{

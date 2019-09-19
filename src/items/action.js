@@ -1,6 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
-import Events, { ACTION_DONE, ACT_LEVELED } from '../events';
+import Events, { ACTION_DONE, ACT_IMPROVED } from '../events';
 
 export default class Action extends GData {
 
@@ -12,39 +12,16 @@ export default class Action extends GData {
 	get ex(){return this._exp; }
 	set ex(v) { this._exp = v;}
 
-	get value() {
-		return super.value;
-	}
-	set value(v){
-
-		super.value = v;
-		console.log('act value: ' + v);
-		this.complete();
+	get value() { return this._value; }
+	set value(v) {
+		this._value = v;
 	}
 
 	/**
 	 * @property {number} exp - alias progress data files.
 	 */
 	get exp() { return this._exp || 0; }
-	set exp(v){
-
-		this._exp = v;
-		if ( Game.loaded && this.length && v >= this._length ) {
-
-			this.value++;
-
-			if ( this.log ) Game.doLog( this.log );
-			if ( this.result ) Game.applyEffect( this.result );
-			if ( this.mod ) Game.addMod( this.mod );
-			if ( this.loot ) Game.getLoot( this.loot );
-
-			if ( this.exec ) this.exec();
-			this.complete();
-
-			Events.dispatch( ACTION_DONE, this );
-
-		}
-	}
+	set exp(v){ this._exp = v; }
 
 	get length() { return this._length; }
 	set length(v) { this._length = v;}
@@ -81,6 +58,58 @@ export default class Action extends GData {
 		if ( this.length ) this._exp = this._exp || 0;
 
 		if ( this.cd ) this.timer = this.timer || 0;
+
+		this.restoreAtMods();
+
+	}
+
+	restoreAtMods() {
+
+		let v = this._value;
+		if ( this.at ) {
+
+			for( let p in this.at) {
+
+				if ( v >= Number(p) ) {
+					this.applyMods( this.at[p] );
+				}
+
+			}
+
+		}
+
+	}
+
+	/**
+	 * Update a running action.
+	 * @param {number} dt - elapsed time.
+	 */
+	update( dt ) {
+
+		let v = this.exp += dt;
+
+		if ( v >= ( this._length||1) ) {
+			this.complete();
+		}
+
+	}
+
+	/**
+	 * completion of ongoing action.
+	 */
+	complete() {
+
+		if ( this.log ) Game.doLog( this.log );
+		if ( this.result ) Game.applyEffect( this.result );
+		if ( this.mod ) Game.addMod( this.mod );
+		if ( this.loot ) Game.getLoot( this.loot );
+
+		this.value++;
+
+		Events.dispatch( ACTION_DONE, this );
+
+		if ( this.exec ) this.exec();
+
 	}
 
 	canUse() {
@@ -89,13 +118,29 @@ export default class Action extends GData {
 		return true;
 	}
 
+	/**
+	 * Action executed, whether runnable or one-time.
+	 */
 	exec() {
-		if ( this.timer > 0 ) return false;
+
 		if ( this.cd ) {
 
 			Game.addTimer( this );
 			this.timer = this.cd;
 		}
+
+		if ( this.at ) {
+
+			let cur = this.at[this.value];
+			if ( cur ) {
+
+				Events.dispatch( ACT_IMPROVED, this );
+				this.applyMods( cur );
+
+			}
+
+		}
+		this._exp = 0;
 
 	}
 
@@ -118,25 +163,6 @@ export default class Action extends GData {
 
 		}
 		return false;
-
-	}
-
-	complete() {
-
-		if ( this.at ) {
-
-			console.log('action complete: ' + this.value );
-			let cur = this.at[this.value];
-			if ( cur ) {
-
-				Events.dispatch( ACT_LEVELED, this );
-				this.applyMods( cur );
-
-			}
-
-		}
-
-		this._exp = 0;
 
 	}
 

@@ -1,7 +1,7 @@
 {
-  "name": "webpack-template",
+  "name": "wizrobe",
   "version": "1.0.0",
-  "description": "Template for using webpack with separate dev and config files.",
+  "description": "theory of magic",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --watch --config webpack.dev.config.js",
@@ -16,7 +16,6 @@
   "bugs": {
     "url": "https://github.com/lerpinglemur/webpack-template/issues"
   },
-  "homepage": "https://github.com/lerpinglemur/webpack-template#readme",
   "devDependencies": {
     "css-loader": "^3.2.0",
     "style-loader": "^0.23.1",
