@@ -16,6 +16,12 @@ export default class Skill extends Action {
 
 	}
 
+	get exp() { return super.exp; }
+	set exp(v) {
+		if ( this.maxed() ) return;
+		super.exp = v;
+	}
+
 	/**
 	 * @deprecated - deprecation intended.
 	 */
@@ -33,6 +39,13 @@ export default class Skill extends Action {
 		this.type = 'skill';
 		this.length = this.length || 50;
 		this.exp = this.exp || 0;
+
+		/** @compatibility */
+		let len = (vars.template.lenghth || 50)*Math.pow( (1+EXP_RATIO), this.value );
+		if ( this.length > len ) {
+			this.length = len;
+		}
+
 
 		this.buy = this.buy || { "sp":1 };
 

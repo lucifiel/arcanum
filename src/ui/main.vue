@@ -410,11 +410,12 @@ div.action-list, div.upgrade-list {
 }
 
 div.resource-list, div.upgrade-list, div.action-list {
-	margin: 0px 2px 2px 18px;
+	margin: 8px 2px 2px 8px;
 }
 
 div.upgrade-list {
-	margin-top:10px;
+	/*border-top: 1px solid var( --separator-color );*/
+	margin-top:4px;
 }
 
 div.inv-equip {

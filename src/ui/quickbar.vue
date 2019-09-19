@@ -22,6 +22,8 @@ export default {
 
 		abbr(it){
 
+			if ( !it ) return '';
+
 			let s = it.name;
 			let ind = s.indexOf(' ');
 			if ( ind >= 0 && ind < s.length ) return s[0] + s[ind+1];

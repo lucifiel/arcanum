@@ -139,6 +139,7 @@ div.spellbook {
 	order: 2; padding: 4px;
 	overflow-y: auto;
 	height:100%;
+	margin-bottom: 20px;
 }
 .spell-table table { display: flex; flex-flow: row wrap; justify-content: space-between; }
 .spell-table table tr { display:flex; flex-basis: 48%; }

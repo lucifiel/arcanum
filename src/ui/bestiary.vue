@@ -54,7 +54,7 @@ export default {
 
 <div class="bestiary">
 
-	<filterbox v-model="filtered" :items="items" min-items="10" />
+	<filterbox v-model="filtered" :items="items" min-items="14" />
 
 	<div class="char-list">
 	<table class="bestiary">
@@ -77,14 +77,15 @@ export default {
 
 div.bestiary {
 display:flex;
+flex-direction: column;
+margin-left:12px;
 height:100%;
-width:100%;
 }
 
 .char-list {
-	height:85%;
 	width:100%;
 	overflow-y:auto;
+	margin-bottom:14px;
 }
 
 table {

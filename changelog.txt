@@ -4,6 +4,8 @@ FEATURES:
 
 Active Allies limited by Levels/Summoning/Charms etc.
 
+Minions can now be renamed.
+
 Support for multi-target attacks
 
 Some multi-target attack spells.

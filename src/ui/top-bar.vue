@@ -45,9 +45,9 @@ export default {
 
 			<confirm @confirm="dispatch('reset')">reset</confirm>
 
-		<span class="items"><slot name="center"></slot></span>
-
 		</span>
+
+		<span class="items"><slot name="center"></slot></span>
 
 		<span class="link-bar">
 			<button class="text-button" @click="dispatch('open-settings')">&#9881;</button>
@@ -77,6 +77,7 @@ export default {
 }
 
 .load-opts {
+	width: 100%;
 	display:flex;
 }
 
@@ -92,7 +93,7 @@ export default {
 div.top-bar {
 	display:flex;
 	flex-flow: row nowrap;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
 	min-height:52px;
@@ -102,6 +103,7 @@ div.top-bar {
 }
 
 .link-bar {
+	justify-self: flex-start;
 	display:flex;
 	flex-flow: row-reverse nowrap;
 	font-size: 0.90em;

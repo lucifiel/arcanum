@@ -66,8 +66,15 @@ var vm = new Vue({
 		onSetting( setting, v ) {
 
 			if ( setting === 'darkMode') {
+
 				if ( v ) document.body.classList.add( 'darkmode');
 				else document.body.classList.remove( 'darkmode');
+
+			} else if ( setting === 'compactMode') {
+
+				if ( v ) document.body.classList.add( 'compact');
+				else document.body.classList.remove( 'compact');
+
 			}
 
 		},

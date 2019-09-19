@@ -39,6 +39,14 @@ export default {
 	},
 	computed:{
 
+		compactMode: {
+			get() { return Settings.vars.compactMode; },
+			set(v){
+				Settings.vars.compactMode=v;
+				this.dispatch('setting', 'compactMode', v);
+			}
+
+		},
 		autoSave:{
 			get(){
 				return Settings.vars.autoSave;
@@ -75,6 +83,11 @@ export default {
 	<div>
 	<label :for="elmId('dark-mode')">dark mode</label>
 	<input type="checkbox" :id="elmId('dark-mode')" v-model="darkMode">
+	</div>
+
+	<div>
+	<label :for="elmId('compact-mode')">compact mode (in progress)</label>
+	<input type="checkbox" :id="elmId('compact-mode')" v-model="compactMode">
 	</div>
 
 	<button class="close" @click="close">close</button>

@@ -76,7 +76,7 @@ div.skills {
 div.subs {
 	display:flex;
 	flex-flow: row wrap;
-	padding-top:12px;
+	margin: 14px 0px;
 	padding-right:16px;
 	overflow-y: auto;
 	width:calc( 100% - 16px );

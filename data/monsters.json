@@ -268,7 +268,7 @@
 				"name":"venom",
 				"duration":3,
 				"kind":"poison",
-				"damage":"0.2~0.5"
+				"dmg":"0.2~0.5"
 			}
 		},
 		"resist":{
@@ -829,8 +829,9 @@
 		"speed":7,
         "attack":{
             "name":"zap",
-            "kind":"pierce",
-            "dmg":"2~5"
+			"kind":"pierce",
+			"targets":"all",
+            "dmg":"2~4"
 		},
 		"resist":{
 			"light":20,
@@ -944,8 +945,9 @@
         "defense":8,
         "attack":{
             "name":"squelch",
-            "kind":"acid",
-            "dmg":"4~8"
+			"kind":"acid",
+			"targets":"all",
+            "dmg":"2~5"
         }
 
 	},
@@ -1600,6 +1602,7 @@
 		"attack":{
 			"damage":"3~5",
 			"dot":{
+				"name":"venom",
 				"duration":30,
 				"kind":"poison",
 				"damage":"3~5"
@@ -1850,7 +1853,7 @@
             "kind":"drain",
 			"dmg":"9~18",
 			"leech":0.3
-		}, "loot":{"vampire fang":5, "potion of moderate agony":10},
+		}, "loot":{"vampire fang":5},
 		"resist":{
 			"shadow":20
 		}
@@ -1889,8 +1892,9 @@
 		"reflect":true,
         "attack":{
             "name":"light",
-            "kind":"light",
-            "dmg":"11~20"
+			"kind":"light",
+			"targets":"all",
+            "dmg":"8~15"
 		},
 		"resist":{
 			"arcane":30
@@ -1910,7 +1914,7 @@
             "name":"flame wing",
             "kind":"fire",
             "dmg":"11~20"
-        }, "loot":{"phoenix feather":5, "phoenix ashes":1, "potion of cure critical wounds":5}
+        }, "loot":{"phoenixfeather":5, "phoenixash":1}
 
     },
 	{
@@ -1959,8 +1963,9 @@
         "defense":33,
         "attack":{
             "name":"seduction",
-            "kind":"sexy",
-            "dmg":"5~12"
+			"kind":"sexy",
+			"targets":"all",
+            "dmg":"5~8"
 		}, "loot":{"sulfur":10
 		}
 
@@ -1975,8 +1980,9 @@
         "defense":40,
         "attack":{
             "name":"stare",
-            "kind":"magic",
-            "dmg":"20~32"
+			"kind":"magic",
+			"targets":"all",
+            "dmg":"17~25"
         },"loot":{
 
 		}
@@ -2107,9 +2113,10 @@
         "hp":40,
         "defense":55,
         "attack":{
-            "name":"flame",
+			"targets":"all",
+            "name":"scorch",
             "kind":"fire",
-            "dmg":"14~20"
+            "dmg":"10~15"
 		},"loot":{"firegem":"5%"},
 		"immune":"fire,light"
 
@@ -2120,7 +2127,7 @@
         "level":9,
         "evil":15,
         "biome":["hills","mountains"],
-        "desc":"They have a cave troll...",
+        "flavor":"they have a cave troll...",
         "hp":90,
         "tohit":4,
 		"defense":35,
@@ -2163,9 +2170,10 @@
         "defense":35,
         "attack":{
             "name":"seduction",
-            "kind":"sexy",
-            "dmg":"9~17"
-        }, "loot":{"sulfur dust":15, "potion of serious agony":10}
+			"kind":"sexy",
+			"targets":"all",
+            "dmg":"9~13"
+        }, "loot":{"sulfur":3}
 
     },
     {
@@ -2194,7 +2202,7 @@
         "biome":"mountains",
         "kind":"giant",
         "level":10,
-        "desc":"You ain't seen nothing yeti.",
+        "flavor":"You ain't seen nothing yeti.",
         "hp":60,
         "tohit":11,
         "defense":25,
@@ -2219,8 +2227,9 @@
         "defense":63,
         "attack":{
             "name":"lightning",
-            "kind":"light",
-            "dmg":"23~42"
+			"kind":"light",
+			"targets":"all",
+            "dmg":"13~25"
 		},"immune":"light,fire",
 		"loot":{
 			"airgem":"1%",
@@ -2670,8 +2679,9 @@
         "defense":60,
         "attack":{
             "name":"fire breath",
-            "kind":"fire",
-            "dmg":"28~40"
+			"kind":"fire",
+			"targets":"all",
+            "dmg":"23~37"
         },"resist":{
 			"fire":50,
 			"light":15
@@ -2688,8 +2698,9 @@
 		"regen":1,
         "attack":{
             "name":"trample",
-            "kind":"blunt",
-            "dmg":"17~37"
+			"kind":"blunt",
+			"targets":"all",
+            "dmg":"17~27"
 		},
 		"resist":{
 			"nature":15,
@@ -2720,7 +2731,7 @@
             "kind":"drain",
 			"dmg":"12~45",
 			"leech":0.45
-		}, "loot":{"vampire fang":15, "potion of critical agony":20},
+		}, "loot":{"vampire fang":15},
 		"resist":{
 			"shadow":30
 		}
@@ -2952,8 +2963,9 @@
         "attack":{
 			"name":"Madness",
 			"leech":0.25,
+			"targets":"all",
             "kind":"psychic",
-            "dmg":"50~75"
+            "dmg":"40~65"
         }
 	},
 	{
@@ -2988,8 +3000,30 @@
         "defense":200,
         "attack":{
 			"name":"gorboring",
-            "kind":"sonic",
-            "dmg":"120~320"
+			"kind":"sonic",
+			"targets":"all",
+            "dmg":"100~220"
+        }
+	},
+	{
+		"id":"fetigern",
+		"level":50,
+		"unique":true,
+        "evil":100,
+		"kind":"humanoid",
+        "desc":"The terror before the Wind Age",
+        "hp":3000,
+		"regen":30,
+        "defense":400,
+        "attack":{
+			"name":"bite",
+			"kind":"poison",
+			"dot":{
+				"kind":"poison",
+				"duration":10,
+				"dmg":"100~200"
+			},
+            "dmg":"100~200"
         }
 	},
 	{

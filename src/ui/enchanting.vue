@@ -54,10 +54,10 @@ export default {
 
 		<div class="flex-row separate">
 
-		<div class="flex-col">
-		<div v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
+		<div class="enchant-list">
+		<div class='enchant' v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 
-			{{ it.name }}
+			<span class="ench-name">{{ it.name }}</span>
 
 			<button v-if="it.buy&&!it.owned" :disabled="!buyable(it)"
 				@click="dispatch('buy', it)">Unlock</button>
@@ -76,6 +76,23 @@ export default {
 </template>
 
 <style scoped>
+
+div.enchants .enchant-list {
+	display:flex;
+	flex-flow: column nowrap;
+	flex:1;
+}
+
+div.enchants .enchant-list > div.enchant {
+	display:flex;
+	width:100%;
+	flex-direction: row;
+}
+
+div.enchants .enchant-list  .ench-name {
+	flex-basis: 25%;
+	min-width: 132px;
+}
 
 div.enchants {
 	display:flex;
