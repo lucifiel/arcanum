@@ -25,7 +25,7 @@ export default {
 	methods:{
 
 		levelCap(b){
-			return b.level + minions.allyTotal > minions.maxAllies;
+			return b.level + this.minions.allyTotal > this.minions.maxAllies;
 		},
 
 		toggleActive(b) {
@@ -59,12 +59,12 @@ export default {
 	<table class="minions">
 		<tr><th>Creature</th><th class="num-align">Hp</th><th>active</th></tr>
 		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
-			<th>{{ b.name }}</th>
+			<th><input class="fld-name" type="text" v-model="b.name"></th>
 			<td class="num-align">{{ toNum(b.hp) }} / {{ toNum( b.maxHp ) }}</td>
 
 			<td v-if="!b.alive">Dead</td>
 			<td v-else>
-				<button @click="toggleActive(b)" :disabled="inRaid||levelCap(b)">{{ b.active === true ? 'Rest' : 'Activate' }}</button>
+				<button @click="toggleActive(b)" :disabled="inRaid||( levelCap(b)&&!b.active )">{{ b.active === true ? 'Rest' : 'Activate' }}</button>
 			</td>
 
 			<td><confirm @confirm="dismiss(b)">{{ 'Dismiss'}}</confirm></td>

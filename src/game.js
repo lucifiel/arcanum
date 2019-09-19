@@ -18,7 +18,7 @@ import Randoms from './modules/randoms.js';
 /**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT, ACTION_DONE } from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ACTION_DONE, ACT_CHANGED } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
@@ -288,11 +288,8 @@ export default {
 	 */
 	toggleAction(act) {
 
-		if ( this.state.curAction === act ) {
-			this.state.curAction = null;
-		} else this.setAction(act);
+		this.setAction( this.state.curAction === act ? null : act );
 
-		this.state.resumeAction = null;
 		return this.state.curAction !== null;
 
 	},
@@ -303,12 +300,19 @@ export default {
 	 */
 	doRest( resume=false ) {
 
-		this.state.resumeAction = resume===true ? this.state.curAction : null;
-		this.state.curAction = this.state.restAction;
+		let cur = this.state.curAction;
+
+		this.setAction( this.state.restAction );
+		if ( resume === true ) this.state.resumeAction = cur;
 
 	},
 
 	setAction( act ) {
+
+		if ( this.state.curAction && (act !== this.state.curAction) ) {
+			console.log('ACT CHANGING');
+			 Events.dispatch( ACT_CHANGED );
+		}
 
 		/**
 		 * Cost to begin action.
@@ -331,19 +335,12 @@ export default {
 	 */
 	haltAction() {
 
-		let cur = this.state.curAction;
-
 		// was resting.
-		if ( cur === this.state.restAction ) {
+		if ( this.state.curAction === this.state.restAction ) {
 
-			this.state.curAction = this.state.resumeAction || null;
-			this.state.resumeAction = null;
-
+			this.setAction( this.state.resumeAction );
 		} else {
-
-			this.state.resumeAction = null;
-			this.state.curAction = this.state.restAction;
-
+			this.setAction( this.state.restAction );
 		}
 
 	},
@@ -570,7 +567,7 @@ export default {
 	 * @param {*} it
 	 * @param {boolean} active - whether the created item can be activated.
 	 */
-	create( it, active ) {
+	create( it, active=false ) {
 
 		/**
 		 * create monster and add to inventory.
@@ -579,7 +576,7 @@ export default {
 		if ( it.type === 'monster' ) {
 
 			let m = this.itemGen.npc(it);
-			if ( active ) m.active = true;
+			m.active = active;
 			this.state.minions.add( m );
 
 		} else {

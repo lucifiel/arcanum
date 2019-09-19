@@ -1,6 +1,6 @@
 import Inventory from "./inventory";
 import { ALLY } from "./npc";
-import Events, { ALLY_DIED } from '../events';
+import Events, { ALLY_DIED, ACT_CHANGED } from '../events';
 import Stat from "../stat";
 
 export default class Minions extends Inventory {
@@ -17,6 +17,7 @@ export default class Minions extends Inventory {
 	 * @property {number} allyTotal - sum of all allies levels.
 	 */
 	get allyTotal() { return this._allyTotal; }
+	set allyTotal(v) { this._allyTotal = v;}
 
 	/**
 	 * @property {string[]}
@@ -70,11 +71,12 @@ export default class Minions extends Inventory {
 
 	setActive( b, active=true ) {
 
-		if ( !b.alive ) return;
-
 		if ( active === true ) {
 
-			if ( b.level + this.allyTotal > this.maxAllies ) return false;
+			if ( !b.alive || b.level + this.allyTotal > this.maxAllies ) {
+				b.active = false;
+				return false;
+			}
 			if ( !this.active.includes(b) ) {
 
 				this.allyTotal += b.level;
@@ -102,18 +104,19 @@ export default class Minions extends Inventory {
 
 		super.revive(state);
 
-		if ( this.maxAllies === null ) {
+		if ( !this.maxAllies ) {
 			this.maxAllies = Math.floor( state.player.level / 5 );
 		}
 
-		let max = this.maxAllies.value;
+		let used = 0;
 
 		for( let p in this.items ) {
 
 			var m = this.items[p];
-			if ( m.active && m.level <= max ) {
+			if ( m.active ) {
 
-				max -= m.level;
+				used += m.level;
+				/** @todo can't test vs. maxAllies here because mods havent been applied yet. */
 				this._active.push(m);
 
 			}
@@ -123,9 +126,10 @@ export default class Minions extends Inventory {
 
 		}
 
-		this.allyTotal = this.maxAllies.value - max;
+		this.allyTotal = used;
 
 		Events.add( ALLY_DIED, this.died, this );
+		Events.add( ACT_CHANGED, this.resetActives, this );
 
 	}
 
@@ -135,9 +139,11 @@ export default class Minions extends Inventory {
 	 */
 	resetActives() {
 
+		console.log('RESETTIGN ACTIVES');
+
 		for( let i = this.active.length-1; i>=0; i-- ) {
 
-			if ( !this.active[i].active ) {
+			if ( !this.active[i].active || !this.active[i].alive ) {
 				this.setActive( this.active[i], false );
 			}
 
@@ -156,7 +162,7 @@ export default class Minions extends Inventory {
 
 	died( m ) {
 
-		m.active = false;
+		//m.active = false;
 
 	}
 

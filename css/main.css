@@ -41,7 +41,6 @@ input[type="button"], button, div.text-button {
 }
 
 
-
 div.text-button {
 	display:flex;
 	flex-flow: column nowrap;
@@ -91,6 +90,12 @@ input[type="button"]:hover, button:hover, .text-button:hover {
 
 .darkmode .runnable button:hover {
 	background:rgb(197, 150, 79)
+}
+
+input[type=text].fld-name {
+	border: none;
+	border-bottom: 1px solid black;
+	margin: 1px;
 }
 
 .inv {

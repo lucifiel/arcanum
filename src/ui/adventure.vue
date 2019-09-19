@@ -68,7 +68,7 @@ export default {
 				Stop</button></span>
 		</div>
 
-		<combat v-if="raiding" :combat="raid.combat" />
+			<combat class="combat" v-if="raiding" :combat="raid.combat" />
 
 		</div>
 
@@ -78,12 +78,16 @@ export default {
 		<div class="dungeons" v-else>
 		<div class="dungeon" v-for="d in dungeons" :key="d.id">
 
+			<span>
 			<span>{{ d.name }}</span>
-			<span class="bar"><progbar :value="d.exp" :max="d.length" /></span>
+
 			<span><button class="raid-btn" :disabled="!game.canRun(d)"
 				@click="dispatch( 'raid', d, true )"
 				@mouseenter.capture.stop="dispatch('itemover', $event, d )">
 				Enter</button></span>
+				</span>
+
+			<span class="bar"><progbar :value="d.exp" :max="d.length" /></span>
 
 			</div>
 		</div>
@@ -108,6 +112,10 @@ export default {
 
 <style scoped>
 
+.combat {
+	overflow-y: auto;
+}
+
 .separate {
 	margin-bottom: 14px;
 	min-height:160px;
@@ -124,10 +132,11 @@ div.adventure {
 div.dungeons {
 	display:flex;
 	align-items:flex-start;
-	height:100%;
+	flex-grow:2;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	overflow-y: auto;
+	min-height: 55%;
 	padding-bottom: 32px;
 	border-bottom: 1px solid var(--separator-color);
 
@@ -138,8 +147,8 @@ div.raid-bottom {
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	padding-top:8px;
-	height:100%;
 	width:100%;
+	flex-shrink: 1;
 	overflow-y:auto;
 }
 
@@ -160,12 +169,10 @@ div.raid-bottom {
 div.dungeon {
 	display:flex;
 	flex-basis: 40%;
-	justify-content: space-between;
-	align-items: center;
-	flex-flow: row nowrap;
+	flex-flow: column nowrap;
 }
 
-span.bar {
-	flex-basis: 55%;
+.bar {
+	align-self: stretch;
 }
 </style>

@@ -2,6 +2,8 @@
 
 FEATURES:
 
+Active Allies limited by Levels/Summoning/Charms etc.
+
 Support for multi-target attacks
 
 Some multi-target attack spells.

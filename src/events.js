@@ -19,14 +19,19 @@ const DAMAGE_MISS = 'damage_miss';
 const ENEMY_HIT = 'enemy_hit';
 const PLAYER_HIT = 'player_hit';
 const LEVEL_UP = 'levelup'
+/**
+ * player left dungeon.
+ */
+const EXIT_RAID = 'leftraid';
 
+const ACT_CHANGED = 'actchanged';
 
 /**
  * Dispatched when a running action completes.
  */
 const ACTION_DONE = 'action_done';
 
-export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE, ALLY_DIED,
+export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACTION_DONE, ALLY_DIED, EXIT_RAID, ACT_CHANGED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {

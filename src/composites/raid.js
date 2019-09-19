@@ -83,6 +83,8 @@ export default class Raid {
 
 		this._combat =  this._combat || new Combat();
 
+		this.type = 'raid';
+
 		/**
 		 * @property {Dungeon} dungeon - current dungeon.
 		 */
@@ -177,7 +179,6 @@ export default class Raid {
 	setDungeon( d ) {
 
 		this.player.timer = this.player.delay;
-		this.state.minions.resetActives();
 
 		if ( d != null ) {
 

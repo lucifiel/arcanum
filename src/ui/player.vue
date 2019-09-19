@@ -54,7 +54,7 @@ export default {
 		<table>
 
 		<tr><td>name</td><th>
-			<input type="text" v-model="name"></th></tr>
+			<input class="fld-name" type="text" v-model="name"></th></tr>
 		<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.titles, 'Titles')"><td>title</td><th> {{ title}}</th></tr>
 		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
 		<tr><td>level</td><th> {{ level }}</th></tr>
@@ -102,12 +102,6 @@ div.player-view {
 	height:100%;
 	padding-left:14px;
 	justify-content: space-between;
-}
-
-input[type=text] {
-	border: none;
-	border-bottom: 1px solid black;
-	margin: 1px;
 }
 
 td, th {
