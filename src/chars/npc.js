@@ -21,6 +21,8 @@ export default class Npc extends Char {
 		data.template = this.template.id;
 		data.cost = undefined;
 		data.team = this.team||undefined;
+
+		if ( this.name != this.template.name ) data.name = this.name;
 		//data.died = this.died||undefined;
 
 		return data;

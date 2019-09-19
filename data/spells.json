@@ -981,7 +981,7 @@
 
 			"research":100,
 			"codices":1,
-			"naturegem":3
+			"naturegem":1
 
 		},
 		"cost":{
@@ -1277,7 +1277,7 @@
 
 			"research":100,
 			"tomes":1,
-			"naturegem":1
+			"naturegem":5
 
 		},
 		"cost":{

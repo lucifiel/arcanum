@@ -95,7 +95,12 @@ input[type="button"]:hover, button:hover, .text-button:hover {
 input[type=text].fld-name {
 	border: none;
 	border-bottom: 1px solid black;
+	background: inherit;
 	margin: 1px;
+}
+
+.darkmode .fld-name {
+	color: var( --button-text-color);
 }
 
 .inv {
