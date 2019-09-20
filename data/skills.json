@@ -289,7 +289,7 @@
 	},
 	{
 		"id":"shadowlore",
-		"require":"g.dissection>=4",
+		"require":"g.dissection>=3||g.evil>0",
 		"school":"shadow",
 		"need":"shadowsource",
 		"run":{

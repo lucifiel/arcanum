@@ -2,6 +2,15 @@
  * Formatting helpers for HTML/Display.
  */
 
+export const precise = (v, n=2) => {
+	return ( typeof v === 'number') ? v.toPrecision(n) : v;
+}
+
+
+export const fixed = (v, n=2) => {
+	return ( typeof v === 'number') ? v.toFixed(n) : v;
+}
+
 export const seconds = (v) => {
 	return Math.ceil(v) + ' s';
 }

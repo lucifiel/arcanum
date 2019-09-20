@@ -1,3 +1,12 @@
+9/19
+
+FEATURES:
+
+Experimental: Some Actions will now improve after many uses.
+Gold actions in particular should improve after tier0 (adept)
+
+
+
 9/18
 
 FEATURES:

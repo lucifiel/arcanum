@@ -1,6 +1,6 @@
 <script>
 import Game from '../game';
-import { floor } from 'format';
+import { floor } from '../util/format';
 
 import AllUpgrades from './allupgrades.vue';
 import SlotPick from './components/slotpick.vue';
@@ -65,8 +65,8 @@ export default {
 		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.current }}</th></tr>
 		</table>
 
+		<tr><td class="table-head">Combat</td></tr>
 		<table>
-			<tr><td class="table-head">Combat</td></tr>
 			<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event, hp)">life</td><th>
 			{{ floor( hp.value ) }} / {{ floor( hp.max.value ) }}</th></tr>
 

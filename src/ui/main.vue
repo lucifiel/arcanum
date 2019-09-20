@@ -394,7 +394,6 @@ div.game-mid {
 	height:100%;
 	flex-basis:48%;
 	flex-grow:1;
-	margin: 0px 8px;
 	align-content: space-around;
 }
 
@@ -406,13 +405,16 @@ div.game-mid div.main-actions {
 div.action-list, div.upgrade-list {
 	display:flex;
 	flex-flow: row wrap;
-	justify-content:left;
 	flex-direction: row;
 	padding:0px 6px;
 	text-transform: capitalize;
 }
 
-div.resource-list, div.upgrade-list, div.action-list {
+div.action-list {
+	justify-items: flex-start;
+}
+
+div.upgrade-list, div.action-list {
 	margin: 8px 2px 2px 8px;
 }
 

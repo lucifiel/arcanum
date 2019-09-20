@@ -50,9 +50,10 @@ export default {
 		<span class="note-text">Items can only be enchanted with enchantments of equal or lower level.</span>
 		</div>
 
-		<filterbox v-model="filtered" :items="enchants" min-items="7" />
+		<div class="separate">
 
-		<div class="flex-row separate">
+		<div class="filtered">
+		<filterbox v-model="filtered" :items="enchants" min-items="7" />
 
 		<div class="enchant-list">
 		<div class='enchant' v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
@@ -65,6 +66,7 @@ export default {
 			<button v-else :disabled="!target||!it.canApply(target)||!usable(it)"
 				@click="dispatch( 'enchant', it, target )">Enchant</button>
 
+		</div>
 		</div>
 		</div>
 
@@ -81,6 +83,11 @@ div.enchants .enchant-list {
 	display:flex;
 	flex-flow: column nowrap;
 	flex:1;
+}
+
+div.enchants .filtered {
+	display:flex;
+	flex-flow: column;
 }
 
 div.enchants .enchant-list > div.enchant {

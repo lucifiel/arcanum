@@ -1,5 +1,5 @@
 <script>
-import { seconds } from '../format.js';
+import { seconds } from '../util/format.js';
 import ItemBase from 'ui/itemsBase';
 
 export default {

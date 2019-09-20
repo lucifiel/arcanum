@@ -317,7 +317,7 @@ export default {
 
 		}
 
-		this.state.resumeAction = null;
+		if ( act != this.state.restAction ) this.state.resumeAction = null;
 		this.state.curAction = act;
 
 		return true;
@@ -332,7 +332,6 @@ export default {
 
 		// was resting.
 		if ( this.state.curAction === this.state.restAction ) {
-
 			this.setAction( this.state.resumeAction );
 		} else {
 			this.setAction( this.state.restAction );

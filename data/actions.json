@@ -44,6 +44,17 @@
 		"run":{
 			"stamina":0.2
 		},
+		"at":{
+			"60":{
+				"effect.research":0.15
+			},
+			"200":{
+				"effect.research":0.2
+			},
+			"500":{
+				"effect.research":0.5
+			}
+		},
 		"effect":{
 			"research":0.55,
 			"arcana":{
@@ -183,8 +194,8 @@
 		"at":{
 
 			"25":{ "effect.gold":0.2 },
-			"100":{ "effect.gold":0.5 },
-			"250":{ "effect.gold":1 }
+			"300":{ "effect.gold":0.5 },
+			"1000":{ "effect.gold":1 }
 
 		},
 		"run":{
@@ -208,6 +219,13 @@
 		"run":{
 			"stamina":0.4,
 			"mana":0.3
+		},
+		"at":{
+
+			"50":{ "effect.gold":0.2 },
+			"500":{ "effect.gold":0.5 },
+			"1500":{ "effect.gold":1 }
+
 		},
 		"effect":{
 			"gold":2
@@ -297,6 +315,13 @@
 		"require":"g.embalming>=5&&g.tier0>0",
 		"perpetual":true,
 		"length":25,
+		"at":{
+
+			"50":{ "effect.gold":0.2 },
+			"500":{ "effect.gold":0.5 },
+			"1500":{ "effect.gold":1 }
+
+		},
 		"run":{
 
 			"stamina":1,
@@ -319,6 +344,13 @@
 		"run":{
 			"stamina":0.3,
 			"spirit":0.1
+		},
+		"at":{
+
+			"40":{ "effect.gold":0.2 },
+			"300":{ "effect.gold":0.5 },
+			"1200":{ "effect.gold":1 }
+
 		},
 		"effect":{
 			"gold":0.9
@@ -356,6 +388,14 @@
 		"cost":{
 			"stamina":0.2
 		},
+		"at":{
+
+			"50":{ "effect.gold":0.1 },
+			"150":{ "effect.gold":0.2 },
+			"500":{ "effect.gold":0.5 },
+			"1500":{ "effect.gold":1 }
+
+		},
 		"effect":{
 			"virtue":0.1,
 			"gold":0.4
@@ -371,6 +411,14 @@
 		"cost":{
 			"stamina":0.3,
 			"mana":1
+		},
+		"at":{
+
+			"50":{ "effect.gold":0.1 },
+			"150":{ "effect.gold":0.2 },
+			"500":{ "effect.gold":0.5 },
+			"1500":{ "effect.gold":1 }
+
 		},
 		"effect":{
 			"gold":0.5,
@@ -531,6 +579,19 @@
 		"require":"adept",
 		"run":{
 			"stamina":0.4
+		},
+		"at":{
+			"30":{
+				"effect.research":0.05
+			},
+			"120":{
+				"effect.research":0.1,
+				"sp":0.0001
+			},
+			"500":{
+				"effect.research":0.2,
+				"effect.arcana.max":0.002
+			}
 		},
 		"effect":{
 			"research":1.75,
@@ -1051,6 +1112,7 @@
 	{
 		"id":"focus",
 		"desc":"quicken your skills with magic energy.",
+		"require":"mana",
 		"need":"s.curAction&&s.curAction.type==='skill'",
 		"cost":{
 			"mana":0.1

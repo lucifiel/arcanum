@@ -48,7 +48,7 @@ export default {
 
 <template>
 
-<div class="bestiary">
+<div class="minions">
 
 	<filterbox v-model="filtered" :items="items" min-items="10" />
 
@@ -58,9 +58,9 @@ export default {
 		<span>Allies Power: {{ minions.allyTotal + ' / ' + Math.floor( minions.maxAllies.value ) }}</span></div>
 
 	<div class="char-list">
-	<table class="minions">
+	<table>
 		<tr><th>Creature</th><th class="num-align">Hp</th><th>active</th></tr>
-		<tr v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
+		<tr class="char-row" v-for="b in filtered" :key="b.id" @mouseenter.capture.stop="dispatch('itemover',$event,b)">
 			<th><input class="fld-name" type="text" v-model="b.name"></th>
 			<td class="num-align">{{ toNum(b.hp) }} / {{ toNum( b.maxHp ) }}</td>
 
@@ -80,13 +80,13 @@ export default {
 
 <style scoped>
 
-div.bestiary .minion-title {
+div.minions .minion-title {
 	display:flex;
 	width: 380px;
 	justify-content: space-between;
 }
 
-div.bestiary {
+div.minions {
 	padding-left:16px;
 	height:100%;
 }

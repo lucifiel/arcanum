@@ -152,6 +152,7 @@ a {
 	margin: 4px;
 	border: 2px solid transparent;
 	padding: 1px;
+	max-width: 118px;
 }
 
 .running {
@@ -161,8 +162,10 @@ a {
 
 .wrapped-btn {
 	margin:0px;
-	padding: 8px;
-	min-width: 16ch;
+	padding: 8px 4px;
+	min-width: 118px;
+	height:100%;
+	font-size:0.9em;
 }
 
 .locked { display:none;}

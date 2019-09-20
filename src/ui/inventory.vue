@@ -101,8 +101,6 @@ export default {
 }
 
 .inv {
-	margin-top:4px;
-	margin-right:12px;
 	width:auto;
 }
 

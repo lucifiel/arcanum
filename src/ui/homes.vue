@@ -83,8 +83,11 @@ export default {
 			v-if="state.items.space.value===0">No space remaining. Sell items or find a new Home.
 			<span v-if="homesAvail.length>0">If you cannot afford a new home, free space for more chests.</span></div>
 
-		<table class="furniture item-table">
-			<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
+		<table class="furnishings">
+
+		<tr><th>Space</th><th class="name">Furnishing</th><th>Owned</th><th/><th/></tr>
+
+		<div class="furniture item-table">
 		<tr v-for="it in filtered" :key="it.id" @mouseenter.capture.stop="dispatch('itemover', $event, it )">
 
 			<td class="space">{{ it.cost.space }}</td>
@@ -95,6 +98,7 @@ export default {
 			<td><button type="button" :disabled="!it.value || it.value<=0" class="sell-btn" @click="dispatch('sell',it)">Sell</button></td>
 
 		</tr>
+		</div>
 		</table>
 
 		</div>

@@ -26,25 +26,25 @@ export default {
 
 
 <template>
-<div class="up-list">
+<div class="allupgrades">
 	<div class="div-hr">upgrades</div>
-	<div v-for="it in classes" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name + count(it) }}
+	<div class="up-list">
+	<div v-for="it in classes" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">{{it.name + count(it) }}</div>
+	<div v-for="it in actions" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">{{it.name + count(it) }}</div>
+	<div v-for="it in upgrades" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">{{it.name + count(it) }}</div>
 	</div>
-	<div v-for="it in actions" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name + count(it) }}
-	</div>
-	<div v-for="it in upgrades" :key="it.id" @mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
-		{{it.name + count(it) }}
-	</div>
-
 </div>
 </template>
 
 <style scoped>
 
+div.allupgrades {
+	display:flex;
+	flex-flow: column nowrap;
+	height:100%;
+}
 div.up-list {
-	padding-right:14px;
+	margin-bottom:14px;
 	overflow-y: auto;
 	overflow-x:visible;
 }

@@ -1,7 +1,7 @@
 /**
  * Base view for all item lists.
  */
-import { floor } from 'format';
+import { floor, precise } from '../util/format';
 import {indexAfter} from '../util/util';
 
 import Game from '../game';
@@ -29,11 +29,6 @@ export default {
 		buyable(it) { return Game.canBuy(it)},
 
 		reslocked( it ) {
-			if ( it.id === 'potions') {
-				console.log('dis: ' + it.disabled);
-				console.log('locks: ' + it.locks );
-				console.log('loced: ' + it.locked);
-			}
 			return it.disabled === true || it.locks > 0 || it.locked !== false;
 		},
 
@@ -149,7 +144,7 @@ export default {
 
 				}
 
-				if ( typeof sub !== 'object' ) results[subPath] = sub + ( subRate ? '/s' : '');
+				if ( typeof sub !== 'object' ) results[subPath] = precise(sub) + ( subRate ? '/s' : '');
 				else if ( typeof sub === 'function' ) {}
 				else {
 

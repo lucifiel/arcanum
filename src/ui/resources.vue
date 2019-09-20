@@ -35,10 +35,11 @@ export default {
 
 div.resource-list {
 	overflow-y:auto;
-	overflow-x: visible;
+	overflow-x:visible;
 	width: fit-content;
-	max-width: 200px;
-	min-width: 150px;
+	padding-right:4px;
+	padding-top:8px;
+	min-width: 160px;
 }
 
 tr td:first-child {
