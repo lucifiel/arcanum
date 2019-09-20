@@ -226,7 +226,10 @@ const Runner = {
 	 */
 	actDone( act ){
 
-		console.log('COMPLETE: ' + act.id );
+		if ( act.hasTag(REST_TAG) ){
+			this.tryResume();
+			return;
+		}
 
 		if ( Game.canRun(act) ) this.setAction(act);
 		else {
@@ -254,7 +257,7 @@ const Runner = {
 
 		for( let i = this.waiting.length-1; i >= 0; i-- ) {
 
-			var a = this.waiting[a];
+			var a = this.waiting[i];
 
 			if ( a == null ) {
 
