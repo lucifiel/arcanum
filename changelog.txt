@@ -2,6 +2,10 @@
 
 FEATURES:
 
+Added graveyard furnishing.
+
+Reduced trap soul max souls bonus.
+
 Added several water-attack spells.
 
 Complete css redesign from kermit_tears
