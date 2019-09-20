@@ -191,9 +191,9 @@ const Runner = {
 		}
 
 		let a = this.actives[i];
-		console.log('STOPPING: ' + a[i].name );
+		console.log('STOPPING: ' + a.name );
 
-		a[i].running=false;
+		a.running=false;
 		this.actives.splice(i,1);
 
 		if ( a.hasTag(REST_TAG) ){
