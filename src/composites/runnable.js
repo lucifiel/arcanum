@@ -1,4 +1,5 @@
 import Game from '../game';
+import {assign} from 'objecty';
 
 /**
  * Wraps an action in progress with an action target, and possible
@@ -10,13 +11,11 @@ export default class Runnable {
 
 		return {
 			item:this.item ? this.item.id : undefined,
-			target:this.target ? this.target.id : undefined,
-			type:this.type
+			target:this.target ? this.target.id : undefined
 		};
 	}
 
 	get type() { return 'runnable'; }
-	set type(v) {}
 
 	/**
 	 * @property {?Item} target - target of the running item.
@@ -55,7 +54,7 @@ export default class Runnable {
 	get length() { return this._item.length || 0; }
 	constructor( vars=null) {
 
-		if (vars) Object.assign( this, vars);
+		if (vars) assign( this, vars);
 
 	}
 
