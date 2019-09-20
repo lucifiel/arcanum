@@ -108,9 +108,8 @@ export default class Action extends GData {
 
 		this.value++;
 
-		Events.dispatch( ACT_DONE, this );
-
 		if ( this.exec ) this.exec();
+		Events.dispatch( ACT_DONE, this );
 
 	}
 

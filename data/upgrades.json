@@ -558,7 +558,7 @@
 			"planeslore.rate":0.3,
 			"astronomy.max":1,
 			"astronomy.rate":0.3,
-			"starcharts.rate":0.001
+			"starcharts.rate":0.008
 		}
 	},
 	{

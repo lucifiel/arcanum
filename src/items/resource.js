@@ -13,6 +13,7 @@ export default class Resource extends GData {
 	 * @property {number} current - identical to value except uses floor of values.
 	 */
 	get current() { return this.unit ? Math.floor(this.value) : this._value; }
+	set current(v){}
 
 	/**
 	 * @property {number} value
