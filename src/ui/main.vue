@@ -275,7 +275,7 @@ export default {
 			if ( enter ) this.game.startRaid( dungeon );
 			else {
 				this.state.raid.dungeon = null;
-				this.game.setAction(null);
+				this.game.haltAction( this.state.raid );
 
 			}
 

@@ -113,6 +113,7 @@ export default {
 
 	/**
 	 * Toggle running state of action.
+	 * @public
 	 * @param {Action} a
 	 */
 	toggleAct( a ) {
@@ -136,6 +137,7 @@ export default {
 
 	/**
 	 * Add an action absolutely, removing a running action if necessary.
+	 * @public
 	 * @param {*} a
 	 */
 	setAction(a) {
@@ -188,6 +190,7 @@ export default {
 
 	/**
 	 * Attempt to add an action, while avoiding any conflicting action types.
+	 * @public
 	 * @param {*} a
 	 */
 	tryAdd( a ) {
@@ -260,6 +263,7 @@ export default {
 
 	/**
 	 * Force-add a rest action.
+	 * @public
 	 */
 	doRest(){
 		console.log('TRYING REST');

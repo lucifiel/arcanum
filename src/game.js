@@ -239,11 +239,11 @@ export default {
 	/**
 	 * Wrapper for Runner rest
 	 */
-	doRest() { Runner.doRest(); },
+	doRest() { Runner.tryAdd( this.state.restAction ) },
 
-	setAction( a ) {
-		Runner.setAction(a);
-	},
+	haltAction(a) { Runner.stopAction(a);},
+
+	setAction( a ) { Runner.setAction(a); },
 
 	/**
 	 * Tests if a named resource has been filled to max.
@@ -302,7 +302,7 @@ export default {
 					this.state.setSlot(it.slot, null );
 				}
 
-				if ( Runner.has(it) ) Runner.doRest();
+				if ( it.running ) this.doRest();
 				if ( it == this.state.raid.dungeon ) this.state.raid.setDungeon(null);
 
 				if ( it instanceof Resource || it instanceof Skill ) {
