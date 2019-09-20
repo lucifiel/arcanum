@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
@@ -172,7 +172,7 @@ export default class Raid {
 		this.player.exp +=	(this.dungeon.level)*( 15 + this.dungeon.length )/( 0.8*del );
 		this.dungeon = null;
 
-		Game.doRest();
+		Events.dispatch( ACT_DONE, this );
 
 	}
 

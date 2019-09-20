@@ -68,7 +68,7 @@ export default class Runnable {
 
 		if ( this.exp > this.item.length ) {
 			Game.useWith( this.item, this.target );
-			Game.setAction(null);
+			Events.dispatch( ACT_DONE, this );
 		}
 
 	}

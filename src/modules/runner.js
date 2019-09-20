@@ -1,6 +1,6 @@
 import Game from '../game';
 import {quickSplice} from '../util/util';
-import Events, {ACT_DONE, ACT_CHANGED} from '../events';
+import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT} from '../events';
 import Stat from '../stat';
 
 const REST_TAG = 't_rest';
@@ -24,6 +24,13 @@ export default {
 	 * @property {number} running - number currently running.
 	 */
 	get running(){return this.actives.length; },
+
+	/**
+	 * @property {number} available - number of available run slots.
+	 */
+	get free(){
+		return this.max.value - this.actives.length;
+	},
 
 	get max() { return this._max; },
 	set max(v) {
@@ -81,6 +88,7 @@ export default {
 		if ( a ) this.runAction( this.reviveAct(gs,a) );
 
 		Events.add( ACT_DONE, this.stopAction, this );
+		Events.add( HALT_ACT, this.stopAction, this );
 
 	},
 
@@ -127,35 +135,40 @@ export default {
 	},
 
 	/**
-	 * Add an action absolutely, removing a running item if necessary.
+	 * Add an action absolutely, removing a running action if necessary.
 	 * @param {*} a
 	 */
 	setAction(a) {
 
-		if ( !this.has(a) ) { Events.dispatch( ACT_CHANGED ); }
+		if ( !a) return;
 
-		if ( a ) {
+		if ( a.cost && (a.exp === 0) ) {
+			Game.payCost( a.cost);
+		}
 
-			if ( a.cost && (a.exp === 0) ) {
-				Game.payCost( a.cost);
+		if ( !this.has(a) ) {
+
+			// free space for action. actions.length is a double check.
+			if ( this.actions.length > 0 && this.free <= 0 ) {
+
+				let i = this.typeIndex( a );
+				if ( i < 0 ) i = this.actions.length-1;
+				this.stopAction( i );
+
 			}
+
+			// action already in running list.
+			Events.dispatch( ACT_CHANGED );
 			this.runAction(a);
 
 		}
 
+
+
 	},
 
 	/**
-	 * UNIQUE ACCESS POINT for pushing action active.
-	 * @param {*} a
-	 */
-	runAction(a) {
-		a.running=true;
-		this.actives.push(a);
-	},
-
-	/**
-	 * UNIQUE ACCESS POINT for splicing action.
+	 * UNIQUE ACCESS POINT for removing active action.
 	 * @param {number|Action} i
 	 */
 	stopAction(i){
@@ -174,7 +187,7 @@ export default {
 	},
 
 	/**
-	 *
+	 * Attempt to add an action, while avoiding any conflicting action types.
 	 * @param {*} a
 	 */
 	tryAdd( a ) {
@@ -211,33 +224,23 @@ export default {
 	 */
 	tryResume() {
 
-		let avail = this._max.value - this.actives.length;
+		let avail = this.free;
 
 		for( let i = this.waiting.length; i >= 0; i-- ) {
 
 			var a = this.waiting[a];
-			if ( this.hasType(a) ) quickSplice(this.waiting, i);
-			else if ( Game.canPay(a) ) {
 
-				if ( --avail === 0 ) return;
+			if ( Game.canPay(a) && this.tryAdd(a) ) {
+
+				quickSplice(this.waiting,i);
+				if ( --avail <= 0 ) return;
 
 			}
 
 		}
 
 		console.log('Action available. Try rest?' );
-
-	},
-
-	/**
-	 * Action removed.
-	 * @param {Action} a
-	 */
-	removed(a) {
-
-		if ( this.actives.length === 0 ) {
-			this.tryAdd( Game.state.restAction );
-		}
+		this.tryAdd( Game.state.restAction );
 
 	},
 
@@ -258,12 +261,16 @@ export default {
 	/**
 	 * Force-add a rest action.
 	 */
-	doRest(){ this.doAction( Game.state.restAction ); },
+	doRest(){
+		console.log('TRYING REST');
+		this.tryAdd( Game.state.restAction );
+	},
 
 	/**
-	 * Update individual action.
+	 * Update individual action. Called during update()
 	 * @param {Action} a
 	 * @param {number} dt
+	 * @returns {boolean} false if action should be halted.
 	 */
 	doAction(a, dt) {
 
@@ -281,7 +288,7 @@ export default {
 
 		if ( a.fill && Game.filled(a.fill ) ) {
 
-			this.haltAction();
+			return false;
 
 		} else if ( action.update ) {
 
@@ -290,7 +297,17 @@ export default {
 			a.dirty = true;
 
 		}
+		return true;
 
+	},
+
+	/**
+	 * UNIQUE ACCESS POINT for pushing action active.
+	 * @param {*} a
+	 */
+	runAction(a) {
+		a.running=true;
+		this.actives.push(a);
 	},
 
 	/**
@@ -300,6 +317,27 @@ export default {
 	 */
 	has(a) {
 		return this.actives.includes(a);
+	},
+
+	/**
+	 * Get index of a running action matching the type of the given action.
+	 * This is used to replace actions in progress.
+	 * @param {Action|Runnable} it
+	 * @returns {number}
+	 */
+	typeIndex( it ) {
+
+		let t = it.type;
+
+		for( let i = this.actives.length-1; i>= 0; i-- ) {
+
+			var a = this.actives[i];
+			if ( a.type === t && a != it ) return i;
+
+		}
+
+		return -1;
+
 	},
 
 	/**
