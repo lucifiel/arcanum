@@ -826,7 +826,7 @@
 	{
 		"id":"casket",
 		"desc":"simple container for preserving bodies.",
-		"require":"g.tier1>0&&g.embalming>=5&&g.crafting>=5",
+		"require":"g.tier0>0&&g.embalming>=5&&g.crafting>=5",
 		"repeat":true,
 		"cost":{
 			"space":1,
@@ -900,7 +900,7 @@
 		},
 		"mod":{
 			"chronomancy.max":1,
-			"chronomancy.rate":0.1,
+			"chronomancy.rate":0.01,
 			"astronomy.max":3,
 			"astronomy.rate":0.1,
 			"planeslore.max":2,

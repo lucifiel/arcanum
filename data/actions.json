@@ -140,7 +140,7 @@
 		"effect":{
 			"research":-0.8,
 			"trickery.max":0.001,
-			"trickery":1
+			"trickery":0.5
 		},
 		"result":{
 			"virtue":-1,

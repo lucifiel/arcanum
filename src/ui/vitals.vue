@@ -1,5 +1,7 @@
 <script>
 import ProgBar from 'ui/components/progbar.vue';
+import Running from './running.vue';
+
 import Game from '../game';
 import ItemBase from './itemsBase';
 
@@ -11,24 +13,16 @@ export default {
 	props:['state','player'],
 	mixins:[ItemBase],
 	components:{
-		progbar:ProgBar
-	},
-	methods: {
-
-		actionStr(){
-			let act = this.state.curAction;
-			if ( act === null || act === undefined ) return '';
-
-			return (act.verb || act.name) +
-				( ( act.length ) ? ' ' + act.percent().toFixed(0) + '%': '' );
-		}
-
+		progbar:ProgBar,
+		running:Running
 	},
 	computed:{
 
 		focus() { return this.state.getData('focus'); },
 		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
-		resting() { return this.state.curAction === this.state.restAction; },
+		resting() {
+			return this.state.restAction.running;
+		},
 		stamina(){ return this.state.getData('stamina'); }
 	}
 
@@ -38,21 +32,20 @@ export default {
 <template>
 
 	<div class="vitals">
-		<!-- anything not a table is a headache -->
-		<table class="bars">
 
-		<tr><td><button class="btn-sm" @click="dispatch('rest')"
+		<div class="separate"><button class="btn-sm" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button>
 
-			</td>
-
-			<td class="separate"><span>{{ actionStr() }}</span>
-
 			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
 				:disabled="!usable(focus)"
-				@click="dispatch('action', focus)">Focus</button></td>
-			</tr>
+				@click="dispatch('action', focus)">Focus</button>
+		</div>
+
+		<running />
+
+		<!-- anything not a table is a headache -->
+		<table class="bars">
 
 		<tr><td>stamina</td>
 		<td colspan="2"><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"

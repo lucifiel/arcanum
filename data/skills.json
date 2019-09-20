@@ -559,7 +559,7 @@
 		},
 		"mod":{
 			"tempus.max":1,
-			"tempus.rate":0.01
+			"tempus.rate":0.001
 		}
 
 	},

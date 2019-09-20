@@ -16,7 +16,7 @@ export default {
 <template>
 
 <span :class="{ 'action-btn':true, locked:locked(it), 'wrap-btn':true,
-		'running':it===game.state.curAction, runnable:it.perpetual||it.length>0 }"
+		'running':it.running, runnable:it.perpetual||it.length>0 }"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 
 	<button class="wrapped-btn"

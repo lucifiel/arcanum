@@ -98,6 +98,18 @@
 
 	},
 	{
+		"id":"timesplit",
+		"desc":"perform actions of different types simultaneously.",
+		"locked":false,
+		"cost":{
+			"gold":1
+		},
+		"mod":{
+			"runner.max":1
+		}
+
+	},
+	{
 		"id":"mule",
 		"desc":"a mount that doesn't require much training.",
 		"require":"g.player.level>=4||g.animals>=2",

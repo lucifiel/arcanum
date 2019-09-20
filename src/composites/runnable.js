@@ -44,6 +44,9 @@ export default class Runnable {
 	get run() { return this.item ? this.item.run : null; }
 	get effect() { return this.item ? this.item.effect : null; }
 
+	get running() { return this.item ? this.item.running:false;}
+	set running(v) { if ( this.item) this.item.running=v;}
+
 	get exp(){ return this._item.exp; }
 	set exp(v) { this.item.exp = v; }
 
@@ -54,7 +57,7 @@ export default class Runnable {
 	get length() { return this._item.length || 0; }
 	constructor( vars=null) {
 
-		if (vars) assign( this, vars);
+		if (vars) assign( this, vars );
 
 	}
 
@@ -64,7 +67,7 @@ export default class Runnable {
 
 		if ( this.exp > this.item.length ) {
 			Game.useWith( this.item, this.target );
-			Game.setAction(null);
+			Events.dispatch( ACT_DONE, this );
 		}
 
 	}

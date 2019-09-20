@@ -42,9 +42,7 @@ if ( false ) {
 			let targ = cheatKeys[key];
 
 			if (key === 'p') {
-				if (this.state.curAction && this.state.curAction.length) {
-						this.state.curAction.exp = this.state.curAction.length - 0.01;
-				}
+				// @todo
 				e.stopPropagation();
 			}
 

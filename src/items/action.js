@@ -47,6 +47,9 @@ export default class Action extends GData {
 		}
 	}
 
+	get running() { return this._running; }
+	set running(v) { this._running = v;}
+
 	percent() {
 		return 100*(this._exp / this._length );
 	}
@@ -58,6 +61,8 @@ export default class Action extends GData {
 		this.repeat = this.repeat === false ? false : true;
 		this.type = 'action';
 		if ( this.length ) this._exp = this._exp || 0;
+
+		this.running = this.running || false;
 
 		if ( this.cd ) this.timer = this.timer || 0;
 

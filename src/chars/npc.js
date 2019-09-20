@@ -79,6 +79,10 @@ export default class Npc extends Char {
 
 		if ( typeof this.hp === 'string' || typeof this.hp === 'object') this.hp = new Range(this.hp);
 		if ( this.hp instanceof Range ) this.hp = this.hp.value;
+		if ( !this.hp ) {
+
+			console.log('MISSING HP:  ' + this.id );
+		}
 
 		this.tohit = this.tohit || 0;
 		this.maxHp = this._maxHp || this._hp;

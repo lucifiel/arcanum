@@ -38,7 +38,7 @@ export default {
 
 		raid() { return this.state.raid; },
 
-		raiding() { return this.state.curAction===this.raid; },
+		raiding() { return this.raid.running; },
 
 		dungeons(){
 			return this.state.filterItems(
@@ -58,7 +58,7 @@ export default {
 
 		<div v-if="raiding">
 
-		<div class="active-dungeon" v-if="raiding">
+		<div class="active-dungeon" v-if="raiding&&cur">
 			<span class="active-title">
 				<span>{{ cur.name }}</span><button class="raid-btn"
 				@click="dispatch( 'raid', cur, false )"

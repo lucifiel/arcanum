@@ -10,6 +10,7 @@ const EVT_COMBAT = 'combat';
 const EVT_EVENT = 'event';
 const EVT_UNLOCK = 'unlock';
 const EVT_LOOT = 'loot';
+const EVT_DISABLED = 'disabled';
 
 const COMBAT_DONE = 'combat_done';
 const ENEMY_SLAIN = 'slain';
@@ -28,11 +29,17 @@ const ACT_CHANGED = 'actchanged';
 const ACT_IMPROVED = 'actimprove';
 
 /**
- * Dispatched when a running action completes.
+ * Dispatched by a Runnable when it has completed.
+ * It is the job of the runnable to determine when it has completed.
  */
-const ACT_DONE = 'action_done';
+const ACT_DONE = 'act_done';
 
-export { EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID,
+/**
+ * Action should be stopped by runner.
+ */
+const HALT_ACT = 'halt_act';
+
+export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID,
 	ACT_CHANGED, ACT_IMPROVED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
@@ -51,7 +58,7 @@ export default {
 			events.addListener( EVT_UNLOCK, this.onUnlock, this );
 			events.addListener( EVT_EVENT, this.onEvent, this );
 			events.addListener( LEVEL_UP, this.onLevel, this );
-			events.addListener( ACT_DONE, this.actionDone, this );
+
 			events.addListener( ACT_IMPROVED, this.actImproved, this );
 
 			events.addListener( EVT_COMBAT, this.onCombat, this );
