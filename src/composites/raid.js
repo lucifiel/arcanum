@@ -165,7 +165,7 @@ export default class Raid {
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot, this.drops );
 
-		//if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
+		if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
 
 		var del = Math.max( 1 + this.player.level - this.dungeon.level, 1 );
 
