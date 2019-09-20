@@ -13,12 +13,12 @@ export default class Raid {
 	/**
 	 * @property {string} id - id of dungeon in progress.
 	 */
-	get id() { return this.dungeon.id;}
+	get id() { return this.dungeon ? this.dungeon.id : 'raid';}
 
 	/**
 	 * @property {string} name - name of dungeon in progress.
 	 */
-	get name() { return this.dungeon.name; }
+	get name() { return this.dungeon? this.dungeon.name : ''; }
 
 	get cost() { return this.dungeon ? this.dungeon.cost : null; }
 	get run() { return this.dungeon ? this.dungeon.run : null; }
@@ -33,7 +33,7 @@ export default class Raid {
 	}
 
 	percent() { return this.dungeon ? this.dungeon.percent() : 0; }
-	maxed() { return this.dungeon.maxed(); }
+	maxed() { return !this.dungeon || this.dungeon.maxed(); }
 
 	canUse() { return !this.dungeon.maxed(); }
 
@@ -82,6 +82,8 @@ export default class Raid {
 		this.drops = this._drops || new Inventory();
 
 		this._combat =  this._combat || new Combat();
+
+		this.running = this.running || false;
 
 		this.type = 'raid';
 
@@ -170,9 +172,9 @@ export default class Raid {
 		var del = Math.max( 1 + this.player.level - this.dungeon.level, 1 );
 
 		this.player.exp +=	(this.dungeon.level)*( 15 + this.dungeon.length )/( 0.8*del );
-		this.dungeon = null;
 
 		Events.dispatch( ACT_DONE, this );
+		this.dungeon = null;
 
 	}
 
@@ -197,4 +199,5 @@ export default class Raid {
 
 	}
 
+	hasTag(t) { return t==='raid'; }
 }

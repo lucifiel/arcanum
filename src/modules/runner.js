@@ -159,9 +159,9 @@ const Runner = {
 
 				let i = this.typeIndex( a );
 				if ( i < 0 ) i = this.actives.length-1;
-				console.log('must act: ' + a.id );
+
 				console.log('Force Stop: ' + this.actives[i].id);
-				this.stopAction( i );
+				this.stopAction( i, false );
 
 			}
 
@@ -178,8 +178,9 @@ const Runner = {
 	/**
 	 * UNIQUE ACCESS POINT for removing active action.
 	 * @param {number|Action} i
+	 * @param {boolean} canResume - whether can attempt to resume another action.
 	 */
-	stopAction( i ){
+	stopAction( i, canResume=true ){
 
 		if ( typeof i !== 'number') {
 			i = this.actives.indexOf(i);
@@ -192,7 +193,7 @@ const Runner = {
 		a.running=false;
 		this.actives.splice(i,1);
 
-		if ( a.hasTag(REST_TAG) ){
+		if ( canResume && a.hasTag(REST_TAG) ){
 			this.tryResume();
 		}
 
@@ -232,7 +233,7 @@ const Runner = {
 		else {
 
 			console.log('CANNOT PAY: ' + act.id );
-			this.stopAction(act);
+			this.stopAction(act, false);
 			this.addWait(act);
 
 			// attempt to resume any waiting actions.
