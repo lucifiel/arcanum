@@ -73,7 +73,7 @@
 		"id":"runes",
 		"school":"arcane",
 		"verb":"translating",
-		"desc":"study ancient dhrunic runes.",
+		"desc":"study ancient dhrunic runes. NOT YET IMPLEMENTED",
 		"require":"g.tier1>0&&g.lore>=10&&g.dwarfbook>0",
 		"run":{
 			"stamina":0.2,

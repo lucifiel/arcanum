@@ -56,7 +56,7 @@ export default {
 		<tr><td>name</td><th>
 			<input class="fld-name" type="text" v-model="name"></th></tr>
 		<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.titles, 'Titles')"><td>title</td><th> {{ title}}</th></tr>
-		<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>
+		<!--<tr><td>alignment</td><th>{{ player.alignment }}</th></tr>-->
 		<tr><td>level</td><th> {{ level }}</th></tr>
 		<tr><td>exp</td><th> {{ exp }} / {{ next }} </th></tr>
 		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,sp)">skill points</td><th> {{ sp.value.toFixed(2) }}</th></tr>

@@ -1,4 +1,4 @@
-import { defineExcept, clone } from 'objecty';
+import { defineExcept, clone, assign } from 'objecty';
 import Stat from '../stat';
 import Base, {mergeClass} from './base';
 import { arrayMerge } from '../util/util';
@@ -89,7 +89,7 @@ export default class GData {
 	 */
 	constructor( vars=null, defaults=null ){
 
-		if ( vars ) Object.assign( this, vars );
+		if ( vars ) assign( this, vars );
 		if ( defaults ) this.setDefaults( defaults );
 
 		if ( this._locked === undefined || this._locked === null ) this.locked = true;
