@@ -55,10 +55,9 @@ export default class Item {
 	 */
 	revive( state ){
 
-		console.log('template: ' + this.template);
 		if ( typeof this.template ==='string' ) this.template = state.getData( this.template );
 		if ( this.template ) {
-			console.log('reviving: ' + this.template.name );
+			console.log('item revive from: ' + this.template );
 			mergeSafe( this, this.template);
 		}
 

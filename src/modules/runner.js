@@ -92,6 +92,8 @@ export default {
 
 		}
 
+		console.log('Action available. Try rest?' );
+
 	},
 
 	/**
@@ -100,7 +102,9 @@ export default {
 	 */
 	removed(a) {
 
-		if ( this.actives.length === 0 ) Game.doRest();
+		if ( this.actives.length === 0 ) {
+			this.tryAdd( Game.state.restAction );
+		}
 
 	},
 
@@ -109,16 +113,22 @@ export default {
 	 * @param {GameState} gs
 	 */
 	revive( gs ) {
+
+		this.waiting = gs.toData(this.waiting);
+		this.actives = gs.toData(this.actives);
+
+		Events.add( ACT_DONE, this.actionDone, this );
+
 	},
 
 	update(dt) {
 
 		for( let i = this.actives.length-1; i>= 0; i-- ) {
 
-			//var a = this.actives[i];
-
 			if ( !this.doAction( this.actives[i], dt ) ) {
+
 				quickSplice( this.actives, i );
+
 			}
 
 		}
@@ -145,7 +155,9 @@ export default {
 		}
 
 		if ( a.fill && Game.filled(a.fill ) ) {
+
 			this.haltAction();
+
 		} else if ( action.update ) {
 
 			a.update(dt);

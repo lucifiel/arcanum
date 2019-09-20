@@ -263,6 +263,23 @@ export default class GameState {
 	}
 
 	/**
+	 * Replace all ids in array with corresponding GData.
+	 * @param {Array.<string|GData>} a
+	 * @returns - the original array.
+	 */
+	toData(a) {
+
+		for( let i = a.length-1; i >= 0; i-- ) {
+
+			var s = a[i];
+			if ( typeof s === 'string') a[i] = this.getData(s);
+
+		}
+
+		return a;
+	}
+
+	/**
 	 * Get quickslot item for slot number.
 	 * @param {number} slotNum
 	 * @returns {?GData}

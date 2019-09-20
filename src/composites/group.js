@@ -21,12 +21,7 @@ export default class Group {
 	 */
 	revive(gs){
 
-		for( let i = this._items.length-1; i>=0;i--){
-
-			var it = this._itesm[i];
-			if ( typeof it ==='string') this._items[i] = gs.getData(it);
-
-		}
+		this.items = gs.toData(this.items);
 
 	}
 
