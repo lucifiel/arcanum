@@ -23,6 +23,7 @@ export default class Resource extends GData {
 		if ( this._max && v > this._max ) {
 
 			if ( v < this._value ) this._value = v;
+			else this._value = this._max.value;
 
 		} else this._value = (v >= 0 ) ? v :0;
 
