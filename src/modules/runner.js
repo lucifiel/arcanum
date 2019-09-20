@@ -151,10 +151,10 @@ export default {
 		if ( !this.has(a) ) {
 
 			// free space for action. actions.length is a double check.
-			if ( this.actions.length > 0 && this.free <= 0 ) {
+			if ( this.actives.length > 0 && this.free <= 0 ) {
 
 				let i = this.typeIndex( a );
-				if ( i < 0 ) i = this.actions.length-1;
+				if ( i < 0 ) i = this.actives.length-1;
 				this.stopAction( i );
 
 			}
@@ -229,11 +229,16 @@ export default {
 
 		let avail = this.free;
 
-		for( let i = this.waiting.length; i >= 0; i-- ) {
+		for( let i = this.waiting.length-1; i >= 0; i-- ) {
 
 			var a = this.waiting[a];
 
-			if ( Game.canPay(a) && this.tryAdd(a) ) {
+			if ( a == null ) {
+
+				console.warn('ERR: Waiting null');
+				quickSplice(this.waiting,i);
+
+			} else if ( Game.canPay(a) && this.tryAdd(a) ) {
 
 				quickSplice(this.waiting,i);
 				if ( --avail <= 0 ) return;
@@ -294,10 +299,10 @@ export default {
 
 			return false;
 
-		} else if ( action.update ) {
+		} else if ( a.update ) {
 
 			a.update(dt);
-			if ( a.effect) Game.applyEffect( action.effect, dt );
+			if ( a.effect) Game.applyEffect( a.effect, dt );
 			a.dirty = true;
 
 		}
