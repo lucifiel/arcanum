@@ -2,7 +2,7 @@ import Base, {mergeClass} from '../items/base';
 import Range from "../range";
 import Attack from './attack';
 
-import {mergeSafe} from "objecty";
+import {mergeSafe,assign} from "objecty";
 import Mod from '../mod';
 
 
@@ -16,7 +16,10 @@ export default class Wearable {
 		let data = this.excludeJSON( ['material', 'kind'] ) || {};
 
 		data.id = this.id;
-		data.template = this.template.id;
+
+		if ( !this.template ) console.warn('err: missing template: ' + this.id );
+		else data.template = this.template.id;
+
 		data.name = this.name;
 		data.attack = this.attack || undefined;
 
@@ -81,7 +84,7 @@ export default class Wearable {
 
 	constructor(vars=null){
 
-		if( vars ) Object.assign( this, vars);
+		if( vars ) assign( this, vars);
 
 		//console.log('this.attack: ' + this.attack );
 		this.type = this.type || 'wearable';

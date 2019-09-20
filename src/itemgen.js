@@ -13,6 +13,38 @@ const exclusions = {
 
 }
 
+export function itemRevive(gs, it ) {
+
+		var orig = it.template;
+		if ( typeof orig === 'string') orig = gs.getData( orig );
+		if ( !orig) {
+			console.warn('inv. bad item type: ' + it.id + ' -> ' + it.template );
+			return null;
+		}
+		it.template = orig;
+
+		var type = orig.type;
+		if ( type == null ) {
+			console.warn( 'Unknown Item type: '+ it.type + ' -> ' + it.template + ' -> ' + it.protoId );
+		}
+
+		if ( type === 'armor' || type === 'weapon' || type === 'wearable') {
+
+			it = new Wearable(it);
+
+		} else if ( type === 'monster') {
+			it = new Npc(it);
+		} else {
+			console.log('default revive: ' + it.id );
+			it = new Item(it);
+		}
+
+		it.revive( gs );
+
+		return it;
+
+}
+
 /**
  * Generates random Equipment from Item data, and instantiates Items from prototypes.
  */

@@ -3,6 +3,7 @@ import Stat from "../stat";
 import Base, {mergeClass} from '../items/base';
 import Item from "../items/item";
 import Npc from "./npc";
+import { itemRevive } from "../itemgen";
 
 export default class Inventory {
 
@@ -41,33 +42,7 @@ export default class Inventory {
 
 		for( let i = this.items.length-1; i>= 0; i-- ) {
 
-			var it = this.items[i];
-
-			var orig = it.template;
-			if ( typeof orig === 'string') orig = state.getData( orig );
-			if ( !orig) {
-				console.warn('inv. bad item type: ' + it.id + ' -> ' + it.template );
-				continue;
-			}
-			it.template = orig;
-
-			var type = orig.type;
-			if ( type == null ) {
-				console.warn( 'Unknown Item type: '+ it.type + ' -> ' + it.template + ' -> ' + it.protoId );
-			}
-
-			if ( type === 'armor' || type === 'weapon' || type === 'wearable') {
-
-				it = this.items[i] = new Wearable(it);
-
-			} else if ( type === 'monster') {
-				it = this.items[i] = new Npc(it);
-			} else {
-				console.log('default revive: ' + it.id );
-				it = this.items[i] = new Item(it);
-			}
-
-			it.revive( state );
+			this.items[i] = itemRevive( state, this.items[i] ) || null;
 
 		}
 

@@ -1,3 +1,5 @@
+import { itemRevive } from "../itemgen";
+
 /**
  * Equipment slot.
  */
@@ -50,7 +52,7 @@ export default class Slot {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {Item} it - the item to place in the slot.
 	 * @returns {Item|boolean} Item(s) removed from slot, or true,
 	 * if no item needs to be removed.
@@ -67,7 +69,7 @@ export default class Slot {
 
 			this.item.push(it);
 			for( let i = this.item.length-2; i >= 0; i-- ) {
-	
+
 				spaces += (this.item[i].numslots || 1);
 				if ( spaces > this.max ) {
 
@@ -78,7 +80,7 @@ export default class Slot {
 			}
 			return true;
 
-		} else if ( !this.item ) {	
+		} else if ( !this.item ) {
 
 			this.item = it;
 			return true;
@@ -96,7 +98,7 @@ export default class Slot {
 
 	/**
 	 * Find item in slot by id.
-	 * @param {string} id 
+	 * @param {string} id
 	 * @returns {Item|null}
 	 */
 	find(id ) {
@@ -107,7 +109,7 @@ export default class Slot {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {*} it
 	 * @returns {boolean}
 	 */
@@ -150,8 +152,18 @@ export default class Slot {
 	revive( state ) {
 
 		if ( this.item === null || this.item === undefined ) return;
-		if ( Array.isArray( this.item) ) this.item.forEach(v=>v.revive(state));
-		else this.item.revive(state );
+		if ( Array.isArray( this.item) ) {
+
+			for( let i = this.item.length-1; i>= 0; i-- ) {
+
+				var it = itemRevive(state, this.item[i]);
+				if (!it) {
+
+					this.item.splice(i,1);
+				} else this.item[i] = it;
+			}
+
+		} else this.item = itemRevive(state, this.item );
 
 	}
 

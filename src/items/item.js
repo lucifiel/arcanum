@@ -1,5 +1,5 @@
 import Base, {mergeClass} from './base';
-import { mergeSafe} from 'objecty';
+import { mergeSafe,assign} from 'objecty';
 
 /**
  * Carryable or equippable instanced Item.
@@ -40,7 +40,7 @@ export default class Item {
 
 	constructor( vars=null ) {
 
-		if ( vars ) Object.assign( this, vars );
+		if ( vars ) assign( this, vars );
 		if ( this.consume === null || this.consume === undefined ) this.consume = true;
 
 		if ( this.stack !== false ) this.stack = true;

@@ -100,9 +100,10 @@
 	{
 		"id":"timesplit",
 		"desc":"perform actions of different types simultaneously.",
-		"locked":false,
+		"require":"g.chronomancy",
 		"cost":{
-			"gold":1
+			"arcana":10,
+			"tempus":5
 		},
 		"mod":{
 			"runner.max":1
@@ -516,7 +517,7 @@
 		},
 		"mod":{
 			"research.max":5,
-			"tempus.rate":0.01
+			"tempus.rate":0.001
 		}
 	},
 	{
@@ -531,7 +532,7 @@
 		},
 		"mod":{
 			"chronomancy.max":1,
-			"tempus.rate":0.1
+			"tempus.rate":0.001
 		}
 
 	},
