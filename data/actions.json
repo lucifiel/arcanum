@@ -842,9 +842,9 @@
 		"run":{
 			"research":2
 		},
-		"result":{
+		"mod":{
 			"lore.max":1,
-			"codices.rate":0.001
+			"codices.rate":0.01
 		}
 
 	},

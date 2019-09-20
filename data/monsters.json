@@ -449,9 +449,8 @@
 		"defense":5,
 		"damage":"3~4",
 		"loot":{
-			"dagger":1,
-			"cap":1,
-			"boots":1
+			"dagger":"20%",
+			"cap":"20%"
 		}
 	},
 	{
