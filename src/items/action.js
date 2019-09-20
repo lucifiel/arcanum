@@ -1,6 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
-import Events, { ACTION_DONE, ACT_IMPROVED } from '../events';
+import Events, { ACT_DONE, ACT_IMPROVED } from '../events';
 
 export default class Action extends GData {
 
@@ -106,7 +106,7 @@ export default class Action extends GData {
 
 		this.value++;
 
-		Events.dispatch( ACTION_DONE, this );
+		Events.dispatch( ACT_DONE, this );
 
 		if ( this.exec ) this.exec();
 

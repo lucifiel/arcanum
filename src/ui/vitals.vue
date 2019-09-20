@@ -45,27 +45,26 @@ export default {
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button>
 
-			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
-				:disabled="!usable(focus)"
-				@click="dispatch('action', focus)">Focus</button>
-
-
 			</td>
 
 			<td class="separate"><span>{{ actionStr() }}</span>
 
-			</td></tr>
+			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
+				:disabled="!usable(focus)"
+				@click="dispatch('action', focus)">Focus</button></td>
+			</tr>
 
 		<tr><td>stamina</td>
-		<td><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"
+		<td colspan="2"><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,stamina)"/></td></tr>
 
 		<tr><td>hp</td>
-		<td><progbar class="hp" :value="player.hp.value" :max="player.hp.max.value"
+		<td colspan="2"><progbar class="hp" :value="player.hp.value" :max="player.hp.max.value"
 			@mouseenter.capture.stop.native="dispatch('itemover',$event,player.hp)"/></td></tr>
 
-		<tr v-for="it in manaList" :key="it.key"><td>{{it.name}}</td>
-		<td><progbar :value="it.value" :class="it.id" :max="it.max.value"
+		<tr v-for="it in manaList" :key="it.key">
+			<td>{{it.name}}</td>
+		<td colspan="2"><progbar :value="it.value" :class="it.id" :max="it.max.value"
 			@mouseenter.native.capture.stop="dispatch('itemover',$event,it)"/></td></tr>
 
 		</table>
@@ -84,6 +83,10 @@ div.vitals {
 div.vitals .bars {
 	width: -moz-available;
 	width:-webkit-fill-available;
+}
+
+table .td-prog {
+	columns: 2;
 }
 
 tr td:first-child {

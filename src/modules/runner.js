@@ -1,6 +1,6 @@
 import Game from '../game';
 import {quickSplice} from '../util/util';
-import Events, {ACTION_DONE, ACT_CHANGED} from '../events';
+import Events, {ACT_DONE, ACT_CHANGED} from '../events';
 import Stat from '../stat';
 
 /**
@@ -63,9 +63,14 @@ export default {
 	actionDone( act ){
 
 		if ( act.hasTag( 't_rest' ) ) {
+			// attempt to resume any waiting actions.
 			this.tryResume();
 		}
 
+	},
+
+	clearWaits() {
+		this.waiting.splice(0,this.waiting.length);
 	},
 
 	/**

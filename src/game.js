@@ -18,7 +18,7 @@ import Randoms from './modules/randoms';
 /**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT, ACTION_DONE, ACT_CHANGED } from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ACT_DONE, ACT_CHANGED } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
@@ -107,7 +107,7 @@ export default {
 				if ( !this._items[p].locked ) techTree.changed(p);
 			}
 
-			Events.add( ACTION_DONE, this.actionDone, this );
+			Events.add( ACT_DONE, this.actionDone, this );
 
 
 			this.initTimers();

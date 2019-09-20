@@ -404,6 +404,7 @@ div.game-mid div.main-actions {
 
 div.action-list, div.upgrade-list {
 	display:flex;
+	min-height:0;
 	flex-flow: row wrap;
 	flex-direction: row;
 	padding:0px 6px;
@@ -419,6 +420,7 @@ div.upgrade-list, div.action-list {
 }
 
 div.upgrade-list {
+	min-height:0;
 	/*border-top: 1px solid var( --separator-color );*/
 	margin-top:4px;
 }
