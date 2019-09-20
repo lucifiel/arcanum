@@ -258,16 +258,13 @@ const Runner = {
 		for( let i = this.waiting.length-1; i >= 0; i-- ) {
 
 			var a = this.waiting[i];
-			console.log('TEsting resume: ' + a.id);
 
 			if ( a == null ) {
 
-				console.warn('ERR: Waiting null');
 				quickSplice(this.waiting,i);
 
 			} else if ( Game.canRun(a) && this.tryAdd(a) ) {
 
-				console.log('ACTION RESUMED: ' + a.id );
 				quickSplice(this.waiting,i);
 				if ( --avail <= 0 ) return;
 
