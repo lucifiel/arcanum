@@ -32,7 +32,7 @@ export default class Spell extends GData {
 		}
 		if ( this.attack && !(this.attack instanceof Attack) ) this.attack = new Attack(this.attack);
 
-		if ( !this.require && !this.need && this.locked ) this.require = this.spellRequire;
+		if ( this.locked ) this.addRequire( this.spellRequire );
 		if ( this.school ) this.addRequire( this.school );
 
 	}

@@ -375,7 +375,7 @@
 			"spirit":0.3
 		},
 		"result":{
-			"souls.max":1,
+			"souls.max":0.5,
 			"souls":1
 		}
 	},
@@ -966,7 +966,7 @@
 	{
 		"id":"imbuefiregem",
 		"name":"Imbue Gem (Fire)",
-		"require":"g.fire.max>=5&&g.enchanting>2",
+		"require":"g.fire.max>=4&&g.enchanting>2",
 		"fill":"firegem",
 		"cost":{
 			"gems":1,
@@ -977,7 +977,7 @@
 	{
 		"id":"imbueairgem",
 		"name":"imbue gem (air)",
-		"require":"g.air.max>=5&&g.enchanting>2",
+		"require":"g.air.max>=4&&g.enchanting>2",
 		"fill":"airgem",
 		"cost":{
 			"gems":1,
@@ -988,7 +988,7 @@
 	{
 		"id":"imbueearthgem",
 		"name":"imbue stone",
-		"require":"g.earth.max>=5&&g.enchanting>2",
+		"require":"g.earth.max>=4&&g.enchanting>2",
 		"fill":"earthgem",
 		"cost":{
 			"gems":1,
@@ -999,7 +999,7 @@
 	{
 		"id":"imbuewatergem",
 		"name":"Imbue Gem (Water)",
-		"require":"g.water.max>=5&&g.enchanting>2",
+		"require":"g.water.max>=4&&g.enchanting>2",
 		"fill":"watergem",
 		"cost":{
 			"gems":1,
@@ -1010,7 +1010,7 @@
 	{
 		"id":"imbuelightgem",
 		"name":"imbue gem (light)",
-		"require":"g.light.max>=5&&g.enchanting>2",
+		"require":"g.light.max>=4&&g.enchanting>2",
 		"fill":"lightgem",
 		"cost":{
 			"gems":1,
@@ -1021,7 +1021,7 @@
 	{
 		"id":"imbueshadowgem",
 		"name":"Imbue gem (shadow)",
-		"require":"g.shadow.max>=5&&g.enchanting>2",
+		"require":"g.shadow.max>=4&&g.enchanting>2",
 		"fill":"shadowgem",
 		"cost":{
 			"gems":1,
@@ -1032,7 +1032,7 @@
 	{
 		"id":"imbuespiritgem",
 		"name":"Imbue gem (spirit)",
-		"require":"g.spirit.max>=5&&g.enchanting>2",
+		"require":"g.spirit.max>=4&&g.enchanting>2",
 		"fill":"spiritgem",
 		"cost":{
 			"gems":1,

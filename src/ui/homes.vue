@@ -81,7 +81,7 @@ export default {
 			<div class="warn-text"
 			style="text-align:center"
 			v-if="state.items.space.value===0">No space remaining. Sell items or find a new Home.
-			<span v-if="homesAvail.length>0">If you cannot afford a new home, free space for more chests.</span></div>
+			<span v-if="homesAvail.length>0">If your max gold is not enough to buy a new home, free space for more chests.</span></div>
 
 		<table class="furniture item-table">
 

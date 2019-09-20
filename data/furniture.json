@@ -494,7 +494,7 @@
 		"id":"latticewindow",
 		"name":"lattice window",
 		"tags":"lightsource,airsource",
-		"desc":"An elegant latticed portal.",
+		"desc":"An elegant latticed portal for letting in air and light.",
 		"require":"g.space>=15",
 		"cost":{
 			"gold":300,
@@ -1030,6 +1030,7 @@
 		"name":"torture chamber",
 		"desc":"A room for inquisitions and research.",
 		"require":"g.evil>0&&g.space>=100",
+		"tags":"shadowsource",
 		"cost":{
 			"space":50,
 			"gold":400,
@@ -1040,6 +1041,30 @@
 			"dissection.rate":0.4,
 			"shadow.max":5,
 			"shadow.rate":0.1
+		}
+
+	},
+	{
+
+		"id":"graveyard",
+		"desc":"A resting place for the dead.",
+		"require":"g.space>=100",
+		"tags":"shadowsource,spiritsource",
+		"cost":{
+			"space":50,
+			"gold":700,
+			"spiritgem":20,
+			"research":1000
+		},
+		"mod":{
+			"souls.rate":0.01,
+			"bodies.max":20,
+			"bones.max":20,
+			"souls.max":20,
+			"reanimation.max":1,
+			"reanimation.rate":"10%",
+			"spiritlore.rate":"20%",
+			"spiritlore.max":1
 		}
 
 	},

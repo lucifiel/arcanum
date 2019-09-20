@@ -172,7 +172,7 @@
 
 		"id":"good",
 		"name":"virtuous",
-		"disable":["shadow","evil", "shadowlore"],
+		"disable":["shadow","evil"],
 		"require":"g.virtue>750&&g.evil==0",
 		"desc":"Your actions have shown you to be a virtuous wizard.",
 		"effect":{

@@ -1,3 +1,22 @@
+9/20
+
+FEATURES:
+
+Added several water-attack spells.
+
+Complete css redesign from kermit_tears
+
+Higher tier versions of low spells now require unlocking low version first.
+(following suggestion by Morkyl)
+
+BUGS:
+
+Slight reduction in requirements to imbue elemental gem types.
+
+Fixed some regression bugs
+
+
+
 9/19
 
 FEATURES:

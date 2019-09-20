@@ -24,6 +24,30 @@
 
 	},
 	{
+		"id":"stam2",
+		"name":"fount",
+		"level":5,
+		"require":"g.stam1>0",
+		"school":"water",
+		"buy":{
+
+			"watergem":10,
+			"tomes":1
+
+		},
+		"flavor":"Come thou fount",
+		"cost":{
+			"water":1
+		},
+		"dot":{
+			"duration":60,
+			"effect":{
+				"stamina":0.5
+			}
+		}
+
+	},
+	{
 		"id":"darkbolt",
 		"name":"dark bolt",
 		"level":1,
@@ -77,12 +101,12 @@
 		"id":"deathbolt",
 		"name":"death bolt",
 		"level":5,
-		"require":"shadow",
+		"require":"darkbolt",
 		"school":"shadow",
 		"buy":{
 
-			"research":100,
-			"codices":10
+			"shadowgem":10,
+			"tomes":1
 
 		},
 		"cost":{
@@ -107,6 +131,7 @@
 		"buy":{
 
 			"research":100,
+			"codices":1,
 			"shadowgem":1
 
 		},
@@ -173,10 +198,12 @@
 		"name":"whirling step II",
 		"level":3,
 		"school":"air",
+		"require":"whirl1",
 		"buy":{
 
 			"research":100,
-			"scrolls":5
+			"codices":5,
+			"airgem":1
 
 		},
 		"cost":{
@@ -195,10 +222,12 @@
 		"id":"whirl3",
 		"name":"whirling step",
 		"level":5,
+		"require":"whirl2",
 		"school":"air",
 		"buy":{
 
-			"codices":20
+			"airgem":10,
+			"tomes":1
 
 		},
 		"cost":{
@@ -242,7 +271,7 @@
 		"school":"mana",
 		"locked":false,
 		"level":2,
-		"require":"g.player.level>=3&&g.lore>=5",
+		"require":"mana1",
 		"buy":{
 
 			"research":30,
@@ -266,12 +295,12 @@
 		"name":"mana",
 		"school":"mana",
 		"locked":false,
-		"require":"g.player.level>=5&&g.lore>=10",
+		"require":"mana2",
 		"level":5,
 		"buy":{
 
 			"research":200,
-			"tomes":1,
+			"codices":10,
 			"managem":5
 
 		},
@@ -318,13 +347,14 @@
 		"id":"lightregen2",
 		"name":"pulsing light II",
 		"school":"light",
-		"require":"g.player.level>=5&&g.lightlore>=5",
+		"require":"lightregen1",
 		"desc":"a small pulse of light zips around you, mending injuries.",
 		"level":3,
 		"buy":{
 
 			"research":100,
-			"scrolls":25
+			"codices":1,
+			"lightgem":3
 
 		},
 		"cost":{
@@ -347,12 +377,12 @@
 		"school":"light",
 		"desc":"a small pulse of light zips around you, mending injuries.",
 		"level":5,
-		"require":"g.player.level>=10&&g.lightlore>=8",
+		"require":"lightregen2",
 		"buy":{
 
 			"research":100,
-			"tomes":5,
-			"lightgem":3
+			"tomes":1,
+			"lightgem":10
 
 		},
 		"cost":{
@@ -496,7 +526,7 @@
 		"name":"fire bolt",
 		"level":2,
 		"desc":"a small bolt of flame.",
-		"require":"g.player.level>=4&&g.firelore>=2",
+		"require":"firedart",
 		"school":"fire",
 		"buy":{
 
@@ -521,11 +551,11 @@
 		"level":3,
 		"desc":"a bolt of fire with lingerine flame",
 		"school":"fire",
-		"require":"g.player.level>=6&&g.firelore>=5",
+		"require":"firebolt",
 		"buy":{
 
 			"research":100,
-			"tomes":1,
+			"codices":10,
 			"firegem":3
 
 		},
@@ -540,6 +570,80 @@
 				"dmg":"2~3",
 				"duration":10
 			}
+		}
+
+	},
+	{
+		"id":"magmabolt",
+		"name":"magma bolt",
+		"level":5,
+		"desc":"a bolt of liquid-hot magma",
+		"school":"fire",
+		"require":"searingbolt",
+		"buy":{
+
+			"research":100,
+			"tomes":1,
+			"firegem":10
+
+		},
+		"cost":{
+			"fire":10
+		},
+		"attack":{
+			"damage":"15~20",
+			"tohit":5,
+			"kind":"fire",
+			"dot":{
+				"dmg":"5~7",
+				"duration":20
+			}
+		}
+
+	},
+	{
+		"id":"frostbolt",
+		"name":"frost bolt",
+		"level":2,
+		"desc":"a sharp shard of ice.",
+		"school":"water",
+		"buy":{
+
+			"research":30,
+			"scrolls":10,
+			"watergem":1
+
+		},
+		"cost":{
+			"water":4
+		},
+		"attack":{
+			"damage":"3~4",
+			"tohit":4,
+			"kind":"water"
+		}
+
+	},
+	{
+		"id":"frostbolt2",
+		"name":"frost bolt II",
+		"level":4,
+		"require":"frostbolt",
+		"desc":"a sharp shard of ice.",
+		"school":"water",
+		"buy":{
+
+			"codices":10,
+			"watergem":6
+
+		},
+		"cost":{
+			"water":6
+		},
+		"attack":{
+			"damage":"7~11",
+			"tohit":7,
+			"kind":"water"
 		}
 
 	},
@@ -1194,9 +1298,7 @@
 		"name":"steel skin",
 		"desc":"hardens the skin of the caster.",
 		"school":"earth",
-		"require":{
-			"earth.max":15
-		},
+		"require":"stoneskin",
 		"level":4,
 		"buy":{
 
@@ -1221,13 +1323,13 @@
 		"name":"adamant shell",
 		"desc":"your skin becomes adamant.",
 		"school":"earth",
-		"require":"g.player.level>=15&&g.earthlore>=15",
+		"require":"steelskin",
 		"level":10,
 		"buy":{
 
 			"research":300,
 			"tomes":5,
-			"earthgem":10
+			"earthgem":30
 
 		},
 		"cost":{
@@ -1273,11 +1375,12 @@
 		"level":5,
 		"name":"venom II",
 		"school":"nature",
+		"require":"venom1",
 		"buy":{
 
 			"research":100,
 			"tomes":1,
-			"naturegem":5
+			"naturegem":10
 
 		},
 		"cost":{
