@@ -231,44 +231,19 @@ export default {
 
 	/**
 	 * Toggles an action on or off.
-	 * @param {GData} act
-	 * @returns {boolean} - true if action is now current, false otherwise.
+	 * @param {GData} a
 	 */
-	toggleAction(act) {
-
-		this.setAction( this.state.curAction === act ? null : act );
-
-		return this.state.curAction !== null;
-
+	toggleAction(a) {
+		Runner.toggleAct(a);
 	},
 
 	/**
-	 * Wrapper for Runner.doRest()
+	 * Wrapper for Runner rest
 	 */
-	doRest() {
-		Runner.tryAdd( this.state.restAction );
-	},
+	doRest() { Runner.doRest(); },
 
-	setAction( act ) {
-
-		if ( this.state.curAction && (act !== this.state.curAction) ) {
-			console.log('ACT CHANGING');
-			 Events.dispatch( ACT_CHANGED );
-		}
-
-		/**
-		 * Cost to begin action.
-		 */
-		if ( act && act.cost && (act.exp === 0) ) {
-			this.payCost( act.cost);
-
-		}
-
-		if ( act != this.state.restAction ) this.state.resumeAction = null;
-		this.state.curAction = act;
-
-		return true;
-
+	setAction( a ) {
+		Runner.setAction(a);
 	},
 
 	/**
@@ -328,7 +303,7 @@ export default {
 					this.state.setSlot(it.slot, null );
 				}
 
-				if ( it == this.state.curAction ) this.doRest();
+				if ( Runner.has(it) ) Runner.doRest();
 				if ( it == this.state.raid.dungeon ) this.state.raid.setDungeon(null);
 
 				if ( it instanceof Resource || it instanceof Skill ) {

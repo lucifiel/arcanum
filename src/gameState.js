@@ -92,7 +92,6 @@ export default class GameState {
 		this.raid = new Raid( baseData.raid );
 
 		this.revive();
-		this.raid.revive( this );
 
 		/** @todo: messy bug fix. */
 		this.playerStats = this.player.getResources();
@@ -149,11 +148,6 @@ export default class GameState {
 
 		if ( typeof this.restAction === 'string') this.restAction = this.getData( this.restAction );
 
-		/**
-		 * @deprecated
-		 */
-		if ( this.curHome ) this.slots['home'] = this.curHome;
-
 		for( let p in this.slots ) {
 			if ( typeof this.slots[p] === 'string') this.slots[p] = this.getData(this.slots[p] );
 		}
@@ -169,6 +163,9 @@ export default class GameState {
 		this.player.revive(this);
 
 		Runner.revive(this);
+		this.items.runner = Runner;
+
+		this.raid.revive( this );
 
 	}
 

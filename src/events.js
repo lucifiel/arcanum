@@ -10,6 +10,7 @@ const EVT_COMBAT = 'combat';
 const EVT_EVENT = 'event';
 const EVT_UNLOCK = 'unlock';
 const EVT_LOOT = 'loot';
+const EVT_DISABLED = 'disabled';
 
 const COMBAT_DONE = 'combat_done';
 const ENEMY_SLAIN = 'slain';

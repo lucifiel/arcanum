@@ -99,6 +99,55 @@ export default {
 
 	},
 
+	/**
+	 * Toggle running state of action.
+	 * @param {Action} a
+	 */
+	toggleAct( a ) {
+
+		let ind = this.actives.indexOf(a);
+
+		if ( ind >= 0 ) {
+
+			this.actives.splice(ind, 1);
+			// TRY REST?
+
+
+		} else {
+
+			this.tryAdd(a);
+
+		}
+
+
+	},
+
+	/**
+	 * Add an action absolutely, removing a running item if necessary.
+	 * @param {*} a
+	 */
+	setAction(a) {
+
+		if ( this.state.curAction && (a !== this.state.curAction) ) {
+			console.log('ACT CHANGING');
+			 Events.dispatch( ACT_CHANGED );
+		}
+
+		/**
+		 * Cost to begin action.
+		 */
+		if ( a && a.cost && (a.exp === 0) ) {
+			this.payCost( a.cost);
+
+		}
+
+		if ( a != this.state.restAction ) this.state.resumeAction = null;
+		this.state.curAction = a;
+
+		return true;
+
+	},
+
 	tryAdd( a ) {
 
 		if ( this.hasType(a) ) return false;
@@ -175,6 +224,11 @@ export default {
 	},
 
 	/**
+	 * Force-add a rest action.
+	 */
+	doRest(){ this.doAction( Game.state.restAction ); },
+
+	/**
 	 * Update individual action.
 	 * @param {Action} a
 	 * @param {number} dt
@@ -205,6 +259,15 @@ export default {
 
 		}
 
+	},
+
+	/**
+	 * Tests if exact action is running.
+	 * @param {Action} a
+	 * @returns {boolean}
+	 */
+	has(a) {
+		return this.actives.includes(a);
 	},
 
 	/**
