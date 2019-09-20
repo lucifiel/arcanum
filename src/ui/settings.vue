@@ -86,8 +86,9 @@ export default {
 	</div>
 
 	<div>
-	<label :for="elmId('compact-mode')">compact mode (in progress)</label>
+	<label :for="elmId('compact-mode')">compact mode</label>
 	<input type="checkbox" :id="elmId('compact-mode')" v-model="compactMode">
+	<div>(thanks to kermit tears)</div>
 	</div>
 
 	<button class="close" @click="close">close</button>

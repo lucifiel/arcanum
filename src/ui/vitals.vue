@@ -17,7 +17,7 @@ export default {
 
 		actionStr(){
 			let act = this.state.curAction;
-			if ( act === null) return '';
+			if ( act === null || act === undefined ) return '';
 
 			return (act.verb || act.name) +
 				( ( act.length ) ? ' ' + act.percent().toFixed(0) + '%': '' );
