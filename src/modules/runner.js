@@ -159,6 +159,8 @@ const Runner = {
 
 				let i = this.typeIndex( a );
 				if ( i < 0 ) i = this.actives.length-1;
+				console.log('must act: ' + a.id );
+				console.log('Force Stop: ' + this.actives[i].id);
 				this.stopAction( i );
 
 			}
@@ -214,6 +216,7 @@ const Runner = {
 	addWait( a ){
 
 		if ( a.hasTag(REST_TAG) ) return;
+		console.log('ADDING WAIT: ' + a.id );
 		this.waiting.push(a);
 
 	},
@@ -255,14 +258,16 @@ const Runner = {
 		for( let i = this.waiting.length-1; i >= 0; i-- ) {
 
 			var a = this.waiting[i];
+			console.log('TEsting resume: ' + a.id);
 
 			if ( a == null ) {
 
 				console.warn('ERR: Waiting null');
 				quickSplice(this.waiting,i);
 
-			} else if ( Game.canPay(a) && this.tryAdd(a) ) {
+			} else if ( Game.canRun(a) && this.tryAdd(a) ) {
 
+				console.log('ACTION RESUMED: ' + a.id );
 				quickSplice(this.waiting,i);
 				if ( --avail <= 0 ) return;
 
@@ -303,6 +308,7 @@ const Runner = {
 	doAction(a, dt) {
 
 		if ( !a.canUse() ) {
+			console.log('CANNOT USE: ' + a.id );
 			this.stopAction(a);
 		}
 
