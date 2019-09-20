@@ -91,12 +91,6 @@ const Runner = {
 		if ( this.actives ) this.actives = this.actives.map(v=>this.reviveAct(gs,v), this);
 		else this.actives = [];
 
-		/**
-		 * @compat
-		 */
-		let a = gs.getData('curAction');
-		if ( a ) this.runAction( this.reviveAct(gs,a) );
-
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.stopAction, this );
 
@@ -138,7 +132,7 @@ const Runner = {
 
 		} else {
 
-			this.tryAdd(a);
+			this.setAction(a);
 
 		}
 
@@ -209,7 +203,7 @@ const Runner = {
 	 */
 	tryAdd( a ) {
 
-		if ( this.hasType(a) ) return false;
+		if ( !this.free || this.hasType(a) ) return false;
 
 		this.runAction(a);
 
@@ -236,9 +230,12 @@ const Runner = {
 
 			console.log('CANNOT PAY: ' + act.id );
 			this.stopAction(act);
+			this.addWait(act);
 
 			// attempt to resume any waiting actions.
 			this.tryResume();
+
+			this.tryAdd( Game.state.restAction );
 
 		}
 
@@ -274,7 +271,7 @@ const Runner = {
 		}
 
 		console.log('Action available. Try rest?' );
-		this.tryAdd( Game.state.restAction );
+		//this.tryAdd( Game.state.restAction );
 
 	},
 
@@ -312,8 +309,9 @@ const Runner = {
 		if ( a.run ) {
 
 			if ( !Game.canPay( a.run, dt ) ) {
-				this.addWait(a);
 				this.stopAction(a);
+				console.log('ADD WAIT: ' + a.id );
+				this.addWait(a);
 				this.tryAdd( Game.state.restAction );
 				return false;
 			}
