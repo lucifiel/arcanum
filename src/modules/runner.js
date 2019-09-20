@@ -1,6 +1,7 @@
 import Game from '../game';
 import {quickSplice} from '../util/util';
 import Events, {ACTION_DONE, ACT_CHANGED} from '../events';
+import Stat from '../stat';
 
 /**
  * Tracks running/perpetual actions.
@@ -18,6 +19,25 @@ export default {
 	},
 
 	/**
+	 * @property {number} running - number currently running.
+	 */
+	get running(){return this.actives.length; },
+
+	get max() { return this._max; },
+	set max(v) {
+
+		if ( v instanceof Stat ) {
+
+			this._max =v;
+
+		} else if ( !this._max ) this._max = new Stat(v);
+		else if ( typeof v === 'number' ) {
+			this._max.base = v;
+		} else this._max = new Stat(v);
+
+	},
+
+	/**
 	 * @property {Action[]} actives - Actively running tasks.
 	 */
 	actives:[],
@@ -29,7 +49,7 @@ export default {
 
 	tryAdd( a ) {
 
-		if ( this.has(a) ) return false;
+		if ( this.hasType(a) ) return false;
 		this.actives.push(a);
 
 		return true;
@@ -41,6 +61,32 @@ export default {
 	},
 
 	actionDone( act ){
+
+		if ( act.hasTag( 't_rest' ) ) {
+			this.tryResume();
+		}
+
+	},
+
+	/**
+	 * Attempt to resume any waiting actions.
+	 */
+	tryResume() {
+
+		let avail = this._max.value - this.actives.length;
+
+		for( let i = this.waiting.length; i >= 0; i-- ) {
+
+			var a = this.waiting[a];
+			if ( this.hasType(a) ) quickSplice(this.waiting, i);
+			else if ( Game.canPay(a) ) {
+
+				if ( --avail === 0 ) return;
+
+			}
+
+		}
+
 	},
 
 	/**
@@ -64,7 +110,7 @@ export default {
 
 		for( let i = this.actives.length-1; i>= 0; i-- ) {
 
-			var a = this.actives[i];
+			//var a = this.actives[i];
 
 			if ( !this.doAction( this.actives[i], dt ) ) {
 				quickSplice( this.actives, i );
@@ -85,21 +131,20 @@ export default {
 
 		if ( a.run ) {
 
-			if ( !this.canPay( a.run, dt ) ) {
-				//console.log('CANT PAY: ' + action.id );
-				this.doRest( true )
-				return;
+			if ( !Game.canPay( a.run, dt ) ) {
+				this.addWait(a);
+				return false;
 			}
-			this.payCost( a.run, dt );
+			Game.payCost( a.run, dt );
 
 		}
 
-		if ( a.fill && this.filled(a.fill ) ) {
+		if ( a.fill && Game.filled(a.fill ) ) {
 			this.haltAction();
 		} else if ( action.update ) {
 
 			a.update(dt);
-			if ( a.effect) this.applyEffect( action.effect, dt );
+			if ( a.effect) Game.applyEffect( action.effect, dt );
 			a.dirty = true;
 
 		}
@@ -112,7 +157,7 @@ export default {
 	 * a new active takes its place.
 	 * @param {Action} a
 	 */
-	has( it ) {
+	hasType( it ) {
 
 		let t = it.type;
 

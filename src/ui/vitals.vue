@@ -43,12 +43,18 @@ export default {
 
 		<tr><td><button class="btn-sm" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
-			{{ this.resting ? 'Stop' : 'Rest' }}</button></td>
-			<td class="separate">{{ actionStr() }}
+			{{ this.resting ? 'Stop' : 'Rest' }}</button>
 
 			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
-				v-if="usable(focus)"
-				@click="dispatch('action', focus)">Focus</button></td></tr>
+				:disabled="!usable(focus)"
+				@click="dispatch('action', focus)">Focus</button>
+
+
+			</td>
+
+			<td class="separate"><span>{{ actionStr() }}</span>
+
+			</td></tr>
 
 		<tr><td>stamina</td>
 		<td><progbar class="stamina" :value="stamina.value" :max="stamina.max.value"

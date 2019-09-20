@@ -5,6 +5,9 @@ FEATURES:
 Experimental: Some Actions will now improve after many uses.
 Gold actions in particular should improve after tier0 (adept)
 
+BUGFIX:
+
+Clamped delta-update time for game in background.
 
 
 9/18

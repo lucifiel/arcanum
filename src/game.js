@@ -176,7 +176,7 @@ export default {
 		//unlockTests = 0;
 
 		let time = Date.now();
-		let dt = ( time - this.lastUpdate )/1000;
+		let dt = Math.max( ( time - this.lastUpdate )/1000, 1 );
 		this.lastUpdate = time;
 
 		this.state.player.update(dt);

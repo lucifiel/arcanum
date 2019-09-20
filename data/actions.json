@@ -476,7 +476,7 @@
 	},
 	{
 		"id":"rest",
-		"tags":"tagrest",
+		"tags":"t_rest",
 		"name":"rest",
 		"verb":"resting",
 		"locked":false,
@@ -493,7 +493,7 @@
 	},
 	{
 		"id":"chant",
-		"tags":"tagrest",
+		"tags":"t_rest",
 		"verb":"chanting",
 		"perpetual":true,
 		"length":10,
@@ -509,7 +509,7 @@
 	{
 		"id":"eatchildren",
 		"name":"eat children",
-		"tags":"tagrest",
+		"tags":"t_rest",
 		"verb":"eating children",
 		"perpetual":true,
 		"length":10,
