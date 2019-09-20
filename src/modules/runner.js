@@ -2,13 +2,15 @@ import Game from '../game';
 import {quickSplice} from '../util/util';
 import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT} from '../events';
 import Stat from '../stat';
+import Base, {mergeClass} from '../items/base';
+import Runnable from '../composites/runnable';
 
 const REST_TAG = 't_rest';
 
 /**
  * Tracks running/perpetual actions.
  */
-export default {
+const Runner = {
 
 	/**
 	 * @item compat.
@@ -389,4 +391,11 @@ export default {
 	}
 
 
-}
+};
+
+/**
+ * applyMods() etc.
+ */
+mergeClass( Runner, Base );
+
+export default Runner;

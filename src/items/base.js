@@ -6,7 +6,7 @@ import Mod from '../mod';
 
 export function mergeClass( destClass, src ) {
 
-	let proto = destClass.prototype;
+	let proto = destClass.prototype || destClass;
 	let descs = Object.getOwnPropertyDescriptors(src);
 
 	// NOTE: valueOf not overwritten.
