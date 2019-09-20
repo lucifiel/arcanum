@@ -139,8 +139,6 @@ export default class Minions extends Inventory {
 	 */
 	resetActives() {
 
-		console.log('RESETTIGN ACTIVES');
-
 		for( let i = this.active.length-1; i>=0; i-- ) {
 
 			if ( !this.active[i].active || !this.active[i].alive ) {

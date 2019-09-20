@@ -108,7 +108,7 @@ export default class GameState {
 			var it = this.items[p];
 			count++;
 			if ( !it.hasTag ) {
-				console.warn( this.items[p].id + ' Has no type. Removing.');
+				console.warn( p + ' -> ' + this.items[p].id + ' Has no type. Removing.');
 				delete this.items[p];
 			} else if ( it.hasTag('home')) {
 				it.need = this.homeTest;

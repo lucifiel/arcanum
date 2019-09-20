@@ -60,6 +60,8 @@ export default class Action extends GData {
 		this.type = 'action';
 		if ( this.length ) this._exp = this._exp || 0;
 
+		this.running = this.running || false;
+
 		if ( this.cd ) this.timer = this.timer || 0;
 
 		this.restoreAtMods();

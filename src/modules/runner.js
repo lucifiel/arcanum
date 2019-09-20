@@ -10,12 +10,18 @@ const REST_TAG = 't_rest';
  */
 export default {
 
+	/**
+	 * @item compat.
+	 */
+	get type() { return 'runner'; },
+	hasTag() { return false; },
+
 	toJSON() {
 
 		return {
 			max:this.max,
-			waiting:waiting.map(v=> v instanceof Runnable ? v : v.id),
-			actives:actives.map(v=> v instanceof Runnable ? v : v.id)
+			waiting:this.waiting.map(v=> v instanceof Runnable ? v : v.id),
+			actives:this.actives.map(v=> v instanceof Runnable ? v : v.id)
 		};
 
 	},
@@ -75,6 +81,8 @@ export default {
 
 		if ( !this._max ) this.max = 1;
 
+		console.log('MAX ACTIONS: ' + this.max.value );
+
 		if ( this.waiting ) this.waiting = this.waiting.map(v=>this.reviveAct(gs,v), this);
 		else this.waiting = [];
 
@@ -87,7 +95,7 @@ export default {
 		let a = gs.getData('curAction');
 		if ( a ) this.runAction( this.reviveAct(gs,a) );
 
-		Events.add( ACT_DONE, this.stopAction, this );
+		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.stopAction, this );
 
 	},
@@ -173,18 +181,17 @@ export default {
 	 * UNIQUE ACCESS POINT for removing active action.
 	 * @param {number|Action} i
 	 */
-	stopAction(i){
+	stopAction( i ){
 
 		if ( typeof i !== 'number') {
 			i = this.actives.indexOf(i);
 			if ( i < 0 ) return;
 		}
 
+		console.log('STOPPING: ' + this.actives[i].name );
+
 		this.actives[i].running=false;
 		this.actives.splice(i,1);
-
-		// attempt to resume any waiting actions.
-		this.tryResume();
 
 	},
 
@@ -204,17 +211,28 @@ export default {
 	},
 
 	addWait( a ){
+
+		if ( a.hasTag(REST_TAG) ) return;
 		this.waiting.push(a);
+
 	},
 
 	/**
-	 * CURRENTLY UNUSED. (stopAction called directly)
+	 * Action is done, but could be perpetual/ongoing.
+	 * Attempt to repay cost and keep action.
 	 * @param {*} act
 	 */
-	actionDone( act ){
+	actDone( act ){
 
-		console.log('ACTION DONE');
-		this.stopAction(act);
+		if ( Game.canPay(act) ) this.setAction(act);
+		else {
+
+			this.stopAction(act);
+
+			// attempt to resume any waiting actions.
+			this.tryResume();
+
+		}
 
 	},
 
