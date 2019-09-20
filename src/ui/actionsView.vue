@@ -23,7 +23,7 @@ export default {
 
 
 	<span :class="{ 'action-btn':true, locked:locked(it),
-		'running':it===game.state.curAction, runnable:it.perpetual||it.length>0 }" v-for="it in items" :key="it.id"
+		'running':it.running, runnable:it.perpetual||it.length>0 }" v-for="it in items" :key="it.id"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,it)">
 	<button class="wrapped-btn"
 		:disabled="!usable(it)"

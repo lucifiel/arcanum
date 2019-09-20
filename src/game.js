@@ -613,7 +613,8 @@ export default {
 		if ( it.log ) Events.dispatch( EVT_EVENT, it.log );
 
 		if ( it.attack ) {
-			if ( (it.type !== 'wearable' && it.type !== 'weapon') && this.state.curAction === this.state.raid )
+			if ( (it.type !== 'wearable' && it.type !== 'weapon')
+			&& Runner.has( this.state.raid ) )
 				this.state.raid.spellAttack( it );
 		}
 

@@ -53,7 +53,7 @@ export default {
 	 */
 	revive( gs ) {
 
-		let running = gs.getData('running');
+		let running = gs.getData('runner');
 
 		if ( running ) {
 
@@ -73,7 +73,7 @@ export default {
 		else this.actives = [];
 
 		/**
-		 * @compat.
+		 * @compat
 		 */
 		let a = gs.getData('curAction');
 		if ( a ) this.actives.push( this.reviveAct(gs,a) );
@@ -128,23 +128,16 @@ export default {
 	 */
 	setAction(a) {
 
-		if ( this.state.curAction && (a !== this.state.curAction) ) {
-			console.log('ACT CHANGING');
-			 Events.dispatch( ACT_CHANGED );
-		}
+		if ( !this.has(a) ) { Events.dispatch( ACT_CHANGED ); }
 
-		/**
-		 * Cost to begin action.
-		 */
-		if ( a && a.cost && (a.exp === 0) ) {
-			this.payCost( a.cost);
+		if ( a ) {
+
+			if ( a.cost && (a.exp === 0) ) {
+				Game.payCost( a.cost);
+			}
+			this.actives.push(a);
 
 		}
-
-		if ( a != this.state.restAction ) this.state.resumeAction = null;
-		this.state.curAction = a;
-
-		return true;
 
 	},
 

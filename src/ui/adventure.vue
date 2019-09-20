@@ -38,7 +38,7 @@ export default {
 
 		raid() { return this.state.raid; },
 
-		raiding() { return this.state.curAction===this.raid; },
+		raiding() { return this.raid.running; },
 
 		dungeons(){
 			return this.state.filterItems(

@@ -15,7 +15,7 @@ export default {
 	},
 	computed:{
 
-		inRaid() { return Game.state.curAction === Game.state.raid },
+		inRaid() { return Game.state.raid.running },
 
 		minions(){ return Game.state.minions; },
 

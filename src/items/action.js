@@ -45,6 +45,9 @@ export default class Action extends GData {
 		}
 	}
 
+	get running() { return this._running; }
+	set running(v) { this._running = v;}
+
 	percent() {
 		return 100*(this._exp / this._length );
 	}

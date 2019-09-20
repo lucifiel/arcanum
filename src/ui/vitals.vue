@@ -16,22 +16,13 @@ export default {
 		progbar:ProgBar,
 		running:Running
 	},
-	methods: {
-
-		actionStr(){
-			let act = this.state.curAction;
-			if ( act === null) return '';
-
-			return (act.verb || act.name) +
-				( ( act.length ) ? ' ' + act.percent().toFixed(0) + '%': '' );
-		}
-
-	},
 	computed:{
 
 		focus() { return this.state.getData('focus'); },
 		manaList() { return this.state.filterItems( it=>it.hasTag('manas') && !it.locked)},
-		resting() { return this.state.curAction === this.state.restAction; },
+		resting() {
+			return this.state.restAction.running;
+		},
 		stamina(){ return this.state.getData('stamina'); }
 	}
 

@@ -50,7 +50,7 @@ export default {
 		<span class="separate"><filterbox v-model="filtered" :items="available" min-items="7" /><span style="align-self:center">Skill Points: {{ sp.value.toFixed(2) }}</span></span>
 
 		<div class="subs">
-			<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s===state.curAction" @train="train"></skill>
+			<skill v-for="s in filtered" :key="s.id" :skill="s" :active="s.running" @train="train"></skill>
 		</div>
 
 	</div>
