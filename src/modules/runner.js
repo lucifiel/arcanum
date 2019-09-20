@@ -74,14 +74,14 @@ const Runner = {
 		this.actives = null;
 		this._max = null;
 
-		let running = gs.getData('runner');
+		let runner = gs.getData('runner');
 
-		if ( running ) {
+		if ( runner ) {
 
-			this.max = running.max;
+			this.max = runner.max;
 
-			this.waiting = running.waiting;
-			this.actives = running.actives;
+			this.waiting = runner.waiting;
+			this.actives = runner.actives;
 
 		}
 
@@ -162,10 +162,10 @@ const Runner = {
 			if ( this.actives.length > 0 && this.free <= 0 ) {
 
 				let i = this.typeIndex( a );
-				if ( i < 0 ) i = this.actives.length-1;
+				if ( i < 0 ) i = 0;
 
 				console.log('Force Stop: ' + this.actives[i].id);
-				this.stopAction( i, false );
+				this.stopAction( 0, false );
 
 			}
 

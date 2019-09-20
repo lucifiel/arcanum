@@ -11,13 +11,11 @@ export default class Runnable {
 
 		return {
 			item:this.item ? this.item.id : undefined,
-			target:this.target ? this.target.id : undefined,
-			type:this.type
+			target:this.target ? this.target.id : undefined
 		};
 	}
 
 	get type() { return 'runnable'; }
-	set type(v) {}
 
 	/**
 	 * @property {?Item} target - target of the running item.

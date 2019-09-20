@@ -58,7 +58,7 @@ export default {
 
 		<div v-if="raiding">
 
-		<div class="active-dungeon" v-if="raiding">
+		<div class="active-dungeon" v-if="raiding&&cur">
 			<span class="active-title">
 				<span>{{ cur.name }}</span><button class="raid-btn"
 				@click="dispatch( 'raid', cur, false )"

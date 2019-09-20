@@ -900,7 +900,7 @@
 		},
 		"mod":{
 			"chronomancy.max":1,
-			"chronomancy.rate":0.1,
+			"chronomancy.rate":0.01,
 			"astronomy.max":3,
 			"astronomy.rate":0.1,
 			"planeslore.max":2,

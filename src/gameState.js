@@ -162,10 +162,10 @@ export default class GameState {
 		this.minions.revive(this);
 		this.player.revive(this);
 
+		this.raid.revive( this );
+
 		Runner.revive(this);
 		this.items.runner = Runner;
-
-		this.raid.revive( this );
 
 	}
 

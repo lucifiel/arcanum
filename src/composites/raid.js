@@ -13,7 +13,7 @@ export default class Raid {
 	/**
 	 * @property {string} id - id of dungeon in progress.
 	 */
-	get id() { return this.dungeon ? this.dungeon.id : 'raid';}
+	get id() { return 'raid';}
 
 	/**
 	 * @property {string} name - name of dungeon in progress.
@@ -35,7 +35,7 @@ export default class Raid {
 	percent() { return this.dungeon ? this.dungeon.percent() : 0; }
 	maxed() { return !this.dungeon || this.dungeon.maxed(); }
 
-	canUse() { return !this.dungeon.maxed(); }
+	canUse() { return this.dungeon && !this.dungeon.maxed(); }
 
 	/**
 	 * @property {number} length - length of dungeon in progress.
@@ -104,6 +104,8 @@ export default class Raid {
 		Events.add( ENEMY_SLAIN, this.enemyDied, this );
 
 		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getData(this.dungeon);
+
+		if ( !this.dungeon) this.running = false;
 
 		this._combat.revive( gameState );
 
