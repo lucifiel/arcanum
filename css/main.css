@@ -2,19 +2,21 @@
 	--background-color: #FAFAFA;
 	--button-text-color: #000C;
 	--action-button-border-color: #000C;
-	--accent-color: #8DF;
-	--accent-color-hover: #6BD;
-	--accent-color-active: #28A;
 	--quiet-text-color: #888;
 	--very-quiet-text-color: #AAA;
 	--separator-color: #d8d8d8;
+	--accent-color-hover: #Dba659;
+	--accent-color-active: #797979;
 	--progbar-dark-text:#000;
 	--progbar-light-text:#555;
 	--odd-list-color:#e5e5e5;
+	--action-btn-color: #fdc679;
 }
 :root body.darkmode {
 	--button-text-color: #FFF;
+	--action-button-text-color:#aaa;
 	--action-button-border-color: #FFF;
+	--action-btn-color:#b37723;
 	--separator-color: #555;
 	--odd-list-color:#222;
 }
@@ -80,15 +82,11 @@ input[type="button"]:hover, button:hover, .text-button:hover {
 }
 
 .runnable button {
-	background: #fdc679;
+	background: var(--action-btn-color);
 }
 
 .runnable button:hover {
 	background:#Dba659;
-}
-
-.darkmode .runnable button {
-	background: #b37723;
 }
 
 .darkmode .runnable button:hover {
@@ -158,6 +156,9 @@ a {
 	max-width: 118px;
 }
 
+.action-btn.darkmode {
+	color: var(--action-button-text-color);
+}
 .running {
 	border: 2px dashed #202020;
 	padding: 1px;

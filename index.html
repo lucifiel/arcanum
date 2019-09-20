@@ -5,7 +5,6 @@
 	<title>Arcanum</title>
 	<link href="./css/main.css" rel="stylesheet" type="text/css">
 	<!--<link href="./css/compact.css" rel="stylesheet" type="text/css">-->
-	<link href="./css/complex.css" rel="stylesheet" type="text/css">
 	<meta charset="UTF-8">
 	<meta name="keywords" content="idle, clicker, idle clicker, game, wizard, arcane, rpg, fun, browser, javascript" />
 	<meta name="description" content="magic idle clicker for rpg enthusiasts" />
@@ -31,14 +30,9 @@
 </body>
 <script src="dist/wizrobe.dist.bundle.js"></script>
 <style type="text/css">
-/* ==UserStyle==
-@name           Arcanum Adjustments
-@namespace      .
-@version        1.0.5
-@description    Basic Arcanum CSS Adjustments
-@updateURL      https://nyanpals.com/usercss/arcanum.user.css
+/*
 @author         gokiburikin
-==/UserStyle== */
+*/
 
 :root {
         --action-button-width: 128px;
@@ -50,7 +44,6 @@
         --background-color: #FAFAFA;
         --button-text-color: #000C;
         --action-button-border-color: #000C;
-        --accent-color: #fdc679;
         --accent-color-hover: #Dba659;
         --accent-color-active: #797979;
         --quiet-text-color: #888;
@@ -154,7 +147,7 @@
         display: grid; grid-template-columns: repeat( auto-fit, var(--action-button-width) );
         gap: var(--small-gap)
     }
-    .game-mid .menu-content .main-actions > div.action-list .runnable button {background: var(--accent-color); }
+
     .game-mid .menu-content .main-actions > div.action-list .runnable button:hover {background: var(--accent-color-hover); }
     .game-mid .menu-content .main-actions > div.action-list .runnable button:active {background: var(--accent-color-active); }
     .game-mid .menu-content .action-btn { margin: 0; max-width: unset; width: 100%; }
