@@ -70,6 +70,10 @@ const Runner = {
 	 */
 	revive( gs ) {
 
+		this.waiting = null;
+		this.actives = null;
+		this._max = null;
+
 		let running = gs.getData('runner');
 
 		if ( running ) {
@@ -190,7 +194,7 @@ const Runner = {
 		let a = this.actives[i];
 		console.log('STOPPING: ' + a.name );
 
-		a.running=false;
+		a.running = false;
 		this.actives.splice(i,1);
 
 		if ( canResume && a.hasTag(REST_TAG) ){

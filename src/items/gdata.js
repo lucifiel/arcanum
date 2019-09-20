@@ -1,4 +1,4 @@
-import { defineExcept, clone } from 'objecty';
+import { defineExcept, clone, assign } from 'objecty';
 import Stat from '../stat';
 import Base, {mergeClass} from './base';
 import { arrayMerge } from '../util/util';

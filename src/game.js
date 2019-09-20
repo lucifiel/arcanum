@@ -613,7 +613,7 @@ export default {
 
 		if ( it.attack ) {
 			if ( (it.type !== 'wearable' && it.type !== 'weapon')
-			&& Runner.has( this.state.raid ) )
+			&& this.state.raid.running )
 				this.state.raid.spellAttack( it );
 		}
 
