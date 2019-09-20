@@ -29,7 +29,8 @@ const ACT_CHANGED = 'actchanged';
 const ACT_IMPROVED = 'actimprove';
 
 /**
- * Dispatched when a running action completes.
+ * Dispatched by a Runnable when it has completed.
+ * It is the job of the runnable to determine when it has completed.
  */
 const ACT_DONE = 'action_done';
 

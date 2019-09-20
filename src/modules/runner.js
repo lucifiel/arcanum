@@ -3,6 +3,8 @@ import {quickSplice} from '../util/util';
 import Events, {ACT_DONE, ACT_CHANGED} from '../events';
 import Stat from '../stat';
 
+const REST_TAG = 't_rest';
+
 /**
  * Tracks running/perpetual actions.
  */
@@ -76,9 +78,9 @@ export default {
 		 * @compat
 		 */
 		let a = gs.getData('curAction');
-		if ( a ) this.actives.push( this.reviveAct(gs,a) );
+		if ( a ) this.runAction( this.reviveAct(gs,a) );
 
-		Events.add( ACT_DONE, this.actionDone, this );
+		Events.add( ACT_DONE, this.stopAction, this );
 
 	},
 
@@ -95,6 +97,8 @@ export default {
 		}
 		if ( a.type === 'dungone') return gs.raid;
 
+		a.running=true;
+
 		return a;
 
 	},
@@ -109,7 +113,7 @@ export default {
 
 		if ( ind >= 0 ) {
 
-			this.actives.splice(ind, 1);
+			this.stopAction(ind);
 			// TRY REST?
 
 
@@ -135,16 +139,49 @@ export default {
 			if ( a.cost && (a.exp === 0) ) {
 				Game.payCost( a.cost);
 			}
-			this.actives.push(a);
+			this.runAction(a);
 
 		}
 
 	},
 
+	/**
+	 * UNIQUE ACCESS POINT for pushing action active.
+	 * @param {*} a
+	 */
+	runAction(a) {
+		a.running=true;
+		this.actives.push(a);
+	},
+
+	/**
+	 * UNIQUE ACCESS POINT for splicing action.
+	 * @param {number|Action} i
+	 */
+	stopAction(i){
+
+		if ( typeof i !== 'number') {
+			i = this.actives.indexOf(i);
+			if ( i < 0 ) return;
+		}
+
+		this.actives[i].running=false;
+		this.actives.splice(i,1);
+
+		// attempt to resume any waiting actions.
+		this.tryResume();
+
+	},
+
+	/**
+	 *
+	 * @param {*} a
+	 */
 	tryAdd( a ) {
 
 		if ( this.hasType(a) ) return false;
-		this.actives.push(a);
+
+		this.runAction(a);
 
 		return true;
 
@@ -154,12 +191,14 @@ export default {
 		this.waiting.push(a);
 	},
 
+	/**
+	 * CURRENTLY UNUSED. (stopAction called directly)
+	 * @param {*} act
+	 */
 	actionDone( act ){
 
-		if ( act.hasTag( 't_rest' ) ) {
-			// attempt to resume any waiting actions.
-			this.tryResume();
-		}
+		console.log('ACTION DONE');
+		this.stopAction(act);
 
 	},
 
@@ -208,7 +247,7 @@ export default {
 
 			if ( !this.doAction( this.actives[i], dt ) ) {
 
-				quickSplice( this.actives, i );
+				this.stopAction( i );
 
 			}
 

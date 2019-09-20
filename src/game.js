@@ -1,5 +1,4 @@
 import DataLoader from './dataLoader';
-//import VarPath from './varPath';
 import {quickSplice} from './util/util';
 import GData from './items/gdata';
 import Log from './log.js';

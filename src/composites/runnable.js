@@ -45,6 +45,9 @@ export default class Runnable {
 	get run() { return this.item ? this.item.run : null; }
 	get effect() { return this.item ? this.item.effect : null; }
 
+	get running() { return this.item ? this.item.running:false;}
+	set running(v) { if ( this.item) this.item.running=v;}
+
 	get exp(){ return this._item.exp; }
 	set exp(v) { this.item.exp = v; }
 
