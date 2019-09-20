@@ -226,9 +226,12 @@ const Runner = {
 	 */
 	actDone( act ){
 
-		if ( Game.canPay(act) ) this.setAction(act);
+		console.log('COMPLETE: ' + act.id );
+
+		if ( Game.canRun(act) ) this.setAction(act);
 		else {
 
+			console.log('CANNOT PAY: ' + act.id );
 			this.stopAction(act);
 
 			// attempt to resume any waiting actions.
