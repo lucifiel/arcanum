@@ -190,10 +190,15 @@ const Runner = {
 			if ( i < 0 ) return;
 		}
 
-		console.log('STOPPING: ' + this.actives[i].name );
+		let a = this.actives[i];
+		console.log('STOPPING: ' + a[i].name );
 
-		this.actives[i].running=false;
+		a[i].running=false;
 		this.actives.splice(i,1);
+
+		if ( a.hasTag(REST_TAG) ){
+			this.tryResume();
+		}
 
 	},
 
@@ -225,11 +230,6 @@ const Runner = {
 	 * @param {*} act
 	 */
 	actDone( act ){
-
-		if ( act.hasTag(REST_TAG) ){
-			this.tryResume();
-			return;
-		}
 
 		if ( Game.canRun(act) ) this.setAction(act);
 		else {
