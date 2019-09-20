@@ -74,7 +74,6 @@ export default {
 
 		</div>
 
-
 		<!--<filterbox v-model="filtered" :items="dungeons" min-items="8" />-->
 
 		<div class="dungeons" v-else>
@@ -96,7 +95,7 @@ export default {
 
 	<div class="raid-bottom">
 
-		<inv class="inv" :inv="raid.drops" take="true" />
+		<inv class="inv" :inv="raid.drops" take=true nosearch=true />
 		<div class="log">
 			<span v-if="raiding">Adventuring...<br></span>
 			<div class="outlog">

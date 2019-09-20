@@ -39,7 +39,7 @@ export default {
 
 	<div class="vitals">
 		<!-- anything not a table is a headache -->
-		<div class="bars">
+		<table class="bars">
 
 		<tr><td><button class="btn-sm" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
@@ -62,7 +62,7 @@ export default {
 		<td><progbar :value="it.value" :class="it.id" :max="it.max.value"
 			@mouseenter.native.capture.stop="dispatch('itemover',$event,it)"/></td></tr>
 
-		</div>
+		</table>
 
 	</div>
 </template>
@@ -76,8 +76,6 @@ div.vitals {
 }
 
 div.vitals .bars {
-	display:flex;
-	flex-flow: column nowrap;
 	width: -moz-available;
 	width:-webkit-fill-available;
 }

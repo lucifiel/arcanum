@@ -8,7 +8,7 @@ export default {
 	 * @property {Inventory} inv - the inventory object.
 	 * @property {boolean} take - whether to display take button.
 	 */
-	props:['inv', 'take', 'value', 'selecting'],
+	props:['inv', 'take', 'value', 'selecting', 'nosearch'],
 	data() {
 		return {
 			filtered:null
@@ -56,7 +56,7 @@ export default {
 
 <template>
 <div>
-	<filterbox v-model="filtered" :items="inv.items" min-items="10" />
+	<filterbox v-if="!nosearch" v-model="filtered" :items="inv.items" min-items="10" />
 
 	<div class="flex-row">
 		<div v-if="inv.max > 0">{{ inv.items.length + ' / ' + Math.floor(inv.max.value ) + ' Used' }}</div>
@@ -64,7 +64,7 @@ export default {
 	</div>
 <table class="inv item-table">
 
-	<tr v-for="it in filtered" :key="it.id">
+	<tr v-for="it in ( nosearch ? inv.items : filtered )" :key="it.id">
 		<td @mouseenter.capture.stop="dispatch('itemover',$event,it)">{{ it.name + count(it) }}</td>
 
 

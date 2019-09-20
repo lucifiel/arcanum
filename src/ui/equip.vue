@@ -1,7 +1,7 @@
 <script>
 
 export default {
-	
+
 	props:['equip'],
 	methods:{
 
@@ -23,13 +23,12 @@ export default {
 				<div v-if="slot.multi">
 
 					<div v-for="it in slot.item" :key="it.id" @mouseenter.capture.stop="dispatch('itemover',$event,it)">
-						<span class="item-name">
-							{{ it.name }}</span> <button @click="dispatch('unequip', slot, it)">Unequip</button>
+						<span class="item-name">{{ it.name }}</span> <button @click="dispatch('unequip', slot, it)">Unequip</button>
 					</div>
 
 				</div>
 				<div v-else @mouseenter.capture.stop="dispatch('itemover',$event,slot.item)">
-					{{ slot.item.name }}<button @click="dispatch('unequip', slot, slot.item )">Unequip</button>
+					<span class="item-name">{{ slot.item.name }}</span><button @click="dispatch('unequip', slot, slot.item )">Unequip</button>
 				</div>
 
 			</td>

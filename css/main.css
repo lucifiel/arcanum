@@ -10,12 +10,15 @@
 	--separator-color: #d8d8d8;
 	--progbar-dark-text:#000;
 	--progbar-light-text:#555;
+	--odd-list-color:#e5e5e5;
 }
 :root body.darkmode {
 	--button-text-color: #FFF;
 	--action-button-border-color: #FFF;
 	--separator-color: #555;
+	--odd-list-color:#222;
 }
+
 
 body {
 	font-family: 'Open Sans', sans-serif;

@@ -65,7 +65,6 @@ export default {
 		<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event,dist)">distance</td><th>{{ dist.current }}</th></tr>
 		</table>
 
-		<tr><td class="table-head">Combat</td></tr>
 		<table>
 			<tr><td @mouseenter.capture.stop="dispatch( 'itemover', $event, hp)">life</td><th>
 			{{ floor( hp.value ) }} / {{ floor( hp.max.value ) }}</th></tr>
@@ -113,9 +112,6 @@ td {
 	text-align:right;
 }
 
-th {
-	text-align: left;
-
-}
+th { text-align: left; }
 
 </style>
