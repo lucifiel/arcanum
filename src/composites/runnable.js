@@ -1,4 +1,5 @@
 import Game from '../game';
+import {assign} from 'objecty';
 
 /**
  * Wraps an action in progress with an action target, and possible
@@ -58,7 +59,7 @@ export default class Runnable {
 	get length() { return this._item.length || 0; }
 	constructor( vars=null) {
 
-		if (vars) Object.assign( this, vars);
+		if (vars) assign( this, vars );
 
 	}
 

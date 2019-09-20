@@ -282,11 +282,7 @@ const Runner = {
 
 		for( let i = this.actives.length-1; i>= 0; i-- ) {
 
-			if ( !this.doAction( this.actives[i], dt ) ) {
-
-				this.stopAction( i );
-
-			}
+			this.doAction( this.actives[i], dt );
 
 		}
 
@@ -309,12 +305,16 @@ const Runner = {
 	 */
 	doAction(a, dt) {
 
-		if ( !a.canUse() ) return false;
+		if ( !a.canUse() ) {
+			this.stopAction(a);
+		}
 
 		if ( a.run ) {
 
 			if ( !Game.canPay( a.run, dt ) ) {
 				this.addWait(a);
+				this.stopAction(a);
+				this.tryAdd( Game.state.restAction );
 				return false;
 			}
 			Game.payCost( a.run, dt );
@@ -323,7 +323,7 @@ const Runner = {
 
 		if ( a.fill && Game.filled(a.fill ) ) {
 
-			return false;
+			this.stopAction(a);
 
 		} else if ( a.update ) {
 
@@ -332,7 +332,6 @@ const Runner = {
 			a.dirty = true;
 
 		}
-		return true;
 
 	},
 
