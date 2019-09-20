@@ -20,8 +20,11 @@ export default class Resource extends GData {
 	get value() { return this._value; }
 	set value(v) {
 
-		if ( this._max && v > this._max ) this._value = this._max.value;
-		else this._value = (v >= 0 ) ? v :0;
+		if ( this._max && v > this._max ) {
+
+			if ( v < this._value ) this._value = v;
+
+		} else this._value = (v >= 0 ) ? v :0;
 
 	}
 	valueOf(){ return this._value; }

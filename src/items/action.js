@@ -18,10 +18,12 @@ export default class Action extends GData {
 	}
 
 	/**
-	 * @property {number} exp - alias progress data files.
+	 * @property {number} exp - alias ex data files.
 	 */
 	get exp() { return this._exp || 0; }
-	set exp(v){ this._exp = v; }
+	set exp(v){
+		this._exp = v;
+	}
 
 	get length() { return this._length; }
 	set length(v) { this._length = v;}

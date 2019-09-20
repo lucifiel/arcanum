@@ -7,6 +7,11 @@ Gold actions in particular should improve after tier0 (adept)
 
 BUGFIX:
 
+Fixed duplicate display of some item effects.
+
+Resources over-max no longer jump to max on first use.
+You can spend the overflow now.
+
 Clamped delta-update time for game in background.
 
 

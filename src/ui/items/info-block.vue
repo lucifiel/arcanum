@@ -20,7 +20,7 @@ export default {
 		<div v-if="title" class="note-text"><hr>{{ title }}</div>
 		<div v-for="(v,k) in effectItems( info, rate)" :key="k">
 			<span v-if="typeof v === 'boolean'">{{ k }}</span>
-			<span v-if="typeof v ==='number'">{{ `${k}: ${v}` }}</span>
+			<span v-else-if="typeof v ==='number'">{{ `${k}: ${v}` }}</span>
 				<span v-else>{{ `${k}: ${v}` }}</span>
 		</div>
 
