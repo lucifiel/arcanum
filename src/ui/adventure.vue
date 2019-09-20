@@ -98,8 +98,9 @@ export default {
 		<inv class="inv" :inv="raid.drops" take=true nosearch=true />
 		<div class="log">
 			<span v-if="raiding">Adventuring...<br></span>
+
 			<div class="outlog">
-			<div v-for="(it,i) in combatLog" :key="i">
+			<div class="log-item" v-for="(it,i) in combatLog" :key="i">
 				<span class="log-text">{{ it.text || '' }}</span>
 			</div>
 			</div>
