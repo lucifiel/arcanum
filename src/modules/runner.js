@@ -11,7 +11,7 @@ export default {
 	toJSON() {
 
 		return {
-
+			max:this.max,
 			waiting:waiting.map(v=>v.id),
 			actives:actives.map(v=>v.id)
 		};
@@ -40,12 +40,35 @@ export default {
 	/**
 	 * @property {Action[]} actives - Actively running tasks.
 	 */
-	actives:[],
+	actives:null,
 
 	/**
 	 * @property {Action[]} waiting - actions waiting to run once rest is complete.
 	 */
-	waiting:[],
+	waiting:null,
+
+		/**
+	 * revive data from save.
+	 * @param {GameState} gs
+	 */
+	revive( gs ) {
+
+		let running = gs.getData('running');
+
+		if ( running ) {
+			this.waiting = gs.toData(this.waiting);
+			this.actives = gs.toData(this.actives);
+		} else {
+
+			this.waiting = [];
+			this.actives = [];
+		}
+
+		this.max = this._max || 1;
+
+		Events.add( ACT_DONE, this.actionDone, this );
+
+	},
 
 	tryAdd( a ) {
 
@@ -105,19 +128,6 @@ export default {
 		if ( this.actives.length === 0 ) {
 			this.tryAdd( Game.state.restAction );
 		}
-
-	},
-
-	/**
-	 * revive data from save.
-	 * @param {GameState} gs
-	 */
-	revive( gs ) {
-
-		this.waiting = gs.toData(this.waiting);
-		this.actives = gs.toData(this.actives);
-
-		Events.add( ACT_DONE, this.actionDone, this );
 
 	},
 

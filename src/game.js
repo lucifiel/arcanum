@@ -16,9 +16,14 @@ import Runnable from './composites/runnable';
 import Randoms from './modules/randoms';
 
 /**
+ * @property {Runner} Runner - runs actions in tandem.
+ */
+import Runner from './modules/runner';
+
+/**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT, ACT_DONE, ACT_CHANGED } from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ACT_CHANGED } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
@@ -37,9 +42,7 @@ export const EVT_TIME = 1000;
 
 export default {
 
-	toJSON() {
-		return JSON.stringify( this.state );
-	},
+	toJSON() { return JSON.stringify( this.state ); },
 
 	/**
 	 * @property {GameState} gameData
@@ -106,9 +109,6 @@ export default {
 			for( let p in this._items ) {
 				if ( !this._items[p].locked ) techTree.changed(p);
 			}
-
-			Events.add( ACT_DONE, this.actionDone, this );
-
 
 			this.initTimers();
 
@@ -182,7 +182,7 @@ export default {
 		this.state.player.update(dt);
 		this.state.minions.update(dt);
 
-		this.doCurrent( dt );
+		Runner.update(dt);
 
 		this.doResources(dt, this.state.resources);
 		this.doResources( dt, this.state.playerStats );
@@ -230,53 +230,6 @@ export default {
 	},
 
 	/**
-	 * Performs tick update of the current action/skill.
-	 * @param {number} dt - elapsed time
-	 */
-	doCurrent( dt ) {
-
-		let action = this.state.curAction;
-		if ( !action ) return;
-
-		if ( !action.canUse() ) {
-			console.log('ACTION MAXED: ' + action.id );
-			this.setAction(null);
-			return;
-		}
-
-		if ( action.run ) {
-
-			if ( !this.canPay( action.run, dt ) ) {
-				//console.log('CANT PAY: ' + action.id );
-				this.doRest( true )
-				return;
-			}
-			this.payCost( action.run, dt );
-
-		}
-
-		if ( action.fill && this.filled(action.fill ) ) {
-			this.haltAction();
-		} else if ( action.update ) {
-
-			action.update(dt);
-			if ( action.effect) this.applyEffect( action.effect, dt );
-			action.dirty = true;
-
-		}
-
-	},
-
-	actionDone( act ) {
-
-		if ( this.state.curAction === act ) {
-			if ( this.canPay( act.cost ) ) this.setAction( act );
-			else this.setAction(null);
-		}
-
-	},
-
-	/**
 	 * Toggles an action on or off.
 	 * @param {GData} act
 	 * @returns {boolean} - true if action is now current, false otherwise.
@@ -290,16 +243,10 @@ export default {
 	},
 
 	/**
-	 *
-	 * @param {boolean} [resume=false] - resume current action afterwards?
+	 * Wrapper for Runner.doRest()
 	 */
-	doRest( resume=false ) {
-
-		let cur = this.state.curAction;
-
-		this.setAction( this.state.restAction );
-		if ( resume === true ) this.state.resumeAction = cur;
-
+	doRest() {
+		Runner.tryAdd( this.state.restAction );
 	},
 
 	setAction( act ) {
@@ -321,21 +268,6 @@ export default {
 		this.state.curAction = act;
 
 		return true;
-
-	},
-
-	/**
-	 * Halts action when requirements are no longer met.
-	 * If the action was a rest action, any previous action is resumed.
-	 */
-	haltAction() {
-
-		// was resting.
-		if ( this.state.curAction === this.state.restAction ) {
-			this.setAction( this.state.resumeAction );
-		} else {
-			this.setAction( this.state.restAction );
-		}
 
 	},
 
