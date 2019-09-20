@@ -27,9 +27,10 @@ export function tryDamage(target, attack, attacker = null) {
 		}
 
 	}
-	if (attack.damage) {
+	if (attack.damage && attack.getDamage ) {
 
 		// add optional base damage from attacker.
+
 		let dmg = attack.getDamage() +
 			((attacker && (attacker !== attack) && attacker.damage) ?
 				getDamage(attacker.damage) : 0);
