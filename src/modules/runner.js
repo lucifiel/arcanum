@@ -12,8 +12,8 @@ export default {
 
 		return {
 			max:this.max,
-			waiting:waiting.map(v=>v.id),
-			actives:actives.map(v=>v.id)
+			waiting:waiting.map(v=> v instanceof Runnable ? v : v.id),
+			actives:actives.map(v=> v instanceof Runnable ? v : v.id)
 		};
 
 	},
@@ -56,17 +56,46 @@ export default {
 		let running = gs.getData('running');
 
 		if ( running ) {
-			this.waiting = gs.toData(this.waiting);
-			this.actives = gs.toData(this.actives);
-		} else {
 
-			this.waiting = [];
-			this.actives = [];
+			this.max = running.max;
+
+			this.waiting = running.waiting;
+			this.actives = running.actives;
+
 		}
 
-		this.max = this._max || 1;
+		if ( !this._max ) this.max = 1;
+
+		if ( this.waiting ) this.waiting = this.waiting.map(v=>this.reviveAct(gs,v), this);
+		else this.waiting = [];
+
+		if ( this.actives ) this.actives = this.actives.map(v=>this.reviveAct(gs,v), this);
+		else this.actives = [];
+
+		/**
+		 * @compat.
+		 */
+		let a = gs.getData('curAction');
+		if ( a ) this.actives.push( this.reviveAct(gs,a) );
 
 		Events.add( ACT_DONE, this.actionDone, this );
+
+	},
+
+	reviveAct( gs, a ) {
+
+		if (!a) return;
+
+		if ( typeof a === 'string' ) a = gs.getData( a);
+		else if ( typeof a === 'object') {
+
+			a = new Runnable( a );
+			if ( typeof a.revive === 'function' ) a.revive(gs);
+
+		}
+		if ( a.type === 'dungone') return gs.raid;
+
+		return a;
 
 	},
 

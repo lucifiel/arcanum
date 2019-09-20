@@ -42,7 +42,6 @@ export default {
 
 	<div class="vitals">
 
-
 		<div class="separate"><button class="btn-sm" @click="dispatch('rest')"
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button>

@@ -5,6 +5,11 @@ import Equip from './chars/equip';
 import Runnable from './composites/runnable';
 import Minions from './chars/minions';
 
+/**
+ * @todo violation of principle.
+ */
+import Runner from './modules/runner';
+
 export default class GameState {
 
 	toJSON(){
@@ -19,8 +24,6 @@ export default class GameState {
 
 			items:( this.items ),
 			quickslots:this.quickslots.map(v=> v ? v.id : null ),
-			curAction: this.curAction ?  ( this.curAction instanceof Runnable ?
-				this.curAction : this.curAction.id ) : undefined,
 			slots:slotIds,
 			equip:( this.equip ),
 			raid:( this.raid ),
@@ -50,11 +53,6 @@ export default class GameState {
 		 * Next item id.
 		 */
 		this.NEXT_ID = this.NEXT_ID || 0;
-
-		/**
-		 * @property {Item} curAction - ongoing action.
-		 */
-		this.curAction = this.curAction || null;
 
 		/**
 		 * @property {Object.<string,Item>} slots - slots for items which can only have
@@ -170,21 +168,7 @@ export default class GameState {
 		this.minions.revive(this);
 		this.player.revive(this);
 
-		if ( this.curAction ) {
-
-			if ( typeof this.curAction === 'string' ) this.curAction = this.getData( this.curAction );
-			else if ( typeof this.curAction === 'object') {
-
-				this.curAction = new Runnable( this.curAction );
-				if ( typeof this.curAction.revive === 'function' ) this.curAction.revive(this);
-
-			}
-
-			if ( this.curAction.type === 'dungeon') {
-				this.curAction = this.raid;
-			}
-
-		}
+		Runner.revive(this);
 
 	}
 

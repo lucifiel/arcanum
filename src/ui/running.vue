@@ -1,6 +1,6 @@
 <script>
 import Game from '../game';
-import Runner from '../runner';
+import Runner from '../modules/runner';
 
 export default {
 
@@ -26,7 +26,7 @@ export default {
 <div class='running'>
 
 	<div v-for="v in runner.actives" :key="v.id">
-		{{ actionStr(v) }}
+		<span>{{ actionStr(v) }}</span>
 	</div>
 
 </div>
