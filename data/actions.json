@@ -1113,12 +1113,12 @@
 		"id":"focus",
 		"desc":"quicken your skills with magic energy.",
 		"require":"mana",
-		"need":"s.curAction&&s.curAction.type==='skill'",
+		"need":"g.runner.hasType('skill')",
 		"cost":{
 			"mana":0.1
 		},
 		"effect":{
-			"curAction.exp":0.2
+			"runner.exp":0.2
 		}
 
 	},

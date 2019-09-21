@@ -13,6 +13,28 @@ const REST_TAG = 't_rest';
 const Runner = {
 
 	/**
+	 * @todo : Messy for Focus skill.
+	 */
+	get exp() {
+		for( let i = this.actives.length-1; i>= 0;i-- ) {
+			var a = this.actives[i];
+			if ( a.type === 'skill' ) return a.exp;
+		}
+		return 0;
+	},
+
+	set exp(v) {
+		console.log('setting EXP: ' + v );
+		for( let i = this.actives.length-1; i>= 0;i-- ) {
+
+			var a = this.actives[i];
+			if ( a.type === 'skill' ) a.exp = v;
+
+		}
+	},
+
+
+	/**
 	 * @item compat.
 	 */
 	get type() { return 'runner'; },
@@ -388,7 +410,7 @@ const Runner = {
 	 */
 	hasType( it ) {
 
-		let t = it.type;
+		let t = typeof it ==='string'? it : it.type;
 
 		for( let i = this.actives.length-1; i>= 0; i-- ) {
 
