@@ -704,14 +704,16 @@
 		"lore.max":2,
 		"scrying.max":2,
 		"mana.max":3,
+		"divination.max":2,
+		"divination.rate":0.1,
 		"airlore.max":1,
-		"spiritlore.max":2,
+		"spiritlore.max":1,
 		"spiritlore.rate":0.1
 	}
 },
 {
 	"id":"seer",
-	"title":"oracle",
+	"title":"seer",
 	"desc":"A diviner.",
 	"require":"g.tier1>0&&g.divination>=10",
 	"tags":"t_tier2",

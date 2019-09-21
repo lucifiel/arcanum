@@ -1145,6 +1145,7 @@
 			"mana":5
 		},
 		"mod":{
+			"divination.max":1,
 			"mana.max":1,
 			"lore.max":1
 		}

@@ -37,7 +37,7 @@ export default {
 			@mouseenter.capture.stop="dispatch('itemover',$event, state.restAction )">
 			{{ this.resting ? 'Stop' : 'Rest' }}</button>
 
-			<button class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
+			<button v-if="!focus.locked" class="btn-sm" @mouseenter.capture.stop="dispatch('itemover',$event, focus )"
 				:disabled="!usable(focus)"
 				@click="dispatch('action', focus)">Focus</button>
 		</div>

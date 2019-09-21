@@ -550,7 +550,7 @@
 	},
 	{
 		"id":"chronomancy",
-		"require":"g.timesource>0&&g.tier2>0",
+		"require":["tier2","timesource"],
 		"desc":"There must be a way...",
 		"run":{
 			"stamina":0.3,

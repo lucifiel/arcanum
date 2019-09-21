@@ -316,9 +316,10 @@
 	},
 	{
 		"id":"tempus",
+		"require":"chronomancy",
 		"tags":"manas",
 		"unit":false,
-		"desc":"Time incarnate. No current use.",
+		"desc":"Time incarnate. If only...",
 		"max":0
 	},
 	{
