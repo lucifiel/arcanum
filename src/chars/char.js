@@ -1,5 +1,5 @@
 import Base, {mergeClass} from '../items/base';
-import { mergeSafe, assign, jsonify } from 'objecty';
+import { mergeSafe, jsonify } from 'objecty';
 import {tryDamage} from '../composites/combat';
 import Stat from '../stat';
 import Dot from './dot';
@@ -76,7 +76,7 @@ export default class Char {
 
 	constructor( vars ){
 
-		if ( vars ) assign( this, vars );
+		if ( vars ) Object.assign( this, vars );
 
 		this.type = 'npc';
 

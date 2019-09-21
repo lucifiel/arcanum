@@ -1076,7 +1076,7 @@ export default {
 
 		if ( !this.canEquip(it) ) return false;
 
-		console.log('erquip weap:' + it.id  + ' it.type: ' + it.type + ' it.kind: ' + it.kind );
+		console.log('equip:' + it.id  + ' it.type: ' + it.type + ' it.kind: ' + it.kind );
 		let res = this.state.equip.equip( it );
 		if ( !res) return;
 

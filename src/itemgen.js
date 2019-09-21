@@ -1,6 +1,6 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
-import { sublists, randElm, randMatch, includesAny } from 'objecty';
+import { sublists, randElm, randMatch, includesAny, getPropDesc} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
 import Npc from './chars/npc';

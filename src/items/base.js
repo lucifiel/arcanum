@@ -75,7 +75,7 @@ export default {
 	/**
 	 * @property {string} type
 	 */
-	get type() { return this._type || 'item'; },
+	get type() { return this._type },
 	set type(v) { this._type =v;},
 
 	/**

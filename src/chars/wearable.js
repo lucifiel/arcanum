@@ -2,7 +2,7 @@ import Base, {mergeClass} from '../items/base';
 import Range from "../range";
 import Attack from './attack';
 
-import {mergeSafe,assign} from "objecty";
+import {mergeSafe} from "objecty";
 import Mod from '../mod';
 
 
@@ -84,7 +84,9 @@ export default class Wearable {
 
 	constructor(vars=null){
 
-		if( vars ) assign( this, vars);
+		if ( vars ) Object.assign(this,vars);
+
+		if ( vars.template ) this.template = vars.template;
 
 		//console.log('this.attack: ' + this.attack );
 		this.type = this.type || 'wearable';

@@ -2,6 +2,9 @@
 
 FEATURES:
 
+There is now a use for Chronomancy and Tempus.
+In initial phases.
+
 Added graveyard furnishing.
 
 Reduced trap soul max souls bonus.

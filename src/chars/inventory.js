@@ -42,7 +42,9 @@ export default class Inventory {
 
 		for( let i = this.items.length-1; i>= 0; i-- ) {
 
-			this.items[i] = itemRevive( state, this.items[i] ) || null;
+			var it = itemRevive( state, this.items[i] );
+			if ( it == null ) this.items.splice( i, 1 );
+			else this.items[i] = it;
 
 		}
 

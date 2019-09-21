@@ -38,6 +38,8 @@ export default class ProtoItem extends GData {
 
 		this.type = this.type || 'wearable';
 
+		console.log('PROTO ITEM TYPE: ' + this.type );
+
 		this.level = this.level || 1;
 		this.kind = this.kind || 'equip';
 		if ( this.attack ) {
