@@ -67,7 +67,7 @@
 		"desc":"runes carved on pieces of stone.",
 		"max":10,
 		"mod":{
-			"research.max":0.5,
+			"research.max":"1%",
 			"runes.rate":0.1,
 			"runes.max":0.03
 		}, "flavor":""

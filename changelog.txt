@@ -2,6 +2,8 @@
 
 FEATURES:
 
+Craft Rune: Now able to craft runestones with enough Crafting+Rune skills
+
 There is now a use for Chronomancy and Tempus.
 In initial phases.
 
@@ -17,6 +19,8 @@ Higher tier versions of low spells now require unlocking low version first.
 (following suggestion by Morkyl)
 
 BUGS:
+
+Fixed Bug Preventing Dungeons from ever starting again. :P
 
 Slight reduction in requirements to imbue elemental gem types.
 

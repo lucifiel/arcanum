@@ -1,11 +1,10 @@
 import Base, {mergeClass} from '../items/base';
-import { mergeSafe, jsonify } from 'objecty';
+import { mergeSafe } from 'objecty';
 import {tryDamage} from '../composites/combat';
 import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';
 import GameState from '../gameState';
-import Range from '../range';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.

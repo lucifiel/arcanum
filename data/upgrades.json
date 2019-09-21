@@ -746,7 +746,7 @@
 		"require":"g.lore>10&&g.conjuration>7",
 		"max":1,
 		"cost":{
-			"gold":500,
+			"gold":1000,
 			"research":500
 		},
 		"mod":{
@@ -1112,6 +1112,24 @@
 			"spirit.rate":0.01,
 			"divination.max":1,
 			"scrying.max":1
+		}
+
+	},
+	{
+		"id":"chakravarti",
+		"desc":"wheels upon wheels; you turn them all.",
+		"title":"chakravarti",
+		"require":"(g.dreadlord+g.battlemage)>0&&g.minions>=25&&g.player.level>=20",
+		"cost":{
+			"research":800,
+			"hp":100,
+			"tomes":5
+		},
+		"mod":{
+			"anatomy.max":2,
+			"arcanebody.max":3,
+			"minions.max":2,
+			"allies.max":1
 		}
 
 	},

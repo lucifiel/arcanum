@@ -160,7 +160,7 @@
 		"repeat":true,
 		"cost":{
 			"gold":1000,
-			"gems":10,
+			"gems":15,
 			"space":20
 		},
 		"mod":{
@@ -694,6 +694,7 @@
 			"space":10
 		},
 		"mod":{
+			"runestones.max":5,
 			"spiritgem.max":4,
 			"spiritlore.max":2,
 			"spirit.rate":0.02,
@@ -976,6 +977,23 @@
 		"mod":{
 			"earth.max":2,
 			"earth.rate":0.02
+		}
+
+	},
+	{
+
+		"id":"banquethall",
+		"name":"banquet hall",
+		"desc":"a grand hall to entertain guests and supplicants",
+		"require":"tier2",
+		"cost":{
+			"space":50,
+			"gems":20,
+			"gold":5000
+		},
+		"mod":{
+			"minions.max":"10%",
+			"allies.max":"10%"
 		}
 
 	},

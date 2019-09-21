@@ -114,7 +114,7 @@ const Runner = {
 		if ( this.waiting ) this.waiting = this.waiting.map(v=>this.reviveAct(gs,v), this);
 		else this.waiting = [];
 
-		if ( this.actives ) this.actives = this.actives.map(v=>this.reviveAct(gs,v), this);
+		if ( this.actives ) this.actives = this.actives.map(v=>this.reviveAct(gs,v,true), this);
 		else this.actives = [];
 
 		Events.add( ACT_DONE, this.actDone, this );
@@ -122,7 +122,7 @@ const Runner = {
 
 	},
 
-	reviveAct( gs, a ) {
+	reviveAct( gs, a, running=false ) {
 
 		if (!a) return;
 
@@ -135,7 +135,7 @@ const Runner = {
 		}
 		if ( a.type === 'dungone') return gs.raid;
 
-		a.running=true;
+		a.running=running;
 
 		return a;
 
