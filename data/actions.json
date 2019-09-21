@@ -95,6 +95,17 @@
 		"require":"spellbook",
 		"length":15,
 		"perpetual":true,
+		"at":{
+			"10":{
+				"effect.gold":0.2
+			},
+			"50":{
+				"effect.gold":0.2
+			},
+			"200":{
+				"effect.gold":0.2
+			}
+		},
 		"run":{
 			"stamina":0.2,
 			"mana":0.2
@@ -961,7 +972,7 @@
 	{
 		"id":"imbuemanagem",
 		"name":"Imbue gem (arcane)",
-		"require":"g.mana.max>=5&&g.enchanting>2",
+		"require":"g.mana.max>=5&&g.enchanting>0",
 		"fill":"managem",
 		"cost":{
 			"gems":1,

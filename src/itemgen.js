@@ -1,6 +1,6 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
-import { sublists, randElm, randMatch, includesAny, getPropDesc} from 'objecty';
+import { sublists, randElm, randMatch, includesAny} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
 import Npc from './chars/npc';
@@ -94,7 +94,8 @@ export default class ItemGen {
 
 		if ( proto.type === 'armor' || proto.type === 'weapon' || proto.type === 'wearable' ) {
 
-			it = new Wearable( proto );
+			console.log('instance wearable: ' + proto.id );
+			return this.itemClone( proto, this.matForItem(proto ));
 
 		} else if ( proto.type === 'potion' ) {
 
@@ -335,8 +336,8 @@ export default class ItemGen {
 	pickKind() {
 
 		let r = Math.random();
-		if ( r < 0.33 ) return 'armor';
-		if ( r < 0.66 ) return 'weapon';
+		if ( r < 0.5 ) return 'armor';
+		if ( r < 1 ) return 'weapon';
 		return 'equip';
 
 	}
@@ -345,6 +346,7 @@ export default class ItemGen {
 
 		data = new Wearable(data);
 
+		console.log('NEW WEARABLE');
 		if ( material ) {
 			data.applyMaterial( material );
 			data.name = material.id + ' ' + data.name;

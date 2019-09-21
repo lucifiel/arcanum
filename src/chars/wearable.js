@@ -63,10 +63,7 @@ export default class Wearable {
 
 		if ( v ) {
 
-			this._attack = v instanceof Attack ? v : new Attack(v);
-
-			console.log(this.id + ' attack: ' + this._attack );
-
+			this._attack = v instanceof Attack ? v.clone() : new Attack(v);
 		} else this._attack = null;
 
 	}
@@ -88,7 +85,6 @@ export default class Wearable {
 
 		if ( vars.template ) this.template = vars.template;
 
-		//console.log('this.attack: ' + this.attack );
 		this.type = this.type || 'wearable';
 	}
 
@@ -102,7 +98,8 @@ export default class Wearable {
 		if ( this.template ) {
 
 			if ( this.armor === null || this.armor === undefined ) this.armor = this.template.armor;
-			if ( this.tohit === null || this.tohit === undefined ) this.tohit = this.template.tohit;
+			// bonus applied for using item; not linked to attack.
+			if ( this.tohit === null || this.tohit === undefined ) this.tohit = this.template.tohit || 0;
 
 			if ( this.attack === null || this.attack === undefined ) this.attack = this.template.attack;
 
@@ -123,10 +120,14 @@ export default class Wearable {
 
 		if ( this.attack ) {
 
+
 			if ( this.attack.damage !== null && this.attack.damage !== undefined ) {
 				this.applyBonus( this.attack, 'damage', mat.bonus );
 			}
-			if ( mat.tohit ) this.applyBonus( this.attack, 'tohit', mat.tohit );
+			if ( mat.tohit ) {
+				console.log('apply mat to: ' + this.id );
+				this.applyBonus( this.attack, 'tohit', mat.tohit );
+			}
 
 		} else {
 
@@ -136,14 +137,21 @@ export default class Wearable {
 
 	/**
 	 * Bonus applied by material.
-	 * @param {*} obj
-	 * @param {*} prop
-	 * @param {*} amt
+	 * @param {Object} obj - object being modified.
+	 * @param {string} prop
+	 * @param {number|Mod} amt
 	 */
-	applyBonus( obj, prop, amt ) {
+	applyBonus( obj, prop, amt=0 ) {
 
-		if ( typeof obj[prop] === 'number') obj[prop] += amt;
-		else if ( obj[prop] instanceof Range ) obj[prop].add( amt );
+		let cur = obj[prop];
+		if ( cur === null || cur === undefined ) {
+			console.log('item tohit undefined. assign: ' + amt );
+			obj[prop] = amt;
+		}
+		else if ( typeof cur === 'number') {
+			 obj[prop] = cur + amt;
+		}
+		else if ( cur instanceof Range ) cur.add( amt );
 
 	}
 

@@ -476,7 +476,7 @@
 	{
 		"id":"enchanting",
 		"require":"g.tier0>0&&g.lore>=7",
-		"desc":"imbue mundane objects with magic properties.",
+		"desc":"imbue mundane gems and items with magical properties.",
 		"run":{
 			"stamina":0.4,
 			"research":1

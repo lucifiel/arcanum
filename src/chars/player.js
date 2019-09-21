@@ -8,6 +8,7 @@ import { tryDamage } from '../composites/combat';
 import Char, { getDelay } from './char';
 import Events, { LEVEL_UP } from "../events";
 import Attack from "./attack";
+import Wearable from "./wearable";
 
 /**
  * @constant {number} EXP_RATE
@@ -76,6 +77,7 @@ export default class Player extends Char {
 	get weapon() { return this._weapon; }
 	set weapon(v) {
 		this._weapon = v;
+		if ( !(v instanceof Wearable) ) console.log('NON WEAPON SOURCE');
 		if ( !v ) this._weapon = this.baseWeapon;
 	}
 

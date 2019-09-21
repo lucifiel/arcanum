@@ -23,7 +23,6 @@ export default {
 
 <div class="char-group">
 	<span class="title" v-if="label">{{ label }}</span>
-	<hr>
 	<div v-if="player">
 		<prog class="hp" :label="player.name"
 		:value="player.hp.value" :max="player.hp.max.value" /></div>

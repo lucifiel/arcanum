@@ -9,6 +9,7 @@ import Events, {
 } from '../events';
 
 import Monster from '../items/monster';
+import Wearable from '../chars/wearable';
 
 /**
 * Attempt to damage a target. Made external for use by dots, other code.
@@ -27,11 +28,11 @@ export function tryDamage(target, attack, attacker = null) {
 		}
 
 	}
-	if (attack.damage && attack.getDamage ) {
+	if (attack.damage ) {
 
 		// add optional base damage from attacker.
 
-		let dmg = attack.getDamage() +
+		let dmg = ( attack.getDamage ? attack.getDamage() : getDamage(attack.damage) ) +
 			((attacker && (attacker !== attack) && attacker.damage) ?
 				getDamage(attacker.damage) : 0);
 
@@ -205,6 +206,8 @@ export default class Combat {
 	allyAttack( attacker, src ) {
 
 		let atk = src ? (src.attack||src) : attacker.attack;
+
+		if ( src instanceof Wearable ) console.log( 'weap hit: ' + atk.tohit );
 
 		if ( atk.targets === 'all') {
 

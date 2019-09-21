@@ -210,11 +210,11 @@ export default {
 		this.initItems( dataLists['dungeons'], Dungeon );
 		this.initItems( dataLists['spells'], Spell );
 
-		gd.armors = this.initItems( dataLists['armors'], ProtoItem );
-		gd.armors.forEach( v=>v.type = 'armor' );
+		gd.armors = this.initItems( dataLists['armors'], ProtoItem, 'armor','armor' );
+		gd.armors.forEach( v=>v.kind = v.kind || 'armor' );
 
-		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem );
-		gd.weapons.forEach(v=>v.type='weapon');
+		gd.weapons = this.initItems( dataLists['weapons'], ProtoItem, 'weapon', 'weapon' );
+		gd.weapons.forEach(v=>v.kind=v.kind ||'weapon');
 
 		gd.potions = this.initItems( dataLists['potions'], Potion, 'potion', 'potion' );
 

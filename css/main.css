@@ -13,6 +13,7 @@
 	--action-btn-color: #fdc679;
 }
 :root body.darkmode {
+	--header-background-color: rgb(58, 58, 58);
 	--button-text-color: #FFF;
 	--action-button-text-color:#aaa;
 	--action-button-border-color: #FFF;
