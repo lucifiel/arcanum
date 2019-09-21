@@ -304,7 +304,11 @@
 		"speed":4,
 		"tohit":4,
 		"defense":3,
-		"damage":"1~2"
+		"attack":{
+			"kind":"physical",
+			"name":"peck",
+			"damage":"1~2"
+		}
 	},
 	{
         "id":"wombat",
