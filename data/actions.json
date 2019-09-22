@@ -663,7 +663,7 @@
 		"length":10,
 		"cost":{
 			"tomes":1,
-			"research":20,
+			"research":500,
 			"managem":5
 		},
 		"run":{
@@ -712,7 +712,7 @@
 			"scrolls":1
 		},
 		"run":{
-			"research":2
+			"research":3
 		},
 		"result":"starcharts"
 	},
@@ -841,7 +841,7 @@
 			"bones":10
 		},
 		"run":{
-			"research":4
+			"research":5
 		},
 		"result":{
 			"languages.max":3,
@@ -908,7 +908,7 @@
 			"gems":10
 		},
 		"run":{
-			"research":2
+			"research":5
 		},
 		"mod":{
 			"lore.max":1,
@@ -1127,7 +1127,7 @@
 		"require":"g.crafting>=20&&g.necromancy>=30",
 		"length":50,
 		"cost":{
-			"research":500,
+			"research":4000,
 			"shadowgem":20,
 			"spiritgem":20,
 			"bodies":1
@@ -1155,7 +1155,7 @@
 		"require":"g.crafting>=20&&g.necromancy>=30",
 		"length":50,
 		"cost":{
-			"research":1000,
+			"research":4000,
 			"shadowgem":20,
 			"spiritgem":20
 		},
@@ -1211,7 +1211,7 @@
 		"cost":{
 			"gold":400,
 			"gems":10,
-			"research":800
+			"research":1000
 		},
 		"result":{
 			"demonology.max":2,

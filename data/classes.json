@@ -300,7 +300,7 @@
 	"desc":"master of death magic",
 	"require":"g.tier2>0&&g.evil>0&&g.shadowlore>=15",
 	"cost":{
-		"research":1000,
+		"research":3000,
 		"bones":100,
 		"bodies":50,
 		"arcana":10
@@ -330,8 +330,8 @@
 	"warn":true,
 	"require":"g.tier1>0&&g.player.level>=10&&g.armory>0",
 	"cost":{
-		"research":250,
-		"arcana":3,
+		"research":550,
+		"arcana":7,
 		"gold":400
 	},
 	"effect":{
@@ -380,7 +380,8 @@
 	"cost":{
 		"research":1000,
 		"souls":50,
-		"arcana":10
+		"arcana":12,
+		"tomes":5
 	},
 	"effect":{
 		"tier2":true,
@@ -423,7 +424,7 @@
 	"tags":"t_tier3",
 	"require":"g.warlock>0&&g.demonology>=15",
 	"cost":{
-		"research":1000,
+		"research":3000,
 		"souls":50,
 		"arcana":15
 	},
@@ -438,7 +439,13 @@
 	"title":"druid",
 	"desc":"druid",
 	"tags":"t_tier2",
-	"require":"g.tier1>0&&g.naturelore>=15",
+	"require":"g.tier1>0&&g.naturelore>=12",
+	"cost":{
+		"research":1000,
+		"naturegem":10,
+		"hebs":50,
+		"arcana":10
+	},
 	"effect":{
 		"tier2":true,
 		"sp":1
@@ -477,6 +484,12 @@
 	"tags":"t_tier2",
 	"disable":[],
 	"warn":true,
+	"cost":{
+		"research":2000,
+		"managem":10,
+		"tomes":1,
+		"arcana":12
+	},
 	"effect":{
 		"tier2":true,
 		"sp":2
@@ -501,8 +514,8 @@
 	"actdesc":"Become a geomancer.",
 	"require":"g.tier1>0&&g.earthlore>=10",
 	"cost":{
-		"research":300,
-		"arcana":1,
+		"research":750,
+		"arcana":10,
 		"tomes":5,
 		"earthgem":10
 	},
@@ -529,8 +542,8 @@
 	"actdesc":"Become a pyromancer.",
 	"require":"g.tier1>0&&g.firelore>=10",
 	"cost":{
-		"research":300,
-		"arcana":1,
+		"research":750,
+		"arcana":10,
 		"tomes":5,
 		"firegem":10
 	},
@@ -557,8 +570,8 @@
 	"actdesc":"Become a hydromancer.",
 	"require":"g.tier1>0&&g.waterlore>=10",
 	"cost":{
-		"research":300,
-		"arcana":1,
+		"research":1000,
+		"arcana":10,
 		"tomes":5,
 		"watergem":10
 	},
@@ -585,8 +598,8 @@
 	"actdesc":"Become a wind.",
 	"require":"g.tier1>0&&g.airlore>=10",
 	"cost":{
-		"research":300,
-		"arcana":1,
+		"research":1000,
+		"arcana":10,
 		"tomes":5,
 		"airgem":10
 	},
@@ -609,6 +622,14 @@
 	"require":"g.tier2>0&&(g.earthlore>=20||g.waterlore>=20||g.airlore>=20||g.firelore>=20)",
 	"tags":"t_tier3",
 	"disable":[],
+	"cost":{
+		"research":3000,
+		"managem":5,
+		"firegem":10,
+		"earthgem":10,
+		"watergem":10,
+		"arcana":20
+	},
 	"effect":{
 		"tier3":true,
 		"sp":1
@@ -629,8 +650,8 @@
 	"require":"g.hydromancer>0||g.windmage>0",
 	"tags":"t_tier3",
 	"cost":{
-		"research":1000,
-		"arcana":10,
+		"research":3000,
+		"arcana":20,
 		"airgem":10,
 		"watergem":10,
 		"tomes":10
@@ -655,6 +676,11 @@
 	"desc":"Master of elemental forces.",
 	"require":"g.tier0>0&&g.airlore>2&&g.firelore>2&&g.earthlore>2&&g.waterlore>2",
 	"tags":"t_tier1",
+	"cost":{
+		"arcana":12,
+		"research":1000,
+		"codices":20
+	},
 	"effect":{
 		"tier1":true,
 		"sp":1
@@ -698,6 +724,12 @@
 	"tags":"t_tier1",
 	"desc":"A diviner.",
 	"require":"g.tier0>0&&g.spiritlore>=5&&g.divination>=5",
+	"cost":{
+		"research":750,
+		"gem":10,
+		"codices":10,
+		"arcana":5
+	},
 	"effect":{
 		"tier1":true,
 		"sp":2
@@ -721,6 +753,11 @@
 	"desc":"A diviner.",
 	"require":"g.tier1>0&&g.divination>=10",
 	"tags":"t_tier2",
+	"cost":{
+		"tomes":5,
+		"arcana":10,
+		"research":2000
+	},
 	"effect":{
 		"tier2":true,
 		"sp":2
@@ -742,7 +779,9 @@
 	"tags":"t_tier2",
 	"require":"g.tier1>0&&g.lore>20",
 	"cost":{
-		"research":700
+		"research":2000,
+		"arcana":10,
+		"tomes":1
 	},
 	"effect":{
 		"tier2":true,

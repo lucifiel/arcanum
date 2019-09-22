@@ -32,7 +32,7 @@
 		"buy":{
 
 			"watergem":10,
-			"tomes":1
+			"tomes":3
 
 		},
 		"flavor":"Come thou fount",
@@ -80,7 +80,7 @@
 		"school":"shadow",
 		"buy":{
 
-			"research":100,
+			"research":750,
 			"shadowgem":1
 
 		},
@@ -106,7 +106,7 @@
 		"buy":{
 
 			"shadowgem":10,
-			"tomes":1
+			"tomes":3
 
 		},
 		"cost":{
@@ -201,7 +201,7 @@
 		"require":"whirl1",
 		"buy":{
 
-			"research":100,
+			"research":500,
 			"codices":5,
 			"airgem":1
 
@@ -909,7 +909,7 @@
 		"require":"g.player.level>=5&&g.lightlore>=5",
 		"buy":{
 
-			"research":100,
+			"research":500,
 			"codices":1,
 			"lightgem":1
 
@@ -1008,7 +1008,7 @@
 		"school":"shadow",
 		"buy":{
 
-			"research":100,
+			"research":500,
 			"codices":1,
 			"shadowgem":1
 
@@ -1083,7 +1083,7 @@
 		"school":"nature",
 		"buy":{
 
-			"research":100,
+			"research":500,
 			"codices":1,
 			"naturegem":1
 
@@ -1109,7 +1109,7 @@
 		"school":"spirit",
 		"buy":{
 
-			"research":300,
+			"research":1000,
 			"codices":10,
 			"spiritgem":1
 
@@ -1159,7 +1159,7 @@
 		},
 		"buy":{
 
-			"research":100,
+			"research":500,
 			"codices":1,
 			"airgem":3
 
@@ -1181,6 +1181,7 @@
 		"require":"trickster",
 		"desc":"curse all enemies with a streak of bad luck.",
 		"buy":{
+			"research":1000,
 			"codices":10
 		},
 		"cost":{
@@ -1227,7 +1228,7 @@
 		"school":"light",
 		"buy":{
 
-			"research":75,
+			"research":1000,
 			"codices":10,
 			"lightgem":1
 
@@ -1277,7 +1278,7 @@
 		"level":2,
 		"buy":{
 
-			"research":30,
+			"research":750,
 			"codices":1,
 			"earthgem":3
 
@@ -1302,7 +1303,7 @@
 		"level":4,
 		"buy":{
 
-			"research":100,
+			"research":1000,
 			"tomes":1,
 			"earthgem":5
 
@@ -1327,7 +1328,7 @@
 		"level":10,
 		"buy":{
 
-			"research":300,
+			"research":4000,
 			"tomes":5,
 			"earthgem":30
 
@@ -1353,7 +1354,7 @@
 		"desc":"temporarily negate all fire damage",
 		"buy":{
 
-			"research":100,
+			"research":4000,
 			"tomes":1
 
 		},
@@ -1378,7 +1379,7 @@
 		"require":"venom1",
 		"buy":{
 
-			"research":100,
+			"research":4000,
 			"tomes":1,
 			"naturegem":10
 
@@ -1407,7 +1408,7 @@
 		"level":5,
 		"buy":{
 
-			"research":400,
+			"research":3000,
 			"tomes":1,
 			"shadowgem":5,
 			"spiritgem":1

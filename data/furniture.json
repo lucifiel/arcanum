@@ -951,7 +951,7 @@
 		"repeat":false,
 		"cost":{
 			"gold":500,
-			"research":500,
+			"research":700,
 			"space":50
 		},
 		"mod":{
@@ -1107,7 +1107,7 @@
 		"cost":{
 			"space":50,
 			"gold":400,
-			"research":100
+			"research":250
 		},
 		"mod":{
 			"dissection.max":3,
@@ -1165,7 +1165,7 @@
 		"require":"g.codices>=100",
 		"cost":{
 			"gold":500,
-			"research":500,
+			"research":750,
 			"space":100
 		},
 		"mod":{
@@ -1182,7 +1182,7 @@
 		"require":"tier4",
 		"cost":{
 			"gold":300,
-			"research":2000,
+			"research":4000,
 			"space":100
 		},
 		"mod":{
