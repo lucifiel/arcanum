@@ -3001,7 +3001,7 @@
 		"unique":true,
         "evil":100,
         "kind":"outsider",
-        "desc":"The gargantuan entity in the depths of Mr. Gorbu has never been seen by mortal eyes.",
+        "desc":"The gargantuan entity in the depths of Mr. Gorbu never seen by mortal eyes.",
         "hp":1200,
 		"tohit":33,
 		"regen":30,

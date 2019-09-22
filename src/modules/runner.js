@@ -28,7 +28,10 @@ const Runner = {
 		for( let i = this.actives.length-1; i>= 0;i-- ) {
 
 			var a = this.actives[i];
-			if ( a.type === 'skill' ) a.exp = v;
+			if ( a.type === 'skill' ) {
+				a.exp = v;
+				return;
+			}
 
 		}
 	},

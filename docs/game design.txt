@@ -9,6 +9,7 @@ tenwick's walking stick
 
 staff of the dryad
 fazbit's workshop
+fazbit's fixations
 the black spindle
 robes of tharandul
 
@@ -17,6 +18,13 @@ sirith tal
 ellister's boots of bounding
 
 epiphany
+
+treatise
+text
+folio
+lorebook
+compendium
+magister's manual
 
 grove/glade?
 

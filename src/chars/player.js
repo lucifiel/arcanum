@@ -33,7 +33,8 @@ export default class Player extends Char {
 	 * @property {string[]} titles
 	 */
 	get titles(){
-		return this._titles || ( this._titles = [] );
+		if ( this._titles == null ) this._titles = [];
+		return this._titles;
 	}
 	set titles(v){
 		this._titles = v;

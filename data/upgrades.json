@@ -435,7 +435,7 @@
 		},
 		"flavor":"magic will do our magic for us now",
 		"mod":{
-			"scrolls.rate":0.01
+			"scrolls.rate":0.05
 		}
 
 	},
@@ -452,10 +452,27 @@
 		},
 		"flavor":"spirits never sleep",
 		"mod":{
-			"scrolls.rate":-0.001,
-			"codices.rate":0.001
+			"scrolls.rate":-0.01,
+			"codices.rate":0.01
 		}
 
+	},
+	{
+		"id":"ghostchains",
+		"name":"ghost chains",
+		"require":"g.spirit>=8&&g.ghostcompiler>1&&g.crafting>=9",
+		"desc":"hold more spirits in your sway",
+		"max":3,
+		"cost":{
+			"research":200,
+			"tomes":1,
+			"spirit":7,
+			"air":5
+		},
+		"mod":{
+			"ghostcompiler.max":3,
+			"unseenscribe.max":3
+		}
 	},
 	{
 		"id":"bonecollector",
@@ -787,6 +804,22 @@
 
 	},
 	{
+		"id":"poisonaffinity",
+		"name":"poison affinity",
+		"desc":"a natural resistance to most poisons.",
+		"require":"g.nature>10",
+		"cost":{
+			"research":200,
+			"naturegem":10,
+			"tomes":1
+		},
+		"mod":{
+			"player.resist.poison":7,
+			"player.resist.venom":7
+		}
+
+	},
+	{
 		"id":"airaffinity",
 		"desc":"air affinity",
 		"require":"g.air>10",
@@ -823,7 +856,7 @@
 		"cost":{
 			"research":500,
 			"firegem":15,
-			"tomes":3
+			"tomes":5
 		},
 		"mod":{
 			"player.resist.fire":15
@@ -839,7 +872,7 @@
 		"cost":{
 			"research":500,
 			"watergem":15,
-			"tomes":3
+			"tomes":5
 		},
 		"mod":{
 			"player.resist.water":15
@@ -855,7 +888,7 @@
 		"cost":{
 			"research":500,
 			"earthgem":15,
-			"tomes":3
+			"tomes":5
 		},
 		"mod":{
 			"player.resist.earth":15
@@ -889,6 +922,22 @@
 		},
 		"mod":{
 			"player.resist.fire":5
+		}
+
+	},
+	{
+		"id":"poisonveins",
+		"name":"poison veins",
+		"desc":"you do not fear poison",
+		"require":"g.poisonaffinity>0&&g.nature>14",
+		"cost":{
+			"research":500,
+			"naturegem":15,
+			"tomes":5
+		},
+		"mod":{
+			"player.resist.poison":13,
+			"player.resist.venom":13
 		}
 
 	},
@@ -1531,10 +1580,10 @@
 			"gold":300
 		},
 		"mod":{
-			"gold.rate":0.01,
-			"scrolls.rate":0.002,
-			"codices.rate":0.001,
-			"tomes.rate":0.0001
+			"gold.rate":0.1,
+			"scrolls.rate":0.02,
+			"codices.rate":0.01,
+			"tomes.rate":0.001
 		},"flavor":"why does it cost money?"
 
 	},

@@ -336,7 +336,7 @@ export default class ItemGen {
 	pickKind() {
 
 		let r = Math.random();
-		if ( r < 0 ) return 'armor';
+		if ( r < 0.5 ) return 'armor';
 		if ( r < 1 ) return 'weapon';
 		return 'equip';
 

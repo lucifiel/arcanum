@@ -194,7 +194,7 @@
 		"desc":"A cramped cage for keeping tiny test subjects.",
 		"tags":"t_pets,shadowsource",
 		"require":"neophyte",
-		"repeat":true,
+		"max":3,
 		"cost":{
 			"gold":50,
 			"space":1,
@@ -247,7 +247,7 @@
 	{
 
 		"id":"workbench",
-		"desc":"A small bench for arts and crafts.",
+		"desc":"A small bench for arts and crafts. Necessary for many wizard studies.",
 		"tags":"workspace",
 		"locked":false,
 		"repeat":true,
@@ -265,7 +265,7 @@
 		"id":"writingdesk",
 		"name":"writing desk",
 		"desc":"A desk for working and scribing.",
-		"require":"scribe",
+		"require":"evt_helper",
 		"tags":"workspace",
 		"cost":{
 			"gold":100,
@@ -283,7 +283,7 @@
 		"name":"crafting table",
 		"tags":"workspace",
 		"desc":"Wide table for crafting projects.",
-		"require":"scribe",
+		"require":"evt_helper",
 		"cost":{
 			"gold":100,
 			"space":2
@@ -314,7 +314,7 @@
 		"id":"plant",
 		"name":"potted milkweed",
 		"locked":false,
-		"desc":"Really brightens up the place",
+		"desc":"Really brightens up the place.",
 		"tags":"taggarden",
 		"repeat":true,
 		"cost":{
@@ -332,7 +332,7 @@
 		"desc":"a quickly growing plant",
 		"tags":"taggarden",
 		"require":"g.herbalism>=4",
-		"repeat":true,
+		"max":5,
 		"cost":{
 			"gold":75,
 			"space":1
@@ -362,7 +362,7 @@
 
 		"id":"pedestal",
 		"desc":"A pedestal for reading magic tomes. Improves study habits.",
-		"require":"scribe",
+		"require":"evt_helper",
 		"cost":{
 			"gold":50,
 			"space":1
@@ -620,6 +620,40 @@
 
 	},
 	{
+		"id":"grotesque",
+		"tags":"earthsource",
+		"require":"g.tier1>0&&g.earthlore>3&&g.shadowlore>3",
+		"desc":"a grim and disfigured stone statue",
+		"max":4,
+		"cost":{
+			"gold":750,
+			"space":5
+		},
+		"mod":{
+			"earthlore.rate":0.2,
+			"earthlore.max":1,
+			"shadowlore.rate":0.1,
+			"shadowlore.max":1
+		}
+	},
+	{
+		"id":"gargoyle",
+		"tags":"watersource",
+		"require":"g.tier1>0&&g.waterlore>3&&g.shadowlore>3",
+		"desc":"a fountain issues from the stone demon's mouth",
+		"max":4,
+		"cost":{
+			"gold":750,
+			"space":5
+		},
+		"mod":{
+			"waterlore.rate":0.2,
+			"shadowlore.rate":0.1,
+			"shadowlore.max":1,
+			"waterlore.max":1
+		}
+	},
+	{
 		"id":"fountain",
 		"desc":"Water Fountain",
 		"tags":"watersource",
@@ -630,7 +664,7 @@
 		},
 		"mod":{
 			"water.rate":0.1,
-			"water.max":1
+			"waterlore.max":1
 		}
 	},
 	{
@@ -670,6 +704,7 @@
 		"desc":"Receptacle for bones.",
 		"tags":"shadowsource,spiritsource",
 		"require":"evil",
+		"max":3,
 		"repeat":true,
 		"cost":{
 			"gold":300,
@@ -774,6 +809,7 @@
 		"id":"archive",
 		"desc":"arcane archive",
 		"require":"g.lore.max>=15",
+		"max":3,
 		"cost":{
 			"gold":400,
 			"research":100,

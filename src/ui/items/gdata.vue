@@ -5,6 +5,8 @@ import ItemsBase from '../itemsBase.js';
 import InfoBlock from './info-block.vue';
 import Attack from './attack.vue';
 
+import {precise} from '../../util/format';
+
 export default {
 	props:['item'],
 	name:"gdata",
@@ -16,7 +18,8 @@ export default {
 	methods:{
 		sellPrice(it){
 			return Game.sellPrice(it);
-		}
+		},
+		precise(v){return precise(v);}
 	}
 
 }
@@ -35,7 +38,7 @@ export default {
 				item.max ? Math.floor(item.max.value ) : ( (item.repeat) ? '&infin;' : 1) }}</span>
 
 	</span>
-		<span class="flex-right" v-if="item.rate&&item.rate.value!=0">{{ item.rate.value.toPrecision(2) }} /s</span>
+		<span class="flex-right" v-if="item.rate&&item.rate.value!=0">{{ precise( item.rate.value ) }} /s</span>
 		<div>
 
 

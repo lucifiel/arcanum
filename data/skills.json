@@ -151,10 +151,11 @@
 			"stamina":0.25
 		},
 		"result":{
-			"sp":0.05,
-			"research":{
-				"max":1
-			}
+			"sp":0.05
+		},
+		"mod":{
+			"research.max":2,
+			"herbs.max":2
 		}
 	},
 	{

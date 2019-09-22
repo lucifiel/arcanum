@@ -196,6 +196,8 @@ export default class Mod {
 
 			targ.value = ( ( Number(targ.value) || 0 ) + amt*this._bonus )*( 1 + amt*this._pct );
 
+			// TODO? Percent all of obj?
+
 		} else if ( typeof targ === 'number' ) {
 			obj[p] = ( targ + amt*this._bonus )*(1 + amt*this._pct );
 		}

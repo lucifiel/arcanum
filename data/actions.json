@@ -851,10 +851,34 @@
 
 	},
 	{
+		"id":"fazbitfixations",
+		"name":"fazbit's fixations",
+		"require":"g.alchemy>=6&&g.tier0>0",
+		"desc":"scribe a copy the seminal text in practical alchemy",
+		"length":50,
+		"repeat":false,
+		"cost":{
+			"codices":25
+		},
+		"run":{
+			"research":2
+		},
+		"result":{
+			"research.max":10,
+			"alchemy.max":2,
+			"alchemy.rate":0.5,
+			"fire.max":1,
+			"mana.max":1,
+			"mana.rate":0.1
+		},"flavor":"corivar called fazbit a mad crank. then came begging for his manuals."
+
+	},
+	{
 		"id":"coporisfabrica",
 		"name":"coporis fabrica",
 		"require":"g.player.level>=8&&g.anatomy>=5",
 		"desc":"a manual of the human body",
+		"tags":"book",
 		"length":40,
 		"repeat":false,
 		"cost":{

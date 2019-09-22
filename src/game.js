@@ -782,7 +782,10 @@ export default {
 				e = effect[p];
 
 				if ( target === undefined || target === null ) {
-					if ( p === 'title') this.state.player.addTitle( e );
+					if ( p === 'title') {
+						this.state.player.addTitle( e );
+						continue;
+					}
 					else this.applyToTag( p, e, dt );
 				} else {
 					if ( target.type === 'event' ) this.unlockEvent( target );
