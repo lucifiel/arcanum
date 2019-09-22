@@ -681,6 +681,7 @@
 		"name":"sublimate lore",
 		"desc":"internalize a vast amount of existing knowledge.",
 		"require":"g.codices.max>=10",
+		"warn":true,
 		"cost":{
 			"codices":30
 		},

@@ -158,7 +158,7 @@
 	{
 		"id":"naturegem",
 		"tags":"gem",
-		"name":"life gem",
+		"name":"nature gem",
 		"desc":"physical essence of life.",
 		"max":2,
 		"flavor":"the force from the beginning"

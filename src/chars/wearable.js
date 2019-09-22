@@ -17,7 +17,6 @@ export default class Wearable {
 		let data = this.excludeJSON( ['material', 'kind'] ) || {};
 
 		data.id = this.id;
-		console.log('my id: ' + this.id );
 
 		if ( !this.template ) console.warn('MISSING TEMPLATE: ' + this.id );
 		else if ( typeof this.template === 'string' ) {

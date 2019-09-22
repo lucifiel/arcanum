@@ -40,8 +40,6 @@ export default class ProtoItem extends GData {
 
 		this.level = this.level || 1;
 
-		console.log('TEMPLATE: ' + this.template);
-		console.log('tmp id: ' + (this.template.id));
 		if ( this.attack ) {
 			if ( !this.attack.damage ) this.attack.damage = this.attack.dmg;
 		}

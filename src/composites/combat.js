@@ -5,7 +5,7 @@ import Npc, { ALLY } from '../chars/npc';
 
 import Events, {
 	EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN, ALLY_DIED,
-	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, HALT_ACT
+	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, ACT_BLOCKED
 } from '../events';
 
 import Monster from '../items/monster';
@@ -353,7 +353,7 @@ export default class Combat {
 
 	playerDied() {
 		Events.dispatch( PLAYER_SLAIN, null );
-		Events.dispatch( HALT_ACT, Game.state.raid );
+		Events.dispatch( ACT_BLOCKED, Game.state.raid );
 	}
 
 }

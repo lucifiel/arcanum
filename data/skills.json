@@ -554,7 +554,7 @@
 	},
 	{
 		"id":"chronomancy",
-		"require":["tier2","timesource"],
+		"require":["tier3","timesource"],
 		"desc":"There must be a way...",
 		"run":{
 			"stamina":0.3,

@@ -100,7 +100,7 @@
 	{
 		"id":"timesplit",
 		"desc":"perform actions of different types simultaneously.",
-		"require":"g.chronomancy",
+		"require":"chronomancy",
 		"cost":{
 			"arcana":10,
 			"tempus":5
@@ -1189,6 +1189,7 @@
 		"max":3,
 		"desc":"expend your research to enhance your mental fortitude.",
 		"require":"g.lore>=7&&g.tier0>0",
+		"warn":true,
 		"cost":{
 			"research.max":25,
 			"mana":5
@@ -1207,6 +1208,7 @@
 		"max":3,
 		"desc":"expend your research to enhance your durability.",
 		"require":"g.lore>=7&&g.tier0>0",
+		"warn":true,
 		"cost":{
 			"research.max":25,
 			"mana":5
@@ -1223,6 +1225,7 @@
 		"max":3,
 		"desc":"expend your research to discover new sources of stamina.",
 		"require":"g.lore>=7&&g.tier0>0",
+		"warn":true,
 		"cost":{
 			"research.max":25,
 			"mana":5
@@ -1390,9 +1393,8 @@
 			"arcana":1
 		},
 		"mod":{
-			"player.attack.bonus":{
-				"kind":"fire",
-				"damage":1
+			"player.bonuses.fire":{
+				"damage":2
 			},
 			"firelore.max":1,
 			"firelore.rate":0.2,

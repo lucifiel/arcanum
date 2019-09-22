@@ -340,7 +340,7 @@
 		"id":"palace",
 		"desc":"luxurious, spawling estate to advance your studies in maximum comfort.",
 		"cost":10000,
-		"require":"g.arcana>=15",
+		"require":"tier2",
 		"mod":{
 			"minions.max":20,
 			"space.max":400,
@@ -354,7 +354,7 @@
 	{
 		"id":"castle",
 		"desc":"A vast and practical fortress, for the magic user with enemies.",
-		"require":"g.arcana>=15",
+		"require":"tier2",
 		"cost":10000,
 		"mod":{
 			"minions.max":20,
@@ -372,7 +372,10 @@
 		"mod":{
 			"minions.max":20,
 			"space.max":350,
-			"water.max":3,
+			"airlore.max":1,
+			"waterlore.max":2,
+			"waterlore.rate":0.2,
+			"water.max":2,
 			"water.rate":0.1
 		}
 	},
@@ -428,15 +431,15 @@
 		"name":"Enchanted Grove",
 		"desc":"Enchanted Grove",
 		"tags":"outdoors",
-		"require":"g.enchanter>0||g.druid>0",
+		"require":"g.enchanter>0||g.druid>0||g.witch>0",
 		"cost":{
 			"gold":5000,
-			"research":500,
-			"mana":500
+			"research":1000,
+			"gems":50
 		},
 		"mod":{
 			"minions.max":20,
-			"space.max":500,
+			"space.max":420,
 			"enchanting.max":2,
 			"enchanting.rate":"10%"
 		}
@@ -446,15 +449,15 @@
 		"name":"Shrouded Isle",
 		"tags":"outdoors",
 		"desc":"A lonely isle at sea",
-		"require":"g.enchanter>0||g.druid>0",
+		"require":"g.enchanter>0||g.druid>0||g.witch>0",
 		"cost":{
 			"gold":5000,
 			"gems":50,
-			"mana":500
+			"research":1000
 		},
 		"mod":{
 			"minions.max":25,
-			"space.max":500,
+			"space.max":420,
 			"waterlore.max":5,
 			"airlore.max":2,
 			"water.rate":0.1,

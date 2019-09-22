@@ -126,6 +126,10 @@ export default class Player extends Char {
 		data.damage = ( this.damage );
 		data.dots = ( this.dots );
 
+		data.bonuses = this.bonuses;
+		data.immunities = this.immunities;
+		data.resists =this.resists;
+
 		data.statuses = this.statuses;
 		data.className = this.className;
 

@@ -39,8 +39,13 @@ const ACT_DONE = 'act_done';
  */
 const HALT_ACT = 'halt_act';
 
+/**
+ * Action blocked or failed.
+ */
+const ACT_BLOCKED = 'act_blocked';
+
 export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID,
-	ACT_CHANGED, ACT_IMPROVED,
+	ACT_CHANGED, ACT_IMPROVED, ACT_BLOCKED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {
@@ -78,6 +83,8 @@ export default {
 		events.removeAllListeners( ACT_DONE );
 		events.removeAllListeners( ACT_CHANGED );
 		events.removeAllListeners( ACT_IMPROVED );
+		events.removeAllListeners( ACT_BLOCKED );
+		events.removeAllListeners( HALT_ACT);
 
 		events.removeAllListeners( EVT_COMBAT );
 		events.removeAllListeners( ENEMY_SLAIN );

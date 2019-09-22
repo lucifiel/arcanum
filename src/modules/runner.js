@@ -1,6 +1,6 @@
 import Game from '../game';
 import {quickSplice} from '../util/util';
-import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT} from '../events';
+import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED } from '../events';
 import Stat from '../stat';
 import Base, {mergeClass} from '../items/base';
 import Runnable from '../composites/runnable';
@@ -133,6 +133,7 @@ const Runner = {
 
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.stopAction, this );
+		Events.add( ACT_BLOCKED, this.actBlocked, this );
 
 	},
 
@@ -166,8 +167,7 @@ const Runner = {
 
 		if ( ind >= 0 ) {
 
-			this.stopAction(ind);
-			// TRY REST?
+			this.stopAction(ind, false);
 
 
 		} else {
@@ -212,6 +212,17 @@ const Runner = {
 		}
 
 
+
+	},
+
+	/**
+	 *
+	 * @param {Action} act
+	 */
+	actBlocked( act ) {
+
+		this.stopAction( act, false );
+		if ( !act.hasTag(REST_TAG) ) this.doRest();
 
 	},
 
@@ -333,7 +344,6 @@ const Runner = {
 	 * @public
 	 */
 	doRest(){
-		console.log('TRYING REST');
 		this.tryAdd( Game.state.restAction );
 	},
 
@@ -365,7 +375,7 @@ const Runner = {
 
 		if ( a.fill && Game.filled(a.fill ) ) {
 
-			this.stopAction(a);
+			this.actBlocked(a);
 
 		} else if ( a.update ) {
 

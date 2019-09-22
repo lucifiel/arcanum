@@ -9,9 +9,7 @@ const postfixes = [
 export const precise = (v, n=2) => {
 
 	if ( typeof v !== 'number ') {
-		let k = Number(v);
-		if ( Number.isNaN(v)) return v;
-		v = k;
+		return v;
 	}
 
 	if ( Math.pow(10,n)*v < 1 ) n += 2;
