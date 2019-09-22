@@ -565,7 +565,7 @@
             "kind":"pierce",
             "dmg":"1~4"
         }, "biome":["mountains","hills","swamp"],
-        "loot":{"gold":"0~1"}
+        "loot":{"gold":"1~3"}
 
     },
     {

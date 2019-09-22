@@ -3,6 +3,7 @@
 	{
 		"id":"crafting",
 		"need":"workspace",
+		"desc":"an absolutely vital skill for a wizard to craft arcane items.",
 		"buy":{
 			"research":20
 		},
@@ -18,6 +19,7 @@
 		"id":"lore",
 		"school":"arcane",
 		"verb":"reading lore",
+		"desc":"nothing is more important to a wizard than the depth of their lore.",
 		"locked":false,
 		"buy":{
 			"research":20
@@ -173,6 +175,7 @@
 		"id":"languages",
 		"school":"lore",
 		"require":"lore",
+		"desc":"books and scrolls are written in many obscure languages. learn as many as possible.",
 		"verb":"linguisticizing",
 		"buy":{
 			"research":10

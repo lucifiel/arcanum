@@ -1,4 +1,5 @@
 import Range from "../range";
+import { assignPublic } from "../util/util";
 
 export default class Attack {
 
@@ -51,7 +52,7 @@ export default class Attack {
 
 	constructor( vars=null ){
 
-		if ( vars ) Object.assign(this,vars);
+		if ( vars ) assignPublic(this,vars); //Object.assign(this,vars);
 
 		this.damage = this.damage || 0;
 		this.bonus = this.bonus || 0;

@@ -42,7 +42,7 @@ if ( false ) {
 			let targ = cheatKeys[key];
 
 			if (key === 'p') {
-				// @todo
+				this.state.getData('runner').autoProgress();
 				e.stopPropagation();
 			}
 

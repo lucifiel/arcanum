@@ -30,6 +30,9 @@ export function tryDamage(target, attack, attacker = null) {
 	}
 	if (attack.damage ) {
 
+		if ( !attack.getDamage){
+			console.error('NO DMG FUNC: ' + attack );
+		}
 		// add optional base damage from attacker.
 
 		let dmg = ( attack.getDamage ? attack.getDamage() : getDamage(attack.damage) ) +

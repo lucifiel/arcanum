@@ -233,7 +233,7 @@
 		},
 		"at":{
 
-			"50":{ "effect.gold":0.2 },
+			"50":{ "effect.gold":0.25 },
 			"500":{ "effect.gold":0.5 },
 			"1500":{ "effect.gold":1 }
 
@@ -680,12 +680,23 @@
 		"id":"sublimate",
 		"name":"sublimate lore",
 		"desc":"internalize a vast amount of existing knowledge.",
-		"require":"g.codices.max>=20",
+		"require":"g.codices.max>=10",
 		"cost":{
 			"codices":30
 		},
+		"at":{
+			"10":{
+				"effect.research.max":5
+			},
+			"50":{
+				"effect.research.max":5
+			},
+			"100":{
+				"effect.research.max":10
+			}
+		},
 		"effect":{
-			"research.max":1,
+			"research.max":5,
 			"arcana":1
 		}
 

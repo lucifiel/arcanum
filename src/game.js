@@ -951,8 +951,10 @@ export default {
 	canUse( it ){
 
 		if ( it.disabled || (it.need && !this.unlockTest( it.need, it )) ) return false;
-
 		if ( it.buy && !it.owned && !this.canPay(it.buy) ) return false;
+
+		if ( it.perpetual || it.length>0 ) { return this.canRun(it); }
+
 		if ( it.slot && this.state.getSlot(it.slot, it.type ) === it) return false;
 		if ( it.maxed() ) return false;
 

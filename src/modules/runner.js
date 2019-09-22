@@ -33,6 +33,19 @@ const Runner = {
 		}
 	},
 
+	/**
+	 * Used for cheat.
+	 */
+	autoProgress(){
+
+		for( let i = 0; i < this.actives.length; i ++ ) {
+			var a = this.actives[i];
+
+			if ( a.length ) a.exp = a.length - 0.01;
+
+		}
+
+	},
 
 	/**
 	 * @item compat.
@@ -108,8 +121,6 @@ const Runner = {
 		}
 
 		if ( !this._max ) this.max = 1;
-
-		console.log('MAX ACTIONS: ' + this.max.value );
 
 		if ( this.waiting ) this.waiting = this.waiting.map(v=>this.reviveAct(gs,v), this);
 		else this.waiting = [];

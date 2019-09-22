@@ -49,7 +49,7 @@
 		"id":"tier0",
 		"name":"Solitary Magic",
 		"desc":"Some say the study of magic doesn't truly begin until apprenticeship ends. People say a lot of things.",
-		"disable":["study","buyscroll", "chores","errands","leavemaster","slaymaster", "pestcontrol"],
+		"disable":["study", "chores","errands","leavemaster","slaymaster", "pestcontrol"],
 		"effect":{
 			"innroom":true,
 			"sp":1,
@@ -64,7 +64,7 @@
 		"id":"tier1",
 		"name":"Profressional Magick",
 		"desc":"Every province has its handful of runaway apprentices and failed Adepts. It's not uncommon for thieves and rangers to know a spell or two. They are nothing compared to the talents of a true professional.",
-		"disable":["treatailments","prestidigitation"],
+		"disable":["treatailments","prestidigitation","buyscroll"],
 		"lock":["t_tier1", "t_tier0"],
 		"effect":{
 			"sp":1,

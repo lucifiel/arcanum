@@ -21,7 +21,7 @@
 	{
 		"id":"sect_raid",
 		"name":"adventure",
-		"require":"apprentice"
+		"require":"evt_helper"
 
 	},
 	{

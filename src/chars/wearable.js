@@ -4,20 +4,26 @@ import Attack from './attack';
 
 import {mergeSafe} from "objecty";
 import Mod from '../mod';
+import { logObj, assignPublic, assignNoFunc } from '../util/util';
 
 
 export default class Wearable {
 
 	get value() { return 1;}
-	set value(v) {}
+	set value(v){}
 
 	toJSON() {
 
 		let data = this.excludeJSON( ['material', 'kind'] ) || {};
 
 		data.id = this.id;
+		console.log('my id: ' + this.id );
 
-		if ( !this.template ) console.warn('err: missing template: ' + this.id );
+		if ( !this.template ) console.warn('MISSING TEMPLATE: ' + this.id );
+		else if ( typeof this.template === 'string' ) {
+			console.log('STRING TEMPLATE: ' + this.template);
+			data.template = this.template;
+		}
 		else data.template = this.template.id;
 
 		data.name = this.name;
@@ -63,6 +69,7 @@ export default class Wearable {
 
 		if ( v ) {
 
+			console.log('CREATING WEARABLE ATTACK: '  + v );
 			this._attack = v instanceof Attack ? v.clone() : new Attack(v);
 		} else this._attack = null;
 
@@ -81,11 +88,15 @@ export default class Wearable {
 
 	constructor(vars=null){
 
-		if ( vars ) Object.assign(this,vars);
+		if ( vars ) assignNoFunc(this,vars );// Object.assign(this,vars);
 
-		if ( vars.template ) this.template = vars.template;
+		//if ( vars ) logObj( vars, 'vars');
+		//if( vars.template ) logObj( vars.template, ' template' );
+		if ( !this.type ) {
+			console.warn('NO TYPE. USING WEARABLE');
+			this.type = 'wearable';
+		}
 
-		this.type = this.type || 'wearable';
 	}
 
 	maxed() { return false; }

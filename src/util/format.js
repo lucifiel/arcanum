@@ -1,9 +1,23 @@
+const postfixes = [
+
+	'k', 'm', 'b'
+]
+
 /**
  * Formatting helpers for HTML/Display.
  */
-
 export const precise = (v, n=2) => {
-	return ( typeof v === 'number') ? v.toPrecision(n) : v;
+
+	if ( typeof v !== 'number ') {
+		let k = Number(v);
+		if ( Number.isNaN(v)) return v;
+		v = k;
+	}
+
+	if ( Math.pow(10,n)*v < 1 ) n += 2;
+
+
+	return ( typeof v === 'number') ? v.toFixed(n) : v;
 }
 
 

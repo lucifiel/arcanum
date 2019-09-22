@@ -1,6 +1,7 @@
 <script>
 import Game from '../game';
 import Runner from '../modules/runner';
+import {HALT_ACT} from '../events';
 
 export default {
 
@@ -9,7 +10,8 @@ export default {
 		actionStr( a ){
 			return (a.verb || a.name) +
 				( ( a.length ) ? ' ' + a.percent().toFixed(0) + '%': '' );
-		}
+		},
+		halt(a) { this.dispatch( HALT_ACT, a); }
 
 	},
 	computed:{
@@ -26,7 +28,7 @@ export default {
 <div class='running'>
 
 	<div v-for="v in runner.actives" :key="v.id">
-		<span>{{ actionStr(v) }}</span>
+		<button @click="halt(v)">Stop</button><span>{{ actionStr(v) }}</span>
 	</div>
 
 </div>
