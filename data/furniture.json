@@ -109,6 +109,7 @@
 			"space":2
 		},
 		"mod":{
+			"firelore.max":1,
 			"rest":{
 				"effect":{
 					"stamina":0.1,
@@ -563,12 +564,14 @@
 		"desc":"Stand of burning hot coals.",
 		"tags":"firesource,spiritsource",
 		"require":"tier0",
+		"max":3,
 		"repeat":true,
 		"cost":{
 			"gold":150,
 			"space":1
 		},
 		"mod":{
+			"firelore.max":1,
 			"fire.rate":0.02
 		}
 
@@ -581,8 +584,24 @@
 			"space":1
 		},
 		"mod":{
+			"firelore.max":1,
 			"fire.rate":0.05
 		}
+
+	},
+	{
+		"id":"bonfire",
+		"tags":"firesource",
+		"require":"g.space>=20",
+		"desc":"a burning pyre for the practice of pyromancy.",
+		"cost":{
+			"fire":4,
+			"space":2
+		},
+		"mod":{
+			"firelore.max":1,
+			"fire.rate":0.05
+		},"flavor":"be careful where you put it."
 
 	},
 	{

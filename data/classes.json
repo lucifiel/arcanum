@@ -670,7 +670,7 @@
 	"title":"high elemental",
 	"tags":"t_tier4",
 	"desc":"Lord of the elements",
-	"require":"g.tier4>0&&g.airlore>9&&g.firelore>9&&g.waterlore>9&&g.earthlore>9",
+	"require":"g.tier3>0&&g.airlore>9&&g.firelore>9&&g.waterlore>9&&g.earthlore>9",
 	"cost":{
 		"tomes":10,
 		"airgem":10,
@@ -680,10 +680,14 @@
 	},
 	"effect":{
 		"tier3":true,
-		"sp":1
+		"sp":2
 	},
 	"mod":{
-		"research.max":5,
+		"airlore.max":1,
+		"firelore.max":1,
+		"earthlore.max":1,
+		"waterlore.max":1,
+		"research.max":25,
 		"elemental.max":2,
 		"elemental.rate":0.2
 	}

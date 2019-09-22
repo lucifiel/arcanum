@@ -2,6 +2,10 @@
 
 FEATURES:
 
+More avenues for water and fire advancement.
+
+Fixed broken High Elemental requirement and some High elemental buffs.
+
 Some waterlore /earthlore furniture sources.
 
 BUGFIX:
