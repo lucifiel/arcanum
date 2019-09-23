@@ -16,10 +16,28 @@ export default {
 		attack:Attack
 	},
 	methods:{
-		sellPrice(it){
-			return Game.sellPrice(it);
-		},
-		precise(v){return precise(v);}
+		precise(v){return precise(v);},
+	},
+	computed:{
+
+		sellPrice(){ return Game.sellPrice(this.item);},
+
+		nextAt() {
+
+			let v = this.item.value;
+
+			// least upper bound.
+			var sup = 100000;
+			for( let p in this.item.at ) {
+				p = Number(p);
+				if ( p > v && p < sup ) sup = p;
+			}
+
+			return sup > v ? sup : 0;
+
+		}
+
+
 	}
 
 }
@@ -46,6 +64,9 @@ export default {
 			<span v-if="item.level&&item.type!=='action'">lvl: {{item.level}}</span>
 			<span v-if="item.slot">slot: {{ item.slot }}</span>
 		</span>
+		<span v-if="item.at&&(nextAt>0)" class="note-text">
+			Next Improvement: {{ Math.round(100*item.value/nextAt)+'%'}}
+		</span>
 
 			<div v-if="item.dist">distance: {{item.dist}}</div>
 			<div v-if="item.armor">armor: {{ item.armor }}</div>
@@ -56,7 +77,7 @@ export default {
 		<info v-if="item.need" :info="item.need" title="need" />
 		<info v-if="item.buy&&!item.owned" :info="item.buy" title="purchase cost" />
 		<info v-if="item.cost" :info="item.cost" title="cost" />
-		<info v-if="item.sell||item.instance||item.type==='furniture'" :info="sellPrice(item)" title="sell" />
+		<info v-if="item.sell||item.instance||item.type==='furniture'" :info="sellPrice" title="sell" />
 		<info v-if="item.run" :info="item.run" title="progress cost" rate="true" />
 
 		<attack v-if="item.attack" :item="item.attack" />

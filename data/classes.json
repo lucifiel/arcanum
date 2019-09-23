@@ -480,7 +480,7 @@
 	"id":"enchanter",
 	"title":"enchanter",
 	"desc":"A master of charms and enchantments.",
-	"require":"g.tier1&&g.enchanting>=6&&g.charms>=3",
+	"require":"g.tier1>0&&g.enchanting>=6&&g.charms>=3",
 	"tags":"t_tier2",
 	"disable":[],
 	"warn":true,
@@ -619,7 +619,7 @@
 	"id":"sorcerer",
 	"title":"sorcerer",
 	"desc":"A wielder of raw magical power.",
-	"require":"g.tier2>0&&(g.earthlore>=20||g.waterlore>=20||g.airlore>=20||g.firelore>=20)",
+	"require":"g.tier2>0&&(g.earthlore>=15||g.waterlore>=15||g.firelore>=15)&&g.elementalist>0",
 	"tags":"t_tier3",
 	"disable":[],
 	"cost":{
@@ -699,10 +699,10 @@
 	"require":"g.tier3>0&&g.airlore>9&&g.firelore>9&&g.waterlore>9&&g.earthlore>9",
 	"cost":{
 		"tomes":10,
-		"airgem":10,
-		"firegem":10,
-		"earthgem":10,
-		"watergem":10
+		"airgem":20,
+		"firegem":20,
+		"earthgem":20,
+		"watergem":20
 	},
 	"effect":{
 		"tier3":true,
@@ -726,7 +726,7 @@
 	"require":"g.tier0>0&&g.spiritlore>=5&&g.divination>=5",
 	"cost":{
 		"research":750,
-		"gem":10,
+		"gems":10,
 		"codices":10,
 		"arcana":5
 	},
@@ -801,7 +801,9 @@
 	"require":"g.tier3>0&&g.spirit>=15&&g.divination>=15",
 	"tags":"t_tier4",
 	"cost":{
-		"research":1500
+		"research":4000,
+		"arcana":25,
+		"tomes":7
 	},
 	"effect":{
 		"tier4":true,
@@ -820,9 +822,11 @@
 	"title":"wizard",
 	"desc":"raw magic power",
 	"tags":"t_tier4",
-	"require":"g.tier3>0&&g.lore>=30",
+	"require":"g.tier3>0&&g.lore>=25",
 	"cost":{
-		"research":1500
+		"research":4000,
+		"arcana":25,
+		"tomes":10
 	},
 	"effect":{
 		"tier4":true,

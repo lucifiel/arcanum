@@ -1702,7 +1702,7 @@
 
 	},
 	{
-		"id":"druid",
+		"id":"m_druid",
         "level":7,
         "kind":"humanoid",
         "desc":"ardent of nature",

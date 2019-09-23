@@ -219,10 +219,16 @@ const Runner = {
 	 *
 	 * @param {Action} act
 	 */
-	actBlocked( act ) {
+	actBlocked( act, resume=true ) {
 
 		this.stopAction( act, false );
-		if ( !act.hasTag(REST_TAG) ) this.doRest();
+		if ( act.hasTag(REST_TAG) ) {
+			this.tryResume();
+
+		} else {
+			if ( resume ) this.addWait(act);
+			this.doRest();
+		}
 
 	},
 

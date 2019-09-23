@@ -353,7 +353,7 @@ export default class Combat {
 
 	playerDied() {
 		Events.dispatch( PLAYER_SLAIN, null );
-		Events.dispatch( ACT_BLOCKED, Game.state.raid );
+		Events.dispatch( ACT_BLOCKED, Game.state.raid, false );
 	}
 
 }

@@ -410,7 +410,7 @@
 		"cost":{
 			"research":500,
 			"gold":3000,
-			"earthgem":2
+			"earthgem":10
 		},
 		"mod":{
 			"minions.max":20,

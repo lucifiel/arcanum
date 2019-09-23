@@ -8,14 +8,13 @@ const postfixes = [
  */
 export const precise = (v, n=2) => {
 
-	if ( typeof v !== 'number ') {
-		return v;
-	}
+	if ( isNaN(v) ) return v;
+	else v = Number(v);
+
+	if ( v > 1 ) return v.toFixed(n);
 
 	if ( Math.pow(10,n)*v < 1 ) n += 2;
-
-
-	return ( typeof v === 'number') ? v.toFixed(n) : v;
+	return v.toFixed(n);
 }
 
 
