@@ -18,16 +18,14 @@ export default {
 		<tr class="equip-slot" v-for="(slot,p) in equip.slots" :key="p">
 			<td class="slot-name">{{ slot.name + ':' }}</td>
 			<td class="slot-item" v-if="slot.empty()"></td>
-			<td class="slot-item" v-else>
+			<td class="slot-item" v-else-if="slot.multi">
 
-				<div v-if="slot.multi">
-
-					<div v-for="it in slot.item" :key="it.id" @mouseenter.capture.stop="dispatch('itemover',$event,it)">
-						<span class="item-name">{{ it.name }}</span> <button @click="dispatch('unequip', slot, it)">Unequip</button>
-					</div>
-
+				<div v-for="it in slot.item" :key="it.id" @mouseenter.capture.stop="dispatch('itemover',$event,it)">
+					<span class="item-name">{{ it.name }}</span> <button @click="dispatch('unequip', slot, it)">Unequip</button>
 				</div>
-				<div v-else @mouseenter.capture.stop="dispatch('itemover',$event,slot.item)">
+			</td>
+			<td class="slot-item" v-else>
+				<div @mouseenter.capture.stop="dispatch('itemover',$event,slot.item)">
 					<span class="item-name">{{ slot.item.name }}</span><button @click="dispatch('unequip', slot, slot.item )">Unequip</button>
 				</div>
 
@@ -42,7 +40,9 @@ export default {
 
 
 tr.equip-slot {
+	display:flex;
 	margin: 2px 0px;
+	max-width: 30%;
 }
 
 tr.equip-slot button {
@@ -51,6 +51,8 @@ tr.equip-slot button {
 }
 
 td.slot-item {
+	flex-basis:35%;
+	flex-shrink: 1;
 	min-width: 42px;
 }
 tr.equip-slot {

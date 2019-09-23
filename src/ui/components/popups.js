@@ -1,3 +1,22 @@
+const PADDING = 20;
+
+/**
+ *
+ * @param {*} elm
+ * @param {DOMRect} targRect
+ */
+const getTop = ( elm, targRect) => {
+
+	let y = targRect.top - 40;
+
+	return ( y < PADDING ) ? PADDING : (
+
+		y + elm.offsetHeight > ( window.innerHeight - PADDING) ?
+			(window.innerHeight - PADDING - elm.offsetHeight) : y
+
+	);
+
+}
 
 export const center = elm => {
 
@@ -6,6 +25,11 @@ export const center = elm => {
 
 };
 
+/**
+ *
+ * @param {HTMLElement} elm - element being positioned
+ * @param {HTMLElement} target - target being rolled over.
+ */
 export const positionAt = (elm, target) =>{
 
 	let style = elm.style;
@@ -24,7 +48,24 @@ export const positionAt = (elm, target) =>{
 		style['left'] = ( left- elm.offsetWidth - 32 ) + 'px';
 	}
 
-	if ( rect.top < window.innerHeight-elm.offsetHeight ) style['top'] = ( rect.top ) + 'px';
-	else style.top = ( rect.top - elm.offsetHeight ) + 'px';
+	style.top = getTop( elm, rect ) + 'px';
+
+};
+
+export const getChild = (targ) => {
+
+	/**
+	 * Give priority to buttons so popup wont be on click.
+	 */
+	if ( targ.children ) {
+
+		let c = targ.children[0];
+
+		for( let t of targ.children ) {
+
+		}
+	}
+
+	return targ;
 
 };

@@ -36,7 +36,7 @@ export function assignNoFunc( dest, src ) {
 
 			var desc = getPropDesc(dest, p);
 			if ( desc && (!desc.writable && desc.set === undefined) ) {
-				console.log('SKIPPING: ' + p);
+				//console.log('SKIPPING: ' + p);
 				continue;
 			}
 

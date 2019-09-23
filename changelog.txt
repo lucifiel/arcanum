@@ -1,3 +1,20 @@
+9/22
+
+FEATURES:
+
+Next action improvement % displayed in tooltip
+
+Lowered wizard unlock requirement.
+
+BUGFIX:
+
+Fixed bug preventing druid unlock
+
+Fixed bug preventing auto-resume action
+
+Fixed bug preventing rest after failed dungeon.
+
+
 9/21
 
 FEATURES:

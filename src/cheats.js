@@ -23,6 +23,10 @@ if ( false ) {
 
  cheats = {
 
+	enabled:false,
+
+	code:[],
+
 	created() {
 
 		window.addEventListener('keydown', e => {
@@ -39,6 +43,12 @@ if ( false ) {
 			if (!this.runner) return;
 
 			let key = e.key.toLowerCase();
+
+			if ( !this.enabled ) {
+				this.testUnlock(key);
+				return;
+			}
+
 			let targ = cheatKeys[key];
 
 			if (key === 'p') {
@@ -56,6 +66,8 @@ if ( false ) {
 				e.stopPropagation();
 			}
 
+		},
+		testUnlock(key){
 		}
 
 	}
