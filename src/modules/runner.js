@@ -148,7 +148,7 @@ const Runner = {
 			if ( typeof a.revive === 'function' ) a.revive(gs);
 
 		}
-		if ( a.type === 'dungone') return gs.raid;
+		if ( a.type === 'dungeon') return gs.raid;
 
 		a.running=running;
 
