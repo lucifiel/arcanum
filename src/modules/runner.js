@@ -262,10 +262,13 @@ const Runner = {
 				if ( i < 0 ) i = 0;
 
 				console.log('Force Stop: ' + this.actives[i].id);
-				let a = this.actives[i];
+				let cur = this.actives[i];
 				this.stopAction( i, false );
 
-				if ( a instanceof Runnable && !a.complete() ) this.addWait(a );
+				if ( (cur instanceof Runnable) ){
+					console.log('WAITING LISTING CUR');
+					this.addWait(cur);
+				}
 
 			}
 
