@@ -1068,11 +1068,11 @@
 			"mana":2
 		},
 		"dot":{
-			"duration":45,
+			"duration":50,
 			"effect":{
 				"research":1,
-				"sp":0.0001,
-				"arcana":0.0001
+				"sp":0.001,
+				"arcana":0.001
 			}
 		}
 	},

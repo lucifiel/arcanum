@@ -1038,7 +1038,28 @@
 		},
 		"immune":"spirit"
 
-    },
+	},
+	{
+		"id":"crab",
+		"name":"scuttling crab",
+        "biome":"ocean",
+        "level":5,
+        "kind":"beast",
+        "hp":12,
+        "tohit":3,
+		"defense":25,
+		"desc":"a massive scuttling crab",
+        "attack":{
+            "name":"claws",
+            "kind":"pierce",
+            "dmg":"5~8"
+		},
+		"resist":{
+			"water":10,
+			"physical":20
+		}
+
+	},
 	{
         "id":"crocodile",
         "biome":"swamp",
