@@ -452,7 +452,7 @@
 	"cost":{
 		"research":1000,
 		"naturegem":10,
-		"hebs":50,
+		"herbs":50,
 		"arcana":10
 	},
 	"effect":{

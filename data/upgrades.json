@@ -1404,6 +1404,27 @@
 
 	},
 	{
+
+		"id":"earthsoul",
+		"name":"earth soul",
+		"tags":"earthsource",
+		"desc":"your body is tuned to the earth.",
+		"require":"g.earth.max>=10",
+		"cost":{
+			"research":300,
+			"earth":5,
+			"earthgem":1,
+			"arcana":1
+		},
+		"mod":{
+			"stamina.max":2,
+			"stamina.rate":0.1,
+			"earthlore.max":2,
+			"earthlore.rate":0.2,
+			"earth.rate":0.1
+		}
+	},
+	{
 		"id":"airglobe",
 		"name":"swirling globe",
 		"tags":"airsupply",

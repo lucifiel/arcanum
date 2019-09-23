@@ -120,26 +120,21 @@ const Runner = {
 	 */
 	revive( gs ) {
 
+		/**
+		 * Only one object. page reloads, etc.
+		 */
 		this.waiting = null;
 		this.actives = null;
+		this.runnables = null;
 		this._max = null;
 
 		let data = gs.getData('runner');
 
-		if ( data ) {
+		this.max = data.max || 1;
 
-			this.max = data.max;
-			this.waiting = data.waiting;
-			this.actives = data.actives;
-			this.runnables = data.runnables;
-
-		}
-
-		if ( !this._max ) this.max = 1;
-
-		this.waiting = this.reviveList( this.waiting, gs, false );
-		this.actives = this.reviveList( this.actives, gs, true );
-		this.runnables = this.reviveList( this.runnables, gs, false );
+		this.waiting = this.reviveList( data.waiting, gs, false );
+		this.actives = this.reviveList( data.actives, gs, true );
+		this.runnables = this.reviveList( data.runnables, gs, false );
 
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.stopAction, this );
@@ -159,8 +154,9 @@ const Runner = {
 
 		for( let i = list.length-1; i >= 0; i-- ) {
 
-			var a = this.reviveAct( list[i], gs, running);
-			if ( a == null ) quickSplice( list, i );
+			var a = list[i] = this.reviveAct( list[i], gs, running);
+
+			if ( a == null ) list.splice(a,1);
 
 		}
 
@@ -212,6 +208,7 @@ const Runner = {
 			if ( run) console.log('RUNNABLE FOUND IN RUNNABLES');
 
 			if ( !run ) {
+				console.log('CREATING NEW RUNNABLE');
 				run = new Runnable( it, targ );
 			}
 
@@ -253,6 +250,7 @@ const Runner = {
 		if ( !a) return;
 
 		if ( a.cost && (a.exp === 0) ) {
+			console.warn('PAYING INTIAL aCTION COST');
 			Game.payCost( a.cost);
 		}
 

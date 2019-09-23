@@ -41,7 +41,10 @@ export default class Runnable {
 	/**
 	 * @property {string} name
 	 */
-	get name() { return this.item.name; }
+	get name() { return this.item ? this.item.name : ''; }
+
+	hasTag(t) { return this.item && this.item.hasTag(t); }
+	hasTags(t) { return this.item && this.items.hasTag(t); }
 
 	get cost() { return this.item ? this.item.cost : null; }
 	get run() { return this.item ? this.item.run : null; }
@@ -50,14 +53,14 @@ export default class Runnable {
 	get running() { return this.item ? this.item.running:false;}
 	set running(v) { if ( this.item) this.item.running=v;}
 
-	get exp(){ return this._item.exp; }
-	set exp(v) { this.item.exp = v; }
+	get exp(){ return this._exp; }
+	set exp(v) { this._exp = v; }
 
 	percent() { return this.item.percent(); }
 	maxed() { return this.item.maxed(); }
 	canUse() { return this.item.canUse(); }
 
-	get length() { return this._item.length || 0; }
+	get length() { return this.item ? this.item.length || 0 : 0; }
 
 	/**
 	 * If target is supplied, first element MUST be the item
