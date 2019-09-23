@@ -216,7 +216,7 @@
 		"id":"evil",
 		"name":"vile",
 		"desc":"Freed of pitiful notions of right, and morality, the dark arts lie open before you.",
-		"require":"g.good==0&&g.evilamt>500",
+		"require":"g.evilamt>500",
 		"disable":["light","good", "lightlore"],
 		"effect":{
 			"shadow.max":1,

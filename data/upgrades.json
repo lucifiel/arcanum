@@ -1364,6 +1364,27 @@
 
 	},
 	{
+
+		"id":"evanescence",
+		"name":"evanescence",
+		"tags":"airsource",
+		"desc":"like you don't exist at all",
+		"require":"g.air.max>=8",
+		"cost":{
+			"research":300,
+			"air":5,
+			"airgem":3,
+			"arcana":2
+		},
+		"mod":{
+			"player.dodge":2,
+			"airlore.max":2,
+			"airlore.rate":0.2,
+			"air.rate":0.05
+		}
+
+	},
+	{
 		"id":"autonomicmending",
 		"name":"autonomic mending",
 		"require":"g.anatomy>=5&&g.tier0>0",
@@ -1421,6 +1442,29 @@
 			"stamina.rate":0.1,
 			"earthlore.max":2,
 			"earthlore.rate":0.2,
+			"earth.rate":0.1
+		}
+	},
+	{
+
+		"id":"heartofstone",
+		"name":"heart of stone",
+		"tags":"earthsource",
+		"desc":"ruthless as the barren earth",
+		"require":"g.geomancer>0||g.earth.max>=25",
+		"cost":{
+			"research":300,
+			"earth":5,
+			"earthgem":10,
+			"arcana":5
+		},
+		"mod":{
+			"player.bonuses.earth":{
+				"damage":7
+			},
+			"stamina.max":1,
+			"earthlore.max":1,
+			"earthlore.rate":"10%",
 			"earth.rate":0.1
 		}
 	},

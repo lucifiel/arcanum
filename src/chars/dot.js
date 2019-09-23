@@ -11,10 +11,11 @@ export default class Dot {
 			kind:this.kind || undefined,
 			name:this.name || undefined,
 			dmg:this.damage || undefined,
+			effect:this.effect||undefined,
 			mod:this.mod||undefined,
 			acc:this.acc,
 			duration:this.duration,
-			source:this.source ? this.source.id : undefined
+			source:this.source ? ( typeof this.source === 'string' ? this.source : this.source.id ) : undefined
 		};
 
 	}
@@ -43,11 +44,14 @@ export default class Dot {
 
 		Object.assign( this, vars );
 
+		for( let p in vars ) {
+			console.log(`dot ${p} = ${vars[p]}`);
+		}
 		this.source = this.source || source || null;
 
 		this.name = name || this.name || ( source ? source.name : '' );
 		this.id = this.id || this.name || (source ? source.id || source.name : '');
-		///console.log('DOT ID: ' + this.id );
+		console.log('DOT ID: ' + this.id );
 
 		/**
 		 * @property {boolean} stack - ability of dot to stack.
@@ -64,9 +68,11 @@ export default class Dot {
 
 		if ( typeof m === 'object' && !(m instanceof Mod) ) {
 
+			console.log('mod id: ' + m.id);
 			if ( m.id ) return new Mod(m);
 
 			for( let p in m ) {
+				console.log('reviving mod: '+ p );
 				m[p] = this.reviveMod( m[p] );
 			}
 
@@ -76,9 +82,12 @@ export default class Dot {
 	}
 
 	revive(state) {
+
 		if ( this.source && typeof this.source === 'string') this.source = state.getData( this.source );
+		if ( !this.source ) console.log('LOADED SOURCE NOT FOUND');
 
 		if ( this.mod ) this.mod = this.reviveMod(this.mod);
+
 	}
 
 	/**

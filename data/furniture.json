@@ -497,15 +497,34 @@
 		"tags":"lightsource,airsource",
 		"desc":"An elegant latticed portal for letting in air and light.",
 		"require":"g.space>=15",
+		"max":3,
 		"cost":{
 			"gold":300,
 			"space":1
 		},
 		"mod":{
 			"light.max":1,
-			"air.max":1,
+			"airlore.max":1,
 			"light.rate":0.02,
-			"air.rate":0.05
+			"airlore.rate":0.05
+		}
+	},
+	{
+		"id":"cloudchamber",
+		"name":"cloud chamber",
+		"tags":"airsource",
+		"desc":"A chamber of swirling vapours for study.",
+		"require":"g.adept>0&&g.airlore>=5",
+		"max":3,
+		"cost":{
+			"gold":500,
+			"space":1,
+			"research":500,
+			"air":5
+		},
+		"mod":{
+			"airlore.max":1,
+			"airlore.rate":0.2
 		}
 	},
 	{
