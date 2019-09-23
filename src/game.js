@@ -532,11 +532,14 @@ export default {
 
 		} else {
 
-			this.payCost( it.cost );
+			if ( !it.length ) {
 
-			if ( !it.length ) this.useWith( it, targ );
-			else {
+				this.payCost( it.cost );
+				this.useWith( it, targ );
 
+			} else {
+
+				// runner will handle costs.
 				Runner.useWith( it, targ );
 
 			}
