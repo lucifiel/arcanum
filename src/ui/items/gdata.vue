@@ -35,6 +35,13 @@ export default {
 
 			return sup > v ? sup : 0;
 
+		},
+		tags(){
+
+			let t = this.item.tags;
+			if ( typeof t === 'string') return this.stripTags(t);
+			else if ( Array.isArray(t) ) return t.map( this.stripTags, this ).join(', ');
+
 		}
 
 
@@ -55,7 +62,9 @@ export default {
 			<span v-else-if="item.type==='furniture'">max: {{
 				item.max ? Math.floor(item.max.value ) : ( (item.repeat) ? '&infin;' : 1) }}</span>
 
+
 	</span>
+	<div class="tight note-text" v-if="item.tags">{{tags}}</div>
 		<span class="flex-right" v-if="item.rate&&item.rate.value!=0">{{ precise( item.rate.value ) }} /s</span>
 		<div>
 
@@ -98,6 +107,11 @@ export default {
 
 
 <style scoped>
+
+.tight {
+	margin:0;
+	padding:0;
+}
 
 hr {
 margin-bottom: 4px;
