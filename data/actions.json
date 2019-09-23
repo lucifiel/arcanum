@@ -1213,7 +1213,7 @@
 	},
 	{
 		"id":"grind",
-		"require":"g.research.max<0",
+		"require":"g.lore>5&&g.research.max<5",
 		"desc":"experiment with magic to expand your research.",
 		"cost":{
 			"mana":0.15

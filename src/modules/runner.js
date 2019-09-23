@@ -128,11 +128,17 @@ const Runner = {
 		this._max = null;
 
 		let data = gs.getData('runner');
+		if ( data ) {
 
-		this.max = data.max || 1;
+			this.waiting = data.waiting;
+			this.actives = data.actives;
+			this._max = data.max;
+		}
 
-		this.waiting = this.reviveList( data.waiting, gs, false );
-		this.actives = this.reviveList( data.actives, gs, true );
+		this.max = this._max || 1;
+
+		this.waiting = this.reviveList( this.waiting, gs, false );
+		this.actives = this.reviveList( this.actives, gs, true );
 
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.haltAction, this );

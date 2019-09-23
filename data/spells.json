@@ -220,7 +220,7 @@
 	},
 	{
 		"id":"whirl3",
-		"name":"whirling step",
+		"name":"whirling step III",
 		"level":5,
 		"require":"whirl2",
 		"school":"air",
