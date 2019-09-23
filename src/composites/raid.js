@@ -175,7 +175,7 @@ export default class Raid {
 
 		this.player.exp +=	(this.dungeon.level)*( 15 + this.dungeon.length )/( 0.8*del );
 
-		Events.dispatch( ACT_DONE, this );
+		Events.dispatch( ACT_DONE, this, false );
 		this.dungeon = null;
 
 	}

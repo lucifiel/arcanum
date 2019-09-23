@@ -95,7 +95,7 @@
 		"adj":"of regeneration",
 		"targets":"neck",
 		"desc":"infuse an amulet with living blood.",
-		"require":"g.enchanting>=5",
+		"require":"g.enchanting>=50",
 		"level":2,
 		"buy":{
 			"arcana":1,

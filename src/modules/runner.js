@@ -24,7 +24,7 @@ const Runner = {
 			/**
 			 * @property {Runnable[]} runnables - running combinations of objects.
 			 */
-			runnables:this.runnables
+			//runnables:this.runnables
 		};
 
 	},
@@ -102,7 +102,7 @@ const Runner = {
 	/**
 	 * @property {Runnable[]} runnables - use-with object combinations.
 	 */
-	runnables:null,
+	//runnables:null,
 
 	/**
 	 * @property {Action[]} actives - Actively running tasks.
@@ -125,7 +125,6 @@ const Runner = {
 		 */
 		this.waiting = null;
 		this.actives = null;
-		this.runnables = null;
 		this._max = null;
 
 		let data = gs.getData('runner');
@@ -134,10 +133,9 @@ const Runner = {
 
 		this.waiting = this.reviveList( data.waiting, gs, false );
 		this.actives = this.reviveList( data.actives, gs, true );
-		this.runnables = this.reviveList( data.runnables, gs, false );
 
 		Events.add( ACT_DONE, this.actDone, this );
-		Events.add( HALT_ACT, this.stopAction, this );
+		Events.add( HALT_ACT, this.haltAction, this );
 		Events.add( ACT_BLOCKED, this.actBlocked, this );
 
 	},
@@ -200,12 +198,13 @@ const Runner = {
 			return (v instanceof Runnable)&&(id===v.item.id && t === v.target.id );
 		};
 
+		console.log('SEARCHING EXISTING');
 		let run = findRemove( this.waiting, p);
 		if ( run ) console.log('RUNNABLE FOUND IN WAITING');
 
 		if ( !run ) {
-			run = findRemove( this.runnables, p );
-			if ( run) console.log('RUNNABLE FOUND IN RUNNABLES');
+
+			//run = findRemove( this.runnables, p );
 
 			if ( !run ) {
 				console.log('CREATING NEW RUNNABLE');
@@ -263,7 +262,10 @@ const Runner = {
 				if ( i < 0 ) i = 0;
 
 				console.log('Force Stop: ' + this.actives[i].id);
-				this.stopAction( 0, false );
+				let a = this.actives[i];
+				this.stopAction( i, false );
+
+				if ( a instanceof Runnable && !a.complete() ) this.addWait(a );
 
 			}
 
@@ -297,9 +299,9 @@ const Runner = {
 	/**
 	 * UNIQUE ACCESS POINT for removing active action.
 	 * @param {number|Action} i
-	 * @param {boolean} canResume - whether can attempt to resume another action.
+	 * @param {boolean} tryResume - whether can attempt to resume another action.
 	 */
-	stopAction( i, canResume=true ){
+	stopAction( i, tryResume=true ){
 
 		if ( typeof i !== 'number') {
 			i = this.actives.indexOf(i);
@@ -312,7 +314,7 @@ const Runner = {
 		a.running = false;
 		this.actives.splice(i,1);
 
-		if ( canResume && a.hasTag(REST_TAG) ){
+		if ( tryResume && a.hasTag(REST_TAG) ){
 			this.tryResume();
 		}
 
@@ -341,23 +343,43 @@ const Runner = {
 
 	},
 
+	haltAction( act ) {
+
+		if ( act instanceof Runnable ) this.addWait(act);
+		this.stopAction( act );
+
+	},
+
 	/**
 	 * Action is done, but could be perpetual/ongoing.
 	 * Attempt to repay cost and keep action.
 	 * @param {*} act
 	 */
-	actDone( act ){
+	actDone( act, repeatable=true ){
 
-		if ( Game.canRun(act) ) this.setAction(act);
-		else {
+		if ( repeatable ) {
 
-			console.log('CANNOT PAY: ' + act.id );
-			this.stopAction(act, false);
-			this.addWait(act);
+			if ( Game.canRun(act) ) {
+
+				this.setAction(act);
+
+			} else {
+
+				this.stopAction(act);
+				this.addWait(act);
+
+				// attempt to resume any waiting actions.
+				this.tryResume();
+				this.tryAdd( Game.state.restAction );
+
+			}
+
+		} else {
+
+			this.stopAction( act );
 
 			// attempt to resume any waiting actions.
 			this.tryResume();
-
 			this.tryAdd( Game.state.restAction );
 
 		}
