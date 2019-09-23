@@ -155,6 +155,7 @@ export default class Raid {
 
 		if ( enemy.result ) Game.applyEffect( enemy.result );
 		if ( enemy.loot ) Game.getLoot( enemy.loot, this.drops );
+		else Game.getLoot( {max:enemy.level, pct:30}, this.drops );
 
 	}
 

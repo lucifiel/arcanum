@@ -129,7 +129,7 @@
 		"effect":{
 			"research":-0.5,
 			"gold":0.5,
-			"trickery":0.1,
+			"trickery.exp":0.1,
 			"evilamt":0.01,
 			"virtue":-0.01
 		}
@@ -151,7 +151,7 @@
 		"effect":{
 			"research":-0.8,
 			"trickery.max":0.001,
-			"trickery":0.5
+			"trickery.exp":0.5
 		},
 		"result":{
 			"virtue":-1,
