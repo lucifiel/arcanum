@@ -7,7 +7,6 @@ import Range from './range';
 import ItemGen from './itemgen';
 import TechTree from './techTree';
 import Dot from './chars/dot';
-import Runnable from './composites/runnable';
 
 /**
  * @module Randoms - randomized events.
@@ -538,8 +537,7 @@ export default {
 			if ( !it.length ) this.useWith( it, targ );
 			else {
 
-				let act = new Runnable( {item:it,target:targ});
-				this.setAction( act );
+				Runner.useWith( it, targ );
 
 			}
 		}

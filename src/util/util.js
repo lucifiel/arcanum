@@ -1,6 +1,29 @@
 import {getPropDesc} from 'objecty';
 
 /**
+ * Find an item in an array matching predicate, remove and return it.
+ * @param {Array} a
+ * @param {*} pred
+ * @returns {object|null} Item removed or null.
+ */
+export const findRemove = (a,pred) => {
+
+	for( let i = a.length-1; i>= 0; i-- ) {
+
+		if ( pred(a[i] ) ) {
+
+			let res = a[i];
+			a.splice( i, 1 );
+			return res;
+
+		}
+
+	}
+	return null;
+
+}
+
+/**
  * Log all public properties.
  * @param {*} src
  */

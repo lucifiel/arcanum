@@ -1,5 +1,5 @@
 import Game from '../game';
-import {quickSplice} from '../util/util';
+import {quickSplice, findRemove} from '../util/util';
 import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED } from '../events';
 import Stat from '../stat';
 import Base, {mergeClass} from '../items/base';
@@ -124,14 +124,14 @@ const Runner = {
 		this.actives = null;
 		this._max = null;
 
-		let runner = gs.getData('runner');
+		let data = gs.getData('runner');
 
-		if ( runner ) {
+		if ( data ) {
 
-			this.max = runner.max;
-
-			this.waiting = runner.waiting;
-			this.actives = runner.actives;
+			this.max = data.max;
+			this.waiting = data.waiting;
+			this.actives = data.actives;
+			this.runnables = data.runnables;
 
 		}
 
@@ -188,7 +188,36 @@ const Runner = {
 
 	},
 
+	/**
+	 * setAction of two items combined.
+	 * Before using an item and target, check if any existing Runnable matches.
+	 * If no match, create a Runnable.
+	 * @param {*} it
+	 * @param {*} targ
+	 */
 	useWith( it, targ ) {
+
+		let id = it.id;
+		let t = targ.id;
+
+		let p = (v)=>{
+			return (v instanceof Runnable)&&(id===v.item.id && t === v.target.id );
+		};
+
+		let run = findRemove( this.waiting, p);
+		if ( run ) console.log('RUNNABLE FOUND IN WAITING');
+
+		if ( !run ) {
+			run = findRemove( this.runnables, p );
+			if ( run) console.log('RUNNABLE FOUND IN RUNNABLES');
+
+			if ( !run ) {
+				run = new Runnable( it, targ );
+			}
+
+		}
+		this.setAction( run );
+
 	},
 
 	/**

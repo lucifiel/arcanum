@@ -58,9 +58,21 @@ export default class Runnable {
 	canUse() { return this.item.canUse(); }
 
 	get length() { return this._item.length || 0; }
-	constructor( vars=null) {
 
-		if (vars) Object.assign( this, vars );
+	/**
+	 * If target is supplied, first element MUST be the item
+	 * being used with target.
+	 * @param {*} vars
+	 * @param {*} targ
+	 */
+	constructor( vars=null, targ=null ) {
+
+		if ( targ ) {
+
+			this.target = targ;
+			this.item = vars;
+
+		} else if (vars) Object.assign( this, vars );
 
 	}
 
