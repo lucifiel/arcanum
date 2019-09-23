@@ -988,6 +988,22 @@
 	},
 	{
 
+		"id":"abstraction",
+		"desc":"a wizard's power is the sum of their knowledge",
+		"require":"g.lore>=14",
+		"cost":{
+			"research":1000,
+			"tomes":5,
+			"bloodgem":5
+		},
+		"mod":{
+			"research.rate":-0.2,
+			"hp.rate":0.7
+		}
+
+	},
+	{
+
 		"id":"alkahest",
 		"name":"alkahest",
 		"desc":"Discover a Universal Solvent",
@@ -1329,7 +1345,8 @@
 			"tomes":3
 		},
 		"mod":{
-			"hp.rate":-2,
+			"hp.rate":-1.5,
+			"player.defense":30,
 			"stamina.rate":-1,
 			"sp.rate":0.0001,
 			"planeslore.max":2,

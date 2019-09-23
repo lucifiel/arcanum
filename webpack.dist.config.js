@@ -27,7 +27,7 @@ module.exports = {
 		__VERSION:1
 	})],
 
-	devtool: 'source-map',
+	//devtool: 'source-map',
 
 	output: {
 

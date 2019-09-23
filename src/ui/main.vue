@@ -117,10 +117,6 @@ export default {
 			this.state = Game.state;
 			this.section = this.state.sections.find( v=>v.id==='sect_main');
 
-			window.addEventListener('keydown',evt=>{
-				if ( evt.repeat) return;
-				this.keyDown( evt ); evt.stopPropagation(); }, false );
-
 		},
 
 		onSetting( setting, val ) {
@@ -159,6 +155,10 @@ export default {
 			}
 			this.stopAutoSave();
 
+			window.removeEventListener('keydown',evt=>{
+				if ( evt.repeat) return;
+				this.keyDown( evt ); evt.stopPropagation(); }, false );
+
 
 		},
 		unpause() {
@@ -169,6 +169,10 @@ export default {
 					this.game.lastUpdate = Date.now();
 					this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
 				}
+
+			window.addEventListener('keydown',evt=>{
+				if ( evt.repeat) return;
+				this.keyDown( evt ); evt.stopPropagation(); }, false );
 
 			}
 			this.startAutoSave();

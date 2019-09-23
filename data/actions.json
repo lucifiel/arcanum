@@ -265,7 +265,7 @@
 
 		},
 		"effect":{
-			"gold":2
+			"gold":2.2
 		}
 
 	},
@@ -365,7 +365,7 @@
 			"shadow":1
 
 		},"effect":{
-			"gold":2
+			"gold":2.2
 		}
 
 	},
