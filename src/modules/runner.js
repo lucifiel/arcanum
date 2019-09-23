@@ -6,11 +6,28 @@ import Base, {mergeClass} from '../items/base';
 import Runnable from '../composites/runnable';
 
 const REST_TAG = 't_rest';
+const DUNGEON = 'dungeon';
 
 /**
  * Tracks running/perpetual actions.
  */
 const Runner = {
+
+
+	toJSON() {
+
+		return {
+			max:this.max,
+			waiting:this.waiting.map(v=> v instanceof Runnable ? v : v.id),
+			actives:this.actives.map(v=> v instanceof Runnable ? v : v.id),
+
+			/**
+			 * @property {Runnable[]} runnables - running combinations of objects.
+			 */
+			runnables:this.runnables
+		};
+
+	},
 
 	/**
 	 * @todo : Messy for Focus skill.
@@ -56,16 +73,6 @@ const Runner = {
 	get type() { return 'runner'; },
 	hasTag() { return false; },
 
-	toJSON() {
-
-		return {
-			max:this.max,
-			waiting:this.waiting.map(v=> v instanceof Runnable ? v : v.id),
-			actives:this.actives.map(v=> v instanceof Runnable ? v : v.id)
-		};
-
-	},
-
 	/**
 	 * @property {number} running - number currently running.
 	 */
@@ -91,6 +98,11 @@ const Runner = {
 		} else this._max = new Stat(v);
 
 	},
+
+	/**
+	 * @property {Runnable[]} runnables - use-with object combinations.
+	 */
+	runnables:null,
 
 	/**
 	 * @property {Action[]} actives - Actively running tasks.
@@ -125,11 +137,9 @@ const Runner = {
 
 		if ( !this._max ) this.max = 1;
 
-		if ( this.waiting ) this.waiting = this.waiting.map(v=>this.reviveAct(gs,v), this);
-		else this.waiting = [];
-
-		if ( this.actives ) this.actives = this.actives.map(v=>this.reviveAct(gs,v,true), this);
-		else this.actives = [];
+		this.waiting = this.reviveList( this.waiting, gs, false );
+		this.actives = this.reviveList( this.actives, gs, true );
+		this.runnables = this.reviveList( this.runnables, gs, false );
 
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.stopAction, this );
@@ -137,7 +147,28 @@ const Runner = {
 
 	},
 
-	reviveAct( gs, a, running=false ) {
+	/**
+	 * Revive a list, removing Runnable elements that can't revive (missing items, etc.)
+	 * @param {object[]} list
+	 * @param {GameState} gs
+	 * @param {boolean} [running=false] - whether the items in list are running.
+	 */
+	reviveList( list, gs, running=false ) {
+
+		if ( !list ) return [];
+
+		for( let i = list.length-1; i >= 0; i-- ) {
+
+			var a = this.reviveAct( list[i], gs, running);
+			if ( a == null ) quickSplice( list, i );
+
+		}
+
+		return list;
+
+	},
+
+	reviveAct( a, gs, running=false ) {
 
 		if (!a) return;
 
@@ -146,14 +177,18 @@ const Runner = {
 
 			a = new Runnable( a );
 			if ( typeof a.revive === 'function' ) a.revive(gs);
+			if ( a.target == null || a.item == null ) return null;
 
 		}
-		if ( a.type === 'dungone') return gs.raid;
+		if ( a.type === DUNGEON ) return gs.raid;
 
 		a.running=running;
 
 		return a;
 
+	},
+
+	useWith( it, targ ) {
 	},
 
 	/**
