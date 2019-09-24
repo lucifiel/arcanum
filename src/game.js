@@ -111,7 +111,6 @@ export default {
 
 			this.initTimers();
 
-			console.log('GGAME STARTED');
 			this.loaded = true;
 			Events.started = true;
 

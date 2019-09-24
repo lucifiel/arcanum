@@ -44,15 +44,9 @@
 		"run":{
 			"stamina":0.2
 		},
-		"at":{
-			"60":{
-				"effect.research":0.15
-			},
-			"200":{
-				"effect.research":0.2
-			},
-			"500":{
-				"effect.research":0.5
+		"every":{
+			"50":{
+				"effect.research":0.1
 			}
 		},
 		"effect":{

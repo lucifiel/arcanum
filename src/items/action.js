@@ -52,11 +52,11 @@ export default class Action extends GData {
 
 		if ( this.cd ) this.timer = this.timer || 0;
 
-		this.restoreAtMods();
+		this.applyImproves();
 
 	}
 
-	restoreAtMods() {
+	applyImproves() {
 
 		let v = this._value;
 		if ( this.at ) {
@@ -66,6 +66,17 @@ export default class Action extends GData {
 				if ( v >= Number(p) ) {
 					this.applyMods( this.at[p] );
 				}
+
+			}
+
+		}
+
+		if ( this.every ) {
+
+			for( let p in this.every ) {
+
+				var amt = Math.floor( v / p );
+				if ( amt > 0 ) this.applyMods( this.every[p], amt );
 
 			}
 
@@ -117,17 +128,36 @@ export default class Action extends GData {
 			this.timer = this.cd;
 		}
 
+		var improve = false;
+
 		if ( this.at ) {
 
 			let cur = this.at[this.value];
 			if ( cur ) {
 
-				Events.dispatch( ACT_IMPROVED, this );
+				improve = true;
 				this.applyMods( cur );
 
 			}
 
+		} else if ( this.every ) {
+
+			for( let p in this.every ) {
+
+				if ( this.value % p === 0 ) {
+
+					improve = true;
+					this.applyMods( this.every[p] );
+
+				}
+
+			}
+
+
 		}
+
+		if ( improve ) Events.dispatch( ACT_IMPROVED, this );
+
 		this._exp = 0;
 
 	}
