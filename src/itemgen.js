@@ -70,6 +70,11 @@ export default class ItemGen {
 		this.initGroup('weapon', state.weapons );
 		this.initGroup('materials', state.materials );
 
+		let g = this.initGroup('npc', state.monsters );
+		g.makeFilter( 'biome' );
+		g.makeFilter( 'kind' );
+
+
 		this.initList( 'armor', state.armors );
 		this.initList( 'weapon', state.weapons );
 
@@ -265,6 +270,8 @@ export default class ItemGen {
 		let g = this.groups[name] = new GenGroup(items);
 		g.makeFilter('level');
 
+		return g;
+
 	}
 
 
@@ -343,30 +350,9 @@ export default class ItemGen {
 	 */
 	getMatBelow( level, itemKind=null ) {
 
-		return this.groups.materials.randBelow(level);
+		var pred = itemKind ? v=>!v.exclude||!v.exclude.includes(itemKind) : null;
 
-		return this.getMat( Math.floor( Math.random()*level + 1 ), itemKind );
-	}
-
-	/**
-	 * Get a random material of the highest level available on or below
-	 * the given level.
-	 * @param {number} level - target level of material.
-	 * @param {?string} itemKind
-	 */
-	getMat( level, itemKind=null ) {
-
-		do {
-
-			var arr = this.matsByLevel[level];
-			if ( !arr ) continue;
-
-			var it = itemKind == null ? randElm(arr) :
-				randMatch( arr, v=>!v.exclude||v.exclude.includes(itemKind) );
-
-		} while ( !it && --level >= 0 );
-
-		return it;
+		return this.groups.materials.randBelow( level, pred );
 
 	}
 

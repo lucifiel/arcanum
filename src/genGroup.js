@@ -24,9 +24,11 @@ export default class GenGroup {
 
 	/**
 	 * Get a random item at or below the given level.
+	 * @property {number} level - max item level.
+	 * @property {function} [pred=null] - optional filter predicate.
 	 * @returns {GData}
 	 */
-	randBelow( level=1 ) {
+	randBelow( level=1, pred) {
 
 		let levels = this.filters.level;
 
@@ -36,7 +38,7 @@ export default class GenGroup {
 		do {
 
 			var it = randElm( levels[i] );
-			if ( it != null ) return it;
+			if ( it != null && (!pred || pred(it) ) ) return it;
 
 			if ( --i < 0 ) i = level;
 
