@@ -691,7 +691,7 @@ export default {
 
 		//unlockTests++;
 
-		if ( it.disabled ) return false;
+		if ( it.disabled || it.locks > 0 ) return false;
 
 		let test = it.require || it.need;
 		if ( test && !this.unlockTest(test, it ) ) return false;

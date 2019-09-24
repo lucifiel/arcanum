@@ -43,7 +43,7 @@ export default {
 
 			}
 
-			return ( next !== Number.MAX_VALUE) ? ( dist / f ) : -1;
+			return ( next !== Number.MAX_VALUE) ? ( (f-dist) / f ) : -1;
 
 		},
 

@@ -22,7 +22,6 @@
 	--odd-list-color:#222;
 }
 
-
 body {
 	font-family: 'Open Sans', sans-serif;
 	background: rgb(250, 250, 250);
@@ -328,4 +327,8 @@ div.tempus .fill, div.tempus .bgfill {
 }
 div.void .fill, div.void .bgfill {
 	background:#373737;
+}
+
+.sm {
+	font-size: 0.75em;
 }

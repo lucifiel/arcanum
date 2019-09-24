@@ -399,10 +399,42 @@
 
 },
 {
+
+	"id":"bloodmage",
+	"name":"blood mage",
+	"title":"blood mage",
+	"tags":"t_tier3",
+	"desc":"the magic in your veins",
+	"require":"g.tier2>0&&(g.battlemage+g.dreadlord+g.warlock)>0",
+	"cost":{
+		"research":1500,
+		"arcana":8,
+		"gold":700,
+		"bloodgem":15
+	},
+	"effect":{
+		"tier3":true,
+		"sp":1
+	},
+	"mod":{
+		"research.max":-50,
+		"bloodgem.max":10,
+		"mana.max":1,
+		"mana.rate":0.1,
+		"anatomy.max":3,
+		"anatomy.rate":"10%",
+		"earthlore.max":2,
+		"earthlore.rate":"5%",
+		"waterlore.max":1,
+		"waterlore.rate":"5%"
+	}
+
+},
+{
 	"id":"summoner",
 	"title":"summoner",
 	"tags":"t_tier2",
-	"desc":"even alone, a summoner is never without an army.",
+	"desc":"alone or not, the summoner is never without an army.",
 	"require":"g.minions>4&&g.tier1>0&&g.lore>=20",
 	"cost":{
 		"research":1000,
@@ -416,8 +448,10 @@
 		"minions.max":1,
 		"charms.max":1,
 		"lore.max":2,
+		"lore.rate":"5%",
 		"mana.max":2,
-		"summoning.max":4
+		"summoning.max":4,
+		"summoning.rate":"20%"
 	}
 
 },

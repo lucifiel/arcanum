@@ -57,7 +57,7 @@
 			"space":1
 		},
 		"mod":{
-			"rest.effect.stamina":0.03
+			"rest.effect.stamina":0.23
 		}
 
 	},
@@ -73,7 +73,7 @@
 			"space":2
 		},
 		"mod":{
-			"rest.effect.stamina":0.07
+			"rest.effect.stamina":0.27
 		}
 
 	},
@@ -90,7 +90,7 @@
 		"mod":{
 			"rest":{
 				"effect":{
-					"stamina":0.1,
+					"stamina":0.4,
 					"hp":0.02
 				}
 			}
@@ -112,7 +112,7 @@
 			"firelore.max":1,
 			"rest":{
 				"effect":{
-					"stamina":0.1,
+					"stamina":0.35,
 					"manas":0.1,
 					"fire":0.2
 				}

@@ -88,7 +88,13 @@ export default {
 	<div>
 	<label :for="elmId('compact-mode')">compact mode</label>
 	<input type="checkbox" :id="elmId('compact-mode')" v-model="compactMode">
-	<div>(thanks to kermit tears)</div>
+	</div>
+
+	<div class="note-text sm">thanks to:<br>
+		kermit tears<br>
+		dbulm2<br>
+		mathias<br>
+		vondrey
 	</div>
 
 	<button class="close" @click="close">close</button>

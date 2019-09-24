@@ -45,8 +45,8 @@
 			"stamina":0.2
 		},
 		"every":{
-			"50":{
-				"effect.research":0.1
+			"100":{
+				"effect.research":0.05
 			}
 		},
 		"effect":{
@@ -89,15 +89,9 @@
 		"require":"spellbook",
 		"length":15,
 		"perpetual":true,
-		"at":{
+		"every":{
 			"10":{
-				"effect.gold":0.2
-			},
-			"50":{
-				"effect.gold":0.2
-			},
-			"200":{
-				"effect.gold":0.2
+				"effect.gold":0.01
 			}
 		},
 		"run":{
@@ -341,7 +335,7 @@
 	{
 		"id":"embalm",
 		"name":"funerary rites",
-		"verb":"embalming",
+		"verb":"solemnizing",
 		"desc":"oversee the funerary rites of merchants and nobles.",
 		"require":"g.embalming>=5&&g.tier0>0",
 		"perpetual":true,
@@ -359,6 +353,7 @@
 			"shadow":1
 
 		},"effect":{
+			"embalming.exp":0.2,
 			"gold":2.2
 		}
 
@@ -541,7 +536,7 @@
 				"skipLocked":true,
 				"value":0.5
 			},
-			"stamina":1,
+			"stamina":0.8,
 			"hp":1
 		}
 	},
@@ -551,7 +546,7 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"length":10,
-		"need":"g.light>=5&&g.evil<=0",
+		"need":"g.lightlore>=5&&g.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
 			"virtue":1,

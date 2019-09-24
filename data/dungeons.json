@@ -5,6 +5,7 @@
 		"name":"Sunny Field",
 		"level":1,
 		"length":10,
+		"require":"evt_helper",
 		"run":{
 			"stamina":0.4
 		},
