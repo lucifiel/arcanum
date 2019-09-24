@@ -426,6 +426,27 @@
 
 	},
 	{
+		"id":"catacombs",
+		"name":"the great bog",
+		"desc":"Old Tirafel dug its dungeons til they touched the veins beneath the world. In terror they sealed them forever.",
+		"require":["mtgorborung", "g.lore>=20"],
+		"level":11,
+		"run":{
+			"stamina":3
+		},
+		"length":1000,
+		"result":{
+			"title":"",
+			"gems":"3~5",
+			"gold":"100~200",
+			"bones":10
+		},
+		"enemies":{
+			"level":"2~5"
+		},"flavor":"but to return to the open air... that is the task, that is the labor"
+
+	},
+	{
 		"id":"elementrift",
 		"name":"elemental rift",
 		"desc":"a tear in the fabric of reality leads to a land of raw elements.",

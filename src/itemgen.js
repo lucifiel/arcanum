@@ -92,7 +92,13 @@ export default class ItemGen {
 	 * Generate an enemy from rand definition.
 	 * @param {*} data
 	 */
-	genEnemy( data ) {
+	genEnemy( data, pct=1 ) {
+
+		var level = data.level;
+		if ( level instanceof Object ) level =  level.value;
+
+		let npc = this.groups.npc.randBelow( level );
+
 	}
 
 	/**

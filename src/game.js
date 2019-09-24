@@ -70,6 +70,7 @@ export default {
 	 * @param {(number)=>boolean} obj.tick -tick function.
 	 */
 	addTimer( obj ){
+		console.log('adding timer: ' + obj.id );
 		this.timers.push(obj);
 	},
 

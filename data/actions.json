@@ -579,11 +579,11 @@
 	{
 
 		"id":"sabbat",
-		"name":"witch's sabbath",
+		"name":"witch's sabbat",
 		"desc":"a revelry of demons and witches.",
 		"require":"g.witch>0&&g.demonology>=7&&g.spiritlore>=8",
 		"length":100,
-		"cd":3600,
+		"cd":666,
 		"cost":{
 			"spirit":10,
 			"bodies":1
@@ -1168,6 +1168,7 @@
 		"desc":"rip out of a piece of your soul and store it in a magic gem.",
 		"require":"g.crafting>=20&&g.necromancy>=30",
 		"length":50,
+		"repeat":false,
 		"cost":{
 			"research":4000,
 			"shadowgem":20,
