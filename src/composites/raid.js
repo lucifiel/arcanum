@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN, ACT_DONE } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE, CHAR_DIED } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
@@ -143,6 +143,8 @@ export default class Raid {
 
 		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
 		attacker.timer =attacker.delay;
+
+		console.log('ENEMY templ: ' + (typeof enemy.template) );
 
 		if ( enemy.template && enemy.template.id ) {
 

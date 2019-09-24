@@ -60,7 +60,7 @@ div.pop-title {
 	height:auto;
 	min-height:100px;
 	min-width:200px;
-	max-width:240px;
+	max-width:280px;
 	position: absolute;
 	z-index:10000;
 	top:0;

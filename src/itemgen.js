@@ -4,14 +4,7 @@ import { sublists, randElm, randMatch, includesAny} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
 import Npc from './chars/npc';
-
-const exclusions = {
-
-	cloth:['weapon'],
-	waist:['metal'],
-	back:['metal','wood']
-
-}
+import GenGroup from './genGroup';
 
 export function itemRevive(gs, it ) {
 
@@ -55,6 +48,11 @@ export default class ItemGen {
 		this.state = state;
 
 		/**
+		 * Groups of item types to generate. 'armor', 'weapon', 'npc' etc.
+		 */
+		this.groups = {};
+
+		/**
 		 * Iitem lists by kind then level.
 		 * @property {Object.<string,Object.<number,Wearable[]>>} byLevel
 		 */
@@ -68,9 +66,13 @@ export default class ItemGen {
 
 		this.initMaterials( state.materials );
 
+		this.initGroup( 'armor', state.armors );
+		this.initGroup('weapon', state.weapons );
+		this.initGroup('materials', state.materials );
+
 		this.initList( 'armor', state.armors );
 		this.initList( 'weapon', state.weapons );
-		this.initList( 'equip', state.equip );
+
 	}
 
 	npc( proto ) {
@@ -81,6 +83,13 @@ export default class ItemGen {
 		it.id = proto.id + this.state.nextId();
 		return it;
 
+	}
+
+	/**
+	 * Generate an enemy from rand definition.
+	 * @param {*} data
+	 */
+	genEnemy( data ) {
 	}
 
 	/**
@@ -240,6 +249,31 @@ export default class ItemGen {
 		return it;
 	}
 
+	/**
+	 *
+	 * @param {string} name - group name.
+	 * @param {Item[]} items
+	 * @returns {GenGroup}
+	 */
+	initGroup( name, items ) {
+
+		if ( !items ) {
+			console.warn( 'group: ' + name + ' undefined.');
+			return;
+		}
+
+		let g = this.groups[name] = new GenGroup(items);
+		g.makeFilter('level');
+
+	}
+
+
+	/**
+	 *
+	 * @param {string} type
+	 * @param {*} list
+	 * @returns {Object}
+	 */
 	initList( type, list ) {
 
 		if ( !list ) {
@@ -308,6 +342,9 @@ export default class ItemGen {
 	 * @param {string} itemKind
 	 */
 	getMatBelow( level, itemKind=null ) {
+
+		return this.groups.materials.randBelow(level);
+
 		return this.getMat( Math.floor( Math.random()*level + 1 ), itemKind );
 	}
 

@@ -84,5 +84,11 @@
 		"hidden":true,
 		"desc":"Tendency to evil",
 		"value":0
+	},
+	{
+		"id":"notoriety",
+		"hidden":"true",
+		"tags":"Your reputation in the world",
+		"value":0
 	}
 ]

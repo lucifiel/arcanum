@@ -14,6 +14,11 @@ const EVT_DISABLED = 'disabled';
 
 const COMBAT_DONE = 'combat_done';
 const ENEMY_SLAIN = 'slain';
+/**
+ * Any character died by damage.
+ */
+const CHAR_DIED = 'char_died';
+
 const ALLY_DIED = 'ally_died';
 const PLAYER_SLAIN = 'died';
 const DAMAGE_MISS = 'damage_miss';
@@ -44,7 +49,7 @@ const HALT_ACT = 'halt_act';
  */
 const ACT_BLOCKED = 'act_blocked';
 
-export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID,
+export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID, CHAR_DIED,
 	ACT_CHANGED, ACT_IMPROVED, ACT_BLOCKED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
@@ -87,6 +92,7 @@ export default {
 		events.removeAllListeners( HALT_ACT);
 
 		events.removeAllListeners( EVT_COMBAT );
+		events.removeAllListeners( CHAR_DIED );
 		events.removeAllListeners( ENEMY_SLAIN );
 		events.removeAllListeners( PLAYER_SLAIN );
 		events.removeAllListeners( DAMAGE_MISS );

@@ -73,6 +73,7 @@
 	},
 	{
 		"id":"runes",
+		"name":"runic lore",
 		"school":"arcane",
 		"verb":"translating",
 		"desc":"study ancient dhrunic runes.",

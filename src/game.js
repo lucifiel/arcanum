@@ -689,21 +689,19 @@ export default {
 
 		//unlockTests++;
 
-		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
+		if ( it.disabled ) return false;
 
-		else if ( !it.require || this.unlockTest(it.require,it) ) {
+		let test = it.require || it.need;
+		if ( test && !this.unlockTest(test, it ) ) return false;
 
-			if ( it.type === 'event') this.unlockEvent( it );
-			else {
-				it.locked = false;
-				it.dirty = true;
-				Events.dispatch( EVT_UNLOCK, it );
-			}
-
-			return true;
+		if ( it.type === 'event') this.unlockEvent( it );
+		else {
+			it.locked = false;
+			it.dirty = true;
+			Events.dispatch( EVT_UNLOCK, it );
 		}
 
-		return !it.locked;
+		return true;
 
 	},
 

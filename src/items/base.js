@@ -103,6 +103,7 @@ export default {
 	 * @property {number} current - displayable value; override in subclass for auto rounding, floor, etc.
 	 */
 	get current() { return this.value },
+	set current(v) {},
 
 	/**
 	 * @property {number} value

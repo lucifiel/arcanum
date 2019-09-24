@@ -136,7 +136,7 @@ export const randElm = (arr)=>{
 }
 
 /**
- * Returns a random between [min,max]
+ * Returns a random number between [min,max]
  * @param {number} min
  * @param {number} max
  */

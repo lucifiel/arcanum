@@ -262,7 +262,7 @@ const Runner = {
 		if ( !a) return;
 
 		if ( a.cost && (a.exp === 0) ) {
-			console.warn('PAYING INTIAL aCTION COST');
+			console.warn('PAY FIRST ACTION COST');
 			Game.payCost( a.cost);
 		}
 
@@ -271,15 +271,14 @@ const Runner = {
 			// free space for action. actions.length is a double check.
 			if ( this.actives.length > 0 && this.free <= 0 ) {
 
-				let i = this.typeIndex( a );
-				if ( i < 0 ) i = 0;
+				let i = 0;
 
 				console.log('Force Stop: ' + this.actives[i].id);
 				let cur = this.actives[i];
 				this.stopAction( i, false );
 
 				if ( (cur instanceof Runnable) ){
-					console.log('WAITING LISTING CUR');
+					console.log('WAITING RUNNABLE');
 					this.addWait(cur);
 				}
 
@@ -354,8 +353,22 @@ const Runner = {
 	addWait( a ){
 
 		if ( a.hasTag(REST_TAG) ) return;
-		console.log('ADDING WAIT: ' + a.id );
+
 		this.waiting.push(a);
+
+		let len = this.max.value - this.waiting.length;
+		let i = 0;
+
+		console.log('REMOVING ' + len + ' WAITING');
+		while ( len > 0 ) {
+
+			a = this.waiting[i];
+			if ( !(a instanceof Runnable ) ) {
+				this.waiting.splice( a, 1 );
+			} else i++;
+			len--;
+
+		}
 
 	},
 

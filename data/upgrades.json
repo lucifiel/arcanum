@@ -851,6 +851,7 @@
 		"id":"firesign",
 		"name":"fire sign",
 		"require":"g.fireaffinity>0&&g.fire>14",
+		"warn":true,
 		"lock":["watersign","airsign","earthsign"],
 		"desc":"born under the celestial sign of fire",
 		"cost":{
@@ -868,6 +869,7 @@
 		"name":"water sign",
 		"require":"g.wateraffinity>0&&g.water>14",
 		"lock":["firesign","airsign","earthsign"],
+		"warn":true,
 		"desc":"born under the celestial sign of water",
 		"cost":{
 			"research":1000,
@@ -884,6 +886,7 @@
 		"name":"earth sign",
 		"require":"g.earthaffinity>0&&g.earth>14",
 		"lock":["watersign","airsign","firesign"],
+		"warn":true,
 		"desc":"born under the celestial sign of earth",
 		"cost":{
 			"research":1000,
@@ -898,6 +901,7 @@
 	{
 		"id":"airsign",
 		"name":"wind sign",
+		"warn":true,
 		"require":"g.airaffinity>0&&g.air>14",
 		"lock":["watersign","firesign","earthsign"],
 		"desc":"born under the celestial sign of wind",
