@@ -8,15 +8,6 @@ export default class SlotGroup {
 		for( let p in v ) {
 
 			var s = v[p];
-			var it = s.item;
-			if ( it !== null && it !== undefined ) {
-
-				if ( Array.isArray(it) ) it = it;
-
-				s.item = it;
-
-			}
-
 			if ( s instanceof Slot ) continue;
 			v[p] = new Slot(s);
 

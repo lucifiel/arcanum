@@ -16,6 +16,15 @@ export default class Slot {
 		}
 	}
 
+	get item() {
+		return this._item;
+	}
+	set item(v){
+
+		this._item = v;
+
+	}
+
 	constructor(vars=null){
 
 		if ( vars ) Object.assign( this, vars);
