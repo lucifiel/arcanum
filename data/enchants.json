@@ -95,7 +95,7 @@
 		"adj":"of regeneration",
 		"targets":"neck",
 		"desc":"infuse an amulet with living blood.",
-		"require":"g.enchanting>=5",
+		"require":"g.enchanting>=50",
 		"level":2,
 		"buy":{
 			"arcana":1,
@@ -117,7 +117,7 @@
 		"verb":"infusing weapon",
 		"adj":"of biting",
 		"targets":"weapon",
-		"desc":"infuse an item with magical protection.",
+		"desc":"imbue a weapon with a magic strike.",
 		"require":"g.enchanting>=3",
 		"level":1,
 		"buy":{
@@ -140,7 +140,7 @@
 		"targets":"feet",
 		"desc":"imbue an item with inherent speed",
 		"require":"g.enchanting>=5",
-		"level":3,
+		"level":2,
 		"buy":{
 			"arcana":3,
 			"research":200
@@ -160,7 +160,7 @@
 		"name":"keen weapon",
 		"verb":"infusing weapon",
 		"targets":"weapon",
-		"desc":"infuse an item with magical protection.",
+		"desc":"infuse an item with magical precision.",
 		"require":"g.enchanting>=3",
 		"level":1,
 		"buy":{
@@ -173,7 +173,7 @@
 			"mana":5
 		},
 		"mod":{
-			"attack.tohit":1
+			"attack.tohit":2
 		}
 	}
 

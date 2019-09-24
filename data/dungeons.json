@@ -259,6 +259,33 @@
 
 	},
 	{
+		"id":"sereditetemple",
+		"name":"seredite temple",
+		"desc":"who they were or why they built this ruined temple in the seaside cliffs is a mystery lost to time.",
+		"level":8,
+		"run":{
+			"stamina":1.2
+		},
+		"result":{
+			"gold":"20~30",
+			"gems":"4~5"
+		},
+		"enemies":[
+			"naga",
+			["raven","raven","raven","raven"],
+			"medusa",
+			"naga",
+			"shriekingeel",
+			"naga",
+			"magicblade",
+			"evilpriest",
+			["eel","eel"],
+			"crab",
+			["crab","crab"]
+		],"flavor":"would the ancient seredites appreciate the temple's new inhabitants?"
+
+	},
+	{
 		"id":"orccamp",
 		"name":"orc camp",
 		"desc":"a scourge of cities.",

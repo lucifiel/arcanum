@@ -389,6 +389,10 @@
 	},
 	"mod":{
 		"anatomy.max":3,
+		"lore.rate":"10%",
+		"lore.max":2,
+		"firelore.max":1,
+		"firelore.rate":0.2,
 		"shadowlore.max":2,
 		"demonology.max":3
 	}
@@ -422,7 +426,7 @@
 	"title":"archlock",
 	"desc":"master of demons and demonic magic",
 	"tags":"t_tier3",
-	"require":"g.warlock>0&&g.demonology>=15",
+	"require":"g.warlock>0&&g.demonology>=13",
 	"cost":{
 		"research":3000,
 		"souls":50,
@@ -430,6 +434,11 @@
 	},
 	"effect":{
 		"tier3":true,
+		"sp":2
+	},"mod":{
+		"lore.max":2,
+		"firelore.max":2,
+		"firelore.rate":"10%",
 		"demonology.max":2
 	}
 
@@ -443,7 +452,7 @@
 	"cost":{
 		"research":1000,
 		"naturegem":10,
-		"hebs":50,
+		"herbs":50,
 		"arcana":10
 	},
 	"effect":{
@@ -616,36 +625,6 @@
 	"flavor":"there's a storm coming"
 },
 {
-	"id":"sorcerer",
-	"title":"sorcerer",
-	"desc":"A wielder of raw magical power.",
-	"require":"g.tier2>0&&(g.earthlore>=15||g.waterlore>=15||g.firelore>=15)&&g.elementalist>0",
-	"tags":"t_tier3",
-	"disable":[],
-	"cost":{
-		"research":3000,
-		"managem":5,
-		"firegem":10,
-		"earthgem":10,
-		"watergem":10,
-		"arcana":20
-	},
-	"effect":{
-		"tier3":true,
-		"sp":1
-	},
-	"mod":{
-		"lore.max":1,
-		"mana.max":1,
-		"earthlore.max":2,
-		"earthlore.rate":"10%",
-		"waterlore.max":2,
-		"waterlore.rate":"10%",
-		"firelore.max":2,
-		"firelore.rate":"10%"
-	}
-},
-{
 	"id":"stormcaller",
 	"require":"g.hydromancer>0||g.windmage>0",
 	"tags":"t_tier3",
@@ -692,11 +671,41 @@
 	}
 },
 {
+	"id":"sorcerer",
+	"title":"sorcerer",
+	"desc":"A wielder of raw magical power.",
+	"require":"g.tier3>0&&(g.earthlore>=15||g.waterlore>=15||g.firelore>=15)&&(g.elementalist+g.highelemental)>0",
+	"tags":"t_tier4",
+	"disable":[],
+	"cost":{
+		"research":3000,
+		"managem":5,
+		"firegem":10,
+		"earthgem":10,
+		"watergem":10,
+		"arcana":20
+	},
+	"effect":{
+		"tier4":true,
+		"sp":1
+	},
+	"mod":{
+		"lore.max":1,
+		"mana.max":1,
+		"earthlore.max":2,
+		"earthlore.rate":"10%",
+		"waterlore.max":2,
+		"waterlore.rate":"10%",
+		"firelore.max":2,
+		"firelore.rate":"10%"
+	}
+},
+{
 	"id":"highelemental",
 	"title":"high elemental",
-	"tags":"t_tier4",
+	"tags":"t_tier3",
 	"desc":"Lord of the elements",
-	"require":"g.tier3>0&&g.airlore>9&&g.firelore>9&&g.waterlore>9&&g.earthlore>9",
+	"require":"g.tier2>0&&g.airlore>9&&g.firelore>9&&g.waterlore>9&&g.earthlore>9",
 	"cost":{
 		"tomes":10,
 		"airgem":20,

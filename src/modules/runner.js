@@ -1,16 +1,33 @@
 import Game from '../game';
-import {quickSplice} from '../util/util';
+import {quickSplice, findRemove} from '../util/util';
 import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED } from '../events';
 import Stat from '../stat';
 import Base, {mergeClass} from '../items/base';
 import Runnable from '../composites/runnable';
 
 const REST_TAG = 't_rest';
+const DUNGEON = 'dungeon';
 
 /**
  * Tracks running/perpetual actions.
  */
 const Runner = {
+
+
+	toJSON() {
+
+		return {
+			max:this.max,
+			waiting:this.waiting.map(v=> v instanceof Runnable ? v : v.id),
+			actives:this.actives.map(v=> v instanceof Runnable ? v : v.id),
+
+			/**
+			 * @property {Runnable[]} runnables - running combinations of objects.
+			 */
+			//runnables:this.runnables
+		};
+
+	},
 
 	/**
 	 * @todo : Messy for Focus skill.
@@ -56,16 +73,6 @@ const Runner = {
 	get type() { return 'runner'; },
 	hasTag() { return false; },
 
-	toJSON() {
-
-		return {
-			max:this.max,
-			waiting:this.waiting.map(v=> v instanceof Runnable ? v : v.id),
-			actives:this.actives.map(v=> v instanceof Runnable ? v : v.id)
-		};
-
-	},
-
 	/**
 	 * @property {number} running - number currently running.
 	 */
@@ -85,12 +92,22 @@ const Runner = {
 
 			this._max =v;
 
-		} else if ( !this._max ) this._max = new Stat(v);
-		else if ( typeof v === 'number' ) {
+		} else if ( !this._max ) {
+			console.log('NEW MAX: ' + v );
+			this._max = new Stat(v);
+		} else if ( typeof v === 'number' ) {
+
+			console.log('NEW MAX BASE: ' + v );
 			this._max.base = v;
+
 		} else this._max = new Stat(v);
 
 	},
+
+	/**
+	 * @property {Runnable[]} runnables - use-with object combinations.
+	 */
+	//runnables:null,
 
 	/**
 	 * @property {Action[]} actives - Actively running tasks.
@@ -108,36 +125,57 @@ const Runner = {
 	 */
 	revive( gs ) {
 
+		/**
+		 * Only one object. page reloads, etc.
+		 */
 		this.waiting = null;
 		this.actives = null;
 		this._max = null;
 
-		let runner = gs.getData('runner');
+		let data = gs.getData('runner');
+		if ( data ) {
 
-		if ( runner ) {
-
-			this.max = runner.max;
-
-			this.waiting = runner.waiting;
-			this.actives = runner.actives;
-
+			this.waiting = data.waiting;
+			this.actives = data.actives;
+			this.max = data.max;
+			console.log('LOADED MAX: ' + data.max );
 		}
 
-		if ( !this._max ) this.max = 1;
+		this.max = this._max || 1;
+		console.log('CUR MAX: ' + this.max.value );
 
-		if ( this.waiting ) this.waiting = this.waiting.map(v=>this.reviveAct(gs,v), this);
-		else this.waiting = [];
-
-		if ( this.actives ) this.actives = this.actives.map(v=>this.reviveAct(gs,v,true), this);
-		else this.actives = [];
+		this.waiting = this.reviveList( this.waiting, gs, false );
+		this.actives = this.reviveList( this.actives, gs, true );
 
 		Events.add( ACT_DONE, this.actDone, this );
-		Events.add( HALT_ACT, this.stopAction, this );
+		Events.add( HALT_ACT, this.haltAction, this );
 		Events.add( ACT_BLOCKED, this.actBlocked, this );
 
 	},
 
-	reviveAct( gs, a, running=false ) {
+	/**
+	 * Revive a list, removing Runnable elements that can't revive (missing items, etc.)
+	 * @param {object[]} list
+	 * @param {GameState} gs
+	 * @param {boolean} [running=false] - whether the items in list are running.
+	 */
+	reviveList( list, gs, running=false ) {
+
+		if ( !list ) return [];
+
+		for( let i = list.length-1; i >= 0; i-- ) {
+
+			var a = list[i] = this.reviveAct( list[i], gs, running);
+
+			if ( a == null ) list.splice(a,1);
+
+		}
+
+		return list;
+
+	},
+
+	reviveAct( a, gs, running=false ) {
 
 		if (!a) return;
 
@@ -146,13 +184,48 @@ const Runner = {
 
 			a = new Runnable( a );
 			if ( typeof a.revive === 'function' ) a.revive(gs);
+			if ( a.target == null || a.item == null ) return null;
 
 		}
-		if ( a.type === 'dungeon') return gs.raid;
+		if ( a.type === DUNGEON ) return gs.raid;
 
 		a.running=running;
 
 		return a;
+
+	},
+
+	/**
+	 * setAction of two items combined.
+	 * Before using an item and target, check if any existing Runnable matches.
+	 * If no match, create a Runnable.
+	 * @param {*} it
+	 * @param {*} targ
+	 */
+	useWith( it, targ ) {
+
+		let id = it.id;
+		let t = targ.id;
+
+		let p = (v)=>{
+			return (v instanceof Runnable)&&(id===v.item.id && t === v.target.id );
+		};
+
+		console.log('SEARCHING EXISTING');
+		let run = findRemove( this.waiting, p);
+		if ( run ) console.log('RUNNABLE FOUND IN WAITING');
+
+		if ( !run ) {
+
+			//run = findRemove( this.runnables, p );
+
+			if ( !run ) {
+				console.log('CREATING NEW RUNNABLE');
+				run = new Runnable( it, targ );
+			}
+
+		}
+		this.setAction( run );
 
 	},
 
@@ -189,6 +262,7 @@ const Runner = {
 		if ( !a) return;
 
 		if ( a.cost && (a.exp === 0) ) {
+			console.warn('PAYING INTIAL aCTION COST');
 			Game.payCost( a.cost);
 		}
 
@@ -201,7 +275,13 @@ const Runner = {
 				if ( i < 0 ) i = 0;
 
 				console.log('Force Stop: ' + this.actives[i].id);
-				this.stopAction( 0, false );
+				let cur = this.actives[i];
+				this.stopAction( i, false );
+
+				if ( (cur instanceof Runnable) ){
+					console.log('WAITING LISTING CUR');
+					this.addWait(cur);
+				}
 
 			}
 
@@ -235,9 +315,9 @@ const Runner = {
 	/**
 	 * UNIQUE ACCESS POINT for removing active action.
 	 * @param {number|Action} i
-	 * @param {boolean} canResume - whether can attempt to resume another action.
+	 * @param {boolean} tryResume - whether can attempt to resume another action.
 	 */
-	stopAction( i, canResume=true ){
+	stopAction( i, tryResume=true ){
 
 		if ( typeof i !== 'number') {
 			i = this.actives.indexOf(i);
@@ -250,7 +330,7 @@ const Runner = {
 		a.running = false;
 		this.actives.splice(i,1);
 
-		if ( canResume && a.hasTag(REST_TAG) ){
+		if ( tryResume && a.hasTag(REST_TAG) ){
 			this.tryResume();
 		}
 
@@ -279,23 +359,43 @@ const Runner = {
 
 	},
 
+	haltAction( act ) {
+
+		if ( act instanceof Runnable ) this.addWait(act);
+		this.stopAction( act );
+
+	},
+
 	/**
 	 * Action is done, but could be perpetual/ongoing.
 	 * Attempt to repay cost and keep action.
 	 * @param {*} act
 	 */
-	actDone( act ){
+	actDone( act, repeatable=true ){
 
-		if ( Game.canRun(act) ) this.setAction(act);
-		else {
+		if ( repeatable ) {
 
-			console.log('CANNOT PAY: ' + act.id );
-			this.stopAction(act, false);
-			this.addWait(act);
+			if ( Game.canRun(act) ) {
+
+				this.setAction(act);
+
+			} else {
+
+				this.stopAction(act);
+				this.addWait(act);
+
+				// attempt to resume any waiting actions.
+				this.tryResume();
+				this.tryAdd( Game.state.restAction );
+
+			}
+
+		} else {
+
+			this.stopAction( act );
 
 			// attempt to resume any waiting actions.
 			this.tryResume();
-
 			this.tryAdd( Game.state.restAction );
 
 		}

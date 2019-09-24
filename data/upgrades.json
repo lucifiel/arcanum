@@ -141,7 +141,7 @@
 	},
 	{
 		"id":"gelding",
-		"name":"demur gelding",
+		"name":"demure gelding",
 		"desc":"a calm and sturdy horse, for moderate journeys.",
 		"slot":"mount",
 		"tags":"steed",
@@ -988,6 +988,22 @@
 	},
 	{
 
+		"id":"abstraction",
+		"desc":"a wizard's power is the sum of their knowledge",
+		"require":"g.lore>=14",
+		"cost":{
+			"research":1000,
+			"tomes":5,
+			"bloodgem":5
+		},
+		"mod":{
+			"research.rate":-0.2,
+			"hp.rate":0.7
+		}
+
+	},
+	{
+
 		"id":"alkahest",
 		"name":"alkahest",
 		"desc":"Discover a Universal Solvent",
@@ -1329,7 +1345,8 @@
 			"tomes":3
 		},
 		"mod":{
-			"hp.rate":-2,
+			"hp.rate":-1.5,
+			"player.defense":30,
 			"stamina.rate":-1,
 			"sp.rate":0.0001,
 			"planeslore.max":2,
@@ -1361,6 +1378,27 @@
 			"waterlore.rate":0.2,
 			"water.rate":0.1
 		}
+
+	},
+	{
+
+		"id":"evanescence",
+		"name":"evanescence",
+		"tags":"airsource",
+		"desc":"like you don't exist at all",
+		"require":"g.air.max>=8",
+		"cost":{
+			"research":300,
+			"air":5,
+			"airgem":3,
+			"arcana":2
+		},
+		"mod":{
+			"player.dodge":2,
+			"airlore.max":2,
+			"airlore.rate":0.2,
+			"air.rate":0.05
+		},"flavor":"the nothing you've become"
 
 	},
 	{
@@ -1402,6 +1440,50 @@
 			"fire.rate":0.05
 		}
 
+	},
+	{
+
+		"id":"earthsoul",
+		"name":"earth soul",
+		"tags":"earthsource",
+		"desc":"your body is tuned to the earth.",
+		"require":"g.earth.max>=10",
+		"cost":{
+			"research":300,
+			"earth":5,
+			"earthgem":1,
+			"arcana":1
+		},
+		"mod":{
+			"stamina.max":2,
+			"stamina.rate":0.1,
+			"earthlore.max":2,
+			"earthlore.rate":0.2,
+			"earth.rate":0.1
+		}
+	},
+	{
+
+		"id":"heartofstone",
+		"name":"heart of stone",
+		"tags":"earthsource",
+		"desc":"ruthless as the barren earth",
+		"require":"g.geomancer>0||g.earth.max>=25",
+		"cost":{
+			"research":300,
+			"earth":5,
+			"earthgem":10,
+			"arcana":5
+		},
+		"mod":{
+			"player.bonuses.earth":{
+				"damage":7
+			},
+			"stamina.max":1,
+			"earthlore.max":1,
+			"earthlore.rate":"10%",
+			"earth.rate":0.1
+		}
 	},
 	{
 		"id":"airglobe",

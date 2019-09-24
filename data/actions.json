@@ -129,7 +129,7 @@
 		"effect":{
 			"research":-0.5,
 			"gold":0.5,
-			"trickery":0.1,
+			"trickery.exp":0.1,
 			"evilamt":0.01,
 			"virtue":-0.01
 		}
@@ -151,7 +151,7 @@
 		"effect":{
 			"research":-0.8,
 			"trickery.max":0.001,
-			"trickery":0.5
+			"trickery.exp":0.5
 		},
 		"result":{
 			"virtue":-1,
@@ -220,6 +220,32 @@
 	},
 	{
 
+		"id":"tendanimals",
+		"name":"tend animals",
+		"desc":"tend to sick and wounded animals in the wild",
+		"verb":"tending",
+		"require":"adept",
+		"perpetual":true,
+		"at":{
+
+			"25":{ "effect.animals.exp":0.1 },
+			"300":{ "effect.animals.exp":0.5 },
+			"1000":{ "effect.animals.exp":1 }
+
+		},
+		"run":{
+			"stamina":0.3,
+			"nature":0.1
+		},
+		"effect":{
+			"evilamt":-0.3,
+			"naturelore.exp":0.2,
+			"animals.exp":0.2
+		}
+
+	},
+	{
+
 		"id":"spingold",
 		"name":"Spin Gold",
 		"desc":"Spin straw into gold",
@@ -239,7 +265,7 @@
 
 		},
 		"effect":{
-			"gold":2
+			"gold":2.2
 		}
 
 	},
@@ -339,7 +365,7 @@
 			"shadow":1
 
 		},"effect":{
-			"gold":2
+			"gold":2.2
 		}
 
 	},
@@ -408,6 +434,7 @@
 		},
 		"effect":{
 			"virtue":0.1,
+			"evilamt":-0.1,
 			"gold":0.4
 		}
 
@@ -453,6 +480,7 @@
 		},
 		"effect":{
 			"virtue":0.1,
+			"evilamt":-0.01,
 			"gold":0.45
 		},"flavor":"whether they know it or not"
 
@@ -535,7 +563,8 @@
 			"virtue":1,
 			"mana":0.5,
 			"hp":1,
-			"light":0.05
+			"light":0.05,
+			"evilamt":-0.1
 		}
 	},
 	{
@@ -708,17 +737,20 @@
 		},
 		"at":{
 			"10":{
-				"effect.research.max":5
+				"effect.research.max":5,
+				"effect.arcana":0.3
 			},
 			"50":{
-				"effect.research.max":5
+				"effect.research.max":5,
+				"effect.arcana":0.7
 			},
 			"100":{
-				"effect.research.max":10
+				"effect.research.max":10,
+				"effect.arcana":1
 			}
 		},
 		"effect":{
-			"research.max":5,
+			"research.max":10,
 			"arcana":1
 		}
 
@@ -1213,13 +1245,14 @@
 	},
 	{
 		"id":"grind",
-		"require":"g.research.max<0",
+		"require":"g.lore>5&&g.research.max<5",
 		"desc":"experiment with magic to expand your research.",
 		"cost":{
 			"mana":0.15
 		},
 		"effect":{
-			"research.max":0.05
+			"research.max":0.05,
+			"research":0.05
 		}
 
 	},

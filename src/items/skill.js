@@ -41,9 +41,13 @@ export default class Skill extends Action {
 		this.exp = this.exp || 0;
 
 		/** @compatibility */
-		let len = (vars.template.lenghth || 50)*Math.pow( (1+EXP_RATIO), this.value );
-		if ( this.length > len ) {
-			this.length = len;
+		if ( this.value >= 1 ){
+
+			let len = (vars.template.length || 50)*Math.pow( (1+EXP_RATIO), this.value );
+			if ( this.length > len ) {
+				this.length = len;
+			}
+
 		}
 
 

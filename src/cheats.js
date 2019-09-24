@@ -1,5 +1,3 @@
-console.log('cheats export');
-
 var cheats;
 
 if ( false ) {
@@ -23,10 +21,6 @@ if ( false ) {
 
  cheats = {
 
-	enabled:false,
-
-	code:[],
-
 	created() {
 
 		window.addEventListener('keydown', e => {
@@ -34,6 +28,9 @@ if ( false ) {
 			this.cheatKey(e);
 		}, false);
 
+		this.enabled = false;
+		this.code = 'bodias';
+		this.input = '';
 	},
 
 	methods: {
@@ -68,6 +65,16 @@ if ( false ) {
 
 		},
 		testUnlock(key){
+
+			this.input += key;
+			if ( this.input === this.code ) {
+
+				this.enabled = true;
+
+			} else if ( this.input.length === this.code.length ) {
+				this.input = this.input.slice(1);
+			}
+
 		}
 
 	}

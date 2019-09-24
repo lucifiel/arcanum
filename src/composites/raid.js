@@ -144,7 +144,6 @@ export default class Raid {
 		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
 		attacker.timer =attacker.delay;
 
-		console.log('enemy died');
 		if ( enemy.template && enemy.template.id ) {
 
 			let tmp = this.state.getData(enemy.template.id );
@@ -155,6 +154,7 @@ export default class Raid {
 
 		if ( enemy.result ) Game.applyEffect( enemy.result );
 		if ( enemy.loot ) Game.getLoot( enemy.loot, this.drops );
+		else Game.getLoot( {max:enemy.level, pct:30}, this.drops );
 
 	}
 
@@ -175,7 +175,7 @@ export default class Raid {
 
 		this.player.exp +=	(this.dungeon.level)*( 15 + this.dungeon.length )/( 0.8*del );
 
-		Events.dispatch( ACT_DONE, this );
+		Events.dispatch( ACT_DONE, this, false );
 		this.dungeon = null;
 
 	}

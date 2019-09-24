@@ -26,6 +26,9 @@ module.exports = {
 		__DIST:true,
 		__VERSION:1
 	})],
+
+	//devtool: 'source-map',
+
 	output: {
 
 		path: path.resolve(__dirname, "dist"),

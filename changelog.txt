@@ -6,7 +6,12 @@ Next action improvement % displayed in tooltip
 
 Lowered wizard unlock requirement.
 
+Better loot drop variation
+
+
 BUGFIX:
+
+Heist/Thievery now give the propery skill exp
 
 Fixed bug preventing druid unlock
 

@@ -7,7 +7,6 @@ import Range from './range';
 import ItemGen from './itemgen';
 import TechTree from './techTree';
 import Dot from './chars/dot';
-import Runnable from './composites/runnable';
 
 /**
  * @module Randoms - randomized events.
@@ -266,7 +265,7 @@ export default {
 
 		}
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.maxed();
+		return (fill.rate && fill.rate.value < 0 ) || fill.maxed();
 
 	},
 
@@ -533,13 +532,15 @@ export default {
 
 		} else {
 
-			this.payCost( it.cost );
+			if ( !it.length ) {
 
-			if ( !it.length ) this.useWith( it, targ );
-			else {
+				this.payCost( it.cost );
+				this.useWith( it, targ );
 
-				let act = new Runnable( {item:it,target:targ});
-				this.setAction( act );
+			} else {
+
+				// runner will handle costs.
+				Runner.useWith( it, targ );
 
 			}
 		}

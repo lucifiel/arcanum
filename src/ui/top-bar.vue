@@ -51,7 +51,7 @@ export default {
 
 		<span class="link-bar">
 			<button class="text-button" @click="dispatch('open-settings')">&#9881;</button>
-			<a href="https://discord.gg/n5XUKE9" target="_blank">discord</a>
+			<a href="https://discord.gg/4dB2ZE5" target="_blank">discord</a>
 			<a href="https://www.paypal.me/lerpinglemur" target="_blank">donate</a>
 			<a href="https://www.reddit.com/r/wizrobe/" target="_blank">feedback</a>
 			<a href="./changelog.txt" target="_blank">changes</a>
