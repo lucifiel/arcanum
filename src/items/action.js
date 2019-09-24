@@ -86,7 +86,7 @@ export default class Action extends GData {
 	 */
 	complete() {
 
-		console.log('ACT COMPLETE: ' + this.id );
+		console.log('COMPLETE: ' + this.id );
 		if ( this.log ) Game.doLog( this.log );
 		if ( this.result ) Game.applyEffect( this.result );
 		if ( this.mod ) Game.addMod( this.mod );

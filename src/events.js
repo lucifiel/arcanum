@@ -164,7 +164,6 @@ export default {
 	 * @param  {...any} params
 	 */
 	gfire( ...params ) {
-		console.log('GAME EVT FIRING: ' + params[1].id );
 		if ( this.started ) events.emit.apply( events, params );
 	},
 

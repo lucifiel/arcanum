@@ -54,9 +54,11 @@ export function tryDamage(target, attack, attacker = null) {
 			Events.dispatch( CHAR_DIED, target, attack );
 		}
 
-		var attackName = attack.name || (attacker ? attacker.name || attacker.id : '');
+		var attackName = attack.name || (attacker ? attacker.name : '');
+		if ( attackName == undefined ) attackName = 'gibberish';
+
 		Events.dispatch(EVT_COMBAT, null, target.name + ' hit' +
-			(attackName ? ' by ' + attackName : '') +
+			(attackName != null ? (' by ' + attackName ) : '') +
 			': ' + dmg.toFixed(1));
 
 		if (attack.leech && attacker) {
@@ -218,8 +220,6 @@ export default class Combat {
 	allyAttack( attacker, src ) {
 
 		let atk = src ? (src.attack||src) : attacker.attack;
-
-		if ( src instanceof Wearable ) console.log( 'weap hit: ' + atk.tohit );
 
 		if ( atk.targets === 'all') {
 
