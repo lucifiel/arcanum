@@ -211,7 +211,7 @@
 		"name":"haunted manse",
 		"desc":"legends of this mansion speak of ghosts and horrors",
 		"cost":2500,
-		"require":"g.spirit>=10&&g.arcana>=10",
+		"require":"hauntedmanor",
 		"mod":{
 			"space.max":75,
 			"spiritlore.max":1,

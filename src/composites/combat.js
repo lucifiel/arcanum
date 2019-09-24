@@ -55,7 +55,6 @@ export function tryDamage(target, attack, attacker = null) {
 		}
 
 		var attackName = attack.name || (attacker ? attacker.name : '');
-		if ( attackName == undefined ) attackName = 'gibberish';
 
 		Events.dispatch(EVT_COMBAT, null, target.name + ' hit' +
 			(attackName != null ? (' by ' + attackName ) : '') +

@@ -238,7 +238,7 @@
 		"id":"hauntedmanor",
 		"name":"haunted manor",
 		"desc":"",
-		"require":"g.spirit.max>=15",
+		"require":"g.spirit.max>=9",
 		"level":6,
 		"run":{
 			"stamina":1

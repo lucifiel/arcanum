@@ -1,7 +1,8 @@
 import GData from './gdata';
 import Attack from '../chars/attack';
+import Action from './action';
 
-export default class Spell extends GData {
+export default class Spell extends Action {
 
 	toJSON(){
 

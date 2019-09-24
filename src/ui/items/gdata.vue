@@ -27,13 +27,13 @@ export default {
 			let v = this.item.value;
 
 			// least upper bound.
-			var sup = 100000;
+			var sup = Number.MAX_VALUE;
 			for( let p in this.item.at ) {
 				p = Number(p);
 				if ( p > v && p < sup ) sup = p;
 			}
 
-			return sup > v ? sup : 0;
+			return ( sup > v && sup !== Number.MAX_VALUE ) ? sup : -1;
 
 		},
 		tags(){
