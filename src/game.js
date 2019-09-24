@@ -265,7 +265,7 @@ export default {
 
 		}
 		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return fill.maxed();
+		return (fill.rate && fill.rate.value < 0 ) || fill.maxed();
 
 	},
 

@@ -144,7 +144,6 @@ export default class Raid {
 		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
 		attacker.timer =attacker.delay;
 
-		console.log('enemy died');
 		if ( enemy.template && enemy.template.id ) {
 
 			let tmp = this.state.getData(enemy.template.id );

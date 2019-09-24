@@ -191,11 +191,14 @@
 	{
 		"id":"pavilion",
 		"desc":"An airy, elegant structure on an open field.",
-		"cost":1250,
+		"cost":{
+			"gold":800,
+			"gems":15
+		},
 		"require":"oracle",
 		"mod":{
 			"minions.max":3,
-			"space.max":40,
+			"space.max":50,
 			"light.rate":0.1,
 			"air.rate":0.1,
 			"mana.rate":0.1,
@@ -412,11 +415,11 @@
 	{
 		"id":"cavern",
 		"desc":"A wide and yawning cavern, deep beneath the earth",
-		"require":"g.tier1>0&&g.earthlore>=5",
+		"require":"g.tier1>0&&g.earthlore>=10",
 		"cost":{
 			"research":500,
 			"gold":3000,
-			"earthgem":10
+			"earthgem":20
 		},
 		"mod":{
 			"minions.max":20,
@@ -428,7 +431,8 @@
 			"shadow.max":3,
 			"shadow.rate":0.2,
 			"light.max":-3,
-			"light.rate":-2
+			"lightlore.rate":-2,
+			"light.rate":-1
 		},
 		"lock":["latticewindow"]
 

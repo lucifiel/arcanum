@@ -1251,7 +1251,8 @@
 			"mana":0.15
 		},
 		"effect":{
-			"research.max":0.05
+			"research.max":0.05,
+			"research":0.05
 		}
 
 	},
