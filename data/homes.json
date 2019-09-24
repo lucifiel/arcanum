@@ -333,7 +333,7 @@
 			"gems":30,
 			"herbs":10
 		},
-		"require":"g.nature>=10&&g.arcana>=10",
+		"require":"g.tier3>0&&g.nature>=10&&g.arcana>=10",
 		"mod":{
 			"minions.max":10,
 			"space.max":300,

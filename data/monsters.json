@@ -2649,7 +2649,7 @@
 
     },
     {
-        "id":"lich",
+        "id":"m_lich",
         "level":14,
         "kind":"undead",
         "evil":30,
@@ -2804,7 +2804,7 @@
 		"immune":"fire"
     },
 	{
-		"id":"lichlord",
+		"id":"m_lichlord",
 		"name":"lich lord",
         "level":16,
         "kind":"undead",
@@ -2998,7 +2998,7 @@
         }
 	},
 	{
-		"id":"ancientlich",
+		"id":"m_ancientlich",
 		"name":"ancient lich",
         "level":25,
         "kind":"undead",

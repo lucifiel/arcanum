@@ -1195,6 +1195,7 @@
 		"actname":"rite of undeath",
 		"desc":"obtain immortality by becoming a lich",
 		"require":"g.crafting>=20&&g.necromancy>=30",
+		"repeat":false,
 		"length":50,
 		"cost":{
 			"research":4000,

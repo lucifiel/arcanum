@@ -81,6 +81,7 @@ if ( false ) {
 	}
 
 }
+
 }
 
 export default cheats;

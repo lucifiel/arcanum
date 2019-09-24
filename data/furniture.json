@@ -123,7 +123,7 @@
 		"id":"cache",
 		"name":"Buried cache",
 		"desc":"A cache of treasure buried in the ground, protected by enchantment.",
-		"need":"g.outdoors>0&&g.enchanting>0",
+		"need":["outdoors","g.enchanting>0"],
 		"max":3,
 		"cost":{
 			"space":1,
@@ -660,7 +660,7 @@
 	{
 		"id":"grotesque",
 		"tags":"earthsource",
-		"require":"g.tier1>0&&g.earthlore>3&&g.shadowlore>3",
+		"require":"g.tier1>0&&(g.earthlore>3||g.shadowlore>3)",
 		"desc":"a grim and disfigured stone statue",
 		"max":4,
 		"cost":{
@@ -677,7 +677,7 @@
 	{
 		"id":"gargoyle",
 		"tags":"watersource",
-		"require":"g.tier1>0&&g.waterlore>3&&g.shadowlore>3",
+		"require":"g.tier1>0&&(g.waterlore>3||g.shadowlore>3)",
 		"desc":"a fountain issues from the stone demon's mouth",
 		"max":4,
 		"cost":{
@@ -742,7 +742,7 @@
 		"desc":"Receptacle for bones.",
 		"tags":"shadowsource,spiritsource",
 		"require":"evil",
-		"max":3,
+		"max":4,
 		"repeat":true,
 		"cost":{
 			"gold":300,

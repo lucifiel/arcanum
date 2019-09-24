@@ -175,7 +175,8 @@
 		"id":"skelcharger",
 		"name":"skeletal charger",
 		"desc":"it neither breathes nor tires.",
-		"require":"g.stables>0&&g.reanimation>=5",
+		"require":"g.reanimation>=5",
+		"need":"stables",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -193,7 +194,8 @@
 		"id":"firecharger",
 		"name":"fire charger",
 		"desc":"hooves of flame leave lines of fire in the ground",
-		"require":"g.stables>0&&g.firelore>5&&g.magicbeasts>=5",
+		"require":"g.firelore>5&&g.magicbeasts>=5",
+		"need":"stables",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -1340,7 +1342,7 @@
 		"id":"siversgate",
 		"name":"siver's gate",
 		"desc":"siver knew true power comes only at great cost",
-		"require":"g.lore>=30",
+		"require":"g.lore>=30&&g.tier4>0",
 		"cost":{
 			"research":4000,
 			"shadowgem":15,
@@ -1348,6 +1350,7 @@
 			"arcana":10,
 			"tomes":3
 		},
+		"warn":true,
 		"mod":{
 			"hp.rate":-1.5,
 			"player.defense":30,
