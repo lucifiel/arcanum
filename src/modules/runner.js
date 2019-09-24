@@ -1,6 +1,6 @@
 import Game from '../game';
 import {quickSplice, findRemove} from '../util/util';
-import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED } from '../events';
+import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED, EXP_MAX } from '../events';
 import Stat from '../stat';
 import Base, {mergeClass} from '../items/base';
 import Runnable from '../composites/runnable';
@@ -150,6 +150,16 @@ const Runner = {
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.haltAction, this );
 		Events.add( ACT_BLOCKED, this.actBlocked, this );
+		Events.add( EXP_MAX, this.expMax, this );
+
+	},
+
+	/**
+	 * Item reached max exp value.
+	 * @param {*} it
+	 */
+	expMax( it ) {
+		if ( it.complete && typeof it.complete === 'function') it.complete();
 
 	},
 

@@ -59,15 +59,6 @@ export default class Skill extends Action {
 
 	}
 
-	update( dt) {
-
-		this.exp += dt*this._rate;
-		if ( this.exp > this.length ) {
-			this.complete();
-		}
-
-	}
-
 	exec() {
 
 		if ( this.value > Math.floor(this._max) ) this.value = Math.floor(this.max);
@@ -76,7 +67,6 @@ export default class Skill extends Action {
 		this.dirty = true;
 
 		super.exec();
-
 
 	}
 

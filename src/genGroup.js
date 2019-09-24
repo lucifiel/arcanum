@@ -58,16 +58,30 @@ export default class GenGroup {
 	}
 
 	/**
+	 * Get a filtered sublist.
+	 * @param {string} filter - filter type 'level', 'biome' etc.
+	 * @param {string} match
+	 */
+	filtered( filter, match ) {
+
+		let f = this.filters[filter];
+		if ( f !== undefined ) return f[match];
+
+		return null;
+
+	}
+
+	/**
 	 * Get a random item from a filtered subcategory.
 	 * @param {string} filter
-	 * @param {string} sub
+	 * @param {string} match
 	 */
-	filterRand( filter, sub ) {
+	filterRand( filter, match ) {
 
 		var o = this.filters[filter];
 		if ( o===undefined) return null;
 
-		o = filter[sub];
+		o = filter[match];
 		if ( o===undefined || o.length === 0) return null;
 
 		return o[ Math.floor( Math.random()*o.length) ];

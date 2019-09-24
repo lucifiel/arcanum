@@ -40,6 +40,12 @@ export default class Enchant extends Action {
 	}
 
 	/**
+	 * Catch complete
+	 */
+	complete(){
+	}
+
+	/**
 	 * Test if enchantment can be applied to target item.
 	 * @param {Item} it
 	 */

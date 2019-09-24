@@ -1,6 +1,6 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
-import { sublists, randElm, randMatch, includesAny} from 'objecty';
+import { randElm, randMatch, includesAny} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
 import Npc from './chars/npc';
@@ -64,8 +64,6 @@ export default class ItemGen {
 		 */
 		this.byKind = {};
 
-		this.initMaterials( state.materials );
-
 		this.initGroup( 'armor', state.armors );
 		this.initGroup('weapon', state.weapons );
 		this.initGroup('materials', state.materials );
@@ -128,13 +126,6 @@ export default class ItemGen {
 
 	}
 
-	initMaterials( mats ) {
-
-		this.materials = this.state.matsById;
-		this.matsByLevel = sublists( mats, 'level' );
-
-	}
-
 	/**
 	 * Generate a new item from a template item.
 	 * @param {Wearable} data
@@ -179,8 +170,7 @@ export default class ItemGen {
 			return null;
 		}
 
-		if ( info.type === 'wearable'
-			|| info.type === 'weapon'
+		if ( info.type === 'wearable' || info.type === 'weapon'
 			|| info.type ==='armor') return this.fromData( info );
 
 		/** @todo: THIS IS BAD */
@@ -322,7 +312,7 @@ export default class ItemGen {
 
 		while ( max >= 0 ) {
 
-			var matList = this.matsByLevel[max--];
+			var matList = this.groups.materials.filtered( 'level', max-- );
 			if ( !matList) continue;
 
 			var res = randMatch( matList, v=>{

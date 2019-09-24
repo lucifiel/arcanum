@@ -95,6 +95,12 @@ export default class Dungeon extends Action {
 
 	}
 
+	/**
+	 * Catch complete() to prevent default action. ugly.
+	 */
+	complete() {
+	}
+
 	distTest( g, self) {
 		return g.dist >= self.dist;
 	}

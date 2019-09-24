@@ -1,6 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
-import Events, { ACT_DONE, ACT_IMPROVED } from '../events';
+import Events, { ACT_DONE, ACT_IMPROVED, EXP_MAX } from '../events';
 
 export default class Action extends GData {
 
@@ -22,30 +22,16 @@ export default class Action extends GData {
 	 */
 	get exp() { return this._exp || 0; }
 	set exp(v){
+
 		this._exp = v;
+		if ( v >= (this._length || 1 ) ) {
+			Events.gfire( EXP_MAX, this );
+		}
+
 	}
 
 	get length() { return this._length; }
 	set length(v) { this._length = v;}
-
-	/**
-	 * @deprecated
-	 */
-	get progress() { return this._exp; }
-	set progress(v){
-
-		if ( v > this._exp && this.maxed()) return;
-		this._exp = v;
-		if ( this.length && v >= this._length ) {
-
-			this.value++;
-
-			if ( this.result ) Game.applyEffect( this.result );
-			if ( this.loot ) Game.getLoot( this.loot );
-			this.complete();
-
-		}
-	}
 
 	get running() { return this._running; }
 	set running(v) { this._running = v;}
@@ -92,13 +78,7 @@ export default class Action extends GData {
 	 * @param {number} dt - elapsed time.
 	 */
 	update( dt ) {
-
-		let v = this.exp += dt;
-
-		if ( v >= ( this._length||1) ) {
-			this.complete();
-		}
-
+		this.exp += ( this._rate ? this._rate.value : 1 )*dt;
 	}
 
 	/**
@@ -106,6 +86,7 @@ export default class Action extends GData {
 	 */
 	complete() {
 
+		console.log('ACT COMPLETE: ' + this.id );
 		if ( this.log ) Game.doLog( this.log );
 		if ( this.result ) Game.applyEffect( this.result );
 		if ( this.mod ) Game.addMod( this.mod );
@@ -126,6 +107,8 @@ export default class Action extends GData {
 
 	/**
 	 * Action executed, whether runnable or one-time.
+	 * RESETS EXP
+	 * No value increment because that is currently done by game (@todo fix)
 	 */
 	exec() {
 

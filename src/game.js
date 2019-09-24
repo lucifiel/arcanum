@@ -91,6 +91,7 @@ export default {
 
 		this.loaded = false;
 
+		Events.started = false;
 		// Code events. Not game events.
 		Events.init(this);
 
@@ -110,7 +111,9 @@ export default {
 
 			this.initTimers();
 
+			console.log('GGAME STARTED');
 			this.loaded = true;
+			Events.started = true;
 
 		}, err=>{ console.error('game err: ' + err )});
 

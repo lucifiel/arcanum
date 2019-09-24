@@ -49,13 +49,20 @@ const HALT_ACT = 'halt_act';
  */
 const ACT_BLOCKED = 'act_blocked';
 
-export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID, CHAR_DIED,
+/**
+ * Triggered when Action, Skill, or Dungeon reaches max experience.
+ */
+const EXP_MAX = 'exp_max';
+
+export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EXP_MAX, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID, CHAR_DIED,
 	ACT_CHANGED, ACT_IMPROVED, ACT_BLOCKED,
 	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
 
 export default {
 
 	log:null,
+
+	started:false,
 
 	init( game ) {
 
@@ -64,26 +71,30 @@ export default {
 
 		this.clearGameEvents();
 
-			events.addListener( EVT_LOOT, this.onLoot, this );
-			events.addListener( EVT_UNLOCK, this.onUnlock, this );
-			events.addListener( EVT_EVENT, this.onEvent, this );
-			events.addListener( LEVEL_UP, this.onLevel, this );
+		events.addListener( EVT_LOOT, this.onLoot, this );
+		events.addListener( EVT_UNLOCK, this.onUnlock, this );
+		events.addListener( EVT_EVENT, this.onEvent, this );
+		events.addListener( LEVEL_UP, this.onLevel, this );
 
-			events.addListener( ACT_IMPROVED, this.actImproved, this );
+		events.addListener( ACT_IMPROVED, this.actImproved, this );
 
-			events.addListener( EVT_COMBAT, this.onCombat, this );
-			events.addListener( ENEMY_SLAIN, this.enemySlain, this );
-			events.addListener( PLAYER_SLAIN, this.onDied, this );
-			events.addListener( DAMAGE_MISS, this.onMiss, this );
+		events.addListener( EVT_COMBAT, this.onCombat, this );
+		events.addListener( ENEMY_SLAIN, this.enemySlain, this );
+		events.addListener( PLAYER_SLAIN, this.onDied, this );
+		events.addListener( DAMAGE_MISS, this.onMiss, this );
+
 	},
 
 	clearGameEvents() {
+
+		this.started = false;
 
 		events.removeAllListeners( EVT_COMBAT );
 		events.removeAllListeners( EVT_LOOT );
 		events.removeAllListeners( EVT_UNLOCK );
 		events.removeAllListeners( EVT_EVENT );
 		events.removeAllListeners( LEVEL_UP );
+		events.removeAllListeners( EXP_MAX );
 
 		events.removeAllListeners( ACT_DONE );
 		events.removeAllListeners( ACT_CHANGED );
@@ -146,6 +157,15 @@ export default {
 
 	enemySlain( enemy, attacker ) {
 		this.log.log( '', enemy.name + ' slain' + ( attacker ? ' by ' + attacker.name : ''), EVT_COMBAT );
+	},
+
+	/**
+	 * Dispatch only if game running.
+	 * @param  {...any} params
+	 */
+	gfire( ...params ) {
+		console.log('GAME EVT FIRING: ' + params[1].id );
+		if ( this.started ) events.emit.apply( events, params );
 	},
 
 	/**
