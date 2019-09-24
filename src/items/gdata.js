@@ -94,6 +94,11 @@ export default class GData {
 
 		if ( this._locked === undefined || this._locked === null ) this.locked = true;
 
+		/**
+		 * recomputed at game start.
+		 */
+		this.locks = 0;
+
 		this._value = this._value || 0;
 
 		if ( vars.nomax ) {

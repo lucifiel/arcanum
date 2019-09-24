@@ -131,8 +131,11 @@ export default {
 		for( let p in items ) {
 
 			var it = items[p];
-			if ( !it.locked && it.value > 0 && !it.disabled ) {
+			if ( !it.locked && it.value >0 && !it.disabled ) {
+
 				if ( it.mod ) this.addMod( it.mod, it.value );
+				if ( it.lock ) this.lock( it.lock, it.count );
+
 			}
 
 		}
@@ -676,7 +679,7 @@ export default {
 
 		it.value -= amt;
 		if ( it.mod ) this.removeMod( it.mod, amt );
-		if ( it.lock ) this.unlock( it.lock );
+		if ( it.lock ) this.unlock( it.lock, amt );
 
 		it.dirty = true;
 
