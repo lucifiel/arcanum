@@ -52,7 +52,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":75,
+			"dist.max":115,
 			"spirit.max":1
 		}
 
@@ -72,7 +72,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":250,
+			"dist.max":350,
 			"spirit.max":1,
 			"spirit.rate":0.1
 		}
@@ -93,7 +93,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":200
+			"dist.max":300
 		}
 
 	},
@@ -167,7 +167,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":75
+			"dist.max":95
 		}
 
 	},
@@ -186,7 +186,7 @@
 			"bonedust":20
 		},
 		"mod":{
-			"dist.max":166
+			"dist.max":266
 		}
 
 	},
@@ -205,7 +205,7 @@
 			"firegem":5
 		},
 		"mod":{
-			"dist.max":175
+			"dist.max":275
 		}
 
 	},
@@ -222,7 +222,7 @@
 			"firegem":5
 		},
 		"mod":{
-			"dist.max":500
+			"dist.max":550
 		},"flavor":"bring me my chariot of fire"
 
 	},
@@ -239,7 +239,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":200
+			"dist.max":300
 		}
 
 	},
@@ -256,7 +256,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":225
+			"dist.max":325
 		}
 
 	},
@@ -286,6 +286,21 @@
 		},
 		"mod":{
 			"dist.max":5
+		}
+
+	},
+	{
+
+		"id":"up_map",
+		"name":"tenwick's travel map",
+		"require":"g.tier2>0&&g.player.level>=10",
+		"desc":"though neither a mage, nor a warrior, few braved the wilds of inner-Dhrune so completely as Tenwick.",
+		"cost":{
+			"gold":800,
+			"research":900
+		},
+		"mod":{
+			"dist.max":"25%"
 		}
 
 	},
@@ -1045,7 +1060,7 @@
 	{
 		"id":"windchime",
 		"name":"windchime",
-		"tags":"airsource",
+		"tags":"airsource,spiritsource",
 		"desc":"Focus of air magic.",
 		"require":"g.space.max>10",
 		"cost":{

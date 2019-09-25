@@ -612,7 +612,7 @@
 			"stamina":0.4
 		},
 		"effect":{
-			"nature.mana":0.5,
+			"nature":0.5,
 			"naturelore":{
 				"exp":0.1,
 				"max":0.001

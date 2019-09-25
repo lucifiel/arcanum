@@ -306,26 +306,19 @@ export default class Combat {
 
 	}
 
-	setEnemies( enemy ) {
+	setEnemies( enemy, pct ) {
 
 		var enemies = [];
-		var e;
 
 		if (  Array.isArray(enemy)){
 
 			for( let i = enemy.length-1; i >=0; i-- ) {
-				e = enemy[i];
-				if ( typeof e === 'string' ) e = Game.getData(e);
-				enemies.push( e );
-
+				enemies.push( this.makeEnemy( enemy[i], pct) );
 			}
 
 		} else {
 
-			e = typeof enemy === 'string' ? Game.getData(enemy) : enemy;
-			if ( !e) {console.warn( 'Missing Enemy: ' + enemy ); return }
-
-			enemies.push( e );
+			enemies.push( this.makeEnemy(enemy, pct) );
 
 		}
 
@@ -338,11 +331,15 @@ export default class Combat {
 	/**
 	 * Retrieve enemy template data from enemy string or build object.
 	 */
-	makeEnemy( e ) {
+	makeEnemy( e, pct=1 ) {
 
+		console.log( 'make enemy: ' + e );
 		if ( typeof e === 'string' ) return Game.getData(e);
 
-		// object
+		e = Game.itemGen.genEnemy( e, pct );
+		if ( !e) {console.warn( 'Missing Enemy: ') }
+
+		return e;
 
 	}
 

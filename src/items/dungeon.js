@@ -41,12 +41,16 @@ export default class Dungeon extends Action {
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
 
-		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.floor( 5*Math.exp( 0.4*this.level ) ) : this.dist;
+		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.ceil( 4.4*Math.exp( 0.32*this.level ) ) : this.dist;
 		//this.addRequire( 'dist', this.dist );
 
 		//console.log(this.id + ' dist: ' + this.dist );
 
 		if ( this.need == null ) this.need = this.distTest;
+
+		if ( this.id === 'catacrypts') {
+			console.log('DIST: ' + this.dist);
+		}
 
 		/**
 		 * Total of all enemy weights, used to roll which

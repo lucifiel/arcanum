@@ -135,7 +135,7 @@ export default class Raid {
 	 */
 	nextCombat() {
 
-		this.combat.setEnemies( this.dungeon.getEnemy() );
+		this.combat.setEnemies( this.dungeon.getEnemy(), this.exp/this.length );
 
 	}
 

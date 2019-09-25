@@ -96,8 +96,11 @@ export default class ItemGen {
 
 		var level = data.level;
 		if ( level instanceof Object ) level =  level.value;
+		level *= pct;
+		if ( level < 1 ) level = 1;
 
 		let npc = this.groups.npc.randBelow( level );
+		return npc;
 
 	}
 
