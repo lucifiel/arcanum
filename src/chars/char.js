@@ -85,7 +85,6 @@ export default class Char {
 		//console.log( this.id + ' damage: ' + this.damage );
 		//console.log( this.id + ' tohit: ' + this.tohit );
 
-		if ( vars.dots ) console.log( vars.dots.length );
 		/**
 		 * @property {Object[]} dots - timed/ongoing effects.
 		*/

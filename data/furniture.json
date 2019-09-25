@@ -750,7 +750,7 @@
 			"space":1
 		},
 		"mod":{
-			"bones.max":10,
+			"bones.max":20,
 			"shadowlore.max":1,
 			"spiritlore.max":1,
 			"spiritlore.rate":0.3
@@ -1151,7 +1151,7 @@
 		"mod":{
 			"souls.rate":0.01,
 			"bodies.max":20,
-			"bones.max":20,
+			"bones.max":50,
 			"souls.max":20,
 			"reanimation.max":1,
 			"reanimation.rate":"10%",

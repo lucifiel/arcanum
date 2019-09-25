@@ -90,9 +90,6 @@ export default class Player extends Char {
 	set speed(v) {
 
 		this._speed = v;
-		console.log('SETTING SPEED: ' + v );
-		console.log('speed vcal: ' + v.value );
-
 		this.delay = getDelay( this._speed.value );
 
 	}

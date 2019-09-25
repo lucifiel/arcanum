@@ -3,6 +3,7 @@ import Events, { ENEMY_SLAIN, ACT_DONE, CHAR_DIED } from '../events';
 import Game from '../game';
 import Inventory from '../chars/inventory';
 import Combat from './combat';
+import { getDelay } from '../chars/char';
 
 
 /**
@@ -135,6 +136,11 @@ export default class Raid {
 	 */
 	nextCombat() {
 
+
+		/**
+		 * @todo: maket this happen automatically.
+		 */
+		this.player.delay = getDelay( this.player.speed );
 		this.combat.setEnemies( this.dungeon.getEnemy(), this.exp/this.length );
 
 	}
@@ -183,6 +189,7 @@ export default class Raid {
 	}
 
 	setDungeon( d ) {
+
 
 		this.player.timer = this.player.delay;
 

@@ -453,7 +453,6 @@ const Runner = {
 
 		}
 
-		console.log('Action available. Try rest?' );
 		//this.tryAdd( Game.state.restAction );
 
 	},
@@ -485,7 +484,6 @@ const Runner = {
 	doAction(a, dt) {
 
 		if ( !a.canUse() ) {
-			console.log('CANNOT USE: ' + a.id );
 			this.stopAction(a);
 		}
 

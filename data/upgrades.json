@@ -492,6 +492,36 @@
 		}
 	},
 	{
+		"id":"morbidtrinkets",
+		"name":"morbid trinkets",
+		"desc":"you have an unhealthy preoccupation with the macabre",
+		"require":"bonemonger",
+		"cost":{
+			"bones":40,
+			"research":800,
+			"spiritgem":5
+		},
+		"mod":{
+			"bones.max":"15%"
+		}
+
+	},
+	{
+		"id":"unholyspecimens",
+		"name":"unholy specimens",
+		"desc":"your somber collection grows.",
+		"require":"g.ossuary>=4",
+		"cost":{
+			"bones":40,
+			"research":800,
+			"gold":300,
+			"gems":10
+		},
+		"mod":{
+			"ossuary.mod.bones.max":10
+		}
+	},
+	{
 		"id":"bonecollector",
 		"name":"bone collector",
 		"require":"g.reanimation>=5&&g.crafting>=7",
@@ -1252,6 +1282,31 @@
 		},
 		"mod":{
 			"hp.max":2
+		}
+
+	},
+	{
+		"id":"innerlight",
+		"name":"inner light",
+		"require":"g.oracle>0&&g.divination>=8",
+		"desc":"a light in the darkness",
+		"cost":{
+			"research":300,
+			"lightgem":5
+		},
+		"mod":{
+			"lightlore.rate":"10%",
+			"hp.rate":0.3,
+			"player.resist.light":5
+		}
+	},
+	{
+		"id":"forewarned",
+		"require":"g.seer>0&&g.oracle>0&&g.divination>=12",
+		"desc":"all these things have I expected, and more...",
+		"mod":{
+			"player.defense":2,
+			"dodge":2
 		}
 
 	},

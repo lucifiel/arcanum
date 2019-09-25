@@ -887,7 +887,7 @@
         "desc":"It's bitey.",
         "hp":12,
 		"tohit":7,
-		"speed":9,
+		"speed":6,
         "defense":18,
         "attack":{
             "name":"bite",
