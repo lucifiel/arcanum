@@ -16,7 +16,13 @@ export default {
 			}
 		},
 		title(){ return this.player.title; },
-		speed() { return this.player.speed; },
+		speed() {
+
+			/** compat */
+			let s = this.player.speed;
+			if ( typeof s === 'object') return s.value;
+			return s;
+		},
 		stamina() { return this.player.stamina; },
 		level() {return this.player.level; },
 		hp() {return this.player.hp; },

@@ -104,6 +104,7 @@ export default class GData {
 		if ( vars.nomax ) {
 			this._max = null;
 		}
+
 		if ( this.owned && !this.buy && !this.value ) this._value = 1;
 		//if ( this.owned) console.log('owned: ' + this.owned + ' id: ' + this.id);
 

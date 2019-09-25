@@ -1256,6 +1256,20 @@
 
 	},
 	{
+		"id":"celerity",
+		"require":"tier1",
+		"desc":"ancient spellcasters often move with preternatural speed.",
+		"max":3,
+		"cost":{
+			"sp":2,
+			"research":500
+		},
+		"mod":{
+			"speed":1
+		}
+
+	},
+	{
 
 		"id":"occultendure",
 		"name":"occult endurance",

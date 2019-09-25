@@ -59,7 +59,7 @@
 		"id":"speed",
 		"desc":"Movement speed",
 		"value":1,
-		"nomax":true,
+		"stat":true,
 		"unit":false,
 		"locked":false
 	},
