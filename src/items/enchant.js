@@ -26,7 +26,7 @@ export default class Enchant extends Action {
 	 */
 	usingWith( it ) {
 
-		console.log('Do Enchant: ' + it.id );
+		console.log( this.id + ' enchant: ' + it.id );
 		if ( this.adj && !it.name.includes(this.adj) ) {
 
 			it.name += ' ' + this.adj;

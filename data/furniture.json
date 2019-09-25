@@ -966,11 +966,11 @@
 	{
 		"id":"orrery",
 		"desc":"a vast mechanical model of existence",
-		"require":"g.codices>=100&&g.astronomy>7",
+		"require":"g.codices>=80&&g.astronomy>7",
 		"repeat":false,
 		"cost":{
 			"gold":500,
-			"research":700,
+			"research":900,
 			"space":50
 		},
 		"mod":{

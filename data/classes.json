@@ -567,7 +567,7 @@
 		"sp":2
 	},
 	"mod":{
-		"earthlore.max":1,
+		"earthlore.max":2,
 		"earthlore.rate":"10%",
 		"stamina.max":"10%",
 		"mana.max":2
@@ -595,7 +595,7 @@
 		"sp":2
 	},
 	"mod":{
-		"firelore.max":1,
+		"firelore.max":2,
 		"firelore.rate":"10%",
 		"dodge.max":"10%",
 		"mana.max":2
@@ -623,7 +623,7 @@
 		"sp":2
 	},
 	"mod":{
-		"waterlore.max":1,
+		"waterlore.max":2,
 		"waterlore.rate":"10%",
 		"dodge.max":"10%",
 		"mana.max":2
@@ -651,7 +651,7 @@
 		"sp":2
 	},
 	"mod":{
-		"airlore.max":1,
+		"airlore.max":2,
 		"airlore.rate":"10%",
 		"dodge.max":"10%",
 		"mana.max":2

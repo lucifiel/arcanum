@@ -34,7 +34,13 @@ export default {
 				let p = this.pprop;
 
 				if ( !v ) this.$emit( 'input', this.items );
-				else this.$emit( 'input', this.items.filter(
+				else if ( typeof p === 'function') {
+
+ 					this.$emit( 'input', this.items.filter(
+						it=>p(it, v)
+					));
+
+				} else this.$emit( 'input', this.items.filter(
 					it=>(typeof it === 'object') &&
 					( (typeof it[p]) === 'string' ) && it[p].includes( v )
 				));

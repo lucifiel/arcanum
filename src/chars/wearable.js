@@ -4,7 +4,7 @@ import Attack from './attack';
 
 import {mergeSafe} from "objecty";
 import Mod from '../mod';
-import { logObj, assignPublic, assignNoFunc } from '../util/util';
+import { assignNoFunc } from '../util/util';
 
 
 export default class Wearable {
@@ -20,7 +20,6 @@ export default class Wearable {
 
 		if ( !this.template ) console.warn('MISSING TEMPLATE: ' + this.id );
 		else if ( typeof this.template === 'string' ) {
-			console.log('STRING TEMPLATE: ' + this.template);
 			data.template = this.template;
 		}
 		else data.template = this.template.id;

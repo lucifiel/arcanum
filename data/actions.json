@@ -895,6 +895,30 @@
 
 	},
 	{
+		"id":"malleus",
+		"name":"malleus maleficarum",
+		"actname":"compile witchhammer",
+		"require":"g.crafting>=15&&g.lightlore>=15",
+		"desc":"a manual against the darkness.",
+		"length":50,
+		"repeat":false,
+		"cost":{
+			"tomes":5
+		},
+		"run":{
+			"research":1
+		},
+		"mod":{
+			"player.resist.shadow":10,
+			"research.max":20,
+			"spiritlore.max":2,
+			"spiritlore.rate":"10%",
+			"demonology.max":2,
+			"demonology.rate":0.5
+		}
+
+	},
+	{
 		"id":"fazbitfixations",
 		"name":"fazbit's fixations",
 		"require":"g.alchemy>=6&&g.tier0>0",
