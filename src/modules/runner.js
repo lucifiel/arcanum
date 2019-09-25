@@ -499,7 +499,7 @@ const Runner = {
 
 		}
 
-		if ( a.fill && Game.filled(a.fill ) ) {
+		if ( a.fill && Game.filled( a.fill, a ) ) {
 
 			this.actBlocked(a);
 

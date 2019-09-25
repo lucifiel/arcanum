@@ -11,9 +11,6 @@ import { getDelay } from '../chars/char';
  */
 export default class Raid {
 
-	/**
-	 * @property {string} id - id of dungeon in progress.
-	 */
 	get id() { return 'raid';}
 
 	/**
@@ -45,12 +42,6 @@ export default class Raid {
 
 	get combat() { return this._combat; }
 	set combat(v) { this._combat = v instanceof Combat ? v : new Combat(v); }
-
-	/**
-	 * @deprecated - used to pass through to combat.
-	 */
-	get enemies() { return this.combat ? this.combat._enemies : null; }
-	set enemies(v) { if ( this.combat ) this.combat.enemies = v; }
 
 	/**
 	 * @property {Inventory} drops - items dropped in current dungeon.
@@ -166,9 +157,7 @@ export default class Raid {
 
 	}
 
-	combatDone() {
-		this.exp += 1;
-	}
+	combatDone() { this.exp += 1; }
 
 	raidDone() {
 

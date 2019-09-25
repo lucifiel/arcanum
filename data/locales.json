@@ -1,0 +1,28 @@
+[
+	{
+	"id":"mustylibrary",
+	"name":"musty library",
+	"level":1,
+	"length":10,
+	"require":"apprentice",
+	"run":{
+		"stamina":0.2
+	},
+	"result":{
+
+	},
+	"loot":{
+		"scrolls":"1~4"
+	},
+	"enemies":[
+		["newt","newt","newt"],
+		"lgmouse",
+		"bigstone",
+		"stingybee",
+		"smsnake",
+		"twikman"
+	]
+
+}
+
+]
