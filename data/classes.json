@@ -296,9 +296,9 @@
 {
 	"id":"necromancer",
 	"title":"necromancer",
-	"tags":"t_tier3",
+	"tags":"t_tier4",
 	"desc":"master of death magic",
-	"require":"g.tier2>0&&g.evil>0&&g.shadowlore>=15",
+	"require":"g.tier3>0&&g.evil>0&&g.shadowlore>=18",
 	"cost":{
 		"research":3000,
 		"bones":100,
@@ -306,7 +306,7 @@
 		"arcana":10
 	},
 	"effect":{
-		"tier3":true,
+		"tier4":true,
 		"sp":2
 	},
 	"mod":{
@@ -374,9 +374,9 @@
 {
 	"id":"warlock",
 	"title":"warlock",
-	"tags":"t_tier2",
+	"tags":"t_tier3",
 	"desc":"master of demons and demonic magic",
-	"require":"g.tier1>0&&g.evil>0&&g.demonology>=7",
+	"require":"g.tier2>0&&g.evil>0&&g.demonology>=10",
 	"cost":{
 		"research":1000,
 		"souls":50,
@@ -384,7 +384,7 @@
 		"tomes":5
 	},
 	"effect":{
-		"tier2":true,
+		"tier3":true,
 		"sp":1
 	},
 	"mod":{
@@ -459,21 +459,24 @@
 	"id":"archlock",
 	"title":"archlock",
 	"desc":"master of demons and demonic magic",
-	"tags":"t_tier3",
-	"require":"g.warlock>0&&g.demonology>=13",
+	"tags":"t_tier5",
+	"require":"g.warlock>0&&g.demonology>=20",
 	"cost":{
-		"research":3000,
-		"souls":50,
-		"arcana":15
+		"research":5000,
+		"souls":100,
+		"tomes":25,
+		"arcana":20
 	},
 	"effect":{
-		"tier3":true,
+		"tier5":true,
 		"sp":2
 	},"mod":{
 		"lore.max":2,
-		"firelore.max":2,
-		"firelore.rate":"10%",
-		"demonology.max":2
+		"lore.rate":"10%",
+		"firelore.max":3,
+		"firelore.rate":"20%",
+		"demonology.max":5,
+		"demonology.rate":"20%"
 	}
 
 },
@@ -880,6 +883,29 @@
 		"languages.max":2,
 		"lore.max":3,
 		"lore.rate":0.4,
+		"mana.max":3
+	}
+},
+{
+	"id":"dhrunic wizard",
+	"title":"wizard",
+	"desc":"raw magic power",
+	"tags":"t_tier5",
+	"require":"g.tier4>0&&g.lore>=30",
+	"cost":{
+		"research":7000,
+		"arcana":25,
+		"tomes":30
+	},
+	"effect":{
+		"tier5":true,
+		"sp":3
+	},
+	"mod":{
+		"research.max":50,
+		"languages.max":2,
+		"lore.max":5,
+		"lore.rate":"20%",
 		"mana.max":3
 	}
 }

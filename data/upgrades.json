@@ -1138,11 +1138,11 @@
 	},
 	{
 		"id":"holycandle",
-		"name":"Holy Candle",
+		"name":"holy candle",
 		"tags":"candle",
 		"desc":"White glowing candle",
 		"max":2,
-		"require":"!g.evil&&g.light.max>=10",
+		"require":"g.light.max>=10",
 		"flavor":"It is better to light one candle than to curse the darkness.",
 		"cost":75,
 		"mod":{
@@ -1152,11 +1152,11 @@
 	},
 	{
 		"id":"blackcandle",
-		"name":"Holy Candle",
+		"name":"unholy candle",
 		"tags":"candle",
 		"desc":"What flames cast shadows?",
 		"repeat":true,
-		"require":"g.shadow.max>=10&&!g.good",
+		"require":"g.shadow.max>=10",
 		"flavor":"darkness, darkness.",
 		"cost":75,
 		"mod":{

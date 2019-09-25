@@ -144,8 +144,8 @@
 	},
 	{
 		"id":"tier5",
-		"name":"Dhrunic Pillar",
-		"desc":"A cornerstone of the mortal world.",
+		"name":"Dhrunic Rival",
+		"desc":"a contending power of the world",
 		"lock":["t_tier4","t_tier5"],
 		"effect":{
 			"sp":1,
@@ -155,6 +155,26 @@
 			"lore.max":4,
 			"crafting.max":2,
 			"arcanebody.max":1,
+			"arcanebody2.max":2,
+			"occultendure.max":1,
+			"crystalmind.max":2
+		}
+
+	},
+	{
+		"id":"tier7",
+		"name":"Dhrunic Pillar",
+		"desc":"a foundation of the world",
+		"lock":["t_tier6","t_tier7"],
+		"effect":{
+			"sp":1,
+			"player.exp":100
+		},
+		"mod":{
+			"lore.max":4,
+			"crafting.max":2,
+			"arcanebody.max":1,
+			"arcanebody2.max":2,
 			"occultendure.max":1,
 			"crystalmind.max":1
 		}

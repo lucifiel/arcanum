@@ -251,14 +251,15 @@ export default {
 	setAction( a ) { Runner.setAction(a); },
 
 	/**
-	 * Tests if a named resource has been filled to max.
-	 * @param {Item|Item[]} v
+	 * Tests if an action has effectively filled a resource.
+	 * @param {string|string[]} v - data or datas to fill.
+	 * @param {GData} a - action doing the filling.
 	 */
-	filled( v ) {
+	filled( v, a ) {
 
 		if ( Array.isArray(v) ) {
 			for( let i = v.length-1; i>=0; i-- ) {
-				if ( !this.filled( v[i] ) )return false;
+				if ( !this.filled( v[i], a ) )return false;
 			}
 			return true;
 		}
@@ -267,11 +268,19 @@ export default {
 		if (fill === undefined ) {
 
 			fill = this.state.getTagList( v );
-			return fill === undefined ? true : this.filled(fill);
+			return fill === undefined ? true : this.filled(fill, a);
 
 		}
-		//console.log( 'fill ' + fill.id + ' ? ' + fill.value + ' / ' + fill.max.value );
-		return (fill.rate && fill.rate.value < 0 ) || fill.maxed();
+
+		if ( !fill.rate || !a.effect || fill.rate.value >= 0 ) return fill.maxed();
+
+		// negative-change comparison.
+		let change = a.effect[v];
+		if ( change && (fill.rate+change) <= 0 ) {
+			// the filling action can never actually fill, so count it as filled.
+			return true;
+		}
+		return false;
 
 	},
 

@@ -11,6 +11,18 @@
 		"max":10
 	},
 	{
+		"id":"confusion",
+		"desc":"Research into the Arcane",
+		"reverse":true,
+		"max":10
+	},
+	{
+		"id":"befuddlement",
+		"desc":"Research into the Arcane",
+		"reverse":true,
+		"max":10
+	},
+	{
 		"id":"arcana",
 		"school":"arcane",
 		"desc":"Profound mystical knowledge",
