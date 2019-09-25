@@ -190,6 +190,7 @@ export default class Mod {
 		else if ( targ instanceof Mod) targ.applySelf( this, amt );
 		else if ( targ === null || targ === undefined ){
 
+			//console.log('MOD.applyTo() CREATE NEW MOD AT TARGET: ' + p );
 			obj[p] = new Mod( amt*this.bonus );
 
 		} else if ( typeof targ === 'object') {

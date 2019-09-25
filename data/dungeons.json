@@ -440,9 +440,10 @@
 			"gems":"30~50",
 			"gold":"100~200"
 		},
-		"enemies":[
-			{
-			"level":"1~25",
+		"enemies":[{
+			"min":1,
+			"max":25,
+			"range":2,
 			"scale":true
 		}],"flavor":"day and night the dark gates stand open to all... but to return to the open air... that is the task, that is the labor"
 

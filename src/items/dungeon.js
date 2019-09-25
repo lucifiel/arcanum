@@ -17,7 +17,14 @@ export default class Dungeon extends Action {
 
 	get enemies() { return this._enemies; }
 	set enemies(v) {
-		this._enemies = v;
+
+		// json data not true arrays.
+		let a = [];
+
+		for( let p in v) {
+			a.push( v[p]);
+		}
+		this._enemies=a;
 	}
 
 	/**
@@ -48,10 +55,6 @@ export default class Dungeon extends Action {
 
 		if ( this.need == null ) this.need = this.distTest;
 
-		if ( this.id === 'catacrypts') {
-			console.log('DIST: ' + this.dist);
-		}
-
 		/**
 		 * Total of all enemy weights, used to roll which
 		 * enemy is used.
@@ -81,7 +84,6 @@ export default class Dungeon extends Action {
 	getBoss() {
 
 		var boss = this.boss;
-
 		if ( !boss ) return null;
 
 		if ( typeof boss === 'string' ) {

@@ -333,7 +333,7 @@ export default class Combat {
 	 */
 	makeEnemy( e, pct=1 ) {
 
-		console.log( 'make enemy: ' + e );
+		console.log( 'make enemy: ' + pct );
 		if ( typeof e === 'string' ) return Game.getData(e);
 
 		e = Game.itemGen.genEnemy( e, pct );

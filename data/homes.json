@@ -315,9 +315,10 @@
 		"id":"temple",
 		"desc":"Sanctum of meditation and insight.",
 		"cost":10000,
-		"require":"g.arcana>=100&&g.virtue>10",
+		"require":"g.arcana>=10&&g.virtue>10",
 		"mod":{
-			"virtue":2,
+			"virtue.rate":0.001,
+			"arcana.rate":0.001,
 			"minions.max":10,
 			"space.max":200,
 			"shadow.max":-3,
@@ -331,7 +332,7 @@
 		"tags":"outdoors",
 		"cost":{
 			"gems":30,
-			"herbs":10
+			"herbs":50
 		},
 		"require":"g.tier3>0&&g.nature>=10&&g.arcana>=10",
 		"mod":{

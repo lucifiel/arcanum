@@ -94,10 +94,23 @@ export default class ItemGen {
 	 */
 	genEnemy( data, pct=1 ) {
 
-		var level = data.level;
-		if ( level instanceof Object ) level =  level.value;
-		level *= pct;
-		if ( level < 1 ) level = 1;
+		var level =1;
+
+		if ( data.level ) {
+
+			level = data.level;
+
+			if ( level instanceof Object ) level =  level.value;
+			if ( data.scale ) level *= pct;
+
+		} else if ( data.min && data.max ) {
+
+			level = data.min + pct*(data.max - data.min);
+
+		}
+
+		if ( data.range ) level += (data.range*( -1 + 2*Math.random() ) );
+		level = Math.ceil(level);
 
 		let npc = this.groups.npc.randBelow( level );
 		return npc;

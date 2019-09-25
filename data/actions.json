@@ -264,6 +264,7 @@
 		"desc":"leech blood from a body to restore your health",
 		"require":"transfusions",
 		"length":10,
+		"fill":"hp",
 		"cost":{
 			"bodies":1
 		},

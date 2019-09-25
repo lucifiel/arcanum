@@ -105,7 +105,6 @@ export default class Char {
 	revive( state ){
 
 		for( let i = this.dots.length-1; i>=0; i--) {
-			console.log('reivving dot: ' + this.dots[i].id );
 			this.dots[i].revive(state);
 		}
 
