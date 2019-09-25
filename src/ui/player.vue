@@ -18,10 +18,13 @@ export default {
 		title(){ return this.player.title; },
 		speed() {
 
+
+
+			let s = this.player.speed.value;
 			/** compat */
-			let s = this.player.speed;
 			if ( typeof s === 'object') return s.value;
 			return s;
+
 		},
 		stamina() { return this.player.stamina; },
 		level() {return this.player.level; },
@@ -82,7 +85,7 @@ export default {
 			<tr><td>dodge</td><th>{{ dodge }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
-			<tr><td>speed</td><th>{{ speed.value.toFixed(2) }}</th></tr>
+			<tr><td>speed</td><th>{{ speed.toFixed(2) }}</th></tr>
 
 			<tr @mouseenter.capture.stop="dispatch( 'itemover', $event,player.weapon)">
 				<td>weapon</td><th>{{ player.weapon ? player.weapon.name : 'None' }}</th></tr>
