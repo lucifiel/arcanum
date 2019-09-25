@@ -85,7 +85,6 @@ export default class Char {
 		//console.log( this.id + ' damage: ' + this.damage );
 		//console.log( this.id + ' tohit: ' + this.tohit );
 
-		if ( vars.dots ) console.log( vars.dots.length );
 		/**
 		 * @property {Object[]} dots - timed/ongoing effects.
 		*/
@@ -105,7 +104,6 @@ export default class Char {
 	revive( state ){
 
 		for( let i = this.dots.length-1; i>=0; i--) {
-			console.log('reivving dot: ' + this.dots[i].id );
 			this.dots[i].revive(state);
 		}
 

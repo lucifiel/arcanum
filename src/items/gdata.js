@@ -94,12 +94,18 @@ export default class GData {
 
 		if ( this._locked === undefined || this._locked === null ) this.locked = true;
 
+		/**
+		 * recomputed at game start.
+		 */
+		this.locks = 0;
+
 		this._value = this._value || 0;
 
 		if ( vars.nomax ) {
 			this._max = null;
 		}
-		if ( this.owned && !this.buy && !this.value ) this._value = 1;
+
+		//if ( this.owned && !this.buy && !this.value ) this._value = 1;
 		//if ( this.owned) console.log('owned: ' + this.owned + ' id: ' + this.id);
 
 		//if ( this.slot ) console.log( this.id + ' slot: ' + this.slot );
@@ -180,32 +186,6 @@ export default class GData {
 		}
 
 	}
-
-	/**
-	 * Add a requirement to unlock this item.
-	 * @param {string} reqStr
-	 * @param {number} amt
-	 * @param {'require'|'need'} type - requirement to set.
-	 */
-	/*addRequire( reqStr, amt, type='require' ){
-
-		let cur = this[type];
-		if ( !cur) {
-			this[type] = {[reqStr]:amt};
-		} else if ( Array.isArray(cur) ) {
-
-			cur.push( { [reqStr]:amt} );
-
-		} else if ( typeof cur === 'object' ) {
-
-			cur[reqStr] = amt;
-
-		} else if ( typeof cur === 'function') {
-			console.log('adding requirement');
-			this[type] = [ cur, {[reqStr]:amt} ];
-		}
-
-	}*/
 
 }
 

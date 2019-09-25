@@ -46,6 +46,18 @@
 		"desc":"Rumors hint at a camp of goblins in the vicinity. As an aspiring wizard, convention dictates you test your mettle on their lives."
 	},
 	{
+		"id":"evt_rangers",
+		"name":"Interlopers",
+		"require":"g.tier7&&g.player.level>=7&&g.evilamt>=50",
+		"desc":"Hearing of your wicked deeds, the rangers of the Ettinmarch plots your downfall. An assault on their camps should crush their presumption."
+	},
+	{
+		"id":"evt_cabal",
+		"name":"Plotters",
+		"require":"g.tier7&&g.player.level>=7&&g.virtue>=50",
+		"desc":"Learning of your virtuous ways, a cabal of cytherian priests plots your overthrow. deal with them for the good of the land."
+	},
+	{
 		"id":"tier0",
 		"name":"Solitary Magic",
 		"desc":"Some say the study of magic doesn't truly begin until apprenticeship ends. People say a lot of things.",

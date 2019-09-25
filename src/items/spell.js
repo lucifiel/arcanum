@@ -1,7 +1,8 @@
 import GData from './gdata';
 import Attack from '../chars/attack';
+import Action from './action';
 
-export default class Spell extends GData {
+export default class Spell extends Action {
 
 	toJSON(){
 
@@ -31,6 +32,7 @@ export default class Spell extends GData {
 
 		}
 		if ( this.attack && !(this.attack instanceof Attack) ) this.attack = new Attack(this.attack);
+		if ( this.attack ) this.attack.name = this.name;
 
 		if ( this.locked ) this.addRequire( this.spellRequire );
 		if ( this.school ) this.addRequire( this.school );

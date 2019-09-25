@@ -8,31 +8,6 @@ export default class Equip extends SlotGroup {
 		return { slots:( this.slots ) };
 	}
 
-	get slots() { return this._slots; }
-	set slots(v) {
-
-		for( let p in v ) {
-
-			var s = v[p];
-			var it = s.item;
-			if ( it !== null && it !== undefined ) {
-
-				if ( Array.isArray(it) ) it = it.map( k=>new Wearable(k) );
-				else it = new Wearable(it);
-
-				s.item = it;
-
-			}
-
-			if ( s instanceof Slot ) continue;
-			v[p] = new Slot(s);
-
-		}
-
-		this._slots = v;
-
-	}
-
 	constructor( vars=null ) {
 
 		super(vars );

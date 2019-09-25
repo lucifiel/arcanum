@@ -22,18 +22,43 @@ export default {
 
 		sellPrice(){ return Game.sellPrice(this.item);},
 
+		/**
+		 * Occurance of next 'every' improvement relative to cur value.
+		 */
+		nextEvery() {
+
+			let v = Math.floor( this.item.value );
+
+			var next = Number.MAX_VALUE;
+
+			var f;	// save every-divisor for pct computation.
+
+			for( let p in this.item.every ) {
+
+				var dist = p - ( v % p );
+				if ( dist < next ) {
+					next = dist;
+					f = p;
+				}
+
+			}
+
+			return ( next !== Number.MAX_VALUE) ? ( (f-dist) / f ) : -1;
+
+		},
+
 		nextAt() {
 
 			let v = this.item.value;
 
 			// least upper bound.
-			var sup = 100000;
+			var sup = Number.MAX_VALUE;
 			for( let p in this.item.at ) {
 				p = Number(p);
 				if ( p > v && p < sup ) sup = p;
 			}
 
-			return sup > v ? sup : 0;
+			return ( sup > v && sup !== Number.MAX_VALUE ) ? sup : -1;
 
 		},
 		tags(){
@@ -76,6 +101,11 @@ export default {
 		<span v-if="item.at&&(nextAt>0)" class="note-text">
 			Next Improvement: {{ Math.round(100*item.value/nextAt)+'%'}}
 		</span>
+		<span v-else-if="item.every&&(nextEvery>=0)" class="note-text">
+			Next Improvement: {{ Math.round(100*nextEvery)+'%'}}
+		</span>
+
+			<div v-if="item.cd&&item.timer>0">Cooldown: {{ item.timer.toFixed(2) }}</div>
 
 			<div v-if="item.dist">distance: {{item.dist}}</div>
 			<div v-if="item.armor">armor: {{ item.armor }}</div>

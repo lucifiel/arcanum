@@ -31,6 +31,23 @@ export default {
 
 	},
 	methods:{
+
+		searchIt(it, t){
+
+			if ( it.name.includes(t) ) return true;
+			if ( it.tags){
+
+				let tags = it.tags;
+				for( let i = tags.length-1; i>=0;i--){
+					if ( tags[i].includes(t)) return true;
+				}
+
+			}
+
+			return false;
+
+
+		},
 		toggleSwitch(){
 			this.switching = !this.switching;
 		}
@@ -74,7 +91,7 @@ export default {
 		<div class="furniture">
 
 		<span class="separate">
-		<filterbox class="inline" v-model="filtered" :items="viewable" />
+		<filterbox class="inline" v-model="filtered" :prop="searchIt" :items="viewable" />
 		<span class="space">Space: {{space.value}} / {{ space.max.value }}</span>
 		</span>
 

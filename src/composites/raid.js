@@ -1,8 +1,9 @@
-import Events, { ENEMY_SLAIN, ACT_DONE } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE, CHAR_DIED } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
 import Combat from './combat';
+import { getDelay } from '../chars/char';
 
 
 /**
@@ -135,7 +136,12 @@ export default class Raid {
 	 */
 	nextCombat() {
 
-		this.combat.setEnemies( this.dungeon.getEnemy() );
+
+		/**
+		 * @todo: maket this happen automatically.
+		 */
+		this.player.delay = getDelay( this.player.speed );
+		this.combat.setEnemies( this.dungeon.getEnemy(), this.exp/this.length );
 
 	}
 
@@ -143,6 +149,8 @@ export default class Raid {
 
 		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
 		attacker.timer =attacker.delay;
+
+		//console.log('ENEMY templ: ' + (typeof enemy.template) );
 
 		if ( enemy.template && enemy.template.id ) {
 
@@ -168,8 +176,8 @@ export default class Raid {
 		this.dungeon.dirty = true;
 
 		if ( this.dungeon.loot ) Game.getLoot( this.dungeon.loot, this.drops );
-
 		if ( this.dungeon.result ) Game.applyEffect( this.dungeon.result );
+		this.dungeon.value++;
 
 		var del = Math.max( 1 + this.player.level - this.dungeon.level, 1 );
 
@@ -181,6 +189,7 @@ export default class Raid {
 	}
 
 	setDungeon( d ) {
+
 
 		this.player.timer = this.player.delay;
 

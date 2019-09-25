@@ -5,6 +5,7 @@
 		"name":"Sunny Field",
 		"level":1,
 		"length":10,
+		"require":"evt_helper",
 		"run":{
 			"stamina":0.4
 		},
@@ -238,7 +239,7 @@
 		"id":"hauntedmanor",
 		"name":"haunted manor",
 		"desc":"",
-		"require":"g.spirit.max>=15",
+		"require":"g.spirit.max>=9",
 		"level":6,
 		"run":{
 			"stamina":1
@@ -338,7 +339,7 @@
 		"desc":"an arid plain stretching from the arag heights.",
 		"level":8,
 		"run":{
-			"stamina":2
+			"stamina":1.5
 		},
 		"boss":"roc",
 		"result":{
@@ -363,7 +364,7 @@
 		"level":9,
 		"length":50,
 		"run":{
-			"stamina":5
+			"stamina":2
 		},
 		"result":{
 			"title":"mountaineer",
@@ -422,6 +423,29 @@
 			"direrat",
 			"piranha"
 		]
+
+	},
+	{
+		"id":"catacrypts",
+		"name":"the catacrypts",
+		"desc":"Old Mirthemgnar dug its dungeons til they joined the hollows beneath the world. In terror they sealed them forever.",
+		"require":["mtgorborung", "tier3"],
+		"level":15,
+		"run":{
+			"stamina":3
+		},
+		"length":1000,
+		"result":{
+			"title":"twice born",
+			"gems":"30~50",
+			"gold":"100~200"
+		},
+		"enemies":[{
+			"min":1,
+			"max":25,
+			"range":2,
+			"scale":true
+		}],"flavor":"day and night the dark gates stand open to all... but to return to the open air... that is the task, that is the labor"
 
 	},
 	{

@@ -70,6 +70,7 @@ export default {
 	 * @param {(number)=>boolean} obj.tick -tick function.
 	 */
 	addTimer( obj ){
+		console.log('adding timer: ' + obj.id );
 		this.timers.push(obj);
 	},
 
@@ -91,6 +92,7 @@ export default {
 
 		this.loaded = false;
 
+		Events.started = false;
 		// Code events. Not game events.
 		Events.init(this);
 
@@ -111,6 +113,7 @@ export default {
 			this.initTimers();
 
 			this.loaded = true;
+			Events.started = true;
 
 		}, err=>{ console.error('game err: ' + err )});
 
@@ -129,8 +132,11 @@ export default {
 		for( let p in items ) {
 
 			var it = items[p];
-			if ( !it.locked && it.value > 0 && !it.disabled ) {
+			if ( !it.locked && it.value >0 && !it.disabled ) {
+
 				if ( it.mod ) this.addMod( it.mod, it.value );
+				if ( it.lock ) this.lock( it.lock, it.count );
+
 			}
 
 		}
@@ -674,7 +680,7 @@ export default {
 
 		it.value -= amt;
 		if ( it.mod ) this.removeMod( it.mod, amt );
-		if ( it.lock ) this.unlock( it.lock );
+		if ( it.lock ) this.unlock( it.lock, amt );
 
 		it.dirty = true;
 
@@ -689,21 +695,19 @@ export default {
 
 		//unlockTests++;
 
-		if ( it.disabled || (it.need && !this.unlockTest(it.need,it)) ) return false;
+		if ( it.disabled || it.locks > 0 ) return false;
 
-		else if ( !it.require || this.unlockTest(it.require,it) ) {
+		let test = it.require || it.need;
+		if ( test && !this.unlockTest(test, it ) ) return false;
 
-			if ( it.type === 'event') this.unlockEvent( it );
-			else {
-				it.locked = false;
-				it.dirty = true;
-				Events.dispatch( EVT_UNLOCK, it );
-			}
-
-			return true;
+		if ( it.type === 'event') this.unlockEvent( it );
+		else {
+			it.locked = false;
+			it.dirty = true;
+			Events.dispatch( EVT_UNLOCK, it );
 		}
 
-		return !it.locked;
+		return true;
 
 	},
 

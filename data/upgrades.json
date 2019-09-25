@@ -52,7 +52,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":75,
+			"dist.max":115,
 			"spirit.max":1
 		}
 
@@ -72,7 +72,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":250,
+			"dist.max":350,
 			"spirit.max":1,
 			"spirit.rate":0.1
 		}
@@ -93,7 +93,7 @@
 			"arcana":1
 		},
 		"mod":{
-			"dist.max":200
+			"dist.max":300
 		}
 
 	},
@@ -167,7 +167,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":75
+			"dist.max":95
 		}
 
 	},
@@ -175,7 +175,8 @@
 		"id":"skelcharger",
 		"name":"skeletal charger",
 		"desc":"it neither breathes nor tires.",
-		"require":"g.stables>0&&g.reanimation>=5",
+		"require":"g.reanimation>=5",
+		"need":"stables",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -185,7 +186,7 @@
 			"bonedust":20
 		},
 		"mod":{
-			"dist.max":166
+			"dist.max":266
 		}
 
 	},
@@ -193,7 +194,8 @@
 		"id":"firecharger",
 		"name":"fire charger",
 		"desc":"hooves of flame leave lines of fire in the ground",
-		"require":"g.stables>0&&g.firelore>5&&g.magicbeasts>=5",
+		"require":"g.firelore>5&&g.magicbeasts>=5",
+		"need":"stables",
 		"slot":"mount",
 		"tags":"steed",
 		"buy":{
@@ -203,7 +205,7 @@
 			"firegem":5
 		},
 		"mod":{
-			"dist.max":175
+			"dist.max":275
 		}
 
 	},
@@ -220,7 +222,7 @@
 			"firegem":5
 		},
 		"mod":{
-			"dist.max":500
+			"dist.max":550
 		},"flavor":"bring me my chariot of fire"
 
 	},
@@ -237,7 +239,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":200
+			"dist.max":300
 		}
 
 	},
@@ -254,7 +256,7 @@
 			"gems":5
 		},
 		"mod":{
-			"dist.max":225
+			"dist.max":325
 		}
 
 	},
@@ -283,7 +285,23 @@
 			"research":50
 		},
 		"mod":{
+			"naturelore.max":1,
 			"dist.max":5
+		}
+
+	},
+	{
+
+		"id":"up_map",
+		"name":"tenwick's travel map",
+		"require":"g.tier2>0&&g.player.level>=10",
+		"desc":"though neither a mage, nor a warrior, few braved the wilds of inner-Dhrune so completely as Tenwick.",
+		"cost":{
+			"gold":800,
+			"research":900
+		},
+		"mod":{
+			"dist.max":"25%"
 		}
 
 	},
@@ -475,6 +493,36 @@
 		}
 	},
 	{
+		"id":"morbidtrinkets",
+		"name":"morbid trinkets",
+		"desc":"you have an unhealthy preoccupation with the macabre",
+		"require":"bonemonger",
+		"cost":{
+			"bones":40,
+			"research":800,
+			"spiritgem":5
+		},
+		"mod":{
+			"bones.max":"15%"
+		}
+
+	},
+	{
+		"id":"unholyspecimens",
+		"name":"unholy specimens",
+		"desc":"your somber collection grows.",
+		"require":"g.ossuary>=4",
+		"cost":{
+			"bones":40,
+			"research":800,
+			"gold":300,
+			"gems":10
+		},
+		"mod":{
+			"ossuary.mod.bones.max":10
+		}
+	},
+	{
 		"id":"bonecollector",
 		"name":"bone collector",
 		"require":"g.reanimation>=5&&g.crafting>=7",
@@ -656,6 +704,7 @@
 		},
 		"mod":{
 			"research.max":5,
+			"naturelore.max":2,
 			"languages.max":1,
 			"languages.rate":0.2,
 			"animals.rate":0.2
@@ -851,6 +900,7 @@
 		"id":"firesign",
 		"name":"fire sign",
 		"require":"g.fireaffinity>0&&g.fire>14",
+		"warn":true,
 		"lock":["watersign","airsign","earthsign"],
 		"desc":"born under the celestial sign of fire",
 		"cost":{
@@ -868,6 +918,7 @@
 		"name":"water sign",
 		"require":"g.wateraffinity>0&&g.water>14",
 		"lock":["firesign","airsign","earthsign"],
+		"warn":true,
 		"desc":"born under the celestial sign of water",
 		"cost":{
 			"research":1000,
@@ -884,6 +935,7 @@
 		"name":"earth sign",
 		"require":"g.earthaffinity>0&&g.earth>14",
 		"lock":["watersign","airsign","firesign"],
+		"warn":true,
 		"desc":"born under the celestial sign of earth",
 		"cost":{
 			"research":1000,
@@ -898,6 +950,7 @@
 	{
 		"id":"airsign",
 		"name":"wind sign",
+		"warn":true,
 		"require":"g.airaffinity>0&&g.air>14",
 		"lock":["watersign","firesign","earthsign"],
 		"desc":"born under the celestial sign of wind",
@@ -1039,7 +1092,7 @@
 	{
 		"id":"windchime",
 		"name":"windchime",
-		"tags":"airsource",
+		"tags":"airsource,spiritsource",
 		"desc":"Focus of air magic.",
 		"require":"g.space.max>10",
 		"cost":{
@@ -1236,6 +1289,68 @@
 	},
 	{
 
+		"id":"arcanebody2",
+		"name":"greater arcane body",
+		"max":3,
+		"desc":"magic over matter",
+		"require":"g.tier4>0",
+		"warn":true,
+		"cost":{
+			"arcana":10,
+			"research.max":50
+		},
+		"mod":{
+			"hp.rate":0.5
+		},"flavor":"magic over matter"
+
+	},
+	{
+		"id":"innerlight",
+		"name":"inner light",
+		"require":"g.oracle>0&&g.divination>=8",
+		"desc":"a light in the darkness",
+		"cost":{
+			"research":300,
+			"lightgem":5,
+			"arcana":1
+		},
+		"mod":{
+			"lightlore.rate":"10%",
+			"hp.rate":0.3,
+			"player.resist.light":5
+		}
+	},
+	{
+		"id":"forewarned",
+		"require":"g.seer>0&&g.oracle>0&&g.divination>=12",
+		"desc":"all these things have I expected, and more...",
+		"cost":{
+			"lightgem":20,
+			"research":800,
+			"arcana":3
+		},
+		"mod":{
+			"player.defense":2,
+			"dodge":2
+		}
+
+	},
+	{
+		"id":"celerity",
+		"require":"tier1",
+		"desc":"ancient spellcasters often move with preternatural speed.",
+		"max":3,
+		"cost":{
+			"sp":2,
+			"research":500
+		},
+		"mod":{
+			"speed":1
+		}
+
+	},
+	{
+
 		"id":"occultendure",
 		"name":"occult endurance",
 		"max":3,
@@ -1336,7 +1451,7 @@
 		"id":"siversgate",
 		"name":"siver's gate",
 		"desc":"siver knew true power comes only at great cost",
-		"require":"g.lore>=30",
+		"require":"g.lore>=30&&g.tier4>0",
 		"cost":{
 			"research":4000,
 			"shadowgem":15,
@@ -1344,6 +1459,7 @@
 			"arcana":10,
 			"tomes":3
 		},
+		"warn":true,
 		"mod":{
 			"hp.rate":-1.5,
 			"player.defense":30,
@@ -1354,10 +1470,10 @@
 			"reanimation.max":2,
 			"lore.max":1,
 			"demonology.max":3,
-			"demonology.rate":0.3,
+			"demonology.rate":"10%",
 			"spiritlore.max":2,
 			"spirit.rate":0.3
-		}
+		},"flavor":"to stand before it would kill most men. to step beyond..."
 	},
 	{
 
@@ -1532,9 +1648,9 @@
 			"virtue":2,
 			"gold.max":"-10%",
 			"spiritlore.max":2,
-			"spiritlore.rate":0.3,
+			"spiritlore.rate":0.5,
 			"lightlore.max":2,
-			"lightlore.rate":0.3
+			"lightlore.rate":0.5
 		}
 
 	},
@@ -1645,12 +1761,20 @@
 	{
 		"id":"siegeperilous",
 		"name":"siege perilous",
-		"desc":"the seat of destiny",
+		"desc":"the fabled seat of destiny",
+		"require":"g.notoriety>=100",
 		"cost":{
-
+			"gold":4000,
+			"gems":30
+		},
+		"effect":{
+			"notoriety":5
 		},
 		"mod":{
-
+			"allies.max":4,
+			"minions.max":4,
+			"lightlore.max":1,
+			"lightlore.rate":"10%"
 		}
 
 	},
@@ -1662,7 +1786,8 @@
 		"require":"tier2",
 		"cost":{
 			"space":5,
-			"gold":300
+			"gold":300,
+			"research":500
 		},
 		"mod":{
 			"gold.rate":0.1,

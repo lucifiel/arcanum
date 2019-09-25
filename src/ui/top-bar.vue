@@ -1,6 +1,10 @@
 <script>
+
 export default {
 
+	computed:{
+		VERSION(){return __VERSION; }
+	},
 	methods:{
 
 		fileDrop(e){
@@ -38,10 +42,10 @@ export default {
 		<button @click="dispatch('load')">load</button>
 
 		<div class="text-button"><a class="text-button" id="save-file" href=""
-				download @click.self="dispatch('save-file',$event)" type="text/json">get file</a></div>
+				download @click.self="dispatch('save-file',$event)" type="text/json">get save</a></div>
 			<!--<input type="file" name="[File]" accept="text/json" @change="fileDrop">-->
 		<button id="drop-file" @drop="fileDrop"
-			@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop File]</button>
+			@dragover="fileDrag" @dragleave.capture.stop="dragOut">[Drop Save]</button>
 
 			<confirm @confirm="dispatch('reset')">reset</confirm>
 
@@ -51,6 +55,7 @@ export default {
 
 		<span class="link-bar">
 			<button class="text-button" @click="dispatch('open-settings')">&#9881;</button>
+			<span class="vers">ver. {{ VERSION }}</span>
 			<a href="https://discord.gg/4dB2ZE5" target="_blank">discord</a>
 			<a href="https://www.paypal.me/lerpinglemur" target="_blank">donate</a>
 			<a href="https://www.reddit.com/r/wizrobe/" target="_blank">feedback</a>
@@ -63,6 +68,12 @@ export default {
 </template>
 
 <style scoped>
+
+span.vers {
+	font-size: 0.9em;
+	align-self: center;
+	margin-bottom: 4px;
+}
 
 #save-file {
 	text-decoration: none;

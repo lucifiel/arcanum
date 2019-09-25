@@ -1,6 +1,15 @@
 const path = require('path');
 const VueLoader = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
+const fs = require('fs');
+
+var versObj = fs.readFileSync( './vers.json');
+versObj = JSON.parse(versObj);
+const vers = versObj.vers;
+
+versObj.vers++;
+fs.writeFileSync( './vers.json', JSON.stringify(versObj ));
+
 
 module.exports = {
 
@@ -24,7 +33,7 @@ module.exports = {
 	plugins: [new VueLoader(),
 	new webpack.DefinePlugin({
 		__DIST:true,
-		__VERSION:1
+		__VERSION:vers
 	})],
 
 	//devtool: 'source-map',

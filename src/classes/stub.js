@@ -1,3 +1,6 @@
+/**
+ * Stub to obviate preloading all items.
+ */
 export default class Stub {
 
 	get id() { return this._id; }

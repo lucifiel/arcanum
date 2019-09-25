@@ -1,5 +1,6 @@
 import Monster from './monster';
 import Action from './action';
+import Game from '../game';
 
 /**
  * @type {Object} Enemy
@@ -16,8 +17,14 @@ export default class Dungeon extends Action {
 
 	get enemies() { return this._enemies; }
 	set enemies(v) {
-		this._enemies = v;
-		this.initEnemies(v);
+
+		// json data not true arrays.
+		let a = [];
+
+		for( let p in v) {
+			a.push( v[p]);
+		}
+		this._enemies=a;
 	}
 
 	/**
@@ -41,7 +48,7 @@ export default class Dungeon extends Action {
 		// default require for dungeon is player-level.
 		this.require = this.require || this.levelTest;
 
-		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.floor( 5*Math.exp( 0.4*this.level ) ) : this.dist;
+		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.ceil( 4.4*Math.exp( 0.32*this.level ) ) : this.dist;
 		//this.addRequire( 'dist', this.dist );
 
 		//console.log(this.id + ' dist: ' + this.dist );
@@ -57,39 +64,47 @@ export default class Dungeon extends Action {
 
 	}
 
-	initEnemies( enemies ) {
-
-		for( let i = enemies.length-1; i>= 0; i-- ) {
-
-			var e = enemies[i];
-			if ( Array.isArray(e) ) this.initEnemies( e );
-			else if ( e instanceof Object ) enemies[i] = new Monster(e);
-
-		}
-
-	}
-
 	/**
 	 * Get next enemy.
 	 * @returns {string|Monster|Object}
 	 */
 	getEnemy() {
 
-		if ( this.boss ) {
+		return this.getBoss() || this._enemies[ Math.floor( Math.random()*this._enemies.length ) ];
 
-			if ( typeof this.boss === 'string') {
+	}
 
-				if ( this.exp === this.length-1) return this.boss;
+	/**
+	 * Return a random non-boss mob. (Used to exclude dead/locked uniques)
+	 */
+	getMob() {
+		return this._enemies[ Math.floor( Math.random()*this._enemies.length ) ];
+	}
 
-			} else {
+	getBoss() {
 
-				if ( this.boss.hasOwnProperty( (this.exp+1) ) ) return this.boss[this.exp+1];
-			}
+		var boss = this.boss;
+		if ( !boss ) return null;
 
+		if ( typeof boss === 'string' ) {
+
+			if ( this.exp !== this.length-1) return null;
+
+		} else if ( boss.hasOwnProperty( (this.exp+1) ) ) {
+			// mid-level boss
+			boss = boss[this.exp+1];
 		}
 
-		return this._enemies[ Math.floor( Math.random()*this._enemies.length ) ];
+		boss = Game.state.getData( boss );
+		if ( !boss || (boss.unique && boss.value>= 1) ) return null;
+		return boss.id;
 
+	}
+
+	/**
+	 * Catch complete() to prevent default action. ugly.
+	 */
+	complete() {
 	}
 
 	distTest( g, self) {

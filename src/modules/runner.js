@@ -1,6 +1,6 @@
 import Game from '../game';
 import {quickSplice, findRemove} from '../util/util';
-import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED } from '../events';
+import Events, {ACT_DONE, ACT_CHANGED, HALT_ACT, ACT_BLOCKED, EXP_MAX } from '../events';
 import Stat from '../stat';
 import Base, {mergeClass} from '../items/base';
 import Runnable from '../composites/runnable';
@@ -93,11 +93,11 @@ const Runner = {
 			this._max =v;
 
 		} else if ( !this._max ) {
-			console.log('NEW MAX: ' + v );
+
 			this._max = new Stat(v);
 		} else if ( typeof v === 'number' ) {
 
-			console.log('NEW MAX BASE: ' + v );
+
 			this._max.base = v;
 
 		} else this._max = new Stat(v);
@@ -138,11 +138,9 @@ const Runner = {
 			this.waiting = data.waiting;
 			this.actives = data.actives;
 			this.max = data.max;
-			console.log('LOADED MAX: ' + data.max );
 		}
 
 		this.max = this._max || 1;
-		console.log('CUR MAX: ' + this.max.value );
 
 		this.waiting = this.reviveList( this.waiting, gs, false );
 		this.actives = this.reviveList( this.actives, gs, true );
@@ -150,6 +148,17 @@ const Runner = {
 		Events.add( ACT_DONE, this.actDone, this );
 		Events.add( HALT_ACT, this.haltAction, this );
 		Events.add( ACT_BLOCKED, this.actBlocked, this );
+		Events.add( EXP_MAX, this.expMax, this );
+
+	},
+
+	/**
+	 * Item reached max exp value.
+	 * @param {*} it
+	 */
+	expMax( it ) {
+		console.log('MAX EXP. COMPLETE: ' + it.id );
+		if ( it.complete && typeof it.complete === 'function') it.complete();
 
 	},
 
@@ -262,7 +271,7 @@ const Runner = {
 		if ( !a) return;
 
 		if ( a.cost && (a.exp === 0) ) {
-			console.warn('PAYING INTIAL aCTION COST');
+			console.warn('PAY FIRST ACTION COST');
 			Game.payCost( a.cost);
 		}
 
@@ -271,15 +280,14 @@ const Runner = {
 			// free space for action. actions.length is a double check.
 			if ( this.actives.length > 0 && this.free <= 0 ) {
 
-				let i = this.typeIndex( a );
-				if ( i < 0 ) i = 0;
+				let i = 0;
 
 				console.log('Force Stop: ' + this.actives[i].id);
 				let cur = this.actives[i];
 				this.stopAction( i, false );
 
 				if ( (cur instanceof Runnable) ){
-					console.log('WAITING LISTING CUR');
+					console.log('WAITING RUNNABLE');
 					this.addWait(cur);
 				}
 
@@ -354,8 +362,22 @@ const Runner = {
 	addWait( a ){
 
 		if ( a.hasTag(REST_TAG) ) return;
-		console.log('ADDING WAIT: ' + a.id );
+
 		this.waiting.push(a);
+
+		let len = this.max.value - this.waiting.length;
+		let i = 0;
+
+		console.log('REMOVING ' + len + ' WAITING');
+		while ( len > 0 ) {
+
+			a = this.waiting[i];
+			if ( !(a instanceof Runnable ) ) {
+				this.waiting.splice( a, 1 );
+			} else i++;
+			len--;
+
+		}
 
 	},
 
@@ -430,7 +452,6 @@ const Runner = {
 
 		}
 
-		console.log('Action available. Try rest?' );
 		//this.tryAdd( Game.state.restAction );
 
 	},
@@ -462,7 +483,6 @@ const Runner = {
 	doAction(a, dt) {
 
 		if ( !a.canUse() ) {
-			console.log('CANNOT USE: ' + a.id );
 			this.stopAction(a);
 		}
 

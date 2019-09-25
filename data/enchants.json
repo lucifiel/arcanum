@@ -139,10 +139,10 @@
 		"verb":"infusing shoes",
 		"targets":"feet",
 		"desc":"imbue an item with inherent speed",
-		"require":"g.enchanting>=5",
-		"level":2,
+		"require":"g.enchanting>=3",
+		"level":1,
 		"buy":{
-			"arcana":3,
+			"arcana":1,
 			"research":200
 		},
 		"length":30,
@@ -152,7 +152,50 @@
 			"mana":5
 		},
 		"mod":{
-			"speed":1
+			"mod.speed":0.5
+		}
+	},
+	{
+		"id":"en_speed2",
+		"name":"quick boots II",
+		"verb":"infusing shoes",
+		"targets":"feet",
+		"desc":"imbue an item with inherent speed",
+		"require":"g.enchanting>=4",
+		"level":1,
+		"buy":{
+			"tomes":3,
+			"research":800
+		},
+		"length":30,
+		"cost":{
+			"airgem":5,
+			"watergem":5,
+			"mana":5
+		},
+		"mod":{
+			"mod.speed":2
+		}
+	},
+	{
+		"id":"en_speed3",
+		"name":"quick boots III",
+		"verb":"infusing shoes",
+		"targets":"feet",
+		"desc":"imbue an item with inherent speed",
+		"require":"g.enchanting>=7",
+		"level":1,
+		"buy":{
+			"tomes":10,
+			"research":200
+		},
+		"length":30,
+		"cost":{
+			"runestones":2,
+			"mana":10
+		},
+		"mod":{
+			"mod.speed":3
 		}
 	},
 	{

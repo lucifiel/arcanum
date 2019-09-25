@@ -73,6 +73,7 @@
 	},
 	{
 		"id":"runes",
+		"name":"runic lore",
 		"school":"arcane",
 		"verb":"translating",
 		"desc":"study ancient dhrunic runes.",
@@ -195,6 +196,26 @@
 
 	},
 	{
+		"id":"history",
+		"require":"g.languages>12",
+		"desc":"the knowledge of what has come before reveals what is yet possible.",
+		"verb":"historicizing",
+		"disabled":true,
+		"run":{
+			"stamina":0.2
+		},
+		"effect":{
+			"research":0.5
+		},
+		"result":{
+			"sp":0.05,
+			"research.max":10,
+			"arcana.max":0.5,
+			"languages.rate":"1%"
+		}
+
+	},
+	{
 
 		"id":"anatomy",
 		"require":"g.neophyte>=0&&g.lore>=6",
@@ -259,7 +280,7 @@
 
 		"id":"divination",
 		"desc":"the art of foretelling",
-		"require":["g.spiritlore>=7||g.mysticism>=6"],
+		"require":["g.spiritlore>=6||g.mysticism>=5"],
 		"need":"spiritsource",
 		"school":"spirit",
 		"run":{

@@ -69,10 +69,11 @@ if ( false ) {
 			this.input += key;
 			if ( this.input === this.code ) {
 
+				console.warn('CHEATS ON');
 				this.enabled = true;
 
-			} else if ( this.input.length === this.code.length ) {
-				this.input = this.input.slice(1);
+			} else if ( this.input.length >= this.code.length ) {
+				this.input = this.input.slice( 1+ this.input.length - this.code.length );
 			}
 
 		}
@@ -80,6 +81,7 @@ if ( false ) {
 	}
 
 }
+
 }
 
 export default cheats;

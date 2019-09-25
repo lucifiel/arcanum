@@ -6,6 +6,7 @@ import Percent, {PercentTest} from './percent';
 import Mod, {ModTest} from './mod';
 
 import Resource from './items/resource';
+import StatData from './items/statData';
 import Skill from './items/skill';
 import Monster from './items/monster';
 
@@ -406,7 +407,9 @@ export default {
 		let res;
 		for( let def of stats ) {
 
-			res = vars[ def.id ] =  def.zerosum === true ? new ZeroSum(def) : new Resource( def );
+			res = vars[ def.id ] = def.zerosum === true ? new ZeroSum(def) :
+				( def.stat === true ? new StatData(def) : new Resource( def )
+			);
 			this.items[def.id] = res;
 
 		}

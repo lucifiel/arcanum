@@ -89,10 +89,7 @@ export default class Player extends Char {
 	get speed() { return this._speed; }
 	set speed(v) {
 
-		if ( this._speed ) this._speed.value = Number(v);
-		else if ( v instanceof Resource ) this._speed = v;
-		else this._speed = new Resource( {value:v} );
-
+		this._speed = v;
 		this.delay = getDelay( this._speed.value );
 
 	}
@@ -153,8 +150,6 @@ export default class Player extends Char {
 		this.titles = this._titles || [];
 
 		this._next = this._next || 50;
-
-		this.speed = this._speed || 1;
 
 		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 0;
@@ -218,7 +213,9 @@ export default class Player extends Char {
 	}
 
 	addTitle( title ){
-		if ( !this._titles.includes(title) ) this._titles.push(title);
+		if ( !this._titles.includes(title) ) {
+			this._titles.push(title);
+		}
 	}
 
 	/**
@@ -345,6 +342,7 @@ export default class Player extends Char {
 		this.dirty = true;
 		if ( this._level % 3 === 0 ) this.sp.value++;
 		if ( this._level % 5 === 0 ) Game.getData('minions').maxAllies.value++;
+		if ( this._level % 4 === 0 ) Game.getData('speed').value++;
 
 		this.tohit++;
 		this.hp.max.base += 2;

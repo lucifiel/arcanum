@@ -24,7 +24,7 @@ export function mergeClass( destClass, src ) {
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
  const JSONIgnore = [ 'template', 'id', 'type', 'defaults', 'name', 'desc', 'running', 'current',
- 	'locked', 'delta', 'tags', 'mod', 'effect', 'progress','need', 'require'];
+ 	'locked', 'locks', 'delta', 'tags', 'mod', 'effect', 'progress','need', 'require'];
 
 /**
  * Base class of all Game Objects.
@@ -103,12 +103,17 @@ export default {
 	 * @property {number} current - displayable value; override in subclass for auto rounding, floor, etc.
 	 */
 	get current() { return this.value },
+	set current(v) {},
 
 	/**
 	 * @property {number} value
 	 */
 	get value() { return this._value; },
-	set value(v) { this._value = v;},
+	set value(v) {
+
+		this._value = v;
+
+	},
 	valueOf() { return this._value; },
 
 	/**
@@ -145,6 +150,17 @@ export default {
 		if ( typeof mods === 'number') { this.value += mods*amt; }
 		else if ( typeof mods === 'object' ) {
 
+			if ( mods instanceof Mod ) {
+
+				// this is possible by one mod adding a new effect to an existing item,
+				// causing the mod to be cloned into the effect.
+				// coals: mod->rest.effect.fire:0.1
+				// use rest: apply effect to fire: 0.1 is now a mod.
+				mods.applyTo( this, 'value', amt);
+				return;
+
+			}
+
 			if ( mods.mod ) this.changeMod( mods.mod, amt );
 
 			for( let p in mods ) {
@@ -154,19 +170,22 @@ export default {
 
 				var targ = this[p];
 				if ( targ instanceof Stat || targ instanceof Mod ) {
+
 					//console.log('applying mod to stat: '+ p);
 					targ.apply( mods[p], amt );
+
 				} else if ( typeof mods[p] === 'object' ) {
 
 					console.log('subassign: ' + p)
-					this.subeffect( this[p], mods[p], amt );
+					if ( mods[p] instanceof Mod ) mods[p].applyTo( this, p, amt );
+					else this.subeffect( this[p], mods[p], amt );
 
 				} else if ( this[p] !== undefined ) {
-					console.log('adding: ' + p );
+					console.log( this.id + ' adding vars: ' + p );
 					this[p] += Number(mods[p])*amt;
 				} else {
 					console.log('NEW SUB: ' + p );
-					this.newSub( p, mods[p] )
+					this.newSub( this, p, mods[p], amt )
 				}
 
 			}
@@ -220,14 +239,15 @@ export default {
 
 		for( let p in mods ) {
 
+			//console.log('MOD NAME: ' + p);
+
 			var m = mods[p];
 			var sub = targ[p];
 
 			if ( sub === undefined || sub === null ) {
 
-				console.log( mods + '["' + p + '"]:' + m + ' -> mod target undefined' );
-
 				sub = targ[p] = ( typeof m === 'number') ? m*amt : cloneClass( m );
+				console.log( mods + '["' + p + '"]:' + m + ' -> mod targ undefined' + ' -> ' + sub );
 
 			} else if ( m instanceof Mod ) m.applyTo( targ, p, amt );
 			else if ( typeof m === 'object' ) {
@@ -270,7 +290,7 @@ export default {
 
 		for( let p in m ) {
 
-			console.log('assigning sub: ' + p + '=' + m[p]);
+			console.log('SUBEFFECT(): ' + p + '=' + m[p]);
 
 			if ( typeof m[p] === 'object' ) {
 				this.subeffect( obj[p], m[p], amt );
@@ -298,7 +318,9 @@ export default {
 	 * @param {number} amt - times modifier applied.
 	 */
 	newSub( obj, key, mod, amt ) {
-		console.warn( this.id + ': UNIMPLEMENTED: ' + mod + ' New SubStat: ' + key );
+
+		console.log( this.id + ' adding KEY: ' + key );
+		obj[key] = amt*mod.value;
 	},
 
 	/**

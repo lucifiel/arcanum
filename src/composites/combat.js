@@ -5,7 +5,7 @@ import Npc, { ALLY } from '../chars/npc';
 
 import Events, {
 	EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN, ALLY_DIED,
-	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, ACT_BLOCKED
+	DAMAGE_MISS, CHAR_DIED, PLAYER_HIT, ACT_BLOCKED
 } from '../events';
 
 import Monster from '../items/monster';
@@ -17,6 +17,10 @@ import Wearable from '../chars/wearable';
 * @param {Object} attack
 */
 export function tryDamage(target, attack, attacker = null) {
+
+	if (target.alive === false ) {
+		console.log('SKIPPING DEAD TARGEt' );
+	}
 
 	if (attack.kind) {
 
@@ -46,10 +50,14 @@ export function tryDamage(target, attack, attacker = null) {
 		}
 
 		target.hp -= dmg;
+		if ( target.hp <= 0 ) {
+			Events.dispatch( CHAR_DIED, target, attack );
+		}
 
 		var attackName = attack.name || (attacker ? attacker.name : '');
+
 		Events.dispatch(EVT_COMBAT, null, target.name + ' hit' +
-			(attackName ? ' by ' + attackName : '') +
+			(attackName != null ? (' by ' + attackName ) : '') +
 			': ' + dmg.toFixed(1));
 
 		if (attack.leech && attacker) {
@@ -137,6 +145,8 @@ export default class Combat {
 
 		for( let i = this._enemies.length-1; i>=0; i-- ) this._enemies[i].revive(state);
 
+		Events.add( CHAR_DIED, this.charDied, this );
+
 		this.allies = state.minions.active;
 
 	}
@@ -210,8 +220,6 @@ export default class Combat {
 
 		let atk = src ? (src.attack||src) : attacker.attack;
 
-		if ( src instanceof Wearable ) console.log( 'weap hit: ' + atk.tohit );
-
 		if ( atk.targets === 'all') {
 
 			for( let i = this.enemies.length-1; i>= 0; i-- ) {
@@ -267,7 +275,7 @@ export default class Combat {
 	doAttack( attacker, atk, targ ) {
 
 		if ( this.tryHit( attacker, targ, atk ) ) {
-			if ( tryDamage( targ, atk, attacker ) ) if ( targ.hp <= 0 ) this.charDied( targ, attacker );
+			tryDamage( targ, atk, attacker );
 		}
 
 	}
@@ -298,32 +306,40 @@ export default class Combat {
 
 	}
 
-	setEnemies( enemy ) {
+	setEnemies( enemy, pct ) {
 
 		var enemies = [];
-		var e;
 
 		if (  Array.isArray(enemy)){
 
 			for( let i = enemy.length-1; i >=0; i-- ) {
-				e = enemy[i];
-				if ( typeof e === 'string' ) e = Game.getData(e);
-				enemies.push( e );
-
+				enemies.push( this.makeEnemy( enemy[i], pct) );
 			}
 
 		} else {
 
-			e = typeof enemy === 'string' ? Game.getData(enemy) : enemy;
-			if ( !e) {console.warn( 'Missing Enemy: ' + enemy ); return }
-
-			enemies.push( e );
+			enemies.push( this.makeEnemy(enemy, pct) );
 
 		}
 
 		if ( enemies.length>0 && enemies[0]) Events.dispatch( EVT_COMBAT, enemies[0].name + ' Encountered' );
 
 		this.enemies = enemies;
+
+	}
+
+	/**
+	 * Retrieve enemy template data from enemy string or build object.
+	 */
+	makeEnemy( e, pct=1 ) {
+
+		console.log( 'make enemy: ' + pct );
+		if ( typeof e === 'string' ) return Game.getData(e);
+
+		e = Game.itemGen.genEnemy( e, pct );
+		if ( !e) {console.warn( 'Missing Enemy: ') }
+
+		return e;
 
 	}
 

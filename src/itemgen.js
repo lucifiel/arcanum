@@ -1,17 +1,10 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
-import { sublists, randElm, randMatch, includesAny} from 'objecty';
+import { randElm, randMatch, includesAny} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
 import Npc from './chars/npc';
-
-const exclusions = {
-
-	cloth:['weapon'],
-	waist:['metal'],
-	back:['metal','wood']
-
-}
+import GenGroup from './genGroup';
 
 export function itemRevive(gs, it ) {
 
@@ -55,6 +48,11 @@ export default class ItemGen {
 		this.state = state;
 
 		/**
+		 * Groups of item types to generate. 'armor', 'weapon', 'npc' etc.
+		 */
+		this.groups = {};
+
+		/**
 		 * Iitem lists by kind then level.
 		 * @property {Object.<string,Object.<number,Wearable[]>>} byLevel
 		 */
@@ -66,11 +64,18 @@ export default class ItemGen {
 		 */
 		this.byKind = {};
 
-		this.initMaterials( state.materials );
+		this.initGroup( 'armor', state.armors );
+		this.initGroup('weapon', state.weapons );
+		this.initGroup('materials', state.materials );
+
+		let g = this.initGroup('npc', state.monsters );
+		g.makeFilter( 'biome' );
+		g.makeFilter( 'kind' );
+
 
 		this.initList( 'armor', state.armors );
 		this.initList( 'weapon', state.weapons );
-		this.initList( 'equip', state.equip );
+
 	}
 
 	npc( proto ) {
@@ -80,6 +85,35 @@ export default class ItemGen {
 		it.name = proto.name;
 		it.id = proto.id + this.state.nextId();
 		return it;
+
+	}
+
+	/**
+	 * Generate an enemy from rand definition.
+	 * @param {*} data
+	 */
+	genEnemy( data, pct=1 ) {
+
+		var level =1;
+
+		if ( data.level ) {
+
+			level = data.level;
+
+			if ( level instanceof Object ) level =  level.value;
+			if ( data.scale ) level *= pct;
+
+		} else if ( data.min && data.max ) {
+
+			level = data.min + pct*(data.max - data.min);
+
+		}
+
+		if ( data.range ) level += (data.range*( -1 + 2*Math.random() ) );
+		level = Math.ceil(level);
+
+		let npc = this.groups.npc.randBelow( level );
+		return npc;
 
 	}
 
@@ -111,13 +145,6 @@ export default class ItemGen {
 
 		it.id = proto.id + this.state.nextId();
 		return it;
-
-	}
-
-	initMaterials( mats ) {
-
-		this.materials = this.state.matsById;
-		this.matsByLevel = sublists( mats, 'level' );
 
 	}
 
@@ -165,8 +192,7 @@ export default class ItemGen {
 			return null;
 		}
 
-		if ( info.type === 'wearable'
-			|| info.type === 'weapon'
+		if ( info.type === 'wearable' || info.type === 'weapon'
 			|| info.type ==='armor') return this.fromData( info );
 
 		/** @todo: THIS IS BAD */
@@ -240,6 +266,33 @@ export default class ItemGen {
 		return it;
 	}
 
+	/**
+	 *
+	 * @param {string} name - group name.
+	 * @param {Item[]} items
+	 * @returns {GenGroup}
+	 */
+	initGroup( name, items ) {
+
+		if ( !items ) {
+			console.warn( 'group: ' + name + ' undefined.');
+			return;
+		}
+
+		let g = this.groups[name] = new GenGroup(items);
+		g.makeFilter('level');
+
+		return g;
+
+	}
+
+
+	/**
+	 *
+	 * @param {string} type
+	 * @param {*} list
+	 * @returns {Object}
+	 */
 	initList( type, list ) {
 
 		if ( !list ) {
@@ -281,7 +334,7 @@ export default class ItemGen {
 
 		while ( max >= 0 ) {
 
-			var matList = this.matsByLevel[max--];
+			var matList = this.groups.materials.filtered( 'level', max-- );
 			if ( !matList) continue;
 
 			var res = randMatch( matList, v=>{
@@ -308,28 +361,10 @@ export default class ItemGen {
 	 * @param {string} itemKind
 	 */
 	getMatBelow( level, itemKind=null ) {
-		return this.getMat( Math.floor( Math.random()*level + 1 ), itemKind );
-	}
 
-	/**
-	 * Get a random material of the highest level available on or below
-	 * the given level.
-	 * @param {number} level - target level of material.
-	 * @param {?string} itemKind
-	 */
-	getMat( level, itemKind=null ) {
+		var pred = itemKind ? v=>!v.exclude||!v.exclude.includes(itemKind) : null;
 
-		do {
-
-			var arr = this.matsByLevel[level];
-			if ( !arr ) continue;
-
-			var it = itemKind == null ? randElm(arr) :
-				randMatch( arr, v=>!v.exclude||v.exclude.includes(itemKind) );
-
-		} while ( !it && --level >= 0 );
-
-		return it;
+		return this.groups.materials.randBelow( level, pred );
 
 	}
 

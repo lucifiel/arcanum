@@ -58,9 +58,11 @@
 		"disable":"innroom",
 		"cost":75,
 		"mod":{
-			"space.max":12,
+			"space.max":14,
+			"lore.rate":-0.1,
+			"research.rate":-0.1,
 			"earthlore.max":1,
-			"naturelore.max":1,
+			"naturelore.max":2,
 			"naturelore.rate":0.1,
 			"animals.max":1,
 			"animals.rate":0.1
@@ -75,11 +77,11 @@
 		"tags":"outdoors",
 		"cost":150,
 		"mod":{
-			"space.max":10,
+			"space.max":12,
 			"naturelore.max":2,
 			"earthlore.max":1,
-			"naturelore.rate":0.15,
-			"animals.max":1,
+			"naturelore.rate":0.3,
+			"animals.max":2,
 			"animals.rate":0.15
 		}
 
@@ -211,7 +213,7 @@
 		"name":"haunted manse",
 		"desc":"legends of this mansion speak of ghosts and horrors",
 		"cost":2500,
-		"require":"g.spirit>=10&&g.arcana>=10",
+		"require":"hauntedmanor",
 		"mod":{
 			"space.max":75,
 			"spiritlore.max":1,
@@ -315,9 +317,10 @@
 		"id":"temple",
 		"desc":"Sanctum of meditation and insight.",
 		"cost":10000,
-		"require":"g.arcana>=100&&g.virtue>10",
+		"require":"g.arcana>=10&&g.virtue>10",
 		"mod":{
-			"virtue":2,
+			"virtue.rate":0.001,
+			"arcana.rate":0.001,
 			"minions.max":10,
 			"space.max":200,
 			"shadow.max":-3,
@@ -331,9 +334,9 @@
 		"tags":"outdoors",
 		"cost":{
 			"gems":30,
-			"herbs":10
+			"herbs":50
 		},
-		"require":"g.nature>=10&&g.arcana>=10",
+		"require":"g.tier3>0&&g.nature>=10&&g.arcana>=10",
 		"mod":{
 			"minions.max":10,
 			"space.max":300,

@@ -62,6 +62,19 @@
 		"cost":{
 			"shadow":1
 		},
+		"at":{
+			"25":{
+				"attack.damage.max":1.5
+			},
+			"75":{
+				"attack.damage.min":1.5
+			},
+			"300":{
+				"attack.damage.max":2,
+				"attack.damage.min":1,
+				"attack.tohit":2
+			}
+		},
 		"attack":{
 			"damage":"0.5~1",
 			"dot":{
@@ -87,6 +100,19 @@
 		"cost":{
 			"shadow":3
 		},
+		"at":{
+			"25":{
+				"attack.damage.max":3
+			},
+			"75":{
+				"attack.damage.min":3
+			},
+			"300":{
+				"attack.damage.max":3,
+				"attack.damage.min":3,
+				"attack.tohit":4
+			}
+		},
 		"attack":{
 			"damage":"4~7",
 			"dot":{
@@ -111,6 +137,19 @@
 		},
 		"cost":{
 			"shadow":5
+		},
+		"at":{
+			"25":{
+				"attack.damage.max":4
+			},
+			"75":{
+				"attack.damage.min":5
+			},
+			"300":{
+				"attack.damage.max":4,
+				"attack.damage.min":4,
+				"attack.tohit":4
+			}
 		},
 		"attack":{
 			"damage":"5~10",
@@ -410,6 +449,18 @@
 			"scrolls":1
 
 		},
+		"at":{
+			"10":{
+				"attack.damage.max":1
+			},
+			"50":{
+				"attack.damage.min":1
+			},
+			"200":{
+				"attack.damage.max":1,
+				"attack.damage.min":1
+			}
+		},
 		"cost":{
 			"mana":1
 		},
@@ -431,6 +482,16 @@
 			"research":100,
 			"scrolls":10
 
+		},
+		"at":{
+			"25":{
+				"attack.tohit":1,
+				"attack.damage.max":1
+			},
+			"100":{
+				"attack.tohit":2,
+				"attack.damage.min":1
+			}
 		},
 		"cost":{
 			"mana":1
@@ -512,6 +573,19 @@
 			"scrolls":1
 
 		},
+		"at":{
+			"25":{
+				"attack.damage.max":1.5
+			},
+			"75":{
+				"attack.damage.min":1.5
+			},
+			"300":{
+				"attack.damage.max":2,
+				"attack.damage.min":1,
+				"attack.tohit":2
+			}
+		},
 		"cost":{
 			"fire":1
 		},
@@ -534,6 +608,19 @@
 			"scrolls":5,
 			"firegem":1
 
+		},
+		"at":{
+			"25":{
+				"attack.damage.max":2
+			},
+			"75":{
+				"attack.damage.min":2
+			},
+			"300":{
+				"attack.damage.max":2,
+				"attack.damage.min":2,
+				"attack.tohit":3
+			}
 		},
 		"cost":{
 			"fire":5
@@ -561,6 +648,19 @@
 		},
 		"cost":{
 			"fire":7
+		},
+		"at":{
+			"30":{
+				"attack.damage.max":3
+			},
+			"100":{
+				"attack.damage.min":3
+			},
+			"300":{
+				"attack.damage.max":4,
+				"attack.damage.min":3,
+				"attack.tohit":5
+			}
 		},
 		"attack":{
 			"damage":"7~10",
@@ -590,6 +690,19 @@
 		"cost":{
 			"fire":10
 		},
+		"at":{
+			"50":{
+				"attack.damage.max":4
+			},
+			"150":{
+				"attack.damage.min":4
+			},
+			"500":{
+				"attack.damage.max":5,
+				"attack.damage.min":4,
+				"attack.tohit":7
+			}
+		},
 		"attack":{
 			"damage":"15~20",
 			"tohit":5,
@@ -614,6 +727,19 @@
 			"watergem":1
 
 		},
+		"at":{
+			"25":{
+				"attack.damage.max":1.5
+			},
+			"75":{
+				"attack.damage.min":1.5
+			},
+			"300":{
+				"attack.damage.max":2,
+				"attack.damage.min":1,
+				"attack.tohit":2
+			}
+		},
 		"cost":{
 			"water":4
 		},
@@ -636,6 +762,19 @@
 			"codices":10,
 			"watergem":6
 
+		},
+		"at":{
+			"25":{
+				"attack.damage.max":2
+			},
+			"75":{
+				"attack.damage.min":2
+			},
+			"300":{
+				"attack.damage.max":3,
+				"attack.damage.min":2,
+				"attack.tohit":7
+			}
 		},
 		"cost":{
 			"water":6
@@ -680,6 +819,19 @@
 			"scrolls":5,
 			"naturegem":1
 
+		},
+		"at":{
+			"25":{
+				"attack.damage.max":1.5
+			},
+			"75":{
+				"attack.damage.min":1.5
+			},
+			"300":{
+				"attack.damage.max":2,
+				"attack.damage.min":1,
+				"attack.tohit":2
+			}
 		},
 		"cost":{
 			"nature":3
@@ -1074,7 +1226,7 @@
 				"sp":0.001,
 				"arcana":0.001
 			}
-		}
+		},"flavor":"did you hear something?"
 	},
 	{
 		"id":"venom",
@@ -1175,6 +1327,32 @@
 		}
 	},
 	{
+		"id":"speed2",
+		"level":5,
+		"name":"dust devil II",
+		"desc":"a whirl of wind at your feet",
+		"school":"air",
+		"require":{
+			"air.max":5
+		},
+		"buy":{
+
+			"research":500,
+			"tomes":1,
+			"airgem":5
+
+		},
+		"cost":{
+			"air":5
+		},
+		"dot":{
+			"duration":45,
+			"mod":{
+				"speed":2
+			}
+		}
+	},
+	{
 
 		"id":"massjinx",
 		"level":4,
@@ -1266,6 +1444,34 @@
 			}
 		}
 
+	},
+	{
+		"id":"bodyisdry",
+		"level":7,
+		"name":"last stand",
+		"school":"blood",
+		"require":"bloodmage",
+		"desc":"before your body is dry",
+		"buy":{
+
+			"research":500,
+			"tomes":1,
+			"bloodgem":10
+
+		},
+		"cost":{
+			"mana":15
+		},
+		"dot":{
+			"duration":60,
+			"mod":{
+				"hp.max":50,
+				"hp":50,
+				"hp.rate":-2,
+				"player.tohit":10,
+				"player.damage":10
+			}
+		},"flavor":"don't lose your way"
 	},
 	{
 		"id":"ironskin",

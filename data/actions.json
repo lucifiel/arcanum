@@ -44,15 +44,9 @@
 		"run":{
 			"stamina":0.2
 		},
-		"at":{
-			"60":{
-				"effect.research":0.15
-			},
-			"200":{
-				"effect.research":0.2
-			},
-			"500":{
-				"effect.research":0.5
+		"every":{
+			"100":{
+				"effect.research":0.05
 			}
 		},
 		"effect":{
@@ -95,15 +89,9 @@
 		"require":"spellbook",
 		"length":15,
 		"perpetual":true,
-		"at":{
+		"every":{
 			"10":{
-				"effect.gold":0.2
-			},
-			"50":{
-				"effect.gold":0.2
-			},
-			"200":{
-				"effect.gold":0.2
+				"effect.gold":0.01
 			}
 		},
 		"run":{
@@ -276,6 +264,7 @@
 		"desc":"leech blood from a body to restore your health",
 		"require":"transfusions",
 		"length":10,
+		"fill":"hp",
 		"cost":{
 			"bodies":1
 		},
@@ -347,7 +336,7 @@
 	{
 		"id":"embalm",
 		"name":"funerary rites",
-		"verb":"embalming",
+		"verb":"solemnizing",
 		"desc":"oversee the funerary rites of merchants and nobles.",
 		"require":"g.embalming>=5&&g.tier0>0",
 		"perpetual":true,
@@ -365,6 +354,7 @@
 			"shadow":1
 
 		},"effect":{
+			"embalming.exp":0.2,
 			"gold":2.2
 		}
 
@@ -547,7 +537,7 @@
 				"skipLocked":true,
 				"value":0.5
 			},
-			"stamina":1,
+			"stamina":0.8,
 			"hp":1
 		}
 	},
@@ -557,7 +547,7 @@
 		"verb":"chanting",
 		"perpetual":true,
 		"length":10,
-		"need":"g.light>=5&&g.evil<=0",
+		"need":"g.lightlore>=5&&g.evil<=0",
 		"fill":[ "light", "hp", "mana" ],
 		"effect":{
 			"virtue":1,
@@ -590,11 +580,11 @@
 	{
 
 		"id":"sabbat",
-		"name":"witch's sabbath",
+		"name":"witch's sabbat",
 		"desc":"a revelry of demons and witches.",
 		"require":"g.witch>0&&g.demonology>=7&&g.spiritlore>=8",
 		"length":100,
-		"cd":3600,
+		"cd":666,
 		"cost":{
 			"spirit":10,
 			"bodies":1
@@ -618,12 +608,23 @@
 		"perpetual":true,
 		"verb":"travelling",
 		"desc":"Travel the wide world.",
-		"require":"g.wagon>0||g.mendicant>0",
+		"require":"g.wagon>0||g.mendicant>0||g.camp>0",
 		"run":{
 			"stamina":0.4
 		},
+		"at":{
+			"20":{
+				"naturelore.max":0.001
+			},
+			"200":{
+				"naturelore.max":0.002
+			},
+			"1000":{
+				"naturelore.max":0.003
+			}
+		},
 		"effect":{
-			"nature.mana":0.5,
+			"nature":0.5,
 			"naturelore":{
 				"exp":0.1,
 				"max":0.001
@@ -905,6 +906,30 @@
 
 	},
 	{
+		"id":"malleus",
+		"name":"malleus maleficarum",
+		"actname":"compile witchhammer",
+		"require":"g.crafting>=15&&g.lightlore>=15",
+		"desc":"a manual against the darkness.",
+		"length":50,
+		"repeat":false,
+		"cost":{
+			"tomes":5
+		},
+		"run":{
+			"research":1
+		},
+		"mod":{
+			"player.resist.shadow":10,
+			"research.max":20,
+			"spiritlore.max":2,
+			"spiritlore.rate":"10%",
+			"demonology.max":2,
+			"demonology.rate":0.5
+		}
+
+	},
+	{
 		"id":"fazbitfixations",
 		"name":"fazbit's fixations",
 		"require":"g.alchemy>=6&&g.tier0>0",
@@ -1179,6 +1204,7 @@
 		"desc":"rip out of a piece of your soul and store it in a magic gem.",
 		"require":"g.crafting>=20&&g.necromancy>=30",
 		"length":50,
+		"repeat":false,
 		"cost":{
 			"research":4000,
 			"shadowgem":20,
@@ -1206,6 +1232,7 @@
 		"actname":"rite of undeath",
 		"desc":"obtain immortality by becoming a lich",
 		"require":"g.crafting>=20&&g.necromancy>=30",
+		"repeat":false,
 		"length":50,
 		"cost":{
 			"research":4000,
@@ -1257,13 +1284,37 @@
 
 	},
 	{
+		"id":"animalfriend",
+		"name":"animal companion",
+		"require":"(g.druid+g.witch)>0",
+		"need":"outdoors",
+		"desc":"create a magic link with a wild animal.",
+		"repeat":false,
+		"length":50,
+		"cost":{
+			"gold":400,
+			"arcana":2,
+			"research":800
+		},
+		"result":{
+			"animals.max":2,
+			"animals.rate":"10%",
+			"lore.max":1,
+			"lore.rate":0.2,
+			"naturelore.max":2,
+			"naturelore.rate":0.2
+		}
+
+	},
+	{
 		"id":"summonfamiliar",
-		"name":"Summon Familiar",
+		"name":"summon familiar",
 		"require":"(g.tier0>0&&g.animals>=5&&g.demonology>=4)||g.witch>0",
 		"repeat":false,
 		"length":100,
 		"cost":{
 			"gold":400,
+			"arcana":3,
 			"gems":10,
 			"research":1000
 		},

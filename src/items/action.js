@@ -1,6 +1,6 @@
 import GData from './gdata';
 import Game from '../game';
-import Events, { ACT_DONE, ACT_IMPROVED } from '../events';
+import Events, { ACT_DONE, ACT_IMPROVED, EXP_MAX } from '../events';
 
 export default class Action extends GData {
 
@@ -14,6 +14,7 @@ export default class Action extends GData {
 
 	get value() { return this._value; }
 	set value(v) {
+
 		this._value = v;
 	}
 
@@ -22,30 +23,16 @@ export default class Action extends GData {
 	 */
 	get exp() { return this._exp || 0; }
 	set exp(v){
+
 		this._exp = v;
+		if ( ( this._length && v >= this._length ) || ( this.perpetual && v > 1 ) ) {
+			Events.gfire( EXP_MAX, this );
+		}
+
 	}
 
 	get length() { return this._length; }
 	set length(v) { this._length = v;}
-
-	/**
-	 * @deprecated
-	 */
-	get progress() { return this._exp; }
-	set progress(v){
-
-		if ( v > this._exp && this.maxed()) return;
-		this._exp = v;
-		if ( this.length && v >= this._length ) {
-
-			this.value++;
-
-			if ( this.result ) Game.applyEffect( this.result );
-			if ( this.loot ) Game.getLoot( this.loot );
-			this.complete();
-
-		}
-	}
 
 	get running() { return this._running; }
 	set running(v) { this._running = v;}
@@ -66,11 +53,11 @@ export default class Action extends GData {
 
 		if ( this.cd ) this.timer = this.timer || 0;
 
-		this.restoreAtMods();
+		this.applyImproves();
 
 	}
 
-	restoreAtMods() {
+	applyImproves() {
 
 		let v = this._value;
 		if ( this.at ) {
@@ -85,6 +72,17 @@ export default class Action extends GData {
 
 		}
 
+		if ( this.every ) {
+
+			for( let p in this.every ) {
+
+				var amt = Math.floor( v / p );
+				if ( amt > 0 ) this.applyMods( this.every[p], amt );
+
+			}
+
+		}
+
 	}
 
 	/**
@@ -92,13 +90,7 @@ export default class Action extends GData {
 	 * @param {number} dt - elapsed time.
 	 */
 	update( dt ) {
-
-		let v = this.exp += dt;
-
-		if ( v >= ( this._length||1) ) {
-			this.complete();
-		}
-
+		this.exp += ( this._rate ? this._rate.value : 1 )*dt;
 	}
 
 	/**
@@ -111,6 +103,7 @@ export default class Action extends GData {
 		if ( this.mod ) Game.addMod( this.mod );
 		if ( this.loot ) Game.getLoot( this.loot );
 
+		if ( this.id === 'herbalism' ) console.log('CINCREASING VALUE');
 		this.value++;
 
 		if ( this.exec ) this.exec();
@@ -126,6 +119,8 @@ export default class Action extends GData {
 
 	/**
 	 * Action executed, whether runnable or one-time.
+	 * RESETS EXP
+	 * No value increment because that is currently done by game (@todo fix)
 	 */
 	exec() {
 
@@ -135,17 +130,36 @@ export default class Action extends GData {
 			this.timer = this.cd;
 		}
 
+		var improve = false;
+
 		if ( this.at ) {
 
 			let cur = this.at[this.value];
 			if ( cur ) {
 
-				Events.dispatch( ACT_IMPROVED, this );
+				improve = true;
 				this.applyMods( cur );
 
 			}
 
+		} else if ( this.every ) {
+
+			for( let p in this.every ) {
+
+				if ( this.value % p === 0 ) {
+
+					improve = true;
+					this.applyMods( this.every[p] );
+
+				}
+
+			}
+
+
 		}
+
+		if ( improve ) Events.dispatch( ACT_IMPROVED, this );
+
 		this._exp = 0;
 
 	}

@@ -180,7 +180,7 @@ export default class Stat {
 		for( let p in this._mods ) {
 
 			var mod = this._mods[p];
-			if ( mod.count == 0 ) console.log('mod empty: ' + mod.id );
+
 			pct += mod.count*mod.pct;
 			bonus += mod.count*mod.bonus;
 
