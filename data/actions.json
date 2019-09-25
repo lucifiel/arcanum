@@ -131,7 +131,6 @@
 		"verb":"thieving",
 		"require":"g.trickster>0&&g.trickery>=5",
 		"length":50,
-		"perpetual":true,
 		"run":{
 			"stamina":0.4,
 			"mana":0.4
