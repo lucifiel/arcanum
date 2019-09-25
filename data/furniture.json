@@ -603,6 +603,7 @@
 			"space":1
 		},
 		"mod":{
+			"naturelore.max":1,
 			"firelore.max":1,
 			"fire.rate":0.05
 		}

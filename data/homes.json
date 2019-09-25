@@ -58,9 +58,11 @@
 		"disable":"innroom",
 		"cost":75,
 		"mod":{
-			"space.max":12,
+			"space.max":14,
+			"lore.rate":-0.1,
+			"research.rate":-0.1,
 			"earthlore.max":1,
-			"naturelore.max":1,
+			"naturelore.max":2,
 			"naturelore.rate":0.1,
 			"animals.max":1,
 			"animals.rate":0.1
@@ -75,11 +77,11 @@
 		"tags":"outdoors",
 		"cost":150,
 		"mod":{
-			"space.max":10,
+			"space.max":12,
 			"naturelore.max":2,
 			"earthlore.max":1,
-			"naturelore.rate":0.15,
-			"animals.max":1,
+			"naturelore.rate":0.3,
+			"animals.max":2,
 			"animals.rate":0.15
 		}
 

@@ -285,6 +285,7 @@
 			"research":50
 		},
 		"mod":{
+			"naturelore.max":1,
 			"dist.max":5
 		}
 
@@ -703,6 +704,7 @@
 		},
 		"mod":{
 			"research.max":5,
+			"naturelore.max":2,
 			"languages.max":1,
 			"languages.rate":0.2,
 			"animals.rate":0.2
