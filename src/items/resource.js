@@ -44,13 +44,15 @@ export default class Resource extends GData {
 	get max() { return this._max; }
 	set max(v) {
 
-		if ( this._max == null ) {
+		if ( this._max === null || this._max === undefined ) {
 
 			this._max = new Stat(v);
 
 		} else {
-			/** @todo this is too dangerous to keep. */
-			this._max.base = v;
+
+			if ( v instanceof Stat ) this._max = v;
+			else this._max.base = v;
+
 		}
 
 	}

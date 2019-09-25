@@ -38,7 +38,8 @@ export default class Skill extends Action {
 
 		this.type = 'skill';
 		this.length = this.length || 50;
-		this.exp = this.exp || 0;
+
+		this._exp = this._exp || 0;
 
 		/** @compatibility */
 		if ( this.value >= 1 ){

@@ -93,11 +93,11 @@ const Runner = {
 			this._max =v;
 
 		} else if ( !this._max ) {
-			console.log('NEW MAX: ' + v );
+
 			this._max = new Stat(v);
 		} else if ( typeof v === 'number' ) {
 
-			console.log('NEW MAX BASE: ' + v );
+
 			this._max.base = v;
 
 		} else this._max = new Stat(v);
@@ -138,11 +138,9 @@ const Runner = {
 			this.waiting = data.waiting;
 			this.actives = data.actives;
 			this.max = data.max;
-			console.log('LOADED MAX: ' + data.max );
 		}
 
 		this.max = this._max || 1;
-		console.log('CUR MAX: ' + this.max.value );
 
 		this.waiting = this.reviveList( this.waiting, gs, false );
 		this.actives = this.reviveList( this.actives, gs, true );
@@ -159,6 +157,7 @@ const Runner = {
 	 * @param {*} it
 	 */
 	expMax( it ) {
+		console.log('MAX EXP. COMPLETE: ' + it.id );
 		if ( it.complete && typeof it.complete === 'function') it.complete();
 
 	},

@@ -14,6 +14,7 @@ export default class Action extends GData {
 
 	get value() { return this._value; }
 	set value(v) {
+
 		this._value = v;
 	}
 
@@ -24,7 +25,7 @@ export default class Action extends GData {
 	set exp(v){
 
 		this._exp = v;
-		if ( v >= (this._length || 1 ) ) {
+		if ( ( this._length && v >= this._length ) || ( this.perpetual && v > 1 ) ) {
 			Events.gfire( EXP_MAX, this );
 		}
 
@@ -102,6 +103,7 @@ export default class Action extends GData {
 		if ( this.mod ) Game.addMod( this.mod );
 		if ( this.loot ) Game.getLoot( this.loot );
 
+		if ( this.id === 'herbalism' ) console.log('CINCREASING VALUE');
 		this.value++;
 
 		if ( this.exec ) this.exec();
