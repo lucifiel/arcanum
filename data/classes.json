@@ -294,6 +294,34 @@
 	}, "flavor":"even the dead have their uses"
 },
 {
+	"id":"thanophage",
+	"title":"thanophage",
+	"tags":"t_tier3",
+	"desc":"extend your life with the spare parts of the dead.",
+	"require":"g.tier2>0&&g.evil>0",
+	"cost":{
+		"research":1000,
+		"bones":50,
+		"bodies":10,
+		"bonedust":25,
+		"arcana":10
+	},
+	"effect":{
+		"tier3":true,
+		"sp":2
+	},
+	"mod":{
+		"evilamt":20,
+		"lore.max":2,
+		"research.max":25,
+		"embalming.max":1,
+		"reanimation.max":2,
+		"reanimation.rate":"5%",
+		"shadowlore.max":2,
+		"shadowlore.rate":"5%"
+	}
+},
+{
 	"id":"necromancer",
 	"title":"necromancer",
 	"tags":"t_tier4",
@@ -352,8 +380,8 @@
 	"id":"dreadlord",
 	"title":"dreadlord",
 	"desc":"harbinger of destruction",
-	"tags":"t_tier2",
-	"require":"g.tier1>0&&g.evil>0&&g.hp>=30&&g.player.level>=20",
+	"tags":"t_tier3",
+	"require":"g.tier2>0&&g.evil>0&&g.hp>=100&&g.player.level>=17",
 	"cost":{
 		"research":1000,
 		"bones":100,
@@ -361,7 +389,7 @@
 		"arcana":10
 	},
 	"effect":{
-		"tier2":true,
+		"tier3":true,
 		"sp":1
 	},
 	"mod":{
@@ -374,17 +402,17 @@
 {
 	"id":"warlock",
 	"title":"warlock",
-	"tags":"t_tier3",
+	"tags":"t_tier4",
 	"desc":"master of demons and demonic magic",
-	"require":"g.tier2>0&&g.evil>0&&g.demonology>=10",
+	"require":"g.tier3>0&&g.evil>0&&g.demonology>=10",
 	"cost":{
-		"research":1000,
+		"research":4000,
 		"souls":50,
-		"arcana":12,
-		"tomes":5
+		"arcana":15,
+		"tomes":10
 	},
 	"effect":{
-		"tier3":true,
+		"tier4":true,
 		"sp":1
 	},
 	"mod":{
@@ -405,7 +433,7 @@
 	"title":"blood mage",
 	"tags":"t_tier3",
 	"desc":"the magic in your veins",
-	"require":"g.tier2>0&&(g.battlemage+g.dreadlord+g.warlock)>0",
+	"require":"g.tier2>0&&(g.battlemage+g.dreadlord)>0",
 	"cost":{
 		"research":1500,
 		"arcana":8,
@@ -433,15 +461,15 @@
 {
 	"id":"summoner",
 	"title":"summoner",
-	"tags":"t_tier2",
-	"desc":"alone or not, the summoner is never without an army.",
-	"require":"g.minions>4&&g.tier1>0&&g.lore>=20",
+	"tags":"t_tier3",
+	"desc":"alone or in company, the summoner is never without an army.",
+	"require":"g.minions>4&&g.tier2>0&&g.lore>=20",
 	"cost":{
 		"research":1000,
 		"arcana":10
 	},
 	"effect":{
-		"tier2":true,
+		"tier3":true,
 		"sp":1
 	},
 	"mod":{
@@ -452,7 +480,7 @@
 		"mana.max":2,
 		"summoning.max":4,
 		"summoning.rate":"20%"
-	}
+	},"flavor":"i'd like to introduce you to some friends"
 
 },
 {
@@ -477,7 +505,7 @@
 		"firelore.rate":"20%",
 		"demonology.max":5,
 		"demonology.rate":"20%"
-	}
+	},"flavor":"in the War of the Locks the Seven raged for power and Dhrune trembled in their wake."
 
 },
 {
@@ -864,6 +892,30 @@
 	}
 },
 {
+	"id":"doomsayer",
+	"title":"doomsayer",
+	"desc":"harbinger of ruin",
+	"require":"g.tier2>0&&g.spirit>=12&&g.divination>=12",
+	"tags":"t_tier3",
+	"cost":{
+		"research":1000,
+		"arcana":15,
+		"tomes":7
+	},
+	"effect":{
+		"tier3":true,
+		"sp":2
+	},
+	"mod":{
+		"spiritlore.max":2,
+		"divination.max":3,
+		"scrying.max":2,
+		"lore.max":2,
+		"lore.rate":"10%",
+		"mana.max":3
+	}
+},
+{
 	"id":"wizard",
 	"title":"wizard",
 	"desc":"raw magic power",
@@ -904,10 +956,11 @@
 	"mod":{
 		"research.max":50,
 		"languages.max":2,
+		"crafting.max":2,
 		"lore.max":5,
 		"lore.rate":"20%",
 		"mana.max":3
-	}
+	},"flavor":"In the end it was three Thule Wizards and The Necromancer who brought the locks to heel."
 }
 
 ]

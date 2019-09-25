@@ -563,10 +563,16 @@
 		"verb":"eating children",
 		"perpetual":true,
 		"length":10,
-		"require":"g.evilamt>0&&g.witch>0",
+		"require":"(g.witch+g.thanophage)>0",
 		"need":"cauldron",
 		"desc":"how could you!?!",
 		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
+		"every":{
+			"100":{
+				"effect.hp":0.5,
+				"effect.shadow":0.05
+			}
+		},
 		"effect":{
 			"evilamt":1,
 			"mana":0.5,
