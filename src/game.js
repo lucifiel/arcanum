@@ -272,7 +272,7 @@ export default {
 
 		}
 
-		if ( fill.maxed() || (!fill.rate|| fill.rate.value>0) ) return true;
+		if ( !fill.rate || !a.effect || fill.rate.value >= 0 ) return fill.maxed();
 
 		// negative-change comparison.
 		let change = a.effect[v];
