@@ -152,7 +152,7 @@
 			"mana":5
 		},
 		"mod":{
-			"speed":0.5
+			"mod.speed":0.5
 		}
 	},
 	{
@@ -174,7 +174,7 @@
 			"mana":5
 		},
 		"mod":{
-			"speed":2
+			"mod.speed":2
 		}
 	},
 	{
@@ -191,11 +191,11 @@
 		},
 		"length":30,
 		"cost":{
-			"runestone":1,
+			"runestones":2,
 			"mana":10
 		},
 		"mod":{
-			"speed":3
+			"mod.speed":3
 		}
 	},
 	{

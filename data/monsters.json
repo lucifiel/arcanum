@@ -397,7 +397,7 @@
 		"damage":"1~4",
 		"loot":{
 			"bones":"2~5",
-			"shortsword":1
+			"shortsword":"50%"
 		},
 		"resist":{
 			"shadow":5
@@ -614,7 +614,7 @@
         "hp":7,
         "defense":7,
 		"tohit":4,
-		"speed":8,
+		"speed":6,
         "attack":{
             "name":"dagger",
             "kind":"pierce",
