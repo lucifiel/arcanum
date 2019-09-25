@@ -466,7 +466,8 @@
 	"require":"g.minions>4&&g.tier2>0&&g.lore>=20",
 	"cost":{
 		"research":1000,
-		"arcana":10
+		"arcana":15,
+		"tomes":5
 	},
 	"effect":{
 		"tier3":true,
@@ -481,31 +482,6 @@
 		"summoning.max":4,
 		"summoning.rate":"20%"
 	},"flavor":"i'd like to introduce you to some friends"
-
-},
-{
-	"id":"archlock",
-	"title":"archlock",
-	"desc":"master of demons and demonic magic",
-	"tags":"t_tier5",
-	"require":"g.warlock>0&&g.demonology>=20",
-	"cost":{
-		"research":5000,
-		"souls":100,
-		"tomes":25,
-		"arcana":20
-	},
-	"effect":{
-		"tier5":true,
-		"sp":2
-	},"mod":{
-		"lore.max":2,
-		"lore.rate":"10%",
-		"firelore.max":3,
-		"firelore.rate":"20%",
-		"demonology.max":5,
-		"demonology.rate":"20%"
-	},"flavor":"in the War of the Locks the Seven raged for power and Dhrune trembled in their wake."
 
 },
 {
@@ -766,6 +742,32 @@
 	}
 },
 {
+	"id":"highdruid",
+	"title":"high druid",
+	"desc":"high druid",
+	"tags":"t_tier3",
+	"require":"g.tier2>0&&g.naturelore>=15",
+	"cost":{
+		"research":1000,
+		"naturegem":20,
+		"herbs":75,
+		"arcana":15
+	},
+	"effect":{
+		"tier3":true,
+		"sp":1
+	},
+	"mod":{
+		"naturelore.max":3,
+		"naturelore.rate":0.2,
+		"animals.max":2,
+		"herbalism.max":2,
+		"herbalism.rate":"10%",
+		"potions.max":1,
+		"potions.rate":0.4
+	}
+},
+{
 	"id":"highelemental",
 	"title":"high elemental",
 	"tags":"t_tier3",
@@ -869,6 +871,59 @@
 	}
 },
 {
+	"id":"fey",
+	"title":"fey",
+	"desc":"a being of wild and natural magic",
+	"tags":"t_tier4",
+	"require":"g.tier3>0&&g.naturelore>=20&&(g.witch+g.druid+g.elementalist)>0",
+	"cost":{
+		"research":5000,
+		"naturegem":30,
+		"herbs":75,
+		"arcana":15
+	},
+	"effect":{
+		"tier4":true,
+		"sp":1
+	},
+	"mod":{
+		"waterlore.max":2,
+		"earthlore.max":2,
+		"airlore.max":2,
+		"naturelore.max":3,
+		"naturelore.rate":"10%",
+		"animals.max":2,
+		"animals.rate":"10%",
+		"herbalism.max":2,
+		"herbalism.rate":"10%"
+	}
+},
+{
+	"id":"heresiarch",
+	"title":"heresiarch",
+	"desc":"a reckoning is coming.",
+	"require":"g.tier3>0&&g.spirit>=15&&g.divination>=17",
+	"tags":"t_tier4",
+	"cost":{
+		"research":1000,
+		"arcana":20,
+		"tomes":15
+	},
+	"effect":{
+		"tier4":true,
+		"sp":2
+	},
+	"mod":{
+		"spiritlore.max":2,
+		"spiritlore.rate":"10%",
+		"divination.max":3,
+		"divination.rate":"10%",
+		"scrying.max":2,
+		"lore.max":3,
+		"lore.rate":"10%"
+	}
+},
+{
 	"id":"thaumaturge",
 	"title":"thaumaturge",
 	"desc":"a crafter of wonders",
@@ -961,6 +1016,31 @@
 		"lore.rate":"20%",
 		"mana.max":3
 	},"flavor":"In the end it was three Thule Wizards and The Necromancer who brought the locks to heel."
-}
+},
+{
+		"id":"archlock",
+		"title":"archlock",
+		"desc":"master of demons and demonic magic",
+		"tags":"t_tier5",
+		"require":"g.warlock>0&&g.demonology>=20",
+		"cost":{
+			"research":5000,
+			"souls":100,
+			"tomes":25,
+			"arcana":20
+		},
+		"effect":{
+			"tier5":true,
+			"sp":2
+		},"mod":{
+			"lore.max":2,
+			"lore.rate":"10%",
+			"firelore.max":3,
+			"firelore.rate":"20%",
+			"demonology.max":5,
+			"demonology.rate":"20%"
+		},"flavor":"in the War of the Locks the Seven raged for power and Dhrune trembled in their wake."
+
+	}
 
 ]

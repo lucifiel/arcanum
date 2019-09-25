@@ -94,7 +94,7 @@
 		"id":"tier2",
 		"name":"Arcane Ascendant",
 		"desc":"The majority of arcane dabblers never reach such heights as this.",
-		"lock":["t_tier1","t_tier2"],
+		"lock":"t_tier2",
 		"effect":{
 			"player.exp":25
 		},
@@ -110,7 +110,7 @@
 		"id":"tier3",
 		"name":"Magical Mastery",
 		"desc":"",
-		"lock":["t_tier2","t_tier3"],
+		"lock":"t_tier3",
 		"effect":{
 			"sp":1,
 			"player.exp":50
@@ -128,7 +128,7 @@
 		"id":"tier4",
 		"name":"Supreme Sorcery",
 		"desc":"",
-		"lock":["t_tier3","t_tier4"],
+		"lock":"t_tier4",
 		"effect":{
 			"sp":1,
 			"player.exp":75
@@ -146,7 +146,7 @@
 		"id":"tier5",
 		"name":"Dhrunic Rival",
 		"desc":"a contending power of the world",
-		"lock":["t_tier4","t_tier5"],
+		"lock":"t_tier5",
 		"effect":{
 			"sp":1,
 			"player.exp":100
@@ -165,7 +165,7 @@
 		"id":"tier7",
 		"name":"Dhrunic Pillar",
 		"desc":"a foundation of the world",
-		"lock":["t_tier6","t_tier7"],
+		"lock":"t_tier7",
 		"effect":{
 			"sp":1,
 			"player.exp":100

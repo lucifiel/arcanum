@@ -360,7 +360,7 @@
 	{
 		"id":"mtgorborung",
 		"name":"mount gorborung",
-		"desc":"the largest mountain of the world. many journey over its passes; just don't go inside.",
+		"desc":"one of the most perilous mountains in the world. many journey over its passes; none venture within.",
 		"level":9,
 		"length":50,
 		"run":{
