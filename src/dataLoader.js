@@ -6,6 +6,8 @@ import Percent, {PercentTest} from './percent';
 import Mod, {ModTest} from './mod';
 
 import Resource from './items/resource';
+import ZeroSum from './items/zerosum';
+import RevStat from './items/revStat';
 import StatData from './items/statData';
 import Skill from './items/skill';
 import Monster from './items/monster';
@@ -16,7 +18,6 @@ import Spell from './items/spell.js';
 import Action from './items/action';
 
 import { mergeSafe } from 'objecty';
-import ZeroSum from './items/zerosum';
 import ProtoItem from './items/protoItem';
 import Material from './chars/material';
 import Enchant from './items/enchant';
@@ -383,7 +384,10 @@ export default {
 
 			var def = dataList[i];
 
-			dataList[i] = def = def.zerosum === true ? new ZeroSum(def) : new UseClass( def );
+			if ( def.reverse) dataList[i] = def = new RevStat(def);
+			else if ( def.zerosum ) dataList[i] = def = new ZeroSum(def);
+			else dataList[i] = def = new UseClass( def );
+
 			if ( tag ) def.addTag( tag );
 			if ( type ) def.type = type;
 
@@ -408,7 +412,8 @@ export default {
 		for( let def of stats ) {
 
 			res = vars[ def.id ] = def.zerosum === true ? new ZeroSum(def) :
-				( def.stat === true ? new StatData(def) : new Resource( def )
+				( def.stat === true ? new StatData(def) :
+				( def.reverse === true ? new RevStat(def) : new Resource( def ) )
 			);
 			this.items[def.id] = res;
 

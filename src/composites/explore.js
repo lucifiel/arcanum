@@ -32,9 +32,6 @@ export default class Explore {
 	 */
 	get length() { return this.locale ? this.locale.length : 0; }
 
-	get combat() { return this._combat; }
-	set combat(v) { this._combat = v instanceof Combat ? v : new Combat(v); }
-
 	/**
 	 * @property {Inventory} drops - items dropped in current locale.
 	 * can be taken by player.
@@ -65,8 +62,6 @@ export default class Explore {
 
 		this.drops = this._drops || new Inventory();
 
-		this._combat =  this._combat || new Combat();
-
 		this.running = this.running || false;
 
 		this.type = 'raid';
@@ -85,13 +80,9 @@ export default class Explore {
 
 		this.drops.revive(gameState);
 
-		Events.add( ENEMY_SLAIN, this.enemyDied, this );
-
 		if ( typeof this.locale === 'string') this.locale = gameState.getData(this.locale);
 
 		if ( !this.locale) this.running = false;
-
-		this._combat.revive( gameState );
 
 	}
 
@@ -99,51 +90,36 @@ export default class Explore {
 
 		if ( this.locale == null || this.complete ) return;
 
-		if ( this._combat.complete ) {
-
-			this.combatDone();
-			if ( !this.complete ) this.nextCombat();
-
-		} else this._combat.update(dt);
-
 	}
 
 	/**
-	 * Get next locale enemy.
+	 * subarea compelte.
+	 * @param {*} area
 	 */
-	nextCombat() {
+	areaDone( area ) {
 
-
-		/**
-		 * @todo: maket this happen automatically.
-		 */
-		this.player.delay = getDelay( this.player.speed );
-		this.combat.setEnemies( this.locale.getEnemy(), this.exp/this.length );
-
-	}
-
-	enemyDied( enemy, attacker ) {
-
-		this.player.exp += 1 + Math.max( enemy.level - this.player.level, 0 );
-		attacker.timer =attacker.delay;
+		this.player.exp += 1 + Math.max( area.level - this.player.level, 0 );
 
 		//console.log('ENEMY templ: ' + (typeof enemy.template) );
 
-		if ( enemy.template && enemy.template.id ) {
+		if ( area.template && area.template.id ) {
 
-			let tmp = this.state.getData(enemy.template.id );
+			let tmp = this.state.getData(area.template.id );
 			if ( tmp ) {
 				tmp.value++;
 			}
 		}
 
-		if ( enemy.result ) Game.applyEffect( enemy.result );
-		if ( enemy.loot ) Game.getLoot( enemy.loot, this.drops );
-		else Game.getLoot( {max:enemy.level, pct:30}, this.drops );
+		if ( area.result ) Game.applyEffect( area.result );
+		if ( area.loot ) Game.getLoot( area.loot, this.drops );
+		else Game.getLoot( {max:area.level, pct:30}, this.drops );
 
 	}
 
-	combatDone() {
+	/**
+	 * advance locale progress.
+	 */
+	advance() {
 		this.exp += 1;
 	}
 
@@ -173,7 +149,6 @@ export default class Explore {
 		if ( d != null ) {
 
 			if ( d != this.locale ) {
-				this.combat.clear();
 				this.drops.clear();
 			}
 
@@ -183,7 +158,6 @@ export default class Explore {
 		}
 
 		this.locale = d;
-		if ( this.combat.complete ) this.nextCombat();
 
 	}
 

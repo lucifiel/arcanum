@@ -1050,7 +1050,8 @@
 			"research":100
 		},
 		"mod":{
-			"earth.max":2,
+			"earthlore.max":2,
+			"earthlore.rate":"5%",
 			"earth.rate":0.02
 		}
 
