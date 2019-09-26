@@ -407,7 +407,7 @@
 	"title":"blood mage",
 	"tags":"t_tier3",
 	"desc":"the magic in your veins",
-	"require":"g.tier2>0&&(g.battlemage+g.dreadlord)>0",
+	"require":"g.tier2>0&&(g.battlemage>0||hp.max>150)",
 	"cost":{
 		"research":1500,
 		"arcana":8,
@@ -600,10 +600,11 @@
 		"watergem":10
 	},
 	"effect":{
-		"tier2":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"waterlore.max":2,
 		"waterlore.rate":"10%",
 		"dodge.max":"10%",
@@ -628,10 +629,11 @@
 		"airgem":10
 	},
 	"effect":{
-		"tier2":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"airlore.max":2,
 		"airlore.rate":"10%",
 		"dodge.max":"10%",
@@ -651,10 +653,11 @@
 		"tomes":10
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier3":true,
 		"lore.max":1,
 		"mana.max":2,
 		"airlore.max":3,
@@ -676,10 +679,11 @@
 		"codices":20
 	},
 	"effect":{
-		"tier1":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier1":true,
 		"research.max":5,
 		"elemental.max":2,
 		"elemental.rate":0.2
@@ -701,10 +705,11 @@
 		"arcana":20
 	},
 	"effect":{
-		"tier4":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier4":true,
 		"lore.max":1,
 		"mana.max":1,
 		"earthlore.max":2,
@@ -728,10 +733,11 @@
 		"arcana":15
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier3":true,
 		"naturelore.max":3,
 		"naturelore.rate":0.2,
 		"animals.max":2,
@@ -755,10 +761,11 @@
 		"watergem":20
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier3":true,
 		"airlore.max":2,
 		"firelore.max":2,
 		"earthlore.max":2,
@@ -781,10 +788,11 @@
 		"arcana":5
 	},
 	"effect":{
-		"tier1":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier1":true,
 		"virtue":1,
 		"research.max":15,
 		"lore.max":2,
@@ -809,10 +817,11 @@
 		"research":2000
 	},
 	"effect":{
-		"tier2":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"virtue":5,
 		"lore.max":2,
 		"mana.max":3,
@@ -834,10 +843,11 @@
 		"tomes":1
 	},
 	"effect":{
-		"tier2":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"research.max":40,
 		"lore.max":2,
 		"lore.rate":0.4,
@@ -856,10 +866,10 @@
 		"tomes":7
 	},
 	"effect":{
-		"tier3":true,
 		"sp":2
 	},
 	"mod":{
+		"tier3":true,
 		"spiritlore.max":2,
 		"divination.max":3,
 		"scrying.max":2,
@@ -883,10 +893,11 @@
 		"runestones":5
 	},
 	"effect":{
-		"tier4":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier4":true,
 		"waterlore.max":2,
 		"earthlore.max":2,
 		"airlore.max":2,
@@ -913,10 +924,11 @@
 		"runestones":5
 	},
 	"effect":{
-		"tier4":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier4":true,
 		"spiritlore.max":2,
 		"spiritlore.rate":"10%",
 		"divination.max":3,
@@ -942,10 +954,10 @@
 		"runestones":5
 	},
 	"effect":{
-		"tier4":true,
 		"sp":2
 	},
 	"mod":{
+		"tier4":true,
 		"research.max":50,
 		"embalming.max":1,
 		"reanimation.max":3,
@@ -971,10 +983,10 @@
 		"runestones":5
 	},
 	"effect":{
-		"tier4":true,
 		"sp":2
 	},
 	"mod":{
+		"tier4":true,
 		"spiritlore.max":2,
 		"divination.max":3,
 		"lore.max":2,
@@ -996,10 +1008,10 @@
 		"runestones":5
 	},
 	"effect":{
-		"tier4":true,
 		"sp":2
 	},
 	"mod":{
+		"tier4":true,
 		"research.max":40,
 		"languages.max":2,
 		"lore.max":3,
@@ -1009,7 +1021,7 @@
 },
 {
 	"id":"dhrunic wizard",
-	"title":"wizard",
+	"title":"dhrunic wizard",
 	"desc":"raw magic power",
 	"tags":"t_tier5",
 	"require":"g.tier4>0&&g.lore>=30",
@@ -1021,10 +1033,10 @@
 		"runestones":10
 	},
 	"effect":{
-		"tier5":true,
 		"sp":3
 	},
 	"mod":{
+		"tier5":true,
 		"languages.max":2,
 		"firelore.max":1,
 		"waterlore.max":1,
@@ -1051,10 +1063,10 @@
 		"runestones":15
 	},
 	"effect":{
-		"tier5":true,
 		"sp":2
 	},
 	"mod":{
+		"tier5":true,
 		"lore.max":2,
 		"lore.rate":"10%",
 		"airlore.max":2,
@@ -1084,10 +1096,10 @@
 		"runestones":10
 	},
 	"effect":{
-		"tier5":true,
 		"sp":2
 	},
 	"mod":{
+		"tier5":true,
 		"lore.max":2,
 		"lore.rate":"10%",
 		"embalming.max":2,
@@ -1115,9 +1127,9 @@
 			"runestones":10
 		},
 		"effect":{
-			"tier5":true,
 			"sp":2
 		},"mod":{
+			"tier5":true,
 			"lore.max":2,
 			"lore.rate":"10%",
 			"firelore.max":3,

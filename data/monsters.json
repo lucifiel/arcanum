@@ -2281,7 +2281,7 @@
             "name":"mind flay",
             "kind":"psionic",
             "dmg":"11~19"
-        }, "loot":{"potion of cure serious wounds":15}
+        }, "loot":{}
 
 	},
     {

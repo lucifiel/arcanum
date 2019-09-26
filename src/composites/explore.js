@@ -5,6 +5,16 @@ export default class Explore {
 
 	get id() { return 'explore';}
 
+	toJSON() {
+
+		return {
+			locale:this.locale ? this.locale.id : undefined,
+			enc:this.enc,
+			drops:this.drops
+		}
+
+	}
+
 	/**
 	 * @property {string} name - name of locale in progress.
 	 */
@@ -27,6 +37,8 @@ export default class Explore {
 
 	canUse() { return this.locale && !this.locale.maxed(); }
 
+	get encs() { return this.locale ? this.locale.encs : null; }
+
 	/**
 	 * @property {number} length - length of locale in progress.
 	 */
@@ -42,15 +54,6 @@ export default class Explore {
 	}
 
 	get complete() { return this.exp === this.length; }
-
-	toJSON() {
-
-		return {
-			locale:this.locale ? this.locale.id : undefined,
-			drops:this.drops
-		}
-
-	}
 
 	/**
 	 *
@@ -90,29 +93,38 @@ export default class Explore {
 
 		if ( this.locale == null || this.complete ) return;
 
+		if ( this.enc ) {
+			this.enc.update(dt);
+		} else {
+			this.enc = nextEnc();
+		}
+
+	}
+
+	nextEnc(){
 	}
 
 	/**
-	 * subarea compelte.
-	 * @param {*} area
+	 * encounter complete.
+	 * @param {*} enc
 	 */
-	areaDone( area ) {
+	encDone( enc ) {
 
-		this.player.exp += 1 + Math.max( area.level - this.player.level, 0 );
+		this.player.exp += 0.75 + Math.max( enc.level - this.player.level, 0 );
 
 		//console.log('ENEMY templ: ' + (typeof enemy.template) );
 
-		if ( area.template && area.template.id ) {
+		if ( enc.template && enc.template.id ) {
 
-			let tmp = this.state.getData(area.template.id );
+			let tmp = this.state.getData(enc.template.id );
 			if ( tmp ) {
 				tmp.value++;
 			}
 		}
 
-		if ( area.result ) Game.applyEffect( area.result );
-		if ( area.loot ) Game.getLoot( area.loot, this.drops );
-		else Game.getLoot( {max:area.level, pct:30}, this.drops );
+		if ( enc.result ) Game.applyEffect( enc.result );
+		if ( enc.loot ) Game.getLoot( enc.loot, this.drops );
+		else Game.getLoot( {max:enc.level, pct:30}, this.drops );
 
 	}
 

@@ -48,6 +48,15 @@ export default class Encounter extends GData {
 
 	}
 
+	update( dt ){
+
+		this._exp += dt;
+		if ( this._exp >= this.length ) {
+		}
+
+
+	}
+
 	maxed() { return false; }
 
 }

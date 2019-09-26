@@ -68,6 +68,26 @@
 	]
 },
 {
+	"id":"loc_treffil",
+	"name":"lillit's spring",
+	"level":1,
+	"length":15,
+	"require":"apprentice",
+	"desc":"tradition tells of a spring with enchanted waters. investigations might prove revealing.",
+	"run":{
+		"stamina":0.2
+	},
+	"result":{
+		"arcana":0.1,
+		"research":10
+	},
+	"loot":{
+		"herbs":"2~5"
+	},
+	"encs":[
+	]
+},
+{
 	"id":"rithel",
 	"level":14,
 	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
@@ -83,42 +103,36 @@
 	},
 	"encs":[
 		"enc_primer1",
-		"enc_chest1",
-		"enc_primer1",
-		"enc_workbook1"
+		"enc_chest2"
 	]
 },
 {
-	"id":"mustylibrary",
+	"id":"ruinedcrypt",
 	"name":"musty library",
-	"level":1,
-	"length":10,
-	"require":"apprentice",
-	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
+	"level":4,
+	"length":30,
+	"require":"adept",
+	"desc":"an ancient crypt of crumbling stone.",
 	"run":{
 		"stamina":0.2
 	},
 	"result":{
-		"arcana":0.1,
-		"research":10
+		"arcana":0.15,
+		"research":20
 	},
 	"loot":{
-		"scrolls":"1~4"
+		"scrolls":"2~4"
 	},
 	"encs":[
 		"enc_tapestry",
 		"enc_primer1",
-		"enc_chest1",
-		"enc_primer1",
-		"enc_workbook1"
+		"enc_chest2"
 	]
 },
 {
-	"id":"mustylibrary",
-	"name":"musty library",
+	"id":"hallofmirrors",
 	"level":1,
 	"length":10,
-	"require":"apprentice",
 	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
 	"run":{
 		"stamina":0.2

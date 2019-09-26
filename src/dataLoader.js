@@ -13,7 +13,9 @@ import Skill from './items/skill';
 import Monster from './items/monster';
 
 //import VarPath  from './varPath';
-import Dungeon from './items/dungeon.js';
+import Dungeon from './items/dungeon';
+import Locale from './items/locale';
+
 import Spell from './items/spell.js';
 import Action from './items/action';
 
@@ -23,11 +25,12 @@ import Material from './chars/material';
 import Enchant from './items/enchant';
 import Item from './items/item';
 import Potion from './items/potion';
+import Encounter from './items/encounter';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
 	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons',
-	'materials', 'enchants', 'sections', 'potions' ];
+	'materials', 'enchants', 'sections', 'potions', 'encounters', 'locales','statuses' ];
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -197,6 +200,7 @@ export default {
 		this.items = gd.items;
 
 		gd.resources = this.initItems( dataLists['resources'], Resource );
+		gd.statuses = this.initItems( dataLists['statuses'], Resource, 'status', 'status' );
 
 		gd.upgrades = this.initItems( dataLists['upgrades'], GData, null, 'upgrade' );
 
@@ -207,7 +211,10 @@ export default {
 
 		gd.skills = this.initItems( dataLists['skills'], Skill );
 
+		gd.encounters = this.initItems( dataLists['encounters'], Encounter, 'encounter', 'encounter');
 		gd.monsters = this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
+
+		this.initItems( dataLists['locales'], Locale );
 		this.initItems( dataLists['dungeons'], Dungeon );
 		this.initItems( dataLists['spells'], Spell );
 
