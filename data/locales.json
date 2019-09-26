@@ -1,28 +1,143 @@
 [
-	{
+{
 	"id":"mustylibrary",
 	"name":"musty library",
 	"level":1,
 	"length":10,
 	"require":"apprentice",
+	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
 	"run":{
 		"stamina":0.2
 	},
 	"result":{
-
+		"arcana":0.1,
+		"research":10
 	},
 	"loot":{
 		"scrolls":"1~4"
 	},
-	"enemies":[
-		["newt","newt","newt"],
-		"lgmouse",
-		"bigstone",
-		"stingybee",
-		"smsnake",
-		"twikman"
+	"encs":[
+		"enc_tapestry",
+		"enc_primer1",
+		"enc_chest1",
+		"enc_primer1",
+		"enc_workbook1"
 	]
+},
+{
+	"id":"loc_spring",
+	"name":"lillit's spring",
+	"level":1,
+	"length":15,
+	"require":"apprentice",
+	"desc":"tradition tells of a spring with enchanted waters. investigations might prove revealing.",
+	"run":{
+		"stamina":0.2
+	},
+	"result":{
+		"arcana":0.1,
+		"research":10
+	},
+	"loot":{
+		"herbs":"2~5"
+	},
+	"encs":[
+	]
+},
+{
+	"id":"eryleyot",
+	"name":"eryl eyot",
+	"level":5,
+	"length":20,
+	"desc":"the small and tranquil island is inhabited by an elderly hermit",
+	"run":{
+		"stamina":0.2
+	},
+	"effect":{
 
+	},
+	"result":{
+		"arcana":0.1,
+		"research":10
+	},
+	"loot":{
+		"scrolls":"1~4",
+		"herbs":"2~5"
+	},
+	"encs":[
+	]
+},
+{
+	"id":"rithel",
+	"level":14,
+	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
+	"run":{
+		"stamina":0.2
+	},
+	"result":{
+		"arcana":0.1,
+		"research":10
+	},
+	"loot":{
+		"scrolls":"1~4"
+	},
+	"encs":[
+		"enc_primer1",
+		"enc_chest1",
+		"enc_primer1",
+		"enc_workbook1"
+	]
+},
+{
+	"id":"mustylibrary",
+	"name":"musty library",
+	"level":1,
+	"length":10,
+	"require":"apprentice",
+	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
+	"run":{
+		"stamina":0.2
+	},
+	"result":{
+		"arcana":0.1,
+		"research":10
+	},
+	"loot":{
+		"scrolls":"1~4"
+	},
+	"encs":[
+		"enc_tapestry",
+		"enc_primer1",
+		"enc_chest1",
+		"enc_primer1",
+		"enc_workbook1"
+	]
+},
+{
+	"id":"mustylibrary",
+	"name":"musty library",
+	"level":1,
+	"length":10,
+	"require":"apprentice",
+	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
+	"run":{
+		"stamina":0.2
+	},
+	"result":{
+		"arcana":0.1,
+		"research":10
+	},
+	"loot":{
+		"scrolls":"1~4"
+	},
+	"encs":[
+		"enc_tapestry",
+		"enc_primer1",
+		"enc_chest1",
+		"enc_primer1",
+		"enc_workbook1"
+	]
 }
+
 
 ]

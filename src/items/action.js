@@ -29,7 +29,7 @@ export default class Action extends GData {
 
 			if ( v >= this._length ) Events.gfire( EXP_MAX, this );
 
-		}else if ( ( this.perpetual && v > 1 ) ) {
+		} else if ( ( this.perpetual && v > 1 ) ) {
 			Events.gfire( EXP_MAX, this );
 		}
 

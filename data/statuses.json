@@ -1,7 +1,14 @@
 [
 	{
-		"id":"befuddlement",
+		"id":"bf",
+		"name":"befuddlement",
 		"desc":"outright confusion in your studies",
+		"reverse":true,
+		"max":10
+	},
+	{
+		"id":"unease",
+		"desc":"a general feeling of unwell",
 		"reverse":true,
 		"max":10
 	},
@@ -13,7 +20,8 @@
 	},
 	{
 		"id":"rage",
-		"desc":"uncontrollable book-throwing outbursts",
+		"name":"frustration",
+		"desc":"rising book-throwing urges",
 		"reverse":true,
 		"max":10
 	},

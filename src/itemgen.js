@@ -3,6 +3,7 @@ import Wearable from "./chars/wearable";
 import { randElm, randMatch, includesAny} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
+import Encounter from './items/encounter';
 import Npc from './chars/npc';
 import GenGroup from './genGroup';
 
@@ -27,6 +28,11 @@ export function itemRevive(gs, it ) {
 
 		} else if ( type === 'monster') {
 			it = new Npc(it);
+		} else if ( type === 'enc') {
+
+			// encounter.
+			it = new Encounter(it);
+
 		} else {
 			console.log('default revive: ' + it.id );
 			it = new Item(it);

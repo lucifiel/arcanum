@@ -1,0 +1,114 @@
+[
+	{
+		"id":"enc_primer1",
+		"name":"magical primer",
+		"desc":"an introduction to magicical theory.",
+		"effect":{
+			"bf":"-1~2",
+			"lore.exp":1
+		},
+		"result":{
+			"research":1,
+			"arcana":0.01
+		}
+	},
+	{
+		"id":"enc_workbook1",
+		"name":"workbook",
+		"desc":"a book on the practical applications of magic",
+		"effect":{
+			"bf":"-1~2",
+			"rage":"0~2",
+			"crafting.exp":2
+		}
+	},
+	{
+		"id":"mysticwater",
+		"name":"mystic waters",
+		"level":1,
+		"desc":"water suffused with enchantments",
+		"effect":{
+			"bf":"-1~2",
+			"nature.exp":2,
+			"arcana":0.001
+		}
+	},
+	{
+		"id":"manatree",
+		"name":"mana tree",
+		"level":2,
+		"desc":"a tree by a magic spring exhibits surprising qualities",
+		"effect":{
+			"bf":"-1~2",
+			"nature.exp":2,
+			"herbalism":1
+		}
+	},
+	{
+		"id":"enc_tapestry",
+		"name":"occult tapestry",
+		"level":2,
+		"desc":"a tapestry with strange, hidden meanings",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+			"research":0.5,
+			"arcana":0.02
+		}
+	},
+	{
+		"id":"enc_chest1",
+		"name":"dusty chest",
+		"desc":"a battered, wooden chest.",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+			"gold":"2~10",
+			"scrolls":"1~2"
+		}
+	},
+	{
+		"id":"enc_chest2",
+		"name":"iron chest",
+		"desc":"a solid iron chest.",
+		"effect":{
+			"bf":"-1~1",
+			"rage":"0~1"
+		},
+		"result":{
+			"gold":"5~14",
+			"codices":"0~2",
+			"scrolls":"2~4"
+		}
+	},
+	{
+		"id":"enc_chest3",
+		"name":"dusty chest",
+		"desc":"a battered, wooden chest.",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+			"gold":"0~50",
+			"gems":"2~5",
+			"scrolls":"2~5",
+			"codices":"0~4"
+		}
+	},
+	{
+		"id":"enc_chest4",
+		"name":"dusty chest",
+		"desc":"a battered, wooden chest.",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+			"gold":"0~300",
+			"arcanegem":"10%",
+			"gems":"0~5",
+			"tomes":"0~1"
+		}
+	}
+]

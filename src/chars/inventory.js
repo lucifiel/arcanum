@@ -34,7 +34,7 @@ export default class Inventory {
 
 		this.type = this.id = 'inventory';
 
-		this._max = this._max || 0;
+		this.max = this._max || 0;
 
 	}
 

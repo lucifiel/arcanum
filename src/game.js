@@ -84,6 +84,7 @@ export default {
 		this._items = null;
 		this.timers = [];
 
+
 		return this.load();
 
 	},
@@ -91,6 +92,8 @@ export default {
 	load( saveData=null ) {
 
 		this.loaded = false;
+
+		this.log.clear();
 
 		Events.started = false;
 		// Code events. Not game events.
