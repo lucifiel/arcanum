@@ -162,6 +162,25 @@
 
 	},
 	{
+		"id":"tier6",
+		"name":"Magic of Ages",
+		"desc":"ages of the world come and go; only these endure.",
+		"lock":"t_tier6",
+		"effect":{
+			"sp":1,
+			"player.exp":100
+		},
+		"mod":{
+			"lore.max":3,
+			"crafting.max":4,
+			"arcanebody.max":1,
+			"arcanebody2.max":1,
+			"occultendure.max":1,
+			"crystalmind.max":1
+		}
+
+	},
+	{
 		"id":"tier7",
 		"name":"Dhrunic Pillar",
 		"desc":"a foundation of the world",

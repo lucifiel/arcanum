@@ -1024,13 +1024,78 @@
 		"sp":3
 	},
 	"mod":{
-		"research.max":50,
 		"languages.max":2,
+		"firelore.max":1,
+		"waterlore.max":1,
+		"airlore.max":1,
+		"lightlore.max":1,
 		"crafting.max":2,
 		"lore.max":5,
 		"lore.rate":"20%",
 		"mana.max":3
 	},"flavor":"In the end it was three Thule Wizards and The Necromancer who brought the locks to heel."
+},
+{
+	"id":"kell",
+	"title":"kell",
+	"desc":"immortal spirits of nature, even the weakest Kell could rival wizards",
+	"tags":"t_tier5",
+	"require":"g.tier4>0&&g.naturelore>=25&&(g.witch+g.fey+g.highelemental)>0",
+	"cost":{
+		"research":15000,
+		"research.max":1700,
+		"naturegem":50,
+		"herbs":100,
+		"arcana":20,
+		"runestones":15
+	},
+	"effect":{
+		"tier5":true,
+		"sp":2
+	},
+	"mod":{
+		"lore.max":2,
+		"lore.rate":"10%",
+		"airlore.max":2,
+		"airlore.rate":"10%",
+		"naturelore.max":3,
+		"naturelore.rate":"15%",
+		"animals.max":2,
+		"animals.rate":"10%",
+		"herbalism.max":1,
+		"herbalism.rate":"15%"
+	},"flavor":"most preferred their glades and fens to the turmoils of the world"
+},
+{
+	"id":"greynecromancer",
+	"title":"grey necromancer",
+	"name":"grey necromancer",
+	"tags":"t_tier5",
+	"desc":"disciple of death",
+	"require":"g.tier4>0&&g.evil>0&&g.spiritlore>=15&&g.shadowlore>=24",
+	"cost":{
+		"research":17000,
+		"research.max":1500,
+		"bones":100,
+		"bodies":50,
+		"souls":100,
+		"arcana":10,
+		"runestones":10
+	},
+	"effect":{
+		"tier5":true,
+		"sp":2
+	},
+	"mod":{
+		"lore.max":2,
+		"lore.rate":"10%",
+		"embalming.max":2,
+		"reanimation.max":1,
+		"shadowlore.max":3,
+		"shadowlore.rate":"10%",
+		"spiritlore.max":3,
+		"spiritlore.rate":"10%"
+	}
 },
 {
 		"id":"archlock",
@@ -1041,10 +1106,10 @@
 		"cost":{
 			"research":15000,
 			"research.max":1000,
-			"souls":100,
+			"souls":75,
 			"bodies":10,
 			"tomes":25,
-			"arcana":20,
+			"arcana":25,
 			"runestones":10
 		},
 		"effect":{
