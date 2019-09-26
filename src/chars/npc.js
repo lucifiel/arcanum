@@ -31,7 +31,7 @@ export default class Npc extends Char {
 
 	get maxHp() { return this._maxHp; }
 	set maxHp(v) {
-		this._maxHp = v instanceof Stat ? v : new Stat(v);
+		this._maxHp = v instanceof Stat ? v : new Stat(v,true);
 	}
 
 	get hp() { return this._hp; }

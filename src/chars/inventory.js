@@ -23,7 +23,7 @@ export default class Inventory {
 
 	get max() { return this._max; }
 	set max(v) {
-		this._max = v instanceof Stat ? v : new Stat(v);
+		this._max = v instanceof Stat ? v : new Stat(v,true);
 	}
 
 	constructor(vars=null){

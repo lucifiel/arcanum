@@ -94,13 +94,13 @@ const Runner = {
 
 		} else if ( !this._max ) {
 
-			this._max = new Stat(v);
+			this._max = new Stat(v,true);
 		} else if ( typeof v === 'number' ) {
 
 
 			this._max.base = v;
 
-		} else this._max = new Stat(v);
+		} else this._max = new Stat(v,true);
 
 	},
 

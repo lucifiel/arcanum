@@ -46,7 +46,7 @@ export default class Resource extends GData {
 
 		if ( this._max === null || this._max === undefined ) {
 
-			this._max = new Stat(v);
+			this._max = new Stat(v,true);
 
 		} else {
 

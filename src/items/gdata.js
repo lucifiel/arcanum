@@ -31,7 +31,7 @@ export default class GData {
 			if ( v instanceof Stat ) this._max = v;
 			else if ( !isNaN(v) ) this._max.base = v;
 
-		} else this._max = v instanceof Stat ? v : new Stat(v);
+		} else this._max = v instanceof Stat ? v : new Stat(v,true);
 	}
 
 	/**
