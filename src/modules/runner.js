@@ -363,14 +363,14 @@ const Runner = {
 
 		this.waiting.push(a);
 
-		let len = this.max.value - this.waiting.length;
+		let len = this.waiting.length - this.max.value;
 		let i = 0;
 
 		while ( len > 0 ) {
 
 			a = this.waiting[i];
 			if ( !(a instanceof Runnable ) ) {
-				this.waiting.splice( a, 1 );
+				this.waiting.splice( i, 1 );
 			} else i++;
 			len--;
 

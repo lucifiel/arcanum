@@ -462,14 +462,15 @@
 		"repeat":true,
 		"desc":"A rough but sturdy bookcase.",
 		"require":"g.codices>=20",
+		"max":20,
 		"cost":{
 			"gold":200,
 			"space":2
 		},
 		"mod":{
 			"codices":{
-				"mod.research.max":1,
-				"max":20
+				"mod.research.max":0.5,
+				"max":15
 			},
 			"tomes.max":1
 		}
@@ -1187,12 +1188,14 @@
 		"cost":{
 			"gold":500,
 			"research":750,
-			"space":100
+			"space":75
 		},
 		"mod":{
-			"codices.max":500,
-			"research.max":100,
-			"lore.rate":0.5,
+			"codices.max":400,
+			"tomes.max":75,
+			"codices.mod.research.max":10,
+			"research.max":50,
+			"lore.rate":"0.3+5%",
 			"research.rate":0.1
 		}
 

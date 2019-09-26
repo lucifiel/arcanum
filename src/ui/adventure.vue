@@ -82,9 +82,9 @@ export default {
 			<span>
 			<span>{{ d.name }}</span>
 
-			<span><button class="raid-btn" :disabled="!game.canRun(d)"
-				@click="dispatch( 'raid', d, true )"
-				@mouseenter.capture.stop="dispatch('itemover', $event, d )">
+			<!-- EVENT MUST BE ON OUTER SPAN - CHROME -->
+			<span @mouseenter.capture.stop="dispatch('itemover', $event, d )"><button class="raid-btn" :disabled="!game.canRun(d)"
+				@click="dispatch( 'raid', d, true )">
 				Enter</button></span>
 				</span>
 

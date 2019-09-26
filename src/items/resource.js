@@ -65,7 +65,10 @@ export default class Resource extends GData {
 
 		super(vars);
 
-		this._value = this._value || 0;
+		/**
+		 * !! Force value so maximums before mods don't cutoff current value.
+		 */
+		this._value = vars.value || 0;
 
 		/**
 		 * @property {boolean} unit - true if current value is reported in integer amounts.
