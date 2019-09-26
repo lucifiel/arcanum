@@ -42,8 +42,7 @@ div.bar .bar-text {
 }
 
 .darkmode div.bar .bar-text {
-	color: var( --probar-light-text );
-	mix-blend-mode: screen;
+	color: var( --progbar-dark-text );
 }
 
 div.container {
