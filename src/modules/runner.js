@@ -157,7 +157,7 @@ const Runner = {
 	 * @param {*} it
 	 */
 	expMax( it ) {
-		console.log('MAX EXP. COMPLETE: ' + it.id );
+		console.log('EXP. COMPLETE: ' + it.id );
 		if ( it.complete && typeof it.complete === 'function') it.complete();
 
 	},
