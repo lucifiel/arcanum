@@ -149,7 +149,6 @@ export default {
 
 			idList = itemLists[p];
 
-			//console.log('CREATING LIST TYPE: ' + p );
 			// lists of game-item data by type.
 			gameLists[p] = gameList = [];
 

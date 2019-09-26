@@ -217,7 +217,7 @@ export default {
 
 			if ( targ instanceof Stat || targ instanceof Mod ) targ.apply( mods, amt );
 			else if ( typeof targ === 'object') {
-				console.log('targ is object');
+
 				targ.value = (targ.value || 0 ) + amt*mods;
 			}
 
@@ -319,7 +319,7 @@ export default {
 	 */
 	newSub( obj, key, mod, amt ) {
 
-		console.log( this.id + ' adding KEY: ' + key );
+		//console.log( this.id + ' adding KEY: ' + key );
 		obj[key] = amt*mod.value;
 	},
 
@@ -331,7 +331,7 @@ export default {
 	changeMod( mod, amt ) {
 
 		if ( this.equippable ) return;
-		console.log( this.id + ': adding mod amt: ' + amt );
+		//console.log( this.id + ': adding mod amt: ' + amt );
 
 		// apply change to modifier for existing item amount.
 		Game.addMod( mod, amt*this.value );

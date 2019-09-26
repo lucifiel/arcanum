@@ -128,7 +128,7 @@ export default class ItemGen {
 
 		if ( proto.type === 'armor' || proto.type === 'weapon' || proto.type === 'wearable' ) {
 
-			console.log('instance wearable: ' + proto.id );
+			//console.log('instance wearable: ' + proto.id );
 			return this.itemClone( proto, this.matForItem(proto ));
 
 		} else if ( proto.type === 'potion' ) {

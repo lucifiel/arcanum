@@ -18,10 +18,6 @@ import Wearable from '../chars/wearable';
 */
 export function tryDamage(target, attack, attacker = null) {
 
-	if (target.alive === false ) {
-		console.log('SKIPPING DEAD TARGEt' );
-	}
-
 	if (attack.kind) {
 
 		if (target.isImmune(attack.kind)) {
@@ -333,7 +329,6 @@ export default class Combat {
 	 */
 	makeEnemy( e, pct=1 ) {
 
-		console.log( 'make enemy: ' + pct );
 		if ( typeof e === 'string' ) return Game.getData(e);
 
 		e = Game.itemGen.genEnemy( e, pct );
@@ -357,7 +352,6 @@ export default class Combat {
 
 	charDied( char, attacker ) {
 
-		console.log('char died: ' + char.id );
 		if ( char === this.player ) this.playerDied();
 		else if ( char.team === ALLY ) {
 

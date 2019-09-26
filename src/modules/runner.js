@@ -220,9 +220,7 @@ const Runner = {
 			return (v instanceof Runnable)&&(id===v.item.id && t === v.target.id );
 		};
 
-		console.log('SEARCHING EXISTING');
 		let run = findRemove( this.waiting, p);
-		if ( run ) console.log('RUNNABLE FOUND IN WAITING');
 
 		if ( !run ) {
 
@@ -368,7 +366,6 @@ const Runner = {
 		let len = this.max.value - this.waiting.length;
 		let i = 0;
 
-		console.log('REMOVING ' + len + ' WAITING');
 		while ( len > 0 ) {
 
 			a = this.waiting[i];

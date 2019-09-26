@@ -78,10 +78,6 @@ div.vitals .bars {
 	width:-webkit-fill-available;
 }
 
-.darkmode div.vitals .bars {
-color: var(--progbar-dark-text);
-}
-
 table .td-prog {
 	columns: 2;
 }

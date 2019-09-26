@@ -37,13 +37,7 @@ export default {
     }
 
 div.bar .bar-text {
-	margin-left: 2%;
 	color: var( --progbar-dark-text );
-}
-
-.darkmode div.bar .bar-text {
-	color: var( --probar-light-text );
-	mix-blend-mode: screen;
 }
 
 div.container {
