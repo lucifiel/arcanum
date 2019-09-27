@@ -612,6 +612,7 @@
 			"gold":200
 		},
 		"mod":{
+			"starcharts.max":15,
 			"research.max":10,
 			"divination.max":1,
 			"divination.rate":"20%",
@@ -631,6 +632,7 @@
 			"gold":200
 		},
 		"mod":{
+			"starcharts.max":10,
 			"research.max":10,
 			"planeslore.max":1,
 			"planeslore.rate":0.3,

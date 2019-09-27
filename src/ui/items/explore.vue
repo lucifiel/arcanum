@@ -2,14 +2,19 @@
 import Game from '../../game';
 
 import Combat from './combat.vue';
+import ProgBar from '../components/progbar.vue';
+
 
 export default {
 
 	props:['explore'],
 	components:{
-		combat:Combat
+		combat:Combat,
+		progbar:ProgBar
 	},
 	computed:{
+
+		statuses() { return Game.state.statuses; },
 
 		/**
 		 * @property {Player} player
@@ -47,6 +52,13 @@ export default {
 			<combat class="combat" :combat="explore.combat" />
 		</template>
 		<template v-else>
+
+			<div v-if="enc">
+			<span>{{ enc.name }}</span>
+			<progbar :value="enc.exp" :max="enc.length" />
+			</div>
+
+			<progbar v-for="s in statuses" :key="s.id" :value="s.value" :max="s.max.value" />
 
 		</template>
 

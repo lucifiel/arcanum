@@ -1020,6 +1020,7 @@
 			"desc":"your first map of the heavens is complete."
 		},
 		"result":{
+			"starcharts.max":10,
 			"research.max":10,
 			"divination":{
 				"max":1,
@@ -1268,6 +1269,11 @@
 		"desc":"quicken your skills with magic energy.",
 		"require":"mana",
 		"need":"g.runner.hasType('skill')",
+		"every":{
+			"50":{
+				"effect.runner.exp":0.002
+			}
+		},
 		"cost":{
 			"mana":0.1
 		},

@@ -1,5 +1,13 @@
 import Action from "./action";
 
+/**
+ * Default dist per level function.
+ * @param {number} lvl
+ */
+export const getDist = (lvl)=> {
+	return Math.ceil( 4.4*Math.exp( 0.32*this.level ) );
+};
+
 export default class Locale extends Action {
 
 	get encs() { return this._encs; }
@@ -28,9 +36,9 @@ export default class Locale extends Action {
 		this._length = this._length || 100;
 
 		// default require for dungeon is player-level.
-		this.require = this.lockReq;// this.require || this.levelTest;
+		this.require = this.require || this.levelTest;
 
-		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.ceil( 4.4*Math.exp( 0.32*this.level ) ) : this.dist;
+		this.dist = ( this.dist === undefined || this.dist === null ) ? this.getDist(this.level) : this.dist;
 		//this.addRequire( 'dist', this.dist );
 
 		//console.log(this.id + ' dist: ' + this.dist );

@@ -48,6 +48,9 @@ export default class Raid {
 	get combat() { return this._combat; }
 	set combat(v) { this._combat = v instanceof Combat ? v : new Combat(v); }
 
+	get enc() { return this._combat; }
+	set enc(v) {}
+
 	/**
 	 * @property {Inventory} drops - items dropped in current dungeon.
 	 * can be taken by player.

@@ -16,17 +16,14 @@ export function getDelay(s) {
 
 export default class Char {
 
-	get statuses() { return this._statuses; }
-	set statuses(v) { this._statuses = v; }
+	get states() { return this._states; }
+	set states(v) { this._states = v; }
 
 	get defense() { return this._defense; }
 	set defense(v) { this._defense =v; }
 
 	get tohit() { return this._tohit; }
 	set tohit(v) { this._tohit = v; }
-
-	get statuses() { return this._statuses; }
-	set statuses(v) { this._statuses = v; }
 
 	get resist() { return this._resist };
 	set resist(v) { this._resist = v; }
@@ -78,7 +75,7 @@ export default class Char {
 
 		this.type = 'npc';
 
-		this.statuses = this.statuses || {};
+		this.states = this.states || {};
 		this.immunities = this.immunities || {};
 		this._resist = this._resist || {};
 
@@ -169,7 +166,7 @@ export default class Char {
 
 	}
 
-	hasStatus(stat) { return this.statuses[stat] > 0; }
+	hasStatus(stat) { return this.states[stat] > 0; }
 	isImmune(kind) { return this.immunities[kind] > 0; }
 
 	/**
@@ -199,11 +196,11 @@ export default class Char {
 	}
 
 	addStatus(stat) {
-		this.statuses[stat] = this.statuses[stat] ? this.statuses[stat] + 1 : 1;
+		this.states[stat] = this.states[stat] ? this.states[stat] + 1 : 1;
 	}
 
 	removeStatus(stat) {
-		this.statuses[stat] = this.statuses[stat] ? this.statuses[stat] - 1 : 0;
+		this.states[stat] = this.states[stat] ? this.states[stat] - 1 : 0;
 	}
 
 	/**

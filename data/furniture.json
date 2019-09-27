@@ -468,6 +468,7 @@
 			"space":2
 		},
 		"mod":{
+			"starcharts.max":1,
 			"codices":{
 				"mod.research.max":0.5,
 				"max":15
@@ -958,6 +959,7 @@
 			"space":20
 		},
 		"mod":{
+			"starcharts.max":50,
 			"codices.max":100,
 			"lore.rate":0.2,
 			"research.max":100,
@@ -976,6 +978,7 @@
 			"space":50
 		},
 		"mod":{
+			"starcharts.max":50,
 			"chronomancy.max":1,
 			"chronomancy.rate":0.01,
 			"astronomy.max":3,
@@ -1194,6 +1197,7 @@
 			"space":75
 		},
 		"mod":{
+			"starcharts.max":50,
 			"codices.max":400,
 			"tomes.max":75,
 			"codices.mod.research.max":10,
