@@ -135,7 +135,7 @@ export default {
 
 			if ( p === 'items') continue;
 			var dataItem = saveData[p];
-			//console.log('game save item: ' + p );
+
 			saveData[p] = this.parseSub(dataItem);
 
 		}
@@ -179,8 +179,6 @@ export default {
 		// NOTE: This requires that properties are never actually deleted from items,
 		// though they can be set to null.
 		for( let p in templates ) {
-
-			//console.log('MERGING: ' + p );
 
 			var saveObj = saveItems[p] || {};
 

@@ -143,7 +143,6 @@ export default class Explore {
 		this.player.delay = getDelay( this.player.speed );
 		var e = this.locale.getEnc();
 
-		console.log('setting enc: ' + e );
 		if ( typeof e === 'string') {
 
 			var it = Game.instance(e);

@@ -57,6 +57,11 @@ export default class Encounter extends GData {
 		this.level = this.level || 1;
 		this.length = this.length || 5*this.level;
 
+		for( let p in this.effect ) {
+
+			console.log( p + ' -> ' + (typeof this.effect[p] ) + ': ' + this.effect[p] );
+		}
+
 	}
 
 	revive(gs) {

@@ -18,7 +18,10 @@ export default {
 	},
 	computed:{
 
-		statuses() { return Game.state.statuses; },
+		statuses() {
+			console.log('STATU COUNT: ' + Game.state.statuses.length );
+			return Game.state.statuses;
+			},
 
 		/**
 		 * @property {Player} player
@@ -62,7 +65,12 @@ export default {
 			<progbar :value="enc.exp" :max="enc.length" />
 			</div>
 
-			<!--<progbar v-for="s in statuses" :key="s.id" :value="s.value" :max="s.max.value" />-->
+			<div class="statuses">
+			<div class="status" v-for="s in statuses" :key="s.id" @mouseenter.capture.stop="dispatch('itemover', $event, s )">
+				<span>{{s.name}}</span>
+				<progbar :value="s.value" :max="s.max.value" />
+			</div>
+			</div>
 
 		</template>
 
@@ -72,6 +80,16 @@ export default {
 
 
 <style scoped>
+
+div.explore div.statuses {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+div.statuses .status {
+	flex-basis: 48%;
+}
 
 div.explore .active-title {
 	display:flex;
