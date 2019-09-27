@@ -36,7 +36,7 @@ export default class StatData extends GData {
 
 		super(vars);
 
-		this.value = this._value || 0;
+		this.value = new Stat( this._value || 0 );
 
 		/**
 		 * @property {boolean} unit - true if current value is reported in integer amounts.

@@ -832,8 +832,10 @@ export default {
 				} else {
 					if ( target.type === 'event' ) this.unlockEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
-					else if ( e instanceof Range ) this.doItem( target, e.value );
-					else if ( typeof e === 'boolean') {
+					else if ( e instanceof Range ) {
+
+						this.doItem( target, e.value*dt );
+					} else if ( typeof e === 'boolean') {
 
 						target.locked = !e;
 						this.doItem( target );

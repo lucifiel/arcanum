@@ -1070,7 +1070,7 @@
 	"cost":{
 		"research":15000,
 		"naturegem":50,
-		"herbs":100,
+		"herbs":75,
 		"arcana":20,
 		"runestones":15
 	},

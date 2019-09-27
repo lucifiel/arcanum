@@ -9,9 +9,6 @@ import { assignNoFunc } from '../util/util';
 
 export default class Wearable {
 
-	get value() { return 1;}
-	set value(v){}
-
 	toJSON() {
 
 		let data = this.excludeJSON( ['material', 'kind'] ) || {};

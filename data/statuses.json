@@ -4,12 +4,14 @@
 		"name":"befuddlement",
 		"desc":"outright confusion in your studies",
 		"reverse":true,
+		"rate":-0.1,
 		"max":10
 	},
 	{
 		"id":"unease",
 		"desc":"a general feeling of unwell",
 		"reverse":true,
+		"rate":-0.1,
 		"max":10
 	},
 	{
@@ -17,6 +19,7 @@
 		"name":"weariness",
 		"desc":"the fatigue of mental strain",
 		"reverse":true,
+		"rate":-0.1,
 		"max":10
 	},
 	{
@@ -24,12 +27,14 @@
 		"name":"frustration",
 		"desc":"rising book-throwing urges",
 		"reverse":true,
+		"rate":-0.1,
 		"max":10
 	},
 	{
 		"id":"madness",
 		"desc":"warping of your mind under magical influences",
 		"reverse":true,
+		"rate":-0.1,
 		"max":10
 	}
 

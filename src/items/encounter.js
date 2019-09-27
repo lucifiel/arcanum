@@ -18,12 +18,6 @@ export default class Encounter extends GData {
 
 	get isProto() {return true; }
 
-	/**
-	 * @property {number} ex - clone for raw data getter/setters
-	 */
-	get ex() { return this._exp;}
-	set ex(v) { this._exp = v;}
-
 	get exp() { return this._exp;}
 	set exp(v) { this._exp = v;}
 
@@ -57,10 +51,9 @@ export default class Encounter extends GData {
 		this.level = this.level || 1;
 		this.length = this.length || 5*this.level;
 
-		for( let p in this.effect ) {
-
+		/*for( let p in this.effect ) {
 			console.log( p + ' -> ' + (typeof this.effect[p] ) + ': ' + this.effect[p] );
-		}
+		}*/
 
 	}
 
@@ -70,7 +63,9 @@ export default class Encounter extends GData {
 	update( dt ){
 
 		this._exp += dt;
-		if ( this.effect ) Game.applyEffect( this.effect, dt );
+		if ( this.effect ) {
+			Game.applyEffect( this.effect, dt );
+		}
 
 	}
 

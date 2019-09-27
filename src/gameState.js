@@ -28,6 +28,7 @@ export default class GameState {
 			slots:slotIds,
 			equip:( this.equip ),
 			raid:( this.raid ),
+			drops:this.drops,
 			explore:this.explore,
 			sellRate:this.sellRate,
 			restAction:this.restAction ? this.restAction.id : null,
@@ -77,6 +78,8 @@ export default class GameState {
 
 		this.inventory = new Inventory( this.items.inv || baseData.inventory || {max:3} );
 		this.items.inv = this.inventory;
+
+		this.drops = new Inventory();
 
 		/**
 		 * @property {Minions} minions
@@ -167,6 +170,7 @@ export default class GameState {
 		this.minions.revive(this);
 		this.player.revive(this);
 
+		this.drops.revive(this);
 		this.raid.revive( this );
 		this.explore.revive(this);
 

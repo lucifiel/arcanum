@@ -1,5 +1,5 @@
 import Inventory from "../chars/inventory";
-import Events, { DEFEATED, ACT_DONE } from "../events";
+import Events, { DEFEATED, ACT_DONE,ACT_BLOCKED } from "../events";
 import { getDelay } from "../chars/char";
 
 import Game from '../game';
@@ -16,8 +16,7 @@ export default class Explore {
 
 		return {
 			locale:this.locale ? this.locale.id : undefined,
-			enc:this.enc,
-			drops:this.drops
+			enc:this.enc
 		}
 
 	}
@@ -51,15 +50,6 @@ export default class Explore {
 	 */
 	get length() { return this.locale ? this.locale.length : 0; }
 
-	/**
-	 * @property {Inventory} drops - items dropped in current locale.
-	 * can be taken by player.
-	 */
-	get drops() { return this._drops; }
-	set drops(v) {
-		this._drops = (v instanceof Inventory ) ? v : new Inventory(v);
-	}
-
 	get enc() { return this._enc; }
 	set enc(v) { this._enc = v; }
 
@@ -72,8 +62,6 @@ export default class Explore {
 	constructor( vars=null ) {
 
 		if ( vars ) Object.assign( this, vars);
-
-		this.drops = this._drops || new Inventory();
 
 		this.running = this.running || false;
 
@@ -91,11 +79,11 @@ export default class Explore {
 		this.state = gameState;
 		this.player = gameState.player;
 
-		this.drops.revive(gameState);
-
 		if ( typeof this.locale === 'string') this.locale = gameState.getData(this.locale);
 
-		if ( this._enc ) this.enc = new Encounter(this._enc);
+		if ( this._enc ) {
+			this.enc = new Encounter(this._enc);
+		}
 
 		if ( !this.locale) this.running = false;
 
@@ -119,7 +107,7 @@ export default class Explore {
 
 			if ( this.enc ) {
 
-				this.enc.update(dt);
+				this.enc.update( this.player.delay );
 				if ( this.enc.done ) {
 
 					this.encDone( this.enc );
@@ -130,6 +118,7 @@ export default class Explore {
 
 			if ( this.player.defeated ) {
 				Events.dispatch( DEFEATED, this );
+				Events.dispatch( ACT_BLOCKED, this, false );
 			}
 
 		}
@@ -176,7 +165,7 @@ export default class Explore {
 		} else enc.value++;
 
 		if ( enc.result ) Game.applyEffect( enc.result );
-		if ( enc.loot ) Game.getLoot( enc.loot, this.drops );
+		if ( enc.loot ) Game.getLoot( enc.loot, Game.state.drops );
 
 		this.enc = null;
 
@@ -194,7 +183,7 @@ export default class Explore {
 		this.locale.exp = this.locale.length;
 		this.locale.dirty = true;
 
-		if ( this.locale.loot ) Game.getLoot( this.locale.loot, this.drops );
+		if ( this.locale.loot ) Game.getLoot( this.locale.loot, Game.state.drops );
 		if ( this.locale.result ) Game.applyEffect( this.locale.result );
 		this.locale.value++;
 
@@ -214,10 +203,6 @@ export default class Explore {
 		this.player.timer = this.player.delay;
 
 		if ( d != null ) {
-
-			if ( d != this.locale ) {
-				this.drops.clear();
-			}
 
 			if ( d.exp >= d.length ) {
 				d.exp = 0;

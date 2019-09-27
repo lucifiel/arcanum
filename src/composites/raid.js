@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN, ACT_DONE, ITEM_ATTACK, CHAR_DIED, DEFEATED } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE, ITEM_ATTACK, CHAR_DIED, DEFEATED, ACT_BLOCKED } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
@@ -51,15 +51,6 @@ export default class Raid {
 	get enc() { return this._combat; }
 	set enc(v) {}
 
-	/**
-	 * @property {Inventory} drops - items dropped in current dungeon.
-	 * can be taken by player.
-	 */
-	get drops() { return this._drops; }
-	set drops(v) {
-		this._drops = (v instanceof Inventory ) ? v : new Inventory(v);
-	}
-
 	get done() { return this.exp === this.length; }
 
 	toJSON() {
@@ -98,8 +89,6 @@ export default class Raid {
 
 		this.state = gameState;
 		this.player = gameState.player;
-
-		this.drops.revive(gameState);
 
 		Events.add( ENEMY_SLAIN, this.enemyDied, this );
 		Events.add( ITEM_ATTACK, this.spellAttack, this );
@@ -171,8 +160,8 @@ export default class Raid {
 		}
 
 		if ( enemy.result ) Game.applyEffect( enemy.result );
-		if ( enemy.loot ) Game.getLoot( enemy.loot, this.drops );
-		else Game.getLoot( {max:enemy.level, pct:30}, this.drops );
+		if ( enemy.loot ) Game.getLoot( enemy.loot, Game.state.drops );
+		else Game.getLoot( {max:enemy.level, pct:30}, Game.state.drops );
 
 	}
 
@@ -183,7 +172,7 @@ export default class Raid {
 		this.locale.exp = this.locale.length;
 		this.locale.dirty = true;
 
-		if ( this.locale.loot ) Game.getLoot( this.locale.loot, this.drops );
+		if ( this.locale.loot ) Game.getLoot( this.locale.loot, Game.state.drops );
 		if ( this.locale.result ) Game.applyEffect( this.locale.result );
 		this.locale.value++;
 
@@ -202,14 +191,12 @@ export default class Raid {
 	 */
 	enter( d ) {
 
-
 		this.player.timer = this.player.delay;
 
 		if ( d != null ) {
 
 			if ( d != this.locale ) {
 				this.combat.clear();
-				this.drops.clear();
 			}
 
 			if ( d.exp >= d.length ) {

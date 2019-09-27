@@ -24,7 +24,7 @@ export function mergeClass( destClass, src ) {
   * @const {string[]} JSONIgnore - ignore these properties by default when saving.
   */
  const JSONIgnore = [ 'template', 'id', 'type', 'defaults', 'name', 'desc', 'running', 'current',
- 	'locked', 'locks', 'delta', 'tags', 'mod', 'effect', 'progress','need', 'require'];
+ 	'locked', 'locks', 'value', 'exp', 'delta', 'tags', 'mod', 'effect', 'progress','need', 'require'];
 
 /**
  * Base class of all Game Objects.
@@ -104,6 +104,20 @@ export default {
 	 */
 	get current() { return this.value },
 	set current(v) {},
+
+	/**
+	 * @property {number} ex - save/load alias for exp with no triggers.
+	 */
+	get ex(){return this._exp; },
+	set ex(v) { this._exp = v;},
+
+	/**
+	 * @property {number} val - saving/loading from json without triggers.
+	 */
+	get val() { return this._value },
+	set val(v) {
+		console.log('SETTING VALUE: ' + v );
+		this._value = v; },
 
 	/**
 	 * @property {number} value

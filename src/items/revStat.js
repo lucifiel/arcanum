@@ -6,29 +6,17 @@ import Stat from "../stat";
  */
 export default class RevStat extends Resource {
 
-	valueOf() { return this.value; }
-
-	/**
-	 * Adding value => more space left.
-	 * Removing value => increasing space used.
-	 */
-	set value(v){
-
-		if ( v < 0 )this._value = 0;
-		else if ( v > this._max.value ) this._value = this._max.value;
-
-	}
-
 	constructor( vars ){
 
 		super(vars);
 
-		if ( !this._max ) this._max = 0;
+		if ( !this._max ) this.max = 0;
+		this._value = this._value || 0;
 
 	}
 
 	filled() { return this._value <= 0; }
 
-	maxed() { return this._value <= 0; }
+	maxed() { return this._value < 0; }
 
 }

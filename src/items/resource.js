@@ -30,7 +30,6 @@ export default class Resource extends GData {
 		} else this._value = (v >= 0 ) ? v :0;
 
 	}
-	valueOf(){ return this._value; }
 
 	/**
 	 * @property {number} delta - last change in value.
@@ -65,10 +64,9 @@ export default class Resource extends GData {
 
 		super(vars);
 
-		/**
-		 * !! Force value so maximums before mods don't cutoff current value.
-		 */
-		this._value = vars.value || 0;
+		if ( this._value != vars.val ) console.log( 'this.valu: ' + this._value );
+
+		this._value = this._value || 0;
 
 		/**
 		 * @property {boolean} unit - true if current value is reported in integer amounts.

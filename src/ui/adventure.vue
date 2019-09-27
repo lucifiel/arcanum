@@ -33,6 +33,8 @@ export default {
 	},
 	computed:{
 
+		drops() { return Game.state.drops; },
+
 		combatLog() {
 			return this.log.items.filter(
 				v=>v.type==='combat' ).slice( -MAX_ITEMS );
@@ -80,7 +82,7 @@ export default {
 
 	<div class="raid-bottom">
 
-		<inv class="inv" :inv="explore.drops" take=true nosearch=true />
+		<inv class="inv" :inv="drops" take=true nosearch=true />
 		<div class="log">
 			<span v-if="exploring">Exploring...<br></span>
 
