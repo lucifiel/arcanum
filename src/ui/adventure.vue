@@ -4,7 +4,9 @@ import ItemBase from './itemsBase.js';
 
 import ProgBar from './components/progbar.vue';
 import FilterBox from './components/filterbox.vue';
-import Combat from './items/combat.vue';
+
+import Explore from './items/explore.vue';
+
 import { ENTER_LOC } from '../events';
 
 const MAX_ITEMS = 5;
@@ -24,7 +26,7 @@ export default {
 		this.game = Game;
 	},
 	components:{
-		combat:Combat,
+		explore:Explore,
 		progbar:ProgBar,
 		filterbox:FilterBox,
 		inv:()=>import( /* webpackChunkName: "inv-ui" */ './inventory.vue')
@@ -36,11 +38,9 @@ export default {
 				v=>v.type==='combat' ).slice( -MAX_ITEMS );
 		},
 
-		cur() { return this.state.raid.dungeon },
+		explore() { return this.state.raid.running ? this.state.raid : this.state.explore; },
 
-		raid() { return this.state.raid; },
-
-		raiding() { return this.raid.running; },
+		exploring() { return this.explore && this.explore.running; },
 
 		locales(){
 			return this.state.filterItems(
@@ -58,26 +58,9 @@ export default {
 
 <div class="adventure">
 
-		<div v-if="raiding">
-
-		<div class="active-dungeon" v-if="raiding&&cur">
-			<span class="active-title">
-				<span>{{ cur.name }}</span><button class="raid-btn"
-				@click="dispatch( ENTER_LOC, cur, false )"
-				@mouseenter.capture.stop="dispatch('itemover', $event, cur )">
-				Flee</button>
-			</span>
-
-			<span class="bar"><progbar :value="cur.exp" :max="cur.length" /></span>
-
-		</div>
-
-			<combat class="combat" v-if="raiding" :combat="raid.combat" />
-
-		</div>
+		<explore v-if="exploring" :explore="explore" />
 
 		<!--<filterbox v-model="filtered" :items="locales" min-items="8" />-->
-
 		<div class="locales" v-else>
 		<div class="dungeon" v-for="d in locales" :key="d.id">
 
@@ -97,9 +80,9 @@ export default {
 
 	<div class="raid-bottom">
 
-		<inv class="inv" :inv="raid.drops" take=true nosearch=true />
+		<inv class="inv" :inv="explore.drops" take=true nosearch=true />
 		<div class="log">
-			<span v-if="raiding">Exploring...<br></span>
+			<span v-if="exploring">Exploring...<br></span>
 
 			<div class="outlog">
 			<div class="log-item" v-for="(it,i) in combatLog" :key="i">
@@ -115,24 +98,6 @@ export default {
 </template>
 
 <style scoped>
-
-.combat {
-	overflow-y: auto;
-}
-
-div.adventure .active-title {
-	display:flex;
-	min-width: 400px;
-}
-
-div.adventure .active-title > span {
-	margin-right:16px;
-}
-
-.separate {
-	margin-bottom: 14px;
-	min-height:160px;
-}
 
 div.adventure {
 	display:flex;

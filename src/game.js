@@ -165,18 +165,16 @@ export default {
 
 	explore( locale, enter ) {
 
-		if ( locale.type === 'dungeon') {
+		let control = locale.type === 'dungeon' ? this.state.raid : this.state.explore;
+		if ( enter ) {
 
-			if ( enter ) {
-				this.state.raid.enter(locale);
-				this.setAction( this.state.raid );
-			}
-			else {
-				this.state.raid.dungeon = null;
-				this.game.haltAction( this.state.raid );
-			}
+			control.enter( locale );
+			this.setAction( control );
 
 		} else {
+
+			control.locale = null;
+			this.game.haltAction( control );
 
 		}
 
@@ -811,11 +809,11 @@ export default {
 				e = effect[p];
 
 				if ( target === undefined || target === null ) {
-					if ( p === 'title') {
-						this.state.player.addTitle( e );
-						continue;
-					}
+
+					if ( p === 'title') this.state.player.addTitle( e );
+					else if ( p === 'log') Events.dispatch( EVT_EVENT, e );
 					else this.applyToTag( p, e, dt );
+
 				} else {
 					if ( target.type === 'event' ) this.unlockEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );

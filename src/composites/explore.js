@@ -1,6 +1,14 @@
 import Inventory from "../chars/inventory";
 
 /**
+ * Default dist per level function.
+ * @param {number} lvl
+ */
+export const getDist = (lvl)=> {
+	return Math.ceil( 4.4*Math.exp( 0.32*this.level ) );
+};
+
+/**
  * Explore locations of arcane importance.
  */
 export default class Explore {
@@ -73,6 +81,8 @@ export default class Explore {
 		this.running = this.running || false;
 
 		this.type = 'explore';
+
+		this.dist = ( this.dist === undefined || this.dist === null ) ? getDist(this.level) : this.dist;
 
 		/**
 		 * @property {locale} locale - current locale.
