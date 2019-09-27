@@ -9,6 +9,7 @@ import Minions from './chars/minions';
  * @todo violation of principle.
  */
 import Runner from './modules/runner';
+import Explore from './composites/explore';
 
 export default class GameState {
 
@@ -27,6 +28,7 @@ export default class GameState {
 			slots:slotIds,
 			equip:( this.equip ),
 			raid:( this.raid ),
+			explore:this.explore,
 			sellRate:this.sellRate,
 			restAction:this.restAction ? this.restAction.id : null,
 			NEXT_ID:this.NEXT_ID
@@ -90,6 +92,7 @@ export default class GameState {
 		this.sellRate = this.sellRate || 0.5;
 
 		this.raid = new Raid( baseData.raid );
+		this.explore = new Explore( baseData.explore );
 
 		this.revive();
 
@@ -165,6 +168,7 @@ export default class GameState {
 		this.player.revive(this);
 
 		this.raid.revive( this );
+		this.explore.revive(this);
 
 		Runner.revive(this);
 		this.items.runner = Runner;

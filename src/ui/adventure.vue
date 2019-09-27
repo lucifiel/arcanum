@@ -5,6 +5,7 @@ import ItemBase from './itemsBase.js';
 import ProgBar from './components/progbar.vue';
 import FilterBox from './components/filterbox.vue';
 import Combat from './items/combat.vue';
+import { ENTER_LOC } from '../events';
 
 const MAX_ITEMS = 5;
 
@@ -19,6 +20,7 @@ export default {
 		}
 	},
 	beforeCreate(){
+		this.ENTER_LOC = ENTER_LOC;
 		this.game = Game;
 	},
 	components:{
@@ -40,9 +42,9 @@ export default {
 
 		raiding() { return this.raid.running; },
 
-		dungeons(){
+		locales(){
 			return this.state.filterItems(
-				it=>it.type==='dungeon' && !this.locked(it)
+				it=>(it.type==='dungeon'||it.type==='locale') && !this.locked(it)
 			);
 		}
 
@@ -61,7 +63,7 @@ export default {
 		<div class="active-dungeon" v-if="raiding&&cur">
 			<span class="active-title">
 				<span>{{ cur.name }}</span><button class="raid-btn"
-				@click="dispatch( 'raid', cur, false )"
+				@click="dispatch( ENTER_LOC, cur, false )"
 				@mouseenter.capture.stop="dispatch('itemover', $event, cur )">
 				Flee</button>
 			</span>
@@ -74,17 +76,17 @@ export default {
 
 		</div>
 
-		<!--<filterbox v-model="filtered" :items="dungeons" min-items="8" />-->
+		<!--<filterbox v-model="filtered" :items="locales" min-items="8" />-->
 
-		<div class="dungeons" v-else>
-		<div class="dungeon" v-for="d in dungeons" :key="d.id">
+		<div class="locales" v-else>
+		<div class="dungeon" v-for="d in locales" :key="d.id">
 
 			<span>
 			<span>{{ d.name }}</span>
 
 			<!-- EVENT MUST BE ON OUTER SPAN - CHROME -->
 			<span @mouseenter.capture.stop="dispatch('itemover', $event, d )"><button class="raid-btn" :disabled="!game.canRun(d)"
-				@click="dispatch( 'raid', d, true )">
+				@click="dispatch( ENTER_LOC, d, true )">
 				Enter</button></span>
 				</span>
 
@@ -97,7 +99,7 @@ export default {
 
 		<inv class="inv" :inv="raid.drops" take=true nosearch=true />
 		<div class="log">
-			<span v-if="raiding">Adventuring...<br></span>
+			<span v-if="raiding">Exploring...<br></span>
 
 			<div class="outlog">
 			<div class="log-item" v-for="(it,i) in combatLog" :key="i">
@@ -140,7 +142,7 @@ div.adventure {
 	height:100%;
 }
 
-div.dungeons {
+div.locales {
 	display:flex;
 	align-items:flex-start;
 	flex-grow:2;

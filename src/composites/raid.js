@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN, ACT_DONE, CHAR_DIED } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE, CHAR_DIED, ITEM_ATTACK } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
@@ -25,7 +25,7 @@ export default class Raid {
 	set exp(v){
 
 		if ( v >= this.dungeon.length ) {
-			this.raidDone( this.dungeon );
+			this.complete();
 		} else this.dungeon.exp=v;
 
 	}
@@ -52,7 +52,7 @@ export default class Raid {
 		this._drops = (v instanceof Inventory ) ? v : new Inventory(v);
 	}
 
-	get complete() { return this.exp === this.length; }
+	get done() { return this.exp === this.length; }
 
 	toJSON() {
 
@@ -94,6 +94,7 @@ export default class Raid {
 		this.drops.revive(gameState);
 
 		Events.add( ENEMY_SLAIN, this.enemyDied, this );
+		Events.add( ITEM_ATTACK, this.spellAttack, this );
 
 		if ( typeof this.dungeon === 'string') this.dungeon = gameState.getData(this.dungeon);
 
@@ -105,12 +106,12 @@ export default class Raid {
 
 	update(dt) {
 
-		if ( this.dungeon == null || this.complete ) return;
+		if ( this.dungeon == null || this.done ) return;
 
 		if ( this._combat.complete ) {
 
-			this.combatDone();
-			if ( !this.complete ) this.nextCombat();
+			this.advance();
+			if ( !this.done ) this.nextEnc();
 
 		} else this._combat.update(dt);
 
@@ -120,12 +121,12 @@ export default class Raid {
 	 * Player-casted spell or action attack.
 	 * @param {Item} it
 	 */
-	spellAttack( it ) { if ( this.dungeon ) this._combat.spellAttack(it); }
+	spellAttack( it ) { if ( this.dungeon && this.running ) this._combat.spellAttack(it); }
 
 	/**
 	 * Get next dungeon enemy.
 	 */
-	nextCombat() {
+	nextEnc() {
 
 
 		/**
@@ -157,9 +158,9 @@ export default class Raid {
 
 	}
 
-	combatDone() { this.exp += 1; }
+	advance() { this.exp += 1; }
 
-	raidDone() {
+	complete() {
 
 		this.dungeon.exp = this.dungeon.length;
 		this.dungeon.dirty = true;
@@ -177,7 +178,11 @@ export default class Raid {
 
 	}
 
-	setDungeon( d ) {
+	/**
+	 * enter dungeon
+	 * @param {*} d
+	 */
+	enter( d ) {
 
 
 		this.player.timer = this.player.delay;
@@ -195,7 +200,7 @@ export default class Raid {
 		}
 
 		this.dungeon = d;
-		if ( this.combat.complete ) this.nextCombat();
+		if ( this.combat.complete ) this.nextEnc();
 
 	}
 

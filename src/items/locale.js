@@ -28,7 +28,7 @@ export default class Locale extends Action {
 		this._length = this._length || 100;
 
 		// default require for dungeon is player-level.
-		this.require = this.require || this.levelTest;
+		this.require = this.lockReq;// this.require || this.levelTest;
 
 		this.dist = ( this.dist === undefined || this.dist === null ) ? Math.ceil( 4.4*Math.exp( 0.32*this.level ) ) : this.dist;
 		//this.addRequire( 'dist', this.dist );
@@ -55,6 +55,7 @@ export default class Locale extends Action {
 	complete() {
 	}
 
+	lockReq() { return false;}
 	distTest( g, self) {
 		return g.dist >= self.dist;
 	}

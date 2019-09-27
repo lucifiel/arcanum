@@ -25,10 +25,6 @@ const DAMAGE_MISS = 'damage_miss';
 const ENEMY_HIT = 'enemy_hit';
 const PLAYER_HIT = 'player_hit';
 const LEVEL_UP = 'levelup'
-/**
- * player left dungeon.
- */
-const EXIT_RAID = 'leftraid';
 
 const ACT_CHANGED = 'actchanged';
 const ACT_IMPROVED = 'actimprove';
@@ -54,9 +50,22 @@ const ACT_BLOCKED = 'act_blocked';
  */
 const EXP_MAX = 'exp_max';
 
-export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EXP_MAX, EVT_LOOT, ACT_DONE, ALLY_DIED, EXIT_RAID, CHAR_DIED,
+/**
+ * Item with attack used. Typically spell; could be something else.
+ */
+const ITEM_ATTACK = 'item_atk';
+
+/**
+ * Encounter done.
+ */
+const ENC_DONE = 'enc_done';
+const ENTER_LOC = 'enter_loc';
+const EXIT_LOC = 'exit_loc';
+
+export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EXP_MAX, EVT_LOOT, ACT_DONE, ALLY_DIED, CHAR_DIED,
+	ENTER_LOC, EXIT_LOC, ITEM_ATTACK,
 	ACT_CHANGED, ACT_IMPROVED, ACT_BLOCKED,
-	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, LEVEL_UP };
+	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, ENC_DONE, LEVEL_UP };
 
 export default {
 
@@ -107,7 +116,12 @@ export default {
 		events.removeAllListeners( ENEMY_SLAIN );
 		events.removeAllListeners( PLAYER_SLAIN );
 		events.removeAllListeners( DAMAGE_MISS );
-		events.removeAllListeners( COMBAT_DONE );
+
+		events.removeAllListeners( ENTER_LOC );
+		events.removeAllListeners( EXIT_LOC );
+		events.removeAllListeners( ENC_DONE );
+		events.removeAllListeners( ITEM_ATTACK );
+
 		events.removeAllListeners( PLAYER_HIT );
 		events.removeAllListeners( ENEMY_HIT );
 		events.removeAllListeners( ALLY_DIED );
@@ -143,7 +157,9 @@ export default {
 	},
 
 	onDied( attacker ) {
+
 		this.log.log( 'Retreat', '', EVT_COMBAT );
+
 	},
 
 	onMiss( msg ) {

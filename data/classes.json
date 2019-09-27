@@ -135,10 +135,10 @@
 		"gold":500
 	},
 	"effect":{
-		"tier1":true,
 		"sp":1
 	},
 	"mod":{
+		"tier1":true,
 		"research.max":20,
 		"lore.max":1,
 		"astronomy.max":1,
@@ -161,10 +161,11 @@
 		"bones":10
 	},
 	"effect":{
-		"tier1":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier1":true,
 		"evilamt":5,
 		"research.max":20,
 		"demonology.max":2,
@@ -189,10 +190,10 @@
 		"arcana":7
 	},
 	"effect":{
-		"tier1":true,
 		"sp":2
 	},
 	"mod":{
+		"tier1":true,
 		"mana.max":1,
 		"research.max":10,
 		"embalming.max":1,
@@ -221,11 +222,13 @@
 	},
 	"disable":[],
 	"effect":{
-		"tier1":true,
-		"sp":2,
-		"witchcraft":true
+
+		"sp":2
+
 	},
 	"mod":{
+		"tier1":true,
+		"witchcraft":true,
 		"research.max":10,
 		"naturelore.max":1,
 		"naturelore.rate":"10%",
@@ -251,10 +254,11 @@
 		"arcana":5
 	},
 	"effect":{
-		"tier1":true,
+
 		"sp":3
 	},
 	"mod":{
+		"tier1":true,
 		"gold.max":10,
 		"research.max":2,
 		"trickery.max":2,
@@ -280,10 +284,10 @@
 		"arcana":7
 	},
 	"effect":{
-		"tier2":true,
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"evilamt":10,
 		"research.max":10,
 		"embalming.max":1,
@@ -307,10 +311,11 @@
 		"arcana":10
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":2
 	},
 	"mod":{
+		"tier3":true,
 		"evilamt":20,
 		"lore.max":2,
 		"research.max":25,
@@ -336,10 +341,10 @@
 		"gold":400
 	},
 	"effect":{
-		"tier2":true,
 		"sp":1
 	},
 	"mod":{
+		"tier2":true,
 		"research.max":-50,
 		"mana.max":1,
 		"mana.rate":0.1,
@@ -362,13 +367,17 @@
 		"arcana":10
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier3":true,
 		"player.tohit":"10%",
 		"hp.max":"10%",
-		"shadowlore.max":2
+		"shadowlore.max":2,
+		"shadowlore.rate":"1%",
+		"arcanebody.max":1,
+		"arcanebody2.max":1
 	}
 
 },
@@ -386,10 +395,11 @@
 		"runestones":5
 	},
 	"effect":{
-		"tier4":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier4":true,
 		"anatomy.max":3,
 		"lore.rate":"10%",
 		"lore.max":2,
@@ -407,7 +417,7 @@
 	"title":"blood mage",
 	"tags":"t_tier3",
 	"desc":"the magic in your veins",
-	"require":"g.tier2>0&&(g.battlemage>0||hp.max>150)",
+	"require":"g.tier2>0&&(g.battlemage>0||g.hp.max>150)",
 	"cost":{
 		"research":1500,
 		"arcana":8,
@@ -415,10 +425,11 @@
 		"bloodgem":15
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier3":true,
 		"research.max":-50,
 		"bloodgem.max":10,
 		"mana.max":1,
@@ -444,10 +455,11 @@
 		"tomes":5
 	},
 	"effect":{
-		"tier3":true,
+
 		"sp":1
 	},
 	"mod":{
+		"tier3":true,
 		"minions.max":1,
 		"charms.max":1,
 		"lore.max":2,
@@ -471,10 +483,10 @@
 		"arcana":10
 	},
 	"effect":{
-		"tier2":true,
 		"sp":1
 	},
 	"mod":{
+		"tier2":true,
 		"research.max":5,
 		"naturelore.max":3,
 		"naturelore.rate":"1+15%",
@@ -489,10 +501,10 @@
 	"tags":"t_tier2",
 	"disable":[],
 	"effect":{
-		"tier2":true,
 		"sp":3
 	},
 	"mod":{
+		"tier2":true,
 		"research.max":20,
 		"crafting.max":2,
 		"potions.max":3,
@@ -515,10 +527,10 @@
 		"arcana":12
 	},
 	"effect":{
-		"tier2":true,
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"research.max":15,
 		"enchanting.max":3,
 		"arcana.max":2,
@@ -544,10 +556,10 @@
 		"earthgem":10
 	},
 	"effect":{
-		"tier2":true,
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"earthlore.max":2,
 		"earthlore.rate":"10%",
 		"stamina.max":"10%",
@@ -572,10 +584,10 @@
 		"firegem":10
 	},
 	"effect":{
-		"tier2":true,
 		"sp":2
 	},
 	"mod":{
+		"tier2":true,
 		"firelore.max":2,
 		"firelore.rate":"10%",
 		"dodge.max":"10%",
@@ -739,7 +751,7 @@
 	"mod":{
 		"tier3":true,
 		"naturelore.max":3,
-		"naturelore.rate":0.2,
+		"naturelore.rate":"0.2+5%",
 		"animals.max":2,
 		"herbalism.max":2,
 		"herbalism.rate":"10%",
@@ -886,7 +898,7 @@
 	"require":"g.tier3>0&&g.naturelore>=20&&(g.witch+g.druid+g.elementalist)>0",
 	"cost":{
 		"research":5000,
-		"research.max":700,
+
 		"naturegem":30,
 		"herbs":75,
 		"arcana":15,
@@ -898,15 +910,16 @@
 	},
 	"mod":{
 		"tier4":true,
+		"research.max":"-5%",
 		"waterlore.max":2,
 		"earthlore.max":2,
 		"airlore.max":2,
 		"naturelore.max":3,
-		"naturelore.rate":"10%",
+		"naturelore.rate":"1+10%",
 		"animals.max":2,
-		"animals.rate":"10%",
+		"animals.rate":"1+10%",
 		"herbalism.max":2,
-		"herbalism.rate":"10%"
+		"herbalism.rate":"1+10%"
 	}
 },
 {
@@ -917,7 +930,6 @@
 	"tags":"t_tier4",
 	"cost":{
 		"research":5000,
-		"research.max":1000,
 		"arcana":20,
 		"tomes":15,
 		"spiritgem":20,
@@ -929,6 +941,7 @@
 	},
 	"mod":{
 		"tier4":true,
+		"research.max":"-2%",
 		"spiritlore.max":2,
 		"spiritlore.rate":"10%",
 		"divination.max":3,
@@ -946,7 +959,6 @@
 	"require":"g.tier3>0&&g.evil>0&&g.shadowlore>=17",
 	"cost":{
 		"research":2000,
-		"research.max":700,
 		"bones":100,
 		"bodies":50,
 		"souls":40,
@@ -958,7 +970,7 @@
 	},
 	"mod":{
 		"tier4":true,
-		"research.max":50,
+		"research.max":"50-2%",
 		"embalming.max":1,
 		"reanimation.max":3,
 		"reanimation.rate":"10%",
@@ -1002,7 +1014,7 @@
 	"require":"g.tier3>0&&g.lore>=25",
 	"cost":{
 		"research":5000,
-		"research.max":1000,
+
 		"arcana":25,
 		"tomes":10,
 		"runestones":5
@@ -1012,7 +1024,7 @@
 	},
 	"mod":{
 		"tier4":true,
-		"research.max":40,
+		"research.max":"40-5%",
 		"languages.max":2,
 		"lore.max":3,
 		"lore.rate":"10%",
@@ -1028,7 +1040,7 @@
 	"cost":{
 		"research":20000,
 		"arcana":25,
-		"research.max":3000,
+
 		"tomes":30,
 		"runestones":10
 	},
@@ -1037,6 +1049,7 @@
 	},
 	"mod":{
 		"tier5":true,
+		"research.max":"-25%",
 		"languages.max":2,
 		"firelore.max":1,
 		"waterlore.max":1,
@@ -1056,7 +1069,6 @@
 	"require":"g.tier4>0&&g.naturelore>=25&&(g.witch+g.fey+g.highelemental)>0",
 	"cost":{
 		"research":15000,
-		"research.max":1700,
 		"naturegem":50,
 		"herbs":100,
 		"arcana":20,
@@ -1068,6 +1080,7 @@
 	"mod":{
 		"tier5":true,
 		"lore.max":2,
+		"research.max":"-17%",
 		"lore.rate":"10%",
 		"airlore.max":2,
 		"airlore.rate":"10%",
@@ -1088,7 +1101,6 @@
 	"require":"g.tier4>0&&g.evil>0&&g.spiritlore>=15&&g.shadowlore>=24",
 	"cost":{
 		"research":17000,
-		"research.max":1500,
 		"bones":100,
 		"bodies":50,
 		"souls":100,
@@ -1100,6 +1112,7 @@
 	},
 	"mod":{
 		"tier5":true,
+		"research.max":"-14%",
 		"lore.max":2,
 		"lore.rate":"10%",
 		"embalming.max":2,
@@ -1119,7 +1132,7 @@
 		"require":"g.warlock>0&&g.demonology>=20",
 		"cost":{
 			"research":15000,
-			"research.max":1000,
+
 			"souls":75,
 			"bodies":10,
 			"tomes":25,
@@ -1131,6 +1144,7 @@
 		},"mod":{
 			"tier5":true,
 			"lore.max":2,
+			"research.max":"-14%",
 			"lore.rate":"10%",
 			"firelore.max":3,
 			"firelore.rate":"20%",

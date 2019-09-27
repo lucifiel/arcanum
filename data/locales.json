@@ -133,7 +133,7 @@
 },
 {
 	"id":"hallofmirrors",
-	"level":1,
+	"level":3,
 	"length":10,
 	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
 	"run":{

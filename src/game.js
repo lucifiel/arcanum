@@ -21,7 +21,7 @@ import Runner from './modules/runner';
 /**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT, ACT_CHANGED } from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ACT_CHANGED, ENTER_LOC, ITEM_ATTACK } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
@@ -118,6 +118,8 @@ export default {
 			this.loaded = true;
 			Events.started = true;
 
+			Events.add( ENTER_LOC, this.explore, this );
+
 		}, err=>{ console.error('game err: ' + err )});
 
 	},
@@ -161,10 +163,22 @@ export default {
 
 	},
 
-	startRaid( dungeon) {
+	explore( locale, enter ) {
 
-		this.state.raid.setDungeon(dungeon);
-		this.setAction( this.state.raid );
+		if ( locale.type === 'dungeon') {
+
+			if ( enter ) {
+				this.state.raid.enter(locale);
+				this.setAction( this.state.raid );
+			}
+			else {
+				this.state.raid.dungeon = null;
+				this.game.haltAction( this.state.raid );
+			}
+
+		} else {
+
+		}
 
 	},
 
@@ -631,9 +645,7 @@ export default {
 		if ( it.log ) Events.dispatch( EVT_EVENT, it.log );
 
 		if ( it.attack ) {
-			if ( (it.type !== 'wearable' && it.type !== 'weapon')
-			&& this.state.raid.running )
-				this.state.raid.spellAttack( it );
+			if (it.type !== 'wearable' && it.type !== 'weapon') Events.dispatch( ITEM_ATTACK, it );
 		}
 
 		it.dirty = true;
@@ -1011,6 +1023,8 @@ export default {
 			}
 
 			for( let p in cost ) {
+
+				res = cost[p];
 
 				res = this.getData(p);
 				if ( res ) {

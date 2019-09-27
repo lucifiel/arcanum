@@ -1,3 +1,5 @@
+import Inventory from "../chars/inventory";
+
 /**
  * Explore locations of arcane importance.
  */
@@ -27,7 +29,7 @@ export default class Explore {
 	set exp(v){
 
 		if ( v >= this.locale.length ) {
-			this.exploreDone( this.locale );
+			this.complete();
 		} else this.locale.exp=v;
 
 	}
@@ -53,7 +55,10 @@ export default class Explore {
 		this._drops = (v instanceof Inventory ) ? v : new Inventory(v);
 	}
 
-	get complete() { return this.exp === this.length; }
+	get enc() { return this._enc; }
+	set enc(v) { this._enc = v; }
+
+	get done() { return this.exp === this.length; }
 
 	/**
 	 *
@@ -67,7 +72,7 @@ export default class Explore {
 
 		this.running = this.running || false;
 
-		this.type = 'raid';
+		this.type = 'explore';
 
 		/**
 		 * @property {locale} locale - current locale.
@@ -91,17 +96,41 @@ export default class Explore {
 
 	update(dt) {
 
-		if ( this.locale == null || this.complete ) return;
+		if ( this.locale == null || this.done ) return;
 
-		if ( this.enc ) {
-			this.enc.update(dt);
-		} else {
-			this.enc = nextEnc();
+		if ( !this.enc ) this.nextEnc();
+
+		// should be covered by runner.
+		/*if ( this.locale.effect ) {
+			Game.applyEffect( this.locale.effect, dt );
+		}*/
+
+		this.player.timer -= dt;
+		if ( this.player.timer <= 0 ) {
+
+			this.player.timer += this.player.delay;
+
+			if ( this.enc ) this.enc.update(dt);
+
+			if ( this.enc.complete ) {
+
+				this.encDone( this.enc );
+				this.advance();
+
+			}
+
+
 		}
 
 	}
 
 	nextEnc(){
+
+		if ( !this.locale ) return;
+		// get random encounter.
+		this.player.delay = getDelay( this.player.speed );
+		this._enc = this.locale.getEnc();
+
 	}
 
 	/**
@@ -117,14 +146,12 @@ export default class Explore {
 		if ( enc.template && enc.template.id ) {
 
 			let tmp = this.state.getData(enc.template.id );
-			if ( tmp ) {
-				tmp.value++;
-			}
-		}
+			if ( tmp ) tmp.value++;
+
+		} else enc.value++;
 
 		if ( enc.result ) Game.applyEffect( enc.result );
 		if ( enc.loot ) Game.getLoot( enc.loot, this.drops );
-		else Game.getLoot( {max:enc.level, pct:30}, this.drops );
 
 	}
 
@@ -135,7 +162,7 @@ export default class Explore {
 		this.exp += 1;
 	}
 
-	exploreDone() {
+	complete() {
 
 		this.locale.exp = this.locale.length;
 		this.locale.dirty = true;
@@ -153,8 +180,7 @@ export default class Explore {
 
 	}
 
-	setLocation( d ) {
-
+	enter( d ) {
 
 		this.player.timer = this.player.delay;
 
@@ -173,6 +199,6 @@ export default class Explore {
 
 	}
 
-	hasTag(t) { return t==='raid'; }
+	hasTag(t) { return t==='explore'; }
 
 }

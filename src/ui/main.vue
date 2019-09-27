@@ -88,9 +88,6 @@ export default {
 		this.listen( 'upgrade', this.onUpgrade );
 		this.listen( 'action', this.onAction );
 
-		this.listen( 'raid', this.onRaid );
-		this.listen( 'explore', this.onExplore );
-
 		this.listen( 'rest', this.onRest );
 
 		this.listen('equip', this.onEquip );
@@ -272,28 +269,6 @@ export default {
 		 * @property {Item} item - item to buy.
 		 */
 		onBuy(item) { this.game.tryBuy(item); },
-
-		/**
-		 * @param {Locale} locale - location to enter or leave.
-		 * @param {boolean} enter - whether to enter or leave the locale
-		 */
-		onExplore( locale, enter ){
-		},
-
-		/**
-		 * @param {Dungeon} dungeon
-		 * @param {boolean} enter
-		 */
-		onRaid( dungeon, enter ) {
-
-			if ( enter ) this.game.startRaid( dungeon );
-			else {
-				this.state.raid.dungeon = null;
-				this.game.haltAction( this.state.raid );
-
-			}
-
-		},
 
 		onPrimary( s) {
 			if ( this.state.player.primary === s) this.state.player.setPrimary(null);

@@ -2094,17 +2094,17 @@
         "level":8,
         "evil":12,
         "desc":"From the waist up, it doesn't look that bad.",
-        "hp":40,
+        "hp":38,
         "tohit":8,
         "defense":48,
         "attack":{
             "name":"scimitars",
             "kind":"slash",
-			"dmg":"9~14",
+			"dmg":"5~8",
 			"dot":{
 				"kind":"poison",
 				"name":"poison",
-				"dmg":"2~5",
+				"dmg":"1~4",
 				"duration":5
 			}
         }, "loot":{

@@ -705,9 +705,10 @@
 		"mod":{
 			"research.max":5,
 			"naturelore.max":2,
+			"naturelore.rate":"0.2+1%",
 			"languages.max":1,
 			"languages.rate":0.2,
-			"animals.rate":0.2
+			"animals.rate":"0.2+1%"
 		}
 
 	},
