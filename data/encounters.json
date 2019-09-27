@@ -164,10 +164,16 @@
 	{
 		"id":"sarcophagus",
 		"desc":"ancient and covered in faded runes",
+		"level":4,
 		"effect":{
-			"bf":"-1~2"
+			"unease":"0~2",
+			"madness":"0~2"
 		},
 		"result":{
+			"gems":"0~4",
+			"shadowgem":"30%",
+			"spiritgem":"30%",
+			"bloodgem":"50%"
 		}
 	},
 	{

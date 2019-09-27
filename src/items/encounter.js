@@ -38,6 +38,8 @@ export default class Encounter extends GData {
 
 	clone() { return new Encounter( this ); }
 
+	get done() { return this._exp >= this.length; }
+
 	constructor(vars=null) {
 
 		super(vars );
@@ -48,6 +50,7 @@ export default class Encounter extends GData {
 			console.log('ENC assign var: ' + p );
 		}
 
+		this._exp = this._exp || 0;
 		this.level = this.level || 1;
 		this.length = this.length || 5*this.level;
 

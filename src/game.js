@@ -21,7 +21,7 @@ import Runner from './modules/runner';
 /**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT, ACT_CHANGED, ENTER_LOC, ITEM_ATTACK } from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ENTER_LOC, EXIT_LOC, ITEM_ATTACK } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
@@ -118,7 +118,8 @@ export default {
 			this.loaded = true;
 			Events.started = true;
 
-			Events.add( ENTER_LOC, this.explore, this );
+			Events.add( ENTER_LOC, this.enterLoc, this );
+			Events.add( EXIT_LOC, this.enterLoc, this );
 
 		}, err=>{ console.error('game err: ' + err )});
 
@@ -163,7 +164,7 @@ export default {
 
 	},
 
-	explore( locale, enter ) {
+	enterLoc( locale, enter ) {
 
 		let control = locale.type === 'dungeon' ? this.state.raid : this.state.explore;
 		if ( enter ) {
@@ -174,7 +175,7 @@ export default {
 		} else {
 
 			control.locale = null;
-			this.game.haltAction( control );
+			this.haltAction( control );
 
 		}
 
@@ -488,6 +489,17 @@ export default {
 		this.payCost( it.cost );
 
 		this.create( it );
+
+	},
+
+	/**
+	 * Create instance from data.
+	 * @param {string|Object} data
+	 */
+	instance( data ) {
+
+		if ( typeof data === 'string') data =this.state.getData(data);
+		return this.itemGen.instance(data);
 
 	},
 

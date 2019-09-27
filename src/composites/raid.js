@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN, ACT_DONE, ITEM_ATTACK, CHAR_DIED } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE, ITEM_ATTACK, CHAR_DIED, DEFEATED } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';

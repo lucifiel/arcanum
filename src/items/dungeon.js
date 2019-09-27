@@ -1,7 +1,7 @@
 import Monster from './monster';
 import Action from './action';
 import Game from '../game';
-import { getDist } from '../locale';
+import { getDist } from './locale';
 
 /**
  * @type {Object} Enemy

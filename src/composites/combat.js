@@ -153,7 +153,6 @@ export default class Combat {
 
 		this.player.timer -= dt;
 		if ( this.player.alive === false ) {
-			this.playerDied();
 			return;
 		}
 		if ( this.player.timer <= 0 ) {

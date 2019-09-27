@@ -1,5 +1,9 @@
 import Inventory from "../chars/inventory";
-import { DEFEATED } from "../events";
+import Events, { DEFEATED, ACT_DONE } from "../events";
+import { getDelay } from "../chars/char";
+
+import Game from '../game';
+import Encounter from "../items/encounter";
 
 /**
  * Explore locations of arcane importance.
@@ -91,6 +95,8 @@ export default class Explore {
 
 		if ( typeof this.locale === 'string') this.locale = gameState.getData(this.locale);
 
+		if ( this._enc ) this.enc = new Encounter(this._enc);
+
 		if ( !this.locale) this.running = false;
 
 	}
@@ -113,7 +119,7 @@ export default class Explore {
 
 			if ( this.enc ) this.enc.update(dt);
 
-			if ( this.enc.complete ) {
+			if ( this.enc.done ) {
 
 				this.encDone( this.enc );
 				this.advance();
@@ -133,7 +139,15 @@ export default class Explore {
 		if ( !this.locale ) return;
 		// get random encounter.
 		this.player.delay = getDelay( this.player.speed );
-		this._enc = this.locale.getEnc();
+		var e = this.locale.getEnc();
+
+		if ( typeof e === 'string') {
+
+			var it = Game.instance(e);
+			if ( it ) this._enc = it;
+			else console.warn('MISSING ENCOUNTER: ' + e );
+
+		}
 
 	}
 

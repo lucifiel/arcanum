@@ -125,7 +125,7 @@ export default class ItemGen {
 
 	/**
 	 * Instantiate a prototypical item.
-	 * @param {Object} proto
+	 * @param {object} proto
 	 * @returns {Item|Wearable} the item created, or null on failure.
 	 */
 	instance( proto ) {
@@ -136,6 +136,10 @@ export default class ItemGen {
 
 			//console.log('instance wearable: ' + proto.id );
 			return this.itemClone( proto, this.matForItem(proto ));
+
+		} else if ( proto.type === 'encounter') {
+
+			it = new Encounter(proto);
 
 		} else if ( proto.type === 'potion' ) {
 
@@ -202,8 +206,10 @@ export default class ItemGen {
 			|| info.type ==='armor') return this.fromData( info );
 
 		/** @todo: THIS IS BAD */
+
 		else if ( info.type && !info.isProto ) {
-			Game.doItem( info, amt );
+			console.log('ADDING LOOT AMT: ' + amt );
+			Game.doItem( info, amt ||0);
 			return;
 		}
 

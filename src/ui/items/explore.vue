@@ -4,6 +4,7 @@ import Game from '../../game';
 import Combat from './combat.vue';
 import ProgBar from '../components/progbar.vue';
 
+import {EXIT_LOC} from '../../events';
 
 export default {
 
@@ -11,6 +12,9 @@ export default {
 	components:{
 		combat:Combat,
 		progbar:ProgBar
+	},
+	created(){
+		this.EXIT_LOC = EXIT_LOC;
 	},
 	computed:{
 
@@ -24,12 +28,12 @@ export default {
 		/**
 		 * @property {string} type - locale type
 		 */
-		type() { return this.locale.type; },
+		type() { return this.explore.type; },
 
 		/**
 		 * @property {Encounter} enc - current encounter.
 		 */
-		enc() { return this.locale.enc; }
+		enc() { return this.explore.enc; }
 
 	}
 
@@ -42,7 +46,7 @@ export default {
 
 	<span class="active-title">
 		<span>{{ explore.name }}</span><button class="raid-btn"
-		@click="dispatch( 'explore', explore, false )"
+		@click="dispatch( EXIT_LOC, explore.locale, false )"
 		@mouseenter.capture.stop="dispatch('itemover', $event, explore.locale )">Flee</button>
 		</span>
 

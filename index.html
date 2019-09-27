@@ -259,25 +259,25 @@
 
     /* Dungeons */
 
-    .menu-content div.adventure > div.dungeons {
+    .menu-content div.adventure > div.locales {
         /*display: flex; flex-flow: row wrap; justify-content: space-around;*/
         display: grid;
         grid-template-columns: repeat( auto-fit, 256px ); grid-gap: var(--small-gap); grid-auto-rows: min-content;
         padding: var(--medium-gap);
         border-top: 1px solid var(--separator-color);
     }
-    .menu-content div.adventure > div.dungeons .dungeon {
+    .menu-content div.adventure > div.locales .locale {
         padding: var(--medium-gap);
         border-radius: var(--list-entry-border-radius);
         display: flex; flex-flow: column; height: 100%;
     }
-    .menu-content div.adventure > div.dungeons .dungeon > span:nth-child(1) {
+    .menu-content div.adventure > div.locales .locale > span:nth-child(1) {
         display: flex; flex-flow: row; justify-content: space-between; flex: 1;
     }
 
-    body.compact .menu-content div.adventure > div.dungeons { grid-template-columns: minmax( 200px, 1fr) repeat( auto-fit, minmax( 200px, 1fr) ); }
-    body.compact .menu-content div.adventure > div.dungeons .dungeon { background: var(--list-entry-background); }
-    body.compact .menu-content div.adventure > div.dungeons .dungeon .bar { border: none;}
+    body.compact .menu-content div.adventure > div.locales { grid-template-columns: minmax( 200px, 1fr) repeat( auto-fit, minmax( 200px, 1fr) ); }
+    body.compact .menu-content div.adventure > div.locales .locale { background: var(--list-entry-background); }
+    body.compact .menu-content div.adventure > div.locales .locale .bar { border: none;}
 
 
 
