@@ -7,6 +7,9 @@ import Runnable from '../composites/runnable';
 
 const REST_TAG = 't_rest';
 const DUNGEON = 'dungeon';
+const LOCALE = 'locale';
+
+export { LOCALE, DUNGEON, REST_TAG };
 
 /**
  * Tracks running/perpetual actions.

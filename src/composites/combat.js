@@ -4,8 +4,8 @@ import Dot from '../chars/dot';
 import Npc, { ALLY } from '../chars/npc';
 
 import Events, {
-	EVT_COMBAT, ENEMY_SLAIN, PLAYER_SLAIN, ALLY_DIED,
-	DAMAGE_MISS, CHAR_DIED, PLAYER_HIT, ACT_BLOCKED
+	EVT_COMBAT, ENEMY_SLAIN, ALLY_DIED,
+	DAMAGE_MISS, CHAR_DIED, ACT_BLOCKED, DEFEATED
 } from '../events';
 
 import Monster from '../items/monster';
@@ -174,7 +174,6 @@ export default class Combat {
 
 			e = this._allies[i];
 			if ( e.alive === false ) {
-				//this.charDied( e );
 				continue;
 			}
 			action = e.update(dt);
@@ -352,21 +351,12 @@ export default class Combat {
 
 	charDied( char, attacker ) {
 
-		if ( char === this.player ) this.playerDied();
+		if ( char === this.player ) return;
 		else if ( char.team === ALLY ) {
 
 			Events.dispatch( ALLY_DIED, char );
 
 		} else Events.dispatch( ENEMY_SLAIN, char, attacker );
-
-	}
-
-	playerDied() {
-
-		if ( Game.state.raid.running ) {
-			Events.dispatch( PLAYER_SLAIN, null );
-			Events.dispatch( ACT_BLOCKED, Game.state.raid, false );
-		}
 
 	}
 

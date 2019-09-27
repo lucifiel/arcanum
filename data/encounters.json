@@ -126,5 +126,68 @@
 			"arcana":0.05
 		}
 
+	},
+	{
+		"id":"enc_mummy",
+		"name":"mummified remains",
+		"desc":"a battered, wooden chest.",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+			"gold":"0~300",
+			"arcanegem":"10%",
+			"gems":"0~5",
+			"tomes":"0~1"
+		}
+	},
+	{
+		"id":"strangebones",
+		"name":"strange bones",
+		"desc":"you've never seen such bones before.",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+		}
+	},
+	{
+		"id":"enc_embalm4",
+		"name":"embalming apparatus",
+		"desc":"fluids and recepticles for preservation of the dead.",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+		}
+	},
+	{
+		"id":"sarcophagus",
+		"desc":"ancient and covered in faded runes",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+		}
+	},
+	{
+		"id":"enc_plaguerats",
+		"name":"plague rats",
+		"desc":"scurrying vermin covered in welts",
+		"effect":{
+			"bf":"-1~2"
+		},
+		"result":{
+		}
+	},
+	{
+		"id":"brightvista",
+		"name":"bright vista",
+		"desc":"a ledge revealing lands far into the distance",
+		"effect":{
+			"bf":"-1~-2",
+			"weary":"-1~-2",
+			"rage":"-1~-2"
+		}
 	}
 ]

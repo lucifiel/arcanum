@@ -1,4 +1,5 @@
 import Inventory from "../chars/inventory";
+import { DEFEATED } from "../events";
 
 /**
  * Explore locations of arcane importance.
@@ -119,6 +120,9 @@ export default class Explore {
 
 			}
 
+			if ( this.player.defeated ) {
+				Events.dispatch( DEFEATED, this );
+			}
 
 		}
 

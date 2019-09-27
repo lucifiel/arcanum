@@ -1,4 +1,4 @@
-import Events, { ENEMY_SLAIN, ACT_DONE, CHAR_DIED, ITEM_ATTACK } from '../events';
+import Events, { ENEMY_SLAIN, ACT_DONE, ITEM_ATTACK, CHAR_DIED } from '../events';
 
 import Game from '../game';
 import Inventory from '../chars/inventory';
@@ -103,12 +103,22 @@ export default class Raid {
 
 		Events.add( ENEMY_SLAIN, this.enemyDied, this );
 		Events.add( ITEM_ATTACK, this.spellAttack, this );
+		Events.add( CHAR_DIED, this.charDied, this );
 
 		if ( typeof this.locale === 'string') this.locale = gameState.getData(this.locale);
 
 		if ( !this.locale) this.running = false;
 
 		this._combat.revive( gameState );
+
+	}
+
+	charDied( c ) {
+
+		if ( c !== this.player || !this.running ) return;
+
+		Events.dispatch( DEFEATED, null );
+		Events.dispatch( ACT_BLOCKED, this, false );
 
 	}
 

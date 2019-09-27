@@ -20,7 +20,12 @@ const ENEMY_SLAIN = 'slain';
 const CHAR_DIED = 'char_died';
 
 const ALLY_DIED = 'ally_died';
-const PLAYER_SLAIN = 'died';
+
+/**
+ * player defeated by some stat.
+ */
+const DEFEATED = 'defeated';
+
 const DAMAGE_MISS = 'damage_miss';
 const ENEMY_HIT = 'enemy_hit';
 const PLAYER_HIT = 'player_hit';
@@ -65,7 +70,7 @@ const EXIT_LOC = 'exit_loc';
 export { HALT_ACT, EVT_COMBAT, EVT_EVENT, EVT_UNLOCK, EXP_MAX, EVT_LOOT, ACT_DONE, ALLY_DIED, CHAR_DIED,
 	ENTER_LOC, EXIT_LOC, ITEM_ATTACK,
 	ACT_CHANGED, ACT_IMPROVED, ACT_BLOCKED,
-	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, PLAYER_SLAIN, ENEMY_SLAIN, COMBAT_DONE, ENC_DONE, LEVEL_UP };
+	DAMAGE_MISS, ENEMY_HIT, PLAYER_HIT, DEFEATED, ENEMY_SLAIN, COMBAT_DONE, ENC_DONE, LEVEL_UP };
 
 export default {
 
@@ -89,7 +94,7 @@ export default {
 
 		events.addListener( EVT_COMBAT, this.onCombat, this );
 		events.addListener( ENEMY_SLAIN, this.enemySlain, this );
-		events.addListener( PLAYER_SLAIN, this.onDied, this );
+		events.addListener( DEFEATED, this.onDefeat, this );
 		events.addListener( DAMAGE_MISS, this.onMiss, this );
 
 	},
@@ -114,7 +119,8 @@ export default {
 		events.removeAllListeners( EVT_COMBAT );
 		events.removeAllListeners( CHAR_DIED );
 		events.removeAllListeners( ENEMY_SLAIN );
-		events.removeAllListeners( PLAYER_SLAIN );
+		events.removeAllListeners( DEFEATED );
+
 		events.removeAllListeners( DAMAGE_MISS );
 
 		events.removeAllListeners( ENTER_LOC );
@@ -156,7 +162,7 @@ export default {
 		this.log.log( player.name + ' Level Up!', null, EVT_EVENT );
 	},
 
-	onDied( attacker ) {
+	onDefeat( locale ) {
 
 		this.log.log( 'Retreat', '', EVT_COMBAT );
 
