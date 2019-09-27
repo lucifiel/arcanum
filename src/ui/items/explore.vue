@@ -57,12 +57,12 @@ export default {
 		</template>
 		<template v-else>
 
-			<div v-if="enc">
+			<div v-if="enc" @mouseenter.capture.stop="dispatch('itemover', $event, enc )">
 			<span>{{ enc.name }}</span>
 			<progbar :value="enc.exp" :max="enc.length" />
 			</div>
 
-			<progbar v-for="s in statuses" :key="s.id" :value="s.value" :max="s.max.value" />
+			<!--<progbar v-for="s in statuses" :key="s.id" :value="s.value" :max="s.max.value" />-->
 
 		</template>
 

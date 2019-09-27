@@ -498,7 +498,10 @@ export default {
 	 */
 	instance( data ) {
 
-		if ( typeof data === 'string') data =this.state.getData(data);
+		if ( typeof data === 'string') data = this.state.getData(data);
+
+		console.log('protodata: ' + data.id );
+
 		return this.itemGen.instance(data);
 
 	},

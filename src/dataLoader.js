@@ -25,7 +25,7 @@ import Material from './chars/material';
 import Enchant from './items/enchant';
 import Item from './items/item';
 import Potion from './items/potion';
-import Encounter from './items/encounter';
+import Encounter, { ENCOUNTER } from './items/encounter';
 
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
@@ -211,7 +211,7 @@ export default {
 
 		gd.skills = this.initItems( dataLists['skills'], Skill );
 
-		gd.encounters = this.initItems( dataLists['encounters'], Encounter, 'encounter', 'encounter');
+		gd.encounters = this.initItems( dataLists['encounters'], Encounter, ENCOUNTER, ENCOUNTER);
 		gd.monsters = this.initItems( dataLists['monsters'], Monster, 'monster', 'monster' );
 
 		this.initItems( dataLists['locales'], Locale );

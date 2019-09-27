@@ -9,6 +9,8 @@ const defaults = {
 
 };
 
+export const ENCOUNTER = 'enc';
+
 /**
  * Sublocation of a Locale
  */
@@ -36,21 +38,22 @@ export default class Encounter extends GData {
 		else return undefined;
 	}
 
-	clone() { return new Encounter( this ); }
+	clone() {
+		let e = new Encounter( this );
+		e.exp = 0;
+		return e;
+	}
 
 	get done() { return this._exp >= this.length; }
 
-	constructor(vars=null) {
+	constructor( vars=null ) {
 
 		super(vars );
 
-		this.type = 'enc';
-
-		for( var p in vars ) {
-			console.log('ENC assign var: ' + p );
-		}
+		this.type = ENCOUNTER;
 
 		this._exp = this._exp || 0;
+
 		this.level = this.level || 1;
 		this.length = this.length || 5*this.level;
 

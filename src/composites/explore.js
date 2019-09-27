@@ -117,13 +117,15 @@ export default class Explore {
 
 			this.player.timer += this.player.delay;
 
-			if ( this.enc ) this.enc.update(dt);
+			if ( this.enc ) {
 
-			if ( this.enc.done ) {
+				this.enc.update(dt);
+				if ( this.enc.done ) {
 
-				this.encDone( this.enc );
-				this.advance();
+					this.encDone( this.enc );
+					this.advance();
 
+				}
 			}
 
 			if ( this.player.defeated ) {
@@ -141,11 +143,17 @@ export default class Explore {
 		this.player.delay = getDelay( this.player.speed );
 		var e = this.locale.getEnc();
 
+		console.log('setting enc: ' + e );
 		if ( typeof e === 'string') {
 
 			var it = Game.instance(e);
-			if ( it ) this._enc = it;
-			else console.warn('MISSING ENCOUNTER: ' + e );
+
+			if ( it ){
+
+				this._enc = it;
+				it.exp = 0;
+
+			} else console.warn('MISSING ENCOUNTER: ' + e );
 
 		}
 
@@ -171,6 +179,8 @@ export default class Explore {
 		if ( enc.result ) Game.applyEffect( enc.result );
 		if ( enc.loot ) Game.getLoot( enc.loot, this.drops );
 
+		this.enc = null;
+
 	}
 
 	/**
@@ -192,6 +202,8 @@ export default class Explore {
 		var del = Math.max( 1 + this.player.level - this.locale.level, 1 );
 
 		this.player.exp +=	(this.locale.level)*( 15 + this.locale.length )/( 0.8*del );
+
+		this.enc = null;
 
 		Events.dispatch( ACT_DONE, this, false );
 		this.locale = null;

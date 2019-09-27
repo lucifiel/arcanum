@@ -41,6 +41,8 @@ export default class Locale extends Action {
 		this.dist = ( this.dist === undefined || this.dist === null ) ? getDist(this.level) : this.dist;
 		//this.addRequire( 'dist', this.dist );
 
+		if ( this._encs == null ) this._encs = [];
+
 		//console.log(this.id + ' dist: ' + this.dist );
 
 		if ( this.need == null ) this.need = this.distTest;
@@ -52,9 +54,7 @@ export default class Locale extends Action {
 	 * @returns {string|Encounter|Object}
 	 */
 	getEnc() {
-
 		return this._encs[ Math.floor( Math.random()*this._encs.length ) ];
-
 	}
 
 	/**

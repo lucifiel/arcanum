@@ -3,7 +3,7 @@ import Wearable from "./chars/wearable";
 import { randElm, randMatch, includesAny} from 'objecty';
 import Percent from './percent';
 import Item from './items/item';
-import Encounter from './items/encounter';
+import Encounter, { ENCOUNTER } from './items/encounter';
 import Npc from './chars/npc';
 import GenGroup from './genGroup';
 
@@ -137,7 +137,7 @@ export default class ItemGen {
 			//console.log('instance wearable: ' + proto.id );
 			return this.itemClone( proto, this.matForItem(proto ));
 
-		} else if ( proto.type === 'encounter') {
+		} else if ( proto.type === ENCOUNTER ) {
 
 			it = new Encounter(proto);
 
