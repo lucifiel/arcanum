@@ -46,7 +46,7 @@ export default class Dot {
 
 		this.source = this.source || source || null;
 
-		this.name = name || this.name || vars.name || ( source ? source.name : '' );
+		this.name = this.name || name || ( source ? source.name : '' );
 		this.id = this.id || this.name || (source ? source.id || source.name : '');
 
 		/**
