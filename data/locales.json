@@ -27,7 +27,7 @@
 {
 	"id":"loc_spring",
 	"name":"lillit's spring",
-	"level":1,
+	"level":2,
 	"length":15,
 	"require":"apprentice",
 	"desc":"tradition tells of a spring with enchanted waters. investigations might prove revealing.",
@@ -48,8 +48,8 @@
 	"id":"eryleyot",
 	"name":"eryl eyot",
 	"level":5,
-	"length":20,
-	"desc":"the small and tranquil island is inhabited by an elderly hermit",
+	"length":25,
+	"desc":"the small and tranquil island is inhabited by an old hermit named thyffr",
 	"run":{
 		"stamina":0.2
 	},
@@ -69,8 +69,8 @@
 },
 {
 	"id":"loc_treffil",
-	"name":"lillit's spring",
-	"level":1,
+	"name":"treffil woods",
+	"level":7,
 	"length":15,
 	"require":"apprentice",
 	"desc":"tradition tells of a spring with enchanted waters. investigations might prove revealing.",
@@ -79,10 +79,12 @@
 	},
 	"result":{
 		"arcana":0.1,
-		"research":10
+		"naturelore.exp":10,
+		"herbalism.exp":5,
+		"animals.exp":5
 	},
 	"loot":{
-		"herbs":"2~5"
+		"herbs":"5~10"
 	},
 	"encs":[
 	]

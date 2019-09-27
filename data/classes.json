@@ -943,7 +943,7 @@
 	"title":"necromancer",
 	"tags":"t_tier4",
 	"desc":"master of death magic",
-	"require":"g.tier3>0&&g.evil>0&&g.shadowlore>=18",
+	"require":"g.tier3>0&&g.evil>0&&g.shadowlore>=17",
 	"cost":{
 		"research":2000,
 		"research.max":700,
@@ -963,7 +963,7 @@
 		"reanimation.max":3,
 		"reanimation.rate":"10%",
 		"shadowlore.max":2,
-		"shadowlore.rate":0.3,
+		"shadowlore.rate":"0.2+5%",
 		"potions.max":1,
 		"spiritlore.max":3,
 		"spiritlore.rate":"10%"

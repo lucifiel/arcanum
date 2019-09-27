@@ -48,6 +48,9 @@ export default class Encounter extends GData {
 
 	}
 
+	revive(gs) {
+	}
+
 	update( dt ){
 
 		this._exp += dt;

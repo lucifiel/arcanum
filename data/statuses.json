@@ -13,7 +13,8 @@
 		"max":10
 	},
 	{
-		"id":"weariness",
+		"id":"weary",
+		"name":"weariness",
 		"desc":"the fatigue of mental strain",
 		"reverse":true,
 		"max":10
