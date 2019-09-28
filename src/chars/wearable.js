@@ -63,8 +63,6 @@ export default class Wearable {
 	set attack(v) {
 
 		if ( v ) {
-
-			console.log('CREATING WEARABLE ATTACK: '  + v );
 			this._attack = v instanceof Attack ? v.clone() : new Attack(v);
 		} else this._attack = null;
 
@@ -130,7 +128,7 @@ export default class Wearable {
 				this.applyBonus( this.attack, 'damage', mat.bonus );
 			}
 			if ( mat.tohit ) {
-				console.log('apply mat to: ' + this.id );
+				//console.log('apply mat to: ' + this.id );
 				this.applyBonus( this.attack, 'tohit', mat.tohit );
 			}
 

@@ -4,6 +4,7 @@ import { getDelay } from "../chars/char";
 
 import Game from '../game';
 import Encounter from "../items/encounter";
+import { itemRevive } from "../itemgen";
 
 /**
  * Explore locations of arcane importance.
@@ -82,7 +83,7 @@ export default class Explore {
 		if ( typeof this.locale === 'string') this.locale = gameState.getData(this.locale);
 
 		if ( this._enc ) {
-			this.enc = new Encounter(this._enc);
+			this.enc = itemRevive( gameState, new Encounter(this._enc) );
 		}
 
 		if ( !this.locale) this.running = false;

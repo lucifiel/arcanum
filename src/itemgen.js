@@ -7,6 +7,11 @@ import Encounter, { ENCOUNTER } from './items/encounter';
 import Npc from './chars/npc';
 import GenGroup from './genGroup';
 
+/**
+ * Revive a prototyped item based on an item template.
+ * @param {*} gs
+ * @param {*} it
+ */
 export function itemRevive(gs, it ) {
 
 		var orig = it.template;

@@ -240,7 +240,8 @@ export default {
 			stat = stats[i];
 			if ( stat.locked === false ) {
 
-				if  ( stat.rate.value !== 0 ) { this.doItem( stat, stat.rate.value*dt );
+				if  ( stat.rate.value !== 0 ) {
+					this.doItem( stat, stat.rate.value*dt );
 				}
 
 			}
@@ -253,9 +254,7 @@ export default {
 	 * Toggles an action on or off.
 	 * @param {GData} a
 	 */
-	toggleAction(a) {
-		Runner.toggleAct(a);
-	},
+	toggleAction(a) { Runner.toggleAct(a); },
 
 	/**
 	 * Wrapper for Runner rest
@@ -291,7 +290,7 @@ export default {
 
 		if ( !fill.rate || !a.effect || fill.rate.value >= 0 ) return fill.maxed();
 
-		// get actual filling rate.
+		// actual filling rate.
 		tag = a.effect[ tag || v ];
 
 		return ( !tag || fill.filled(tag ) );
@@ -635,7 +634,10 @@ export default {
 		}
 		//it.value += it.consume ? -count : count;
 
-		if ( it.isProto ) return this.create(it, true );
+		if ( it.isProto ) {
+			console.log('CREATING ISPROTO: ' + it.id );
+			return this.create(it, true );
+		}
 
 		if ( it.slot) {
 
