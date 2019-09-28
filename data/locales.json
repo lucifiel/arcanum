@@ -42,7 +42,9 @@
 		"herbs":"2~5"
 	},
 	"encs":[
-		"enc_primer1"
+		"manatree",
+		"mysticwater",
+		"manatree"
 	]
 },
 {
@@ -66,7 +68,10 @@
 		"herbs":"2~5"
 	},
 	"encs":[
-		"enc_primer1"
+		"enc_chest3",
+		"brightvista",
+		"enc_thyffr",
+		"mysticwater"
 	]
 },
 {
@@ -89,7 +94,9 @@
 		"herbs":"5~10"
 	},
 	"encs":[
-		"enc_primer1"
+		"manatree",
+		"mysticwater",
+		"brightvista"
 	]
 },
 {
@@ -107,8 +114,8 @@
 		"scrolls":"1~4"
 	},
 	"encs":[
-		"enc_primer1",
-		"enc_chest2"
+		"enc_chest2",
+		"brightvista"
 	]
 },
 {
@@ -130,15 +137,19 @@
 	},
 	"encs":[
 		"enc_tapestry",
-		"enc_primer1",
+		"enc_mummy",
+		"sarcophagus",
+		"enc_rats",
+		"strangebones",
+		"enc_embalm4",
 		"enc_chest2"
 	]
 },
 {
 	"id":"hallofmirrors",
-	"level":3,
+	"level":300,
 	"length":10,
-	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
+	"desc":"",
 	"run":{
 		"stamina":0.2
 	},
