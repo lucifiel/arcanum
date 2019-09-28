@@ -18,10 +18,9 @@ export default {
 	},
 	computed:{
 
-		statuses() {
-			console.log('STATU COUNT: ' + Game.state.statuses.length );
-			return Game.state.statuses;
-			},
+		stressors() {
+			return Game.state.stressors.filter(v=>!v.locked&&!v.disabled);
+		},
 
 		/**
 		 * @property {Player} player
@@ -65,8 +64,8 @@ export default {
 			<progbar :value="enc.exp" :max="enc.length" />
 			</div>
 
-			<div class="statuses">
-			<div class="status" v-for="s in statuses" :key="s.id" @mouseenter.capture.stop="dispatch('itemover', $event, s )">
+			<div class="stressors">
+			<div class="stress" v-for="s in stressors" :key="s.id" @mouseenter.capture.stop="dispatch('itemover', $event, s )">
 				<span>{{s.name}}</span>
 				<progbar :value="s.value" :max="s.max.value" />
 			</div>
@@ -81,13 +80,13 @@ export default {
 
 <style scoped>
 
-div.explore div.statuses {
+div.explore div.stressors {
 	display:flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 }
 
-div.statuses .status {
+div.stressors .status {
 	flex-basis: 48%;
 }
 

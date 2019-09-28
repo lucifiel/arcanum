@@ -44,7 +44,7 @@ const Runner = {
 	},
 
 	set exp(v) {
-		console.log('setting EXP: ' + v );
+
 		for( let i = this.actives.length-1; i>= 0;i-- ) {
 
 			var a = this.actives[i];
@@ -146,6 +146,11 @@ const Runner = {
 		this.max = this._max || 1;
 
 		this.waiting = this.reviveList( this.waiting, gs, false );
+
+		if ( this.waiting.length > this.max ) {
+			this.waiting = this.waiting.slice( this.waiting.length - this.max );
+		}
+
 		this.actives = this.reviveList( this.actives, gs, true );
 
 		Events.add( ACT_DONE, this.actDone, this );
@@ -160,7 +165,7 @@ const Runner = {
 	 * @param {*} it
 	 */
 	expMax( it ) {
-		console.log('EXP. COMPLETE: ' + it.id );
+		//console.log('EXP. COMPLETE: ' + it.id );
 		if ( it.complete && typeof it.complete === 'function') it.complete();
 
 	},

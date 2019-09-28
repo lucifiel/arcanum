@@ -530,14 +530,15 @@
 		"verb":"resting",
 		"locked":false,
 		"perpetual":true,
-		"fill":[ "stamina", "hp", "manas" ],
+		"fill":[ "stamina", "hp", "manas", "stress"],
 		"effect":{
 			"manas":{
 				"skipLocked":true,
 				"value":0.5
 			},
 			"stamina":0.8,
-			"hp":1
+			"hp":1,
+			"stress":-1
 		}
 	},
 	{
@@ -547,9 +548,10 @@
 		"perpetual":true,
 		"length":10,
 		"need":"g.lightlore>=5&&g.evil<=0",
-		"fill":[ "light", "hp", "mana" ],
+		"fill":[ "light", "hp", "mana", "stress"],
 		"effect":{
 			"virtue":1,
+			"stress":-1,
 			"mana":0.5,
 			"hp":1,
 			"light":0.05,
@@ -566,7 +568,7 @@
 		"require":"(g.witch+g.thanophage)>0",
 		"need":"cauldron",
 		"desc":"how could you!?!",
-		"fill":[ "shadow", "hp", "mana", "stamina", "spirit" ],
+		"fill":[ "shadow", "hp", "mana", "stamina", "spirit", "stress" ],
 		"every":{
 			"100":{
 				"effect.hp":0.5,
@@ -578,6 +580,7 @@
 			"mana":0.5,
 			"shadow":0.2,
 			"spirit":0.2,
+			"stress":-1,
 			"stamina":1,
 			"hp":2
 		}

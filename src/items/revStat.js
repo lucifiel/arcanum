@@ -15,8 +15,14 @@ export default class RevStat extends Resource {
 
 	}
 
-	filled() { return this._value <= 0; }
+	/**
+	 * Determine whether the item is filled relative to a filling rate.
+	 * if the filling rate + natural item rate can't fill the item
+	 * it is considered filled to avoid getting stuck.
+	 * @param {number} rate
+	 */
+	filled( rate=0 ) { return this._value <= 0 || (this.rate && (this.rate+rate) >=0); }
 
-	maxed() { return this._value < 0; }
+	maxed() { return this._value <= 0; }
 
 }

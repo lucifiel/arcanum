@@ -270,12 +270,13 @@ export default {
 	 * Tests if an action has effectively filled a resource.
 	 * @param {string|string[]} v - data or datas to fill.
 	 * @param {GData} a - action doing the filling.
+	 * @param {string} - name of relavant filling effect ( for tag-item fills)
 	 */
-	filled( v, a ) {
+	filled( v, a, tag ) {
 
 		if ( Array.isArray(v) ) {
 			for( let i = v.length-1; i>=0; i-- ) {
-				if ( !this.filled( v[i], a ) )return false;
+				if ( !this.filled( v[i], a, tag ) ) return false;
 			}
 			return true;
 		}
@@ -284,19 +285,16 @@ export default {
 		if (fill === undefined ) {
 
 			fill = this.state.getTagList( v );
-			return fill === undefined ? true : this.filled(fill, a);
+			return fill === undefined ? true : this.filled(fill, a, v );
 
 		}
 
 		if ( !fill.rate || !a.effect || fill.rate.value >= 0 ) return fill.maxed();
 
-		// negative-change comparison.
-		let change = a.effect[v];
-		if ( change && (fill.rate+change) <= 0 ) {
-			// the filling action can never actually fill, so count it as filled.
-			return true;
-		}
-		return false;
+		// get actual filling rate.
+		tag = a.effect[ tag || v ];
+
+		return ( !tag || fill.filled(tag ) );
 
 	},
 
@@ -631,7 +629,12 @@ export default {
 	 */
 	doItem( it, count=1 ) {
 
-		if ( it.maxed() ) return false;
+		count = it.topoff(count);
+		if ( count === 0 ) {
+			return;
+		}
+		//it.value += it.consume ? -count : count;
+
 		if ( it.isProto ) return this.create(it, true );
 
 		if ( it.slot) {
@@ -645,8 +648,6 @@ export default {
 
 		}
 		if ( it.exec ) it.exec();
-
-		it.value += it.consume ? -count : count;
 
 		if ( it.title ) this.state.player.title = it.title;
 		if ( it.effect ) this.applyEffect(it.effect);

@@ -102,9 +102,9 @@ export default class Player extends Char {
 	get defeated() {
 
 		if ( this._hp.value <= 0 ) return true;
-		for( let i = this.statuses.length-1; i>=0; i--){
+		for( let i = this.stressors.length-1; i>=0; i--){
 
-			var s = this.statuses[i];
+			var s = this.stressors[i];
 			if ( s.value >= s.max.value ) return true;
 		}
 		return false;
@@ -139,7 +139,7 @@ export default class Player extends Char {
 		data.immunities = this.immunities;
 		data.resists =this.resists;
 
-		data.statuses = this.states;
+		data.states = this.states;
 		data.className = this.className;
 
 		if ( this.primary ) data.primary = this.primary.id;
@@ -238,8 +238,8 @@ export default class Player extends Char {
 		if ( this.weapon && (typeof this.weapon === 'string') ) this.weapon = state.equip.find( this.weapon );
 		this.primary = this.primary && typeof this.primary === 'string' ? state.getData( this.primary ) : this.primary;
 
-		// copy in statuses to test player defeats.
-		this.statuses = state.statuses;
+		// copy in stressors to test player defeats.
+		this.stressors = state.stressors;
 
 	}
 

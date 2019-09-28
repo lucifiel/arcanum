@@ -88,7 +88,6 @@ export default class Wearable {
 		//if ( vars ) logObj( vars, 'vars');
 		//if( vars.template ) logObj( vars.template, ' template' );
 		if ( !this.type ) {
-			console.warn('NO TYPE. USING WEARABLE');
 			this.type = 'wearable';
 		}
 

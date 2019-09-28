@@ -68,6 +68,8 @@ export default class Resource extends GData {
 
 		this._value = this._value || 0;
 
+		if ( this.repeat !== false ) this.repeat = true;
+
 		/**
 		 * @property {boolean} unit - true if current value is reported in integer amounts.
 		 */

@@ -115,9 +115,7 @@ export default {
 	 * @property {number} val - saving/loading from json without triggers.
 	 */
 	get val() { return this._value },
-	set val(v) {
-		console.log('SETTING VALUE: ' + v );
-		this._value = v; },
+	set val(v) { this._value = v; },
 
 	/**
 	 * @property {number} value

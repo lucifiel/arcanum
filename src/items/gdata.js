@@ -114,6 +114,62 @@ export default class GData {
 
 	}
 
+	/**
+	 * Add or remove amount from Item, after min/max bounds are taken into account.
+	 * Returns the amount actually added or removed.
+	 *
+	 * @param {number} amt
+	 * @returns {number}
+	 */
+	topoff( amt ) {
+
+		if ( amt <= 0 ) {
+
+			if ( this.value < 0 ) return 0;
+			else if ( this.value + amt < 0 ) amt = -this.value;
+
+			this.value += amt;
+
+			return amt;
+
+		}
+
+		if ( this.repeat !== true &&
+			this.value > 0 &&
+			(!this.buy || this.owned===true) ) {
+				console.log('NO REPEAT: ' + this.id + ' CANCEL ');
+			return 0;
+		}
+
+		if ( this.max && (this.value + amt) >= this.max.value ) amt = this.max.value - this.value;
+		if ( amt === 0 ) return 0;
+
+		this.value += amt;
+
+		return amt;
+
+	}
+
+	/**
+	 * Determine whether the item is filled relative to a filling rate.
+	 * if the filling rate + natural item rate can't fill the item
+	 * it is considered filled to avoid getting stuck.
+	 * @param {number} rate
+	 */
+	filled( rate=0 ) { return (this.max && this.value>=this.max.value) || (this.rate && (this.rate+rate) <= 0); }
+
+	/**
+	 * @returns {boolean} true if an unlocked item is at maximum value.
+	*/
+	maxed() {
+
+		return this.max ? (this.value >= Math.floor(this.max.value) ) :
+			( this.repeat !== true &&
+				this._value > 0 &&
+				(!this.buy || this.owned===true) );
+
+	}
+
 	setDefaults( defaults ) {
 
 		var obj;
@@ -139,18 +195,6 @@ export default class GData {
 	 */
 	blocked() {
 		return this.locked || this.disabled || this.locks>0;
-	}
-
-	/**
-	 * @returns {boolean} true if an unlocked item is at maximum value.
-	 */
-	maxed() {
-
-		return this.max ? (this.value >= Math.floor(this.max.value) ) :
-			( this.repeat !== true &&
-				this._value > 0 &&
-				(!this.buy || this.owned===true) );
-
 	}
 
 	/**

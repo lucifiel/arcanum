@@ -30,7 +30,7 @@ import Encounter, { ENCOUNTER } from './items/encounter';
 const DataDir = './data/';
 const DataFiles = [ 'resources', 'upgrades', 'actions', 'homes', 'furniture', 'skills',
 	'player', 'spells', 'monsters', 'dungeons', 'events', 'classes', 'armors', 'weapons',
-	'materials', 'enchants', 'sections', 'potions', 'encounters', 'locales','statuses' ];
+	'materials', 'enchants', 'sections', 'potions', 'encounters', 'locales','stressors' ];
 
 /**
  * @const {RegEx} IdTest - Test for a simple id name.
@@ -198,7 +198,7 @@ export default {
 		this.items = gd.items;
 
 		gd.resources = this.initItems( dataLists['resources'], Resource );
-		gd.statuses = this.initItems( dataLists['statuses'], Resource, 'status', 'status' );
+		gd.stressors = this.initItems( dataLists['stressors'], Resource, 'stress', 'stress' );
 
 		gd.upgrades = this.initItems( dataLists['upgrades'], GData, null, 'upgrade' );
 
