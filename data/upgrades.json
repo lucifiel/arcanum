@@ -353,7 +353,6 @@
 		"desc":"Keep your money safe.",
 		"require":"g.gold>=5",
 		"max":2,
-		"repeat":true,
 		"cost":5,
 		"flavor":"seems a tad pricey for a bag.",
 		"mod":{
@@ -366,7 +365,6 @@
 		"desc":"Small bag keeps gems safe without scratching.",
 		"require":"g.gems>=5",
 		"max":2,
-		"repeat":true,
 		"cost":300,
 		"flavor":"who prices these bags?!",
 		"mod":{
@@ -380,7 +378,6 @@
 		"desc":"Finely crafted box for storing magic gems.",
 		"require":["tier0","gem"],
 		"max":5,
-		"repeat":true,
 		"cost":{
 			"gems":15,
 			"gold":800
@@ -1427,7 +1424,6 @@
 
 		},
 		"mod":{
-			"stamina.rate":-1,
 			"void.rate":0.01,
 			"voidlore.max":3,
 			"voidlore.rate":0.5

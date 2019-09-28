@@ -40,12 +40,13 @@ export default class GData {
 	get rate() { return this._rate; }
 	set rate(v){
 
-		if ( this._rate ) {
+		if ( v instanceof Stat ) this._rate = v;
+		else if ( this._rate ) {
 
 			if ( typeof v === 'object' ) Object.assign( this._rate, v);
 			else this._rate.base = v;
 
-		} else this._rate = ( v instanceof Stat ) ? v : new Stat(v);
+		} else this._rate = new Stat(v);
 
 	}
 
@@ -134,10 +135,9 @@ export default class GData {
 
 		}
 
-		if ( this.repeat !== true &&
-			this.value > 0 &&
+		if ( this.repeat !== true && !this.max &&
+			this.value > 1 &&
 			(!this.buy || this.owned===true) ) {
-				console.log('NO REPEAT: ' + this.id + ' CANCEL ');
 			return 0;
 		}
 

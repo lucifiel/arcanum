@@ -75,7 +75,7 @@ export default class Resource extends GData {
 		 */
 		if ( this.unit === null || this.unit === undefined ) this.unit = true;
 
-		if ( this._rate === null || this.rate === undefined ) this._rate = new Stat(0);
+		if ( this._rate === null || this._rate === undefined ) this._rate = new Stat(0);
 
 		this._lastValue = this._value;
 
