@@ -82,9 +82,7 @@ export default class Explore {
 
 		if ( typeof this.locale === 'string') this.locale = gameState.getData(this.locale);
 
-		if ( this._enc ) {
-			this.enc = itemRevive( gameState, new Encounter(this._enc) );
-		}
+		if ( this._enc ) { this.enc = itemRevive( gameState, new Encounter(this._enc) ); }
 
 		if ( !this.locale) this.running = false;
 
@@ -100,28 +98,20 @@ export default class Explore {
 		/*if ( this.locale.effect ) {
 			Game.applyEffect( this.locale.effect, dt );
 		}*/
+		if ( this.enc ) {
 
-		this.player.timer -= dt;
-		if ( this.player.timer <= 0 ) {
-
-			this.player.timer += this.player.delay;
-
-			if ( this.enc ) {
-
-				this.enc.update( this.player.delay );
-				if ( this.enc.done ) {
-
-					this.encDone( this.enc );
-					this.advance();
-
-				}
-			}
-
+			this.enc.update( dt );
 			if ( this.player.defeated ) {
+
 				Events.dispatch( DEFEATED, this );
 				Events.dispatch( ACT_BLOCKED, this, false );
-			}
 
+			} else if ( this.enc.done ) {
+
+				this.encDone( this.enc );
+				this.advance();
+
+			}
 		}
 
 	}

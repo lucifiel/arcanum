@@ -1366,7 +1366,7 @@
 		},
 		"mod":{
 			"stamina.max":1,
-			"stamina.rate":0.1
+			"stamina.rate":"0.12+1%"
 		}
 
 	},
@@ -1421,12 +1421,16 @@
 	{
 		"id":"voidtouch",
 		"name":"touching the void",
-		"require":"g.planeslore>=20",
+		"locked":true,
+		"require":"g.voidlore>=40",
 		"cost":{
 
 		},
 		"mod":{
-
+			"stamina.rate":-1,
+			"void.rate":0.01,
+			"voidlore.max":3,
+			"voidlore.rate":0.5
 		},
 		"effect":{
 
@@ -1466,7 +1470,7 @@
 		"mod":{
 			"hp.rate":-1.5,
 			"player.defense":30,
-			"stamina.rate":-1,
+			"stamina.rate":-0.5,
 			"sp.rate":0.0001,
 			"planeslore.max":2,
 			"shadowlore.max":2,

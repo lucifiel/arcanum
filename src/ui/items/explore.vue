@@ -16,6 +16,18 @@ export default {
 	created(){
 		this.EXIT_LOC = EXIT_LOC;
 	},
+	methods:{
+
+		/**
+		 * Enc rollover
+		 */
+		encOver($event){
+
+			if ( this.enc ) this.dispatch('itemover', $event, this.enc );
+
+		}
+
+	},
 	computed:{
 
 		stressors() {
@@ -35,7 +47,17 @@ export default {
 		/**
 		 * @property {Encounter} enc - current encounter.
 		 */
-		enc() { return this.explore.enc; }
+		enc() { return this.explore.enc; },
+
+		encName(){
+			return this.enc ? this.enc.name : '';
+		},
+		encVal(){
+			return this.enc ? this.enc.exp : 0;
+		},
+		encLen(){
+			return this.enc ? this.enc.length : 10;
+		}
 
 	}
 
@@ -59,9 +81,9 @@ export default {
 		</template>
 		<template v-else>
 
-			<div v-if="enc" @mouseenter.capture.stop="dispatch('itemover', $event, enc )">
-			<span>{{ enc.name }}</span>
-			<progbar :value="enc.exp" :max="enc.length" />
+			<div @mouseenter.capture.stop="encOver($event)">
+			<span>{{ encName }}</span>
+			<progbar :value="encVal" :max="encLen" />
 			</div>
 
 			<div class="stressors">
@@ -82,11 +104,10 @@ export default {
 
 div.explore div.stressors {
 	display:flex;
-	flex-flow: row wrap;
-	justify-content: space-between;
+	flex-flow: column wrap;
 }
 
-div.stressors .status {
+div.stressors .stress {
 	flex-basis: 48%;
 }
 
