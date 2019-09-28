@@ -163,7 +163,7 @@
 	{
 		"id":"enc_mummy",
 		"name":"mummified remains",
-		"desc":"a battered, wooden chest.",
+		"desc":"a corpse preserved by the stale air",
 		"effect":{
 			"bf":"-1~2",
 			"embalming.exp":1,

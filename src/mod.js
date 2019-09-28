@@ -29,7 +29,7 @@ export default class Mod {
 	toString() {
 
 		let s = ( this.bonus !== 0 ?
-			 (this.bonus > 0 ? '+' + this.bonus : this.bonus.toString() )
+			this.bonus.toString()
 		: '' );
 
 

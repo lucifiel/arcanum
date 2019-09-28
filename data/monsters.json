@@ -1811,7 +1811,7 @@
             "kind":"blunt",
             "dmg":"8~12"
 		},"loot":{
-			"earthgem":"5%"
+			"earthgem":"15%"
 		},
 		"immune":"earth"
 
@@ -1830,7 +1830,7 @@
             "kind":"slash",
             "dmg":"5~12"
         },
-		"loot":{"airgem":"5%"},
+		"loot":{"airgem":"15%"},
 		"immune":"air"
 
     },
@@ -1960,7 +1960,7 @@
             "name":"ice shard",
             "kind":"cold",
             "dmg":"8~15"
-		},"loot":{"watergem":"5%"},
+		},"loot":{"watergem":"15%"},
 		"immune":"water,air"
 
 	},
@@ -2147,7 +2147,7 @@
             "name":"scorch",
             "kind":"fire",
             "dmg":"5~15"
-		},"loot":{"firegem":"5%"},
+		},"loot":{"firegem":"10%"},
 		"immune":"fire,light"
 
 	},
@@ -2262,9 +2262,9 @@
             "dmg":"13~25"
 		},"immune":"light,fire",
 		"loot":{
-			"airgem":"1%",
-			"firegem":"1%",
-			"lightgem":"4%"
+			"airgem":"5%",
+			"firegem":"5%",
+			"lightgem":"15%"
 		}
 
     },
@@ -2801,7 +2801,7 @@
             "name":"lava slam",
             "kind":"fire",
             "dmg":"25~50"
-		}, "loot":{"firegem":"15%","earthgem":"10%"},
+		}, "loot":{"firegem":"15%","earthgem":"15%"},
 		"immune":"fire"
     },
 	{

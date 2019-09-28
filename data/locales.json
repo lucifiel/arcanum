@@ -125,7 +125,7 @@
 },
 {
 	"id":"ruinedcrypt",
-	"name":"musty library",
+	"name":"ruined crypt",
 	"level":4,
 	"length":30,
 	"require":"adept",

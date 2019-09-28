@@ -1,11 +1,12 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
 import { randElm, randMatch, includesAny} from 'objecty';
-import Percent from './percent';
+import Percent, { PercentTest } from './percent';
 import Item from './items/item';
 import Encounter, { ENCOUNTER } from './items/encounter';
 import Npc from './chars/npc';
 import GenGroup from './genGroup';
+import Mod from './mod';
 
 /**
  * Revive a prototyped item based on an item template.
@@ -194,6 +195,11 @@ export default class ItemGen {
 			if ( !amt.value ) return null;
 			amt = 1;
 
+		} else if ( typeof amt === 'string' ) {
+
+			console.log('LOOT str: ' + amt);
+			return null;
+
 		} else if ( amt.value ) amt = amt.value;
 
 		if ( Array.isArray(info) ) return info.map( this.getLoot, this );
@@ -213,8 +219,7 @@ export default class ItemGen {
 		/** @todo: THIS IS BAD */
 
 		else if ( info.type && !info.isProto ) {
-			console.log('ADDING LOOT AMT: ' + amt );
-			Game.doItem( info, amt ||0);
+			Game.doItem( info, amt ||0 );
 			return;
 		}
 
@@ -224,6 +229,7 @@ export default class ItemGen {
 
 		let items = [];
 		for( let p in info ) {
+			console.log('GETTING SUB LOOT: ' + p);
 			var it = this.getLoot( this.state.getData(p), info[p] );
 			if ( it ) items.push(it );
 		}

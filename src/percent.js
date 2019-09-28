@@ -1,4 +1,4 @@
-export const PercentTest = /^(\d+(?:\.?\d+))\%$/i
+export const PercentTest = /^(\d+(?:\.?\d+)?)\%$/i
 
 /**
  * Represents a percentage probability.
@@ -37,5 +37,7 @@ export default class Percent {
 		this.pct = ( this.pct || 0 )/100;
 
 	}
+
+	clone() { return new Percent(this.pct) }
 
 }

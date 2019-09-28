@@ -218,7 +218,8 @@
 			"space.max":75,
 			"spiritlore.max":1,
 			"spiritlore.rate":0.1,
-			"shadow.rate":0.1
+			"shadow.rate":0.1,
+			"demonology.max":1
 		}
 	},
 	{
@@ -231,6 +232,7 @@
 			"minions.max":10,
 			"space.max":110,
 			"runes.max":2,
+			"demonology.max":1,
 			"runes.rate":"10%",
 			"spiritlore.max":1,
 			"spiritlore.rate":0.1,
@@ -433,6 +435,7 @@
 			"earthlore.rate":"20%",
 			"shadow.max":3,
 			"shadow.rate":0.2,
+			"demonology.max":1,
 			"light.max":-3,
 			"lightlore.rate":-2,
 			"light.rate":"-10%"

@@ -5,6 +5,7 @@ import Stat from '../stat';
 import Dot from './dot';
 import Attack from './attack';
 import GameState from '../gameState';
+import { assignNoFunc } from '../util/util';
 
 /**
  * @constant {number} DELAY_RATE - speed to attack delay conversion constant.
@@ -71,7 +72,7 @@ export default class Char {
 
 	constructor( vars ){
 
-		if ( vars ) Object.assign( this, vars );
+		if ( vars ) assignNoFunc(this,vars);
 
 		this.type = 'npc';
 

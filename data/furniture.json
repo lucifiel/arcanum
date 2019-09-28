@@ -1002,6 +1002,7 @@
 			"space":10
 		},
 		"mod":{
+			"herbs.max":10,
 			"herbs.rate":1,
 			"herbalism.rate":0.2,
 			"herbalism.max":3,
@@ -1223,6 +1224,49 @@
 			"astronomy.rate":0.2,
 			"earthlore.max":3,
 			"earthlore.rate":0.4
+		}
+
+	},
+	{
+		"id":"bindcircle",
+		"name":"binding circle",
+		"desc":"magic circle for binding summoned entities",
+		"tags":"prison",
+		"require":"g.summoning>=6||g.demonology>=7",
+		"cost":{
+			"gold":500,
+			"gems":25,
+			"bloodgem":10,
+			"spiritgem":10,
+			"space":6
+		},
+		"mod":{
+			"summoning.max":2,
+			"summong.rate":"5%",
+			"demonology.max":1,
+			"demonology.rate":"5%"
+		}
+
+	},
+	{
+		"id":"pentagram",
+		"name":"demonic pentagram",
+		"desc":"used for summoning demonic entities.",
+		"tags":"prison",
+		"require":"g.demonology>=12",
+		"cost":{
+			"gold":1500,
+			"gems":50,
+			"bloodgem":10,
+			"spiritgem":10,
+			"shadowgem":10,
+			"space":10
+		},
+		"mod":{
+			"summoning.max":1,
+			"summong.rate":"2%",
+			"demonology.max":2,
+			"demonology.rate":"10%"
 		}
 
 	},

@@ -1445,7 +1445,7 @@
 		},
 		"mod":{
 			"lore.max":2,
-			"demonology.max":1,
+			"demonology.max":2,
 			"demonology.rate":0.3,
 			"planeslore.max":1
 		}, "flavor":"and they say the blood has to be yours."

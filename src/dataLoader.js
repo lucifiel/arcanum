@@ -263,12 +263,12 @@ export default {
 				}
 
 				var obj = sub[p];
-				var type = typeof obj;
-				if ( type === 'string' ){
+				if ( typeof obj === 'string' ){
 
 					if ( PercentTest.test(obj) ) {
 
 						sub[p] = new Percent(obj);
+
 					} else if ( RangeTest.test(obj) ) sub[p] = new Range(obj);
 					else if ( !isNaN(obj) ) {
 						if ( obj !== null && obj !== undefined && obj !== '' ) console.warn('string used as Number: ' + p + ' -> ' + obj );
@@ -277,7 +277,7 @@ export default {
 					}
 					else if ( p === 'damage' || p === 'dmg') sub[p] = this.makeDmgFunc(obj);
 
-				} else if ( type === 'object' ) this.parseSub(obj);
+				} else if ( typeof obj === 'object' ) this.parseSub(obj);
 
 				if ( p.includes('.')) this.splitKeyPath( sub, p );
 
