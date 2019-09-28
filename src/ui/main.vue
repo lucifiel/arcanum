@@ -155,9 +155,7 @@ export default {
 			}
 			this.stopAutoSave();
 
-			window.removeEventListener('keydown',evt=>{
-				if ( evt.repeat) return;
-				this.keyDown( evt ); evt.stopPropagation(); }, false );
+			if ( this.keyListen ) window.removeEventListener('keydown', this.keyListen, false );
 
 
 		},
@@ -170,12 +168,15 @@ export default {
 					this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
 				}
 
-			window.addEventListener('keydown',evt=>{
+				this.keyListen = evt=>{
 				if ( evt.repeat) return;
-				this.keyDown( evt ); evt.stopPropagation(); }, false );
+				this.keyDown( evt ); evt.stopPropagation(); }
+
+				window.addEventListener('keydown', this.keyListen, false );
+				this.startAutoSave();
 
 			}
-			this.startAutoSave();
+
 
 		},
 

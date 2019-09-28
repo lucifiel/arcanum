@@ -44,7 +44,8 @@
 	"encs":[
 		"manatree",
 		"mysticwater",
-		"manatree"
+		"manatree",
+		"hiddencache"
 	]
 },
 {
@@ -79,8 +80,7 @@
 	"name":"treffil woods",
 	"level":7,
 	"length":15,
-	"require":"apprentice",
-	"desc":"tradition tells of a spring with enchanted waters. investigations might prove revealing.",
+	"desc":"the treffil woods posses many features of interest to the magical scholar.",
 	"run":{
 		"stamina":0.2
 	},
@@ -96,13 +96,16 @@
 	"encs":[
 		"manatree",
 		"mysticwater",
-		"brightvista"
+		"brightvista",
+		"hauntedglade",
+		"enc_delki",
+		"hiddencache"
 	]
 },
 {
 	"id":"rithel",
 	"level":14,
-	"desc":"a good apprentice spends all their free time in the library. after doing chores, of course.",
+	"desc":"this tiny outpost in the center of thangmor outlasted even the pillars",
 	"run":{
 		"stamina":0.2
 	},
@@ -115,6 +118,8 @@
 	},
 	"encs":[
 		"enc_chest2",
+		"enc_primer2",
+		"enc_delki",
 		"brightvista"
 	]
 },

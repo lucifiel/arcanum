@@ -104,7 +104,7 @@ export default class Explore {
 			if ( this.player.defeated ) {
 
 				Events.dispatch( DEFEATED, this );
-				Events.dispatch( ACT_BLOCKED, this, false );
+				Events.dispatch( ACT_BLOCKED, this, true );
 
 			} else if ( this.enc.done ) {
 
@@ -195,6 +195,7 @@ export default class Explore {
 
 		if ( d != null ) {
 
+			if ( d != this.locale ) this.enc = null;
 			if ( d.exp >= d.length ) {
 				d.exp = 0;
 			}

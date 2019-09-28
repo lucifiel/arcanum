@@ -193,7 +193,7 @@ export default {
 					else this.subeffect( this[p], mods[p], amt );
 
 				} else if ( this[p] !== undefined ) {
-					console.log( this.id + ' adding vars: ' + p );
+					//console.log( this.id + ' adding vars: ' + p );
 					this[p] += Number(mods[p])*amt;
 				} else {
 					console.log('NEW SUB: ' + p );
