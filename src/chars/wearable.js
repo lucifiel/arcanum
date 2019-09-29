@@ -83,6 +83,8 @@ export default class Wearable {
 
 		if ( vars ) assignNoFunc(this,vars );// Object.assign(this,vars);
 
+		this.value = this.value || 1;
+
 		//if ( vars ) logObj( vars, 'vars');
 		//if( vars.template ) logObj( vars.template, ' template' );
 		if ( !this.type ) {

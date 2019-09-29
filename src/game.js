@@ -361,10 +361,12 @@ export default {
 	 */
 	trySell( it, inv, count=1 ) {
 
-		if ( it.value < 1 && !it.instance ) { return false; }
+		if ( it.value < 1 && !it.instance ) {
+			return false; }
 
 		if ( count > it.value ) count = it.value;
 
+		console.log('sell count: ' + count );
 		let sellObj = it.sell || it.cost;
 		let goldPrice = count*this.sellPrice(it);
 

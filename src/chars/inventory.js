@@ -67,6 +67,7 @@ export default class Inventory {
 		} else {
 
 			if ( it.stack ) {
+				console.warn('adding stacking item: ' + it.id );
 				let inst = this.find( it.id, true );
 				if ( inst && inst !== it ){
 					inst.value++;

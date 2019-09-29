@@ -1,13 +1,14 @@
 <script>
-import { seconds } from '../util/format.js';
+import { seconds, abbr } from '../util/format.js';
 import ItemBase from 'ui/itemsBase';
 
 export default {
 
-	props:['dots'],
+	props:['dots', 'mini'],
 	mixins:[ItemBase],
 	beforeCreate(){
 		this.seconds = seconds;
+		this.abbtr = abbr;
 	}
 
 }
@@ -17,13 +18,13 @@ export default {
 
 	<div class="dot-view">
 
-		<div :class="['dot',d.kind]" v-for="d in dots" :key="d.id"
+		<div :class="['dot',d.kind, d.school, mini ? 'mini':'']" v-for="d in dots" :key="d.id"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,d)">
 
-			{{ seconds( d.duration ) }}<br>
-			{{ d.name }}
+			{{ Math.ceil( d.duration ) }}
+			<span v-if="!mini"><br>{{ abbr( d ) }}</span>
 
-			<div v-if="d.kind" class="bgfill" >&nbsp;</div>
+			<div v-if="d.kind||d.school" class="bgfill" >&nbsp;</div>
 
 		</div>
 
@@ -45,6 +46,12 @@ export default {
 		text-align: center;
 		padding:4px;
 		border: 1px solid black;
+	}
+
+	div.mini {
+		max-height:24px;
+		max-width: 24px;
+		padding:0;
 	}
 
 </style>

@@ -167,13 +167,14 @@
 	"mod":{
 		"tier1":true,
 		"evilamt":5,
-		"research.max":20,
+		"research.max":100,
 		"demonology.max":2,
 		"lore.max":1,
+		"lore.rate":"5%",
 		"mana.max":1,
 		"mana.rate":0.01,
 		"shadowlore.max":1,
-		"shadowlore.rate":0.1
+		"shadowlore.rate":"0.1+5%"
 	}
 },
 

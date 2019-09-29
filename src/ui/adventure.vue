@@ -112,11 +112,11 @@ div.adventure {
 div.locales {
 	display:flex;
 	align-items:flex-start;
-	flex-grow:2;
+	flex-grow:1;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	overflow-y: auto;
-	min-height: 55%;
+	min-height: 50%;
 	padding-bottom: 32px;
 	border-bottom: 1px solid var(--separator-color);
 
@@ -128,7 +128,6 @@ div.raid-bottom {
 	justify-content: space-between;
 	padding-top:8px;
 	width:100%;
-	flex-shrink: 1;
 	overflow-y:auto;
 }
 

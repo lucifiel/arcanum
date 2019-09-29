@@ -195,11 +195,6 @@ export default class ItemGen {
 			if ( !amt.value ) return null;
 			amt = 1;
 
-		} else if ( typeof amt === 'string' ) {
-
-			console.log('LOOT str: ' + amt);
-			return null;
-
 		} else if ( amt.value ) amt = amt.value;
 
 		if ( Array.isArray(info) ) return info.map( this.getLoot, this );
@@ -229,7 +224,7 @@ export default class ItemGen {
 
 		let items = [];
 		for( let p in info ) {
-			console.log('GETTING SUB LOOT: ' + p);
+			//console.log('GETTING SUB LOOT: ' + p);
 			var it = this.getLoot( this.state.getData(p), info[p] );
 			if ( it ) items.push(it );
 		}

@@ -1167,16 +1167,17 @@
 
 		},
 		"cost":{
-			"shadow":5
+			"shadow":5,
+			"bonedust":1
 		},
 		"dot":{
-			"duration":45,
+			"duration":60,
 			"mod":{
 				"lore.rate":0.5,
-				"dissection.rate":"0.2+2%",
-				"shadowlore.rate":"0.2+2%",
-				"demonology.rate":"0.2+2%",
-				"reanimation.rate":"0.2+2%"
+				"dissection.rate":"0.3+2%",
+				"shadowlore.rate":"0.3+2%",
+				"demonology.rate":"0.3+2%",
+				"reanimation.rate":"0.3+2%"
 			}
 		}
 	},

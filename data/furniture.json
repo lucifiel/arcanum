@@ -753,6 +753,7 @@
 			"space":1
 		},
 		"mod":{
+			"bonedust.max":10,
 			"bones.max":20,
 			"shadowlore.max":1,
 			"spiritlore.max":1,
@@ -1159,6 +1160,7 @@
 			"research":1000
 		},
 		"mod":{
+			"bonedust.max":10,
 			"souls.rate":0.01,
 			"bodies.max":20,
 			"bones.max":50,

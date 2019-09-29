@@ -397,6 +397,7 @@
 			"research":25
 		},
 		"run":{
+			"bonedust":1,
 			"stamina":0.3,
 			"spirit":0.3
 		},
@@ -824,6 +825,25 @@
 		"result":{
 			"tomes":1
 		}
+
+	},
+	{
+		"id":"codexannih",
+		"name":"codex annihilus",
+		"require":"(g.darkmagician+g.dreadlord)>0",
+		"desc":"karnivex's manual of destruction",
+		"length":75,
+		"repeat":false,
+		"cost":{
+			"codices":10
+		},
+		"run":{
+			"research":1
+		},
+		"result":{
+			"player.damage":2,
+			"player.tohit":1
+		},"flavor":"what he lacked in depth, karnivex made up for with sheer destructive force"
 
 	},
 	{

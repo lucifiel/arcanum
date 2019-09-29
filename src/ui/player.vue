@@ -31,6 +31,7 @@ export default {
 		hp() {return this.player.hp; },
 		defense() {return this.player.defense; },
 		dodge(){ return this.player.dodge.value },
+		damage() { return this.player.damage || 0 },
 		tohit() {return this.player.tohit; },
 		exp() {return this.floor( this.player.exp.value ); },
 		next() {return this.floor( this.player.next ); },
@@ -83,6 +84,7 @@ export default {
 
 			<tr><td>defense</td><th>{{ defense }}</th></tr>
 			<tr><td>dodge</td><th>{{ dodge }}</th></tr>
+			<tr><td>damage bonus</td><th>{{ damage }}</th></tr>
 			<tr><td>hit bonus</td><th>{{ tohit }}</th></tr>
 
 			<tr><td>speed</td><th>{{ speed.toFixed(2) }}</th></tr>
