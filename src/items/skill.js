@@ -18,7 +18,7 @@ export default class Skill extends Action {
 
 	get exp() { return super.exp; }
 	set exp(v) {
-		if ( this.maxed() ) return;
+		if ( this.locked || this.maxed() ) return;
 		super.exp = v;
 	}
 

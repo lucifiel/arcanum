@@ -43,7 +43,7 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 		if ( this.consume === null || this.consume === undefined ) this.consume = true;
 
-		console.log('NEW item: ' +  this.id );
+		console.log('Item: ' +  this.id );
 		if ( this.stack !== false ) this.stack = true;
 	}
 
@@ -58,7 +58,7 @@ export default class Item {
 
 		if ( typeof this.template ==='string' ) this.template = state.getData( this.template );
 		if ( this.template ) {
-			console.log('item revive from: ' + this.template );
+			console.log('it revive from: ' + this.template );
 			mergeSafe( this, this.template);
 		}
 

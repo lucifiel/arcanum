@@ -521,8 +521,6 @@ export default {
 
 		if ( typeof data === 'string') data = this.state.getData(data);
 
-		console.log('protodata: ' + data.id );
-
 		return this.itemGen.instance(data);
 
 	},
@@ -857,6 +855,7 @@ export default {
 					else this.applyToTag( p, e, dt );
 
 				} else {
+
 					if ( target.type === 'event' ) this.unlockEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
 					else if ( e instanceof Range ) {

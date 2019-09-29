@@ -1,7 +1,7 @@
 import Char from './char';
 import Monster from '../items/monster';
 import { cloneClass  } from 'objecty'
-import Range from '../range';
+import Range, { RangeTest } from '../range';
 import Stat from '../stat';
 import Percent, { PercentTest } from '../percent';
 
@@ -107,10 +107,15 @@ export default class Npc extends Char {
 		for( let p in loot ) {
 
 			var sub = loot[p];
-			if ( (typeof sub==='string') && PercentTest.test(sub) ) {
+			if ( (typeof sub==='string') ) {
 
-				console.warn('loot str:' + p );
-				loot[p] = new Percent(sub);
+				if ( PercentTest.test(sub)) {
+					console.warn('pct str:' + p );
+					loot[p] = new Percent(sub);
+				} else if ( RangeTest.test(sub) ) {
+					console.warn(p + ' loot range: ' + sub );
+					loot[p ] = new Range(sub);
+				}
 			}
 
 		}

@@ -21,8 +21,8 @@ export default {
 		<div :class="['dot',d.kind, d.school, mini ? 'mini':'']" v-for="d in dots" :key="d.id"
 		@mouseenter.capture.stop="dispatch( 'itemover', $event,d)">
 
-			{{ Math.ceil( d.duration ) }}
-			<span v-if="!mini"><br>{{ abbr( d ) }}</span>
+			<span>{{ Math.ceil( d.duration ) }}</span>
+			<span v-if="!mini"><br>{{ mini ? abbr( d ) : d.name }}</span>
 
 			<div v-if="d.kind||d.school" class="bgfill" >&nbsp;</div>
 
@@ -40,6 +40,13 @@ export default {
 		justify-content: space-around;
 	}
 
+	div.dot-view span {
+		display:flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+
 	div.dot {
 		max-height:40px;
 		margin:0px 2px;
@@ -49,9 +56,9 @@ export default {
 	}
 
 	div.mini {
-		max-height:24px;
-		max-width: 24px;
-		font-size: 0.5em;
+		height:22px;
+		width: 22px;
+		font-size: 0.7em;
 		padding:0;
 	}
 

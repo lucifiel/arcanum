@@ -95,10 +95,8 @@ export default class Explore {
 
 		if ( !this.enc ) this.nextEnc();
 
-		// should be covered by runner.
-		/*if ( this.locale.effect ) {
-			Game.applyEffect( this.locale.effect, dt );
-		}*/
+		// done by runner.
+		/*if ( this.locale.effect ) { Game.applyEffect( this.locale.effect, dt ); }*/
 		if ( this.enc ) {
 
 			this.enc.update( dt );
