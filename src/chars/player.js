@@ -139,6 +139,8 @@ export default class Player extends Char {
 		data.immunities = this.immunities;
 		data.resists =this.resists;
 
+		data.retreat = this.retreat||undefined;
+
 		data.states = this.states;
 		data.className = this.className;
 
@@ -162,6 +164,10 @@ export default class Player extends Char {
 		this.titles = this._titles || [];
 
 		this._next = this._next || 50;
+
+		this.retreat = this.retreat || 0;
+
+		console.warn('PLAYER RETREAT: ' + this.retreat );
 
 		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 0;

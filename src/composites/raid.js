@@ -107,7 +107,8 @@ export default class Raid {
 		if ( c !== this.player || !this.running ) return;
 
 		Events.dispatch( DEFEATED, null );
-		Events.dispatch( ACT_BLOCKED, this, false );
+		Events.dispatch( ACT_BLOCKED, this,
+			this.locale && this.player.level>this.locale.level && this.player.retreat>0 );
 
 	}
 

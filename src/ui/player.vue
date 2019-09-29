@@ -96,6 +96,17 @@ export default {
 
 		</table>
 
+		<table class="resists">
+			<tr v-for="(r,k) in player.resist" :key="k">
+				<td>{{k}}</td><td class="num-align">{{r}}%</td>
+			</tr>
+		</table>
+		<table class="immunities">
+			<tr v-for="(r,k) in player.immunities" :key="k">
+				<td>{{k}}</td>
+			</tr>
+		</table>
+
 		<upgrades></upgrades>
 
 	</div>
@@ -111,6 +122,8 @@ div.player-view {
 	padding-left:14px;
 	justify-content: space-between;
 }
+
+div.player-view input[type=text].fld-name { margin: 0; }
 
 td, th {
 	padding: 2px 4px;

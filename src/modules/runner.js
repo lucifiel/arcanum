@@ -317,9 +317,11 @@ const Runner = {
 
 		this.stopAction( act, false );
 		if ( act.hasTag(REST_TAG) ) {
+
 			this.tryResume();
 
 		} else {
+			//if( resume) console.log('ADDING NEW WAIT: ' + act.id );
 			if ( resume ) this.addWait(act);
 			this.doRest();
 		}
@@ -339,7 +341,7 @@ const Runner = {
 		}
 
 		let a = this.actives[i];
-		console.log('STOPPING: ' + a.name );
+		//console.log('STOPPING: ' + a.name );
 
 		a.running = false;
 		this.actives.splice(i,1);
@@ -369,6 +371,7 @@ const Runner = {
 
 		if ( a.hasTag(REST_TAG) ) return;
 
+		//console.log('adding wait: ' + a.id );
 		this.waiting.push(a);
 
 		let len = this.waiting.length - this.max.value;
