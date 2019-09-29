@@ -62,7 +62,11 @@ export default class Skill extends Action {
 
 	exec() {
 
-		if ( this.value > Math.floor(this._max) ) this.value = Math.floor(this.max);
+		if ( this.value > Math.floor(this._max.value) ) {
+			this.value = Math.floor(this.max.value);
+			return;
+		}
+
 		this._length += this._length*EXP_RATIO;
 
 		this.dirty = true;

@@ -67,6 +67,7 @@ export default class Explore {
 		this.running = this.running || false;
 
 		this.type = 'explore';
+		this._enc = this._enc || null;
 
 		/**
 		 * @property {locale} locale - current locale.

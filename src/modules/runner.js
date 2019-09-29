@@ -166,7 +166,7 @@ const Runner = {
 	 */
 	expMax( it ) {
 		//console.log('EXP. COMPLETE: ' + it.id );
-		if ( it.complete && typeof it.complete === 'function') it.complete();
+		if ( it.complete && (typeof it.complete) === 'function') it.complete();
 
 	},
 

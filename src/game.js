@@ -106,6 +106,7 @@ export default {
 
 			this._items = this.state.items;
 
+			this.recheckTiers();
 			this.restoreMods();
 
 			techTree = new TechTree( this._items );
@@ -126,6 +127,27 @@ export default {
 	},
 
 	save() {
+	},
+
+	recheckTiers() {
+
+		let n = 0;
+		while ( ++n <= 5 ) {
+
+			var list = this.state.getTagList('t_tier'+n);
+			var evt = this.state.getData('tier'+n);
+
+			for( var i = list.length-1; i>= 0; i-- ) {
+
+				if ( list[i].value > 0) this.doEvent( evt);
+				break;
+
+			}
+			// none of this tier.
+			evt.value =0;
+
+		}
+
 	},
 
 	/**

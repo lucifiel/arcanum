@@ -772,6 +772,7 @@
 		"length":10,
 		"verb":"mapping stars",
 		"require":"g.astronomy>=5",
+		"fill":"starcharts",
 		"cost":{
 			"scrolls":1
 		},

@@ -16,12 +16,11 @@ export default class Action extends GData {
 	set exp(v){
 
 		this._exp = v;
-		if ( this._length ) {
+		if ( (this._length&& (v>=this._length) )
+			|| ( this.perpetual && v >= 1 ) ) {
 
-			if ( v >= this._length ) Events.gfire( EXP_MAX, this );
-
-		} else if ( ( this.perpetual && v >= 1 ) ) {
 			Events.gfire( EXP_MAX, this );
+
 		}
 
 	}

@@ -8,7 +8,7 @@ export default {
 	mixins:[ItemBase],
 	beforeCreate(){
 		this.seconds = seconds;
-		this.abbtr = abbr;
+		this.abbr = abbr;
 	}
 
 }
@@ -51,6 +51,7 @@ export default {
 	div.mini {
 		max-height:24px;
 		max-width: 24px;
+		font-size: 0.5em;
 		padding:0;
 	}
 

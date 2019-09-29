@@ -16,6 +16,16 @@ export default class Attack {
 
 	}
 
+	get kind(){ return this._kind; }
+	set kind(k){
+
+		this._kind = k;
+		if ( this.dot ){
+			if ( !this.dot.kind ) this.dot.kind = k;
+		}
+
+	}
+
 	/**
 	 * @property {'all'|'self'|'allies'} targets - target of attack.
 	 */
