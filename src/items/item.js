@@ -43,6 +43,7 @@ export default class Item {
 		if ( vars ) Object.assign( this, vars );
 		if ( this.consume === null || this.consume === undefined ) this.consume = true;
 
+		console.log('NEW item: ' +  this.id );
 		if ( this.stack !== false ) this.stack = true;
 	}
 

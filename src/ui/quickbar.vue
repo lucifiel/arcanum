@@ -1,4 +1,7 @@
 <script>
+
+import {abbr} from '../util/format';
+
 /**
  * Bar for quick-use items.
  */
@@ -20,15 +23,7 @@ export default {
 		clicked(it) {
 		},
 
-		abbr(it){
-
-			if ( !it ) return '';
-
-			let s = it.name;
-			let ind = s.indexOf(' ');
-			if ( ind >= 0 && ind < s.length ) return s[0] + s[ind+1];
-			return s.slice(0,2);
-		}
+		abbr:abbr
 
 	},
 	computed:{

@@ -9,9 +9,6 @@ import { assignNoFunc } from '../util/util';
 
 export default class Wearable {
 
-	get value() { return 1;}
-	set value(v){}
-
 	toJSON() {
 
 		let data = this.excludeJSON( ['material', 'kind'] ) || {};
@@ -66,8 +63,6 @@ export default class Wearable {
 	set attack(v) {
 
 		if ( v ) {
-
-			console.log('CREATING WEARABLE ATTACK: '  + v );
 			this._attack = v instanceof Attack ? v.clone() : new Attack(v);
 		} else this._attack = null;
 
@@ -88,10 +83,11 @@ export default class Wearable {
 
 		if ( vars ) assignNoFunc(this,vars );// Object.assign(this,vars);
 
+		this.value = this.value || 1;
+
 		//if ( vars ) logObj( vars, 'vars');
 		//if( vars.template ) logObj( vars.template, ' template' );
 		if ( !this.type ) {
-			console.warn('NO TYPE. USING WEARABLE');
 			this.type = 'wearable';
 		}
 
@@ -134,7 +130,7 @@ export default class Wearable {
 				this.applyBonus( this.attack, 'damage', mat.bonus );
 			}
 			if ( mat.tohit ) {
-				console.log('apply mat to: ' + this.id );
+				//console.log('apply mat to: ' + this.id );
 				this.applyBonus( this.attack, 'tohit', mat.tohit );
 			}
 

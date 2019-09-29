@@ -23,7 +23,7 @@ export default class Inventory {
 
 	get max() { return this._max; }
 	set max(v) {
-		this._max = v instanceof Stat ? v : new Stat(v);
+		this._max = v instanceof Stat ? v : new Stat(v,true);
 	}
 
 	constructor(vars=null){
@@ -34,7 +34,7 @@ export default class Inventory {
 
 		this.type = this.id = 'inventory';
 
-		this._max = this._max || 0;
+		this.max = this._max || 0;
 
 	}
 
@@ -67,6 +67,7 @@ export default class Inventory {
 		} else {
 
 			if ( it.stack ) {
+				console.warn('adding stacking item: ' + it.id );
 				let inst = this.find( it.id, true );
 				if ( inst && inst !== it ){
 					inst.value++;

@@ -3,6 +3,7 @@ import Monster from '../items/monster';
 import { cloneClass  } from 'objecty'
 import Range from '../range';
 import Stat from '../stat';
+import Percent, { PercentTest } from '../percent';
 
 /**
  * @const {number} ALLY - team constant for allies.
@@ -31,7 +32,7 @@ export default class Npc extends Char {
 
 	get maxHp() { return this._maxHp; }
 	set maxHp(v) {
-		this._maxHp = v instanceof Stat ? v : new Stat(v);
+		this._maxHp = v instanceof Stat ? v : new Stat(v,true);
 	}
 
 	get hp() { return this._hp; }
@@ -41,6 +42,12 @@ export default class Npc extends Char {
 		else this._hp = v;
 
 	}
+
+	get loot() {
+		console.log('GEtting GETTER loot');
+		return this.template ? this.template.loot : null;
+	}
+	set loot(v){}
 
 	get damage() { return this._damage; }
 	set damage(v) {
@@ -88,6 +95,25 @@ export default class Npc extends Char {
 		this.maxHp = this._maxHp || this._hp;
 
 		if ( this.dmg && (this.damage===null||this.damage===undefined) ) this.damage = this.dmg;
+
+		this.initLoot();
+	}
+
+	initLoot(){
+
+		let loot = this.loot;
+		if ( !loot) return;
+
+		for( let p in loot ) {
+
+			var sub = loot[p];
+			if ( (typeof sub==='string') && PercentTest.test(sub) ) {
+
+				console.warn('loot str:' + p );
+				loot[p] = new Percent(sub);
+			}
+
+		}
 
 	}
 

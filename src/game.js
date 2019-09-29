@@ -21,7 +21,7 @@ import Runner from './modules/runner';
 /**
  * @note these refer to Code-events, not in-game events.
  */
-import Events, {EVT_UNLOCK, EVT_EVENT, ACT_CHANGED } from './events';
+import Events, {EVT_UNLOCK, EVT_EVENT, ENTER_LOC, EXIT_LOC, ITEM_ATTACK } from './events';
 import Resource from './items/resource';
 import Skill from './items/skill';
 import Stat from './stat';
@@ -84,6 +84,7 @@ export default {
 		this._items = null;
 		this.timers = [];
 
+
 		return this.load();
 
 	},
@@ -91,6 +92,8 @@ export default {
 	load( saveData=null ) {
 
 		this.loaded = false;
+
+		this.log.clear();
 
 		Events.started = false;
 		// Code events. Not game events.
@@ -114,6 +117,9 @@ export default {
 
 			this.loaded = true;
 			Events.started = true;
+
+			Events.add( ENTER_LOC, this.enterLoc, this );
+			Events.add( EXIT_LOC, this.enterLoc, this );
 
 		}, err=>{ console.error('game err: ' + err )});
 
@@ -158,10 +164,20 @@ export default {
 
 	},
 
-	startRaid( dungeon) {
+	enterLoc( locale, enter ) {
 
-		this.state.raid.setDungeon(dungeon);
-		this.setAction( this.state.raid );
+		let control = locale.type === 'dungeon' ? this.state.raid : this.state.explore;
+		if ( enter ) {
+
+			control.enter( locale );
+			this.setAction( control );
+
+		} else {
+
+			control.locale = null;
+			this.haltAction( control );
+
+		}
 
 	},
 
@@ -224,7 +240,8 @@ export default {
 			stat = stats[i];
 			if ( stat.locked === false ) {
 
-				if  ( stat.rate.value !== 0 ) { this.doItem( stat, stat.rate.value*dt );
+				if  ( stat.rate.value !== 0 ) {
+					this.doItem( stat, stat.rate.value*dt );
 				}
 
 			}
@@ -237,9 +254,7 @@ export default {
 	 * Toggles an action on or off.
 	 * @param {GData} a
 	 */
-	toggleAction(a) {
-		Runner.toggleAct(a);
-	},
+	toggleAction(a) { Runner.toggleAct(a); },
 
 	/**
 	 * Wrapper for Runner rest
@@ -254,12 +269,13 @@ export default {
 	 * Tests if an action has effectively filled a resource.
 	 * @param {string|string[]} v - data or datas to fill.
 	 * @param {GData} a - action doing the filling.
+	 * @param {string} - name of relavant filling effect ( for tag-item fills)
 	 */
-	filled( v, a ) {
+	filled( v, a, tag ) {
 
 		if ( Array.isArray(v) ) {
 			for( let i = v.length-1; i>=0; i-- ) {
-				if ( !this.filled( v[i], a ) )return false;
+				if ( !this.filled( v[i], a, tag ) ) return false;
 			}
 			return true;
 		}
@@ -268,19 +284,16 @@ export default {
 		if (fill === undefined ) {
 
 			fill = this.state.getTagList( v );
-			return fill === undefined ? true : this.filled(fill, a);
+			return fill === undefined ? true : this.filled(fill, a, v );
 
 		}
 
 		if ( !fill.rate || !a.effect || fill.rate.value >= 0 ) return fill.maxed();
 
-		// negative-change comparison.
-		let change = a.effect[v];
-		if ( change && (fill.rate+change) <= 0 ) {
-			// the filling action can never actually fill, so count it as filled.
-			return true;
-		}
-		return false;
+		// actual filling rate.
+		tag = a.effect[ tag || v ];
+
+		return ( !tag || fill.filled(tag ) );
 
 	},
 
@@ -348,10 +361,12 @@ export default {
 	 */
 	trySell( it, inv, count=1 ) {
 
-		if ( it.value < 1 && !it.instance ) { return false; }
+		if ( it.value < 1 && !it.instance ) {
+			return false; }
 
 		if ( count > it.value ) count = it.value;
 
+		console.log('sell count: ' + count );
 		let sellObj = it.sell || it.cost;
 		let goldPrice = count*this.sellPrice(it);
 
@@ -473,6 +488,20 @@ export default {
 		this.payCost( it.cost );
 
 		this.create( it );
+
+	},
+
+	/**
+	 * Create instance from data.
+	 * @param {string|Object} data
+	 */
+	instance( data ) {
+
+		if ( typeof data === 'string') data = this.state.getData(data);
+
+		console.log('protodata: ' + data.id );
+
+		return this.itemGen.instance(data);
 
 	},
 
@@ -601,8 +630,16 @@ export default {
 	 */
 	doItem( it, count=1 ) {
 
-		if ( it.maxed() ) return false;
-		if ( it.isProto ) return this.create(it, true );
+		count = it.topoff(count);
+		if ( count === 0 ) {
+			return;
+		}
+		//it.value += it.consume ? -count : count;
+
+		if ( it.isProto ) {
+			console.log('CREATING ISPROTO: ' + it.id );
+			return this.create(it, true );
+		}
 
 		if ( it.slot) {
 
@@ -616,8 +653,6 @@ export default {
 		}
 		if ( it.exec ) it.exec();
 
-		it.value += it.consume ? -count : count;
-
 		if ( it.title ) this.state.player.title = it.title;
 		if ( it.effect ) this.applyEffect(it.effect);
 		if ( it.mod ) this.addMod( it.mod, count );
@@ -628,9 +663,7 @@ export default {
 		if ( it.log ) Events.dispatch( EVT_EVENT, it.log );
 
 		if ( it.attack ) {
-			if ( (it.type !== 'wearable' && it.type !== 'weapon')
-			&& this.state.raid.running )
-				this.state.raid.spellAttack( it );
+			if (it.type !== 'wearable' && it.type !== 'weapon') Events.dispatch( ITEM_ATTACK, it );
 		}
 
 		it.dirty = true;
@@ -796,16 +829,18 @@ export default {
 				e = effect[p];
 
 				if ( target === undefined || target === null ) {
-					if ( p === 'title') {
-						this.state.player.addTitle( e );
-						continue;
-					}
+
+					if ( p === 'title') this.state.player.addTitle( e );
+					else if ( p === 'log') Events.dispatch( EVT_EVENT, e );
 					else this.applyToTag( p, e, dt );
+
 				} else {
 					if ( target.type === 'event' ) this.unlockEvent( target );
 					else if ( typeof e === 'number' ) this.doItem( target, e*dt );
-					else if ( e instanceof Range ) this.doItem( target, e.value );
-					else if ( typeof e === 'boolean') {
+					else if ( e instanceof Range ) {
+
+						this.doItem( target, e.value*dt );
+					} else if ( typeof e === 'boolean') {
 
 						target.locked = !e;
 						this.doItem( target );
@@ -1008,6 +1043,8 @@ export default {
 			}
 
 			for( let p in cost ) {
+
+				res = cost[p];
 
 				res = this.getData(p);
 				if ( res ) {

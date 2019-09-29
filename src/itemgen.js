@@ -1,11 +1,18 @@
 import Game from './game';
 import Wearable from "./chars/wearable";
 import { randElm, randMatch, includesAny} from 'objecty';
-import Percent from './percent';
+import Percent, { PercentTest } from './percent';
 import Item from './items/item';
+import Encounter, { ENCOUNTER } from './items/encounter';
 import Npc from './chars/npc';
 import GenGroup from './genGroup';
+import Mod from './mod';
 
+/**
+ * Revive a prototyped item based on an item template.
+ * @param {*} gs
+ * @param {*} it
+ */
 export function itemRevive(gs, it ) {
 
 		var orig = it.template;
@@ -27,6 +34,11 @@ export function itemRevive(gs, it ) {
 
 		} else if ( type === 'monster') {
 			it = new Npc(it);
+		} else if ( type === 'enc') {
+
+			// encounter.
+			it = new Encounter(it);
+
 		} else {
 			console.log('default revive: ' + it.id );
 			it = new Item(it);
@@ -119,7 +131,7 @@ export default class ItemGen {
 
 	/**
 	 * Instantiate a prototypical item.
-	 * @param {Object} proto
+	 * @param {object} proto
 	 * @returns {Item|Wearable} the item created, or null on failure.
 	 */
 	instance( proto ) {
@@ -128,8 +140,12 @@ export default class ItemGen {
 
 		if ( proto.type === 'armor' || proto.type === 'weapon' || proto.type === 'wearable' ) {
 
-			console.log('instance wearable: ' + proto.id );
+			//console.log('instance wearable: ' + proto.id );
 			return this.itemClone( proto, this.matForItem(proto ));
+
+		} else if ( proto.type === ENCOUNTER ) {
+
+			it = new Encounter(proto);
 
 		} else if ( proto.type === 'potion' ) {
 
@@ -196,8 +212,9 @@ export default class ItemGen {
 			|| info.type ==='armor') return this.fromData( info );
 
 		/** @todo: THIS IS BAD */
+
 		else if ( info.type && !info.isProto ) {
-			Game.doItem( info, amt );
+			Game.doItem( info, amt ||0 );
 			return;
 		}
 
@@ -207,6 +224,7 @@ export default class ItemGen {
 
 		let items = [];
 		for( let p in info ) {
+			//console.log('GETTING SUB LOOT: ' + p);
 			var it = this.getLoot( this.state.getData(p), info[p] );
 			if ( it ) items.push(it );
 		}

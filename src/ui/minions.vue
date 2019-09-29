@@ -55,7 +55,7 @@ export default {
 	<span v-if="inRaid" class="warn-text">Cannot change active minions while adventuring</span>
 	<div class="minion-title">
 		<span>{{ minions.count + ' / ' + Math.floor(minions.max) + ' Used' }}</span>
-		<span>Allies Power: {{ minions.allyTotal + ' / ' + Math.floor( minions.maxAllies.value ) }}</span></div>
+		<span>Allies Power: {{ minions.allyTotal.toFixed(2) + ' / ' + Math.floor( minions.maxAllies.value ) }}</span></div>
 
 	<div class="char-list">
 	<table>

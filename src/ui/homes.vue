@@ -92,7 +92,7 @@ export default {
 
 		<span class="separate">
 		<filterbox class="inline" v-model="filtered" :prop="searchIt" :items="viewable" />
-		<span class="space">Space: {{space.value}} / {{ space.max.value }}</span>
+		<span class="space">Space: {{ Math.floor(space.value) }} / {{ Math.floor(space.max.value) }}</span>
 		</span>
 
 			<div class="warn-text"

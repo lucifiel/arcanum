@@ -574,6 +574,24 @@
 
 	},
 	{
+
+		"id":"voidlore",
+		"name":"void lore",
+		"require":"g.planeslore>=10&&g.tier5>=0",
+		"desc":"the absence of all things",
+		"run":{
+			"stamina":0.7,
+			"research":5,
+			"arcana":0.1
+		},
+		"mod":{
+			"space.max":"2%",
+			"dist.max":"1%",
+			"research.max":1
+		}, "flavor":"what could go wrong?"
+
+	},
+	{
 		"id":"chronomancy",
 		"require":["tier3","timesource"],
 		"desc":"There must be a way...",

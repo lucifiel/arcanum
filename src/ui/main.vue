@@ -87,7 +87,7 @@ export default {
 
 		this.listen( 'upgrade', this.onUpgrade );
 		this.listen( 'action', this.onAction );
-		this.listen( 'raid', this.onRaid );
+
 		this.listen( 'rest', this.onRest );
 
 		this.listen('equip', this.onEquip );
@@ -155,9 +155,7 @@ export default {
 			}
 			this.stopAutoSave();
 
-			window.removeEventListener('keydown',evt=>{
-				if ( evt.repeat) return;
-				this.keyDown( evt ); evt.stopPropagation(); }, false );
+			if ( this.keyListen ) window.removeEventListener('keydown', this.keyListen, false );
 
 
 		},
@@ -170,12 +168,15 @@ export default {
 					this.runner = setInterval( ()=>this.game.update(), TICK_TIME );
 				}
 
-			window.addEventListener('keydown',evt=>{
+				this.keyListen = evt=>{
 				if ( evt.repeat) return;
-				this.keyDown( evt ); evt.stopPropagation(); }, false );
+				this.keyDown( evt ); evt.stopPropagation(); }
+
+				window.addEventListener('keydown', this.keyListen, false );
+				this.startAutoSave();
 
 			}
-			this.startAutoSave();
+
 
 		},
 
@@ -269,21 +270,6 @@ export default {
 		 * @property {Item} item - item to buy.
 		 */
 		onBuy(item) { this.game.tryBuy(item); },
-
-		/**
-		 * @param {Dungeon} dungeon
-		 * @param {boolean} enter
-		 */
-		onRaid( dungeon, enter ) {
-
-			if ( enter ) this.game.startRaid( dungeon );
-			else {
-				this.state.raid.dungeon = null;
-				this.game.haltAction( this.state.raid );
-
-			}
-
-		},
 
 		onPrimary( s) {
 			if ( this.state.player.primary === s) this.state.player.setPrimary(null);

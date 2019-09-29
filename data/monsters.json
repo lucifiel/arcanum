@@ -1811,7 +1811,7 @@
             "kind":"blunt",
             "dmg":"8~12"
 		},"loot":{
-			"earthgem":"5%"
+			"earthgem":"15%"
 		},
 		"immune":"earth"
 
@@ -1830,7 +1830,7 @@
             "kind":"slash",
             "dmg":"5~12"
         },
-		"loot":{"airgem":"5%"},
+		"loot":{"airgem":"15%"},
 		"immune":"air"
 
     },
@@ -1960,7 +1960,7 @@
             "name":"ice shard",
             "kind":"cold",
             "dmg":"8~15"
-		},"loot":{"watergem":"5%"},
+		},"loot":{"watergem":"15%"},
 		"immune":"water,air"
 
 	},
@@ -2094,17 +2094,17 @@
         "level":8,
         "evil":12,
         "desc":"From the waist up, it doesn't look that bad.",
-        "hp":40,
+        "hp":38,
         "tohit":8,
         "defense":48,
         "attack":{
             "name":"scimitars",
             "kind":"slash",
-			"dmg":"9~14",
+			"dmg":"5~8",
 			"dot":{
 				"kind":"poison",
 				"name":"poison",
-				"dmg":"2~5",
+				"dmg":"1~4",
 				"duration":5
 			}
         }, "loot":{
@@ -2147,7 +2147,7 @@
             "name":"scorch",
             "kind":"fire",
             "dmg":"5~15"
-		},"loot":{"firegem":"5%"},
+		},"loot":{"firegem":"10%"},
 		"immune":"fire,light"
 
 	},
@@ -2262,9 +2262,9 @@
             "dmg":"13~25"
 		},"immune":"light,fire",
 		"loot":{
-			"airgem":"1%",
-			"firegem":"1%",
-			"lightgem":"4%"
+			"airgem":"5%",
+			"firegem":"5%",
+			"lightgem":"15%"
 		}
 
     },
@@ -2281,7 +2281,7 @@
             "name":"mind flay",
             "kind":"psionic",
             "dmg":"11~19"
-        }, "loot":{"potion of cure serious wounds":15}
+        }, "loot":{}
 
 	},
     {
@@ -2801,7 +2801,7 @@
             "name":"lava slam",
             "kind":"fire",
             "dmg":"25~50"
-		}, "loot":{"firegem":"15%","earthgem":"10%"},
+		}, "loot":{"firegem":"15%","earthgem":"15%"},
 		"immune":"fire"
     },
 	{

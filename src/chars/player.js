@@ -70,8 +70,6 @@ export default class Player extends Char {
 
 	}
 
-	get alive() {return this._hp.value > 0; }
-
 	/**
 	 * @property {Wearable} weapon - primary weapon.
 	 */
@@ -97,6 +95,20 @@ export default class Player extends Char {
 	get mount() { return this._mount; }
 	set mount(v) {
 		this._mount = v;
+	}
+
+	get alive() {return this._hp.value > 0; }
+
+	get defeated() {
+
+		if ( this._hp.value <= 0 ) return true;
+		for( let i = this.stressors.length-1; i>=0; i--){
+
+			var s = this.stressors[i];
+			if ( s.value >= s.max.value ) return true;
+		}
+		return false;
+
 	}
 
 	/**
@@ -127,7 +139,9 @@ export default class Player extends Char {
 		data.immunities = this.immunities;
 		data.resists =this.resists;
 
-		data.statuses = this.statuses;
+		data.retreat = this.retreat||undefined;
+
+		data.states = this.states;
 		data.className = this.className;
 
 		if ( this.primary ) data.primary = this.primary.id;
@@ -151,6 +165,10 @@ export default class Player extends Char {
 
 		this._next = this._next || 50;
 
+		this.retreat = this.retreat || 0;
+
+		console.warn('PLAYER RETREAT: ' + this.retreat );
+
 		this._tohit = this._tohit || 1;
 		this._defense = this._defense || 0;
 
@@ -159,7 +177,7 @@ export default class Player extends Char {
 			this._resist[p] = new Stat( this._resist[p]);
 		}
 
-		this._statuses = this._statuses || {
+		this._states = this._states || {
 			fly:0,
 			sleep:0,
 			swim:0,
@@ -216,6 +234,19 @@ export default class Player extends Char {
 		if ( !this._titles.includes(title) ) {
 			this._titles.push(title);
 		}
+	}
+
+
+	revive( state ) {
+
+		super.revive(state);
+
+		if ( this.weapon && (typeof this.weapon === 'string') ) this.weapon = state.equip.find( this.weapon );
+		this.primary = this.primary && typeof this.primary === 'string' ? state.getData( this.primary ) : this.primary;
+
+		// copy in stressors to test player defeats.
+		this.stressors = state.stressors;
+
 	}
 
 	/**
@@ -315,15 +346,6 @@ export default class Player extends Char {
 		if ( this.primary !== null ) this.removePrimary();
 
 		this.primary = s;
-
-	}
-
-	revive( state ) {
-
-		super.revive(state);
-
-		if ( this.weapon && (typeof this.weapon === 'string') ) this.weapon = state.equip.find( this.weapon );
-		this.primary = this.primary && typeof this.primary === 'string' ? state.getData( this.primary ) : this.primary;
 
 	}
 

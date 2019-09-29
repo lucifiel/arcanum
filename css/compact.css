@@ -198,17 +198,17 @@
 
 
     /* Dungeons */
-    .compact .menu-content div.adventure > div.dungeons {
+    .compact .menu-content div.adventure > div.locales {
         /*display: flex; flex-flow: row wrap; justify-content: space-around;*/
         display: grid; grid-template-columns: 1fr 1fr 1fr; grid-auto-rows: min-content; grid-gap: var(--small-gap);
         padding: var(--small-gap);
         border-top: 1px solid var(--separator-color);
     }
-    .compact .menu-content div.adventure > div.dungeons .dungeon {
+    .compact .menu-content div.adventure > div.locales .locale {
         padding: var(--small-gap);
         background: var(--list-entry-background); border-radius: var(--list-entry-border-radius);
     }
-    .compact .menu-content div.adventure > div.dungeons .dungeon > span:nth-child(1) {
+    .compact .menu-content div.adventure > div.locales .locale > span:nth-child(1) {
         display: flex; flex-flow: row; justify-content: space-between; align-items: center
     }
 
