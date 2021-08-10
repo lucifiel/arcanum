@@ -1,2 +1,8 @@
-# webpack-template
-My template for using webpack with separate dev and config files.
+##Theory of Magic game.
+
+Forked from https://gitlab.com/mathiashjelm/arcanum.
+
+Repo preprocessed with
+```
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch launchlog.txt' --prune-empty --tag-name-filter cat -- --all
+```
