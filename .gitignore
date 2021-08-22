@@ -9,3 +9,5 @@ dist/wizrobe.dev.bundle.js
 arcanum.zip
 .vscode
 .DS_Store
+
+.idea/
