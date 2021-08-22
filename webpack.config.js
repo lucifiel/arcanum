@@ -57,7 +57,7 @@ const MakePlugins = ( env, buildPath ) => {
 			},
 			{
 				// additional js files.
-				from:'includes',
+				from:'arcanum-script/*.js',
 				to:path.resolve(buildPath, 'js')
 			}
 		])

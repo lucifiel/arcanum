@@ -14,12 +14,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lerpinglemur/webpack-template.git"
+    "url": "https://github.com/lucifiel/arcanum.git"
   },
   "author": "",
-  "bugs": {
-    "url": "https://github.com/lerpinglemur/webpack-template/issues"
-  },
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.3",
