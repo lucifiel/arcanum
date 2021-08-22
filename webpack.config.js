@@ -54,13 +54,13 @@ const MakePlugins = ( env, buildPath ) => {
 			{
 				from:'css',
 				to:path.resolve( buildPath, 'css' )
-			},
-			{
-				// additional js files.
-				from:'arcanum-script/*.js',
-				to:path.resolve(buildPath, 'js')
 			}
-		]})
+		]}),
+		new webpack.ProvidePlugin({
+			jQuery: 'jquery',
+			$: 'jquery',
+			'window.jQuery': 'jquery',
+	  	})
 	];
 
 	if ( env.kong) {
@@ -86,8 +86,10 @@ module.exports = (env, argv) => {
 	return {
 
 	mode: __DIST ? "production" : 'development',
+	devtool: 'source-map',
 	entry: {
-		wizrobe: "./src/index.js"
+		wizrobe: "./src/index.js",
+		script: "./arcanum-script/ArcanumEnhancements.user.js",
 	},
 	module: {
 
@@ -136,5 +138,4 @@ module.exports = (env, argv) => {
 			'remote':'remote'
 		}
 	}
-
 }}
