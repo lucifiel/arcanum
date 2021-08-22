@@ -45,7 +45,7 @@ const MakePlugins = ( env, buildPath ) => {
 			__CLOUD:env.cloud
 
 		}),
-		new CopyPlugin([
+		new CopyPlugin({patterns: [
 
 			{
 				from:'data',
@@ -60,7 +60,7 @@ const MakePlugins = ( env, buildPath ) => {
 				from:'arcanum-script/*.js',
 				to:path.resolve(buildPath, 'js')
 			}
-		])
+		]})
 	];
 
 	if ( env.kong) {
@@ -80,7 +80,7 @@ const MakePlugins = ( env, buildPath ) => {
 
 module.exports = (env, argv) => {
 
-	const BuildPath = path.resolve( __dirname, argv['buildpath'] || 'dev' );
+	const BuildPath = path.resolve( __dirname, env['buildpath'] || 'dev' );
 	const __DIST = env.production ? true : false;
 
 	return {
